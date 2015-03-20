@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //NON-BRANCH WORK
 import java.util.Random;
 
@@ -18,7 +17,6 @@ public class DnDie {
 	//rndm comment
 	// Rolls the number of a given die (ie rolls 5 20s)
 	public static int[] roll (int die, int dieNumber){
->>>>>>> refs/remotes/origin/master
 		
 		int [] number = new int[dieNumber];
 		
