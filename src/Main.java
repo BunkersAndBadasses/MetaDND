@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Display display = new Display();
-		Shell shell = new Shell(display); 
+		Shell shell = new Shell(display);
 		shell.setText("Testing box");
 		
 		int die = 20;
@@ -24,7 +24,7 @@ public class Main {
 		helloWorldTest.pack();
 		
 		shell.open();
-		//DieWindow a = new DieWindow(display); To open a die window
+		DieWindow a = new DieWindow(display); //To open a die window
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
