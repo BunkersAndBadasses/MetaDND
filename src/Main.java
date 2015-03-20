@@ -7,6 +7,7 @@ public class Main {
 		Shell shell = new Shell(display);
 		shell.setText("Testing box");
 		shell.open();
+		DieWindow a = new DieWindow(display);
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
