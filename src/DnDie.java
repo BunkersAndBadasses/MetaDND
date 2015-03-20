@@ -4,7 +4,7 @@ import java.util.Random;
 public class DnDie {
 	
 	Random rng = new Random();
-	
+	//rndm comment
 	// Rolls the number of a given die (ie rolls 5 20s)
 	public int[] roll (int die, int dieNumber){
 		
