@@ -22,7 +22,7 @@ public class Main {
 		int array[] = new int [number];
 		String dieRolls = "";
 		
-		array = DnDie.roll(die, number);
+		//array = DnDie.roll(die, number);
 		
 		for(int i = 0; i < array.length; i++){
 			dieRolls += array[i] + ", ";

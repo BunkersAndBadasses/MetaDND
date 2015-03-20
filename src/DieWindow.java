@@ -40,4 +40,8 @@ public class DieWindow {
 		shell.pack ();
 		shell.open();
 	}
+	public Shell getshell()
+	{
+		return shell;
+	}
 }
