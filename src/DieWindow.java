@@ -26,7 +26,7 @@ public class DieWindow {
 		text.setLayoutData (new RowData (100, SWT.DEFAULT));
 		roll_d20 = new Button (shell, SWT.PUSH);
 		roll_d20.setText ("Roll");
-		roll_d20.addSelectionListener(new SelectionAdapter() {
+		roll_d20.addSelectionListener(new SelectionAdapter() { 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//Replace it to die roller function
