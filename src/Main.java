@@ -6,7 +6,16 @@ public class Main {
 	public static void main(String[] args) {
 		Display display = new Display();
 		Shell shell = new Shell(display);
+		shell.setBounds(0,0,500,500);
 		shell.setText("Testing box");
+		Button button = new Button(shell, SWT.PUSH);
+		button.setText("I'm a button");
+		button.setBounds(75,75,100,50);
+		button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				System.out.println("You clicked the button");
+			}
+		});
 		
 		int die = 20;
 		int number = 3;
