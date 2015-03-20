@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class DnDie {
 	
-	Random rng = new Random();
+	static Random rng = new Random();
 	
 	// Rolls the number of a given die (ie rolls 5 20s)
-	public int[] roll (int die, int dieNumber){
+	public static int[] roll (int die, int dieNumber){
 		
 		int [] number = new int[dieNumber];
 		
