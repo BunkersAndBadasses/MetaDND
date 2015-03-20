@@ -1,3 +1,5 @@
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -12,5 +14,6 @@ public class DieWindow {
 		shell = new Shell(display);
 		shell.setText("Die Roller");
 		shell.open();
+		shell.setLayout(new FillLayout());
 	}
 }
