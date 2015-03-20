@@ -29,7 +29,10 @@ public class DieWindow {
 		roll_d20.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//add die function
+				//Replace it to die roller function
+				Double d = Math.random() * 20 + 1;
+				int c = d.intValue();
+				text.setText(String.valueOf(c));
 			}	
 		});
 		shell.setDefaultButton (roll_d20);
