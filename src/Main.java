@@ -1,6 +1,8 @@
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
+import GUIs.MenuBar;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -8,6 +10,7 @@ public class Main {
 		Shell shell = new Shell(display);
 		shell.setBounds(0,0,500,500);
 		shell.setText("Testing box");
+		new MenuBar(shell);
 		Button button = new Button(shell, SWT.PUSH);
 		button.setText("I'm a button");
 		button.setBounds(75,75,100,50);
@@ -22,15 +25,15 @@ public class Main {
 		int array[] = new int [number];
 		String dieRolls = "";
 		
-		//array = DnDie.roll(die, number);
-		
-		for(int i = 0; i < array.length; i++){
-			dieRolls += array[i] + ", ";
-		}
-		
-		Text helloWorldTest = new Text(shell, SWT.NONE);
-		helloWorldTest.setText(dieRolls);
-		helloWorldTest.pack();
+//		array = DnDie.roll(die, number);
+//		
+//		for(int i = 0; i < array.length; i++){
+//			dieRolls += array[i] + ", ";
+//		}
+//		
+//		Text helloWorldTest = new Text(shell, SWT.NONE);
+//		helloWorldTest.setText(dieRolls);
+//		helloWorldTest.pack();
 		
 		shell.open();
 		while(!shell.isDisposed()){

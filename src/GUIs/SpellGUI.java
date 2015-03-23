@@ -1,3 +1,4 @@
+package GUIs;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
@@ -29,7 +30,7 @@ public class SpellGUI {
 		Shell shell = new Shell(display);
 		
 		
-		new MenuBar(shell);
+		new MenuBar(shell); //Add menu bar to windows like this
 					
 		FormLayout layout = new FormLayout();
 		shell.setLayout(layout);
