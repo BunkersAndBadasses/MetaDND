@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.*;
 public class Main {
 
 	public static void main(String[] args) {
+		xmlLoader xmls = new xmlLoader("xmlTestThread");
+		xmls.start();
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setBounds(0,0,500,500);

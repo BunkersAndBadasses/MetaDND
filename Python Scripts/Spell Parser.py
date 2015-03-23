@@ -58,6 +58,6 @@ os.remove("tempOut.txt")
 
 newdata = filedata.replace("</DESCRIPTION>\n\t\t<DESCRIPTION>",'')
 
-f = open("Spells.xml",'w')
+f = open("..\XML\Spells.xml",'w')
 f.write(newdata)
 f.close()
