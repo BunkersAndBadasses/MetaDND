@@ -1,7 +1,7 @@
+import guis.MenuBar;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
-
-import GUIs.MenuBar;
 
 public class Main {
 

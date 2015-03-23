@@ -1,4 +1,4 @@
-package GUIs;
+package guis;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
