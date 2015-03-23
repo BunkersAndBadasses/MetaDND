@@ -36,21 +36,21 @@ public class xmlLoader implements Runnable{
 		});
 		xmls.forEach(File -> System.out.println(File.getName()));
 		Document document = builder.parse(xmls.get(0));
-
-		//List<Employee> employees = new ArrayList<Employee>();
 		Hashtable<String, DNDEntity> spells = new Hashtable<String, DNDEntity>();
 		
 		NodeList nodeList = document.getDocumentElement().getChildNodes();
-		for (int i = 0; i < 2;/*nodeList.getLength();*/ i++) {
+		for (int i = 0; i < 3;/*nodeList.getLength();*/ i++) {
 			Node node = nodeList.item(i);
-
+			NodeList children = node.getChildNodes();
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element elem = (Element) node;
-				//System.out.println(node.getAttributes());
-				//System.out.println(elem.getTagName());
-				String name = elem.getElementsByTagName("NAME").item(0).getChildNodes().item(0).getNodeValue();
-				name = name.trim();
-				System.out.println(name);
+				for(int j = 0; j < children.getLength(); j++) {
+					if (children.item(j) instanceof Element == false)
+					       continue;
+					String name = children.item(j).getNodeName().trim();
+					String content = children.item(j).getTextContent().trim();
+					System.out.println(name);
+					System.out.println(content);
+				}
 			}
 		}
 	}
