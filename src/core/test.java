@@ -1,3 +1,4 @@
+package core;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;

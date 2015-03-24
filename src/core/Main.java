@@ -1,3 +1,4 @@
+package core;
 import guis.MenuBar;
 
 import org.eclipse.swt.SWT;

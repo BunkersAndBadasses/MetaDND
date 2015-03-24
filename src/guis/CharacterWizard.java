@@ -1,13 +1,16 @@
+package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
 
+import core.Character;
+
 import java.awt.color.*;
 import java.util.ArrayList;
 
-public class test2 {
+public class CharacterWizard {
 
 	int pageNum = -1;
 	
@@ -20,7 +23,7 @@ public class test2 {
 	
 	private Character character;
 	
-	public test2(Display d) { 
+	public CharacterWizard(Display d) { 
 		display = d;
 		shell = new Shell(d);
         shell.setText("CharacterWizard");
@@ -35,6 +38,8 @@ public class test2 {
 	
 	public void run() {
 		center(shell);
+
+		setBackgroundColor();
 		
         shell.open();
 
@@ -56,6 +61,14 @@ public class test2 {
 
         shell.setBounds(nLeft, nTop, p.x, p.y);
     }
+		
+	private void setBackgroundColor() {
+	    Color red = display.getSystemColor(SWT.COLOR_RED);
+	    
+	    //shell.setLayout(new FillLayout());
+
+	    shell.setBackground(red);
+	}
 	
 	private void createPageContent() {
 		final Composite homePanel = new Composite(shell,SWT.NONE);
@@ -106,11 +119,11 @@ public class test2 {
 		
 		/////////////////// WIZARD SETUP /////////////////////////////////
 		
-		final Composite wizPanel = new Composite(homePanel,SWT.BORDER);
-		wizPanel.setBounds(0,0,WIDTH,HEIGHT);
+		final Composite wizard = new Composite(homePanel,SWT.NONE);
+		final Composite wizPanel = new Composite(wizard,SWT.BORDER);
+		wizPanel.setBounds(0,0,/*WIDTH*/ 0,(int) (HEIGHT*(.75)));
 		final StackLayout wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
-		wizPanel.setBackground(new Color(dev,255,0,0));
 		
 		
 		/////////////////// MANUAL SETUP ////////////////////////////////
@@ -135,7 +148,7 @@ public class test2 {
 		
 		wizardButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = wizPanel;
+				homeLayout.topControl = wizard;
 				homePanel.layout();
 			}
 		});
@@ -259,7 +272,7 @@ public class test2 {
 
 		///////////// WIZARD BACK/NEXT/CANCEL BUTTONS ////////////////////
 		
-	    Button nextButton = new Button(wizPanel, SWT.PUSH);
+	    Button nextButton = new Button(wizard, SWT.PUSH);
 	    nextButton.setText("Next");
 	    nextButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
 	    nextButton.addListener(SWT.Selection, new Listener() {
@@ -271,7 +284,7 @@ public class test2 {
 	      }
 	    });
 	    
-	    Button backButton = new Button(wizPanel, SWT.PUSH);
+	    Button backButton = new Button(wizard, SWT.PUSH);
 	    backButton.setText("Back");
 	    backButton.setBounds(WIDTH-220,HEIGHT-90, 100, 50);
 	    backButton.addListener(SWT.Selection, new Listener() {
@@ -283,7 +296,7 @@ public class test2 {
 	      }
 	    });
 		
-	    Button cancelButton = new Button(wizPanel, SWT.PUSH);
+	    Button cancelButton = new Button(wizard, SWT.PUSH);
 	    cancelButton.setText("Cancel");
 	    cancelButton.setBounds(10,HEIGHT-90, 100, 50);
 	    cancelButton.addListener(SWT.Selection, new Listener() {
