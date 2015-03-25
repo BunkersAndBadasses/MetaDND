@@ -46,6 +46,7 @@ public class Main {
 		display.dispose();
 		shell.dispose();
 		System.out.println("Exiting");
+		System.exit(0);
 	}
 
 }
