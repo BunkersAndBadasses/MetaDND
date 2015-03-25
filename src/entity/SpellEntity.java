@@ -25,6 +25,47 @@ public class SpellEntity extends DNDEntity{
 		    switch(field){
 		    case "NAME":
 		    	this.name = value;
+		    	break;
+		    case "COMPONENTS":
+		    	this.components = value;
+		    	break;
+		    case "SCHOOL":
+		    	this.school = value;
+		    	break;
+		    case "RANGE":
+		    	this.range = value;
+		    	break;
+		    case "EFFECT":
+		    	this.effect = value;
+		    	break;
+		    case "CASTINGTIME":
+		    	this.castingTime = value;
+		    	break;
+		    case "DESCRIPTION":
+		    	this.description = value;
+		    	break;
+		    case "MATERIALCOMPONENT":
+		    	this.materialComponent = value;
+		    	break;
+		    case "SAVINGTHROW":
+		    	this.savingThrow = value;
+		    	break;
+		    case "FOCUS":
+		    	this.focus = value;
+		    	break;
+		    case "DURATION":
+		    	this.duration = value;
+		    	break;
+		    case "LEVEL":
+		    	//TODO Figure out logic here later, with what we want
+		    	break;
+		    case "SPELLRESISTANCE":
+		    	if(value.toUpperCase().contains("NO")){
+		    		this.spellResistance = false;
+		    	}
+		    	else
+		    		this.spellResistance = true;
+		    	break;	
 		    default:
 		    	break;
 		    }
@@ -32,19 +73,17 @@ public class SpellEntity extends DNDEntity{
 	}
 	
 	@Override
-	String getName() {
-		// TODO Auto-generated method stub
+	public String getName(){
 		return this.name;
 	}
 
 	@Override
-	String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDescription(){
+		return description;
 	}
 
 	@Override
-	void toTooltipWindow() {
+	public void toTooltipWindow(){
 		// TODO Auto-generated method stub
 		//Need some generic GUI window here, feed in data and open
 	}

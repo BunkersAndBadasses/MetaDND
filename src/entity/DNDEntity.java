@@ -14,9 +14,9 @@ public abstract class DNDEntity {
 	
 	
 	//TODO Replace void with actual window object
-	abstract String getName();
-	abstract String getDescription();
-	abstract void toTooltipWindow();
+	public abstract String getName();
+	public abstract String getDescription();
+	public abstract void toTooltipWindow();
 	
 	public type getEntityType(){
 		return this.TYPE;

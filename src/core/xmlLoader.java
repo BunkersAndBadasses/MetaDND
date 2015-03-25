@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -17,11 +15,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import entity.DNDEntity;
+import entity.SpellEntity;
 
 public class xmlLoader implements Runnable{
 	private Thread xmlLoadThread;
 	private String threadName;
-
+	public Hashtable<String, DNDEntity> spells;
+	
 	xmlLoader(String name){
 		threadName = name;
 		System.out.println("Creating " +  threadName );
@@ -42,13 +42,13 @@ public class xmlLoader implements Runnable{
 		});
 		xmls.forEach(File -> System.out.println(File.getName()));
 		Document document = builder.parse(xmls.get(0));
-		Hashtable<String, DNDEntity> spells = new Hashtable<String, DNDEntity>();
+		spells = new Hashtable<String, DNDEntity>();
 		
 		NodeList nodeList = document.getDocumentElement().getChildNodes();
-		for (int i = 0; i < 3;/*nodeList.getLength();*/ i++) {
+		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
 			NodeList children = node.getChildNodes();
-			Map<String, String> entity = new HashMap<String, String>();
+			HashMap<String, String> entity = new HashMap<String, String>();
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				for(int j = 0; j < children.getLength(); j++) {
 					if (children.item(j) instanceof Element == false)
@@ -62,9 +62,11 @@ public class xmlLoader implements Runnable{
 			}
 			if(node.getNodeName() == "SPELL"){
 				System.out.println("Make a spell!");
-				
+				SpellEntity testSpell = new SpellEntity(entity);
+				spells.put(testSpell.getName(), testSpell);
 			}
 		}
+		spells.size();
 	}
 
 	@Override
