@@ -67,7 +67,7 @@ public class xmlLoader implements Runnable{
 				SpellEntity testSpell = new SpellEntity(entity);
 				spells.put(testSpell.getName(), testSpell);
 				//test code for tooltip windows
-				if(testSpell.getName().equalsIgnoreCase("astral projection") || testSpell.getName().equalsIgnoreCase("acid arrow")){
+				if(testSpell.getName().equalsIgnoreCase("astral projection")){
 					testSpell.toTooltipWindow();
 				}
 			}

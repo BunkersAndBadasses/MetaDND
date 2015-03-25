@@ -6,9 +6,11 @@ import java.util.Map;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 /*
@@ -53,7 +55,14 @@ public abstract class DNDEntity {
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
 		}
-		
+		Monitor primary = display.getPrimaryMonitor();
+	    Rectangle bounds = primary.getBounds();
+	    Rectangle rect = shell.getBounds();
+	    
+	    int x = (int) (bounds.x + (bounds.width - rect.width) * .75);
+	    int y = (int) (bounds.y + (bounds.height - rect.height) * .15);
+	    shell.setLocation(x, y);
+	    
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed()){
