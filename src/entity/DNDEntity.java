@@ -1,5 +1,7 @@
 package entity;
 
+import guis.MenuBar;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -62,7 +64,6 @@ public abstract class DNDEntity {
 	    int x = (int) (bounds.x + (bounds.width - rect.width) * .75);
 	    int y = (int) (bounds.y + (bounds.height - rect.height) * .15);
 	    shell.setLocation(x, y);
-	    
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed()){

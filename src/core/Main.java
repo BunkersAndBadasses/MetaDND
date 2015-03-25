@@ -44,6 +44,8 @@ public class Main {
 				display.sleep();
 		}
 		display.dispose();
+		shell.dispose();
+		System.out.println("Exiting");
 	}
 
 }
