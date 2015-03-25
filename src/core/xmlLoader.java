@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -20,7 +22,7 @@ import entity.SpellEntity;
 public class xmlLoader implements Runnable{
 	private Thread xmlLoadThread;
 	private String threadName;
-	public Hashtable<String, DNDEntity> spells;
+	public LinkedHashMap<String, DNDEntity> spells;
 	
 	xmlLoader(String name){
 		threadName = name;
@@ -42,13 +44,13 @@ public class xmlLoader implements Runnable{
 		});
 		xmls.forEach(File -> System.out.println(File.getName()));
 		Document document = builder.parse(xmls.get(0));
-		spells = new Hashtable<String, DNDEntity>();
+		spells = new LinkedHashMap<String, DNDEntity>();
 		
 		NodeList nodeList = document.getDocumentElement().getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
 			NodeList children = node.getChildNodes();
-			HashMap<String, String> entity = new HashMap<String, String>();
+			LinkedHashMap<String, String> entity = new LinkedHashMap<String, String>();
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				for(int j = 0; j < children.getLength(); j++) {
 					if (children.item(j) instanceof Element == false)
@@ -56,14 +58,18 @@ public class xmlLoader implements Runnable{
 					String name = children.item(j).getNodeName().trim();
 					String content = children.item(j).getTextContent().trim();
 					entity.put(name, content);
-					System.out.println(name);
-					System.out.println(content);
+					//System.out.println(name);
+					//System.out.println(content);
 				}
 			}
 			if(node.getNodeName() == "SPELL"){
-				System.out.println("Make a spell!");
+				//System.out.println("Make a spell!");
 				SpellEntity testSpell = new SpellEntity(entity);
 				spells.put(testSpell.getName(), testSpell);
+				//test code for tooltip windows
+				if(testSpell.getName().equalsIgnoreCase("astral projection") || testSpell.getName().equalsIgnoreCase("acid arrow")){
+					testSpell.toTooltipWindow();
+				}
 			}
 		}
 		spells.size();

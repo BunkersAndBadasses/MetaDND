@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SpellEntity extends DNDEntity{
@@ -17,9 +17,10 @@ public class SpellEntity extends DNDEntity{
 	String materialComponent;
 	String focus;
 	
-	public SpellEntity(HashMap<String, String> input) {
+	public SpellEntity(LinkedHashMap<String, String> input) {
 		this.TYPE = DNDEntity.type.SPELLENTITY;
-		for (Map.Entry<String, String> entry : input.entrySet()) {
+		passedData = input;
+		for (Map.Entry<String, String> entry : input.entrySet()){
 		    String field = entry.getKey();
 		    String value = entry.getValue();
 		    switch(field){
@@ -80,12 +81,6 @@ public class SpellEntity extends DNDEntity{
 	@Override
 	public String getDescription(){
 		return description;
-	}
-
-	@Override
-	public void toTooltipWindow(){
-		// TODO Auto-generated method stub
-		//Need some generic GUI window here, feed in data and open
 	}
 
 }
