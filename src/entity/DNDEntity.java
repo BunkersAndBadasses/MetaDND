@@ -31,8 +31,12 @@ public abstract class DNDEntity {
 	
 	
 	//TODO Replace void with actual window object
-	public abstract String getName();
-	public abstract String getDescription();
+	public String getName(){
+		return this.name;
+	}
+	public String getDescription(){
+		return this.description;
+	}
 	
 	public type getEntityType(){
 		return this.TYPE;

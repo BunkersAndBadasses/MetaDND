@@ -72,15 +72,4 @@ public class SpellEntity extends DNDEntity{
 		    }
 		}
 	}
-	
-	@Override
-	public String getName(){
-		return this.name;
-	}
-
-	@Override
-	public String getDescription(){
-		return description;
-	}
-
 }
