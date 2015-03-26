@@ -675,10 +675,7 @@
 		</BENEFIT>
 		<DESCRIPTION>
 			This feat allows spellcasters to acquire a new familiar from a nonstandard list, but only when they could normally acquire a new familiar.
-		</DESCRIPTION>
-	</FEAT>
-	<FEAT>
-		<DESCRIPTION>
+
 			Familiar 	Alignment 	Arcane Spellcaster Level
 
 			Shocker lizard 	Neutral 	5th
@@ -692,20 +689,11 @@
 			Pseudodragon 	Neutral good 	7th
 
 			Quasit 	Chaotic evil 	7th
-		</DESCRIPTION>
-	</FEAT>
-	<FEAT>
-		<DESCRIPTION>
+
 			Improved familiars otherwise use the rules for regular familiars, with two exceptions: If the creature's type is something other than animal, its type does not change; and improved familiars do not gain the ability to speak with other creatures of their kind (although many of them already have the ability to communicate).
-		</DESCRIPTION>
-	</FEAT>
-	<FEAT>
-		<DESCRIPTION>
+
 			The list in the table above presents only a few possible improved familiars. Almost any creature of the same general size and power as those on the list makes a suitable familiar. Nor is the master's alignment the only possible categorization. For instance, improved familiars could be assigned by the master's creature type or subtype, as shown below.
-		</DESCRIPTION>
-	</FEAT>
-	<FEAT>
-		<DESCRIPTION>
+
 			Familiar	Type/Subtype	Arcane Spellcaster Level
 
 			Celestial hawk1	Good	3rd

@@ -4,8 +4,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.LinkedHashMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,13 +14,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import entity.DNDEntity;
-import entity.SpellEntity;
+import entity.*;
+
 
 public class xmlLoader implements Runnable{
 	private Thread xmlLoadThread;
 	private String threadName;
 	public LinkedHashMap<String, DNDEntity> spells;
+	public LinkedHashMap<String, DNDEntity> feats;
 	
 	xmlLoader(String name){
 		threadName = name;
@@ -45,6 +44,7 @@ public class xmlLoader implements Runnable{
 		xmls.forEach(File -> System.out.println(File.getName()));
 		Document document = builder.parse(xmls.get(0));
 		spells = new LinkedHashMap<String, DNDEntity>();
+		feats = new LinkedHashMap<String, DNDEntity>();
 		
 		NodeList nodeList = document.getDocumentElement().getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
@@ -69,6 +69,13 @@ public class xmlLoader implements Runnable{
 				//test code for tooltip windows
 				if(testSpell.getName().equalsIgnoreCase("astral projection")){
 					testSpell.toTooltipWindow();
+				}
+			}
+			else if(node.getNodeName() == "FEAT"){
+				FeatEntity testFeat = new FeatEntity(entity);
+				feats.put(testFeat.getName(), testFeat);
+				if(testFeat.getName().equalsIgnoreCase("improved critical")){
+					testFeat.toTooltipWindow();
 				}
 			}
 		}

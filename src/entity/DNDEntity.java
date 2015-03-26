@@ -21,7 +21,8 @@ import org.eclipse.swt.widgets.Shell;
 public abstract class DNDEntity {
 	
 	enum type{
-		SPELLENTITY
+		SPELLENTITY,
+		FEATENTITY
 	}
 	
 	type TYPE; //Enumerated type, must have to determine what type of entity this is
