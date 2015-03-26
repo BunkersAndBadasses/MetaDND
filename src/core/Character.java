@@ -1,6 +1,8 @@
 package core;
 import java.util.ArrayList;
 
+import entity.FeatEntity;
+
 
 public class Character {
 	
@@ -41,7 +43,7 @@ public class Character {
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
 	private ArrayList<String> languages;
-	private ArrayList<Feat> feats;
+	private ArrayList<FeatEntity> feats;
 	private ArrayList<String> specialAbilities;
 	private ArrayList<Spell> spells;
 	private ArrayList<Spell> prepSpells;
@@ -86,7 +88,7 @@ public class Character {
 	public void setSkills(ArrayList<Skill> s) {} //TODO import list of skills
 	public void setRank(Skill skill, int rank) {} //TODO
 	public void addLanguage(String l) { languages.add(l); }
-	public void addFeat(Feat f) { feats.add(f); }
+	public void addFeat(FeatEntity f) { feats.add(f); }
 	public void addSpecialAbility(String sa) { specialAbilities.add(sa); }
 	public void addSpell(Spell s) { spells.add(s); }
 	public void prepSpell(Spell s) { prepSpells.add(s); } // TODO type spell or string?
