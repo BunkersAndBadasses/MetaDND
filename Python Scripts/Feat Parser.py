@@ -5,6 +5,7 @@ def textFunc():
 	global description
 	
 	for line in inputFile:
+		#All feats have their type in square brackets
 		parse = re.search('\w*\[[\w\s]+\]', line)
 		if parse:
 			outputFile.write("\t\t<NAME>\n")
@@ -16,6 +17,7 @@ def textFunc():
 			return True
 		if  not line:
 			return False
+
 		parse = re.search('[\w\s]+[:]', line)
 		if parse:
 			broke = False
@@ -27,7 +29,7 @@ def textFunc():
 					description += "\n\t\t\t" + line
 					broke = True
 					break
-
+			#Do this because there isn't a break and continue option for multiple loops
 			if broke:
 				continue
 
@@ -44,9 +46,6 @@ def textFunc():
 				outputFile.write("\t\t</FIGHTERBONUS>\n")
 			else:
 				description += "\n\t\t\t" + line
-#				outputFile.write("\t\t<DESCRIPTION>\n")
-#				outputFile.write("\t\t\t" + line)
-#				outputFile.write("\t\t</DESCRIPTION>\n")
 
 #Main begins here
 inputFile = open("featsIn.txt")
@@ -75,6 +74,7 @@ filedata = f.read()
 f.close()
 os.remove("tempOut.txt")
 
+#All this stuff makes sure it looks nice to us, yes it's all necessary in this ordering
 newdata = filedata.replace("</DESCRIPTION>\n\t\t<DESCRIPTION>",'')
 newdata = filedata.replace("<PREREQUISITES>","<PREREQUISITE>")
 newdata = filedata.replace("</PREREQUISITES>","</PREREQUISITE>")
