@@ -22,6 +22,7 @@ public class xmlLoader implements Runnable{
 	private String threadName;
 	public LinkedHashMap<String, DNDEntity> spells;
 	public LinkedHashMap<String, DNDEntity> feats;
+	public LinkedHashMap<String, DNDEntity> skills;
 	
 	xmlLoader(String name){
 		threadName = name;
@@ -41,45 +42,47 @@ public class xmlLoader implements Runnable{
 				xmls.add(filePath.toFile());	
 			}
 		});
-		xmls.forEach(File -> System.out.println(File.getName()));
-		Document document = builder.parse(xmls.get(0));
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
-		
-		NodeList nodeList = document.getDocumentElement().getChildNodes();
-		for (int i = 0; i < nodeList.getLength(); i++) {
-			Node node = nodeList.item(i);
-			NodeList children = node.getChildNodes();
-			LinkedHashMap<String, String> entity = new LinkedHashMap<String, String>();
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				for(int j = 0; j < children.getLength(); j++) {
-					if (children.item(j) instanceof Element == false)
-					       continue;
-					String name = children.item(j).getNodeName().trim();
-					String content = children.item(j).getTextContent().trim();
-					entity.put(name, content);
-					//System.out.println(name);
-					//System.out.println(content);
+		skills = new LinkedHashMap<String, DNDEntity>();
+		xmls.forEach(File -> System.out.println(File.getName()));
+		for (int x = 0; x < xmls.size(); x++) {
+			Document document = builder.parse(xmls.get(x));
+			
+
+			NodeList nodeList = document.getDocumentElement().getChildNodes();
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Node node = nodeList.item(i);
+				NodeList children = node.getChildNodes();
+				LinkedHashMap<String, String> entity = new LinkedHashMap<String, String>();
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					for (int j = 0; j < children.getLength(); j++) {
+						if (children.item(j) instanceof Element == false)
+							continue;
+						String name = children.item(j).getNodeName().trim();
+						String content = children.item(j).getTextContent()
+								.trim();
+						entity.put(name, content);
+						// System.out.println(name);
+						// System.out.println(content);
+					}
 				}
-			}
-			if(node.getNodeName() == "SPELL"){
-				//System.out.println("Make a spell!");
-				SpellEntity testSpell = new SpellEntity(entity);
-				spells.put(testSpell.getName(), testSpell);
-				//test code for tooltip windows
-				if(testSpell.getName().equalsIgnoreCase("astral projection")){
-					testSpell.toTooltipWindow();
+				if (node.getNodeName() == "SPELL") {
+					SpellEntity testSpell = new SpellEntity(entity);
+					spells.put(testSpell.getName(), testSpell);
+					
 				}
-			}
-			else if(node.getNodeName() == "FEAT"){
-				FeatEntity testFeat = new FeatEntity(entity);
-				feats.put(testFeat.getName(), testFeat);
-				if(testFeat.getName().equalsIgnoreCase("improved critical")){
-					testFeat.toTooltipWindow();
+				else if (node.getNodeName() == "FEAT") {
+					FeatEntity testFeat = new FeatEntity(entity);
+					feats.put(testFeat.getName(), testFeat);
+				}
+				else if(node.getNodeName() == "SKILL"){
+					SkillEntity testSkill = new SkillEntity(entity);
+					skills.put(testSkill.getName(), testSkill);
 				}
 			}
 		}
-		spells.size();
+		spells.size(); //Literally here so I can put a breakpoint
 	}
 
 	@Override

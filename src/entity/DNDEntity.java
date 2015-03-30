@@ -22,7 +22,8 @@ public abstract class DNDEntity {
 	
 	enum type{
 		SPELLENTITY,
-		FEATENTITY
+		FEATENTITY,
+		SKILLENTITY
 	}
 	
 	type TYPE; //Enumerated type, must have to determine what type of entity this is

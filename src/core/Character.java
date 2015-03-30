@@ -2,6 +2,7 @@ package core;
 import java.util.ArrayList;
 
 import entity.FeatEntity;
+import entity.SkillEntity;
 
 
 public class Character {
@@ -85,8 +86,8 @@ public class Character {
 	public void setRemainingHitPoints(int rhp) { remainingHP = rhp; }
 	public void changeRemainingHitPoints(int adj) { remainingHP += adj; }
 	public void resetRemainingHitPoints() { remainingHP = hp; }
-	public void setSkills(ArrayList<Skill> s) {} //TODO import list of skills
-	public void setRank(Skill skill, int rank) {} //TODO
+	public void setSkills(ArrayList<SkillEntity> s) {} //TODO import list of skills
+	public void setRank(SkillEntity skill, int rank) {} //TODO
 	public void addLanguage(String l) { languages.add(l); }
 	public void addFeat(FeatEntity f) { feats.add(f); }
 	public void addSpecialAbility(String sa) { specialAbilities.add(sa); }

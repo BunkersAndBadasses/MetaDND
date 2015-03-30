@@ -1,7 +1,9 @@
 package core;
 
+import entity.SkillEntity;
+
 public class CharSkill {
-	private Skill skill;
+	private SkillEntity skill;
 	private int rank;
 	private int mod;
 	
