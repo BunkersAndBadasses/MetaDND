@@ -444,7 +444,7 @@ public class DungeonGenerator {
 	 */
 	public void printDungeon(boolean writeToFile) {
 
-		String toPrint = "";
+		String toPrint = Integer.toString(this.m_size) + "\n";
 		for (int i = 0; i < this.m_size; i++) {
 			for (int j = 0; j < this.m_size; j++) {
 				//Unpassable, Difficult, Passable, DungeonSquare, Chest, Monster, Obstacle
