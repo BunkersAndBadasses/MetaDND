@@ -1,320 +1,361 @@
-package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
-
-import core.Character;
-
-import java.awt.color.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CharacterWizard {
 
 	int pageNum = -1;
-	
-	private Device dev;
-	private Display display;
+
+	private static Device dev;
+	private static Display display;
 	private Shell shell;
+	private static StackLayout wizLayout;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
-	private int wizPageNum = -1;
-	
-	private Character character;
-	
-	public CharacterWizard(Display d) { 
+	public static int wizPageNum = -1;
+	public static boolean cancel = false;
+	public static boolean[] wizPageCreated = {false, false, false, false, false, false, false, false, false, false};
+
+	private static ArrayList<Composite> wizPages;
+
+	public static Character character;
+
+	public static int[] baseAbilityScores = new int[6];
+
+	public CharacterWizard(Display d) {
 		display = d;
 		shell = new Shell(d);
-        shell.setText("CharacterWizard");
-        shell.setSize(WIDTH,HEIGHT);
-        character = new Character();
-        
-        createPageContent();
+		shell.setText("Create New Character");
+		shell.setSize(WIDTH, HEIGHT);
+		character = new Character();
+		wizPages = new ArrayList<Composite>();
 
-        run();
-    }
-	
-	
+		createPageContent();
+
+		run();
+	}
+
 	public void run() {
 		center(shell);
 
-		setBackgroundColor();
-		
-        shell.open();
+		shell.open();
 
-        while (!shell.isDisposed()) {
-          if (!display.readAndDispatch()) {
-            display.sleep();
-          }
-        }
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
 	}
-	
-    private void center(Shell shell) {
 
-        Rectangle bds = shell.getDisplay().getBounds();
+	private static void center(Shell shell) {
 
-        Point p = shell.getSize();
+		Rectangle bds = shell.getDisplay().getBounds();
 
-        int nLeft = (bds.width - p.x) / 2;
-        int nTop = (bds.height - p.y) / 2;
+		Point p = shell.getSize();
 
-        shell.setBounds(nLeft, nTop, p.x, p.y);
-    }
-		
-	private void setBackgroundColor() {
-	    Color red = display.getSystemColor(SWT.COLOR_RED);
-	    
-	    //shell.setLayout(new FillLayout());
+		int nLeft = (bds.width - p.x) / 2;
+		int nTop = (bds.height - p.y) / 2;
 
-	    shell.setBackground(red);
+		shell.setBounds(nLeft, nTop, p.x, p.y);
 	}
-	
+
 	private void createPageContent() {
-		final Composite homePanel = new Composite(shell,SWT.NONE);
-		homePanel.setBounds(0,0,WIDTH,HEIGHT);
+
+		// the first thing that shows up is homePanel, which has a layout that
+		// includes the home, wizPanel, manualPanel, and randomPanel pages
+		// it rests on the home page
+		// 'panel' in the name implies it holds a collection of pages
+		// clicking on 'interactive character wizard' button changes the top
+		// control of homePanel to wizPanel. the top control of wizPanel is
+		// wiz1, which is the first page of the character wizard. clicking
+		// back/next only changes the top control of wizPanel.
+		// clicking cancel changes the top control of homePanel back to home
+		// and resets the character wizard
+
+		//////////////////// HOME PANEL SETUP ////////////////////////////
+
+		final Composite homePanel = new Composite(shell, SWT.NONE);
+		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
 		final StackLayout homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
 
-
 		//////////////////// HOME SCREEN SETUP ////////////////////////////
-		
+
+		// this screen is what is first seen when the window opens. 
+		// it contains the buttons that link to the character wizard, the manual
+		// character entering, and the random character generation
 		final Composite home = new Composite(homePanel, SWT.NONE);
-		home.setBounds(0,0,WIDTH,HEIGHT);
-		
+		home.setBounds(0, 0, WIDTH, HEIGHT);
+
 		Label homeLabel = new Label(home, SWT.NONE);
 		homeLabel.setText("Let's create a character!");
-		Font font1 = new Font( homeLabel.getDisplay(), new FontData( "Arial", 24, SWT.BOLD ) );
+		Font font1 = new Font(homeLabel.getDisplay(), new FontData("Arial", 24,
+				SWT.BOLD));
 		homeLabel.setFont(font1);
-		homeLabel.setBounds(WIDTH/2 - 180, 40, 100,100);
+		homeLabel.setBounds(WIDTH / 2 - 180, 40, 100, 100);
 		homeLabel.pack();
-		
+
 		Label homeLabel2 = new Label(home, SWT.NONE);
 		homeLabel2.setText("\nChoose a method:");
-		Font font2 = new Font( homeLabel.getDisplay(), new FontData( "Arial", 18, SWT.BOLD ) );
+		Font font2 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
+				SWT.BOLD));
 		homeLabel2.setFont(font2);
-		homeLabel2.setBounds(WIDTH/2 - 100, 65, 100,100);
+		homeLabel2.setBounds(WIDTH / 2 - 100, 65, 100, 100);
 		homeLabel2.pack();
-		
+
 		Button wizardButton = new Button(home, SWT.PUSH);
-		wizardButton.setText("Wizard");
+		wizardButton.setText("Interactive\nCharacter Wizard");
 		wizardButton.setFont(font2);
-		wizardButton.setBounds(WIDTH/2-150,150,300,150);
+		wizardButton.setBounds(WIDTH / 2 - 150, 150, 300, 150);
 
 		Button manualButton = new Button(home, SWT.PUSH);
 		manualButton.setText("Manual");
-		Font font3 = new Font( homeLabel.getDisplay(), new FontData( "Arial", 18, SWT.NONE ) );
+		Font font3 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
+				SWT.NONE));
 		manualButton.setFont(font3);
-		manualButton.setBounds(WIDTH/2 - 150 ,310,145,75);
+		manualButton.setBounds(WIDTH / 2 - 150, 310, 145, 75);
 
 		Button randomButton = new Button(home, SWT.PUSH);
 		randomButton.setText("Random");
 		randomButton.setFont(font3);
-		randomButton.setBounds(WIDTH/2 + 5,310,145,75);
+		randomButton.setBounds(WIDTH / 2 + 5, 310, 145, 75);
 
-		// set home as the first screen viewed when char wizard is launched
+		// set home as the first screen viewed when new character window  is launched
 		homeLayout.topControl = home;
-		
-		
-		
-		/////////////////// WIZARD SETUP /////////////////////////////////
-		
-		final Composite wizard = new Composite(homePanel,SWT.NONE);
-		final Composite wizPanel = new Composite(wizard,SWT.BORDER);
-		wizPanel.setBounds(0,0,/*WIDTH*/ 0,(int) (HEIGHT*(.75)));
-		final StackLayout wizLayout = new StackLayout();
+
+		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
+
+		final Composite wizPanel = new Composite(homePanel, SWT.BORDER);
+		wizPanel.setBounds(0, 0, WIDTH, HEIGHT);
+		wizPanel.setBackground(new Color(dev, 255, 0, 0));
+		wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
-		
-		
-		/////////////////// MANUAL SETUP ////////////////////////////////
-		
-		final Composite manual = new Composite(homePanel,SWT.NONE);
-		final Composite manualPanel = new Composite(manual,SWT.BORDER);
-		wizPanel.setBounds(0,0,WIDTH,(int) (HEIGHT*(.75)));
+
+		// ///////////////// MANUAL PANEL SETUP ///////////////////////////
+
+		final Composite manualPanel = new Composite(homePanel, SWT.BORDER);
+		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout manualLayout = new StackLayout();
 		manualPanel.setLayout(manualLayout);
-		
-		
-		/////////////////// RANDOM SETUP ////////////////////////////////
-		
-		final Composite random = new Composite(homePanel,SWT.NONE);
-		final Composite randomPanel = new Composite(random,SWT.BORDER);
-		wizPanel.setBounds(0,0,WIDTH,(int) (HEIGHT*(.75)));
+
+		// ////////////////// RANDOM PANEL SETUP //////////////////////////
+
+		final Composite randomPanel = new Composite(homePanel, SWT.BORDER);
+		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout randomLayout = new StackLayout();
 		randomPanel.setLayout(randomLayout);
-	    
-		
-		/////////////////// HOME BUTTON LISTENERS //////////////////////
-		
+
+		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
+
 		wizardButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = wizard;
+				wizLayout.topControl = wizPages.get(0);
+				wizPanel.layout();
+				homeLayout.topControl = wizPanel;
 				homePanel.layout();
 			}
 		});
 		manualButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = manual;
+				homeLayout.topControl = manualPanel;
 				homePanel.layout();
 			}
 		});
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = random;
+				homeLayout.topControl = randomPanel;
 				homePanel.layout();
 			}
 		});
-				
-		
 
-	
-		
-		
-		///////////////////// WIZARD PAGES ////////////////////////////
-	    
-		final ArrayList<Composite> wizPages = new ArrayList<Composite>();
-		
-		/////////////////////////   1   ///////////////////////////////
-		// choose level and ability scores
-		final Composite wiz1 = new Composite(wizPanel,SWT.NONE);
-		wizPageNum = 0;
-		wizLayout.topControl = wiz1;
-		wizPanel.layout();
-		Label wiz1Label = new Label(wiz1, SWT.NONE);
-		wiz1Label.setText("Select starting level and roll for ability scores");
-		wiz1Label.pack();
-		final Text wiz1LevelText = new Text(wiz1, SWT.BORDER);
-		wiz1LevelText.setBounds(50,50,50,50);
-		wiz1LevelText.setText("1");
-		wiz1LevelText.addListener(SWT.Selection, new Listener() {
+		////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////// WIZARD PAGES ///////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////
+
+		// initialize all pages
+		final Composite wiz1 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz1);
+		final Composite wiz2 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz2);
+		final Composite wiz3 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz3);
+		final Composite wiz4 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz4);
+		final Composite wiz5 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz5);
+		final Composite wiz6 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz6);
+		final Composite wiz7 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz7);
+		final Composite wiz8 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz8);
+		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz9);
+		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz10);
+
+		// create the first page (creates next pages at runtime)
+		new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
+				homePanel, wizLayout, homeLayout, wizPages);
+	}
+
+
+	/**
+	 * creates a next button on composite c in the bottom right corner.
+	 * this does NOT set the listener! (each one is different, that is set 
+	 * after this method is called)
+	 * @param c
+	 * @return
+	 */
+	public static Button createNextButton(Composite c) {
+		Button nextButton = new Button(c, SWT.PUSH);
+		nextButton.setText("Next");
+		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
+		return nextButton;
+	}
+
+	/**
+	 * creates a back button on composite c in the bottom right corner.
+	 * also sets the listener for the created button that changes the top 
+	 * control page of the layout of the panel to be the previous page
+	 * @param c
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createBackButton(Composite c, final Composite panel,
+			final StackLayout layout) {
+		Button backButton = new Button(c, SWT.PUSH);
+		backButton.setText("Back");
+		backButton.setBounds(WIDTH - 220, HEIGHT - 90, 100, 50);
+		backButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				System.out.println(wiz1LevelText.getText());
+				if (wizPageNum > 0)
+					wizPageNum--;
+				layout.topControl = wizPages.get(wizPageNum);
+				panel.layout();
 			}
 		});
-		
-		
-		
-		
-		wizPages.add(wiz1);
-		
-		/////////////////////////   2   //////////////////////////////
-		// choose class and race
-		final Composite wiz2 = new Composite(wizPanel,SWT.NONE);
-		Label wiz2Label = new Label(wiz2, SWT.NONE);
-		wiz2Label.setText("Select Class and Race");
-		wiz2Label.pack();
-		wizPages.add(wiz2);
-
-		/////////////////////////   3   //////////////////////////////
-		// apply ability scores
-		final Composite wiz3 = new Composite(wizPanel,SWT.NONE);
-		Label wiz3Label = new Label(wiz3, SWT.NONE);
-		wiz3Label.setText("Apply Ability Scores");
-		wiz3Label.pack();
-		wizPages.add(wiz3);
-		
-		/////////////////////////   4   //////////////////////////////
-		// rank skills
-		final Composite wiz4 = new Composite(wizPanel,SWT.NONE);
-		Label wiz4Label = new Label(wiz4, SWT.NONE);
-		wiz4Label.setText("Add Ranks to Skills");
-		wiz4Label.pack();
-		wizPages.add(wiz4);
-		
-		/////////////////////////   5   //////////////////////////////
-		// choose feats
-		final Composite wiz5= new Composite(wizPanel,SWT.NONE);
-		Label wiz5Label = new Label(wiz5, SWT.NONE);
-		wiz5Label.setText("Choose Feats");
-		wiz5Label.pack();
-		wizPages.add(wiz5);
-		
-		/////////////////////////   6   //////////////////////////////
-		// add description
-		final Composite wiz6 = new Composite(wizPanel,SWT.NONE);
-		Label wiz6Label = new Label(wiz6, SWT.NONE);
-		wiz6Label.setText("Add Description");
-		wiz6Label.pack();
-		wizPages.add(wiz6);
-	    
-		/////////////////////////   7   //////////////////////////////
-		// choose equipment
-		final Composite wiz7 = new Composite(wizPanel,SWT.NONE);
-		Label wiz7Label = new Label(wiz7, SWT.NONE);
-		wiz7Label.setText("Choose Equipment");
-		wiz7Label.pack();
-		wizPages.add(wiz7);
-		
-		/////////////////////////   8   //////////////////////////////
-		// choose domain/specialty school
-		final Composite wiz8 = new Composite(wizPanel,SWT.NONE);
-		Label wiz8Label = new Label(wiz8, SWT.NONE);
-		wiz8Label.setText("Choose Domain/Specialty School");
-		wiz8Label.pack();
-		wizPages.add(wiz8);
-		
-		/////////////////////////   9   //////////////////////////////
-		// select known spells
-		final Composite wiz9 = new Composite(wizPanel,SWT.NONE);
-		Label wiz9Label = new Label(wiz9, SWT.NONE);
-		wiz9Label.setText("Select Known Spells");
-		wiz9Label.pack();
-		wizPages.add(wiz9);
-		
-		/////////////////////////   10   /////////////////////////////
-		// Done
-		final Composite wiz10 = new Composite(wizPanel,SWT.NONE);
-		Label wiz10Label = new Label(wiz10, SWT.NONE);
-		wiz10Label.setText("Done!");
-		wiz10Label.pack();
-		wizPages.add(wiz10);
-		
-
-		///////////// WIZARD BACK/NEXT/CANCEL BUTTONS ////////////////////
-		
-	    Button nextButton = new Button(wizard, SWT.PUSH);
-	    nextButton.setText("Next");
-	    nextButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
-	    nextButton.addListener(SWT.Selection, new Listener() {
-	      public void handleEvent(Event event) {
-	        if (wizPageNum < wizPages.size() - 1)
-	        	wizPageNum++;
-	        wizLayout.topControl = wizPages.get(wizPageNum);
-	        wizPanel.layout();
-	      }
-	    });
-	    
-	    Button backButton = new Button(wizard, SWT.PUSH);
-	    backButton.setText("Back");
-	    backButton.setBounds(WIDTH-220,HEIGHT-90, 100, 50);
-	    backButton.addListener(SWT.Selection, new Listener() {
-	      public void handleEvent(Event event) {
-	    	if (wizPageNum > 0)
-	    		wizPageNum--;
-	        wizLayout.topControl = wizPages.get(wizPageNum);
-	        wizPanel.layout();
-	      }
-	    });
-		
-	    Button cancelButton = new Button(wizard, SWT.PUSH);
-	    cancelButton.setText("Cancel");
-	    cancelButton.setBounds(10,HEIGHT-90, 100, 50);
-	    cancelButton.addListener(SWT.Selection, new Listener() {
-	      public void handleEvent(Event event) {
-	        wizPageNum = -1;
-	        //wizLayout.topControl = page0;
-	        homeLayout.topControl = home;
-	        homePanel.layout();
-	      }
-	    }); // TODO do more here: prompt yes/no, discard all changes
-
-	    
+		return backButton;
 	}
-	
-    public static void main(String[] args) {
-        Display display = new Display();
-        CharacterWizard cw = new CharacterWizard(display);
-        display.dispose();
-    }
-    
+
+	/**
+	 * creates a cancel button on composite c in bottom left corner.
+	 * also sets the listener for the created button that changes the homePanel
+	 * top control to be home and resets the wizard page counter wizPageNum
+	 * @param c
+	 * @param home
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createCancelButton(Composite c, final Composite home,
+			final Composite panel, final StackLayout layout) {
+		Button cancelButton = new Button(c, SWT.PUSH);
+		cancelButton.setText("Cancel");
+		cancelButton.setBounds(10, HEIGHT - 90, 100, 50);
+		cancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				cancel = false;
+				final Shell areYouSureShell = new Shell(display);
+				areYouSureShell.setText("Cancel");
+				areYouSureShell.setSize(300, 200);
+				center(areYouSureShell);
+
+				Label areYouSure = new Label(areYouSureShell, SWT.NONE);
+				areYouSure.setLocation(40,50);
+				areYouSure.setText("Are you sure you want to cancel?");
+				areYouSure.pack();
+
+				Button yes = new Button(areYouSureShell, SWT.PUSH);
+				yes.setBounds(10,130,130,30);
+				yes.setText("Yes, Cancel");
+				yes.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = true;
+						areYouSureShell.dispose();
+					}
+				});
+
+				Button no = new Button(areYouSureShell, SWT.PUSH);
+				no.setBounds(160,130,130,30);
+				no.setText("No, Don't Cancel");
+				no.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = false;
+						areYouSureShell.dispose();
+					}
+				});
+
+				areYouSureShell.open();
+				while (!areYouSureShell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+				if (cancel) {
+					wizPageNum = -1;
+					layout.topControl = home;
+					panel.layout();
+				}
+			}
+		});
+		return cancelButton;
+	}
+
+	/**
+	 * creates a 'search' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Search"
+	 * @return
+	 */
+	public static Button createSearchButton(Composite c) {
+		Button searchButton = new Button(c, SWT.PUSH);
+		searchButton.setText("Search");
+		searchButton.setSize(80,30);
+		return searchButton;
+	}
+
+	/**
+	 * creates a 'add custom' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Add Custom"
+	 * @return
+	 */
+	public static Button createAddCustomButton(Composite c) {
+		Button addCustomButton = new Button(c, SWT.PUSH);
+		addCustomButton.setText("Add Custom");
+		addCustomButton.setSize(100,30);
+		return addCustomButton;
+	}
+
+	// generates random number between 3 and 18
+	// simulates rolling 4 d6 and dropping the lowest roll
+	public static int[] genAS() {
+		Random r = new Random();
+		int[] result = { 0, 0, 0, 0, 0, 0 };
+		for (int i = 0; i < 6; i++) {
+			int roll[] = { r.nextInt(6) + 1, r.nextInt(6) + 1,
+					r.nextInt(6) + 1, r.nextInt(6) + 1 };
+			int min = 7; // max value a roll can be is 6
+			for (int j = 0; j < 4; j++) {
+				result[i] += roll[j];
+				if (roll[j] < min)
+					min = roll[j];
+			}
+			result[i] -= min;
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		Display display = new Display();
+		CharacterWizard cw = new CharacterWizard(display);
+		display.dispose();
+	}
+
 }
