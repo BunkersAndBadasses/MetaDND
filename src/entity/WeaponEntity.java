@@ -1,5 +1,6 @@
+package entity;
 
-public class Weapon extends Item {
+public class WeaponEntity extends DNDEntity{
 
 	private Roll damage; // i.e. [2,6,3] for damage of 2 d6 + 3
 	private int[] criticalRange = new int[2];

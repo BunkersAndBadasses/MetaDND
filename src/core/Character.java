@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+import entity.ArmorEntity;
+import entity.ItemEntity;
+import entity.WeaponEntity;
+
 
 public class Character {
 	
@@ -47,9 +51,9 @@ public class Character {
 	private ArrayList<Ability> abilities;
 	private ArrayList<Spell> spells;
 	private ArrayList<Spell> prepSpells;
-	private ArrayList<Item> items;
-	private ArrayList<Weapon> weapons;
-	private ArrayList<Armor> armors;
+	private ArrayList<ItemEntity> items;
+	private ArrayList<WeaponEntity> weapons;
+	private ArrayList<ArmorEntity> armors;
 	private String notes;
 	
 	
@@ -99,9 +103,9 @@ public class Character {
 	public void addSpell(Spell s) { spells.add(s); }
 	public void prepSpell(Spell s) { prepSpells.add(s); } // TODO type spell or string?
 	public void unprepSpell(Spell s) { prepSpells.remove(s); } // remove spell from prepSpell list
-	public void addItem(Item i) { items.add(i); }
-	public void addWeapon(Weapon w) { weapons.add(w); }
-	public void addArmor(Armor a) { armors.add(a); }
+	public void addItem(ItemEntity i) { items.add(i); }
+	public void addWeapon(WeaponEntity w) { weapons.add(w); }
+	public void addArmor(ArmorEntity a) { armors.add(a); }
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	
 	

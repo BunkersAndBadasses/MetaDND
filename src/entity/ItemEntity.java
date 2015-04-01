@@ -1,5 +1,6 @@
+package entity;
 
-public class Item {
+public class ItemEntity extends DNDEntity{
 
 	private String name;
 	private int level;

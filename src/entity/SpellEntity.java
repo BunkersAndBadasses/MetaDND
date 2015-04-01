@@ -69,6 +69,7 @@ public class SpellEntity extends DNDEntity{
 		    	break;	
 		    default:
 		    	break;
+		    	
 		    }
 		}
 	}

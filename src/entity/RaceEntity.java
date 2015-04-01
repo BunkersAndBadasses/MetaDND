@@ -1,7 +1,8 @@
+package entity;
 import java.util.ArrayList;
 
 
-public class Race {
+public class RaceEntity extends DNDEntity{
 
 	private final static int STRENGTH = 0;
 	private final static int DEXTERITY = 1;
@@ -37,7 +38,7 @@ public class Race {
 	private int size;
 	private int speed; // in feet
 	
-	public Race() {
+	public RaceEntity() {
 		
 	}
 	

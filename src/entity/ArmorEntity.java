@@ -1,5 +1,6 @@
+package entity;
 
-public class Armor extends Item {
+public class ArmorEntity extends DNDEntity {
 
 	private int armorBonus;
 	private int maxDexBonus;

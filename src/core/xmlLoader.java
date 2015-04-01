@@ -70,6 +70,8 @@ public class xmlLoader implements Runnable{
 				if (node.getNodeName() == "SPELL") {
 					SpellEntity testSpell = new SpellEntity(entity);
 					spells.put(testSpell.getName(), testSpell);
+					if(testSpell.getName().equalsIgnoreCase("acid arrow"))
+						testSpell.toTooltipWindow();
 					
 				}
 				else if (node.getNodeName() == "FEAT") {
