@@ -1,7 +1,8 @@
+package entity;
 import java.util.ArrayList;
 
 
-public class Race {
+public class RaceEntity extends DNDEntity{
 
 	private final static int STRENGTH = 0;
 	private final static int DEXTERITY = 1;
@@ -21,20 +22,23 @@ public class Race {
 	private final static int SIZE_COLOSSAL = 8;
 	
 	private String name;
-	private String description;
 	private int[] abilityAdj = new int[6];
 	private String favoredClass;
+	private String personality;
+	private String physicalDescription;
+	private String relations;
+	private String alignment;
+	private String[] lands;
+	private String religion;
+	private String[] specialAbilities;
+	private String[] autoLanguages;
+	private String[] bonusLanguages;
+	private String[] racialBonuses; // i.e. skill check adj's, extra feats
+	private String[] names;
 	private int size;
 	private int speed; // in feet
-	private ArrayList<String> specialAbilities;
-	private ArrayList<String> autoLanguages;
-	private ArrayList<String> bonusLanguages;
-	private ArrayList<SkillAdjNode> skillCheckAdj;
-	private String miscTraits;
 	
-	
-	
-	public Race() {
+	public RaceEntity() {
 		
 	}
 	
