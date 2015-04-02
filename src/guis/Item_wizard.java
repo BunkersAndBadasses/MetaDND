@@ -19,6 +19,11 @@ public class Item_wizard {
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;//copy from character wizard, see for change
 	private ItemEntity newitem;
+	String Itemname;
+	String Itemlevel;
+	String Itemweight;
+	String Itemscript;
+	String Itemrestrict;
 	public Item_wizard(Display d)
 	{
 		display = d;
