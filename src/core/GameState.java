@@ -17,6 +17,9 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
 	
+	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml
+	public LinkedHashMap<String, DNDEntity> customContent;
+	
 	public Character currentlyLoadedCharacter;
 	public String currCharFilePath;
 	public boolean playerMode;
