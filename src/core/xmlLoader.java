@@ -20,9 +20,7 @@ import entity.*;
 public class xmlLoader implements Runnable{
 	private Thread xmlLoadThread;
 	private String threadName;
-	public LinkedHashMap<String, DNDEntity> spells;
-	public LinkedHashMap<String, DNDEntity> feats;
-	public LinkedHashMap<String, DNDEntity> skills;
+	
 	
 	xmlLoader(String name){
 		threadName = name;
@@ -42,9 +40,9 @@ public class xmlLoader implements Runnable{
 				xmls.add(filePath.toFile());	
 			}
 		});
-		spells = new LinkedHashMap<String, DNDEntity>();
-		feats = new LinkedHashMap<String, DNDEntity>();
-		skills = new LinkedHashMap<String, DNDEntity>();
+		Main.gameState.spells = new LinkedHashMap<String, DNDEntity>();
+		Main.gameState.feats = new LinkedHashMap<String, DNDEntity>();
+		Main.gameState.skills = new LinkedHashMap<String, DNDEntity>();
 		xmls.forEach(File -> System.out.println(File.getName()));
 		for (int x = 0; x < xmls.size(); x++) {
 			Document document = builder.parse(xmls.get(x));
@@ -69,22 +67,22 @@ public class xmlLoader implements Runnable{
 				}
 				if (node.getNodeName() == "SPELL") {
 					SpellEntity testSpell = new SpellEntity(entity);
-					spells.put(testSpell.getName(), testSpell);
+					Main.gameState.spells.put(testSpell.getName(), testSpell);
 					if(testSpell.getName().equalsIgnoreCase("acid arrow"))
 						testSpell.toTooltipWindow();
 					
 				}
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity testFeat = new FeatEntity(entity);
-					feats.put(testFeat.getName(), testFeat);
+					Main.gameState.feats.put(testFeat.getName(), testFeat);
 				}
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity testSkill = new SkillEntity(entity);
-					skills.put(testSkill.getName(), testSkill);
+					Main.gameState.skills.put(testSkill.getName(), testSkill);
 				}
 			}
 		}
-		spells.size(); //Literally here so I can put a breakpoint
+		Main.gameState.spells.size(); //Literally here so I can put a breakpoint
 	}
 
 	@Override

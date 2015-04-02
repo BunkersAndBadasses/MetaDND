@@ -5,8 +5,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
 public class Main {
+	
+	public static GameState gameState;
 
 	public static void main(String[] args) {
+		gameState = new GameState();
 		xmlLoader xmls = new xmlLoader("xmlTestThread");
 		xmls.start();
 		Display display = new Display();
