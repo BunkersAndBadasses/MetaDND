@@ -31,6 +31,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				2d4
+		</DAMAGE>
 		<DESCRIPTION>
 			A magical arrow of acid springs from your hand and speeds to its target. You must succeed on a ranged touch attack to hit your target. The arrow deals 2d4 points of acid damage with no splash damage. For every three caster levels (to a maximum of 18th), the acid, unless somehow neutralized, lasts for another round, dealing another 2d4 points of damage in that round.
 		</DESCRIPTION>
@@ -72,6 +75,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				2d6
+		</DAMAGE>
 		<DESCRIPTION>
 			Acid fog creates a billowing mass of misty vapors similar to that produced by a solid fog spell. In addition to slowing creatures down and obscuring sight, this spell's vapors are highly acidic. Each round on your turn, starting when you cast the spell, the fog deals 2d6 points of acid damage to each creature and object within it.
 		
@@ -109,6 +115,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d3
+		</DAMAGE>
 		<DESCRIPTION>
 			You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage.
 		</DESCRIPTION>
@@ -1582,6 +1591,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d6+4
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell conjures a field of rubbery black tentacles, each 10 feet long. These waving members seem to spring forth from the earth, floor, or whatever surface is underfoot—including water. They grasp and entwine around creatures that enter the area, holding them fast and crushing them with great strength.
 		
@@ -1626,6 +1638,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:15
+		</DAMAGE>
 		<DESCRIPTION>
 			An immobile, vertical curtain of whirling blades shaped of pure force springs into existence. Any creature passing through the wall takes 1d6 points of damage per caster level (maximum 15d6), with a Reflex save for half damage.
 		
@@ -1835,6 +1850,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:15
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell withers a single plant of any size. An affected plant creature takes 1d6 points of damage per level (maximum 15d6) and may attempt a Fortitude saving throw for half damage. A plant that isn't a creature doesn't receive a save and immediately withers and dies.
 		
@@ -2092,6 +2110,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d4 MAX:5
+		</DAMAGE>
 		<DESCRIPTION>
 			A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes 1d4 points of fire damage per caster level (maximum 5d4). Flammable materials burn if the flames touch them. A character can extinguish burning items as a full-round action.
 		</DESCRIPTION>
@@ -2127,6 +2148,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				3d6
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				3d10
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Immediately upon completion of the spell, and once per round thereafter, you may call down a 5-foot-wide, 30-foot-long, vertical bolt of lightning that deals 3d6 points of electricity damage. The bolt of lightning flashes down in a vertical stroke at whatever target point you choose within the spell's range (measured from your position at the time). Any creature in the target square or in the path of the bolt is affected.
 		
@@ -2150,6 +2177,12 @@
 		<RANGE>
 			Long (400 ft. + 40 ft./level)
 		</RANGE>
+		<DAMAGE>
+				5d6
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				5d10
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			This spell functions like call lightning, except that each bolt deals 5d6 points of electricity damage (or 5d10 if created outdoors in a stormy area), and you may call a maximum of 15 bolts.
 		</DESCRIPTION>
@@ -2353,6 +2386,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:20
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell creates an electrical discharge that begins as a single stroke commencing from your fingertips. Unlike lightning bolt, chain lightning strikes one object or creature initially, then arcs to other targets.
 		
@@ -2436,6 +2472,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL / 2]d8 MAX:5
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				[CASTERLEVEL]d6 MAX:10
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			You unleash chaotic power to smite your enemies. The power takes the form of a multicolored explosion of leaping, ricocheting energy. Only lawful and neutral (not chaotic) creatures are harmed by the spell.
 		
@@ -2571,6 +2613,12 @@
 		<SPELLRESISTANCE>
 			Yes (object)
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d4
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				2d4
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Chill metal makes metal extremely cold. Unattended, nonmagical metal gets no saving throw. Magical metal is allowed a saving throw against the spell. An item in a creature's possession uses the creature's saving throw bonus unless its own is higher.
 		
@@ -2626,6 +2674,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d6
+		</DAMAGE>
 		<DESCRIPTION>
 			A touch from your hand, which glows with blue energy, disrupts the life force of living creatures. Each touch channels negative energy that deals 1d6 points of damage. The touched creature also takes 1 point of Strength damage unless it makes a successful Fortitude saving throw. You can use this melee touch attack up to one time per level.
 		
@@ -2722,6 +2773,9 @@
 		<COMPONENTS>
 			V, S, F/DF
 		</COMPONENTS>
+		<DAMAGE>
+				1d8+11
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like interposing hand, except that the hand can interpose itself, push, or strike one opponent that you select. The floating hand can move as far as 60 feet and can attack in the same round. Since this hand is directed by you, its ability to notice or attack invisible or concealed creatures is no better than yours.
 		
@@ -3202,6 +3256,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:15
+		</DAMAGE>
 		<DESCRIPTION>
 			Cone of cold creates an area of extreme cold, originating at your hand and extending outward in a cone. It drains heat, dealing 1d6 points of cold damage per caster level (maximum 15d6).
 		
@@ -4002,6 +4059,9 @@
 		<COMPONENTS>
 			V, S, M, F/DF
 		</COMPONENTS>
+		<DAMAGE>
+				2d6+12
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like interposing hand, except that the hand can interpose itself, push, or crush one opponent that you select.
 		
@@ -4028,6 +4088,9 @@
 		<LEVEL>
 			Brd 4, Clr 4, Drd 5, Healing 4
 		</LEVEL>
+		<DAMAGE>
+				4d8+[CASTERLEVEL] MAX:20
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 4d8 points of damage +1 point per caster level (maximum +20).
 		</DESCRIPTION>
@@ -4042,6 +4105,9 @@
 		<LEVEL>
 			Clr 8, Drd 9, Healing 8
 		</LEVEL>
+		<DAMAGE>
+				4d8+[CASTERLEVEL] MAX:40
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 4d8 points of damage +1 point per caster level (maximum +40).
 		</DESCRIPTION>
@@ -4077,6 +4143,9 @@
 		<SPELLRESISTANCE>
 			Yes (harmless); see text
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d8+[CASTERLEVEL] MAX:5
+		</DAMAGE>
 		<DESCRIPTION>
 			When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage +1 point per caster level (maximum +5).
 		
@@ -4114,6 +4183,9 @@
 		<SPELLRESISTANCE>
 			Yes (harmless) or Yes; see text
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d8+[CASTERLEVEL] MAX:25
+		</DAMAGE>
 		<DESCRIPTION>
 			You channel positive energy to cure 1d8 points of damage +1 point per caster level (maximum +25) in each selected creature.
 		
@@ -4144,6 +4216,9 @@
 		<LEVEL>
 			Brd 2, Clr 2, Drd 3, Healing 2, Pal 3, Rgr 3
 		</LEVEL>
+		<DAMAGE>
+				2d8+[CASTERLEVEL] MAX:10
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 2d8 points of damage +1 point per caster level (maximum +10).
 		</DESCRIPTION>
@@ -4158,6 +4233,9 @@
 		<LEVEL>
 			Brd 6, Clr 6, Drd 7
 		</LEVEL>
+		<DAMAGE>
+				2d8[CASTERLEVEL] MAX:30
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 2d8 points of damage +1 point per caster level (maximum +30).
 		</DESCRIPTION>
@@ -4172,6 +4250,9 @@
 		<LEVEL>
 			Brd 3, Clr 3, Drd 4, Pal 4, Rgr 4, Healing 3
 		</LEVEL>
+		<DAMAGE>
+				3d8+[CASTERLEVEL] MAX:15
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 3d8 points of damage +1 point per caster level (maximum +15).
 		</DESCRIPTION>
@@ -4186,6 +4267,9 @@
 		<LEVEL>
 			Clr 7, Drd 8
 		</LEVEL>
+		<DAMAGE>
+				3d8+[CASTERLEVEL] MAX:35
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 3d8 points of damage +1 point per caster level (maximum +35).
 		</DESCRIPTION>
@@ -4643,6 +4727,9 @@
 		<DURATION>
 			5 rounds or less; see text
 		</DURATION>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:20
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like fireball, except that it is more powerful and can detonate up to 5 rounds after the spell is cast. The burst of flame deals 1d6 points of fire damage per caster level (maximum 20d6).
 		
@@ -4751,6 +4838,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				10d6
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell instantly slays the subject and consumes its remains (but not its equipment and possessions) utterly. If the target's Fortitude saving throw succeeds, it instead takes 10d6 points of damage. The only way to restore life to a character who has failed to save against this spell is to use true resurrection, a carefully worded wish spell followed by resurrection, or miracle.
 		</DESCRIPTION>
@@ -5638,6 +5728,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL * 2]d6 MAX:40
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				5d6
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			A thin, green ray springs from your pointing finger. You must make a successful ranged touch attack to hit. Any creature struck by the ray takes 2d6 points of damage per caster level (to a maximum of 40d6). Any creature reduced to 0 or fewer hit points by this spell is entirely disintegrated, leaving behind only a trace of fine dust. A disintegrated creature's equipment is unaffected.
 		
@@ -5915,6 +6011,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d6
+		</DAMAGE>
 		<DESCRIPTION>
 			You direct a ray of positive energy. You must make a ranged touch attack to hit, and if the ray hits an undead creature, it deals 1d6 points of damage to it.
 		</DESCRIPTION>
@@ -6313,6 +6412,12 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				8d6
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				1d6
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			When you cast earthquake, an intense but highly localized tremor rips the ground. The shock knocks creatures down, collapses structures, opens cracks in the ground, and more. The effect lasts for 1 round, during which time creatures on the ground can't move or attack. A spellcaster on the ground must make a Concentration check (DC 20 + spell level) or lose any spell he or she tries to cast. The earthquake affects all terrain, vegetation, structures, and creatures in the area. The specific effect of an earthquake spell depends on the nature of the terrain where it is cast.
 		
@@ -6808,6 +6913,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				6d6
+		</DAMAGE>
 		<DESCRIPTION>
 			You trace these mystic runes upon a book, map, scroll, or similar object bearing written information. The runes detonate when read, dealing 6d6 points of force damage. Anyone next to the runes (close enough to read them) takes the full damage with no saving throw; any other creature within 10 feet of the runes is entitled to a Reflex save for half damage. The object on which the runes were written also takes full damage (no saving throw).
 		
@@ -7238,6 +7346,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				3d6+[CASTERLEVEL] MAX:25
+		</DAMAGE>
 		<DESCRIPTION>
 			You can slay any one living creature within range. The target is entitled to a Fortitude saving throw to survive the attack. If the save is successful, the creature instead takes 3d6 points of damage +1 point per caster level (maximum +25).
 		
@@ -7275,6 +7386,12 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:20
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				[CASTERLEVEL]d8
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Depending on the version of fire seeds you choose, you turn acorns into splash weapons that you or another character can throw, or you turn holly berries into bombs that you can detonate on command.
 		
@@ -7313,6 +7430,9 @@
 		<DURATION>
 			1 round/level (D)
 		</DURATION>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:15
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell wreathes you in flame and causes damage to each creature that attacks you in melee. The flames also protect you from either cold-based or fire-based attacks (your choice).
 		
@@ -7358,6 +7478,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:20
+		</DAMAGE>
 		<DESCRIPTION>
 			When a fire storm spell is cast, the whole area is shot through with sheets of roaring flame. The raging flames do not harm natural vegetation, ground cover, and any plant creatures in the area that you wish to exclude from damage. Any other creature within the area takes 1d6 points of fire damage per caster level (maximum 20d6).
 		</DESCRIPTION>
@@ -7393,6 +7516,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d4+[CASTERLEVEL] MAX:20
+		</DAMAGE>
 		<DESCRIPTION>
 			Fire trap creates a fiery explosion when an intruder opens the item that the trap protects. A fire trap can ward any object that can be opened and closed.
 		
@@ -7443,6 +7569,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:10
+		</DAMAGE>
 		<DESCRIPTION>
 			A fireball spell is an explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level (maximum 10d6) to every creature within the area. Unattended objects also take this damage. The explosion creates almost no pressure.
 		
@@ -7485,6 +7614,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d6
+		</DAMAGE>
 		<DESCRIPTION>
 			You turn ammunition (such as arrows, bolts, shuriken, and stones) into fiery projectiles. Each piece of ammunition deals an extra 1d6 points of fire damage to any target it hits. A flaming projectile can easily ignite a flammable object or structure, but it won't ignite a creature it strikes.
 		</DESCRIPTION>
@@ -7523,6 +7655,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d8+[CASTERLEVEL / 2] MAX:10
+		</DAMAGE>
 		<DESCRIPTION>
 			A 3-foot-long, blazing beam of red-hot fire springs forth from your hand. You wield this bladelike beam as if it were a scimitar. Attacks with the flame blade are melee touch attacks. The blade deals 1d8 points of fire damage +1 point per two caster levels (maximum +10). Since the blade is immaterial, your Strength modifier does not apply to the damage. A flame blade can ignite combustible materials such as parchment, straw, dry sticks, and cloth.
 		
@@ -7560,6 +7695,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX: 15
+		</DAMAGE>
 		<DESCRIPTION>
 			A flame strike produces a vertical column of divine fire roaring downward. The spell deals 1d6 points of damage per caster level (maximum 15d6). Half the damage is fire damage, but the other half results directly from divine power and is therefore not subject to being reduced by resistance to fire-based attacks.
 		</DESCRIPTION>
@@ -7595,6 +7733,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				2d6
+		</DAMAGE>
 		<DESCRIPTION>
 			A burning globe of fire rolls in whichever direction you point and burns those it strikes. It moves 30 feet per round. As part of this movement, it can ascend or jump up to 30 feet to strike a target. If it enters a space with a creature, it stops moving for the round and deals 2d6 points of fire damage to that creature, though a successful Reflex save negates that damage. A flaming sphere rolls over barriers less than 4 feet tall. It ignites flammable substances it touches and illuminates the same area as a torch would.
 		
@@ -7825,6 +7966,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				6d6
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				12d6
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Forbiddance seals an area against all planar travel into or within it. This includes all teleportation spells (such as dimension door and teleport), plane shifting, astral travel, ethereal travel, and all summoning spells. Such effects simply fail automatically.
 		
@@ -8115,6 +8262,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL]d6 MAX:15
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				[CASTERLEVEL]d8 MAX:15
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 10-foot-radius burst, dealing 1d6 points of cold damage per caster level (maximum 15d6) to each creature in the area. An elemental (water) creature instead takes 1d8 points of cold damage per caster level (maximum 15d8).
 		
@@ -8243,6 +8396,9 @@
 		<SAVINGTHROW>
 			None
 		</SAVINGTHROW>
+		<DAMAGE>
+				3d6
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions similarly to lesser geas, except that it affects a creature of any HD and allows no saving throw.
 		
@@ -8625,6 +8781,9 @@
 		<SPELLRESISTANCE>
 			No (object) and Yes; see text
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL / 2]d8 MAX:5
+		</DAMAGE>
 		<DESCRIPTION>
 			This powerful inscription harms those who enter, pass, or open the warded area or object. A glyph of warding can guard a bridge or passage, ward a portal, trap a chest or box, and so on.
 		
@@ -8656,6 +8815,9 @@
 		<LEVEL>
 			Clr 6
 		</LEVEL>
+		<DAMAGE>
+				[CASTERLEVEL / 2]d8 MAX:10
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like glyph of warding, except that a greater blast glyph deals up to 10d8 points of damage, and a greater spell glyph can store a spell of 6th level or lower.
 		</DESCRIPTION>
@@ -9302,6 +9464,12 @@
 		<SPELLRESISTANCE>
 			Yes (object)
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				1d4
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+				2d4
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Heat metal makes metal extremely warm. Unattended, nonmagical metal gets no saving throw. Magical metal is allowed a saving throw against the spell. An item in a creature's possession uses the creature's saving throw bonus unless its own is higher.
 		
@@ -9813,6 +9981,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+				[CASTERLEVEL / 2]d8 MAX:5
+		</DAMAGE>
 		<DESCRIPTION>
 			You draw down holy power to smite your enemies. Only evil and neutral creatures are harmed by the spell; good creatures are unaffected.
 		

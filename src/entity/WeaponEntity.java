@@ -1,5 +1,7 @@
 package entity;
 
+import core.Roll;
+
 public class WeaponEntity extends DNDEntity{
 
 	private Roll damage; // i.e. [2,6,3] for damage of 2 d6 + 3
