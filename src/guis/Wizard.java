@@ -1,3 +1,5 @@
+package guis;
+
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*; 
 

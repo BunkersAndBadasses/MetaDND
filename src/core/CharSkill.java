@@ -1,3 +1,5 @@
+package core;
+
 
 public class CharSkill {
 	private Skill skill;
