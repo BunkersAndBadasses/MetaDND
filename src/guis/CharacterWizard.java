@@ -38,7 +38,7 @@ public class CharacterWizard {
 		shell = new Shell(d);
 		shell.setText("Create New Character");
 		shell.setSize(WIDTH, HEIGHT);
-		character = new CharacterEntity();
+		character = new Character();
 		wizPages = new ArrayList<Composite>();
 
 		createPageContent();
