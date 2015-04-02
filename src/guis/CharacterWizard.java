@@ -1,3 +1,5 @@
+package guis;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
@@ -5,7 +7,12 @@ import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * Manual - Complete by Sarah
+ * Random - TODO by Innocentius
+ * @author Sarah && Innocentius
+ *
+ */
 public class CharacterWizard {
 
 	int pageNum = -1;
@@ -31,7 +38,7 @@ public class CharacterWizard {
 		shell = new Shell(d);
 		shell.setText("Create New Character");
 		shell.setSize(WIDTH, HEIGHT);
-		character = new Character();
+		character = new CharacterEntity();
 		wizPages = new ArrayList<Composite>();
 
 		createPageContent();
