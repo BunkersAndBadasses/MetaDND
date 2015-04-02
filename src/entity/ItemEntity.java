@@ -7,5 +7,5 @@ public class ItemEntity extends DNDEntity{
 	private int weight;
 	private String description;
 	private String restrictions;
-	
+	//TODO?
 }
