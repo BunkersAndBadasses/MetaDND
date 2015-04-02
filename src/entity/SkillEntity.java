@@ -14,7 +14,7 @@ public class SkillEntity extends DNDEntity{
 	String untrained;
 
 	public SkillEntity(LinkedHashMap<String, String> input){
-		this.TYPE = DNDEntity.type.SKILLENTITY;
+		this.TYPE = DNDEntity.type.SKILL;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()){
 			String field = entry.getKey();

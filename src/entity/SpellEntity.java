@@ -18,7 +18,7 @@ public class SpellEntity extends DNDEntity{
 	String focus;
 	
 	public SpellEntity(LinkedHashMap<String, String> input){
-		this.TYPE = DNDEntity.type.SPELLENTITY;
+		this.TYPE = DNDEntity.type.SPELL;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()){
 		    String field = entry.getKey();

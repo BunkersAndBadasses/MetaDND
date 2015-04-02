@@ -12,7 +12,7 @@ public class FeatEntity extends DNDEntity{
 	String fighterBonus;
 
 	public FeatEntity(LinkedHashMap<String, String> input){
-		this.TYPE = DNDEntity.type.FEATENTITY;
+		this.TYPE = DNDEntity.type.FEAT;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()){
 			String field = entry.getKey();

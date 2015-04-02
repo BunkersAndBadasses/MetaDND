@@ -21,7 +21,6 @@ public class RaceEntity extends DNDEntity{
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
 	
-	private String name;
 	private int[] abilityAdj = new int[6];
 	private String favoredClass;
 	private String personality;
