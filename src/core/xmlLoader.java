@@ -84,6 +84,12 @@ public class xmlLoader implements Runnable{
 //					if(testItem.getName().equalsIgnoreCase("thunderstone"))
 //						testItem.toTooltipWindow();
 				}
+				else if(node.getNodeName() == "RACE"){
+					RaceEntity testRace = new RaceEntity(entity);
+					Main.gameState.races.put(testRace.getName(), testRace);
+					if(testRace.getName().equalsIgnoreCase("halfling"))
+						testRace.toTooltipWindow();
+				}
 			}
 		}
 		Main.gameState.spells.size(); //Literally here so I can put a breakpoint

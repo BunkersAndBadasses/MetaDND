@@ -2,36 +2,19 @@
 <RACES>
 	<RACE>
 		<NAME>
-			HUMANS
+			HUMAN
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
+		<SPECIALABILITIES>
 
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				0
-			</STR>
-			<DEX>
-				0
-			</DEX>
-			<CON>
-				0
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				0
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			0, 0, 0, 0, 0, 0
+		</ABILITYADJ>
+		<FAVCLASS>
 			Any. When determining whether a multiclass human takes an experience point penalty, his or her highest-level class does not count.
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Medium: As Medium creatures, humans have no special bonuses or penalties due to their size. 
 		</SIZE>
@@ -39,53 +22,36 @@
 			Human base land speed is 30 feet. 
 		</SPEED>
 		<TRAITS>
-			1 extra feat at 1st level.;
+			1 extra feat at 1st level.
 			4 extra skill points at 1st level and 1 extra skill point at each additional level.
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common. 
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Any (other than secret languages, such as Druidic). See the Speak Language skill. 
-		</BONUS_LANGUAGES>
+		<SKILLCHECKADJ>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Any (other than secret languages such as Druidic) 
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			DWARVES
+			DWARF
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
+		<SPECIALABILITIES>
 			Darkvision: Dwarves can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and dwarves can function just fine with no light at all.;
-			Stonecunning: This ability grants a dwarf a +2 racial bonus on Search checks to notice unusual stonework, such as sliding walls, stonework traps, new construction (even when built to match the old), unsafe stone surfaces, shaky stone ceilings, and the like. Something that isn't stone but that is disguised as stone also counts as unusual stonework. A dwarf who merely comes within 10 feet of unusual stonework can make a Search check as if he were actively searching, and a dwarf can use the Search skill to find stonework traps as a rogue can. A dwarf can also intuit depth, sensing his approximate depth underground as naturally as a human can sense which way is up. ;
-			Weapon Familiarity: Dwarves may treat dwarven waraxes and dwarven urgroshes as martial weapons, rather than exotic weapons.;
+			Stonecunning: This ability grants a dwarf a +2 racial bonus on Search checks to notice unusual stonework, such as sliding walls, stonework traps, new construction (even when built to match the old), unsafe stone surfaces, shaky stone ceilings, and the like. Something that isn't stone but that is disguised as stone also counts as unusual stonework. A dwarf who merely comes within 10 feet of unusual stonework can make a Search check as if he were actively searching, and a dwarf can use the Search skill to find stonework traps as a rogue can. A dwarf can also intuit depth, sensing his approximate depth underground as naturally as a human can sense which way is up.
+			Weapon Familiarity: Dwarves may treat dwarven waraxes and dwarven urgroshes as martial weapons, rather than exotic weapons.
 			Stability: A dwarf gains a +4 bonus on ability checks made to resist being bull rushed or tripped when standing on the ground (but not when climbing, flying, riding, or otherwise not standing firmly on the ground).
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				0
-			</STR>
-			<DEX>
-				0
-			</DEX>
-			<CON>
-				2
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				-2
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			0, 0, 2, 0, 0, -2
+		</ABILITYADJ>
+		<FAVCLASS>
 			Fighter. A multiclass dwarf 's fighter class does not count when determining whether he takes an experience point penalty for multiclassing
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Medium: As Medium creatures, dwarves have no special bonuses or penalties due to their size.
 		</SIZE>
@@ -94,55 +60,38 @@
 		</SPEED>
 		<TRAITS>
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
-			+2 racial bonus on saving throws against poison.;
-			+2 racial bonus on saving throws against spells and spell-like effects.;
-			+1 racial bonus on attack rolls against orcs and goblinoids.;
-			+4 dodge bonus to Armor Class against monsters of the giant type. Any time a creature loses its Dexterity bonus (if any) to Armor Class, such as when it's caught flat-footed, it loses its dodge bonus, too. ;
-			+2 racial bonus on Appraise checks that are related to stone or metal items.;
+		<SKILLCHECKADJ>
+			+2 racial bonus on saving throws against poison.
+			+2 racial bonus on saving throws against spells and spell-like effects.
+			+1 racial bonus on attack rolls against orcs and goblinoids.
+			+4 dodge bonus to Armor Class against monsters of the giant type. Any time a creature loses its Dexterity bonus (if any) to Armor Class, such as when it's caught flat-footed, it loses its dodge bonus, too.
+			+2 racial bonus on Appraise checks that are related to stone or metal items.
 			+2 racial bonus on Craft checks that are related to stone or metal.
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Dwarven
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Giant, Gnome, Goblin, Orc, Terran, and Undercommon
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Dwarven
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Giant, Gnome, Goblin, Orc, Terran, Undercommon
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			ELVES
+			ELF
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
-			Immunity to magic sleep effects, and a +2 racial saving throw bonus against enchantment spells or effects.;
-			Low-Light Vision: An elf can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.;
+		<SPECIALABILITIES>
+			Immunity to magic sleep effects, and a +2 racial saving throw bonus against enchantment spells or effects.
+			Low-Light Vision: An elf can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.
 			Weapon Proficiency: Elves receive the Martial Weapon Proficiency feats for the longsword, rapier, longbow (including composite longbow), and shortbow (including composite shortbow) as bonus feats.
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				0
-			</STR>
-			<DEX>
-				2
-			</DEX>
-			<CON>
-				-2
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				0
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			0, 2, -2, 0, 0, 0
+		</ABILITYADJ>
+		<FAVCLASS>
 			Fighter. A multiclass dwarf 's fighter class does not count when determining whether he takes an experience point penalty for multiclassing
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Medium: As Medium creatures, dwarves have no special bonuses or penalties due to their size.
 		</SIZE>
@@ -151,50 +100,33 @@
 		</SPEED>
 		<TRAITS>
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
+		<SKILLCHECKADJ>
 			+2 racial bonus on Listen, Search, and Spot checks. An elf who merely passes within 5 feet of a secret or concealed door is entitled to a Search check to notice it as if she were actively looking for it.
 
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Dwarven
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Giant, Gnome, Goblin, Orc, Terran, and Undercommon
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Dwarven
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Giant, Gnome, Goblin, Orc, Terran, Undercommon
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			GNOMES
+			GNOME
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
+		<SPECIALABILITIES>
 			Low-Light Vision: A gnome can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. He retains the ability to distinguish color and detail under these conditions.;
 			Weapon Familiarity: Gnomes may treat gnome hooked hammers as martial weapons rather than exotic weapons.
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				-2
-			</STR>
-			<DEX>
-				0
-			</DEX>
-			<CON>
-				2
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				0
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			-2, 0, 2, 0, 0, 0
+		</ABILITYADJ>
+		<FAVCLASS>
 			Bard. A multiclass gnome's bard class does not count when determining whether he takes an experience point penalty.
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Small: As a Small creature, a gnome gains a +1 size bonus to Armor Class, a +1 size bonus on attack rolls, and a +4 size bonus on Hide checks, but he uses smaller weapons than humans use, and his lifting and carrying limits are three-quarters of those of a Medium character.
 		</SIZE>
@@ -204,55 +136,37 @@
 		<TRAITS>
 			Spell-Like Abilities: 1/day-speak with animals (burrowing mammal only, duration 1 minute). A gnome with a Charisma score of at least 10 also has the following spell-like abilities: 1/day-dancing lights, ghost sound, prestidigitation. Caster level 1st; save DC 10 + gnome's Cha modifier + spell level.
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
+		<SKILLCHECKADJ>
 			+2 racial bonus on saving throws against illusions.
 			Add +1 to the Difficulty Class for all saving throws against illusion spells cast by gnomes. This adjustment stacks with those from similar effects.
 			+1 racial bonus on attack rolls against kobolds and goblinoids.
 			+4 dodge bonus to Armor Class against monsters of the giant type. Any time a creature loses its Dexterity bonus (if any) to Armor Class, such as when it's caught flat-footed, it loses its dodge bonus, too.
 			+2 racial bonus on Listen checks.
 			+2 racial bonus on Craft (alchemy) checks.
-
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Gnome
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Draconic, Dwarven, Elven, Giant, Goblin, and Orc. In addition, a gnome can speak with a burrowing mammal (a badger, fox, rabbit, or the like, see below). This ability is innate to gnomes. See the speak with animals spell description.
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Gnome
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Draconic, Dwarven, Elven, Giant, Goblin, Orc
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			HALF-ELVES
+			HALF-ELF
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
-			Immunity to sleep spells and similar magical effects, and a +2 racial bonus on saving throws against enchantment spells or effects.;
+		<SPECIALABILITIES>
+			Immunity to sleep spells and similar magical effects, and a +2 racial bonus on saving throws against enchantment spells or effects.
 			Low-Light Vision: A half-elf can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				0
-			</STR>
-			<DEX>
-				0
-			</DEX>
-			<CON>
-				0
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				0
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			0, 0, 0, 0, 0, 0
+		</ABILITYADJ>
+		<FAVCLASS>
 			Any. When determining whether a multiclass half-elf takes an experience point penalty, her highest-level class does not count.
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Medium: As Medium creatures, half-elves have no special bonuses or penalties due to their size.
 		</SIZE>
@@ -262,50 +176,32 @@
 		<TRAITS>
 			Elven Blood: For all effects related to race, a half-elf is considered an elf.
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
+		<SKILLCHECKADJ>
 			+1 racial bonus on Listen, Search, and Spot checks.
 			+2 racial bonus on Diplomacy and Gather Information checks.
-
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Elven
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Any (other than secret languages, such as Druidic).
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Elven
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Any (other than secret languages such as Druidic)
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			HALF-ORCS
+			HALF-ORC
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
+		<SPECIALABILITIES>
 			Darkvision: Half-orcs (and orcs) can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and half-orcs can function just fine with no light at all.
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				2
-			</STR>
-			<DEX>
-				0
-			</DEX>
-			<CON>
-				0
-			</CON>
-			<INT>
-				-2
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				-2
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			2, 0, 0, -2, 0, -2
+		</ABILITYADJ>
+		<FAVCLASS>
 			Barbarian. A multiclass half-orc's barbarian class does not count when determining whether he takes an experience point penalty.
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Medium: As Medium creatures, half-orcs have no special bonuses or penalties due to their size.
 		</SIZE>
@@ -313,52 +209,35 @@
 			Half-orc base land speed is 30 feet.
 		</SPEED>
 		<TRAITS>
-			A half-orc's starting Intelligence score is always at least 3. If this adjustment would lower the character's score to 1 or 2, his score is nevertheless 3.;
+			A half-orc's starting Intelligence score is always at least 3. If this adjustment would lower the character's score to 1 or 2, his score is nevertheless 3.
 			Orc Blood: For all effects related to race, a half-orc is considered an orc.
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
+		<SKILLCHECKADJ>
 			+1 racial bonus on Listen, Search, and Spot checks.
 			+2 racial bonus on Diplomacy and Gather Information checks.
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Orc
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Draconic, Giant, Gnoll, Goblin, and Abyssal.
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Orc
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Draconic, Giant, Gnoll, Goblin, Abyssal
+		</BONUSLANGUAGES>
 	</RACE>
 	<RACE>
 		<NAME>
-			HALFLINGS
+			HALFLING
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIAL_ABILITIES>
+		<SPECIALABILITIES>
 			Darkvision: Half-orcs (and orcs) can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and half-orcs can function just fine with no light at all.
-		</SPECIAL_ABILITIES>
-		<ABILITY_ADJ>
-			<STR>
-				-2
-			</STR>
-			<DEX>
-				2
-			</DEX>
-			<CON>
-				0
-			</CON>
-			<INT>
-				0
-			</INT>
-			<WIS>
-				0
-			</WIS>
-			<CHA>
-				0
-			</CHA>
-		</ABILITY_ADJ>
-		<FAV_CLASS>
+		</SPECIALABILITIES>
+		<ABILITYADJ>
+			-2, 2, 0, 0, 0, 0
+		</ABILITYADJ>
+		<FAVCLASS>
 			Rogue. A multiclass halfling's rogue class does not count when determining whether she takes an experience point penalty for multiclassing.
-		</FAV_CLASS>
+		</FAVCLASS>
 		<SIZE>
 			Small: As a Small creature, a halfling gains a +1 size bonus to Armor Class, a +1 size bonus on attack rolls, and a +4 size bonus on Hide checks, but she uses smaller weapons than humans use, and her lifting and carrying limits are three-quarters of those of a Medium character.
 		</SIZE>
@@ -369,18 +248,18 @@
 			A half-orc's starting Intelligence score is always at least 3. If this adjustment would lower the character's score to 1 or 2, his score is nevertheless 3.;
 			Orc Blood: For all effects related to race, a half-orc is considered an orc.
 		</TRAITS>
-		<SKILL_CHECK_ADJ>
+		<SKILLCHECKADJ>
 			+2 racial bonus on Climb, Jump, and Move Silently checks.
 			+1 racial bonus on all saving throws.
 			+2 morale bonus on saving throws against fear: This bonus stacks with the halfling's +1 bonus on saving throws in general.
 			+1 racial bonus on attack rolls with thrown weapons and slings.
 			+2 racial bonus on Listen checks.
-		</SKILL_CHECK_ADJ>
-		<AUTOMATIC_LANGUAGES>
-			Common and Halfling
-		</AUTOMATIC_LANGUAGES>
-		<BONUS_LANGUAGES>
-			Dwarven, Elven, Gnome, Goblin, and Orc.
-		</BONUS_LANGUAGES>
+		</SKILLCHECKADJ>
+		<AUTOMATICLANGUAGES>
+			Common, Halfling
+		</AUTOMATICLANGUAGES>
+		<BONUSLANGUAGES>
+			Dwarven, Elven, Gnome, Goblin, Orc
+		</BONUSLANGUAGES>
 	</RACE>
 </RACES>

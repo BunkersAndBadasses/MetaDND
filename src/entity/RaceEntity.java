@@ -1,5 +1,7 @@
 package entity;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class RaceEntity extends DNDEntity{
@@ -37,10 +39,82 @@ public class RaceEntity extends DNDEntity{
 	private int size;
 	private int speed; // in feet
 	
-	public RaceEntity() {
+	public RaceEntity(LinkedHashMap<String, String> input){
+		this.TYPE = DNDEntity.type.RACE;
+		passedData = input;
+		ArrayList<String> racialBonuses = new ArrayList<String>();
+		for (Map.Entry<String, String> entry : input.entrySet()){
+		    String field = entry.getKey();
+		    String value = entry.getValue();
+		    switch(field){
+		    case "NAME":
+		    	this.name = value;
+		    	break;
+		    case "DESCRIPTION":
+		    	this.description = value;
+		    	break;
+		    case "ABILITYADJ":
+		    	String[] temp = value.split(", ");
+		    	for(int i = 0; i < temp.length; i++){
+		    		this.abilityAdj[i] = Integer.parseInt(temp[i]);
+		    	}
+		    	break;
+		    case "FAVCLASS":
+		    	this.favoredClass = value;
+		    	break;
+		    case "SIZE":
+		    	String size = value.split(":")[0];
+		    	if(size.equalsIgnoreCase("FINE"))
+		    		this.size = SIZE_FINE;
+		    	else if(size.equalsIgnoreCase("DIMUNITIVE"))
+		    		this.size = SIZE_DIMINUTIVE;
+		    	else if(size.equalsIgnoreCase("TINY"))
+		    		this.size = SIZE_TINY;
+		    	else if(size.equalsIgnoreCase("SMALL"))
+		    		this.size = SIZE_SMALL;
+		    	else if(size.equalsIgnoreCase("MEDIUM"))
+		    		this.size = SIZE_MEDIUM;
+		    	else if(size.equalsIgnoreCase("LARGE"))
+		    		this.size = SIZE_LARGE;
+		    	else if(size.equalsIgnoreCase("HUGE"))
+		    		this.size = SIZE_HUGE;
+		    	else if(size.equalsIgnoreCase("GARGANTUAN"))
+		    		this.size = SIZE_GARGANTUAN;
+		    	else if(size.equalsIgnoreCase("COLOSSAL"))
+		    		this.size = SIZE_COLOSSAL;
+		    	break;
+		    case "SPECIALABILITIES":
+		    	this.specialAbilities = value.split(";");
+		    	break;
+		    case "SPEED":
+		    	this.speed = Integer.parseInt(value.replaceAll("[\\D]", ""));
+		    	break;
+		    case "TRAITS":
+		    	String[] temp1 = value.split("\n");
+		    	for(int i = 0; i < temp1.length; i++){
+		    		racialBonuses.add(temp1[i].trim());
+		    	}
+		    	this.racialBonuses = racialBonuses.toArray(temp1);
+		    	break;
+		    case "SKILLCHECKADJ":
+		    	String[] temp2 = value.split("\n");
+		    	for(int i = 0; i < temp2.length; i++){
+		    		racialBonuses.add(temp2[i].trim());
+		    	}
+		    	this.racialBonuses = racialBonuses.toArray(temp2);
+		    	break;
+		    case "AUTOMATICLANGUAGES":
+		    	this.autoLanguages = value.split(", ");
+		    	break;
+		    case "BONUSLANGUAGES":
+		    	this.bonusLanguages = value.split(", ");
+		    	break;
+		    default:
+		    	break;
+		    }
 		
 	}
-	
+	}
 	
 	
 }
