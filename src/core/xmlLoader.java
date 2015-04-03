@@ -43,8 +43,6 @@ public class xmlLoader implements Runnable{
 		xmls.forEach(File -> System.out.println(File.getName()));
 		for (int x = 0; x < xmls.size(); x++) {
 			Document document = builder.parse(xmls.get(x));
-			
-
 			NodeList nodeList = document.getDocumentElement().getChildNodes();
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Node node = nodeList.item(i);
@@ -65,9 +63,8 @@ public class xmlLoader implements Runnable{
 				if (node.getNodeName() == "SPELL") {
 					SpellEntity testSpell = new SpellEntity(entity);
 					Main.gameState.spells.put(testSpell.getName(), testSpell);
-					if(testSpell.getName().equalsIgnoreCase("acid arrow"))
-						testSpell.toTooltipWindow();
-					
+//					if(testSpell.getName().equalsIgnoreCase("acid arrow"))
+//						testSpell.toTooltipWindow();
 				}
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity testFeat = new FeatEntity(entity);
@@ -76,6 +73,12 @@ public class xmlLoader implements Runnable{
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity testSkill = new SkillEntity(entity);
 					Main.gameState.skills.put(testSkill.getName(), testSkill);
+				}
+				else if(node.getNodeName() == "ITEM"){
+					ItemEntity testItem = new ItemEntity(entity);
+					Main.gameState.items.put(testItem.getName(), testItem);
+//					if(testItem.getName().equalsIgnoreCase("thunderstone"))
+//						testItem.toTooltipWindow();
 				}
 			}
 		}
