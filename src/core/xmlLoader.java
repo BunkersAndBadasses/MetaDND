@@ -40,9 +40,6 @@ public class xmlLoader implements Runnable{
 				xmls.add(filePath.toFile());	
 			}
 		});
-		Main.gameState.spells = new LinkedHashMap<String, DNDEntity>();
-		Main.gameState.feats = new LinkedHashMap<String, DNDEntity>();
-		Main.gameState.skills = new LinkedHashMap<String, DNDEntity>();
 		xmls.forEach(File -> System.out.println(File.getName()));
 		for (int x = 0; x < xmls.size(); x++) {
 			Document document = builder.parse(xmls.get(x));

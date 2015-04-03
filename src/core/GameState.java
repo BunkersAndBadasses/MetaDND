@@ -25,6 +25,19 @@ public class GameState {
 	public boolean playerMode;
 	
 	public GameState(){
+		spells = new LinkedHashMap<String, DNDEntity>();
+		feats = new LinkedHashMap<String, DNDEntity>();
+		skills = new LinkedHashMap<String, DNDEntity>();
+		races = new LinkedHashMap<String, DNDEntity>();
+		classes = new LinkedHashMap<String, DNDEntity>();
+		items = new LinkedHashMap<String, DNDEntity>();
+		weapons = new LinkedHashMap<String, DNDEntity>();
+		armor = new LinkedHashMap<String, DNDEntity>();
+		monsters = new LinkedHashMap<String, DNDEntity>();
+		traps = new LinkedHashMap<String, DNDEntity>();
+	}
+	
+	public void saveCustomContent(){
 		
 	}
 
