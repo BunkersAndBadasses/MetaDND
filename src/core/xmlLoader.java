@@ -35,10 +35,14 @@ public class xmlLoader implements Runnable{
 		// Load the input XML document, parse it and return an instance of the
 		// Document class.
 		ArrayList<File> xmls = new ArrayList<File>();
-		Files.walk(Paths.get(".\\XML")).forEach(filePath -> {
-			if (Files.isRegularFile(filePath)) {
-				xmls.add(filePath.toFile());	
+		Files.walk(Paths.get(".\\XML")).forEach(filePath ->{
+			if(filePath.getFileName().toString().contains(".xml")){
+				if (Files.isRegularFile(filePath)) {
+					xmls.add(filePath.toFile());	
+				}
 			}
+			else
+				System.out.println(filePath.getFileName() + " is not an XML file");
 		});
 		xmls.forEach(File -> System.out.println(File.getName()));
 		for (int x = 0; x < xmls.size(); x++) {

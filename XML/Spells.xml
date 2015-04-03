@@ -10549,6 +10549,9 @@
 		<LEVEL>
 			Clr 8
 		</LEVEL>
+		<DAMAGE>
+			4d8+[CASTERLEVEL] MAX: 40
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass inflict light wounds, except that it deals 4d8 points of damage +1 point per caster level (maximum +40).
 		</DESCRIPTION>
@@ -10584,6 +10587,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			1d8+[CASTERLEVEL] MAX: 5
+		</DAMAGE>
 		<DESCRIPTION>
 			When laying your hand upon a creature, you channel negative energy that deals 1d8 points of damage +1 point per caster level (maximum +5).
 		
@@ -10668,6 +10674,9 @@
 		<LEVEL>
 			Clr 6
 		</LEVEL>
+		<DAMAGE>
+			2d8+[CASTERLEVEL] MAX: 30
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass inflict light wounds, except that it deals 2d8 points of damage +1 point per caster level (maximum +30).
 		</DESCRIPTION>
@@ -10696,6 +10705,9 @@
 		<LEVEL>
 			Clr 7
 		</LEVEL>
+		<DAMAGE>
+			3d8+[CASTERLEVEL] MAX: 35
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass inflict light wounds, except that it deals 3d8 points of damage +1 point per caster level (maximum +35).
 		</DESCRIPTION>
@@ -11420,6 +11432,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL]d6 MAX: 10
+		</DAMAGE>
 		<DESCRIPTION>
 			You release a powerful stroke of electrical energy that deals 1d6 points of electricity damage per caster level (maximum 10d6) to each creature within its area. The bolt begins at your fingertips.
 		
@@ -11962,6 +11977,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			4d6+3
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell brings into being a shimmering, swordlike plane of force. The sword strikes at any opponent within its range, as you desire, starting in the round that you cast the spell. The sword attacks its designated target once each round on your turn. Its attack bonus is equal to your caster level + your Int bonus or your Cha bonus (for wizards or sorcerers, respectively) with an additional +3 enhancement bonus. As a force effect, it can strike ethereal and incorporeal creatures. It deals 4d6+3 points of force damage, with a threat range of 19–20 and a critical multiplier of x2.
 		
@@ -12344,6 +12362,12 @@
 		<SPELLRESISTANCE>
 			Yes (harmless, object)
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			1d6+1
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+			2d6+2
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			You transmute as many as three pebbles, which can be no larger than sling bullets, so that they strike with great force when thrown or slung. If hurled, they have a range increment of 20 feet. If slung, treat them as sling bullets (range increment 50 feet). The spell gives them a +1 enhancement bonus on attack and damage rolls. The user of the stones makes a normal ranged attack. Each stone that hits deals 1d6+1 points of damage (including the spell's enhancement bonus), or 2d6+2 points against undead.
 		</DESCRIPTION>
@@ -13604,6 +13628,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL / 2]d8 MAX: 5
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+			[CASTERLEVEL]d6 MAX: 10
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			You channel lawful power to smite enemies. The power takes the form of a three-dimensional grid of energy. Only chaotic and neutral (not lawful) creatures are harmed by the spell.
 		
@@ -14398,6 +14428,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			1d10
+		</DAMAGE>
 		<DESCRIPTION>
 			Calling upon the venomous powers of natural predators, you infect the subject with a horrible poison by making a successful melee touch attack. The poison deals 1d10 points of temporary Constitution damage immediately and another 1d10 points of temporary Constitution damage 1 minute later. Each instance of damage can be negated by a Fortitude save (DC 10 + 1/2 your caster level + your Wis modifier).
 		</DESCRIPTION>
@@ -14433,6 +14466,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL]d6 MAX: 25
+		</DAMAGE>
 		<DESCRIPTION>
 			A blue-white ray of freezing air and ice springs from your hand. You must succeed on a ranged touch attack with the ray to deal damage to a target. The ray deals 1d6 points of cold damage per caster level (maximum 25d6).
 		</DESCRIPTION>
@@ -15645,6 +15681,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			1d3
+		</DAMAGE>
 		<DESCRIPTION>
 			A ray of freezing air and ice projects from your pointing finger. You must succeed on a ranged touch attack with the ray to deal damage to a target. The ray deals 1d3 points of cold damage.
 		</DESCRIPTION>
@@ -16658,6 +16697,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			3d6+[CASTERLEVEL] MAX: 15
+		</DAMAGE>
 		<DESCRIPTION>
 			Any iron or iron alloy item you touch becomes instantaneously rusted, pitted, and worthless, effectively destroyed. If the item is so large that it cannot fit within a 3-foot radius a 3-foot-radius volume of the metal is rusted and destroyed. Magic items made of metal are immune to this spell.
 		
@@ -16820,6 +16862,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			4d6
+		</DAMAGE>
 		<DESCRIPTION>
 			You blast your enemies with fiery rays. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of fire damage.
 		
@@ -17643,6 +17688,9 @@
 		<SPELLRESISTANCE>
 			Yes (object)
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL]d6 MAX: 10
+		</DAMAGE>
 		<DESCRIPTION>
 			Shatter creates a loud, ringing noise that breaks brittle, nonmagical objects; sunders a single solid, nonmagical object; or damages a crystalline creature.
 		
@@ -17872,6 +17920,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL]d6 MAX: 5
+		</DAMAGE>
 		<DESCRIPTION>
 			Your successful melee touch attack deals 1d6 points of electricity damage per caster level (maximum 5d6). When delivering the jolt, you gain a +3 bonus on attack rolls if the opponent is wearing metal armor (or made out of metal, carrying a lot of metal, or the like).
 		</DESCRIPTION>
@@ -17907,6 +17958,9 @@
 		<SPELLRESISTANCE>
 			Yes (object)
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			5d6
+		</DAMAGE>
 		<DESCRIPTION>
 			You emit an ear-splitting yell that deafens and damages creatures in its path. Any creature within the area is deafened for 2d6 rounds and takes 5d6 points of sonic damage. A successful save negates the deafness and reduces the damage by half. Any exposed brittle or crystalline object or crystalline creature takes 1d6 points of sonic damage per caster level (maximum 15d6). An affected creature is allowed a Fortitude save to reduce the damage by half, and a creature holding fragile objects can negate damage to them with a successful Reflex save.
 		
@@ -17932,6 +17986,12 @@
 		<SAVINGTHROW>
 			Fortitude partial or Reflex negates (object); see text
 		</SAVINGTHROW>
+		<DAMAGE>
+			10d6
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+			[CASTERLEVEL]d6 MAX: 20
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			This spell functions like shout, except that the cone deals 10d6 points of sonic damage (or 1d6 points of sonic damage per caster level, maximum 20d6, against exposed brittle or crystalline objects or crystalline creatures). It also causes creatures to be stunned for 1 round and deafened for 4d6 rounds. A creature in the area of the cone can negate the stunning and halve both the damage and the duration of the deafness with a successful Fortitude save. A creature holding vulnerable objects can attempt a Reflex save to negate the damage to those objects.
 		
@@ -19265,6 +19325,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			10d6
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell creates an enormous black storm cloud. Lightning and crashing claps of thunder appear within the storm. Each creature beneath the cloud must succeed on a Fortitude save or be deafened for 1d4x10 minutes.
 		
@@ -20534,6 +20597,9 @@
 		<LEVEL>
 			Clr 7, Sor/Wiz 7
 		</LEVEL>
+		<DAMAGE>
+			3d6
+		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like symbol of death, except that every creature within 60 feet of a symbol of weakness instead suffers crippling weakness that deals 3d6 points of Strength damage.
 		
@@ -20576,6 +20642,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			2d10
+		</DAMAGE>
 		<DESCRIPTION>
 			By attuning yourself to a freestanding structure such you can create a damaging vibration within it. Once it begins, the vibration deals 2d10 points of damage per round to the target structure. (Hardness has no effect on the spell's damage.) You can choose at the time of casting to limit the duration of the spell; otherwise it lasts for 1 round/ level. If the spell is cast upon a target that is not freestanding the surrounding stone dissipates the effect and no damage occurs.
 		
@@ -21753,6 +21822,12 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL / 2]d8 MAX: 5
+		</DAMAGE>
+		<DAMAGEALTERNATE>
+			[CASTERLEVEL]d6 MAX: 10
+		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			You call up unholy power to smite your enemies. The power takes the form of a cold, cloying miasma of greasy darkness.
 		
@@ -21834,6 +21909,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			[CASTERLEVEL / 2]d6 MAX: 10
+		</DAMAGE>
 		<DESCRIPTION>
 			You must succeed on a melee touch attack. Your touch deals 1d6 points of damage per two caster levels (maximum 10d6). You gain temporary hit points equal to the damage you deal. However, you can't gain more than the subject's current hit points +10, which is enough to kill the subject. The temporary hit points disappear 1 hour later.
 		</DESCRIPTION>
@@ -22036,6 +22114,9 @@
 		<SPELLRESISTANCE>
 			Yes
 		</SPELLRESISTANCE>
+		<DAMAGE>
+			2d6+[CASTERLEVEL] MAX: 20
+		</DAMAGE>
 		<DESCRIPTION>
 			An immobile, blazing curtain of shimmering violet fire springs into existence. One side of the wall, selected by you, sends forth waves of heat, dealing 2d4 points of fire damage to creatures within 10 feet and 1d4 points of fire damage to those past 10 feet but within 20 feet. The wall deals this damage when it appears and on your turn each round to all creatures in the area. In addition, the wall deals 2d6 points of fire damage +1 point of fire damage per caster level (maximum +20) to any creature passing through it. The wall deals double damage to undead creatures.
 		

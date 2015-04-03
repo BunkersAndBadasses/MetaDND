@@ -31,9 +31,7 @@ public class ItemEntity extends DNDEntity{
 		    	break;
 		    default:
 		    	break;
-		    	
-		    }
-		    
+		    }    
 		}
 	}
 }

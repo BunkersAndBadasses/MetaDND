@@ -16,6 +16,8 @@ public class SpellEntity extends DNDEntity{
 	boolean spellResistance;
 	String materialComponent;
 	String focus;
+	String damage;
+	String damageAlternate;
 	
 	public SpellEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.SPELL;
@@ -66,7 +68,13 @@ public class SpellEntity extends DNDEntity{
 		    	}
 		    	else
 		    		this.spellResistance = true;
-		    	break;	
+		    	break;
+		    case "DAMAGE":
+		    	this.damage = value;
+		    	break;
+		    case "DAMAGEALTERNATE":
+		    	this.damageAlternate = value;
+		    	break;
 		    default:
 		    	break;
 		    	
