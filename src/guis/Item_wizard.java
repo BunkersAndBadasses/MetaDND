@@ -219,7 +219,7 @@ public class Item_wizard {
 			}
 		});
 		wizPages.add(wizpage4);
-		//Page5 -- Verication
+		//Page5 -- Verification
 		//TODO lay all information entered here for confirmation
 	}
 	/**
