@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import entity.FeatEntity;
 import entity.ItemEntity;
@@ -31,9 +32,9 @@ public class Item_wizard {
 	public static boolean cancel = false;
 	public static boolean[] wizPageCreated = {false, false, false, false, false};
 	private ItemEntity newitem;
-	String Itemname;
+	String ItemName;
 	String ItemWeight;
-	String Itemscript;
+	String ItemScript;
 	String ItemValue;
 	private static int wizPageNum;
 	public Item_wizard(Display d)
@@ -92,14 +93,32 @@ public class Item_wizard {
 		//Page1 -- Name
 		final Composite wizpage1 = new Composite(homePanel, SWT.NONE);
 		Label wiz1Label = new Label(wizpage1, SWT.NONE);
-		wiz1Label.setText("Enter Name");
+		wiz1Label.setText("Enter Name (required)");
 		wiz1Label.pack();
+		final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
+		wizpage1text.setBounds(50, 50, 50, 50);
+		wizpage1text.setText("Mr.NONAME");
 		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
 		next1.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
 			{
-				//TODO start here
+				if(wizpage1text.getText() != "")
+				{
+					ItemName = wizpage1text.getText();
+					if(wizPageNum < wizPages.size() - 1)
+					{
+						wizPageNum++;
+					}
+					else if(wizPageNum == wizPages.size() - 1)
+					{
+						shell.close();
+					}
+				}
+				else
+				{
+					wiz1Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
 			}
 		}
 		);
@@ -107,9 +126,34 @@ public class Item_wizard {
 		//Page2 -- Weight
 		final Composite wizpage2 = new Composite(homePanel, SWT.NONE);
 		Label wiz2Label = new Label(wizpage2, SWT.NONE);
-		wiz2Label.setText("Enter Value");
+		wiz2Label.setText("Enter Value (required)");
 		wiz2Label.pack();
-		createNextButton(wizpage2);//TODO cancel and previous button
+		final Text wizpage2text = new Text(wizpage2, SWT.BORDER);
+		wizpage1text.setBounds(50, 50, 50, 50);
+		wizpage1text.setText("1");
+		Button next2 = createNextButton(wizpage2);//TODO cancel and previous button
+		next2.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				if(wizpage1text.getText() != "")
+				{
+					ItemWeight = wizpage2text.getText();
+					if(wizPageNum < wizPages.size() - 1)
+					{
+						wizPageNum++;
+					}
+					else if(wizPageNum == wizPages.size() - 1)
+					{
+						shell.close();
+					}
+				}
+				else
+				{
+					wiz1Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+			}
+		});
 		wizPages.add(wizpage2);
 		//Page3 -- Value
 		
