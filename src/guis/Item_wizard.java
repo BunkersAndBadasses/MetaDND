@@ -29,7 +29,7 @@ public class Item_wizard {
 	private static final int HEIGHT = 500;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	public static boolean cancel = false;
-	public static boolean[] wizPageCreated = {false, false, false};// Three pages: input1, input2, confirmation1
+	public static boolean[] wizPageCreated = {false, false, false, false, false};
 	private ItemEntity newitem;
 	String Itemname;
 	String ItemWeight;
@@ -42,6 +42,8 @@ public class Item_wizard {
 		shell = new Shell(d);
 		shell.setText("Create New Item");
 		shell.setSize(WIDTH,HEIGHT);
+		wizPages = new ArrayList<Composite>();
+		createPageContent();
 		run();
 	}
 	public void run()
@@ -78,8 +80,6 @@ public class Item_wizard {
 	 * WEIGHT
 	 * DESCRIPTION
 	 * VALUE
-	 * Take Name, Value, Weight on the same page
-	 * Take description on another.
 	 * TODO verify the storing method
 	 */
 	private void createPageContent() 
@@ -89,39 +89,42 @@ public class Item_wizard {
 		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
 		final StackLayout homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
-		//Page1
-		
-	}
-	/**
-	 * COPY FROM CHAR WIZARD with change
-	 * creates a next button on composite c in the bottom right corner.
-	 * Also set listener for the created button that changes to the next page
-	 * if avaiable
-	 * @param c
-	 * @return
-	 */
-	public static Button createNextButton(Composite c, final Composite panel,
-			final StackLayout layout) {
-		Button nextButton = new Button(c, SWT.PUSH);
-		nextButton.setText("Next");
-		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
-		nextButton.addListener(SWT.Selection, new Listener()
+		//Page1 -- Name
+		final Composite wizpage1 = new Composite(homePanel, SWT.NONE);
+		Label wiz1Label = new Label(wizpage1, SWT.NONE);
+		wiz1Label.setText("Enter Name");
+		wiz1Label.pack();
+		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
+		next1.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
 			{
-				if (wizPageNum < wizPageCreated.length - 1) //in this case 3 - 1, on the first and second page
-				{
-					wizPageNum++;
-					layout.topControl = wizPages.get(wizPageNum);
-					panel.layout();
-				}
-				else if(wizPageNum == wizPageCreated.length - 1) //in this case 2, at the last page
-				{
-					shell.close();
-				}
-				
+				//TODO start here
 			}
-		});
+		}
+		);
+		wizPages.add(wizpage1);
+		//Page2 -- Weight
+		final Composite wizpage2 = new Composite(homePanel, SWT.NONE);
+		Label wiz2Label = new Label(wizpage2, SWT.NONE);
+		wiz2Label.setText("Enter Value");
+		wiz2Label.pack();
+		createNextButton(wizpage2);//TODO cancel and previous button
+		wizPages.add(wizpage2);
+		//Page3 -- Value
+		
+	}
+	/**
+	 * creates a next button on composite c in the bottom right corner.
+	 * this does NOT set the listener! (each one is different, that is set 
+	 * after this method is called)
+	 * @param c
+	 * @return
+	 */
+	public static Button createNextButton(Composite c) {
+		Button nextButton = new Button(c, SWT.PUSH);
+		nextButton.setText("Next");
+		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
 		return nextButton;
 	}
 
