@@ -136,7 +136,7 @@ public class Item_wizard {
 		{
 			public void handleEvent(Event event)
 			{
-				if(wizpage1text.getText() != "")
+				if(wizpage2text.getText() != "")
 				{
 					ItemWeight = wizpage2text.getText();
 					if(wizPageNum < wizPages.size() - 1)
@@ -150,13 +150,77 @@ public class Item_wizard {
 				}
 				else
 				{
-					wiz1Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					wiz2Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
 				}
 			}
 		});
 		wizPages.add(wizpage2);
 		//Page3 -- Value
-		
+		final Composite wizpage3 = new Composite(homePanel, SWT.NONE);
+		Label wiz3Label = new Label(wizpage3, SWT.NONE);
+		wiz3Label.setText("Enter Value (required)");
+		wiz3Label.pack();
+		final Text wizpage3text = new Text(wizpage3, SWT.BORDER);
+		wizpage3text.setBounds(50, 50, 50, 50);
+		wizpage3text.setText("1");
+		Button next3 = createNextButton(wizpage3);//TODO cancel and previous button
+		next3.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				if(wizpage3text.getText() != "")
+				{
+					ItemValue = wizpage3text.getText();
+					if(wizPageNum < wizPages.size() - 1)
+					{
+						wizPageNum++;
+					}
+					else if(wizPageNum == wizPages.size() - 1)
+					{
+						shell.close();
+					}
+				}
+				else
+				{
+					wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+			}
+		});
+		wizPages.add(wizpage3);
+		//Page4 -- Description (optional)
+		final Composite wizpage4 = new Composite(homePanel, SWT.NONE);
+		Label wiz4Label = new Label(wizpage4, SWT.NONE);
+		wiz4Label.setText("Enter Description (Optional)");
+		wiz4Label.pack(); 
+		final Text wizpage4text = new Text(wizpage4, SWT.BORDER);
+		wizpage4text.setBounds(200, 200, 200, 200);
+		wizpage4text.setText("Description here");
+		Button next4 = createNextButton(wizpage4);//TODO cancel and previous button
+		next4.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				if(wizpage4text.getText() != "")
+				{
+					ItemScript = wizpage4text.getText();
+				}
+				else
+				{
+					ItemScript = "<empty>";
+				}
+				if(wizPageNum < wizPages.size() - 1)
+				{
+					wizPageNum++;
+				}
+				else if(wizPageNum == wizPages.size() - 1)
+				{
+					shell.close();
+				}
+			}
+		});
+		wizPages.add(wizpage4);
+		//Page5 -- Verication
+		//TODO lay all information entered here for confirmation
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
