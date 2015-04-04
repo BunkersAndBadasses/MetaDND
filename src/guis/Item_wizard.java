@@ -1,7 +1,16 @@
 package guis;
+import java.util.ArrayList;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import entity.FeatEntity;
@@ -14,22 +23,26 @@ import entity.ItemEntity;
  *
  */
 public class Item_wizard {
-	private Shell shell;
-	private Display display;
+	private static Shell shell;
+	private static Display display;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;//copy from character wizard, see for change
+	private static ArrayList<Composite> wizPages;
+	public static boolean cancel = false;
+	public static boolean[] wizPageCreated = {false, false, false};// Three pages: input1, input2, confirmation1
 	private ItemEntity newitem;
 	String Itemname;
-	String Itemlevel;
-	String Itemweight;
+	String ItemWeight;
 	String Itemscript;
-	String Itemrestrict;
+	String ItemValue;
+	private static int wizPageNum;
 	public Item_wizard(Display d)
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Item Wizard");
+		shell.setText("Create New Item");
 		shell.setSize(WIDTH,HEIGHT);
+		run();
 	}
 	public void run()
 	{
@@ -47,7 +60,7 @@ public class Item_wizard {
 	 * Set window to be the center.
 	 * @param shell the window needed to be in the center
 	 */
-	private void center(Shell shell) 
+	private static void center(Shell shell) 
 	{
 
         Rectangle bds = shell.getDisplay().getBounds();
@@ -62,17 +75,146 @@ public class Item_wizard {
 	/**
 	 * To create a item, we need user input from the following:
 	 * NAME
-	 * LEVEL
 	 * WEIGHT
 	 * DESCRIPTION
-	 * RESTRICTIONS
-	 * Take Name, Level, Weight on the same page
-	 * Take description and restriction on another.
+	 * VALUE
+	 * Take Name, Value, Weight on the same page
+	 * Take description on another.
 	 * TODO verify the storing method
 	 */
 	private void createPageContent() 
 	{
-		//TODO
+		//HomePanel
+		final Composite homePanel = new Composite(shell, SWT.NONE);
+		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
+		final StackLayout homeLayout = new StackLayout();
+		homePanel.setLayout(homeLayout);
+		//Page1
+		
+	}
+	/**
+	 * COPY FROM CHAR WIZARD with change
+	 * creates a next button on composite c in the bottom right corner.
+	 * Also set listener for the created button that changes to the next page
+	 * if avaiable
+	 * @param c
+	 * @return
+	 */
+	public static Button createNextButton(Composite c, final Composite panel,
+			final StackLayout layout) {
+		Button nextButton = new Button(c, SWT.PUSH);
+		nextButton.setText("Next");
+		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
+		nextButton.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				if (wizPageNum < wizPageCreated.length - 1) //in this case 3 - 1, on the first and second page
+				{
+					wizPageNum++;
+					layout.topControl = wizPages.get(wizPageNum);
+					panel.layout();
+				}
+				else if(wizPageNum == wizPageCreated.length - 1) //in this case 2, at the last page
+				{
+					shell.close();
+				}
+				
+			}
+		});
+		return nextButton;
+	}
+
+	/**
+	 *COPY FROM CHAR WIZARD
+	 * creates a back button on composite c in the bottom right corner.
+	 * also sets the listener for the created button that changes the top 
+	 * control page of the layout of the panel to be the previous page
+	 * @param c
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createBackButton(Composite c, final Composite panel,
+			final StackLayout layout) {
+		Button backButton = new Button(c, SWT.PUSH);
+		backButton.setText("Back");
+		backButton.setBounds(WIDTH - 220, HEIGHT - 90, 100, 50);
+		backButton.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+				if (wizPageNum > 0)
+					wizPageNum--;
+				layout.topControl = wizPages.get(wizPageNum);
+				panel.layout();
+			}
+		});
+		return backButton;
+	}
+
+	/**
+	 * COPY FROM CHAR WIZARD
+	 * creates a cancel button on composite c in bottom left corner.
+	 * also sets the listener for the created button that changes the homePanel
+	 * top control to be home and resets the wizard page counter wizPageNum
+	 * @param c
+	 * @param home
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createCancelButton(Composite c, final Composite home,
+			final Composite panel, final StackLayout layout) {
+		Button cancelButton = new Button(c, SWT.PUSH);
+		cancelButton.setText("Cancel");
+		cancelButton.setBounds(10, HEIGHT - 90, 100, 50);
+		cancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				cancel = false;
+				final Shell areYouSureShell = new Shell(display);
+				areYouSureShell.setText("Cancel");
+				areYouSureShell.setSize(300, 200);
+				center(areYouSureShell);
+
+				Label areYouSure = new Label(areYouSureShell, SWT.NONE);
+				areYouSure.setLocation(40,50);
+				areYouSure.setText("Are you sure you want to cancel?");
+				areYouSure.pack();
+
+				Button yes = new Button(areYouSureShell, SWT.PUSH);
+				yes.setBounds(10,130,130,30);
+				yes.setText("Yes, Cancel");
+				yes.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = true;
+						areYouSureShell.dispose();
+					}
+				});
+
+				Button no = new Button(areYouSureShell, SWT.PUSH);
+				no.setBounds(160,130,130,30);
+				no.setText("No, Don't Cancel");
+				no.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = false;
+						areYouSureShell.dispose();
+					}
+				});
+
+				areYouSureShell.open();
+				while (!areYouSureShell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+				if (cancel) {
+					wizPageNum = -1;
+					layout.topControl = home;
+					panel.layout();
+				}
+			}
+		});
+		return cancelButton;
 	}
 	/**
 	 * simple getter
