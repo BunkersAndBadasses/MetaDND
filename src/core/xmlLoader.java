@@ -90,6 +90,12 @@ public class xmlLoader implements Runnable{
 //					if(testRace.getName().equalsIgnoreCase("halfling"))
 //						testRace.toTooltipWindow();
 				}
+				else if(node.getNodeName() == "CLASS"){
+					ClassEntity testClass = new ClassEntity(entity);
+					Main.gameState.classes.put(testClass.getName(), testClass);
+//					if(testClass.getName().equalsIgnoreCase("barbarian"))
+//						testClass.toTooltipWindow();
+				}
 			}
 		}
 	}

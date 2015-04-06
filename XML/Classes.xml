@@ -8,10 +8,9 @@
 
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any nonlawful.
+			Any nonlawful
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
-
 		</BONUSLANGUAGE>
 		<HITDIE>
 			d12.
@@ -26,7 +25,7 @@
 			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6 
 		</REFLEXSAVE>
 		<WILLSAVE>
-			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 
+			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6
 		</WILLSAVE>
 		<SPECIAL>
 			Fast movement, illiteracy, rage 1/day; Uncanny dodge; Trap sense +1; Rage 2/day; Improved uncanny dodge; Trap sense +2; Damage reduction 1/-; Rage 3/day; Trap sense +3; Damage reduction 2/-; Greater rage; Rage 4/day, trap sense +4; Damage reduction 3/-; Indomitable will; Trap sense +5; Damage reduction 4/-, rage 5/day; Tireless rage; Trap sense +6; Damage reduction 5/-; Mighty rage, rage 6/day; 
@@ -45,7 +44,6 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the barbarian.
@@ -65,13 +63,10 @@
 			Mighty Rage (Ex): At 20th level, a barbarian's bonuses to Strength and Constitution during his rage each increase to +8, and his morale bonus on Will saves increases to +4. The penalty to AC remains at -2.
 		</CLASSABILITIES>
 		<DRUIDCOMPANION>
-
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
-
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 			A barbarian who becomes lawful loses the ability to rage and cannot gain more levels as a barbarian. He retains all the other benefits of the class (damage reduction, fast movement, trap sense, and uncanny dodge).
@@ -88,7 +83,6 @@
 			Any nonlawful.
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
-
 		</BONUSLANGUAGE>
 		<HITDIE>
 			d12.
@@ -162,7 +156,6 @@
 			6 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the bard.
@@ -202,15 +195,11 @@
 			Inspire Heroics (Su): A bard of 15th level or higher with 18 or more ranks in a Perform skill can use music or poetics to inspire tremendous heroism in himself or a single willing ally within 30 feet. For every three bard levels the character attains beyond 15th, he can inspire heroics in one additional creature. To inspire heroics, a bard must sing and an ally must hear the bard sing for a full round. A creature so inspired gains a +4 morale bonus on saving throws and a +4 dodge bonus to AC. The effect lasts for as long as the ally hears the bard sing and for up to 5 rounds thereafter. Inspire heroics is a mind-affecting ability.
 			Mass Suggestion (Sp): This ability functions like suggestion, above, except that a bard of 18th level or higher with 21 or more ranks in a Perform skill can make the suggestion simultaneously to any number of creatures that he has already fascinated (see above). Mass suggestion is an enchantment (compulsion), mind-affecting, language-dependent ability.
 		</CLASSABILITIES>
-
 		<DRUIDCOMPANION>
-
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
-
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 			A bard who becomes lawful in alignment cannot progress in levels as a bard, though he retains all his bard abilities.
@@ -228,7 +217,7 @@
 			A cleric's alignment must be within one step of his deity's (that is, it may be one step away on either the lawful-chaotic axis or the good-evil axis, but not both). A cleric may not be neutral unless his deity's alignment is also neutral.
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
-			A cleric's bonus language options include Celestial, Abyssal, and Infernal (the languages of good, chaotic evil, and lawful evil outsiders, respectively). These choices are in addition to the bonus languages available to the character because of his race.
+			Celestial, Abyssal, and Infernal
 		</BONUSLANGUAGE>
 		<HITDIE>
 			d8.
@@ -275,7 +264,6 @@
 		<CLASSSKILLS>
 			The cleric's class skills (and the key ability for each skill) are Concentration (Con), Craft (Int), Diplomacy (Cha), Heal (Wis), Knowledge (arcana) (Int), Knowledge (history) (Int), Knowledge (religion) (Int), Knowledge (the planes) (Int), Profession (Wis), and Spellcraft (Int). 
 			A cleric who chooses the Animal or Plant domain adds Knowledge (nature) (Int) to the cleric class skills listed above. A cleric who chooses the Knowledge domain adds all Knowledge (Int) skills to the list. A cleric who chooses the Travel domain adds Survival (Wis) to the list. A cleric who chooses the Trickery domain adds Bluff (Cha), Disguise (Cha), and Hide (Dex) to the list. See Deity, Domains, and Domain Spells, below, for more information.
-
 		</CLASSSKILLS>
 		<SKILLPOINTSFIRST>
 			(2 + Int modifier) x4.
@@ -284,7 +272,6 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			Weapon and Armor Proficiency: Clerics are proficient with all simple weapons, with all types of armor (light, medium, and heavy), and with shields (except tower shields).
@@ -308,13 +295,10 @@
 
 		</CLASSABILITIES>
 		<DRUIDCOMPANION>
-
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
-
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 			A cleric who grossly violates the code of conduct required by his god loses all spells and class features, except for armor and shield proficiencies and proficiency with simple weapons. He cannot thereafter gain levels as a cleric of that god until he atones (see the atonement spell description).
@@ -327,9 +311,10 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Neutral good, lawful neutral, neutral, chaotic neutral, or neutral evil.
+			Neutral good, lawful neutral, neutral, chaotic neutral, neutral evil
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
+			Druidic
 		</BONUSLANGUAGE>
 		<HITDIE>
 			d8.
@@ -383,7 +368,6 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the druid.
@@ -560,7 +544,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any.
+			Any
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -577,7 +561,7 @@
 			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6 
 		</REFLEXSAVE>
 		<WILLSAVE>
-			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 
+			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6
 		</WILLSAVE>
 		<SPECIAL>
 			Bonus Feat; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat; ; Bonus Feat;
@@ -596,7 +580,6 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the fighter.
@@ -607,10 +590,8 @@
 		<DRUIDCOMPANION>
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
-
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 		</EXCLASS>
@@ -623,7 +604,7 @@
 			1 The value shown is for Medium monks. See Table: Small or Large Monk Unarmed Damage for Small or Large monks.
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any lawful.
+			Any lawful
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -659,7 +640,6 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the monk.
@@ -724,7 +704,6 @@
 		<DRUIDCOMPANION>
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
-
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
 
@@ -741,7 +720,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Lawful good.
+			Lawful good
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -758,7 +737,7 @@
 			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6 
 		</REFLEXSAVE>
 		<WILLSAVE>
-			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 
+			0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6
 		</WILLSAVE>
 		<SPECIAL>
 			Aura of good, detect evil, smite evil 1/day; Divine grace, lay on hands; Aura of courage, divine health; Turn undead; Smite evil 2/day, special mount; Remove disease 1/week; ; ; Remove disease 2/week; Smite evil 3/day; ; Remove disease 3/week; ; ; Remove disease 4/week, smite evil 4/day; ; ; Remove disease 5/week; ; smite evil 5/day;
@@ -797,7 +776,6 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the paladin.
@@ -895,7 +873,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any.
+			Any
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -1030,7 +1008,6 @@
 		<PALADINMOUNT>
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 		</EXCLASS>
@@ -1042,7 +1019,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any.
+			Any
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -1065,7 +1042,6 @@
 			Sneak attack +1d6, trap finding; Evasion; Sneak attack +2d6, trap sense +1; Uncanny dodge; Sneak attack +3d6; Trap sense +2; Sneak attack +4d6; Improved uncanny dodge; Sneak attack +5d6, trap sense +3; Special ability; Sneak attack +6d6; Trap sense +4; Sneak attack +7d6, special ability; ; Sneak attack +8d6, trap sense +5; Special ability; Sneak attack +9d6; Trap sense +6; Sneak attack +10d6, special ability; ;
 		</SPECIAL>
 		<SPELLSPERDAY>
-
 		</SPELLSPERDAY>
 		<SPELLSKNOWN>
 		</SPELLSKNOWN>
@@ -1079,7 +1055,6 @@
 			8 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the rogue.
@@ -1111,14 +1086,12 @@
 			Slippery Mind (Ex): This ability represents the rogue's ability to wriggle free from magical effects that would otherwise control or compel her. If a rogue with slippery mind is affected by an enchantment spell or effect and fails her saving throw, she can attempt it again 1 round later at the same DC. She gets only this one extra chance to succeed on
 			her saving throw.
 			Feat: A rogue may gain a bonus feat in place of a special ability.
-
 		</CLASSABILITIES>
 		<DRUIDCOMPANION>
 		</DRUIDCOMPANION>
 		<PALADINMOUNT>
 		</PALADINMOUNT>
 		<WIZARDFAMILIAR>
-
 		</WIZARDFAMILIAR>
 		<EXCLASS>
 		</EXCLASS>
@@ -1130,7 +1103,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any.
+			Any
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -1206,7 +1179,6 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the sorcerer.
@@ -1262,7 +1234,7 @@
 			If a spell doesn't have a somatic component, an arcane spellcaster can cast it with no problem while wearing armor. Such spells can also be cast even if the caster's hands are bound or if he or she is grappling (although Concentration checks still apply normally). Also, the metamagic feat Still Spell allows a spellcaster to prepare or cast a spell at one spell level higher than normal without the somatic component. This also provides a way to cast a spell while wearing armor without risking arcane spell failure. 
 		</DESCRIPTION>
 		<ALIGNMENTRESTRICTIONS>
-			Any.
+			Any
 		</ALIGNMENTRESTRICTIONS>
 		<BONUSLANGUAGE>
 		</BONUSLANGUAGE>
@@ -1282,7 +1254,7 @@
 			2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12  
 		</WILLSAVE>
 		<SPECIAL>
-			Summon Familiar, scribe scroll; ; ; ; Bouns feat; ; ; ; ; Bonus Feat; ; ; ; ; Bonus Feat; ; ; ; ; Bonus Feat
+			Summon Familiar, Scribe Scroll; ; ; ; Bouns feat; ; ; ; ; Bonus Feat; ; ; ; ; Bonus Feat; ; ; ; ; Bonus Feat
 		</SPECIAL>
 		<SPELLSPERDAY>
 			3, 1, -, -, -, -, -, -, -, -;
@@ -1319,7 +1291,6 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the wizard.
