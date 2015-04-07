@@ -1,5 +1,4 @@
-package guis;
-
+package src.guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
@@ -7,12 +6,7 @@ import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
 import java.util.Random;
-/**
- * Manual - Complete by Sarah
- * Random - TODO by Innocentius
- * @author Sarah && Innocentius
- *
- */
+
 public class CharacterWizard {
 
 	int pageNum = -1;
@@ -25,7 +19,8 @@ public class CharacterWizard {
 	private static final int HEIGHT = 500;
 	public static int wizPageNum = -1;
 	public static boolean cancel = false;
-	public static boolean[] wizPageCreated = {false, false, false, false, false, false, false, false, false, false};
+	public static boolean[] wizPageCreated = { false, false, false, false,
+			false, false, false, false, false, false };
 
 	private static ArrayList<Composite> wizPages;
 
@@ -179,9 +174,8 @@ public class CharacterWizard {
 			}
 		});
 
-		////////////////////////////////////////////////////////////////////////////////
-		/////////////////////////////// WIZARD PAGES ///////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////
+		
+		/////////////////////// WIZARD PAGES ////////////////////////////
 
 		// initialize all pages
 		final Composite wiz1 = new Composite(wizPanel, SWT.NONE);
@@ -340,8 +334,10 @@ public class CharacterWizard {
 		return addCustomButton;
 	}
 
-	// generates random number between 3 and 18
-	// simulates rolling 4 d6 and dropping the lowest roll
+/**
+ *  generates random number between 3 and 18 (for use as an ability score)
+ *  simulates rolling 4 dnd dropping the lowest roll
+ */
 	public static int[] genAS() {
 		Random r = new Random();
 		int[] result = { 0, 0, 0, 0, 0, 0 };
