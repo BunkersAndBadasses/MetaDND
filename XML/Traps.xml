@@ -1,0 +1,3326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRAPS>
+	<TRAP>
+		<NAME>
+			Basic Arrow Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 ranged (1d6/x3, arrow)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			2,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			10 ft. deep (1d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			24
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			1,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Deeper Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<BYPASS>
+			Hidden switch bypass (Search DC 25)
+		</BYPASS>
+		<SAVE>
+			DC 15 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			20 ft. deep (2d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			23
+		</DISABLEDC>
+		<VALUE>
+			1,300 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fusillade of Darts
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 ranged (1d4+1, dart)
+		</DAMAGE>
+		<DAMAGE>
+			Multiple targets (fires 1d4 darts at each target in two adjacent 5-ft. squares)
+		</DAMAGE>
+		<SEARCHDC>
+			14
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poison Dart Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +8 ranged (1d4 plus poison, dart)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (bloodroot, DC 12 Fortitude save resists, 0/1d4 Con plus 1d3 Wis)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			700 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poison Needle Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<ATTACK>
+			Atk +8 ranged (1 plus greenblood oil poison)
+		</ATTACK>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			1,300 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Portcullis Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 melee (3d6)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			1,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Wire across Hallway
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 melee (2d6, wire)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			15
+		</DISABLEDC>
+		<VALUE>
+			400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Rolling Rock Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 melee (2d6, rock)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			22
+		</DISABLEDC>
+		<VALUE>
+			1,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Scything Blade Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Atk +8 melee (1d8/x3)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			1,700 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spear Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +12 ranged (1d8/x3, spear)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			1,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Swinging Block Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +5 melee (4d6, stone block)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Wall Blade Trap
+		</NAME>
+		<CHALLENGERATING>
+			1
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<BYPASS>
+			Hidden switch bypass (Search DC 25)
+		</BYPASS>
+		<DAMAGE>
+			Atk +10 melee (2d4/x4, scythe)
+		</DAMAGE>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			22
+		</DISABLEDC>
+		<VALUE>
+			2,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Box of Brown Mold
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Opening The Box)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			5-ft. cold aura (3d6, cold nonlethal)
+		</DAMAGE>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			3,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Bricks from Ceiling
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<DAMAGE>
+			Atk +12 melee (2d6, bricks)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			2,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Burning Hands Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (burning hands, 1st-level wizard, 1d4 fire, DC 11 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			26
+		</SEARCHDC>
+		<DISABLEDC>
+			26
+		</DISABLEDC>
+		<VALUE>
+			500 gp, 40 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			20 ft. deep (2d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			24
+		</SEARCHDC>
+		<DISABLEDC>
+			19
+		</DISABLEDC>
+		<VALUE>
+			3,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Inflict Light Wounds Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (inflict light wounds, 1st-level cleric, 1d8+1, DC 11 Will save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			26
+		</SEARCHDC>
+		<DISABLEDC>
+			26
+		</DISABLEDC>
+		<VALUE>
+			500 gp, 40 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Javelin Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +16 ranged (1d6+4, javelin)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			4,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Large Net Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<TARGET>
+			Multiple targets (all tagets in 10-ft. square are grappled by net (Str 18))
+		</TARGET>
+		<SAVE>
+			DC 14 Reflex save
+		</SAVE>
+		<VALUE>
+			3,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical, Location Trigger
+		</TYPE>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			40 ft. deep (4d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			2,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poison Needle Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<BYPASS>
+			Lock bypass (Open Lock DC 30)
+		</BYPASS>
+		<ATTACK>
+			Atk +17 melee (1 plus poison, needle)
+		</ATTACK>
+		<SAVE>
+			poison (blue whinnis, DC 14 Fortitude save resists (poison only), 1 Con/unconsciousness)
+		</SAVE>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			17
+		</DISABLEDC>
+		<VALUE>
+			4,720 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			20 ft. deep (2d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+2 each)
+		</DAMAGE>
+		<SEARCHDC>
+			18
+		</SEARCHDC>
+		<DISABLEDC>
+			15
+		</DISABLEDC>
+		<VALUE>
+			1,600 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Tripping Chain
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Atk +15 melee touch (trip), Atk +15 melee (2d4+2, spiked chain)
+		</DAMAGE>
+		<SEARCHDC>
+			15
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			3,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			2
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			10 ft. deep (1d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			4,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Burning Hands Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (burning hands, 5th-level wizard, 5d4 fire, DC 11 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			26
+		</SEARCHDC>
+		<DISABLEDC>
+			26
+		</DISABLEDC>
+		<VALUE>
+			2,500 gp, 200 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			30 ft. deep (3d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent squares)
+		</TARGET>
+		<SEARCHDC>
+			24
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			4,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Ceiling Pendulum
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Timed Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Atk +15 melee (1d12+8/x3, greataxe)
+		</DAMAGE>
+		<SEARCHDC>
+			15
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			14,100 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fire Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TRIGGER>
+			Spell Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (fire trap, 3rd-level druid, 1d4+3 fire, DC 13 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			85 gp to hire NPC spellcaster.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Extended Bane Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Detect Good)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (extended bane, 3rd-level cleric, DC 13 Will save negates)
+		</SAVE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			3,500 gp, 280 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Ghoul Touch Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (ghoul touch, 3rd-level wizard, DC 13 Fortitude save negates)
+		</SAVE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			3,000 gp, 240 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Hail of Needles
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +20 ranged (2d4)
+		</DAMAGE>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			22
+		</DISABLEDC>
+		<VALUE>
+			5,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Acid Arrow Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<ATTACK>
+			Atk +2 ranged touch
+		</ATTACK>
+		<DAMAGE>
+			Spell effect (acid arrow, 3rd-level wizard, 2d4 acid/round for 2 rounds)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			3,000 gp, 240 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical, Location Trigger
+		</TYPE>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			60 ft. deep (6d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			3,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poisoned Arrow Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<BYPASS>
+			Lock bypass (Open Lock DC 30)
+		</BYPASS>
+		<DAMAGE>
+			Atk +12 ranged (1d8 plus poison, arrow)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (Large monstrous scorpion venom, DC 14 Fortitude save resists, 1d4 Con/1d4 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			19
+		</SEARCHDC>
+		<DISABLEDC>
+			15
+		</DISABLEDC>
+		<VALUE>
+			2,900 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			20 ft. deep (2d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+2 each)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			3,600 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Stone Blocks from Ceiling
+		</NAME>
+		<CHALLENGERATING>
+			3
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<DAMAGE>
+			Atk +10 melee (4d6, stone blocks)
+		</DAMAGE>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			5,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Bestow Curse Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Detect Chaos)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (bestow curse, 5th-level cleric, DC 14 Will save negates)
+		</SAVE>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			8,000 gp, 640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			40 ft. deep (4d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			17
+		</DISABLEDC>
+		<VALUE>
+			6,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Collapsing Column
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Attached)
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Atk +15 melee (6d6, stone blocks)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			24
+		</DISABLEDC>
+		<VALUE>
+			8,800 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			 Cost
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TRIGGER>
+			Spell Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (glyph of warding [blast], 5th-level cleric, 2d8 acid, DC 14 Reflex save half damage)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets within 5 ft.)
+		</TARGET>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			350 gp to hire NPC spellcaster.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Lightning Bolt Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (lightning bolt, 5th-level wizard, 5d6 electricity, DC 14 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			7,500 gp, 600 XP.
+		</VALUE>
+		<NAME>
+			Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical, Location Trigger
+		</TYPE>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			80 ft. deep (8d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			4,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poisoned Dart Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +15 ranged (1d4+4 plus poison, dart)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (1 dart per target in a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<DAMAGE>
+			Poison (Small monstrous centipede poison, DC 10 Fortitude save resists, 1d2 Dex/1d2 Dex)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			22
+		</DISABLEDC>
+		<VALUE>
+			12,090 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Sepia Snake Sigil Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TRIGGER>
+			Spell Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<SAVE>
+			spell effect (sepia snake sigil, 5th-level wizard, DC 14 Reflex save negates)
+		</SAVE>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			650 gp to hire NPC spellcaster.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			60 ft. deep (6d6, fall)
+		</DAMAGE>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+5 each)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			4,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Wall Scythe Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Atk +20 melee (2d4+8/x4, scythe)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			17,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Filled Room Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (5 rounds)
+		</DELAY>
+		<SEARCHDC>
+			17
+		</SEARCHDC>
+		<DISABLEDC>
+			23
+		</DISABLEDC>
+		<VALUE>
+			11,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Mouth Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			4
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			20 ft. deep (2d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+2 each)
+		</DAMAGE>
+		<SEARCHDC>
+			18
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			7,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			50 ft. deep (5d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			17
+		</DISABLEDC>
+		<VALUE>
+			8,500 gp.
+		</VALUE>
+		<NAME>
+			Doorknob Smeared with Contact Poison
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Attached)
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Poison (nitharit, DC 13 Fortitude save resists, 0/3d6 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			19
+		</DISABLEDC>
+		<VALUE>
+			9,650 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Falling Block Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +15 melee (6d6)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (can strike all characters in two adjacent specified squares)
+		</TARGET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			15,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fire Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TRIGGER>
+			Spell Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (fire trap, 7th-level wizard, 1d4+7 fire, DC 16 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			29
+		</SEARCHDC>
+		<DISABLEDC>
+			29
+		</DISABLEDC>
+		<VALUE>
+			305 gp to hire NPC spellcaster.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fireball Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (fireball, 8th-level wizard, 8d6 fire, DC 14 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			12,000 gp, 960 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Flooding Room Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			17,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fusillade of Darts
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +18 ranged (1d4+1, dart)
+		</DAMAGE>
+		<DAMAGE>
+			Multiple targets (1d8 darts per target in a 10-ft.-by-10-ft. area)
+		</DAMAGE>
+		<SEARCHDC>
+			19
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			18,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Moving Executioner Statue
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<BYPASS>
+			Hidden switch bypass (Search DC 25)
+		</BYPASS>
+		<DAMAGE>
+			Atk +16 melee (1d12+8/x3, greataxe)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (both arms attack)
+		</TARGET>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			22,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Phantasmal Killer Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm Covering The Entire Room)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (phantasmal killer, 7th-level wizard, DC 16 Will save for disbelief and DC 16 Fort save for partial effect)
+		</SAVE>
+		<SEARCHDC>
+			29
+		</SEARCHDC>
+		<DISABLEDC>
+			29
+		</DISABLEDC>
+		<VALUE>
+			14,000 gp, 1,120 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical, Location Trigger
+		</TYPE>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			100 ft. deep (10d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			5,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poison Wall Spikes
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +16 melee (1d8+4 plus poison, spike)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (closest target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Poison (Medium monstrous spider venom, DC 12 Fortitude save resists, 1d4 Str/1d4 Str)
+		</DAMAGE>
+		<SEARCHDC>
+			17
+		</SEARCHDC>
+		<DISABLEDC>
+			21
+		</DISABLEDC>
+		<VALUE>
+			12,650 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 25 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			40 ft. deep (4d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+4 each)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			13,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			 Market Price
+		</NAME>
+		<CHALLENGERATING>
+			80
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger, Manual Reset
+		</TRIGGER>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			80 ft. deep (8d6, fall), pit spikes (Atk +10 melee, 1d4 spikes for 1d4+5 each)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			5,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Ungol Dust Vapor Trap
+		</NAME>
+		<CHALLENGERATING>
+			5
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (2 rounds)
+		</DELAY>
+		<DAMAGE>
+			Poison (ungol dust, DC 15 Fortitude save resists, 1 Cha/1d6 Cha plus 1 Cha drain)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			9,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Collapse Wall
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Atk +20 melee (8d6, stone blocks)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<SEARCHDC>
+			14
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			15,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Compacting Room
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Timed Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<BYPASS>
+			Hidden switch bypass (Search DC 25)
+		</BYPASS>
+		<DAMAGE>
+			Walls move together (12d6, crush)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by- 10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (4 rounds)
+		</DELAY>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			22
+		</DISABLEDC>
+		<VALUE>
+			25,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Flame Strike Trap
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Detect Magic)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (flame strike, 9th-level cleric, 9d6 fire, DC 17 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			30
+		</SEARCHDC>
+		<DISABLEDC>
+			30
+		</DISABLEDC>
+		<VALUE>
+			22,750 gp, 1,820 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fusillade of Spears
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<DAMAGE>
+			Atk +21 ranged (1d8, spear)
+		</DAMAGE>
+		<DAMAGE>
+			Multiple targets (1d6 spears per target in a 10 ft.-by-10-ft. area)
+		</DAMAGE>
+		<SEARCHDC>
+			26
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			31,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			 Cost
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TRIGGER>
+			Spell Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (glyph of warding [blast], 16th-level cleric, 8d8 sonic, DC 14 Reflex save half damage)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets within 5 ft.)
+		</TARGET>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			680 gp to hire NPC spellcaster.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Lightning Bolt Trap
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (lightning bolt, 10th-level wizard, 10d6 electricity, DC 14 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			28
+		</SEARCHDC>
+		<DISABLEDC>
+			28
+		</DISABLEDC>
+		<VALUE>
+			15,000 gp, 1,200 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Spiked Blocks from Ceiling
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<DAMAGE>
+			Atk +20 melee (6d6, spikes)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<SEARCHDC>
+			24
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			21,600 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			 Market Price
+		</NAME>
+		<CHALLENGERATING>
+			100
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger, Manual Reset
+		</TRIGGER>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			100 ft. deep (10d6, fall)
+		</DAMAGE>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+5 each)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			6,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Whirling Poison Blades
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Timed Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<BYPASS>
+			Hidden lock bypass (Search DC 25, Open Lock DC 30)
+		</BYPASS>
+		<DAMAGE>
+			Atk +10 melee (1d4+4/19–20 plus poison, dagger)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (purple worm poison, DC 24 Fortitude save resists, 1d6 Str/2d6 Str)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (one target in each of three preselected 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			30,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Mouth Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger, Manual Reset
+		</TRIGGER>
+		<SAVE>
+			DC 25 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			40 ft. deep (4d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets within a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<SEARCHDC>
+			26
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			28,200 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Wyvern Arrow Trap
+		</NAME>
+		<CHALLENGERATING>
+			6
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +14 ranged (1d8 plus poison, arrow)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (wyvern poison, DC 17 Fortitude save resists, 2d6 Con/2d6 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			17,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Acid Fog Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (acid fog, 11th-level wizard, 2d6/round acid for 11 rounds)
+		</DAMAGE>
+		<SEARCHDC>
+			31
+		</SEARCHDC>
+		<DISABLEDC>
+			31
+		</DISABLEDC>
+		<VALUE>
+			33,000 gp, 2,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Blade Barrier Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (blade barrier, 11th-level cleric, 11d6 slashing, DC 19 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			31
+		</SEARCHDC>
+		<DISABLEDC>
+			31
+		</DISABLEDC>
+		<VALUE>
+			33,000 gp, 2,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Burnt Othur Vapor Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (3 rounds)
+		</DELAY>
+		<DAMAGE>
+			Poison (burnt othur fumes, DC 18 Fortitude save resists, 1 Con drain/3d6 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			21
+		</SEARCHDC>
+		<DISABLEDC>
+			21
+		</DISABLEDC>
+		<VALUE>
+			17,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Chain Lightning Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<TRIGGER>
+			Spell Effect (Chain Lightning, 11Th-Level Wizard, 11D6 Electricity To Target Nearest Center Of Trigger Area Plus 5D6 Electricity To Each Of Up To Eleven Secondary Targets, Dc 19 Reflex Save Half Damage)
+		</TRIGGER>
+		<SEARCHDC>
+			31
+		</SEARCHDC>
+		<DISABLEDC>
+			31
+		</DISABLEDC>
+		<VALUE>
+			33,000 gp, 2,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Black Tentacles Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (black tentacles, 7th-level wizard, 1d4+7 tentacles, Atk +7 melee [1d6+4, tentacle])
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (up to six tentacles per target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			29
+		</SEARCHDC>
+		<DISABLEDC>
+			29
+		</DISABLEDC>
+		<VALUE>
+			1,400 gp, 112 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Fusillade of Greenblood Oil Darts
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +18 ranged (1d4+1 plus poison, dart)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (greenblood oil, DC 13 Fortitude save resists, 1 Con/ 1d2 Con)
+		</DAMAGE>
+		<DAMAGE>
+			Multiple targets (1d8 darts per target in a 10-ft.-by-10-ft. area)
+		</DAMAGE>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			33,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Lock Covered in Dragon Bile
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Attached)
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<DAMAGE>
+			Poison (dragon bile, DC 26 Fortitude save resists, 3d6 Str/0)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			11,300 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Summon Monster VI Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<SEARCHDC>
+			11
+		</SEARCHDC>
+		<DISABLEDC>
+			31
+		</DISABLEDC>
+		<VALUE>
+			3,300 gp, 264 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Filled Room
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (3 rounds)
+		</DELAY>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			21,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			7
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<SAVE>
+			DC 25 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			70 ft. deep (7d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			24,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Deathblade Wall Scythe
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Atk +16 melee (2d4+8 plus poison, scythe)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (deathblade, DC 20 Fortitude save resists, 1d6 Con/2d6 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			24
+		</SEARCHDC>
+		<DISABLEDC>
+			19
+		</DISABLEDC>
+		<VALUE>
+			31,400 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Destruction Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (destruction, 13th-level cleric, DC 20 Fortitude save for 10d6 damage)
+		</DAMAGE>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			45,500 gp, 3,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Earthquake Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (earthquake, 13th-level cleric, 65-ft. radius, DC 15 or 20 Reflex save, depending on terrain)
+		</SAVE>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			45,500 gp, 3,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Insanity Mist Vapor Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (1 round)
+		</DELAY>
+		<DAMAGE>
+			Poison (insanity mist, DC 15 Fortitude save resists, 1d4 Wis/2d6 Wis)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			23,900 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Acid Arrow Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Visual Trigger (True Seeing)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<ATTACK>
+			Atk +9 ranged touch and +9 ranged touch
+		</ATTACK>
+		<DAMAGE>
+			Spell effect (acid arrow, 18th-level wizard, 2d4 acid damage for 7 rounds)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			27
+		</DISABLEDC>
+		<VALUE>
+			83,500 gp, 4,680 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Power Word Stun Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger
+		</TRIGGER>
+		<RESET>
+			No Reset
+		</RESET>
+		<SEARCHDC>
+			13
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			4,550 gp, 364 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Prismatic Spray Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (prismatic spray, 13th-level wizard, DC 20 Reflex, Fortitude, or Will save, depending on effect)
+		</SAVE>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			45,500 gp, 3,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Reverse Gravity Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm, 10-Ft. Area)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (reverse gravity, 13th-level wizard, 6d6 fall [upon hitting the ceiling of the 60-ft.- high room], then 6d6 fall [upon falling 60 ft. to the floor when the spell ends], DC 20 Reflex save avoids damage)
+		</DAMAGE>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			45,500 gp, 3,640 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Camouflaged Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			100 ft. deep (10d6, fall)
+		</DAMAGE>
+		<SEARCHDC>
+			27
+		</SEARCHDC>
+		<DISABLEDC>
+			18
+		</DISABLEDC>
+		<VALUE>
+			16,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Word of Chaos Trap
+		</NAME>
+		<CHALLENGERATING>
+			8
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Detect Law)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SPELLEFFECT>
+			Spell effect (word of chaos, 13th-level cleric)
+		</SPELLEFFECT>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			46,000 gp, 3,680 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Drawer Handle Smeared with Contact Poison
+		</NAME>
+		<CHALLENGERATING>
+			9
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Touch Trigger (Attached)
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<DAMAGE>
+			Poison (black lotus extract, DC 20 Fortitude save resists, 3d6 Con/3d6 Con)
+		</DAMAGE>
+		<SEARCHDC>
+			18
+		</SEARCHDC>
+		<DISABLEDC>
+			26
+		</DISABLEDC>
+		<VALUE>
+			21,600 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Dropping Ceiling
+		</NAME>
+		<CHALLENGERATING>
+			9
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Repair Reset
+		</RESET>
+		<DAMAGE>
+			Ceiling moves down (12d6, crush)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (1 round)
+		</DELAY>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			16
+		</DISABLEDC>
+		<VALUE>
+			12,600 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Incendiary Cloud Trap
+		</NAME>
+		<CHALLENGERATING>
+			9
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Spell effect (incendiary cloud, 15th-level wizard, 4d6/round for 15 rounds, DC 22 Reflex save half damage)
+		</DAMAGE>
+		<SEARCHDC>
+			33
+		</SEARCHDC>
+		<DISABLEDC>
+			33
+		</DISABLEDC>
+		<VALUE>
+			60,000 gp, 4,800 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Mouth Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			9
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<SAVE>
+			DC 25 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			100 ft. deep (10d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets within a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<SEARCHDC>
+			25
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			40,500 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Mouth Spiked Pit with Poisoned Spikes
+		</NAME>
+		<CHALLENGERATING>
+			9
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<BYPASS>
+			Hidden lock bypass  (Search DC 25, Open Lock DC 30)
+		</BYPASS>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			70 ft. deep (7d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets within a 10-ft.-by-10-ft. area)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+5 plus poison each)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (giant wasp poison, DC 14 Fortitude save resists, 1d6 Dex/1d6 Dex)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			11,910 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Crushing Room
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			Walls move together (16d6, crush)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (all targets in a 10-ft.-by-10-ft. room)
+		</TARGET>
+		<NEVERMISS>
+			TRUE
+		</NEVERMISS>
+		<DELAY>
+			Onset delay (2 rounds)
+		</DELAY>
+		<SEARCHDC>
+			22
+		</SEARCHDC>
+		<DISABLEDC>
+			20
+		</DISABLEDC>
+		<VALUE>
+			29,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Crushing Wall Trap
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<DAMAGE>
+			No attack roll required (18d6, crush)
+		</DAMAGE>
+		<SEARCHDC>
+			20
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			25,000 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Energy Drain Trap
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Visual Trigger (True Seeing)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<ATTACK>
+			Atk +8 ranged touch
+		</ATTACK>
+		<DAMAGE>
+			Spell effect (energy drain, 17th-level wizard, 2d4 negative levels for 24 hours, DC 23 Fortitude save negates)
+		</DAMAGE>
+		<SEARCHDC>
+			34
+		</SEARCHDC>
+		<DISABLEDC>
+			34
+		</DISABLEDC>
+		<VALUE>
+			124,000 gp, 7,920 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Forcecage and Summon Monster VII trap
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SPELLEFFECT>
+			Spell effect (forcecage, 13th-level wizard), spell effect (summon monster VII, 13th-level wizard, hamatula)
+		</SPELLEFFECT>
+		<SEARCHDC>
+			32
+		</SEARCHDC>
+		<DISABLEDC>
+			32
+		</DISABLEDC>
+		<VALUE>
+			241,000 gp, 7,280 XP.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Poisoned Spiked Pit Trap
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Mechanical
+		</TYPE>
+		<TRIGGER>
+			Location Trigger
+		</TRIGGER>
+		<RESET>
+			Manual Reset
+		</RESET>
+		<BYPASS>
+			Hidden lock bypass (Search DC 25, Open Lock DC 30)
+		</BYPASS>
+		<SAVE>
+			DC 20 Reflex save avoids
+		</SAVE>
+		<DAMAGE>
+			50 ft. deep (5d6, fall)
+		</DAMAGE>
+		<TARGET>
+			Multiple targets (first target in each of two adjacent 5-ft. squares)
+		</TARGET>
+		<DAMAGE>
+			Pit spikes (Atk +10 melee, 1d4 spikes per target for 1d4+5 plus poison each)
+		</DAMAGE>
+		<DAMAGE>
+			Poison (purple worm poison, DC 24 Fortitude save resists, 1d6 Str/2d6 Str)
+		</DAMAGE>
+		<SEARCHDC>
+			16
+		</SEARCHDC>
+		<DISABLEDC>
+			25
+		</DISABLEDC>
+		<VALUE>
+			19,700 gp.
+		</VALUE>
+	</TRAP>
+	<TRAP>
+		<NAME>
+			Wail of the Banshee Trap
+		</NAME>
+		<CHALLENGERATING>
+			10
+		</CHALLENGERATING>
+		<TYPE>
+			Magic Device
+		</TYPE>
+		<TRIGGER>
+			Proximity Trigger (Alarm)
+		</TRIGGER>
+		<RESET>
+			Automatic Reset
+		</RESET>
+		<SAVE>
+			spell effect (wail of the banshee, 17th-level wizard, DC 23 Fortitude save negates)
+		</SAVE>
+		<TARGET>
+			Multiple targets (up to 17 creatures)
+		</TARGET>
+		<SEARCHDC>
+			34
+		</SEARCHDC>
+		<DISABLEDC>
+			34
+		</DISABLEDC>
+		<VALUE>
+			76,500 gp, 6,120 XP.
+		</VALUE>
+	</TRAP>
+</TRAPS>
