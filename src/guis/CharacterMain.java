@@ -6,7 +6,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -18,8 +17,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Spinner;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 
@@ -100,7 +97,30 @@ public class CharacterMain {
 		Label tempLabel3 = saveBoxGUI(shell, label);
 		Label tempLabel4 = weaponBoxGUI(shell, tempLabel3);
 		Label tempLabel5 = weaponSecBoxGUI(shell, tempLabel4);
-		Combo tempLable6 = selBoxGUI(shell, tempLabel5);
+		Combo tempLabel6 = selBoxGUI(shell, tempLabel5);
+		Combo tempLabel7 = featsEtcBox(shell, initLabel);
+		
+		Text notesText = new Text(shell, SWT.BORDER);
+		notesText.setText("(Notes)");
+		FormData notesData = new FormData(660,100);
+		notesText.setBackground(background);
+		notesData.left = new FormAttachment(tempLabel7, 0, SWT.LEFT);
+		notesData.top = new FormAttachment(tempLabel7, 50, SWT.BOTTOM);
+		notesText.setLayoutData(notesData);
+		
+		Button saveNotesButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+		saveNotesButt.setText("Save Notes");
+		FormData saveNotesData = new FormData(127,24);
+		saveNotesButt.setBackground(background);
+		saveNotesData.right = new FormAttachment(notesText, 0, SWT.RIGHT);
+		saveNotesData.top = new FormAttachment(notesText, 10, SWT.BOTTOM);
+		saveNotesButt.setLayoutData(saveNotesData);
+		saveNotesButt.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO reset table
+			}
+		});
 		
 		
 		shell.open(); // Open the Window and process the clicks
@@ -114,6 +134,101 @@ public class CharacterMain {
 	}
 	
 	
+	private static Combo featsEtcBox(Shell shell, Label label) {
+		Combo skillCombo = new Combo(shell, SWT.CENTER);
+		skillCombo.add("Skill");
+		skillCombo.select(0);
+		FormData skillComboData = new FormData(99,5);
+		skillCombo.setBackground(background);
+		skillComboData.left = new FormAttachment(label, 0, SWT.LEFT);
+		skillComboData.top = new FormAttachment(label, 20, SWT.BOTTOM);
+		skillCombo.setLayoutData(skillComboData);
+		
+		Combo spellCombo = new Combo(shell, SWT.CENTER);
+		spellCombo.add("Spells");
+		spellCombo.select(0);
+		FormData spellComboData = new FormData(100,5);
+		spellCombo.setBackground(background);
+		spellComboData.left = new FormAttachment(skillCombo, 10, SWT.RIGHT);
+		spellComboData.top = new FormAttachment(skillCombo, 0, SWT.TOP);
+		spellCombo.setLayoutData(spellComboData);
+		
+		Combo featCombo = new Combo(shell, SWT.CENTER);
+		featCombo.add("Feats");
+		featCombo.select(0);
+		FormData featComboData = new FormData(99,5);
+		featCombo.setBackground(background);
+		featComboData.left = new FormAttachment(spellCombo, 10, SWT.RIGHT);
+		featComboData.top = new FormAttachment(spellCombo, 0, SWT.TOP);
+		featCombo.setLayoutData(featComboData);
+		
+		Combo languageCombo = new Combo(shell, SWT.CENTER);
+		languageCombo.add("Languages");
+		languageCombo.select(0);
+		FormData languageComboData = new FormData(100,5);
+		languageCombo.setBackground(background);
+		languageComboData.left = new FormAttachment(featCombo, 10, SWT.RIGHT);
+		languageComboData.top = new FormAttachment(featCombo, 0, SWT.TOP);
+		languageCombo.setLayoutData(languageComboData);
+		
+		Combo inventoryCombo = new Combo(shell, SWT.CENTER);
+		inventoryCombo.add("Inventory");
+		inventoryCombo.select(0);
+		FormData inventoryComboData = new FormData(99,5);
+		inventoryCombo.setBackground(background);
+		inventoryComboData.left = new FormAttachment(languageCombo, 10, SWT.RIGHT);
+		inventoryComboData.top = new FormAttachment(languageCombo, 0, SWT.TOP);
+		inventoryCombo.setLayoutData(inventoryComboData);
+		
+		
+		
+		Button spellButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+		spellButt.setText("Spell Wizard");
+		FormData spellButtData = new FormData(127,24);
+		spellButt.setBackground(background);
+		spellButtData.left = new FormAttachment(spellCombo, 0, SWT.LEFT);
+		spellButtData.top = new FormAttachment(spellCombo, 10, SWT.BOTTOM);
+		spellButt.setLayoutData(spellButtData);
+		spellButt.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO reset table
+			}
+		}); 
+		
+		Button featButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+		featButt.setText("Feat Wizard");
+		FormData featButtData = new FormData(127,24);
+		featButt.setBackground(background);
+		featButtData.left = new FormAttachment(featCombo, 0, SWT.LEFT);
+		featButtData.top = new FormAttachment(featCombo, 10, SWT.BOTTOM);
+		featButt.setLayoutData(featButtData);
+		featButt.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO reset table
+			}
+		}); 
+		
+		Button inventoryButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+		inventoryButt.setText("Item Wizard");
+		FormData inventoryButtData = new FormData(127,24);
+		inventoryButt.setBackground(background);
+		inventoryButtData.left = new FormAttachment(inventoryCombo, 0, SWT.LEFT);
+		inventoryButtData.top = new FormAttachment(inventoryCombo, 10, SWT.BOTTOM);
+		inventoryButt.setLayoutData(inventoryButtData);
+		
+		inventoryButt.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO reset table
+			}
+		}); 
+		
+		return skillCombo;
+	}
+
+
 	private static Combo selBoxGUI(Shell shell, Label label) {
 		Combo priCombo = new Combo(shell, SWT.CENTER);
 		priCombo.add("Primary");
