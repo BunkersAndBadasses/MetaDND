@@ -98,7 +98,7 @@ public class CharacterMain {
 		Label tempLabel4 = weaponBoxGUI(shell, tempLabel3);
 		Label tempLabel5 = weaponSecBoxGUI(shell, tempLabel4);
 		Combo tempLabel6 = selBoxGUI(shell, tempLabel5);
-		Combo tempLabel7 = featsEtcBox(shell, initLabel);
+		Combo tempLabel7 = featsEtcBox(shell, initLabel, args);
 		
 		Text notesText = new Text(shell, SWT.BORDER);
 		notesText.setText("(Notes)");
@@ -134,7 +134,7 @@ public class CharacterMain {
 	}
 	
 	
-	private static Combo featsEtcBox(Shell shell, Label label) {
+	private static Combo featsEtcBox(Shell shell, Label label, String[] args) {
 		Combo skillCombo = new Combo(shell, SWT.CENTER);
 		skillCombo.add("Skill");
 		skillCombo.select(0);
@@ -192,7 +192,7 @@ public class CharacterMain {
 		spellButt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// TODO reset table
+				SpellGUI.main(args);
 			}
 		}); 
 		

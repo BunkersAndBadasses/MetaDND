@@ -50,7 +50,7 @@ public class SpellGUI {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Display display = new Display();
+		Display display = Display.getCurrent();
 		Shell shell = new Shell(display);
 
 
