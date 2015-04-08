@@ -4,12 +4,16 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
-
-import core.Character;
-
-
 import java.util.ArrayList;
 import java.util.Random;
+import core.Character;
+/*
+ * iteration 2: 
+ * 
+ * back button
+ * starting at level > 1
+ * adding custom skills
+ */
 
 public class CharacterWizard {
 
@@ -28,7 +32,7 @@ public class CharacterWizard {
 
 	private static ArrayList<Composite> wizPages;
 
-	public static Character character;
+	private static Character character;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -311,52 +315,16 @@ public class CharacterWizard {
 		});
 		return cancelButton;
 	}
-
-	/**
-	 * creates a 'search' button. does not set location or add listener.
-	 * literally only creates a button with a specific size with the text set 
-	 * to "Search"
-	 * @return
-	 */
-	public static Button createSearchButton(Composite c) {
-		Button searchButton = new Button(c, SWT.PUSH);
-		searchButton.setText("Search");
-		searchButton.setSize(80,30);
-		return searchButton;
+	
+	public static Character getCharacter() {
+		return character;
 	}
 
-	/**
-	 * creates a 'add custom' button. does not set location or add listener.
-	 * literally only creates a button with a specific size with the text set 
-	 * to "Add Custom"
-	 * @return
-	 */
-	public static Button createAddCustomButton(Composite c) {
-		Button addCustomButton = new Button(c, SWT.PUSH);
-		addCustomButton.setText("Add Custom");
-		addCustomButton.setSize(100,30);
-		return addCustomButton;
-	}
-
-/**
- *  generates random number between 3 and 18 (for use as an ability score)
- *  simulates rolling 4 dnd dropping the lowest roll
- */
-	public static int[] genAS() {
-		Random r = new Random();
-		int[] result = { 0, 0, 0, 0, 0, 0 };
-		for (int i = 0; i < 6; i++) {
-			int roll[] = { r.nextInt(6) + 1, r.nextInt(6) + 1,
-					r.nextInt(6) + 1, r.nextInt(6) + 1 };
-			int min = 7; // max value a roll can be is 6
-			for (int j = 0; j < 4; j++) {
-				result[i] += roll[j];
-				if (roll[j] < min)
-					min = roll[j];
-			}
-			result[i] -= min;
+	public static void reset() {
+		character = new Character();
+		for (int i = 0; i < wizPageCreated.length; i++) {
+			wizPageCreated[i] = false;
 		}
-		return result;
 	}
 
 	public static void main(String[] args) {

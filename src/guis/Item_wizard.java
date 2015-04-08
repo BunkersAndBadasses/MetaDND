@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import entity.FeatEntity;
 import entity.ItemEntity;
 
 /**
@@ -83,6 +82,7 @@ public class Item_wizard {
 	 * VALUE
 	 * TODO verify the storing method
 	 */
+	@SuppressWarnings("unused")
 	private void createPageContent() 
 	{		
 		//wizard
@@ -149,16 +149,30 @@ public class Item_wizard {
 			{
 				if(wizpage2text.getText() != "")
 				{
-					ItemWeight = wizpage2text.getText();
-					if(wizPageNum < wizPages.size() - 1)
+					try
 					{
-						wizPageNum++;
-						wizLayout.topControl = wizPages.get(wizPageNum);
-						wizPanel.layout();
+					if(Integer.parseInt(wizpage2text.getText()) >= 0)
+					{
+						ItemWeight = wizpage2text.getText();
+						if(wizPageNum < wizPages.size() - 1)
+						{
+							wizPageNum++;
+							wizLayout.topControl = wizPages.get(wizPageNum);
+							wizPanel.layout();
+						}
+						else if(wizPageNum == wizPages.size() - 1)
+						{
+							shell.close();
+						}
 					}
-					else if(wizPageNum == wizPages.size() - 1)
+					else
 					{
-						shell.close();
+						wiz2Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					}
+					}
+					catch(NumberFormatException a)
+					{
+						wiz2Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
 					}
 				}
 				else
@@ -185,6 +199,10 @@ public class Item_wizard {
 			{
 				if(wizpage3text.getText() != "")
 				{
+					try
+					{
+						if(Integer.parseInt(wizpage3text.getText()) >= 0)
+						{
 					ItemValue = wizpage3text.getText();
 					if(wizPageNum < wizPages.size() - 1)
 					{
@@ -195,6 +213,16 @@ public class Item_wizard {
 					else if(wizPageNum == wizPages.size() - 1)
 					{
 						shell.close();
+					}
+						}
+						else
+						{
+							wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+						}
+					}
+					catch(NumberFormatException a)
+					{
+						wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
 					}
 				}
 				else
@@ -260,6 +288,17 @@ public class Item_wizard {
 		wiz5Label.setText("Name: " + ItemName + "\nWeight: " + ItemWeight 
 				+ "\nValue: " + ItemValue + "\nDescription: " + ItemScript);
 		wiz5Label.pack();
+		Button confirm = new Button(verific, SWT.PUSH);
+		confirm.setText("Confirm");
+		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
+		confirm.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				//TODO save the item
+				shell.close();
+			}
+		});
 		wizPages.add(verific);
 	}
 	public static Button createNextButton(Composite c) {
