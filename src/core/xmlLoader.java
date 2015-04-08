@@ -73,8 +73,8 @@ public class xmlLoader implements Runnable{
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity testFeat = new FeatEntity(entity);
 					Main.gameState.feats.put(testFeat.getName(), testFeat);
-					if(testFeat.getName().equalsIgnoreCase("track"))
-					testFeat.toTooltipWindow();
+//					if(testFeat.getName().equalsIgnoreCase("track"))
+//					testFeat.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity testSkill = new SkillEntity(entity);
@@ -95,8 +95,8 @@ public class xmlLoader implements Runnable{
 				else if(node.getNodeName() == "CLASS"){
 					ClassEntity testClass = new ClassEntity(entity);
 					Main.gameState.classes.put(testClass.getName(), testClass);
-//					if(testClass.getName().equalsIgnoreCase("barbarian"))
-//						testClass.toTooltipWindow();
+					if(testClass.getName().equalsIgnoreCase("barbarian"))
+						testClass.toTooltipWindow();
 				}
 			}
 		}
