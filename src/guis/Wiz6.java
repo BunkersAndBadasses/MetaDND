@@ -327,6 +327,7 @@ public class Wiz6 {
 		});
 		weightRandom.pack();
 		
+		
 		// age
 		Label age = new Label(wiz6, SWT.NONE);
 		age.setText("Age:");
