@@ -2,6 +2,7 @@ package guis;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 public class Scrollable {
@@ -17,7 +18,10 @@ public class Scrollable {
 		sc.setMinSize(minWidth, minHeight);
 		c = new Composite(sc, SWT.NONE);
 		sc.setContent(c);
-		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));		
+		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 1;
+		c.setLayout(layout);
 	}
 	
 }
