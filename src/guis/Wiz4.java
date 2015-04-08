@@ -2,6 +2,7 @@ package src.guis;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
@@ -12,6 +13,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
+/*
+ * add text box to add custom skill
+ * add boxes next to craft, profession, etcS
+ */
 
 public class Wiz4 {
 
@@ -65,13 +70,34 @@ public class Wiz4 {
 
 
 		// set number of skill points
-		String charClass = CharacterWizard.character.getCharClass();
-		int classPoints = 8; // TODO - different for each class
-		int intMod = ((CharacterWizard.character.getAbilityScores()[Character.INTELLIGENCE]) - 8)/2; // TODO check this logic
+		String charClass = CharacterWizard.getCharacter().getCharClass();
+		int classPoints; // TODO - different for each class
+		switch(charClass) {
+		case ("Cleric") :
+		case ("Fighter") :
+		case ("Paladin") :
+		case ("Sorcerer") :
+		case ("Wizard") :
+			classPoints = 2;
+			break;
+		case ("Barbarian") :
+		case ("Monk") :
+		case ("Druid") :
+			classPoints = 4;
+			break;
+		case ("Bard") :
+		case ("Ranger") :
+			classPoints = 6;
+		break;
+		default : // Rogue
+			classPoints = 8;
+			break;	
+		}
+		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[Character.INTELLIGENCE]) - 8)/2; // TODO check this logic
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;
-		if (CharacterWizard.character.getCharRace().equals("Human"))
+		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
 			numSkillPoints += 4;
 
 		// "skill points remaining: " label
@@ -86,11 +112,11 @@ public class Wiz4 {
 		numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
 		numSkillPointsLabel.pack();
 
-		// example skill label ■ (Name)(ability type): =(ability modifier)+(misc modifier)+(rank) = (total)​
-		// TODO add symbol for untrained/trained
+		// example skill label
 		Label exampleSkillLabel = new Label(wiz4, SWT.NONE);
-		exampleSkillLabel.setLocation(35, 60);
-		exampleSkillLabel.setText("(Skill Name)[(Ability Type)] = (Ability Modifier) + (Miscellaneous Modifier) + (Rank) = (Total)");
+		exampleSkillLabel.setLocation(25, 60);
+		exampleSkillLabel.setText("Skill (Type) = (Ability Mod) + (Misc Mod) + (Rank) = (Total)" 
+					+ "         *: AC penalty  **: double AC penalty");
 		exampleSkillLabel.pack();
 
 		// class skill label
@@ -124,12 +150,18 @@ public class Wiz4 {
 				new Skill("skill9", "blah", 2, false), new Skill("skill10", "blah", 5, true)};
 
 		for (int i = 0; i < tempSkills.length; i++) {
-			charSkills.add(new CharSkill(tempSkills[i], CharacterWizard.character));
+			charSkills.add(new CharSkill(tempSkills[i], CharacterWizard.getCharacter()));
 		}
 
-		final Composite skillsScreen = new Composite(wiz4, SWT.BORDER
-				| SWT.SCROLL_PAGE); // TODO scroll bar?
-		skillsScreen.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
+		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
+		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
+	    skillsScreenScroll.setExpandHorizontal(true);
+	    skillsScreenScroll.setExpandVertical(true);
+	    skillsScreenScroll.setMinSize(WIDTH, (charSkills.size() * 30 + 10));
+		final Composite skillsScreen = new Composite(skillsScreenScroll, SWT.NONE);
+		skillsScreenScroll.setContent(skillsScreen);
+		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
 
 		ArrayList<Label> skillNameLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
@@ -137,7 +169,7 @@ public class Wiz4 {
 
 		for(int i = 0; i < charSkills.size(); i++) {
 			final Label skillName = new Label(skillsScreen, SWT.NONE);
-			skillName.setLocation(70, (i*30) + 10);
+			skillName.setLocation(260, (i*30) + 10);
 			final CharSkill current = charSkills.get(i);
 			final int abilityMod = current.getAbilityMod();
 			final int miscMod = current.getMiscMod();
@@ -157,7 +189,7 @@ public class Wiz4 {
 			skillNameLabels.add(skillName);
 			Button inc = new Button(skillsScreen, SWT.PUSH);
 			inc.setText("+");
-			inc.setBounds(10, (i*30) + 10, 20, 20);
+			inc.setBounds(200, (i*30) + 10, 20, 20);
 			inc.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (numSkillPoints == 0)
@@ -178,7 +210,7 @@ public class Wiz4 {
 			incButtons.add(inc);
 			Button dec = new Button(skillsScreen, SWT.PUSH);
 			dec.setText("-");
-			dec.setBounds(30, (i*30) + 10, 20, 20);
+			dec.setBounds(220, (i*30) + 10, 20, 20);
 			dec.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (current.decRank()) {
@@ -221,7 +253,7 @@ public class Wiz4 {
 //				} // TODO uncomment when done testing
 				
 				// save to character
-				CharacterWizard.character.setSkills(charSkills);
+				CharacterWizard.getCharacter().setSkills(charSkills);
 
 				// move on to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
@@ -258,7 +290,7 @@ public class Wiz4 {
 	public Composite getWiz4() { return wiz4; }
 
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		Wiz3.cancelClear();

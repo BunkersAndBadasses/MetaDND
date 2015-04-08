@@ -63,8 +63,8 @@ public class Wiz3 {
 		this.wizPagesSize = wizPages.size();
 		abilityScoresBefore = abilityScoresIn;
 		choiceLabel2 = new Label(wiz3, SWT.NONE);
-		charRace = CharacterWizard.character.getCharRace();
-		charClass = CharacterWizard.character.getCharClass();
+		charRace = CharacterWizard.getCharacter().getCharRace();
+		charClass = CharacterWizard.getCharacter().getCharClass();
 		
 
 		createPageContent();
@@ -381,19 +381,19 @@ public class Wiz3 {
 	}
 	
 	public static void updateCharRace() {
-		charRace = CharacterWizard.character.getCharRace();
+		charRace = CharacterWizard.getCharacter().getCharRace();
 		choiceLabel2.setText(charRace + " " + charClass);
 		choiceLabel2.pack();
 	}
 	
 	public static void updateCharClass() {
-		charClass = CharacterWizard.character.getCharClass();
+		charClass = CharacterWizard.getCharacter().getCharClass();
 		choiceLabel2.setText(charRace + " " + charClass);
 		choiceLabel2.pack();
 	}
 	
 	public static void updateCharSecClass() {
-		charSecClass = CharacterWizard.character.getCharSecClass();
+		charSecClass = CharacterWizard.getCharacter().getCharSecClass();
 		if (charSecClass == null)
 			choiceLabel2.setText(charRace + " " + charClass);
 		else if (charSecClass.equals(""))
@@ -406,7 +406,7 @@ public class Wiz3 {
 	public Composite getWiz3() { return wiz3; }
 
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		errorLabel.setVisible(false);

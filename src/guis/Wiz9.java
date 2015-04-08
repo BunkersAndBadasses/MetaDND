@@ -84,7 +84,7 @@ public class Wiz9{
 	public Composite getWiz9() { return wiz9; }
 	
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		Wiz3.cancelClear();

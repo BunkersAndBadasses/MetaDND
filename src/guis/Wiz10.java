@@ -74,7 +74,7 @@ public class Wiz10 {
 	public Composite getWiz10() { return wiz10; }
 	
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		Wiz3.cancelClear();

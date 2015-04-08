@@ -1,6 +1,7 @@
 package src.guis;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -110,7 +111,7 @@ public class Wiz1 {
 		wiz1RollButton.setBounds(WIDTH/2 - 50, 250, 100, 50);
 		wiz1RollButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				int[] roll = CharacterWizard.genAS();
+				int[] roll = genAS();
 				wiz1AS1.setText(Integer.toString(roll[0]));
 				wiz1AS2.setText(Integer.toString(roll[1]));
 				wiz1AS3.setText(Integer.toString(roll[2]));
@@ -198,6 +199,27 @@ public class Wiz1 {
 			}
 		});
 	}
+	
+	/**
+	 *  generates random number between 3 and 18 (for use as an ability score)
+	 *  simulates rolling 4 dnd dropping the lowest roll
+	 */
+	private int[] genAS() {
+		Random r = new Random();
+		int[] result = { 0, 0, 0, 0, 0, 0 };
+		for (int i = 0; i < 6; i++) {
+			int roll[] = { r.nextInt(6) + 1, r.nextInt(6) + 1,
+					r.nextInt(6) + 1, r.nextInt(6) + 1 };
+			int min = 7; // max value a roll can be is 6
+			for (int j = 0; j < 4; j++) {
+				result[i] += roll[j];
+				if (roll[j] < min)
+					min = roll[j];
+			}
+			result[i] -= min;
+		}
+		return result;
+	}
 
 	public Composite getWiz1() { return wiz1; }
 
@@ -208,7 +230,7 @@ public class Wiz1 {
 	}
 	
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		badLevelInputText.setVisible(false);
 		badASInputText.setVisible(false);
 		wiz1LevelText.setText("1");
