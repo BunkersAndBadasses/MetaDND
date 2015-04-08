@@ -3,6 +3,7 @@ import guis.Ability_wizard;
 import guis.Feat_wizard;
 import guis.Item_wizard;
 import guis.MenuBar;
+import guis.Spell_wizard;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
@@ -46,7 +47,8 @@ public class Main {
         //Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		
 		//Feat_wizard feat = new Feat_wizard(display);
-		Ability_wizard ability = new Ability_wizard(display);
+		//Ability_wizard ability = new Ability_wizard(display);
+		Spell_wizard spell = new Spell_wizard(display);
 		shell.open();
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
