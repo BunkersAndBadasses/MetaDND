@@ -35,7 +35,7 @@ public class xmlLoader implements Runnable{
 		// Load the input XML document, parse it and return an instance of the
 		// Document class.
 		ArrayList<File> xmls = new ArrayList<File>();
-		Files.walk(Paths.get(".\\XML")).forEach(filePath ->{
+		Files.walk(Paths.get("./XML")).forEach(filePath ->{
 			if(filePath.getFileName().toString().contains(".xml")){
 				if (Files.isRegularFile(filePath)) {
 					xmls.add(filePath.toFile());	
@@ -95,8 +95,8 @@ public class xmlLoader implements Runnable{
 				else if(node.getNodeName() == "CLASS"){
 					ClassEntity testClass = new ClassEntity(entity);
 					Main.gameState.classes.put(testClass.getName(), testClass);
-					if(testClass.getName().equalsIgnoreCase("barbarian"))
-						testClass.toTooltipWindow();
+//					if(testClass.getName().equalsIgnoreCase("barbarian"))
+//						testClass.toTooltipWindow();
 				}
 			}
 		}

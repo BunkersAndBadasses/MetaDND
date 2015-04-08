@@ -5,4 +5,10 @@ public class DungeonEntity extends DNDEntity{
 
 	String imageFilePath;
 
+	@Override
+	public void search() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

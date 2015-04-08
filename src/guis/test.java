@@ -64,7 +64,7 @@ public class test {
 		sc.setBounds(10, 10, WIDTH - 20, HEIGHT - 50);
 		sc.setExpandHorizontal(true);
 		sc.setExpandVertical(true);
-		sc.setMinSize(WIDTH, HEIGHT * 100);
+		
 		Composite c = new Composite(sc, SWT.NONE);
 		sc.setContent(c);
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
@@ -80,12 +80,15 @@ public class test {
 		
 //		final Composite page1 = new Composite(homePanel, SWT.NONE);
 		
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 30; i++) {
 		Button button = new Button(c, SWT.PUSH);
 		button.setText("test");
-//		button.setLocation(0, i * 100);
+		button.setLocation(0, i * 25);
 		button.pack();
+		sc.setMinSize(WIDTH, 30 * button.getSize().y);
+		//System.out.println(button.getSize().y);
 		}
+		
 //		final Text text = new Text(page1, SWT.BORDER);
 //		text.setLocation(0, 50);
 //		text.pack();

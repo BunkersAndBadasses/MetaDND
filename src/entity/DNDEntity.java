@@ -8,15 +8,14 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
+
+import core.Main;
 
 /*
  * Generic entity class, extend this when creating searchable entities
@@ -56,11 +55,10 @@ public abstract class DNDEntity {
 	}
 	
 	public void toTooltipWindow(){
-		
-		
-		Display display = new Display();
-		Shell shell = new Shell(display);
-		Monitor monitor = display.getPrimaryMonitor();
+	
+		//Display display = new Display();
+		Shell shell = new Shell(Main.display);
+		Monitor monitor = Main.display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();
 	    
 	    int WIDTH = 700;
@@ -95,7 +93,8 @@ public abstract class DNDEntity {
 		int heightSum = 0;
 		for(int i = 0; i < c.getChildren().length; i++){
 			heightSum += c.getChildren()[i].getSize().y + layout.verticalSpacing;
-		}	
+		}
+		
 		sc.setMinHeight(heightSum);
 		c.pack();
 	    shell.setLocation((int)(bounds.width * .75) - c.getSize().x / 2, (int)(bounds.height * .05));
@@ -107,5 +106,7 @@ public abstract class DNDEntity {
 		}
 		display.dispose();
 	}
+	
+	public abstract void search();
 
 }
