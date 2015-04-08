@@ -1,4 +1,5 @@
 package core;
+import guis.Ability_wizard;
 import guis.Feat_wizard;
 import guis.Item_wizard;
 import guis.MenuBar;
@@ -44,7 +45,8 @@ public class Main {
 //		helloWorldTest.pack();
         //Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		
-		Feat_wizard feat = new Feat_wizard(display);
+		//Feat_wizard feat = new Feat_wizard(display);
+		Ability_wizard ability = new Ability_wizard(display);
 		shell.open();
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
