@@ -1,5 +1,7 @@
 package guis;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -21,6 +23,7 @@ import org.eclipse.swt.widgets.*;
 import core.CharSkill;
 import core.Character;
 import core.DnDie;
+import core.Roll;
 
 /*
  * The class for the Die Window.
@@ -64,10 +67,12 @@ public class DieWindow {
 	private Shell shell;
 	private Composite dieWin;
 	private static Text modText;
+	private static Text nameBox;
 	private static Text total;
 	private static Device dev;
 	private static Label badInputText;
-	private static Label badASInputText;
+	private static Label badSaveText;
+	private static Label badSaveFinal;
 	private final int WIDTH = 700;
 	private final int HEIGHT = 500;
 	private int[] numDie = {0, 0, 0, 0, 0, 0};
@@ -127,6 +132,14 @@ public class DieWindow {
 		badInputText.setText("Invalid modifier: must be an integer -100 < X < 100");
 		badInputText.pack();
 		
+		// this appears when there is an empty save
+		badSaveText = new Label(dieWin, SWT.NONE);
+		badSaveText.setForeground(new Color(dev,255,0,0));
+		badSaveText.setLocation(WIDTH/2 -150,330);
+		badSaveText.setVisible(false);
+		badSaveText.setText("Invalid Save: must have at least 1 die or modifier");
+		badSaveText.pack();
+		
 		// Mod text
 		final Label mod = new Label(dieWin, SWT.NONE);
 		Font font2 = new Font(display, new FontData("Arial", 24,
@@ -177,9 +190,11 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 				int modInt = 0;
 				int rollTotal = 0;
+				
 				try{
 					
 					badInputText.setVisible(false);
+					badSaveText.setVisible(false);
 					modInt = Integer.parseInt(modString);
 					
 					if(modInt <= -100 || modInt >= 100)
@@ -193,12 +208,11 @@ public class DieWindow {
 				//add the rolling to this
 				for(int i = 0; i < 6; i++){
 					rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
+					//System.out.println(rollTotal);
 				}
 				rollTotal += modInt;
-				
-				//System.out.println(rollTotal);
+
 				total.setText(Integer.toString(rollTotal));
-				//System.out.println(total.getText());
 
 			}
 		});
@@ -211,10 +225,11 @@ public class DieWindow {
 		save.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int modInt = 0;
-				int rollTotal = 0;
+				boolean notUsed = true;
 				try{
 					
 					badInputText.setVisible(false);
+					badSaveText.setVisible(false);
 					modInt = Integer.parseInt(modString);
 					
 					if(modInt <= -100 || modInt >= 100)
@@ -225,12 +240,91 @@ public class DieWindow {
 					return;
 				}
 				
-				//add the rolling to this
-				for(int i = 0; i < 6; i++){
-					rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
-				}
-				rollTotal += modInt;
+				ArrayList<Roll> roll = new ArrayList<Roll>(6);
 				
+				//add die that were added
+				for(int i = 0; i < 6; i++){
+					if(numDie[i] > 0){
+						notUsed = false;
+						roll.add(new Roll(dieNameNumbers[i], numDie[i]));
+					}
+				}
+				
+				// if a die was added, or a mod was there
+				if(modInt != 0){
+					roll.add(new Roll(0, 0, modInt));
+					
+				}else if(notUsed){
+					badSaveText.setVisible(true);
+					return;
+				}
+				
+				final ArrayList<Roll> rollFinal = roll;
+				
+				notUsed = true;
+				//TODO call the Save name window
+				//DnDie.saveFavDie("test", roll);
+				final Shell saveName = new Shell(display);
+				saveName.setText("Save");
+				saveName.setSize(300, 200);
+				center(saveName);
+				
+				// this appears when there is an empty save
+				badSaveFinal = new Label(saveName, SWT.NONE);
+				badSaveFinal.setForeground(new Color(dev,255,0,0));
+				badSaveFinal.setLocation(10,110);
+				badSaveFinal.setVisible(false);
+				badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
+				badSaveFinal.pack();
+				
+				Label name = new Label(saveName, SWT.NONE);
+				name.setLocation(77,50);
+				name.setText("Favorite Dice Roll Name");
+				name.pack();
+				
+				//Save name text box
+				nameBox = new Text(saveName, SWT.BORDER);
+				nameBox.setText("");
+				nameBox.setBounds(90,75,120,30);
+				
+				Button cancel = new Button(saveName, SWT.PUSH);
+				cancel.setBounds(10,130,130,30);
+				cancel.setText("Cancel");
+				cancel.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						
+						saveName.dispose();
+					}
+				});
+				
+				Button saveFinal = new Button(saveName, SWT.PUSH);
+				saveFinal.setBounds(160,130,130,30);
+				saveFinal.setText("Save");
+				saveFinal.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						
+						badSaveFinal.setVisible(false);
+						boolean found = false;
+						Pattern p = Pattern.compile(".*\\W+.*");
+						  Matcher m = p.matcher(nameBox.getText());
+						  if(m.find()){
+							  badSaveFinal.setVisible(true);
+							  return;
+						  }
+						  
+						  DnDie.saveFavDie(nameBox.getText(), rollFinal);
+						saveName.dispose();
+					}
+				});
+				//Regex parser
+				
+				
+				saveName.open();
+				while (!saveName.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
 			}
 		});
 
