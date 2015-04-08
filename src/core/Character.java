@@ -1,4 +1,5 @@
 package core;
+import entity.*;
 
 import java.util.ArrayList;
 
@@ -49,10 +50,10 @@ public class Character {
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
 	private ArrayList<String> languages;
-	private ArrayList<Feat> feats;
+	private ArrayList<FeatEntity> feats;
 	private ArrayList<Ability> abilities;
-	private ArrayList<Spell> spells;
-	private ArrayList<Spell> prepSpells;
+	private ArrayList<SpellEntity> spells;
+	private ArrayList<SpellEntity> prepSpells;
 	private ArrayList<ItemEntity> items;
 	private ArrayList<WeaponEntity> weapons;
 	private ArrayList<ArmorEntity> armors;
@@ -98,13 +99,13 @@ public class Character {
 	public void changeRemainingHitPoints(int adj) { remainingHP += adj; }
 	public void resetRemainingHitPoints() { remainingHP = hp; }
 	public void setSkills(ArrayList<CharSkill> s) { skillsList = s; }
-	public void setRank(Skill skill, int rank) {} //TODO
+	public void setRank(SkillEntity skill, int rank) {} //TODO
 	public void addLanguage(String l) { languages.add(l); }
-	public void addFeat(Feat f) { feats.add(f); }
+	public void addFeat(FeatEntity f) { feats.add(f); }
 	public void addSpecialAbility(Ability a) { abilities.add(a); }
-	public void addSpell(Spell s) { spells.add(s); }
-	public void prepSpell(Spell s) { prepSpells.add(s); } // TODO type spell or string?
-	public void unprepSpell(Spell s) { prepSpells.remove(s); } // remove spell from prepSpell list
+	public void addSpell(SpellEntity s) { spells.add(s); }
+	public void prepSpell(SpellEntity s) { prepSpells.add(s); } // TODO type spell or string?
+	public void unprepSpell(SpellEntity s) { prepSpells.remove(s); } // remove spell from prepSpell list
 	public void addItem(ItemEntity i) { items.add(i); }
 	public void addWeapon(WeaponEntity w) { weapons.add(w); }
 	public void addArmor(ArmorEntity a) { armors.add(a); }

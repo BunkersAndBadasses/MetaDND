@@ -1,9 +1,13 @@
-package src.guis;
+package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
+
+import core.Character;
+
+
 import java.util.ArrayList;
 import java.util.Random;
 
