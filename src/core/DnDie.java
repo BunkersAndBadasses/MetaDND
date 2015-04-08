@@ -30,11 +30,11 @@ public class DnDie {
 	static Random rng = new Random();
 	
 	// Rolls the number of a given die (ie rolls 5 20s)
-	public static int roll (int die, int dieNumber){
+	public static int roll (int die, int dieCount){
 
 		int number = 0;
 
-		for(int i = 0; i < dieNumber; i ++){
+		for(int i = 0; i < dieCount; i ++){
 			number += rng.nextInt(die) + 1;
 		}
 
@@ -42,11 +42,11 @@ public class DnDie {
 	}
 	
 	//roll the die, and add in the modifier
-	public static int roll (int die, int dieNumber, int modifier){
+	public static int roll (int die, int dieCount, int modifier){
 
 		int number = modifier;
 
-		for(int i = 0; i < dieNumber; i ++){
+		for(int i = 0; i < dieCount; i ++){
 			number += rng.nextInt(die) + 1;
 		}
 		
