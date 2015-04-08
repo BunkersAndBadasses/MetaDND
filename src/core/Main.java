@@ -48,7 +48,7 @@ public class Main {
 		
 		//Feat_wizard feat = new Feat_wizard(display);
 		//Ability_wizard ability = new Ability_wizard(display);
-		Spell_wizard spell = new Spell_wizard(display);
+		//Spell_wizard spell = new Spell_wizard(display);
 		shell.open();
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())

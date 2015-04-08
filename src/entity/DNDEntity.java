@@ -1,15 +1,17 @@
 package entity;
 
-import guis.MenuBar;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
@@ -53,30 +55,47 @@ public abstract class DNDEntity {
 	}
 	
 	public void toTooltipWindow(){
+		int WIDTH = 700;
+		int HEIGHT = 700;
 		Display display = new Display();
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 1;
 		Shell shell = new Shell(display);
-		shell.setLayout(gridLayout);
-		shell.setBounds(0,0,500,500);
+		Monitor primary = display.getPrimaryMonitor();
+	    Rectangle bounds = primary.getBounds();
+	    Rectangle rect = shell.getBounds();
+	    
+	    int x = (int) (bounds.x + (bounds.width - rect.width) * 2);
+	    int y = (int) (bounds.y + (bounds.height - rect.height) * .1);
 		shell.setText(this.name);
+		ScrolledComposite sc = new ScrolledComposite(shell, SWT.V_SCROLL);
+		sc.setBounds(0, 10, WIDTH, HEIGHT - 50);
+		sc.setExpandVertical(true);
+		
+		Composite c = new Composite(sc, SWT.NONE);
+		sc.setContent(c);
+		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		RowLayout layout = new RowLayout(SWT.VERTICAL);
+		layout.wrap = true;
+		//GridLayout layout = new GridLayout(1, false);
+		//layout.numColumns = 1;
+		c.setLayout(layout);
+		
 		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
+		
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
-			Label titleLabel = new Label(shell, SWT.LEFT);
+			//GridData temp = new GridData();
+			Label titleLabel = new Label(c, SWT.LEFT);
 			titleLabel.setText(entry.getKey());
 			titleLabel.setFont(boldFont);
-			Label textLabel = new Label(shell, SWT.LEFT);
+			Label textLabel = new Label(c, SWT.LEFT);
 			//This guy finds a space every 120 characters and makes a new line, nice text formatting for the tooltip windows
 			String parsedStr = entry.getValue().replaceAll("(.{120} )", "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
 		}
-		Monitor primary = display.getPrimaryMonitor();
-	    Rectangle bounds = primary.getBounds();
-	    Rectangle rect = shell.getBounds();
-	    
-	    int x = (int) (bounds.x + (bounds.width - rect.width) * .75);
-	    int y = (int) (bounds.y + (bounds.height - rect.height) * .15);
+		sc.setMinSize(WIDTH, HEIGHT + 800);
+		
+		c.pack();
+		
 	    shell.setLocation(x, y);
 		shell.pack();
 		shell.open();
