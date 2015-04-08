@@ -15,8 +15,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
-import core.Main;
-
 /*
  * Generic entity class, extend this when creating searchable entities
  */
@@ -56,9 +54,9 @@ public abstract class DNDEntity {
 	
 	public void toTooltipWindow(){
 	
-		//Display display = new Display();
-		Shell shell = new Shell(Main.display);
-		Monitor monitor = Main.display.getPrimaryMonitor();
+		Display display = new Display();
+		Shell shell = new Shell(display);
+		Monitor monitor = display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();
 	    
 	    int WIDTH = 700;
