@@ -26,15 +26,15 @@ import entity.ItemEntity;
 public class Item_wizard {
 	private static Shell shell;
 	private static Display display;
-	private static final int WIDTH = 700;
-	private static final int HEIGHT = 500;//copy from character wizard, see for change
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	public static boolean cancel = false;
 	private ItemEntity newitem;
-	String ItemName;
-	String ItemWeight;
-	String ItemScript;
-	String ItemValue;
+	static String ItemName;
+	static String ItemWeight;
+	static String ItemScript;
+	static String ItemValue;
 	private static int wizPageNum;
 	public Item_wizard(Display d)
 	{
@@ -119,6 +119,7 @@ public class Item_wizard {
 					}
 					else if(wizPageNum == wizPages.size() - 1)
 					{
+						System.out.println("PANIC: ITEM WIZARD PAGE 1 OUT");
 						shell.close();
 					}
 				}
@@ -209,7 +210,7 @@ public class Item_wizard {
 		wiz4Label.setText("Enter Description (Optional)");
 		wiz4Label.pack(); 
 		final Text wizpage4text = new Text(wizpage4, SWT.BORDER);
-		wizpage4text.setBounds(200, 200, 400, 400);
+		wizpage4text.setBounds(50, 50, 300, 200);
 		wizpage4text.setText("Description here");
 		Button next4 = createNextButton(wizpage4);
 		Button Back4 = createBackButton(wizpage4, wizPanel, wizLayout);
@@ -226,9 +227,11 @@ public class Item_wizard {
 				{
 					ItemScript = "<empty>";
 				}
+				CreateVerificationPage(wizPanel, wizLayout);
 				if(wizPageNum < wizPages.size() - 1)
 				{
 					wizPageNum++;
+					
 					wizLayout.topControl = wizPages.get(wizPageNum);
 					wizPanel.layout();
 				}
@@ -239,10 +242,7 @@ public class Item_wizard {
 			}
 		});
 		wizPages.add(wizpage4);
-		//Page5 -- Verification
-		//TODO lay all information entered here for confirmation
-		final Composite wizPage5 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wizPage5);
+		//Page5 -- Verification -- See CreateVerification Page
 		wizLayout.topControl = wizpage1;
 		wizPanel.layout();
 	}
@@ -253,6 +253,15 @@ public class Item_wizard {
 	 * @param c
 	 * @return
 	 */
+	public static void CreateVerificationPage(final Composite p, final StackLayout l)
+	{
+		final Composite verific = new Composite(p, SWT.NONE);
+		Label wiz5Label = new Label(verific, SWT.NONE);
+		wiz5Label.setText("Name: " + ItemName + "\nWeight: " + ItemWeight 
+				+ "\nValue: " + ItemValue + "\nDescription: " + ItemScript);
+		wiz5Label.pack();
+		wizPages.add(verific);
+	}
 	public static Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
