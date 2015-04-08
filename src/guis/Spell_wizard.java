@@ -1,7 +1,16 @@
 package guis;
+import java.util.ArrayList;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import entity.FeatEntity;
@@ -13,18 +22,37 @@ import entity.SpellEntity;
  *
  */
 public class Spell_wizard {
-	private Shell shell;
-	private Display display;
-	private int pagenum;
-	private static final int WIDTH = 700;
-	private static final int HEIGHT = 500;//copy from character wizard, see for change
+	private static Shell shell;
+	private static Display display;
+	public static boolean cancel = false;
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 400;//copy from character wizard, see for change
+	private static ArrayList<Composite> wizPages;
+	private static int wizpagenum;
 	private SpellEntity newspell;
+	static String spellname;
+	static String spellcomp;
+	static String spellschool;
+	static String spellrange;
+	static String spelleffect;
+    static String spellcastime;
+	static String spellscript;
+	static String spellmaterial;
+	static String spellsaving;
+	static String spellfocus;
+	static String spellduration;
+	static String spelllevel;
+	static String spellresistance;
 	public Spell_wizard(Display d)
 	{
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Spell Wizard"); //Try Create new xxx?
 		shell.setSize(WIDTH,HEIGHT);
+		wizpagenum = 0;
+		wizPages = new ArrayList<Composite>();
+		createPageContent();
+		run();
 	}
 	public void run()
 	{
@@ -42,7 +70,7 @@ public class Spell_wizard {
 	 * Set window to be the center.
 	 * @param shell the window needed to be in the center
 	 */
-	private void center(Shell shell) 
+	private static void center(Shell shell) 
 	{
 
         Rectangle bds = shell.getDisplay().getBounds();
@@ -81,6 +109,122 @@ public class Spell_wizard {
 	private void createPageContent() 
 	{
 		//TODO
+	}
+	private void CreateVerificationPage(final Composite wizPanel,
+			final StackLayout wizLayout) {
+		final Composite verific = new Composite(wizPanel, SWT.NONE);
+		Label wiz14Label = new Label(verific, SWT.NONE);
+		wiz14Label.setText("Name: " + spellname + "\nDescription: " + spellscript);
+		wiz14Label.pack();
+		Button confirm = new Button(verific, SWT.PUSH);
+		confirm.setText("Confirm");
+		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
+		confirm.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				//TODO save the item
+				shell.close();
+			}
+		});
+		wizPages.add(verific);
+		
+	}
+	public static Button createNextButton(Composite c) {
+		Button nextButton = new Button(c, SWT.PUSH);
+		nextButton.setText("Next");
+		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
+		return nextButton;
+	}
+
+	/**
+	 *COPY FROM CHAR WIZARD
+	 * creates a back button on composite c in the bottom right corner.
+	 * also sets the listener for the created button that changes the top 
+	 * control page of the layout of the panel to be the previous page
+	 * @param c
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createBackButton(Composite c, final Composite panel,
+			final StackLayout layout) {
+		Button backButton = new Button(c, SWT.PUSH);
+		backButton.setText("Back");
+		backButton.setBounds(WIDTH - 220, HEIGHT - 90, 100, 50);
+		backButton.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+				if (wizpagenum > 0)
+					wizpagenum--;
+				layout.topControl = wizPages.get(wizpagenum);
+				panel.layout();
+			}
+		});
+		return backButton;
+	}
+
+	/**
+	 * COPY FROM CHAR WIZARD
+	 * creates a cancel button on composite c in bottom left corner.
+	 * also sets the listener for the created button that changes the homePanel
+	 * top control to be home and resets the wizard page counter wizPageNum
+	 * @param c
+	 * @param home
+	 * @param panel
+	 * @param layout
+	 * @return
+	 */
+	public static Button createCancelButton(Composite c,
+			final Composite panel, final StackLayout layout) {
+		Button cancelButton = new Button(c, SWT.PUSH);
+		cancelButton.setText("Cancel");
+		cancelButton.setBounds(10, HEIGHT - 90, 100, 50);
+		cancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				cancel = false;
+				final Shell areYouSureShell = new Shell(display);
+				areYouSureShell.setText("Cancel");
+				areYouSureShell.setSize(300, 200);
+				center(areYouSureShell);
+
+				Label areYouSure = new Label(areYouSureShell, SWT.NONE);
+				areYouSure.setLocation(40,50);
+				areYouSure.setText("Are you sure you want to cancel?");
+				areYouSure.pack();
+
+				Button yes = new Button(areYouSureShell, SWT.PUSH);
+				yes.setBounds(10,130,130,30);
+				yes.setText("Yes, Cancel");
+				yes.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = true;
+						areYouSureShell.dispose();
+					}
+				});
+
+				Button no = new Button(areYouSureShell, SWT.PUSH);
+				no.setBounds(160,130,130,30);
+				no.setText("No, Don't Cancel");
+				no.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = false;
+						areYouSureShell.dispose();
+					}
+				});
+
+				areYouSureShell.open();
+				while (!areYouSureShell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+				if (cancel) {
+					shell.close();
+				}
+			}
+		});
+		return cancelButton;
 	}
 	public Shell getshell()
 	{
