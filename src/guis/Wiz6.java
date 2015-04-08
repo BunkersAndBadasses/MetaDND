@@ -1,4 +1,4 @@
-package src.guis;
+package guis;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
+import core.Character;
 
 /*
  * change random weight values
