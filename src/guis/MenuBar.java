@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class MenuBar {
 	
-	public MenuBar(Shell shell)
+	public MenuBar(final Shell shell)
 	{
 		Menu menuBar = new Menu(shell, SWT.BAR);
         MenuItem cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
