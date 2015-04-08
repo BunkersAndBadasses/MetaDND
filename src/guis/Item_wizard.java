@@ -90,6 +90,12 @@ public class Item_wizard {
 		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
 		final StackLayout homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
+		//wizard
+		final Composite wizard = new Composite(homePanel, SWT.NONE);
+		final Composite wizPanel = new Composite(wizard, SWT.BORDER);
+		wizPanel.setBounds(0,0,0, (int) (HEIGHT * 0.75));
+		final StackLayout wizLayout = new StackLayout();
+		wizPanel.setLayout(wizLayout);
 		//Page1 -- Name
 		final Composite wizpage1 = new Composite(homePanel, SWT.NONE);
 		Label wiz1Label = new Label(wizpage1, SWT.NONE);
