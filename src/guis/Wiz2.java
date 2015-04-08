@@ -1,4 +1,4 @@
-package src.guis;
+package guis;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-
+import core.Character;
 /* TODO
  * 
  * add get from references

@@ -26,16 +26,15 @@ import entity.ItemEntity;
 public class Item_wizard {
 	private static Shell shell;
 	private static Display display;
-	private static final int WIDTH = 700;
-	private static final int HEIGHT = 500;//copy from character wizard, see for change
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	public static boolean cancel = false;
-	public static boolean[] wizPageCreated = {false, false, false, false, false};
 	private ItemEntity newitem;
-	String ItemName;
-	String ItemWeight;
-	String ItemScript;
-	String ItemValue;
+	static String ItemName;
+	static String ItemWeight;
+	static String ItemScript;
+	static String ItemValue;
 	private static int wizPageNum;
 	public Item_wizard(Display d)
 	{
@@ -44,6 +43,7 @@ public class Item_wizard {
 		shell.setText("Create New Item");
 		shell.setSize(WIDTH,HEIGHT);
 		wizPages = new ArrayList<Composite>();
+		wizPageNum = 0;
 		createPageContent();
 		run();
 	}
@@ -86,23 +86,24 @@ public class Item_wizard {
 	private void createPageContent() 
 	{		
 		//wizard
-		final Composite wizard = new Composite(shell, SWT.NONE);
-		final Composite wizPanel = new Composite(wizard, SWT.BORDER);
-		wizPanel.setBounds(0,0,0, (int) (HEIGHT * 0.75));
+		final Composite wizPanel = new Composite(shell, SWT.BORDER);
+		wizPanel.setBounds(0,0,WIDTH, HEIGHT);
 		final StackLayout wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
-		wizPanel.layout();
+		
 		//Page1 -- Name
 		final Composite wizpage1 = new Composite(wizPanel, SWT.NONE);
-		wizPageNum = 1;
-		wizLayout.topControl = wizpage1;
+		wizpage1.setBounds(0,0,WIDTH,HEIGHT);
+		
 		final Label wiz1Label = new Label(wizpage1, SWT.NONE);
 		wiz1Label.setText("Enter Name (required)");
 		wiz1Label.pack();
 		final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
-		//wizpage1text.setBounds(50, 50, 50, 50);
+		wizpage1text.setBounds(50, 50, 150, 50);
 		wizpage1text.setText("Mr.NONAME");
 		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
+		Button Back1 = createBackButton(wizpage1, wizPanel, wizLayout);
+		Button Cancel1 = createCancelButton(wizpage1, wizPanel, wizLayout);
 		next1.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -113,9 +114,12 @@ public class Item_wizard {
 					if(wizPageNum < wizPages.size() - 1)
 					{
 						wizPageNum++;
+						wizLayout.topControl = wizPages.get(wizPageNum);
+						wizPanel.layout();
 					}
 					else if(wizPageNum == wizPages.size() - 1)
 					{
+						System.out.println("PANIC: ITEM WIZARD PAGE 1 OUT");
 						shell.close();
 					}
 				}
@@ -126,16 +130,19 @@ public class Item_wizard {
 			}
 		}
 		);
+		
 		wizPages.add(wizpage1);
 		//Page2 -- Weight
 		final Composite wizpage2 = new Composite(wizPanel, SWT.NONE);
 		final Label wiz2Label = new Label(wizpage2, SWT.NONE);
-		wiz2Label.setText("Enter Value (required)");
+		wiz2Label.setText("Enter Weight (required)");
 		wiz2Label.pack();
 		final Text wizpage2text = new Text(wizpage2, SWT.BORDER);
-		wizpage1text.setBounds(50, 50, 50, 50);
-		wizpage1text.setText("1");
-		Button next2 = createNextButton(wizpage2);//TODO cancel and previous button
+		wizpage2text.setBounds(50, 50, 150, 50);
+		wizpage2text.setText("1");
+		Button next2 = createNextButton(wizpage2);
+		Button Back2 = createBackButton(wizpage2, wizPanel, wizLayout);
+		Button Cancel2 = createCancelButton(wizpage2, wizPanel, wizLayout);
 		next2.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -146,6 +153,8 @@ public class Item_wizard {
 					if(wizPageNum < wizPages.size() - 1)
 					{
 						wizPageNum++;
+						wizLayout.topControl = wizPages.get(wizPageNum);
+						wizPanel.layout();
 					}
 					else if(wizPageNum == wizPages.size() - 1)
 					{
@@ -165,9 +174,11 @@ public class Item_wizard {
 		wiz3Label.setText("Enter Value (required)");
 		wiz3Label.pack();
 		final Text wizpage3text = new Text(wizpage3, SWT.BORDER);
-		wizpage3text.setBounds(50, 50, 50, 50);
+		wizpage3text.setBounds(50, 50, 150, 50);
 		wizpage3text.setText("1");
-		Button next3 = createNextButton(wizpage3);//TODO cancel and previous button
+		Button next3 = createNextButton(wizpage3);
+		Button Back3 = createBackButton(wizpage3, wizPanel, wizLayout);
+		Button Cancel3 = createCancelButton(wizpage3, wizPanel, wizLayout);
 		next3.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -178,6 +189,8 @@ public class Item_wizard {
 					if(wizPageNum < wizPages.size() - 1)
 					{
 						wizPageNum++;
+						wizLayout.topControl = wizPages.get(wizPageNum);
+						wizPanel.layout();
 					}
 					else if(wizPageNum == wizPages.size() - 1)
 					{
@@ -197,9 +210,11 @@ public class Item_wizard {
 		wiz4Label.setText("Enter Description (Optional)");
 		wiz4Label.pack(); 
 		final Text wizpage4text = new Text(wizpage4, SWT.BORDER);
-		wizpage4text.setBounds(200, 200, 200, 200);
+		wizpage4text.setBounds(50, 50, 300, 200);
 		wizpage4text.setText("Description here");
-		Button next4 = createNextButton(wizpage4);//TODO cancel and previous button
+		Button next4 = createNextButton(wizpage4);
+		Button Back4 = createBackButton(wizpage4, wizPanel, wizLayout);
+		Button Cancel4 = createCancelButton(wizpage4, wizPanel, wizLayout);
 		next4.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -212,9 +227,13 @@ public class Item_wizard {
 				{
 					ItemScript = "<empty>";
 				}
+				CreateVerificationPage(wizPanel, wizLayout);
 				if(wizPageNum < wizPages.size() - 1)
 				{
 					wizPageNum++;
+					
+					wizLayout.topControl = wizPages.get(wizPageNum);
+					wizPanel.layout();
 				}
 				else if(wizPageNum == wizPages.size() - 1)
 				{
@@ -223,8 +242,9 @@ public class Item_wizard {
 			}
 		});
 		wizPages.add(wizpage4);
-		//Page5 -- Verification
-		//TODO lay all information entered here for confirmation
+		//Page5 -- Verification -- See CreateVerification Page
+		wizLayout.topControl = wizpage1;
+		wizPanel.layout();
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
@@ -233,6 +253,15 @@ public class Item_wizard {
 	 * @param c
 	 * @return
 	 */
+	public static void CreateVerificationPage(final Composite p, final StackLayout l)
+	{
+		final Composite verific = new Composite(p, SWT.NONE);
+		Label wiz5Label = new Label(verific, SWT.NONE);
+		wiz5Label.setText("Name: " + ItemName + "\nWeight: " + ItemWeight 
+				+ "\nValue: " + ItemValue + "\nDescription: " + ItemScript);
+		wiz5Label.pack();
+		wizPages.add(verific);
+	}
 	public static Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
@@ -278,7 +307,7 @@ public class Item_wizard {
 	 * @param layout
 	 * @return
 	 */
-	public static Button createCancelButton(Composite c, final Composite home,
+	public static Button createCancelButton(Composite c,
 			final Composite panel, final StackLayout layout) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
@@ -323,9 +352,7 @@ public class Item_wizard {
 					}
 				}
 				if (cancel) {
-					wizPageNum = -1;
-					layout.topControl = home;
-					panel.layout();
+					shell.close();
 				}
 			}
 		});
