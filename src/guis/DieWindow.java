@@ -113,13 +113,6 @@ public class DieWindow {
 
 	private void createPageContent() {
 
-		final Composite homePanel = new Composite(shell, SWT.NONE);
-		homePanel.setBounds(0,0,WIDTH,HEIGHT);
-		//		StackLayout homeLayout = new StackLayout();
-		//		homePanel.setLayout(homeLayout);
-
-		//		final Composite page1 = new Composite(homePanel, SWT.NONE);
-
 		ArrayList<Label> dieLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
@@ -133,6 +126,113 @@ public class DieWindow {
 		badInputText.setVisible(false);
 		badInputText.setText("Invalid modifier: must be an integer -100 < X < 100");
 		badInputText.pack();
+		
+		// Mod text
+		final Label mod = new Label(dieWin, SWT.NONE);
+		Font font2 = new Font(display, new FontData("Arial", 24,
+				SWT.NONE));
+		mod.setFont(font2);//TODO make this not bold
+		mod.setLocation(20, 265);
+		mod.setText("Modifier = ");
+		mod.pack();
+		
+		//Mod text box
+		modText = new Text(dieWin, SWT.BORDER);
+		modText.setText("0");
+		modText.setBounds(145,263,30,30);
+		modText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				Text text = (Text) e.widget;
+				modString = text.getText();
+			}
+		});
+		
+		// Total text
+		final Label totalText = new Label(dieWin, SWT.NONE);
+		Font font4 = new Font(display, new FontData("Arial", 24,
+				SWT.BOLD));
+		totalText.setFont(font4);
+		totalText.setLocation(55, 310);
+		totalText.setText("Total = ");
+		totalText.pack();
+		
+		// Total's read-only display box
+		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
+		total.setLocation(138, 308);
+		total.setSize(45, 30);
+		total.setText("0");
+		Font font5 = new Font(display, new FontData("Arial", 16,
+				SWT.NONE));
+		total.setFont(font5);
+
+		
+		Font font3 = new Font(display, new FontData("Arial", 18,
+				SWT.NONE));
+		Button roll = new Button(dieWin, SWT.PUSH);
+		roll.setText("Roll");
+		roll.setFont(font3);
+		roll.setLocation(75, 370);
+		roll.setSize(85, 50);
+		roll.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				int modInt = 0;
+				int rollTotal = 0;
+				try{
+					
+					badInputText.setVisible(false);
+					modInt = Integer.parseInt(modString);
+					
+					if(modInt <= -100 || modInt >= 100)
+						throw new Exception();
+					
+				}catch(Exception error){
+					badInputText.setVisible(true);
+					return;
+				}
+				
+				//add the rolling to this
+				for(int i = 0; i < 6; i++){
+					rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
+				}
+				rollTotal += modInt;
+				
+				//System.out.println(rollTotal);
+				total.setText(Integer.toString(rollTotal));
+				//System.out.println(total.getText());
+
+			}
+		});
+		
+		Button save = new Button(dieWin, SWT.PUSH);
+		save.setText("Save");
+		save.setFont(font3);
+		save.setLocation(175, 370);
+		save.setSize(85, 50);
+		save.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				int modInt = 0;
+				int rollTotal = 0;
+				try{
+					
+					badInputText.setVisible(false);
+					modInt = Integer.parseInt(modString);
+					
+					if(modInt <= -100 || modInt >= 100)
+						throw new Exception();
+					
+				}catch(Exception error){
+					badInputText.setVisible(true);
+					return;
+				}
+				
+				//add the rolling to this
+				for(int i = 0; i < 6; i++){
+					rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
+				}
+				rollTotal += modInt;
+				
+			}
+		});
 
 		for(int i = 0; i < 6; i++){
 
@@ -144,72 +244,6 @@ public class DieWindow {
 			dieText.setLocation(20, (i*40) + 24);
 			dieText.setText(dieNames[i] + " x " + numDie[i]);
 			dieText.pack();
-			
-			// Mod text
-			final Label mod = new Label(dieWin, SWT.NONE);
-			mod.setFont(font1);//TODO make this not bold
-			mod.setLocation(20, 265);
-			mod.setText("Modifier = ");
-			mod.pack();
-			
-			//Mod text box
-			modText = new Text(dieWin, SWT.BORDER);
-			modText.setText("0");
-			modText.setBounds(145,263,30,30);
-			modText.addModifyListener(new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					Text text = (Text) e.widget;
-					modString = text.getText();
-				}
-			});
-			
-			// Total text
-			final Label totalText = new Label(dieWin, SWT.NONE);
-			totalText.setFont(font1);
-			totalText.setLocation(55, 310);
-			totalText.setText("Total = ");
-			totalText.pack();
-			
-			// Total's read-only display box
-			total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY);
-			total.setText("0");
-			total.setBounds(138,308,45,30);
-			
-			Font font2 = new Font(dieText.getDisplay(), new FontData("Arial", 18,
-					SWT.NONE));
-			Button roll = new Button(dieWin, SWT.PUSH);
-			roll.setText("Roll");
-			roll.setFont(font2);
-			roll.setLocation(75, 370);
-			roll.setSize(85, 50);
-			roll.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event event) {
-					int modInt = 0;
-					int rollTotal = 0;
-					try{
-						
-						badInputText.setVisible(false);
-						modInt = Integer.parseInt(modString);
-						
-						if(modInt <= -100 || modInt >= 100)
-							throw new Exception();
-						
-					}catch(Exception error){
-						badInputText.setVisible(true);
-						return;
-					}
-					
-					//add the rolling to this
-					for(int i = 0; i < 6; i++){
-						rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
-					}
-					rollTotal += modInt;
-					
-					System.out.print(rollTotal);
-					total.setText(Integer.toString(rollTotal));
-					total.pack();
-				}
-			});
 			
 			Button inc = new Button(dieWin, SWT.PUSH);
 			inc.setText("+");
@@ -227,6 +261,7 @@ public class DieWindow {
 				}
 			});
 			incButtons.add(inc);
+			
 			Button dec = new Button(dieWin, SWT.PUSH);
 			dec.setText("-");
 			dec.setBounds(150, (i*40) + 20, 33, 33);
@@ -244,19 +279,6 @@ public class DieWindow {
 			decButtons.add(dec);
 		}
 		
-		
-
-		//		final Text text = new Text(page1, SWT.BORDER);
-		//		text.setLocation(0, 50);
-		//		text.pack();
-		//		button.addListener(SWT.Selection, new Listener() {
-		//			public void handleEvent(Event event) {
-		//				text.setText("Hello");
-		//			}
-		//		});
-		//		
-		//		homeLayout.topControl = page1;
-		//		homePanel.layout();	
 	}
 
 	public static void main(String[] args) {
