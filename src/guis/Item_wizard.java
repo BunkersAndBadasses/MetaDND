@@ -84,25 +84,23 @@ public class Item_wizard {
 	 * TODO verify the storing method
 	 */
 	private void createPageContent() 
-	{
-		//HomePanel
-		final Composite homePanel = new Composite(shell, SWT.NONE);
-		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
-		final StackLayout homeLayout = new StackLayout();
-		homePanel.setLayout(homeLayout);
+	{		
 		//wizard
-		final Composite wizard = new Composite(homePanel, SWT.NONE);
+		final Composite wizard = new Composite(shell, SWT.NONE);
 		final Composite wizPanel = new Composite(wizard, SWT.BORDER);
 		wizPanel.setBounds(0,0,0, (int) (HEIGHT * 0.75));
 		final StackLayout wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
+		wizPanel.layout();
 		//Page1 -- Name
-		final Composite wizpage1 = new Composite(homePanel, SWT.NONE);
-		Label wiz1Label = new Label(wizpage1, SWT.NONE);
+		final Composite wizpage1 = new Composite(wizPanel, SWT.NONE);
+		wizPageNum = 1;
+		wizLayout.topControl = wizpage1;
+		final Label wiz1Label = new Label(wizpage1, SWT.NONE);
 		wiz1Label.setText("Enter Name (required)");
 		wiz1Label.pack();
 		final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
-		wizpage1text.setBounds(50, 50, 50, 50);
+		//wizpage1text.setBounds(50, 50, 50, 50);
 		wizpage1text.setText("Mr.NONAME");
 		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
 		next1.addListener(SWT.Selection, new Listener()
@@ -130,8 +128,8 @@ public class Item_wizard {
 		);
 		wizPages.add(wizpage1);
 		//Page2 -- Weight
-		final Composite wizpage2 = new Composite(homePanel, SWT.NONE);
-		Label wiz2Label = new Label(wizpage2, SWT.NONE);
+		final Composite wizpage2 = new Composite(wizPanel, SWT.NONE);
+		final Label wiz2Label = new Label(wizpage2, SWT.NONE);
 		wiz2Label.setText("Enter Value (required)");
 		wiz2Label.pack();
 		final Text wizpage2text = new Text(wizpage2, SWT.BORDER);
@@ -162,8 +160,8 @@ public class Item_wizard {
 		});
 		wizPages.add(wizpage2);
 		//Page3 -- Value
-		final Composite wizpage3 = new Composite(homePanel, SWT.NONE);
-		Label wiz3Label = new Label(wizpage3, SWT.NONE);
+		final Composite wizpage3 = new Composite(wizPanel, SWT.NONE);
+		final Label wiz3Label = new Label(wizpage3, SWT.NONE);
 		wiz3Label.setText("Enter Value (required)");
 		wiz3Label.pack();
 		final Text wizpage3text = new Text(wizpage3, SWT.BORDER);
@@ -194,7 +192,7 @@ public class Item_wizard {
 		});
 		wizPages.add(wizpage3);
 		//Page4 -- Description (optional)
-		final Composite wizpage4 = new Composite(homePanel, SWT.NONE);
+		final Composite wizpage4 = new Composite(wizPanel, SWT.NONE);
 		Label wiz4Label = new Label(wizpage4, SWT.NONE);
 		wiz4Label.setText("Enter Description (Optional)");
 		wiz4Label.pack(); 
