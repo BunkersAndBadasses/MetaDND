@@ -100,7 +100,7 @@ public class Item_wizard {
 		wiz1Label.setText("Enter Name (required)");
 		wiz1Label.pack();
 		final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
-		wizpage1text.setBounds(50, 50, 50, 50);
+		//wizpage1text.setBounds(50, 50, 50, 50);
 		wizpage1text.setText("Mr.NONAME");
 		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
 		next1.addListener(SWT.Selection, new Listener()
