@@ -26,14 +26,14 @@ import entity.FeatEntity;
  */
 public class Feat_wizard 
 {
-	private Shell shell;
+	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private FeatEntity newfeat;
-	private int wizpagenum;
+	private static int wizpagenum;
 	static String featname;
 	static String featprereq;
 	static String featnormal;
@@ -45,9 +45,12 @@ public class Feat_wizard
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Feat Wizard");
+		shell.setText("Create a new Feat");
 		shell.setSize(WIDTH,HEIGHT);
 		wizpagenum = 0;
+		wizPages = new ArrayList<Composite>();
+		createPageContent();
+		run();
 	}
 	public void run()
 	{
@@ -65,7 +68,7 @@ public class Feat_wizard
 	 * Set window to be the center.
 	 * @param shell the window needed to be in the center
 	 */
-	private void center(Shell shell) 
+	private static void center(Shell shell) 
 	{
 
         Rectangle bds = shell.getDisplay().getBounds();
@@ -218,7 +221,7 @@ public class Feat_wizard
 				wizPages.add(wizpage3);
 				//Page4 -- Specials
 				final Composite wizpage4 = new Composite(wizPanel, SWT.NONE);
-				Label wiz4Label = new Label(wizpage4, SWT.NONE);
+				final Label wiz4Label = new Label(wizpage4, SWT.NONE);
 				wiz4Label.setText("Enter Description (Optional)");
 				wiz4Label.pack(); 
 				final Text wizpage4text = new Text(wizpage4, SWT.BORDER);
@@ -234,12 +237,6 @@ public class Feat_wizard
 						if(wizpage4text.getText() != "")
 						{
 							featspecial = wizpage4text.getText();
-						}
-						else
-						{
-							ItemScript = "<empty>";
-						}
-						CreateVerificationPage(wizPanel, wizLayout);
 						if(wizpagenum < wizPages.size() - 1)
 						{
 							wizpagenum++;
@@ -250,6 +247,11 @@ public class Feat_wizard
 						else if(wizpagenum == wizPages.size() - 1)
 						{
 							shell.close();
+						}
+						}
+						else
+						{
+							wiz4Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
 						}
 					}
 				});
