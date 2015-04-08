@@ -134,7 +134,7 @@ public class CharacterMain {
 	}
 	
 	
-	private static Combo featsEtcBox(Shell shell, Label label, String[] args) {
+	private static Combo featsEtcBox(Shell shell, Label label, final String[] args) {
 		Combo skillCombo = new Combo(shell, SWT.CENTER);
 		skillCombo.add("Skill");
 		skillCombo.select(0);
