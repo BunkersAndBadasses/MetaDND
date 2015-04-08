@@ -113,7 +113,7 @@ public class Feat_wizard
 				wiz1Label.pack();
 				final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
 				wizpage1text.setBounds(50, 50, 150, 50);
-				wizpage1text.setText("Mr.NONAME");
+				wizpage1text.setText("A Normal Human");
 				Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
 				Button Back1 = createBackButton(wizpage1, wizPanel, wizLayout);
 				Button Cancel1 = createCancelButton(wizpage1, wizPanel, wizLayout);
@@ -152,7 +152,7 @@ public class Feat_wizard
 				wiz2Label.pack();
 				final Text wizpage2text = new Text(wizpage2, SWT.BORDER);
 				wizpage2text.setBounds(50, 50, 250, 150);
-				wizpage2text.setText("1");
+				wizpage2text.setText("Prerequisite Here");
 				Button next2 = createNextButton(wizpage2);
 				Button Back2 = createBackButton(wizpage2, wizPanel, wizLayout);
 				Button Cancel2 = createCancelButton(wizpage2, wizPanel, wizLayout);
@@ -222,11 +222,11 @@ public class Feat_wizard
 				//Page4 -- Specials
 				final Composite wizpage4 = new Composite(wizPanel, SWT.NONE);
 				final Label wiz4Label = new Label(wizpage4, SWT.NONE);
-				wiz4Label.setText("Enter Description (Optional)");
+				wiz4Label.setText("Enter Special: (required)");
 				wiz4Label.pack(); 
 				final Text wizpage4text = new Text(wizpage4, SWT.BORDER);
-				wizpage4text.setBounds(50, 50, 300, 200);
-				wizpage4text.setText("Description here");
+				wizpage4text.setBounds(50, 50, 150, 50);
+				wizpage4text.setText("No effect");
 				Button next4 = createNextButton(wizpage4);
 				Button Back4 = createBackButton(wizpage4, wizPanel, wizLayout);
 				Button Cancel4 = createCancelButton(wizpage4, wizPanel, wizLayout);
@@ -256,9 +256,145 @@ public class Feat_wizard
 					}
 				});
 				wizPages.add(wizpage4);
-				//Page5 -- Verification -- See CreateVerification Page
+				//Page5 -- Benefit
+				final Composite wizpage5 = new Composite(wizPanel, SWT.NONE);
+				final Label wiz5Label = new Label(wizpage5, SWT.NONE);
+				final Text wizpage5text = new Text(wizpage5, SWT.BORDER);
+				wizpage5text.setBounds(50, 50, 150, 50);
+				wizpage5text.setText("No effect");
+				Button next5 = createNextButton(wizpage5);
+				Button Back5 = createBackButton(wizpage5, wizPanel, wizLayout);
+				Button Cancel5 = createCancelButton(wizpage5, wizPanel, wizLayout);
+				wiz5Label.setText("Enter Benefit: (required)");
+				wiz5Label.pack(); 
+				next5.addListener(SWT.Selection, new Listener()
+				{
+					public void handleEvent(Event event)
+					{
+						if(wizpage5text.getText() != "")
+						{
+							featbenefit = wizpage5text.getText();
+						if(wizpagenum < wizPages.size() - 1)
+						{
+							wizpagenum++;
+							
+							wizLayout.topControl = wizPages.get(wizpagenum);
+							wizPanel.layout();
+						}
+						else if(wizpagenum == wizPages.size() - 1)
+						{
+							shell.close();
+						}
+						}
+						else
+						{
+							wiz5Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+						}
+					}
+				});
+				wizPages.add(wizpage5);
+				//Page6 -- Fighter Bonus or not
+				final Composite wizpage6 = new Composite(wizPanel, SWT.NONE);
+				final Label wiz6Label = new Label(wizpage6, SWT.NONE);
+				final Text wizpage6text = new Text(wizpage6, SWT.BORDER);
+				wizpage6text.setBounds(50, 50, 150, 50);
+				wizpage6text.setText("Yes");
+				Button next6 = createNextButton(wizpage6);
+				Button Back6 = createBackButton(wizpage6, wizPanel, wizLayout);
+				Button Cancel6 = createCancelButton(wizpage6, wizPanel, wizLayout);
+				wiz6Label.setText("Enter If Fighter Bonus: (Yes/No)");
+				wiz6Label.pack(); 
+				next6.addListener(SWT.Selection, new Listener()
+				{
+					public void handleEvent(Event event)
+					{
+						if(wizpage6text.getText() != "")
+						{
+							featfighter = wizpage6text.getText();
+						if(wizpagenum < wizPages.size() - 1)
+						{
+							wizpagenum++;
+							
+							wizLayout.topControl = wizPages.get(wizpagenum);
+							wizPanel.layout();
+						}
+						else if(wizpagenum == wizPages.size() - 1)
+						{
+							shell.close();
+						}
+						}
+						else
+						{
+							wiz6Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
+						}
+					}
+				});
+				wizPages.add(wizpage6);
+				//Page7 -- Description
+				final Composite wizpage7 = new Composite(wizPanel, SWT.NONE);
+				Label wiz7Label = new Label(wizpage7, SWT.NONE);
+				wiz7Label.setText("Enter Description (Optional)");
+				wiz7Label.pack(); 
+				final Text wizpage7text = new Text(wizpage7, SWT.BORDER);
+				wizpage7text.setBounds(50, 50, 300, 200);
+				wizpage7text.setText("Description here");
+				Button next7 = createNextButton(wizpage7);
+				Button Back7 = createBackButton(wizpage7, wizPanel, wizLayout);
+				Button Cancel7 = createCancelButton(wizpage7, wizPanel, wizLayout);
+				next7.addListener(SWT.Selection, new Listener()
+				{
+					public void handleEvent(Event event)
+					{
+						if(wizpage7text.getText() != "")
+						{
+							featscript = wizpage7text.getText();
+						}
+						else
+						{
+							featscript = "<empty>";
+						}
+						CreateVerificationPage(wizPanel, wizLayout);
+						if(wizpagenum < wizPages.size() - 1)
+						{
+							wizpagenum++;
+							
+							wizLayout.topControl = wizPages.get(wizpagenum);
+							wizPanel.layout();
+						}
+						else if(wizpagenum == wizPages.size() - 1)
+						{
+							shell.close();
+						}
+					}
+
+					
+				});
+				wizPages.add(wizpage7);
 				wizLayout.topControl = wizpage1;
 				wizPanel.layout();
+	}
+	private void CreateVerificationPage(final Composite wizPanel,
+			final StackLayout wizLayout) {
+		final Composite verific = new Composite(wizPanel, SWT.NONE);
+		Label wiz8Label = new Label(verific, SWT.NONE);
+		wiz8Label.setText("Name: " + featname + "\nPrerequisite: " + featprereq 
+				+ "\nNormal: " + featnormal + "\nSpecial: " + featspecial +
+				"\nBenefit: " + featbenefit + "\nFighter Bonus: " + featfighter
+				+ "\nDescription: " + featscript);
+		wiz8Label.pack();
+		Button confirm = new Button(verific, SWT.PUSH);
+		confirm.setText("Confirm");
+		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
+		confirm.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				//TODO save the item
+				shell.close();
+			}
+		});
+		wizPages.add(verific);
+		
 	}
 	public static Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
