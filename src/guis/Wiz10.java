@@ -1,6 +1,5 @@
 package guis;
 
-import core.Character;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
@@ -11,8 +10,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-
-
+import entity.*;
+import core.Character;
 
 public class Wiz10 {
 
@@ -76,7 +75,7 @@ public class Wiz10 {
 	public Composite getWiz10() { return wiz10; }
 	
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		Wiz3.cancelClear();
