@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import entity.FeatEntity;
 import entity.SpellEntity;
 
 /**
