@@ -1,8 +1,8 @@
 package core;
-
+import entity.*;
 
 public class CharSkill {
-	private Skill skill;
+	private SkillEntity skill;
 	private int rank = 0;
 	private String abilityType;
 	private int abilityMod;
@@ -10,19 +10,20 @@ public class CharSkill {
 	private boolean classSkill = false;
 	private boolean halfPoint = false;
 	
-	public CharSkill(Skill s, Character c) {
+	public CharSkill(SkillEntity s, Character c) {
 		// search skills for skill(name)
 		// set that this.skill = returned skill
 		// 
 		skill = s;
 		String charClass = c.getCharClass(); // TODO
 		classSkill = false; // TODO get info from class if this skill is a class skill
-		abilityType = Character.abilityScoreTypes[skill.getAbilityType()];
-		abilityMod = ((c.getAbilityScores()[skill.getAbilityType()]) - 8) / 2; // TODO check this logic // TODO int rounding off
+		//TODO
+		//abilityType = Character.abilityScoreTypes[skill.getAbilityType()];
+		//abilityMod = ((c.getAbilityScores()[skill.getAbilityType()]) - 8) / 2; // TODO check this logic // TODO int rounding off
 		// TODO set miscMod
 	}
 	
-	public Skill getSkill() { return skill; }
+	public SkillEntity getSkill() { return skill; }
 	
 	public int getRank() { return rank; }
 	
