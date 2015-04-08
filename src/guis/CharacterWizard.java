@@ -7,6 +7,8 @@ import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
 import java.util.Random;
 import core.Character;
+import core.GameState;
+import core.xmlLoader;
 /*
  * iteration 2: 
  * 
@@ -18,7 +20,7 @@ import core.Character;
 public class CharacterWizard {
 
 	int pageNum = -1;
-
+ 
 	private static Device dev;
 	private static Display display;
 	private Shell shell;

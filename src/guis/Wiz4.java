@@ -1,7 +1,10 @@
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import core.CharSkill;
+import core.GameState;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -144,16 +147,16 @@ public class Wiz4 {
 		untrainedLabel.setText("■ : skill can be used untrained");
 		untrainedLabel.pack();
 
-		// TODO get skills 
-		SkillEntity[] tempSkills = //TODO
-			{/*new Skill("skill1", "blah", 0, true), new Skill("skill2", "blah", 1, true), 
-				new Skill("skill3", "blah", 2, true), new Skill("skill4", "blah", 3, true), 
-				new Skill("skill5", "blah", 4, false), new Skill("skill6", "blah", 5, false), 
-				new Skill("skill7", "blah", 0, true), new Skill("skill8", "blah", 3, false), 
-				new Skill("skill9", "blah", 2, false), new Skill("skill10", "blah", 5, true)*/};
-
-		for (int i = 0; i < tempSkills.length; i++) {
-			charSkills.add(new CharSkill(tempSkills[i], CharacterWizard.getCharacter()));
+		GameState gs = new GameState();
+		Collection<DNDEntity> skillsCol =  gs.skills.values();
+		Iterator<DNDEntity> itr = skillsCol.iterator();
+		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+		while (itr.hasNext()) {
+			skills.add((SkillEntity) itr.next());
+		}
+		
+		for (int i = 0; i < skills.size(); i++) {
+			charSkills.add(new CharSkill(skills.get(i), CharacterWizard.getCharacter()));
 		}
 
 		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);

@@ -166,15 +166,14 @@ public class Wiz6 {
 		deity.pack();
 		
 		deityListInput = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
-		deityListInput.setLocation(85, 150);
+		deityListInput.setBounds(85, 150, 310, 30);
 		deityListInput.add("");
 		for (int i = 0; i < deities.length; i++) {
 			deityListInput.add(deities[i]);
 		}
-		deityListInput.pack();
 		
 		deityInput = new Text(wiz6, SWT.BORDER);
-		deityInput.setBounds(405, 148, 180, 30);
+		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
 		deityInput.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
@@ -207,7 +206,7 @@ public class Wiz6 {
 		heightInput.pack();
 		
 		Button heightRandom = new Button(wiz6, SWT.PUSH);
-		heightRandom.setLocation(160, 198);
+		heightRandom.setLocation(165, 200);
 		heightRandom.setText("Random Height");
 		heightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -276,7 +275,7 @@ public class Wiz6 {
 		weightInput.pack();
 		
 		Button weightRandom = new Button(wiz6, SWT.PUSH);
-		weightRandom.setLocation(160, 248);
+		weightRandom.setLocation(165, 250);
 		weightRandom.setText("Random Weight");
 		weightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
