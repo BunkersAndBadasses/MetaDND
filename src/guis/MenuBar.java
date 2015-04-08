@@ -90,7 +90,7 @@ public class MenuBar {
         closeItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	shell.dispose();
             }
         });
         
