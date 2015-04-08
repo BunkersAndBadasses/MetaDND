@@ -1,4 +1,4 @@
-package src.guis;
+package guis;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class Wiz1 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static core.Character character;
 	private static Composite panel;
 	private static Composite home;
 	private static Composite homePanel;
@@ -50,7 +50,7 @@ public class Wiz1 {
 	private static Label badASInputText;
 
 
-	public Wiz1(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz1(Device dev, int WIDTH, int HEIGHT, final core.Character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -208,7 +208,7 @@ public class Wiz1 {
 	}
 	
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.character = new core.Character();
 		badLevelInputText.setVisible(false);
 		badASInputText.setVisible(false);
 		wiz1LevelText.setText("1");
