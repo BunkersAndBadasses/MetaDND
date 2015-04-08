@@ -126,7 +126,7 @@ public class DieWindow {
 		ArrayList<Label> dieLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
-		final String [] dieNames = {"d4", "d6", "d8", "d10","d12", "d20"};
+		final String [] dieNames = {"d4  ", "d6  ", "d8  ", "d10","d12", "d20"};
 		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20};
 		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		
@@ -161,7 +161,7 @@ public class DieWindow {
 		//Mod text box
 		modText = new Text(dieWin, SWT.BORDER);
 		modText.setText("0");
-		modText.setBounds(160,263,30,30);
+		modText.setBounds(180,263,30,30);
 		modText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				Text text = (Text) e.widget;
@@ -180,7 +180,7 @@ public class DieWindow {
 		
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		total.setLocation(160, 308);//138
+		total.setLocation(190, 308);//138
 		total.setSize(45, 30);
 		total.setText("0");
 		Font font5 = new Font(display, new FontData("Arial", 16,
@@ -350,7 +350,7 @@ public class DieWindow {
 			
 			Button inc = new Button(dieWin, SWT.PUSH);
 			inc.setText("+");
-			inc.setLocation(120, (i*40) + 20);
+			inc.setLocation(140, (i*40) + 20);
 			inc.setSize(33,33);
 			final int index = i;
 			inc.addListener(SWT.Selection, new Listener() {
@@ -367,7 +367,7 @@ public class DieWindow {
 			
 			Button dec = new Button(dieWin, SWT.PUSH);
 			dec.setText("-");
-			dec.setBounds(150, (i*40) + 20, 33, 33);
+			dec.setBounds(170, (i*40) + 20, 33, 33);
 			dec.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (numDie[index] <= 0) 
