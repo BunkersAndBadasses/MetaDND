@@ -83,6 +83,7 @@ public class Wiz5 {
 		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
 		featScreenScroll.setContent(featListScreen);
 		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
 		final Composite featScreen = new Composite (wiz5, SWT.BORDER);
 		featScreen.setBounds(WIDTH/2 + 5, 110, WIDTH/2 - 25, HEIGHT - 210);
 		

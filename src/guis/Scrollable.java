@@ -19,9 +19,9 @@ public class Scrollable {
 		c = new Composite(sc, SWT.NONE);
 		sc.setContent(c);
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
-		GridLayout layout = new GridLayout();
-		layout.numColumns = 1;
-		c.setLayout(layout);
+//		GridLayout layout = new GridLayout();
+//		layout.numColumns = 1;
+//		c.setLayout(layout);
 	}
 	
 }
