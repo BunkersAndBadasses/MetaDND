@@ -16,6 +16,8 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
@@ -117,12 +119,16 @@ public class DieWindow {
 	}
 
 	private void createPageContent() {
+		
+		GridLayout layout = new GridLayout();
+		shell.setLayout(layout);
 
 		ArrayList<Label> dieLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
 		final String [] dieNames = {"d4", "d6", "d8", "d10","d12", "d20"};
 		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20};
+		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		
 		// this appears when there is invalid int in the mod box
 		badInputText = new Label(dieWin, SWT.NONE);
@@ -146,13 +152,16 @@ public class DieWindow {
 				SWT.NONE));
 		mod.setFont(font2);//TODO make this not bold
 		mod.setLocation(20, 265);
+		//gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		//gridData.horizontalIndent = 5;
+		//mod.setLayoutData(gridData);
 		mod.setText("Modifier = ");
 		mod.pack();
 		
 		//Mod text box
 		modText = new Text(dieWin, SWT.BORDER);
 		modText.setText("0");
-		modText.setBounds(145,263,30,30);
+		modText.setBounds(160,263,30,30);
 		modText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				Text text = (Text) e.widget;
@@ -171,7 +180,7 @@ public class DieWindow {
 		
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		total.setLocation(138, 308);
+		total.setLocation(160, 308);//138
 		total.setSize(45, 30);
 		total.setText("0");
 		Font font5 = new Font(display, new FontData("Arial", 16,
