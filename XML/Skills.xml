@@ -512,11 +512,6 @@
 		<CHECK>
 			You can impress audiences with your talent and skill.
 		</CHECK>
-	</SKILL>
-	<SKILL>
-		<NAME>
-			A masterwork musical instrument gives you a +2 circumstance bonus on Perform checks that involve its use.
-		</NAME>
 		<ACTION>
 			Varies. Trying to earn money by playing in public requires anywhere from an evening's work to a full day's performance. The bard's special Perform-based abilities are described in that class's description.
 		</ACTION>
