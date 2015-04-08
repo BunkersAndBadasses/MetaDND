@@ -9,8 +9,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import entity.*;
 import core.Character;
-
 
 public class Wiz7 {
 
@@ -85,7 +85,7 @@ public class Wiz7 {
 	public Composite getWiz7() { return wiz7; }
 
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		Wiz2.cancelClear();
 		Wiz3.cancelClear();

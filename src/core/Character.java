@@ -1,12 +1,6 @@
 package core;
-import entity.*;
-
 import java.util.ArrayList;
-
-import entity.ArmorEntity;
-import entity.ItemEntity;
-import entity.WeaponEntity;
-
+import entity.*;
 
 public class Character {
 	
@@ -35,11 +29,12 @@ public class Character {
 	private String charRace;				// ^^ ditto for Race
 	private String charSecClass;
 	private String alignment;
+	private String deity;
 	private int size; // TODO int? string?
-	private int age; 
+	private String age; 
 	private String gender;
-	private int height;
-	private int weight;
+	private String height;
+	private String weight;
 	private String eyes;
 	private String hair;
 	private String skin;
@@ -49,7 +44,7 @@ public class Character {
 	private int hp; // hitpoints
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
-	private ArrayList<String> languages;
+	private String languages;
 	private ArrayList<FeatEntity> feats;
 	private ArrayList<Ability> abilities;
 	private ArrayList<SpellEntity> spells;
@@ -63,6 +58,7 @@ public class Character {
 	
 	public Character() {}
 	
+	public String getName() { return name; }
 	public void setName(String n) { name = n; }
 	public void setLevel(int l) { level = l; }
 	public void setExp(int exp) { this.exp = exp; }
@@ -74,11 +70,12 @@ public class Character {
 	public void setCharRace(String r) { charRace = r; }
 	public String getCharRace() { return charRace; }
 	public void setAlignment(String a) { alignment = a; }
+	public void setDeity(String d) { deity = d; }
 	public void setSize(int s) { size = s; }
-	public void setAge(int a) { age = a; }
+	public void setAge(String a) { age = a; }
 	public void setGender(String g) { gender = g; }
-	public void setHeight(int h) { height = h; }
-	public void setWeight(int w) { weight = w; }
+	public void setHeight(String h) { height = h; }
+	public void setWeight(String w) { weight = w; }
 	public void setAppearance(String eyes, String hair, String skin) {
 		this.eyes = eyes;
 		this.hair = hair;
@@ -100,7 +97,8 @@ public class Character {
 	public void resetRemainingHitPoints() { remainingHP = hp; }
 	public void setSkills(ArrayList<CharSkill> s) { skillsList = s; }
 	public void setRank(SkillEntity skill, int rank) {} //TODO
-	public void addLanguage(String l) { languages.add(l); }
+	public void setLanguages(String l) { languages = l; }
+	public void addLanguage(String l) { languages += ", " + l; }
 	public void addFeat(FeatEntity f) { feats.add(f); }
 	public void addSpecialAbility(Ability a) { abilities.add(a); }
 	public void addSpell(SpellEntity s) { spells.add(s); }

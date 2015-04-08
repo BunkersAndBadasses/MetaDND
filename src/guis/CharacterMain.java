@@ -14,9 +14,11 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 
 
@@ -57,6 +59,7 @@ public class CharacterMain {
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		background = new Color(display, 255, 222, 173);
+		
 
 
 		new MenuBar(shell); //Add menu bar to windows like this

@@ -10,8 +10,6 @@
 		<ALIGNMENTRESTRICTIONS>
 			Any nonlawful
 		</ALIGNMENTRESTRICTIONS>
-		<BONUSLANGUAGE>
-		</BONUSLANGUAGE>
 		<HITDIE>
 			d12.
 		</HITDIE>
@@ -30,10 +28,6 @@
 		<SPECIAL>
 			Fast movement, illiteracy, rage 1/day; Uncanny dodge; Trap sense +1; Rage 2/day; Improved uncanny dodge; Trap sense +2; Damage reduction 1/-; Rage 3/day; Trap sense +3; Damage reduction 2/-; Greater rage; Rage 4/day, trap sense +4; Damage reduction 3/-; Indomitable will; Trap sense +5; Damage reduction 4/-, rage 5/day; Tireless rage; Trap sense +6; Damage reduction 5/-; Mighty rage, rage 6/day; 
 		</SPECIAL>
-		<SPELLSPERDAY>
-		</SPELLSPERDAY>
-		<SPELLSKNOWN>
-		</SPELLSKNOWN>
 		<CLASSSKILLS>
 			The barbarian's class skills (and the key ability for each skill) are Climb (Str), Craft (Int), Handle Animal (Cha), Intimidate (Cha), Jump (Str), Listen (Wis), Ride (Dex), Survival (Wis), and Swim (Str).
 		</CLASSSKILLS>
@@ -43,8 +37,6 @@
 		<SKILLPOINTS>
 			4 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the barbarian.
 			Weapon and Armor Proficiency: A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).
@@ -62,12 +54,6 @@
 			Tireless Rage (Ex): At 17th level and higher, a barbarian no longer becomes fatigued at the end of his rage.
 			Mighty Rage (Ex): At 20th level, a barbarian's bonuses to Strength and Constitution during his rage each increase to +8, and his morale bonus on Will saves increases to +4. The penalty to AC remains at -2.
 		</CLASSABILITIES>
-		<DRUIDCOMPANION>
-		</DRUIDCOMPANION>
-		<PALADINMOUNT>
-		</PALADINMOUNT>
-		<WIZARDFAMILIAR>
-		</WIZARDFAMILIAR>
 		<EXCLASS>
 			A barbarian who becomes lawful loses the ability to rage and cannot gain more levels as a barbarian. He retains all the other benefits of the class (damage reduction, fast movement, trap sense, and uncanny dodge).
 		</EXCLASS>
