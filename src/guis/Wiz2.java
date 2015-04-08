@@ -11,7 +11,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import entity.*;
 import core.Character;
+
 /* TODO
  * 
  * add get from references
@@ -173,7 +175,7 @@ public class Wiz2 {
 
 
 		// search buttons - searches references using selection in drop down 
-		Button raceSearchButton = CharacterWizard.createSearchButton(wiz2);
+		Button raceSearchButton = createSearchButton(wiz2);
 		raceSearchButton.setLocation(106, HEIGHT/2 - 30);
 		raceSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -187,7 +189,7 @@ public class Wiz2 {
 			}
 		});
 
-		Button classSearchButton = CharacterWizard.createSearchButton(wiz2);
+		Button classSearchButton = createSearchButton(wiz2);
 		classSearchButton.setLocation(WIDTH/2 - 58, HEIGHT/2 - 30);
 		classSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -201,7 +203,7 @@ public class Wiz2 {
 			}
 		});
 
-		Button secClassSearchButton = CharacterWizard.createSearchButton(wiz2);
+		Button secClassSearchButton = createSearchButton(wiz2);
 		secClassSearchButton.setLocation(WIDTH - 213, HEIGHT/2 - 30);
 		secClassSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -217,7 +219,7 @@ public class Wiz2 {
 
 
 		// add custom buttons - launches respective wizard to add new item
-		Button raceAddCustomButton = CharacterWizard.createAddCustomButton(wiz2);
+		Button raceAddCustomButton = createAddCustomButton(wiz2);
 		raceAddCustomButton.setLocation(97, HEIGHT/2 + 20);
 		raceAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -225,7 +227,7 @@ public class Wiz2 {
 			}
 		});
 
-		Button classAddCustomButton = CharacterWizard.createAddCustomButton(wiz2);
+		Button classAddCustomButton = createAddCustomButton(wiz2);
 		classAddCustomButton.setLocation(WIDTH/2 - 67, HEIGHT/2 + 20);
 		classAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -233,7 +235,7 @@ public class Wiz2 {
 			}
 		});
 
-		Button secClassAddCustomButton = CharacterWizard.createAddCustomButton(wiz2);
+		Button secClassAddCustomButton = createAddCustomButton(wiz2);
 		secClassAddCustomButton.setLocation(WIDTH - 222, HEIGHT/2 + 20);
 		secClassAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -278,10 +280,10 @@ public class Wiz2 {
 				
 				// if all goes well, save race/class
 
-				CharacterWizard.character.setCharRace(charRace);
-				CharacterWizard.character.setCharClass(charClass);
+				CharacterWizard.getCharacter().setCharRace(charRace);
+				CharacterWizard.getCharacter().setCharClass(charClass);
 				if (charSecClass.length() != 0)
-					CharacterWizard.character.setCharSecClass(charSecClass);
+					CharacterWizard.getCharacter().setCharSecClass(charSecClass);
 				Wiz3.updateCharRace();
 				Wiz3.updateCharClass();
 				Wiz3.updateCharSecClass();
@@ -315,9 +317,31 @@ public class Wiz2 {
 			}
 		});
 	}
+	/**
+	 * creates a 'search' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Search"
+	 * @return
+	 */
+	private static Button createSearchButton(Composite c) {
+		Button searchButton = new Button(c, SWT.PUSH);
+		searchButton.setText("Search");
+		searchButton.setSize(80,30);
+		return searchButton;
+	}
 
-	public static String getCharRace() { return charRace; }
-	public static String getCharClass() { return charClass; }
+	/**
+	 * creates a 'add custom' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Add Custom"
+	 * @return
+	 */
+	private static Button createAddCustomButton(Composite c) {
+		Button addCustomButton = new Button(c, SWT.PUSH);
+		addCustomButton.setText("Add Custom");
+		addCustomButton.setSize(100,30);
+		return addCustomButton;
+	}
 
 	public Composite getWiz2() { return wiz2; }
 
@@ -330,7 +354,7 @@ public class Wiz2 {
 	}
 
 	public static void cancelClear() {
-		CharacterWizard.character = new Character();
+		CharacterWizard.reset();
 		Wiz1.cancelClear();
 		raceDropDown.deselectAll();
 		classDropDown.deselectAll();
