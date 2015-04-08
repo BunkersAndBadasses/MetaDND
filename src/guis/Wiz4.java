@@ -12,7 +12,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import core.Character;
-
+import core.CharSkill;
+import entity.*;
 
 public class Wiz4 {
 
@@ -117,12 +118,12 @@ public class Wiz4 {
 		untrainedLabel.pack();
 
 		// TODO get skills 
-		Skill[] tempSkills =
-			{new Skill("skill1", "blah", 0, true), new Skill("skill2", "blah", 1, true), 
+		SkillEntity[] tempSkills =
+			{/*new Skill("skill1", "blah", 0, true), new Skill("skill2", "blah", 1, true), 
 				new Skill("skill3", "blah", 2, true), new Skill("skill4", "blah", 3, true), 
 				new Skill("skill5", "blah", 4, false), new Skill("skill6", "blah", 5, false), 
 				new Skill("skill7", "blah", 0, true), new Skill("skill8", "blah", 3, false), 
-				new Skill("skill9", "blah", 2, false), new Skill("skill10", "blah", 5, true)};
+				new Skill("skill9", "blah", 2, false), new Skill("skill10", "blah", 5, true)*/};
 
 		for (int i = 0; i < tempSkills.length; i++) {
 			charSkills.add(new CharSkill(tempSkills[i], CharacterWizard.character));
@@ -142,11 +143,10 @@ public class Wiz4 {
 			final CharSkill current = charSkills.get(i);
 			final int abilityMod = current.getAbilityMod();
 			final int miscMod = current.getMiscMod();
-			final String untrained;
-			if (current.getSkill().canUseUntrained())
-				untrained = "■";
-			else 
-				untrained = "    ";
+			final String untrained = "    ";
+			//TODO
+//			if (current.getSkill().canUseUntrained())
+//				untrained = "■";
 			skillName.setText(untrained + current.getSkill().getName() + " (" 
 					+ current.getAbilityType() + ") = " + abilityMod + " + " 
 					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());
