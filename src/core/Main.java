@@ -12,7 +12,10 @@ public class Main {
 	public static void main(String[] args) {
 		gameState = new GameState();
 		xmlLoader xmls = new xmlLoader("xmlTestThread");
+		SearchThread st1 = new SearchThread("Spells");
 		xmls.start();
+		
+		
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setBounds(0,0,500,500);
@@ -43,12 +46,14 @@ public class Main {
 //		helloWorldTest.pack();
         Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		shell.open();
+		st1.start(Main.gameState.spells);
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
 		}
 		display.dispose();
 		shell.dispose();
+		
 		System.out.println("Exiting");
 		System.exit(0);
 	}
