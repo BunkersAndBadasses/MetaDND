@@ -18,6 +18,7 @@ import core.character;
  * save character? 
  * launch wizards (add custom)
  * add search pop-up ("Coming soon!")
+ * check feat prerequisites
  */
 
 /*

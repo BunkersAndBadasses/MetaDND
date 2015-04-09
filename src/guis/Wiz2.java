@@ -1,5 +1,7 @@
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -11,7 +13,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+
+import core.GameState;
+import core.Main;
 import core.character;
+import entity.ClassEntity;
+import entity.DNDEntity;
+import entity.FeatEntity;
+import entity.RaceEntity;
 
 /* TODO
  * 
@@ -39,9 +48,7 @@ public class Wiz2 {
 	private static Composite nextPage;
 	private int wizPagesSize;
 
-	private static String charRace = "";
-	private static String charClass = "";
-	private static String charSecClass = "";
+	private GameState gs = Main.gameState;
 	private static Label badRaceSelect;
 	private static Label badClassSelect;
 	private static Label badSearch;
@@ -97,19 +104,34 @@ public class Wiz2 {
 		secClassLabel.setLocation(WIDTH-230,150);
 		secClassLabel.pack();
 
-
+		// get races from references
+		Collection<DNDEntity> racesCol =  gs.races.values();
+		Iterator<DNDEntity> itr = racesCol.iterator();
+		ArrayList<RaceEntity> races = new ArrayList<RaceEntity>();
+		while (itr.hasNext()) {
+			races.add((RaceEntity) itr.next());
+		}
+		
+		// get classes from references
+		Collection<DNDEntity> classesCol =  gs.classes.values();
+		Iterator<DNDEntity> itr2 = classesCol.iterator();
+		ArrayList<ClassEntity> classes = new ArrayList<ClassEntity>();
+		while (itr2.hasNext()) {
+			classes.add((ClassEntity) itr2.next());
+		}
+		
+		
 		// drop down menus for race, class, and secondary class
 		// race drop down menu
 		raceDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
 		// TODO add from references instead
-		for (int i = 0; i < races.length; i++) {
-			raceDropDown.add(races[i]);
+		for (int i = 0; i < races.size(); i++) {
+			raceDropDown.add(races.get(i).getName());
 		}
 		raceDropDown.setLocation(100,HEIGHT/2 - 75);
 		raceDropDown.addListener(SWT.Selection, new Listener () {
 			public void handleEvent(Event event) {
 				int index = raceDropDown.getSelectionIndex();
-				charRace = races[index];
 			}
 		});
 		raceDropDown.pack();
@@ -117,14 +139,13 @@ public class Wiz2 {
 		// class drop down menu
 		classDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
 		// TODO add from references instead
-		for (int i = 0; i < classes.length; i++) {
-			classDropDown.add(classes[i]);
+		for (int i = 0; i < classes.size(); i++) {
+			classDropDown.add(classes.get(i).getName());
 		}
 		classDropDown.setLocation(WIDTH/2 - 70,HEIGHT/2 - 75);
 		classDropDown.addListener(SWT.Selection, new Listener () {
 			public void handleEvent(Event event) {
 				int index = classDropDown.getSelectionIndex();
-				charClass = classes[index];
 				secClassDropDown.deselect(index + 1);
 			}
 		});
@@ -134,8 +155,8 @@ public class Wiz2 {
 		secClassDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
 		// TODO add from references instead
 		secClassDropDown.add("");
-		for (int i = 0; i < classes.length; i++) {
-			secClassDropDown.add(classes[i]);
+		for (int i = 0; i < classes.size(); i++) {
+			secClassDropDown.add(classes.get(i).getName());
 		}
 		secClassDropDown.setLocation(WIDTH-225,HEIGHT/2 - 75);
 		secClassDropDown.addListener(SWT.Selection, new Listener () {
@@ -143,7 +164,6 @@ public class Wiz2 {
 				int index = secClassDropDown.getSelectionIndex();
 				if (index == 0)
 					return;
-				charSecClass = classes[index - 1];
 				classDropDown.deselect(index - 1);
 			}
 		});
@@ -248,27 +268,40 @@ public class Wiz2 {
 		wiz2NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				badSearch.setVisible(false);
-//TODO
-//				// error checking
-//				boolean error = false;
-//				badRaceSelect.setVisible(false);	// clear any past errors
-//				// check if user selected a race
-//
-//				if (charRace.length() == 0) {
-//					badRaceSelect.setVisible(true);
-//					error = true;
-//				}
-//
-//				badClassSelect.setVisible(false);	// clear any past errors
-//				// check if user selected a class
-//				if (charClass.length() == 0) {
-//					badClassSelect.setVisible(true);
-//					error = true;					
-//				}
-//
-//				// user cannot move on with an error
-//				if (error) return;
 
+				// error checking
+				boolean error = false;
+				badRaceSelect.setVisible(false);	// clear any past errors
+				// check if user selected a race
+
+				if (raceDropDown.getSelectionIndex() == -1) {
+					badRaceSelect.setVisible(true);
+					error = true;
+				}
+
+				badClassSelect.setVisible(false);	// clear any past errors
+				// check if user selected a class
+				if (classDropDown.getSelectionIndex() == -1) {
+					badClassSelect.setVisible(true);
+					error = true;					
+				}
+
+				// user cannot move on with an error
+				if (error) return;
+
+				// if all goes well, save race/class
+				CharacterWizard.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
+				System.out.println(CharacterWizard.getCharacter().getCharRace().getName()); //TODO
+				CharacterWizard.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
+				int secClassIndex = secClassDropDown.getSelectionIndex();
+				if (secClassIndex < 1)
+					CharacterWizard.getCharacter().setCharSecClass(null);
+				else 
+					CharacterWizard.getCharacter().setCharSecClass(classes.get(secClassIndex));
+//				Wiz3.updateCharRace();
+//				Wiz3.updateCharClass();
+//				Wiz3.updateCharSecClass();
+				
 				// change to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
@@ -276,17 +309,6 @@ public class Wiz2 {
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
-				
-				// if all goes well, save race/class
-
-				CharacterWizard.getCharacter().setCharRace(charRace);
-				CharacterWizard.getCharacter().setCharClass(charClass);
-				if (charSecClass.length() != 0)
-					CharacterWizard.getCharacter().setCharSecClass(charSecClass);
-				Wiz3.updateCharRace();
-				Wiz3.updateCharClass();
-				Wiz3.updateCharSecClass();
-
 
 				// clear any past error messages
 				badRaceSelect.setVisible(false);
@@ -358,9 +380,6 @@ public class Wiz2 {
 		raceDropDown.deselectAll();
 		classDropDown.deselectAll();
 		secClassDropDown.deselectAll();
-		charRace = "";
-		charClass = "";
-		charSecClass = "";
 		badRaceSelect.setVisible(false);
 		badClassSelect.setVisible(false);
 		badSearch.setVisible(false);

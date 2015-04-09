@@ -25,9 +25,9 @@ public class character {
 	private String name;
 	private int level = 1;
 	private int exp = 0;
-	private String charClass;		// change to type Class once refs are added
-	private String charRace;				// ^^ ditto for Race
-	private String charSecClass;
+	private ClassEntity charClass;		// change to type Class once refs are added
+	private RaceEntity charRace;				// ^^ ditto for Race
+	private ClassEntity charSecClass;
 	private String alignment;
 	private String deity;
 	private int size; // TODO int? string?
@@ -45,6 +45,7 @@ public class character {
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
 	private String languages;
+	private int gold;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
@@ -63,12 +64,12 @@ public class character {
 	public void setLevel(int l) { level = l; }
 	public void setExp(int exp) { this.exp = exp; }
 	public void incExp(int exp) { this.exp += exp; }
-	public void setCharClass(String c) { charClass = c; }
-	public String getCharClass() { return charClass; }
-	public void setCharSecClass(String c) { charSecClass = c; }
-	public String getCharSecClass() { return charSecClass; }
-	public void setCharRace(String r) { charRace = r; }
-	public String getCharRace() { return charRace; }
+	public void setCharClass(ClassEntity c) { charClass = c; }
+	public ClassEntity getCharClass() { return charClass; }
+	public void setCharSecClass(ClassEntity c) { charSecClass = c; }
+	public ClassEntity getCharSecClass() { return charSecClass; }
+	public void setCharRace(RaceEntity r) { charRace = r; }
+	public RaceEntity getCharRace() { return charRace; }
 	public void setAlignment(String a) { alignment = a; }
 	public void setDeity(String d) { deity = d; }
 	public void setSize(int s) { size = s; }
@@ -99,6 +100,8 @@ public class character {
 	public void setRank(SkillEntity skill, int rank) {} //TODO
 	public void setLanguages(String l) { languages = l; }
 	public void addLanguage(String l) { languages += ", " + l; }
+	public void setGold(int g) { gold = g; }
+	public int getgold() { return gold; }
 	public void addFeat(FeatEntity f) { feats.add(f); }
 	public void addSpecialAbility(AbilityEntity a) { abilities.add(a); }
 	public void addSpell(SpellEntity s) { spells.add(s); }

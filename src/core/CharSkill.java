@@ -16,7 +16,7 @@ public class CharSkill {
 	public CharSkill(SkillEntity s, character c) {
 		skill = s;
 		character = c;
-		String charClass = character.getCharClass(); // TODO
+		String charClass = character.getCharClass().getName();
 		classSkill = SkillInfo.isClassSkill(charClass, skill.getName());
 		abilityType = skill.skillParentAttribute;
 		abilityMod = setAbilityMod(); 
@@ -30,22 +30,22 @@ public class CharSkill {
 		int base;
 		switch(skill.skillParentAttribute) {
 		case ("STR"):
-			base = character.getAbilityScores()[character.STRENGTH];
+			base = character.getAbilityScores()[core.character.STRENGTH];
 		break;
 		case ("DEX"):
-			base = character.getAbilityScores()[character.DEXTERITY];
+			base = character.getAbilityScores()[core.character.DEXTERITY];
 		break;
 		case ("CON"):
-			base = character.getAbilityScores()[character.CONSTITUTION];
+			base = character.getAbilityScores()[core.character.CONSTITUTION];
 		break;
 		case ("INT"):
-			base = character.getAbilityScores()[character.INTELLIGENCE];
+			base = character.getAbilityScores()[core.character.INTELLIGENCE];
 		break;
 		case ("WIS"):
-			base = character.getAbilityScores()[character.WISDOM];
+			base = character.getAbilityScores()[core.character.WISDOM];
 		break;
 		default: // CHA
-			base = character.getAbilityScores()[character.CHARISMA];
+			base = character.getAbilityScores()[core.character.CHARISMA];
 		break;
 		}
 		return (base - 8) / 2;
@@ -56,7 +56,7 @@ public class CharSkill {
 	public int getRank() { return rank; }
 	
 	public boolean incRank() {
-		if ((classSkill && rank ==4) || (!classSkill && rank == 2)) // TODO check this - max 2 ranks for cross-class skills???
+		if ((classSkill && rank ==4) || (!classSkill && rank == 2))
 			return false;
 		if(!classSkill){
 			if (!halfPoint) {

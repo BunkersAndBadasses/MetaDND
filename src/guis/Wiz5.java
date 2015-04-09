@@ -100,7 +100,6 @@ public class Wiz5 {
 		
 		// grid layout for both available and selected feat lists
 		FillLayout featLayout = new FillLayout();
-//		featLayout.numColumns = 1;
 		
 		// create scrollable list of feats
 		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
@@ -156,6 +155,7 @@ public class Wiz5 {
 				}
 				if (error)
 					return;
+				// TODO check prerequisites
 				charFeatsList.add(featsList.getItem(index));
 				charFeats.add(feats.get(index));
 				numFeats--;

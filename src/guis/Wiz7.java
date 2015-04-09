@@ -1,15 +1,26 @@
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Random;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
+
 import entity.*;
+import core.GameState;
+import core.Main;
 import core.character;
 
 public class Wiz7 {
@@ -27,6 +38,12 @@ public class Wiz7 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
+	
+	private Text goldText;
+	private String charRace;
+	private String charClass;
+	private final static Random rng = new Random();
+	private GameState gs = Main.gameState;
 
 	public Wiz7(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
@@ -45,6 +62,8 @@ public class Wiz7 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(7);
 		this.wizPagesSize = wizPages.size();
+		charRace = CharacterWizard.getCharacter().getCharRace().getName();
+		charClass = CharacterWizard.getCharacter().getCharClass().getName();
 
 		createPageContent();
 	}
@@ -54,9 +73,103 @@ public class Wiz7 {
 		wiz7Label.setText("Choose Equipment");
 		wiz7Label.pack();
 
+		Label goldLabel = new Label(wiz7, SWT.NONE);
+		goldLabel.setText("Starting Gold:");
+		goldLabel.setLocation(10, 50);
+		goldLabel.pack();
+		
+		goldText = new Text(wiz7, SWT.BORDER);
+		goldText.setText("0");
+		goldText.setBounds(120, 45, 80, 30);
+		goldText.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				Text text = (Text) event.widget;
+				text.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
+		
+		
+		Button randomGold = new Button(wiz7, SWT.PUSH);
+		randomGold.setText("Random");
+		randomGold.setLocation(210, 45);
+		randomGold.pack();
+		randomGold.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int min = 75;
+				int max = 150;
+				int gold = rng.nextInt(max - min) + min + 1;
+				goldText.setText(Integer.toString(gold));
+				goldText.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
+		
+		
+		// get feats from references
+		Collection<DNDEntity> itemsCol =  gs.items.values();
+		Iterator<DNDEntity> itr = itemsCol.iterator();
+		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
+		ArrayList<ItemEntity> charItems = new ArrayList<ItemEntity>();
+		while (itr.hasNext()) {
+			items.add((ItemEntity) itr.next());
+		}
+		
+		// layout for scrolling item list
+		FillLayout itemLayout = new FillLayout();
+		
+		// create scrollable list of items
+		final ScrolledComposite itemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
+		itemScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
+	    itemScroll.setExpandHorizontal(true);
+	    itemScroll.setExpandVertical(true);
+	    itemScroll.setMinWidth(WIDTH);
+		final Composite itemListScreen = new Composite(itemScroll, SWT.NONE);
+		itemScroll.setContent(itemListScreen);
+		itemListScreen.setSize(itemListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		itemListScreen.setLayout(itemLayout);
+		
+		// create scrollable list of selected items
+		final ScrolledComposite charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
+		charItemScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
+	    charItemScroll.setExpandHorizontal(true);
+	    charItemScroll.setExpandVertical(true);
+	    charItemScroll.setMinWidth(WIDTH);
+		final Composite charItemScreen = new Composite (charItemScroll, SWT.BORDER);
+		charItemScroll.setContent(charItemScreen);
+		charItemScreen.setSize(charItemScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		charItemScreen.setLayout(itemLayout);
+
+		
+		// available items list
+		List itemsList = new List(itemListScreen, SWT.NONE);
+		for (int i = 0; i < items.size(); i++) {
+			itemsList.add(items.get(i).getName());
+		}
+		itemsList.pack();
+		itemScroll.setMinHeight(itemsList.getBounds().height);
+	    
+		// selected items list
+		List charItesmList = new List(charItemScreen, SWT.NONE);
+		charItesmList.pack();
+		
+		
 		Button wiz7NextButton = CharacterWizard.createNextButton(wiz7);
 		wiz7NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				boolean error = false;
+				int gold = 0;
+				try {
+					gold = Integer.parseInt(goldText.getText());
+					if (gold < 0) 
+						throw new Exception();
+				} catch (Exception e) {
+					goldText.setBackground(new Color(dev, 255, 100, 100));
+					error = true;
+				}
+				
+				if (error)
+					return;
+				
+				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
 				if (!CharacterWizard.wizPageCreated[7])

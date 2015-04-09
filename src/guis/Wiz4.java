@@ -12,8 +12,6 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -82,7 +80,7 @@ public class Wiz4 {
 
 
 		// set number of skill points
-		charClass = CharacterWizard.getCharacter().getCharClass();
+		charClass = CharacterWizard.getCharacter().getCharClass().getName();
 		int classPoints;
 		switch(charClass) {
 		case ("Cleric") :
@@ -105,7 +103,7 @@ public class Wiz4 {
 			classPoints = 8;
 			break;	
 		}
-		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE]) - 8)/2; // TODO check this logic
+		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[core.character.INTELLIGENCE]) - 8)/2; // TODO check this logic
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;
@@ -192,7 +190,6 @@ public class Wiz4 {
 			GridData incGD = new GridData(SWT.LEFT);
 			incGD.widthHint = 30;
 			inc.setLayoutData(incGD);
-			inc.setSize(30, inc.getSize().y);
 			Button dec = new Button(skillsScreen, SWT.PUSH);
 			dec.setText("-");
 			GridData decGD = new GridData(SWT.LEFT);
@@ -216,7 +213,7 @@ public class Wiz4 {
 			if (current.useUntrained())
 				untrained = Character.toString ((char) 8226);
 			else 
-				untrained = "    ";
+				untrained = "  ";
 			skillName.setText(untrained + current.getSkill().getName() + " (" 
 					+ current.getAbilityType() + ")" + acPen + " = " + abilityMod + " + " 
 					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());

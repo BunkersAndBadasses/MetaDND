@@ -13,7 +13,10 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+
 import core.character;
+import entity.ClassEntity;
+import entity.RaceEntity;
 
 public class Wiz3 {
 
@@ -41,9 +44,9 @@ public class Wiz3 {
 	private int[] abilityScoresBefore;
 	private int[] abilityScoresAfter = new int[6];
 	private static Label errorLabel;
-	private static String charRace;
-	private static String charClass;
-	private static String charSecClass;
+	private static RaceEntity charRace;
+	private static ClassEntity charClass;
+	private static ClassEntity charSecClass;
 	private static Label choiceLabel2;
 
 	public Wiz3(Device dev, int WIDTH, int HEIGHT, final character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
@@ -82,7 +85,7 @@ public class Wiz3 {
 		choiceLabel1.pack();
 		
 
-		choiceLabel2.setText(charRace + " " + charClass);
+		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		choiceLabel2.setFont(new Font(dev, new FontData("Arial", 18,
 				SWT.BOLD)));
 		choiceLabel2.setBounds(100, 70, 200, 50);
@@ -378,24 +381,28 @@ public class Wiz3 {
 	
 	public static void updateCharRace() {
 		charRace = CharacterWizard.getCharacter().getCharRace();
-		choiceLabel2.setText(charRace + " " + charClass);
+		System.out.println(CharacterWizard.getCharacter().getCharRace().getName()); //TODO
+		System.out.println(charRace.getName()); //TODO
+
+		String text = charRace.getName() + " " + charClass.getName();
+		choiceLabel2.setText(text);
 		choiceLabel2.pack();
 	}
 	
 	public static void updateCharClass() {
 		charClass = CharacterWizard.getCharacter().getCharClass();
-		choiceLabel2.setText(charRace + " " + charClass);
+		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		choiceLabel2.pack();
 	}
 	
 	public static void updateCharSecClass() {
 		charSecClass = CharacterWizard.getCharacter().getCharSecClass();
 		if (charSecClass == null)
-			choiceLabel2.setText(charRace + " " + charClass);
+			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		else if (charSecClass.equals(""))
-			choiceLabel2.setText(charRace + " " + charClass);
+			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		else
-			choiceLabel2.setText(charRace + " " + charClass + "-" + charSecClass);
+			choiceLabel2.setText(charRace.getName() + " " + charClass.getName() + "-" + charSecClass.getName());
 		choiceLabel2.pack();
 	}
 

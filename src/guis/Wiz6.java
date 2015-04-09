@@ -84,8 +84,8 @@ public class Wiz6 {
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
 		
-		charClass = CharacterWizard.getCharacter().getCharClass();
-		charRace = CharacterWizard.getCharacter().getCharRace();
+		charClass = CharacterWizard.getCharacter().getCharClass().getName();
+		charRace = CharacterWizard.getCharacter().getCharRace().getName();
 
 		createPageContent();
 	}
@@ -418,7 +418,6 @@ public class Wiz6 {
 		
 
 		String langList = "Common";
-		String charRace = CharacterWizard.getCharacter().getCharRace();
 		switch(charRace) {
 		case ("Dwarf"):
 			langList += ", Dwarven";
