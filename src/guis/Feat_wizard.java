@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Button;
@@ -45,7 +44,7 @@ public class Feat_wizard
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Create a new Feat");
+		shell.setText("Create new Feat");
 		shell.setSize(WIDTH,HEIGHT);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();

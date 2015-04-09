@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 import entity.*;
-import core.Character;
+import core.character;
 
 public class Wiz6 {
 
@@ -24,7 +24,7 @@ public class Wiz6 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -54,7 +54,7 @@ public class Wiz6 {
 							+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 							+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private static int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[Character.INTELLIGENCE] - 8 ) /2;
+	private static int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE] - 8 ) /2;
 	
 	private static Random rng = new Random();
 	
@@ -66,7 +66,7 @@ public class Wiz6 {
 
 	
 
-	public Wiz6(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz6(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -166,15 +166,14 @@ public class Wiz6 {
 		deity.pack();
 		
 		deityListInput = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
-		deityListInput.setLocation(85, 150);
+		deityListInput.setBounds(85, 150, 310, 30);
 		deityListInput.add("");
 		for (int i = 0; i < deities.length; i++) {
 			deityListInput.add(deities[i]);
 		}
-		deityListInput.pack();
 		
 		deityInput = new Text(wiz6, SWT.BORDER);
-		deityInput.setBounds(405, 148, 180, 30);
+		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
 		deityInput.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
@@ -207,7 +206,7 @@ public class Wiz6 {
 		heightInput.pack();
 		
 		Button heightRandom = new Button(wiz6, SWT.PUSH);
-		heightRandom.setLocation(160, 198);
+		heightRandom.setLocation(165, 200);
 		heightRandom.setText("Random Height");
 		heightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -276,7 +275,7 @@ public class Wiz6 {
 		weightInput.pack();
 		
 		Button weightRandom = new Button(wiz6, SWT.PUSH);
-		weightRandom.setLocation(160, 248);
+		weightRandom.setLocation(165, 250);
 		weightRandom.setText("Random Weight");
 		weightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -327,6 +326,7 @@ public class Wiz6 {
 			}
 		});
 		weightRandom.pack();
+		
 		
 		// age
 		Label age = new Label(wiz6, SWT.NONE);

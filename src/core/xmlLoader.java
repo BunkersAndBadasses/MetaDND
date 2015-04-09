@@ -35,7 +35,7 @@ public class xmlLoader implements Runnable{
 		// Load the input XML document, parse it and return an instance of the
 		// Document class.
 		ArrayList<File> xmls = new ArrayList<File>();
-		Files.walk(Paths.get(".\\XML")).forEach(filePath ->{
+		Files.walk(Paths.get("./XML")).forEach(filePath ->{
 			if(filePath.getFileName().toString().contains(".xml")){
 				if (Files.isRegularFile(filePath)) {
 					xmls.add(filePath.toFile());	
@@ -73,6 +73,8 @@ public class xmlLoader implements Runnable{
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity testFeat = new FeatEntity(entity);
 					Main.gameState.feats.put(testFeat.getName(), testFeat);
+//					if(testFeat.getName().equalsIgnoreCase("track"))
+//					testFeat.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity testSkill = new SkillEntity(entity);

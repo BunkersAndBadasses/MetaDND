@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import entity.*;
-import core.Character;
+import core.character;
 
 public class Wiz7 {
 
@@ -18,7 +18,7 @@ public class Wiz7 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -28,7 +28,7 @@ public class Wiz7 {
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	public Wiz7(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz7(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {

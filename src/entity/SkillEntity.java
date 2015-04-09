@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class SkillEntity extends DNDEntity{
 
+	public String skillParentAttribute;
 	String check;
 	String special;
 	String tryagain;
@@ -12,6 +13,7 @@ public class SkillEntity extends DNDEntity{
 	String synergy;
 	String restriction;
 	String untrained;
+	public boolean armorCheckPenalty;
 
 	public SkillEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.SKILL;
@@ -21,7 +23,11 @@ public class SkillEntity extends DNDEntity{
 			String value = entry.getValue();
 			switch(field){
 			case "NAME":
-				String temp = new String(value.split("\\(")[0].trim());
+				String[] splits = value.split("\\(");
+				String temp = splits[0].trim();
+				String temp2 = splits[1].substring(0, 3);
+				this.armorCheckPenalty = splits[1].contains("ARMOR CHECK PENALTY");
+				this.skillParentAttribute = temp2;
 		    	this.name = temp;
 		    	break;
 			case "CHECK":
@@ -53,6 +59,12 @@ public class SkillEntity extends DNDEntity{
 			}
 
 		}
+	}
+
+	@Override
+	public void search(String searchString) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

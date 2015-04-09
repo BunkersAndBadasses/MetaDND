@@ -2,14 +2,29 @@ package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
-import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
-import java.util.Random;
-import core.Character;
+import core.character;
+
+
+
+/*
+ * TODO: 
+ * 
+ * comment out sec class
+ * comment out back buttons
+ * fix modifier logic (not rounding up)
+ * add manual/random pages ("Coming soon!")
+ * save character? 
+ * launch wizards (add custom)
+ * add search pop-up ("Coming soon!")
+ */
+
 /*
  * iteration 2: 
  * 
+ * second class
+ * searching
  * back button
  * starting at level > 1
  * adding custom skills
@@ -18,7 +33,7 @@ import core.Character;
 public class CharacterWizard {
 
 	int pageNum = -1;
-
+ 
 	private static Device dev;
 	private static Display display;
 	private Shell shell;
@@ -32,7 +47,7 @@ public class CharacterWizard {
 
 	private static ArrayList<Composite> wizPages;
 
-	private static Character character;
+	private static character character;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -41,7 +56,7 @@ public class CharacterWizard {
 		shell = new Shell(d);
 		shell.setText("Create New Character");
 		shell.setSize(WIDTH, HEIGHT);
-		character = new Character();
+		character = new character();
 		wizPages = new ArrayList<Composite>();
 
 		createPageContent();
@@ -316,12 +331,12 @@ public class CharacterWizard {
 		return cancelButton;
 	}
 	
-	public static Character getCharacter() {
+	public static character getCharacter() {
 		return character;
 	}
 
 	public static void reset() {
-		character = new Character();
+		character = new character();
 		for (int i = 0; i < wizPageCreated.length; i++) {
 			wizPageCreated[i] = false;
 		}
@@ -329,7 +344,7 @@ public class CharacterWizard {
 
 	public static void main(String[] args) {
 		Display display = new Display();
-		CharacterWizard cw = new CharacterWizard(display);
+		new CharacterWizard(display);
 		display.dispose();
 	}
 

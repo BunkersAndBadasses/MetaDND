@@ -2,7 +2,7 @@ package core;
 import java.util.ArrayList;
 import entity.*;
 
-public class Character {
+public class character {
 	
 	public final static int STRENGTH = 0;
 	public final static int DEXTERITY = 1;
@@ -56,7 +56,7 @@ public class Character {
 	
 	
 	
-	public Character() {}
+	public character() {}
 	
 	public String getName() { return name; }
 	public void setName(String n) { name = n; }

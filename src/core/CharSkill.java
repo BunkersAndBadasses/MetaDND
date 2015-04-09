@@ -3,24 +3,52 @@ import entity.*;
 
 public class CharSkill {
 	private SkillEntity skill;
+	private character character;
 	private int rank = 0;
 	private String abilityType;
 	private int abilityMod;
 	private int miscMod = 0;
 	private boolean classSkill = false;
+	private boolean acPen;
+	private boolean untrained = false;
 	private boolean halfPoint = false;
 	
-	public CharSkill(SkillEntity s, Character c) {
-		// search skills for skill(name)
-		// set that this.skill = returned skill
-		// 
+	public CharSkill(SkillEntity s, character c) {
 		skill = s;
-		String charClass = c.getCharClass(); // TODO
-		classSkill = false; // TODO get info from class if this skill is a class skill
-		//TODO
-		//abilityType = Character.abilityScoreTypes[skill.getAbilityType()];
-		//abilityMod = ((c.getAbilityScores()[skill.getAbilityType()]) - 8) / 2; // TODO check this logic // TODO int rounding off
+		character = c;
+		String charClass = character.getCharClass(); // TODO
+		classSkill = SkillInfo.isClassSkill(charClass, skill.getName());
+		abilityType = skill.skillParentAttribute;
+		abilityMod = setAbilityMod(); 
 		// TODO set miscMod
+		acPen = skill.armorCheckPenalty;
+		untrained = SkillInfo.useUntrained(skill.getName());
+	}
+	
+	// TODO check this logic // TODO int rounding off
+	private int setAbilityMod() {
+		int base;
+		switch(skill.skillParentAttribute) {
+		case ("STR"):
+			base = character.getAbilityScores()[character.STRENGTH];
+		break;
+		case ("DEX"):
+			base = character.getAbilityScores()[character.DEXTERITY];
+		break;
+		case ("CON"):
+			base = character.getAbilityScores()[character.CONSTITUTION];
+		break;
+		case ("INT"):
+			base = character.getAbilityScores()[character.INTELLIGENCE];
+		break;
+		case ("WIS"):
+			base = character.getAbilityScores()[character.WISDOM];
+		break;
+		default: // CHA
+			base = character.getAbilityScores()[character.CHARISMA];
+		break;
+		}
+		return (base - 8) / 2;
 	}
 	
 	public SkillEntity getSkill() { return skill; }
@@ -65,4 +93,8 @@ public class CharSkill {
 	public int getTotal() { return rank + abilityMod + miscMod; }
 	
 	public boolean isClassSkill() { return classSkill; }
+	
+	public boolean hasACPen() { return acPen; }
+	
+	public boolean useUntrained() { return untrained; }
 }

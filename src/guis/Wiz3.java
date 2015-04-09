@@ -13,8 +13,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import entity.*;
-import core.Character;
+import core.character;
 
 public class Wiz3 {
 
@@ -22,7 +21,7 @@ public class Wiz3 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -47,7 +46,7 @@ public class Wiz3 {
 	private static String charSecClass;
 	private static Label choiceLabel2;
 
-	public Wiz3(Device dev, int WIDTH, int HEIGHT, final Character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
+	public Wiz3(Device dev, int WIDTH, int HEIGHT, final character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
 		Wiz3.dev = dev;
@@ -283,15 +282,12 @@ public class Wiz3 {
 		});
 		
 		
-		// TODO
-		// add additional ability points section - level/4 rounded down extra points
-		
 		// next button
 		Button wiz3NextButton = CharacterWizard.createNextButton(wiz3);
 		wiz3NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking - make sure each list has something selected
-				boolean error = false;
+//				boolean error = false;
 //				{
 //					String[] selection = strList.getSelection();
 //					if (selection.length == 0) {
@@ -342,14 +338,13 @@ public class Wiz3 {
 //				}
 //				
 //				if (error) return;
-//				
-//				// if all is good, save to character
-//				CharacterWizard.character.setAbilityScores(abilityScoresAfter[0], 
-//						abilityScoresAfter[1], abilityScoresAfter[2], 
-//						abilityScoresAfter[3], abilityScoresAfter[4], 
-//						abilityScoresAfter[5]);
-				// TODO uncomment when done testing
+				//TODO
 				
+				// if all is good, save to character
+				CharacterWizard.getCharacter().setAbilityScores(abilityScoresAfter[0], 
+						abilityScoresAfter[1], abilityScoresAfter[2], 
+						abilityScoresAfter[3], abilityScoresAfter[4], 
+						abilityScoresAfter[5]);				
 				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
