@@ -6,7 +6,6 @@ import java.util.Iterator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -118,7 +117,6 @@ public class Wiz5 {
 	    charFeatScreenScroll.setExpandVertical(true);
 	    charFeatScreenScroll.setMinSize(WIDTH, HEIGHT);
 		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
-		charFeatScreen.setBackground(new Color(dev, 255, 0, 0));
 		charFeatScreenScroll.setContent(charFeatScreen);
 		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		charFeatScreen.setLayout(featLayout);
@@ -131,14 +129,13 @@ public class Wiz5 {
 		List featsList = new List(featListScreen, SWT.NONE);
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
-			System.out.println(feats.get(i).getName());
 		}
 		featsList.setLayoutData(gridData);
 		
 		// selected feats list
 		List charFeatsList = new List(charFeatScreen, SWT.NONE);
-		
-//		charFeatsList.setLayoutData(gridData);
+		charFeatsList.setLayoutData(gridData);
+		charFeatScreen.layout();
 		
 		// add feat button
 		Button addButton = new Button(wiz5, SWT.PUSH);
@@ -164,6 +161,7 @@ public class Wiz5 {
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
 				numFeatsLabel.pack();
+				charFeatScreen.layout();
 			}
 		});
 		
@@ -184,6 +182,7 @@ public class Wiz5 {
 				numFeats++;
 				numFeatsLabel.setText(Integer.toString(numFeats));
 				numFeatsLabel.pack();
+				charFeatScreen.layout();
 			}
 		});
 		
