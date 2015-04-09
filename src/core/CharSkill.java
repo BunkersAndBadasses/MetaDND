@@ -3,7 +3,7 @@ import entity.*;
 
 public class CharSkill {
 	private SkillEntity skill;
-	private Character character;
+	private character character;
 	private int rank = 0;
 	private String abilityType;
 	private int abilityMod;
@@ -13,7 +13,7 @@ public class CharSkill {
 	private boolean untrained = false;
 	private boolean halfPoint = false;
 	
-	public CharSkill(SkillEntity s, Character c) {
+	public CharSkill(SkillEntity s, character c) {
 		skill = s;
 		character = c;
 		String charClass = character.getCharClass(); // TODO
@@ -30,22 +30,22 @@ public class CharSkill {
 		int base;
 		switch(skill.skillParentAttribute) {
 		case ("STR"):
-			base = character.getAbilityScores()[Character.STRENGTH];
+			base = character.getAbilityScores()[character.STRENGTH];
 		break;
 		case ("DEX"):
-			base = character.getAbilityScores()[Character.DEXTERITY];
+			base = character.getAbilityScores()[character.DEXTERITY];
 		break;
 		case ("CON"):
-			base = character.getAbilityScores()[Character.CONSTITUTION];
+			base = character.getAbilityScores()[character.CONSTITUTION];
 		break;
 		case ("INT"):
-			base = character.getAbilityScores()[Character.INTELLIGENCE];
+			base = character.getAbilityScores()[character.INTELLIGENCE];
 		break;
 		case ("WIS"):
-			base = character.getAbilityScores()[Character.WISDOM];
+			base = character.getAbilityScores()[character.WISDOM];
 		break;
 		default: // CHA
-			base = character.getAbilityScores()[Character.CHARISMA];
+			base = character.getAbilityScores()[character.CHARISMA];
 		break;
 		}
 		return (base - 8) / 2;

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
-import core.Character;
+import core.character;
 /*
  * add text box to add custom skill
  * add boxes next to craft, profession, etcS
@@ -31,7 +31,7 @@ public class Wiz4 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -49,7 +49,7 @@ public class Wiz4 {
 	private GameState gs = Main.gameState;
 	
 	
-	public Wiz4(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz4(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -101,7 +101,7 @@ public class Wiz4 {
 			classPoints = 8;
 			break;	
 		}
-		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[Character.INTELLIGENCE]) - 8)/2; // TODO check this logic
+		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE]) - 8)/2; // TODO check this logic
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;
@@ -149,6 +149,7 @@ public class Wiz4 {
 		untrainedLabel.setText("■ : skill can be used untrained");
 		untrainedLabel.pack();
 
+		// get skills from references
 		Collection<DNDEntity> skillsCol =  gs.skills.values();
 		Iterator<DNDEntity> itr = skillsCol.iterator();
 		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
@@ -160,6 +161,7 @@ public class Wiz4 {
 			charSkills.add(new CharSkill(skills.get(i), CharacterWizard.getCharacter()));
 		}
 
+		// set up scrollable composite
 		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
 		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
 	    skillsScreenScroll.setExpandHorizontal(true);
@@ -169,7 +171,7 @@ public class Wiz4 {
 		skillsScreenScroll.setContent(skillsScreen);
 		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
-
+		// create content (+/- buttons, skills, ranks, mods, etc
 		ArrayList<Label> skillNameLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
@@ -244,7 +246,7 @@ public class Wiz4 {
 			decButtons.add(dec);
 		}
 
-
+		// create error label
 		unusedSkillPointsError = new Label(wiz4, SWT.NONE);
 		unusedSkillPointsError.setVisible(false);
 		unusedSkillPointsError.setLocation(200, HEIGHT - 75);
@@ -252,21 +254,16 @@ public class Wiz4 {
 		unusedSkillPointsError.setForeground(new Color(dev, 255,0,0));
 		unusedSkillPointsError.pack();
 		
-		
-		
-		
-
-
-
+		// next button
 		Button wiz4NextButton = CharacterWizard.createNextButton(wiz4);
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// make sure all skill points are used
-				if (numSkillPoints > 0) {
-					unusedSkillPointsError.setVisible(true);
-					return;
-				}
-				
+//				if (numSkillPoints > 0) {
+//					unusedSkillPointsError.setVisible(true);
+//					return;
+//				}
+//TODO				
 				// save to character
 				CharacterWizard.getCharacter().setSkills(charSkills);
 
@@ -280,6 +277,7 @@ public class Wiz4 {
 			}
 		});
 
+		// back button
 		Button wiz4BackButton = CharacterWizard.createBackButton(wiz4, panel, layout);
 		wiz4BackButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -287,6 +285,7 @@ public class Wiz4 {
 			}
 		});
 		
+		// cancel button
 		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
 		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {

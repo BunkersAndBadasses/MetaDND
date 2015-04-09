@@ -4,7 +4,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
-import core.Character;
+import core.character;
 
 
 
@@ -47,7 +47,7 @@ public class CharacterWizard {
 
 	private static ArrayList<Composite> wizPages;
 
-	private static Character character;
+	private static character character;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -56,7 +56,7 @@ public class CharacterWizard {
 		shell = new Shell(d);
 		shell.setText("Create New Character");
 		shell.setSize(WIDTH, HEIGHT);
-		character = new Character();
+		character = new character();
 		wizPages = new ArrayList<Composite>();
 
 		createPageContent();
@@ -331,12 +331,12 @@ public class CharacterWizard {
 		return cancelButton;
 	}
 	
-	public static Character getCharacter() {
+	public static character getCharacter() {
 		return character;
 	}
 
 	public static void reset() {
-		character = new Character();
+		character = new character();
 		for (int i = 0; i < wizPageCreated.length; i++) {
 			wizPageCreated[i] = false;
 		}

@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import core.Character;
+import core.character;
 
 /* TODO
  * 
@@ -29,7 +29,7 @@ public class Wiz2 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private static Composite panel;
 	private static Composite home;
 	private static Composite homePanel;
@@ -51,7 +51,7 @@ public class Wiz2 {
 	private final static String[] races = {"Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"}; // TODO add import from references?
 	private final static String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
 
-	public Wiz2(Device dev, int WIDTH, int HEIGHT, final Character character,
+	public Wiz2(Device dev, int WIDTH, int HEIGHT, final character character,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -248,26 +248,26 @@ public class Wiz2 {
 		wiz2NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				badSearch.setVisible(false);
-
-				// error checking
-				boolean error = false;
-				badRaceSelect.setVisible(false);	// clear any past errors
-				// check if user selected a race
-
-				if (charRace.length() == 0) {
-					badRaceSelect.setVisible(true);
-					error = true;
-				}
-
-				badClassSelect.setVisible(false);	// clear any past errors
-				// check if user selected a class
-				if (charClass.length() == 0) {
-					badClassSelect.setVisible(true);
-					error = true;					
-				}
-
-				// user cannot move on with an error
-				if (error) return;
+//TODO
+//				// error checking
+//				boolean error = false;
+//				badRaceSelect.setVisible(false);	// clear any past errors
+//				// check if user selected a race
+//
+//				if (charRace.length() == 0) {
+//					badRaceSelect.setVisible(true);
+//					error = true;
+//				}
+//
+//				badClassSelect.setVisible(false);	// clear any past errors
+//				// check if user selected a class
+//				if (charClass.length() == 0) {
+//					badClassSelect.setVisible(true);
+//					error = true;					
+//				}
+//
+//				// user cannot move on with an error
+//				if (error) return;
 
 				// change to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)

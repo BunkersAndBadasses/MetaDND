@@ -20,7 +20,7 @@ public class GameState {
 	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml
 	public LinkedHashMap<String, DNDEntity> customContent;
 	
-	public Character currentlyLoadedCharacter;
+	public character currentlyLoadedCharacter;
 	public String currCharFilePath;
 	public boolean playerMode;
 	

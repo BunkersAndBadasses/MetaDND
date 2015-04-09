@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import core.Character;
+import core.character;
 
 public class Wiz3 {
 
@@ -21,7 +21,7 @@ public class Wiz3 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -46,7 +46,7 @@ public class Wiz3 {
 	private static String charSecClass;
 	private static Label choiceLabel2;
 
-	public Wiz3(Device dev, int WIDTH, int HEIGHT, final Character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
+	public Wiz3(Device dev, int WIDTH, int HEIGHT, final character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
 		Wiz3.dev = dev;
@@ -287,57 +287,58 @@ public class Wiz3 {
 		wiz3NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking - make sure each list has something selected
-				boolean error = false;
-				{
-					String[] selection = strList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else 
-						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
-				}
-				{
-					String[] selection = dexList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else 
-						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
-				}
-				{
-					String[] selection = conList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else 
-						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
-				}
-				{
-					String[] selection = intList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else
-						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
-				}
-				{
-					String[] selection = wisList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else 
-						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
-				}
-				{
-					String[] selection = chaList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
-						error = true;
-					} else 
-						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
-				}
-				
-				if (error) return;
+//				boolean error = false;
+//				{
+//					String[] selection = strList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else 
+//						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
+//				}
+//				{
+//					String[] selection = dexList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else 
+//						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
+//				}
+//				{
+//					String[] selection = conList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else 
+//						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
+//				}
+//				{
+//					String[] selection = intList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else
+//						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
+//				}
+//				{
+//					String[] selection = wisList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else 
+//						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
+//				}
+//				{
+//					String[] selection = chaList.getSelection();
+//					if (selection.length == 0) {
+//						errorLabel.setVisible(true);
+//						error = true;
+//					} else 
+//						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
+//				}
+//				
+//				if (error) return;
+				//TODO
 				
 				// if all is good, save to character
 				CharacterWizard.getCharacter().setAbilityScores(abilityScoresAfter[0], 
