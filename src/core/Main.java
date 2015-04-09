@@ -1,4 +1,5 @@
 package core;
+import guis.CharacterWizard;
 import guis.Item_wizard;
 import guis.MenuBar;
 
@@ -21,6 +22,7 @@ public class Main {
 		shell.setBounds(0,0,500,500);
 		shell.setText("Testing box");
 		new MenuBar(shell);
+		new CharacterWizard(display);
 		Button button = new Button(shell, SWT.PUSH);
 		button.setText("I'm a button");
 		button.setBounds(75,75,100,50);

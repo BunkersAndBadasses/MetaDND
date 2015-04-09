@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SkillEntity extends DNDEntity{
 
-	String skillParentAttribute;
+	public String skillParentAttribute;
 	String check;
 	String special;
 	String tryagain;
@@ -13,7 +13,7 @@ public class SkillEntity extends DNDEntity{
 	String synergy;
 	String restriction;
 	String untrained;
-	boolean armorCheckPenalty;
+	public boolean armorCheckPenalty;
 
 	public SkillEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.SKILL;
