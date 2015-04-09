@@ -31,7 +31,7 @@ import core.Roll;
 
 /*
  * The class for the Die Window.
- * @author Innocentius Shellingford
+ * @author Ryan Ranney
  */
 public class DieWindow {
 
@@ -118,7 +118,56 @@ public class DieWindow {
 		badSaveText.setVisible(false);
 		badSaveText.setText("Invalid Save: must have at least 1 die or modifier");
 		badSaveText.pack();
+		
+		//DIE TEXT AND INC/DEC BUTTONS
+		Label[] dieLabels = new Label[7]; 
 
+		for(int i = 0; i < 7; i++){
+
+			// The die X number text that's updated on button push
+			final Label dieText = new Label(dieWin, SWT.NONE);
+			dieLabels[i] = dieText; 
+			Font font1 = new Font(display, new FontData("Arial", 24,
+					SWT.NONE));
+			dieText.setFont(font1);
+			dieText.setLocation(20, (i*40) + 24);
+			dieText.setText(dieNames[i] + " x " + numDie[i]);
+			dieText.pack();
+
+			Button inc = new Button(dieWin, SWT.PUSH);
+			inc.setText("+");
+			inc.setLocation(145, (i*40) + 20);
+			inc.setSize(33,33);
+			final int index = i;
+			inc.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (numDie[index] >= 20)
+						return;
+
+					numDie[index] ++;
+					dieText.setText(dieNames[index] + " x " + numDie[index]);
+					dieText.pack();
+				}
+			});
+			incButtons.add(inc);
+
+			Button dec = new Button(dieWin, SWT.PUSH);
+			dec.setText("-");
+			dec.setBounds(175, (i*40) + 20, 33, 33);
+			dec.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (numDie[index] <= 0) 
+						return;
+
+					numDie[index] --;
+					dieText.setText(dieNames[index] + " x " + numDie[index]);
+					dieText.pack();
+
+				}
+			});
+			decButtons.add(dec);
+		}
+		
 		// Mod text
 		final Label mod = new Label(dieWin, SWT.NONE);
 		Font font2 = new Font(display, new FontData("Arial", 24,
@@ -161,6 +210,7 @@ public class DieWindow {
 		total.setFont(font5);
 
 
+		// ROLL BUTTON
 		Font font3 = new Font(display, new FontData("Arial", 15,
 				SWT.NONE));
 		Button roll = new Button(dieWin, SWT.PUSH);
@@ -175,6 +225,8 @@ public class DieWindow {
 
 				try{
 
+					badDeleteText.setVisible(false);
+					badLoadText.setVisible(false);
 					badInputText.setVisible(false);
 					badSaveText.setVisible(false);
 					modInt = Integer.parseInt(modString);
@@ -199,6 +251,7 @@ public class DieWindow {
 			}
 		});
 
+		// SAVE BUTTON
 		Button save = new Button(dieWin, SWT.PUSH);
 		save.setText("Save");
 		save.setFont(font3);
@@ -332,12 +385,6 @@ public class DieWindow {
 		favList.setBounds(250, 90, 200, 30);
 		favList.add("Favorite Die Roll");
 		favList.select(0);
-		//		favList.addListener(SWT.Selection, new Listener() {
-		//			public void handleEvent(Event event) {
-		//				
-		//				
-		//			}
-		//		});
 
 		try {
 			Files.walk(Paths.get("./favRolls")).forEach(filePath ->{
@@ -353,54 +400,6 @@ public class DieWindow {
 		} catch (IOException e) {
 
 
-		}
-
-		Label[] dieLabels = new Label[7]; 
-
-		for(int i = 0; i < 7; i++){
-
-			// The die X number text that's updated on button push
-			final Label dieText = new Label(dieWin, SWT.NONE);
-			dieLabels[i] = dieText; 
-			Font font1 = new Font(display, new FontData("Arial", 24,
-					SWT.NONE));
-			dieText.setFont(font1);
-			dieText.setLocation(20, (i*40) + 24);
-			dieText.setText(dieNames[i] + " x " + numDie[i]);
-			dieText.pack();
-
-			Button inc = new Button(dieWin, SWT.PUSH);
-			inc.setText("+");
-			inc.setLocation(145, (i*40) + 20);
-			inc.setSize(33,33);
-			final int index = i;
-			inc.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event event) {
-					if (numDie[index] >= 20)
-						return;
-
-					numDie[index] ++;
-					dieText.setText(dieNames[index] + " x " + numDie[index]);
-					dieText.pack();
-				}
-			});
-			incButtons.add(inc);
-
-			Button dec = new Button(dieWin, SWT.PUSH);
-			dec.setText("-");
-			dec.setBounds(175, (i*40) + 20, 33, 33);
-			dec.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event event) {
-					if (numDie[index] <= 0) 
-						return;
-
-					numDie[index] --;
-					dieText.setText(dieNames[index] + " x " + numDie[index]);
-					dieText.pack();
-
-				}
-			});
-			decButtons.add(dec);
 		}
 
 		// this appears when there is an empty load
@@ -420,7 +419,10 @@ public class DieWindow {
 		load.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 
+				badDeleteText.setVisible(false);
 				badLoadText.setVisible(false);
+				badInputText.setVisible(false);
+				badSaveText.setVisible(false);
 				if(favList.getSelectionIndex() == 0){
 					badLoadText.setVisible(true);
 					return;
@@ -546,7 +548,11 @@ public class DieWindow {
 		delete.setSize(70, 40);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				
 				badDeleteText.setVisible(false);
+				badLoadText.setVisible(false);
+				badInputText.setVisible(false);
+				badSaveText.setVisible(false);
 				if(favList.getSelectionIndex() == 0){
 					badDeleteText.setVisible(true);
 					return;
