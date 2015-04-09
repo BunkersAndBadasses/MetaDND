@@ -6,6 +6,7 @@ import java.util.Iterator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -77,7 +78,7 @@ public class Wiz5 {
 		featsLabel.pack();
 
 		// number of remaining feats
-		numFeats = 10;
+		numFeats = 1;
 		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
 			numFeats += 1;
 		
@@ -106,12 +107,13 @@ public class Wiz5 {
 		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
 	    featScreenScroll.setExpandHorizontal(true);
 	    featScreenScroll.setExpandVertical(true);
-//	    featScreenScroll.setMinSize(WIDTH, feats.size()*23);
+	    featScreenScroll.setMinWidth(WIDTH);
 		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
 		featScreenScroll.setContent(featListScreen);
+		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		featListScreen.setLayout(featLayout);
-		featListScreen.setSize(WIDTH/2-70, featScreenScroll.getSize().y);
 				
+		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
 		// create scrollable list of selected feats
 		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
 		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
@@ -123,31 +125,17 @@ public class Wiz5 {
 		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		charFeatScreen.setLayout(featLayout);
 		
-//		GridData gridData = new GridData();
-//		gridData.horizontalAlignment = GridData.FILL;
-//		gridData.grabExcessHorizontalSpace = true;
-		
 		// available feats list
 		List featsList = new List(featListScreen, SWT.NONE);
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 		}
 		featsList.pack();
-//		featsList.setLayoutData(gridData);
-//		featListScreen.layout();
-	    // Scroll to the bottom
-//	    featsList.select(featsList.getItemCount() - 1);
-//	    featsList.showSelection();
 		featScreenScroll.setMinHeight(featsList.getBounds().height);
-	    
-	    // Get the scroll bar
-//	    ScrollBar sb = featsList.getVerticalBar();
-		
+	    	
 		// selected feats list
 		List charFeatsList = new List(charFeatScreen, SWT.NONE);
-//		charFeatsList.setLayoutData(gridData);
-		charFeatScreenScroll.setMinSize(charFeatsList.getSize());
-		charFeatScreen.layout();
+		charFeatsList.pack();
 		
 		// add feat button
 		Button addButton = new Button(wiz5, SWT.PUSH);
@@ -172,7 +160,10 @@ public class Wiz5 {
 				charFeats.add(feats.get(index));
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.setForeground(new Color(dev, 0, 0, 0));
 				numFeatsLabel.pack();
+				charFeatsList.pack();
+				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
 				charFeatScreen.layout();
 			}
 		});
@@ -193,7 +184,10 @@ public class Wiz5 {
 				charFeats.remove(index);
 				numFeats++;
 				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.setForeground(new Color(dev, 0, 0, 0));
 				numFeatsLabel.pack();
+				charFeatsList.pack();
+				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
 				charFeatScreen.layout();
 			}
 		});
@@ -204,6 +198,17 @@ public class Wiz5 {
 		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
 		wiz5NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// error checking
+				if (numFeats > 0) {
+					numFeatsLabel.setForeground(new Color(dev, 255, 0, 0));
+					return;
+				}
+				
+				// if all is good, save to character
+				for (int i = 0; i < charFeats.size(); i++)
+					CharacterWizard.getCharacter().addFeat(charFeats.get(i));
+				
+				// switch to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
 				if (!CharacterWizard.wizPageCreated[5])
