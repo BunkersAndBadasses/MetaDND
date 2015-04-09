@@ -39,6 +39,8 @@ public class DieWindow {
 	private Display display;
 	private Shell shell;
 	private Composite dieWin;
+	private static Text dieBox;
+	private static Text dieCountBox;
 	private static Text modText;
 	private static Text nameBox;
 	private static Text total;
@@ -103,8 +105,10 @@ public class DieWindow {
 
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
-		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
-				"d12  ", "d20  ", "d100"};
+//		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
+//				"d12  ", "d20  ", "d100"};
+		final String [] dieNames = {"d4", "d6", "d8", "d10",
+				"d12", "d20", "d100"};
 		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20, 100};
 		
 		//DIE TEXT AND INC/DEC BUTTONS
@@ -119,8 +123,9 @@ public class DieWindow {
 					SWT.NONE));
 			dieText.setFont(font1);
 			//dieText.setLocation(20, (i*40) + 24);
-			dieText.setText(dieNames[i] + " x " + numDie[i]);
-			GridData gridData = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+			//dieText.setText(dieNames[i] + " x " + numDie[i]);
+			dieText.setText(numDie[i] + dieNames[i]);
+			GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
 			gridData.horizontalIndent = 5;
 			dieText.setLayoutData(gridData);
 			//dieText.pack();
@@ -138,7 +143,8 @@ public class DieWindow {
 						return;
 
 					numDie[index] ++;
-					dieText.setText(dieNames[index] + " x " + numDie[index]);
+					//dieText.setText(dieNames[index] + " x " + numDie[index]);
+					dieText.setText(numDie[index] + dieNames[index]);
 					//dieText.pack();
 				}
 			});
@@ -155,7 +161,8 @@ public class DieWindow {
 						return;
 
 					numDie[index] --;
-					dieText.setText(dieNames[index] + " x " + numDie[index]);
+					//dieText.setText(dieNames[index] + " x " + numDie[index]);
+					dieText.setText(numDie[index] + dieNames[index]);
 					//dieText.pack();
 
 				}
@@ -163,13 +170,46 @@ public class DieWindow {
 			decButtons.add(dec);
 		}
 		
-		// Mod text
-		final Label mod = new Label(dieWin, SWT.NONE);
+		// Custom Die text
+		final Label custom = new Label(dieWin, SWT.NONE);
 		Font font2 = new Font(display, new FontData("Arial", 24,
 				SWT.NONE));
+		custom.setFont(font2);
+		custom.setText("Custom \n (#, die)");
+		GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		custom.setLayoutData(gridData);
+		//mod.pack();
+
+		//Custom die box
+		dieBox = new Text(dieWin, SWT.BORDER);
+		dieBox.setText("0");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		dieBox.setLayoutData(gridData);
+		dieBox.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				Text text = (Text) e.widget;
+				modString = text.getText();
+			}
+		});
+		
+		//Custom die count box
+		dieCountBox = new Text(dieWin, SWT.BORDER);
+		dieCountBox.setText("0");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		dieCountBox.setLayoutData(gridData);
+		dieCountBox.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				Text text = (Text) e.widget;
+				modString = text.getText();
+			}
+		});
+		
+		// Mod text
+		final Label mod = new Label(dieWin, SWT.NONE);
 		mod.setFont(font2);
 		mod.setText("Modifier = ");
-		GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
 		gridData.horizontalIndent = 5;
 		mod.setLayoutData(gridData);
 		//mod.pack();
