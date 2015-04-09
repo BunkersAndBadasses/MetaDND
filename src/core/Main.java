@@ -26,7 +26,8 @@ public class Main {
 		button.setBounds(75,75,100,50);
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				System.out.println("You clicked the button");
+				//System.out.println("You clicked the button");
+				st1.start(Main.gameState.spells, "acid");
 			}
 		});
 		
@@ -44,9 +45,9 @@ public class Main {
 //		Text helloWorldTest = new Text(shell, SWT.NONE);
 //		helloWorldTest.setText(dieRolls);
 //		helloWorldTest.pack();
-        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
+//        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		shell.open();
-		st1.start(Main.gameState.spells);
+		
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
