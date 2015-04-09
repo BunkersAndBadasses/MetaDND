@@ -46,6 +46,7 @@ public class DieWindow {
 	private static Device dev;
 	private static Label badInputText;
 	private static Label badSaveText;
+	private static Label badLoadText;
 	private static Label badSaveFinal;
 	private static Combo favList;
 	private final int WIDTH = 700;
@@ -96,7 +97,6 @@ public class DieWindow {
 		GridLayout layout = new GridLayout();
 		shell.setLayout(layout);
 
-		ArrayList<Label> dieLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
 		final String [] dieNames = {"d4  ", "d6  ", "d8  ", "d10","d12", "d20"};
@@ -288,11 +288,21 @@ public class DieWindow {
 						badSaveFinal.setVisible(false);
 						boolean found = false;
 						Pattern p = Pattern.compile(".*\\W+.*");
+						if(nameBox.getText().equalsIgnoreCase("")){
+							badSaveFinal.setVisible(true);
+							return;
+						}
 						Matcher m = p.matcher(nameBox.getText());
 						if(m.find()){
 							badSaveFinal.setVisible(true);
 							return;
 						}
+						Pattern q = Pattern.compile("[a-zA-z]");
+						String first = "" + nameBox.getText().charAt(0);
+						if(){
+							
+						}
+						
 
 						DnDie.saveFavDie(nameBox.getText(), rollFinal);
 						favList.add(nameBox.getText());
@@ -310,7 +320,6 @@ public class DieWindow {
 				}
 			}
 		});
-
 
 
 		favList = new Combo(dieWin, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -331,18 +340,22 @@ public class DieWindow {
 					fileName = (String) fileName.subSequence(0, fileName.length() - 4);
 					favList.add(fileName);
 				}
-				else
-					System.out.println(filePath.getFileName() + " is not an XML file");
+				else{
+					//System.out.println(filePath.getFileName() + " is not an XML file");
+				}
 			});
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 
 		}
-
+		
+		Label[] dieLabels = new Label[6]; 
+		
 		for(int i = 0; i < 6; i++){
 
 			// The die X number text that's updated on button push
 			final Label dieText = new Label(dieWin, SWT.NONE);
+			dieLabels[i] = dieText; 
 			Font font1 = new Font(display, new FontData("Arial", 24,
 					SWT.NONE));
 			dieText.setFont(font1);
@@ -384,6 +397,121 @@ public class DieWindow {
 			decButtons.add(dec);
 		}
 
+		// this appears when there is an empty load
+		badLoadText = new Label(dieWin, SWT.NONE);
+		badLoadText.setForeground(new Color(dev,255,0,0));
+		badLoadText.setLocation(WIDTH/2 -150,340);
+		badLoadText.setVisible(false);
+		badLoadText.setText("Invalid Load: must select a file.");
+		badLoadText.pack();
+		
+		// The button that loads the selected file name into the die window.
+		Button load = new Button(dieWin, SWT.PUSH);
+		load.setText("Load");
+		load.setFont(font3);
+		load.setLocation(320, 120);
+		load.setSize(70, 40);
+		load.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+				badLoadText.setVisible(false);
+				if(favList.getSelectionIndex() == 0){
+					badLoadText.setVisible(true);
+					return;
+				}
+				
+				ArrayList<Roll> loaded = new ArrayList<Roll>(7);
+				loaded = DnDie.loadFavDie(favList.getItem(favList.getSelectionIndex()));
+				
+				boolean d4 = false;
+				boolean d6 = false;
+				boolean d8 = false;
+				boolean d10 = false;
+				boolean d12 = false;
+				boolean d20 = false;
+				boolean modded = false;
+				
+				for(int i = 0; i < loaded.size(); i++){
+					if(loaded.get(i).getDieSize() == 4){
+						numDie[0] = loaded.get(i).getDieCount();
+						dieLabels[0].setText(dieNames[0] + " x " + numDie[0]);
+						dieLabels[0].pack();
+						d4 = true;
+					}
+					else if(loaded.get(i).getDieSize() == 6){
+						numDie[1] = loaded.get(i).getDieCount();
+						dieLabels[1].setText(dieNames[1] + " x " + numDie[1]);
+						dieLabels[1].pack();
+						d6 = true;
+					}
+					else if(loaded.get(i).getDieSize() == 8){
+						numDie[2] = loaded.get(i).getDieCount();
+						dieLabels[2].setText(dieNames[2] + " x " + numDie[2]);
+						dieLabels[2].pack();
+						d8 = true;
+					}
+					else if(loaded.get(i).getDieSize() == 10){
+						numDie[3] = loaded.get(i).getDieCount();
+						dieLabels[3].setText(dieNames[3] + " x " + numDie[3]);
+						dieLabels[3].pack();
+						d10 = true;
+					}
+					else if(loaded.get(i).getDieSize() == 12){
+						numDie[4] = loaded.get(i).getDieCount();
+						dieLabels[4].setText(dieNames[4] + " x " + numDie[4]);
+						dieLabels[4].pack();
+						d12 = true;
+					}
+					else if(loaded.get(i).getDieSize() == 20){
+						numDie[5] = loaded.get(i).getDieCount();
+						dieLabels[5].setText(dieNames[5] + " x " + numDie[5]);
+						dieLabels[5].pack();
+						d20 = true;
+					}
+					if(loaded.get(i).getModifier() != 0){
+						modded = true;
+						modText.setText(Integer.toString(loaded.get(i).getModifier()));
+					}
+					
+					if(!d4){
+						numDie[0] = 0;
+						dieLabels[0].setText(dieNames[0] + " x " + numDie[0]);
+						dieLabels[0].pack();
+					}
+					if(!d6){
+						numDie[1] = 0;
+						dieLabels[1].setText(dieNames[1] + " x " + numDie[1]);
+						dieLabels[1].pack();
+					}
+					if(!d8){
+						numDie[2] = 0;
+						dieLabels[2].setText(dieNames[2] + " x " + numDie[2]);
+						dieLabels[2].pack();
+					}
+					if(!d10){
+						numDie[3] = 0;
+						dieLabels[3].setText(dieNames[3] + " x " + numDie[3]);
+						dieLabels[3].pack();
+					}
+					if(!d12){
+						numDie[4] = 0;
+						dieLabels[4].setText(dieNames[4] + " x " + numDie[4]);
+						dieLabels[4].pack();
+					}
+					if(!d20){
+						numDie[5] = 0;
+						dieLabels[5].setText(dieNames[5] + " x " + numDie[5]);
+						dieLabels[5].pack();
+					}
+					if(!modded){
+						modText.setText("0");
+					}
+					
+				}
+				
+			}
+		});
+		
 	}
 
 	public static void main(String[] args) {
