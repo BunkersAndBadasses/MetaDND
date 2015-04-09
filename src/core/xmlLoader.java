@@ -19,6 +19,14 @@ import entity.*;
 
 public class xmlLoader implements Runnable{
 	private Thread xmlLoadThread;
+	public Thread getXmlLoadThread() {
+		return xmlLoadThread;
+	}
+
+	public void setXmlLoadThread(Thread xmlLoadThread) {
+		this.xmlLoadThread = xmlLoadThread;
+	}
+
 	private String threadName;
 	
 	

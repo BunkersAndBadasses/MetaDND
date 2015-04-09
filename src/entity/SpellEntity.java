@@ -3,6 +3,8 @@ package entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import core.Main;
+
 public class SpellEntity extends DNDEntity{
 
 	String school;
@@ -88,13 +90,26 @@ public class SpellEntity extends DNDEntity{
 		
 		if(this.name.toLowerCase().contains(searchString)){
 			System.out.println(this.name + " contains " + searchString + " in NAME");
+			try {
+				Main.gameState.searchResultsLock.acquire();
+				System.out.println("Lock aquired, adding " + this.name + " to results list.");
+				Main.gameState.searchResults.add(this);
+			}
+			catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				Main.gameState.searchResultsLock.release();
+				System.out.println("Lock released.");
+			}
 		}
 		
 		if(this.description.toLowerCase().contains(searchString)){
-			System.out.println(this.name + " contains " + searchString + " in DESCRIPTION");
+			//System.out.println(this.name + " contains " + searchString + " in DESCRIPTION");
 		}
 		if(this.effect != null && this.effect.toLowerCase().contains(searchString)){
-			System.out.println(this.name + " contains " + searchString + " in EFFECT");
+			//System.out.println(this.name + " contains " + searchString + " in EFFECT");
 		}
 		
 		//System.out.println("Searching " + this.name);

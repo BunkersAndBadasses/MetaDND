@@ -1,6 +1,8 @@
 package core;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.concurrent.Semaphore;
 
 import entity.DNDEntity;
 
@@ -24,6 +26,9 @@ public class GameState {
 	public String currCharFilePath;
 	public boolean playerMode;
 	
+	public LinkedList<DNDEntity> searchResults;
+	public Semaphore searchResultsLock;
+	
 	public GameState(){
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
@@ -35,6 +40,8 @@ public class GameState {
 		armor = new LinkedHashMap<String, DNDEntity>();
 		monsters = new LinkedHashMap<String, DNDEntity>();
 		traps = new LinkedHashMap<String, DNDEntity>();
+		searchResultsLock = new Semaphore(1);
+		searchResults = new LinkedList<DNDEntity>();
 	}
 	
 	public void saveCustomContent(){

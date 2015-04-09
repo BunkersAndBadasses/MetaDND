@@ -237,7 +237,7 @@ public class HomeWindow {
         		GridMapper gm = new GridMapper("generatedDungeon.bnb");
         		gm.generateSVG();
         		
-        		svgCanvas.setURI("file:///C:\\Users\\Josh\\git\\MetaDND\\generatedDungeon.svg");
+        		svgCanvas.setURI("file:///C:\\Users\\Curt\\Workspace\\MetaDND\\generatedDungeon.svg");
         		mainWindowLayout.topControl = dungeonViewer;
         		mainWindow.layout();
         	}
