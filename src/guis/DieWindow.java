@@ -26,8 +26,6 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
-import core.CharSkill;
-import core.Character;
 import core.DnDie;
 import core.Roll;
 
@@ -47,6 +45,7 @@ public class DieWindow {
 	private static Label badInputText;
 	private static Label badSaveText;
 	private static Label badLoadText;
+	private static Label badDeleteText;
 	private static Label badSaveFinal;
 	private static Combo favList;
 	private final int WIDTH = 700;
@@ -106,7 +105,7 @@ public class DieWindow {
 		// this appears when there is invalid int in the mod box
 		badInputText = new Label(dieWin, SWT.NONE);
 		badInputText.setForeground(new Color(dev,255,0,0));
-		badInputText.setLocation(WIDTH/2 -150,330);
+		badInputText.setLocation(WIDTH/2 -150,340);
 		badInputText.setVisible(false);
 		badInputText.setText("Invalid modifier: must be an integer -100 < X < 100");
 		badInputText.pack();
@@ -114,7 +113,7 @@ public class DieWindow {
 		// this appears when there is an empty save
 		badSaveText = new Label(dieWin, SWT.NONE);
 		badSaveText.setForeground(new Color(dev,255,0,0));
-		badSaveText.setLocation(WIDTH/2 -150,330);
+		badSaveText.setLocation(WIDTH/2 -150,340);
 		badSaveText.setVisible(false);
 		badSaveText.setText("Invalid Save: must have at least 1 die or modifier");
 		badSaveText.pack();
@@ -161,7 +160,7 @@ public class DieWindow {
 		total.setFont(font5);
 
 
-		Font font3 = new Font(display, new FontData("Arial", 18,
+		Font font3 = new Font(display, new FontData("Arial", 16,
 				SWT.NONE));
 		Button roll = new Button(dieWin, SWT.PUSH);
 		roll.setText("Roll");
@@ -244,8 +243,7 @@ public class DieWindow {
 				final ArrayList<Roll> rollFinal = roll;
 
 				notUsed = true;
-				//TODO call the Save name window
-				//DnDie.saveFavDie("test", roll);
+
 				final Shell saveName = new Shell(display);
 				saveName.setText("Save");
 				saveName.setSize(300, 200);
@@ -287,22 +285,29 @@ public class DieWindow {
 
 						badSaveFinal.setVisible(false);
 						boolean found = false;
-						Pattern p = Pattern.compile(".*\\W+.*");
+						Pattern p1 = Pattern.compile(".*\\W+.*");
+						Pattern p2 = Pattern.compile("(\\p{Lower} || \\p{Upper})(\\d||(\\p{Lower}||(\\p{Upper})))*");
 						if(nameBox.getText().equalsIgnoreCase("")){
+							badSaveFinal.setText("Invalid Save: must have a file name.");
+							badSaveFinal.setVisible(true);
+							return;
+						}else if(nameBox.getText().length() > 20){
+							badSaveFinal.setText("Invalid Save: file name is capped at 20 chars.");
 							badSaveFinal.setVisible(true);
 							return;
 						}
-						Matcher m = p.matcher(nameBox.getText());
+						Matcher m = p1.matcher(nameBox.getText());
 						if(m.find()){
+							badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
 							badSaveFinal.setVisible(true);
 							return;
-						}
-						Pattern q = Pattern.compile("[a-zA-z]");
-						String first = "" + nameBox.getText().charAt(0);
-						if(){
-							
-						}
-						
+						}		
+						m = p2.matcher(nameBox.getText());
+						if(!m.find()){
+							badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
+							badSaveFinal.setVisible(true);
+							return;
+						}		
 
 						DnDie.saveFavDie(nameBox.getText(), rollFinal);
 						favList.add(nameBox.getText());
@@ -348,9 +353,9 @@ public class DieWindow {
 
 
 		}
-		
+
 		Label[] dieLabels = new Label[6]; 
-		
+
 		for(int i = 0; i < 6; i++){
 
 			// The die X number text that's updated on button push
@@ -404,25 +409,25 @@ public class DieWindow {
 		badLoadText.setVisible(false);
 		badLoadText.setText("Invalid Load: must select a file.");
 		badLoadText.pack();
-		
+
 		// The button that loads the selected file name into the die window.
 		Button load = new Button(dieWin, SWT.PUSH);
 		load.setText("Load");
 		load.setFont(font3);
-		load.setLocation(320, 120);
+		load.setLocation(280, 120);
 		load.setSize(70, 40);
 		load.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				
+
 				badLoadText.setVisible(false);
 				if(favList.getSelectionIndex() == 0){
 					badLoadText.setVisible(true);
 					return;
 				}
-				
+
 				ArrayList<Roll> loaded = new ArrayList<Roll>(7);
 				loaded = DnDie.loadFavDie(favList.getItem(favList.getSelectionIndex()));
-				
+
 				boolean d4 = false;
 				boolean d6 = false;
 				boolean d8 = false;
@@ -430,7 +435,7 @@ public class DieWindow {
 				boolean d12 = false;
 				boolean d20 = false;
 				boolean modded = false;
-				
+
 				for(int i = 0; i < loaded.size(); i++){
 					if(loaded.get(i).getDieSize() == 4){
 						numDie[0] = loaded.get(i).getDieCount();
@@ -472,7 +477,7 @@ public class DieWindow {
 						modded = true;
 						modText.setText(Integer.toString(loaded.get(i).getModifier()));
 					}
-					
+
 					if(!d4){
 						numDie[0] = 0;
 						dieLabels[0].setText(dieNames[0] + " x " + numDie[0]);
@@ -506,12 +511,75 @@ public class DieWindow {
 					if(!modded){
 						modText.setText("0");
 					}
-					
+
 				}
-				
+
 			}
 		});
+
 		
+		// this appears when there is an empty save
+		badDeleteText = new Label(dieWin, SWT.NONE);
+		badDeleteText.setForeground(new Color(dev,255,0,0));
+		badDeleteText.setLocation(WIDTH/2 -150,340);
+		badDeleteText.setVisible(false);
+		badDeleteText.setText("Invalid Delete: must select a file.");
+		badDeleteText.pack();
+		
+		Button delete = new Button(dieWin, SWT.PUSH);
+		delete.setText("Delete");
+		delete.setFont(font3);
+		delete.setLocation(350, 120);
+		delete.setSize(70, 40);
+		delete.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				badDeleteText.setVisible(false);
+				if(favList.getSelectionIndex() == 0){
+					badDeleteText.setVisible(true);
+					return;
+				}
+
+				final Shell deleteFile = new Shell(display);
+				deleteFile.setText("Delete");
+				deleteFile.setSize(250, 150);
+				center(deleteFile);
+
+				Label name = new Label(deleteFile, SWT.NONE);
+				name.setLocation(20,40);
+				name.setText("Are you sure you want to delete?");
+				name.pack();
+
+				Button cancel = new Button(deleteFile, SWT.PUSH);
+				cancel.setBounds(10,90,80,30);
+				cancel.setText("Cancel");
+				cancel.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+
+						deleteFile.dispose();
+					}
+				});
+
+				Button saveFinal = new Button(deleteFile, SWT.PUSH);
+				saveFinal.setBounds(160,90,80,30);
+				saveFinal.setText("Delete");
+				saveFinal.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+
+						DnDie.deleteFavDie(favList.getItem(favList.getSelectionIndex()));
+						favList.remove(favList.getItem(favList.getSelectionIndex()));
+						deleteFile.dispose();
+					}
+				});
+
+				deleteFile.open();
+				while (!deleteFile.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+			}
+		});
+
 	}
 
 	public static void main(String[] args) {
