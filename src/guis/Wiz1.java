@@ -1,6 +1,5 @@
 package guis;
-import entity.*;
-import core.Character;
+import core.character;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -31,7 +30,7 @@ public class Wiz1 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private static Composite panel;
 	private static Composite home;
 	private static Composite homePanel;
@@ -53,7 +52,7 @@ public class Wiz1 {
 	private static Label badASInputText;
 
 
-	public Wiz1(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz1(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {

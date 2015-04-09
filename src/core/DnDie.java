@@ -27,7 +27,7 @@ import core.Roll;
 
 public class DnDie {
 
-	static Random rng = new Random();
+	static RNG rng = new RNG();
 	
 	// Rolls the number of a given die (ie rolls 5 20s)
 	public static int roll (int die, int dieCount){
@@ -35,7 +35,7 @@ public class DnDie {
 		int number = 0;
 
 		for(int i = 0; i < dieCount; i ++){
-			number += rng.nextInt(die) + 1;
+			number += rng.GetRandomInteger(1, die);
 		}
 
 		return number;
@@ -47,7 +47,7 @@ public class DnDie {
 		int number = modifier;
 
 		for(int i = 0; i < dieCount; i ++){
-			number += rng.nextInt(die) + 1;
+			number += rng.GetRandomInteger(1, die);
 		}
 		
 		return number;
@@ -125,7 +125,7 @@ public class DnDie {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(fileName + ".xml"));
+			StreamResult result = new StreamResult(new File("favRolls/" + fileName + ".xml"));
 
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
@@ -149,7 +149,7 @@ public class DnDie {
 
 		try {
 
-			File fXmlFile = new File(fileName + ".xml");
+			File fXmlFile = new File("favRolls/" + fileName + ".xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -203,7 +203,7 @@ public class DnDie {
 
 	// delete a favorite die from the xml
 	public static void deleteFavDie(String fileName){
-		File file = new File(fileName + ".xml");
+		File file = new File("favRolls/" + fileName + ".xml");
 
 		try{
 

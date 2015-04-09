@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 import entity.*;
-import core.Character;
+import core.character;
 
 public class Wiz6 {
 
@@ -24,7 +24,7 @@ public class Wiz6 {
 	private static Device dev;
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Character character;
+	private static character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -54,7 +54,7 @@ public class Wiz6 {
 							+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 							+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private static int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[Character.INTELLIGENCE] - 8 ) /2;
+	private static int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE] - 8 ) /2;
 	
 	private static Random rng = new Random();
 	
@@ -66,7 +66,7 @@ public class Wiz6 {
 
 	
 
-	public Wiz6(Device dev, int WIDTH, int HEIGHT, final Character character, 
+	public Wiz6(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -326,6 +326,7 @@ public class Wiz6 {
 			}
 		});
 		weightRandom.pack();
+		
 		
 		// age
 		Label age = new Label(wiz6, SWT.NONE);

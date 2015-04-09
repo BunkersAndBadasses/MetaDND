@@ -6,6 +6,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -64,7 +65,7 @@ public class test {
 		sc.setBounds(10, 10, WIDTH - 20, HEIGHT - 50);
 		sc.setExpandHorizontal(true);
 		sc.setExpandVertical(true);
-		sc.setMinSize(WIDTH, HEIGHT * 100);
+		
 		Composite c = new Composite(sc, SWT.NONE);
 		sc.setContent(c);
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
@@ -80,12 +81,16 @@ public class test {
 		
 //		final Composite page1 = new Composite(homePanel, SWT.NONE);
 		
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 30; i++) {
 		Button button = new Button(c, SWT.PUSH);
 		button.setText("test");
-//		button.setLocation(0, i * 100);
+//		button.setLocation(0, i * 25);
+		button.setLayoutData(new GridData());
 		button.pack();
+		sc.setMinSize(WIDTH, 30 * button.getSize().y);
+		//System.out.println(button.getSize().y);
 		}
+		
 //		final Text text = new Text(page1, SWT.BORDER);
 //		text.setLocation(0, 50);
 //		text.pack();
@@ -105,7 +110,30 @@ public class test {
 	
 	public static void main(String[] args) {
 		Display display = new Display();
-		test t = new test(display);
+//		test t = new test(display);
+		
+//		Display display = new Display();
+		Shell shell = new Shell(display);
+		Composite c = new Composite(shell, SWT.BORDER);
+		c.setBounds(shell.getBounds());
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 3;
+		c.setLayout(gridLayout);
+		new Button(c, SWT.PUSH).setText("B1");
+		new Button(c, SWT.PUSH).setText("Wide Button 2");
+		new Button(c, SWT.PUSH).setText("Button 3");
+		new Button(c, SWT.PUSH).setText("B4");
+		new Button(c, SWT.PUSH).setText("Button 5");
+		c.pack();
+		shell.pack();
+		shell.open();
+
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) display.sleep();
+		}
+		
+		
+		
 		display.dispose();
 	}
 

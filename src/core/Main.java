@@ -1,9 +1,7 @@
 package core;
-import guis.Ability_wizard;
-import guis.Feat_wizard;
+import guis.CharacterWizard;
 import guis.Item_wizard;
 import guis.MenuBar;
-import guis.Spell_wizard;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
@@ -15,18 +13,23 @@ public class Main {
 	public static void main(String[] args) {
 		gameState = new GameState();
 		xmlLoader xmls = new xmlLoader("xmlTestThread");
+		SearchThread st1 = new SearchThread("Spells");
 		xmls.start();
+		
+		
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setBounds(0,0,500,500);
 		shell.setText("Testing box");
 		new MenuBar(shell);
+		new CharacterWizard(display);
 		Button button = new Button(shell, SWT.PUSH);
 		button.setText("I'm a button");
 		button.setBounds(75,75,100,50);
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				System.out.println("You clicked the button");
+				//System.out.println("You clicked the button");
+				st1.start(Main.gameState.spells, "acid");
 			}
 		});
 		
@@ -44,18 +47,16 @@ public class Main {
 //		Text helloWorldTest = new Text(shell, SWT.NONE);
 //		helloWorldTest.setText(dieRolls);
 //		helloWorldTest.pack();
-        //Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
-		
-		//Feat_wizard feat = new Feat_wizard(display);
-		//Ability_wizard ability = new Ability_wizard(display);
-		Spell_wizard spell = new Spell_wizard(display);
+//        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		shell.open();
+		
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
 		}
 		display.dispose();
 		shell.dispose();
+		
 		System.out.println("Exiting");
 		System.exit(0);
 	}

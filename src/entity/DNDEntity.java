@@ -1,15 +1,15 @@
 package entity;
 
-import guis.MenuBar;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
@@ -53,31 +53,49 @@ public abstract class DNDEntity {
 	}
 	
 	public void toTooltipWindow(){
+	
 		Display display = new Display();
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 1;
 		Shell shell = new Shell(display);
-		shell.setLayout(gridLayout);
-		shell.setBounds(0,0,500,500);
-		shell.setText(this.name);
+		Monitor monitor = display.getPrimaryMonitor();
+	    Rectangle bounds = monitor.getBounds();
+	    
+	    int WIDTH = 700;
+		int HEIGHT = (int)(bounds.height * 2.0/3.0);
+		
+		ScrolledComposite sc = new ScrolledComposite(shell, SWT.V_SCROLL);
+		sc.setBounds(0, 0, WIDTH - 20, HEIGHT - 50);
+		sc.setExpandHorizontal(true);
+		sc.setExpandVertical(true);
+		
+		Composite c = new Composite(sc, SWT.NONE);
+		sc.setContent(c);
+		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
+		GridLayout layout = new GridLayout(1, false);
+		c.setLayout(layout);
+		
 		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
+		
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
-			Label titleLabel = new Label(shell, SWT.LEFT);
+			Label titleLabel = new Label(c, SWT.LEFT);
 			titleLabel.setText(entry.getKey());
 			titleLabel.setFont(boldFont);
-			Label textLabel = new Label(shell, SWT.LEFT);
+			titleLabel.pack();
+			Label textLabel = new Label(c, SWT.LEFT);
 			//This guy finds a space every 120 characters and makes a new line, nice text formatting for the tooltip windows
 			String parsedStr = entry.getValue().replaceAll("(.{120} )", "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
+			textLabel.pack();
 		}
-		Monitor primary = display.getPrimaryMonitor();
-	    Rectangle bounds = primary.getBounds();
-	    Rectangle rect = shell.getBounds();
-	    
-	    int x = (int) (bounds.x + (bounds.width - rect.width) * .75);
-	    int y = (int) (bounds.y + (bounds.height - rect.height) * .15);
-	    shell.setLocation(x, y);
+		
+		int heightSum = 0;
+		for(int i = 0; i < c.getChildren().length; i++){
+			heightSum += c.getChildren()[i].getSize().y + layout.verticalSpacing;
+		}
+		
+		sc.setMinHeight(heightSum);
+		c.pack();
+	    shell.setLocation((int)(bounds.width * .75) - c.getSize().x / 2, (int)(bounds.height * .05));
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed()){
@@ -86,5 +104,7 @@ public abstract class DNDEntity {
 		}
 		display.dispose();
 	}
+	
+	public abstract void search(String searchString);
 
 }

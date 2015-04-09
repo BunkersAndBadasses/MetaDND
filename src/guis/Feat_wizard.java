@@ -44,7 +44,7 @@ public class Feat_wizard
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Create a new Feat");
+		shell.setText("Create new Feat");
 		shell.setSize(WIDTH,HEIGHT);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();

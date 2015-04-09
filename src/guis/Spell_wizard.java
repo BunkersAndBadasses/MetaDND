@@ -47,7 +47,7 @@ public class Spell_wizard {
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Spell Wizard"); //Try Create new xxx?
+		shell.setText("Create new Spell"); //Try Create new xxx?
 		shell.setSize(WIDTH,HEIGHT);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
