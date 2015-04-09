@@ -153,7 +153,7 @@ public class DieWindow {
 
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		total.setLocation(185, 343);//138
+		total.setLocation(180, 343);//138
 		total.setSize(48, 30);
 		total.setText("0");
 		Font font5 = new Font(display, new FontData("Arial", 16,
