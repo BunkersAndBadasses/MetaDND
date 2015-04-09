@@ -203,7 +203,7 @@ public class DnDie {
 
 	// delete a favorite die from the xml
 	public static void deleteFavDie(String fileName){
-		File file = new File(fileName + ".xml");
+		File file = new File("favRolls/" + fileName + ".xml");
 
 		try{
 
