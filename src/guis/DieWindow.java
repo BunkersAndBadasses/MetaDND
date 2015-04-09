@@ -20,6 +20,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
@@ -59,12 +60,12 @@ public class DieWindow {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Die Roller");
-		shell.setSize(WIDTH, HEIGHT);
+		//shell.setSize(WIDTH, HEIGHT);
 		dieWin = new Composite(shell, SWT.NONE);
 		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
 
 		createPageContent();
-
+		shell.pack();
 		run();
 	}
 
@@ -166,7 +167,7 @@ public class DieWindow {
 		final Label mod = new Label(dieWin, SWT.NONE);
 		Font font2 = new Font(display, new FontData("Arial", 24,
 				SWT.NONE));
-		mod.setFont(font2);//TODO make this not bold
+		mod.setFont(font2);
 		mod.setText("Modifier = ");
 		GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
 		gridData.horizontalIndent = 5;
@@ -309,18 +310,19 @@ public class DieWindow {
 
 				notUsed = true;
 
+				//TODO layout this save window
 				final Shell saveName = new Shell(display);
 				saveName.setText("Save");
-				saveName.setSize(300, 200);
+				//saveName.setSize(300, 200);
 				center(saveName);
 
 				// this appears when there is an empty save
 				badSaveFinal = new Label(saveName, SWT.NONE);
 				badSaveFinal.setForeground(new Color(dev,255,0,0));
-				badSaveFinal.setLocation(10,110);
+				//badSaveFinal.setLocation(10,110);
 				badSaveFinal.setVisible(false);
 				badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
-				badSaveFinal.pack();
+				//badSaveFinal.pack();
 
 				Label name = new Label(saveName, SWT.NONE);
 				name.setLocation(77,50);
@@ -379,7 +381,8 @@ public class DieWindow {
 						saveName.dispose();
 					}
 				});
-				//Regex parser
+				
+				saveName.pack();
 
 
 				saveName.open();
@@ -557,9 +560,10 @@ public class DieWindow {
 					return;
 				}
 
+				//TODO layout this delete window
 				final Shell deleteFile = new Shell(display);
 				deleteFile.setText("Delete");
-				deleteFile.setSize(250, 150);
+				//deleteFile.setSize(250, 150);
 				center(deleteFile);
 
 				Label name = new Label(deleteFile, SWT.NONE);
@@ -588,6 +592,8 @@ public class DieWindow {
 						deleteFile.dispose();
 					}
 				});
+				
+				deleteFile.pack();
 
 				deleteFile.open();
 				while (!deleteFile.isDisposed()) {
