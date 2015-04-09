@@ -50,7 +50,7 @@ public class DieWindow {
 	private static Combo favList;
 	private final int WIDTH = 700;
 	private final int HEIGHT = 500;
-	private int[] numDie = {0, 0, 0, 0, 0, 0};
+	private int[] numDie = {0, 0, 0, 0, 0, 0, 0};
 	private static String modString = "0";
 
 
@@ -98,14 +98,15 @@ public class DieWindow {
 
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
-		final String [] dieNames = {"d4  ", "d6  ", "d8  ", "d10","d12", "d20"};
-		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20};
+		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
+				"d12  ", "d20  ", "d100"};
+		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20, 100};
 		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 
 		// this appears when there is invalid int in the mod box
 		badInputText = new Label(dieWin, SWT.NONE);
 		badInputText.setForeground(new Color(dev,255,0,0));
-		badInputText.setLocation(WIDTH/2 -150,340);
+		badInputText.setLocation(WIDTH/2 -150,440);
 		badInputText.setVisible(false);
 		badInputText.setText("Invalid modifier: must be an integer -100 < X < 100");
 		badInputText.pack();
@@ -113,7 +114,7 @@ public class DieWindow {
 		// this appears when there is an empty save
 		badSaveText = new Label(dieWin, SWT.NONE);
 		badSaveText.setForeground(new Color(dev,255,0,0));
-		badSaveText.setLocation(WIDTH/2 -150,340);
+		badSaveText.setLocation(WIDTH/2 -150,440);
 		badSaveText.setVisible(false);
 		badSaveText.setText("Invalid Save: must have at least 1 die or modifier");
 		badSaveText.pack();
@@ -123,7 +124,7 @@ public class DieWindow {
 		Font font2 = new Font(display, new FontData("Arial", 24,
 				SWT.NONE));
 		mod.setFont(font2);//TODO make this not bold
-		mod.setLocation(20, 265);
+		mod.setLocation(20, 310);
 		//gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		//gridData.horizontalIndent = 5;
 		//mod.setLayoutData(gridData);
@@ -133,7 +134,7 @@ public class DieWindow {
 		//Mod text box
 		modText = new Text(dieWin, SWT.BORDER);
 		modText.setText("0");
-		modText.setBounds(180,263,30,30);
+		modText.setBounds(180,308,30,30);
 		modText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				Text text = (Text) e.widget;
@@ -146,26 +147,26 @@ public class DieWindow {
 		Font font4 = new Font(display, new FontData("Arial", 24,
 				SWT.BOLD));
 		totalText.setFont(font4);
-		totalText.setLocation(55, 310);
+		totalText.setLocation(55, 345);
 		totalText.setText("Total = ");
 		totalText.pack();
 
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		total.setLocation(190, 308);//138
-		total.setSize(45, 30);
+		total.setLocation(185, 343);//138
+		total.setSize(48, 30);
 		total.setText("0");
 		Font font5 = new Font(display, new FontData("Arial", 16,
 				SWT.NONE));
 		total.setFont(font5);
 
 
-		Font font3 = new Font(display, new FontData("Arial", 16,
+		Font font3 = new Font(display, new FontData("Arial", 15,
 				SWT.NONE));
 		Button roll = new Button(dieWin, SWT.PUSH);
 		roll.setText("Roll");
 		roll.setFont(font3);
-		roll.setLocation(75, 370);
+		roll.setLocation(75, 380);
 		roll.setSize(85, 50);
 		roll.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -187,7 +188,7 @@ public class DieWindow {
 				}
 
 				//add the rolling to this
-				for(int i = 0; i < 6; i++){
+				for(int i = 0; i < 7; i++){
 					rollTotal += DnDie.roll(dieNameNumbers[i], numDie[i]);
 					//System.out.println(rollTotal);
 				}
@@ -201,7 +202,7 @@ public class DieWindow {
 		Button save = new Button(dieWin, SWT.PUSH);
 		save.setText("Save");
 		save.setFont(font3);
-		save.setLocation(175, 370);
+		save.setLocation(175, 380);
 		save.setSize(85, 50);
 		save.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -221,10 +222,10 @@ public class DieWindow {
 					return;
 				}
 
-				ArrayList<Roll> roll = new ArrayList<Roll>(6);
+				ArrayList<Roll> roll = new ArrayList<Roll>(8);
 
 				//add die that were added
-				for(int i = 0; i < 6; i++){
+				for(int i = 0; i < 7; i++){
 					if(numDie[i] > 0){
 						notUsed = false;
 						roll.add(new Roll(dieNameNumbers[i], numDie[i]));
@@ -354,9 +355,9 @@ public class DieWindow {
 
 		}
 
-		Label[] dieLabels = new Label[6]; 
+		Label[] dieLabels = new Label[7]; 
 
-		for(int i = 0; i < 6; i++){
+		for(int i = 0; i < 7; i++){
 
 			// The die X number text that's updated on button push
 			final Label dieText = new Label(dieWin, SWT.NONE);
@@ -405,7 +406,7 @@ public class DieWindow {
 		// this appears when there is an empty load
 		badLoadText = new Label(dieWin, SWT.NONE);
 		badLoadText.setForeground(new Color(dev,255,0,0));
-		badLoadText.setLocation(WIDTH/2 -150,340);
+		badLoadText.setLocation(WIDTH/2 -150,440);
 		badLoadText.setVisible(false);
 		badLoadText.setText("Invalid Load: must select a file.");
 		badLoadText.pack();
@@ -434,6 +435,7 @@ public class DieWindow {
 				boolean d10 = false;
 				boolean d12 = false;
 				boolean d20 = false;
+				boolean d100 = false;
 				boolean modded = false;
 
 				for(int i = 0; i < loaded.size(); i++){
@@ -473,6 +475,12 @@ public class DieWindow {
 						dieLabels[5].pack();
 						d20 = true;
 					}
+					else if(loaded.get(i).getDieSize() == 100){
+						numDie[6] = loaded.get(i).getDieCount();
+						dieLabels[6].setText(dieNames[6] + " x " + numDie[6]);
+						dieLabels[6].pack();
+						d100 = true;
+					}
 					if(loaded.get(i).getModifier() != 0){
 						modded = true;
 						modText.setText(Integer.toString(loaded.get(i).getModifier()));
@@ -508,6 +516,11 @@ public class DieWindow {
 						dieLabels[5].setText(dieNames[5] + " x " + numDie[5]);
 						dieLabels[5].pack();
 					}
+					if(!d100){
+						numDie[6] = 0;
+						dieLabels[6].setText(dieNames[6] + " x " + numDie[6]);
+						dieLabels[6].pack();
+					}
 					if(!modded){
 						modText.setText("0");
 					}
@@ -521,7 +534,7 @@ public class DieWindow {
 		// this appears when there is an empty save
 		badDeleteText = new Label(dieWin, SWT.NONE);
 		badDeleteText.setForeground(new Color(dev,255,0,0));
-		badDeleteText.setLocation(WIDTH/2 -150,340);
+		badDeleteText.setLocation(WIDTH/2 -150,440);
 		badDeleteText.setVisible(false);
 		badDeleteText.setText("Invalid Delete: must select a file.");
 		badDeleteText.pack();
@@ -529,7 +542,7 @@ public class DieWindow {
 		Button delete = new Button(dieWin, SWT.PUSH);
 		delete.setText("Delete");
 		delete.setFont(font3);
-		delete.setLocation(350, 120);
+		delete.setLocation(355, 120);
 		delete.setSize(70, 40);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
