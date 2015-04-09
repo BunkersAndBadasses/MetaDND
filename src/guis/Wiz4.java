@@ -12,6 +12,10 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -146,7 +150,7 @@ public class Wiz4 {
 		// untrained label
 		Label untrainedLabel = new Label(wiz4, SWT.NONE);
 		untrainedLabel.setLocation(470, 85);
-		untrainedLabel.setText("■ : skill can be used untrained");
+		untrainedLabel.setText(Character.toString((char)8226) + " : skill can be used untrained");
 		untrainedLabel.pack();
 
 		// get skills from references
@@ -161,6 +165,11 @@ public class Wiz4 {
 			charSkills.add(new CharSkill(skills.get(i), CharacterWizard.getCharacter()));
 		}
 
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 3;
+//		GridData gridData = new GridData();
+//		gridData.horizontalAlignment = SWT.LEFT;
+		
 		// set up scrollable composite
 		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
 		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
@@ -170,15 +179,28 @@ public class Wiz4 {
 		final Composite skillsScreen = new Composite(skillsScreenScroll, SWT.NONE);
 		skillsScreenScroll.setContent(skillsScreen);
 		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
+		skillsScreen.setLayout(gridLayout);
+		
 		// create content (+/- buttons, skills, ranks, mods, etc
 		ArrayList<Label> skillNameLabels = new ArrayList<Label>();
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
 
 		for(int i = 0; i < charSkills.size(); i++) {
+			Button inc = new Button(skillsScreen, SWT.PUSH);
+			inc.setText("+");
+			GridData incGD = new GridData(SWT.LEFT);
+			incGD.widthHint = 30;
+			inc.setLayoutData(incGD);
+			inc.setSize(30, inc.getSize().y);
+			Button dec = new Button(skillsScreen, SWT.PUSH);
+			dec.setText("-");
+			GridData decGD = new GridData(SWT.LEFT);
+			decGD.widthHint = 30;
+			dec.setLayoutData(decGD);
 			final Label skillName = new Label(skillsScreen, SWT.NONE);
-			skillName.setLocation(260, (i*30) + 10);
+			skillName.setLayoutData(new GridData(SWT.LEFT));
+//			skillName.setLocation(260, (i*30) + 10);
 			final CharSkill current = charSkills.get(i);
 			final int abilityMod = current.getAbilityMod();
 			final int miscMod = current.getMiscMod();
@@ -192,7 +214,7 @@ public class Wiz4 {
 				acPen = "";
 			final String untrained;
 			if (current.useUntrained())
-				untrained = "■";
+				untrained = Character.toString ((char) 8226);
 			else 
 				untrained = "    ";
 			skillName.setText(untrained + current.getSkill().getName() + " (" 
@@ -204,9 +226,8 @@ public class Wiz4 {
 				skillName.setForeground(crossClassSkillColor);
 			skillName.pack();
 			skillNameLabels.add(skillName);
-			Button inc = new Button(skillsScreen, SWT.PUSH);
-			inc.setText("+");
-			inc.setBounds(200, (i*30) + 10, 20, 20);
+
+//			inc.setBounds(200, (i*30) + 10, 20, 20);
 			inc.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (numSkillPoints == 0)
@@ -225,9 +246,7 @@ public class Wiz4 {
 				}
 			});
 			incButtons.add(inc);
-			Button dec = new Button(skillsScreen, SWT.PUSH);
-			dec.setText("-");
-			dec.setBounds(220, (i*30) + 10, 20, 20);
+//			dec.setBounds(220, (i*30) + 10, 20, 20);
 			dec.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (current.decRank()) {
@@ -244,6 +263,7 @@ public class Wiz4 {
 				}
 			});
 			decButtons.add(dec);
+			skillsScreen.pack();
 		}
 
 		// create error label

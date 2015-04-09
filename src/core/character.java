@@ -45,13 +45,13 @@ public class character {
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
 	private String languages;
-	private ArrayList<FeatEntity> feats;
-	private ArrayList<Ability> abilities;
-	private ArrayList<SpellEntity> spells;
-	private ArrayList<SpellEntity> prepSpells;
-	private ArrayList<ItemEntity> items;
-	private ArrayList<WeaponEntity> weapons;
-	private ArrayList<ArmorEntity> armors;
+	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+	private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
+	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+	private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
+	private ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
+	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+	private ArrayList<ArmorEntity> armors = new ArrayList<ArmorEntity>();
 	private String notes;
 	
 	
@@ -100,7 +100,7 @@ public class character {
 	public void setLanguages(String l) { languages = l; }
 	public void addLanguage(String l) { languages += ", " + l; }
 	public void addFeat(FeatEntity f) { feats.add(f); }
-	public void addSpecialAbility(Ability a) { abilities.add(a); }
+	public void addSpecialAbility(AbilityEntity a) { abilities.add(a); }
 	public void addSpell(SpellEntity s) { spells.add(s); }
 	public void prepSpell(SpellEntity s) { prepSpells.add(s); } // TODO type spell or string?
 	public void unprepSpell(SpellEntity s) { prepSpells.remove(s); } // remove spell from prepSpell list
