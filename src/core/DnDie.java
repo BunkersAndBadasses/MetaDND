@@ -125,7 +125,7 @@ public class DnDie {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(fileName + ".xml"));
+			StreamResult result = new StreamResult(new File("favRolls/" + fileName + ".xml"));
 
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
@@ -149,7 +149,7 @@ public class DnDie {
 
 		try {
 
-			File fXmlFile = new File(fileName + ".xml");
+			File fXmlFile = new File("favRolls/" + fileName + ".xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
