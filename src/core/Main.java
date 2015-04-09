@@ -14,6 +14,7 @@ public class Main {
 		gameState = new GameState();
 		xmlLoader xmls = new xmlLoader("xmlTestThread");
 		SearchThread st1 = new SearchThread("Spells");
+		SearchThread st2 = new SearchThread("Spells");
 		xmls.start();
 		
 		
@@ -29,7 +30,9 @@ public class Main {
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				//System.out.println("You clicked the button");
+				
 				st1.start(Main.gameState.spells, "acid");
+				st2.start(Main.gameState.spells, "fire");
 			}
 		});
 		
@@ -56,7 +59,6 @@ public class Main {
 		}
 		display.dispose();
 		shell.dispose();
-		
 		System.out.println("Exiting");
 		System.exit(0);
 	}

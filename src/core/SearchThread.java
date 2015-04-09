@@ -31,7 +31,7 @@ public class SearchThread implements Runnable{
 	@Override
 	public void run() {
 		for (Entry<String, DNDEntity> entry : input.entrySet()){
-			entry.getValue().search(this.searchString);
+			entry.getValue().search(this.searchString, this.SearchThread);
 			
 		}
 		System.out.println("Ending " + threadName );

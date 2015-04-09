@@ -3,6 +3,8 @@ package entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import core.Main;
+
 public class SpellEntity extends DNDEntity{
 
 	String school;
@@ -83,21 +85,137 @@ public class SpellEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
 		if(this.name.toLowerCase().contains(searchString)){
 			System.out.println(this.name + " contains " + searchString + " in NAME");
+			try {
+				Main.gameState.searchResultsLock.acquire();
+				System.out.println("Lock aquired, adding " + this.name + " to results list.");
+				Main.gameState.searchResults.add(this);
+			}
+			catch (InterruptedException e) {
+				System.out.println(runningThread.getName() + " failed!");
+			}
+			finally{
+				Main.gameState.searchResultsLock.release();
+				System.out.println("Lock released.");
+			}
 		}
 		
 		if(this.description.toLowerCase().contains(searchString)){
-			System.out.println(this.name + " contains " + searchString + " in DESCRIPTION");
+			//System.out.println(this.name + " contains " + searchString + " in DESCRIPTION");
 		}
 		if(this.effect != null && this.effect.toLowerCase().contains(searchString)){
-			System.out.println(this.name + " contains " + searchString + " in EFFECT");
+			//System.out.println(this.name + " contains " + searchString + " in EFFECT");
 		}
 		
 		//System.out.println("Searching " + this.name);
 		
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public Map<String, Integer> getLevel() {
+		return level;
+	}
+
+	public void setLevel(Map<String, Integer> level) {
+		this.level = level;
+	}
+
+	public String getComponents() {
+		return components;
+	}
+
+	public void setComponents(String components) {
+		this.components = components;
+	}
+
+	public String getCastingTime() {
+		return castingTime;
+	}
+
+	public void setCastingTime(String castingTime) {
+		this.castingTime = castingTime;
+	}
+
+	public String getRange() {
+		return range;
+	}
+
+	public void setRange(String range) {
+		this.range = range;
+	}
+
+	public String getEffect() {
+		return effect;
+	}
+
+	public void setEffect(String effect) {
+		this.effect = effect;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public String getSavingThrow() {
+		return savingThrow;
+	}
+
+	public void setSavingThrow(String savingThrow) {
+		this.savingThrow = savingThrow;
+	}
+
+	public boolean isSpellResistance() {
+		return spellResistance;
+	}
+
+	public void setSpellResistance(boolean spellResistance) {
+		this.spellResistance = spellResistance;
+	}
+
+	public String getMaterialComponent() {
+		return materialComponent;
+	}
+
+	public void setMaterialComponent(String materialComponent) {
+		this.materialComponent = materialComponent;
+	}
+
+	public String getFocus() {
+		return focus;
+	}
+
+	public void setFocus(String focus) {
+		this.focus = focus;
+	}
+
+	public String getDamage() {
+		return damage;
+	}
+
+	public void setDamage(String damage) {
+		this.damage = damage;
+	}
+
+	public String getDamageAlternate() {
+		return damageAlternate;
+	}
+
+	public void setDamageAlternate(String damageAlternate) {
+		this.damageAlternate = damageAlternate;
 	}
 }

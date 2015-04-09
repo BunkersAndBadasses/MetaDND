@@ -117,9 +117,129 @@ public class RaceEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int[] getAbilityAdj() {
+		return abilityAdj;
+	}
+
+	public void setAbilityAdj(int[] abilityAdj) {
+		this.abilityAdj = abilityAdj;
+	}
+
+	public String getFavoredClass() {
+		return favoredClass;
+	}
+
+	public void setFavoredClass(String favoredClass) {
+		this.favoredClass = favoredClass;
+	}
+
+	public String getPersonality() {
+		return personality;
+	}
+
+	public void setPersonality(String personality) {
+		this.personality = personality;
+	}
+
+	public String getPhysicalDescription() {
+		return physicalDescription;
+	}
+
+	public void setPhysicalDescription(String physicalDescription) {
+		this.physicalDescription = physicalDescription;
+	}
+
+	public String getRelations() {
+		return relations;
+	}
+
+	public void setRelations(String relations) {
+		this.relations = relations;
+	}
+
+	public String getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(String alignment) {
+		this.alignment = alignment;
+	}
+
+	public String[] getLands() {
+		return lands;
+	}
+
+	public void setLands(String[] lands) {
+		this.lands = lands;
+	}
+
+	public String getReligion() {
+		return religion;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+	public String[] getSpecialAbilities() {
+		return specialAbilities;
+	}
+
+	public void setSpecialAbilities(String[] specialAbilities) {
+		this.specialAbilities = specialAbilities;
+	}
+
+	public String[] getAutoLanguages() {
+		return autoLanguages;
+	}
+
+	public void setAutoLanguages(String[] autoLanguages) {
+		this.autoLanguages = autoLanguages;
+	}
+
+	public String[] getBonusLanguages() {
+		return bonusLanguages;
+	}
+
+	public void setBonusLanguages(String[] bonusLanguages) {
+		this.bonusLanguages = bonusLanguages;
+	}
+
+	public String[] getRacialBonuses() {
+		return racialBonuses;
+	}
+
+	public void setRacialBonuses(String[] racialBonuses) {
+		this.racialBonuses = racialBonuses;
+	}
+
+	public String[] getNames() {
+		return names;
+	}
+
+	public void setNames(String[] names) {
+		this.names = names;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 	
