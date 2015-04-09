@@ -27,7 +27,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import core.CharSkill;
-import core.character;
+import core.Character;
 import core.DnDie;
 import core.Roll;
 
