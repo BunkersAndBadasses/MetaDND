@@ -181,29 +181,17 @@ public class DieWindow {
 		custom.setLayoutData(gridData);
 		//mod.pack();
 
+		//Custom die Count box
+		dieCountBox = new Text(dieWin, SWT.BORDER);
+		dieCountBox.setText("0");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		dieCountBox.setLayoutData(gridData);
+		
 		//Custom die box
 		dieBox = new Text(dieWin, SWT.BORDER);
 		dieBox.setText("0");
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		dieBox.setLayoutData(gridData);
-		dieBox.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				Text text = (Text) e.widget;
-				modString = text.getText();
-			}
-		});
-		
-		//Custom die count box
-		dieCountBox = new Text(dieWin, SWT.BORDER);
-		dieCountBox.setText("0");
-		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		dieCountBox.setLayoutData(gridData);
-		dieCountBox.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				Text text = (Text) e.widget;
-				modString = text.getText();
-			}
-		});
 		
 		// Mod text
 		final Label mod = new Label(dieWin, SWT.NONE);
@@ -217,16 +205,9 @@ public class DieWindow {
 		//Mod text box
 		modText = new Text(dieWin, SWT.BORDER);
 		modText.setText("0");
-		//modText.setBounds(180,308,30,30);
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan = 2;
 		modText.setLayoutData(gridData);
-		modText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				Text text = (Text) e.widget;
-				modString = text.getText();
-			}
-		});
 
 		// Total text
 		final Label totalText = new Label(dieWin, SWT.NONE);
@@ -261,28 +242,69 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 				int modInt = 0;
 				int rollTotal = 0;
+				int custDie = 0;
+				int custDieCount = 0;
 				boolean dieRolled = false;
 
 				try{
-
+					
 					invalidOperation.setVisible(false);
-					modInt = Integer.parseInt(modString);
-
-					if(modInt <= -100 || modInt >= 100)
-						throw new Exception();
+					modInt = Integer.parseInt(modText.getText());
+					custDie = Integer.parseInt(dieBox.getText());
+					custDieCount = Integer.parseInt(dieCountBox.getText());
+					
+					if(modInt <= -100 || modInt >= 100){
+						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie < 0 || custDie > 1000 || custDie == 1){
+						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDieCount < 0 || custDieCount > 20){
+						invalidOperation.setText("Invalid Custom Die count: 0 < count <20");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie != 0 && custDieCount == 0){
+						invalidOperation.setText("Invalid Custom #: select die count");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie == 0 && custDieCount != 0){
+						invalidOperation.setText("Invalid Custom Die: select a die");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
 					
 					for(int i = 0; i < 7; i++){
 						if(numDie[i] != 0)
 							dieRolled = true;
 					}
 
-					if(!dieRolled){
+					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
 						invalidOperation.setVisible(true);
+						
+						return;
 					}
 					
 				}catch(Exception error){
-					invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+					modText.setText("0");
+					dieBox.setText("0");
+					dieCountBox.setText("0");
+					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
 					
 					return;
@@ -294,6 +316,10 @@ public class DieWindow {
 					//System.out.println(rollTotal);
 				}
 				rollTotal += modInt;
+				
+				if(custDie != 0 && custDieCount != 0){
+					rollTotal += DnDie.roll(custDie, custDieCount);
+				}
 
 				total.setText(Integer.toString(rollTotal));
 
@@ -311,22 +337,75 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 				int modInt = 0;
 				boolean notUsed = true;
+				int custDie = 0;
+				int custDieCount = 0;
+				boolean dieRolled = false;
+
 				try{
-
+					
 					invalidOperation.setVisible(false);
-					modInt = Integer.parseInt(modString);
+					modInt = Integer.parseInt(modText.getText());
+					custDie = Integer.parseInt(dieBox.getText());
+					custDieCount = Integer.parseInt(dieCountBox.getText());
+					
+					if(modInt <= -100 || modInt >= 100){
+						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie < 0 || custDie > 1000 || custDie == 1){
+						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDieCount < 0 || custDieCount > 20){
+						invalidOperation.setText("Invalid Custom Die count: 0 < count <20");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie != 0 && custDieCount == 0){
+						invalidOperation.setText("Invalid Custom #: select die count");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					if(custDie == 0 && custDieCount != 0){
+						invalidOperation.setText("Invalid Custom Die: select a die");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
+					for(int i = 0; i < 7; i++){
+						if(numDie[i] != 0)
+							dieRolled = true;
+					}
 
-					if(modInt <= -100 || modInt >= 100)
-						throw new Exception();
-
+					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
+						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
+						invalidOperation.setVisible(true);
+						
+						return;
+					}
+					
 				}catch(Exception error){
-					invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+					modText.setText("0");
+					dieBox.setText("0");
+					dieCountBox.setText("0");
+					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
 					
 					return;
 				}
 
-				ArrayList<Roll> roll = new ArrayList<Roll>(8);
+				ArrayList<Roll> roll = new ArrayList<Roll>(9);
 
 				//add die that were added
 				for(int i = 0; i < 7; i++){
@@ -336,6 +415,11 @@ public class DieWindow {
 					}
 				}
 
+				if(custDie != 0 && custDieCount != 0){
+					notUsed = false;
+					roll.add(new Roll(custDie, custDieCount));
+				}
+				
 				// if a die was added, or a mod was there
 				if(modInt != 0){
 					roll.add(new Roll(0, 0, modInt));
@@ -417,7 +501,10 @@ public class DieWindow {
 						}		
 
 						DnDie.saveFavDie(nameBox.getText(), rollFinal);
-						favList.add(nameBox.getText());
+						
+						if(favList.indexOf(nameBox.getText()) == -1)
+							favList.add(nameBox.getText());
+						
 						saveName.dispose();
 					}
 				});
@@ -478,7 +565,7 @@ public class DieWindow {
 					return;
 				}
 
-				ArrayList<Roll> loaded = new ArrayList<Roll>(7);
+				ArrayList<Roll> loaded = new ArrayList<Roll>(8);
 				loaded = DnDie.loadFavDie(favList.getItem(favList.getSelectionIndex()));
 
 				boolean d4 = false;
@@ -488,50 +575,49 @@ public class DieWindow {
 				boolean d12 = false;
 				boolean d20 = false;
 				boolean d100 = false;
+				boolean custom = false;
 				boolean modded = false;
 
 				for(int i = 0; i < loaded.size(); i++){
 					if(loaded.get(i).getDieSize() == 4){
 						numDie[0] = loaded.get(i).getDieCount();
-						dieLabels[0].setText(dieNames[0] + " x " + numDie[0]);
-						dieLabels[0].pack();
+						dieLabels[0].setText(numDie[0] + dieNames[0]);
 						d4 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 6){
 						numDie[1] = loaded.get(i).getDieCount();
-						dieLabels[1].setText(dieNames[1] + " x " + numDie[1]);
-						dieLabels[1].pack();
+						dieLabels[1].setText(numDie[1] + dieNames[1]);
 						d6 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 8){
 						numDie[2] = loaded.get(i).getDieCount();
-						dieLabels[2].setText(dieNames[2] + " x " + numDie[2]);
-						dieLabels[2].pack();
+						dieLabels[2].setText(numDie[2] + dieNames[2]);
 						d8 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 10){
 						numDie[3] = loaded.get(i).getDieCount();
-						dieLabels[3].setText(dieNames[3] + " x " + numDie[3]);
-						dieLabels[3].pack();
+						dieLabels[3].setText(numDie[3] + dieNames[3]);
 						d10 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 12){
 						numDie[4] = loaded.get(i).getDieCount();
-						dieLabels[4].setText(dieNames[4] + " x " + numDie[4]);
-						dieLabels[4].pack();
+						dieLabels[4].setText(numDie[4] + dieNames[4]);
 						d12 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 20){
 						numDie[5] = loaded.get(i).getDieCount();
-						dieLabels[5].setText(dieNames[5] + " x " + numDie[5]);
-						dieLabels[5].pack();
+						dieLabels[5].setText(numDie[5] + dieNames[5]);
 						d20 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 100){
 						numDie[6] = loaded.get(i).getDieCount();
-						dieLabels[6].setText(dieNames[6] + " x " + numDie[6]);
-						dieLabels[6].pack();
+						dieLabels[6].setText(numDie[6] + dieNames[6]);
+
 						d100 = true;
+					}else if(loaded.get(i).getDieSize() != 0){
+						custom = true;
+						dieBox.setText(Integer.toString(loaded.get(i).getDieSize()));
+						dieCountBox.setText(Integer.toString(loaded.get(i).getDieCount()));
 					}
 					if(loaded.get(i).getModifier() != 0){
 						modded = true;
@@ -540,41 +626,38 @@ public class DieWindow {
 
 					if(!d4){
 						numDie[0] = 0;
-						dieLabels[0].setText(dieNames[0] + " x " + numDie[0]);
-						dieLabels[0].pack();
+						dieLabels[0].setText(numDie[0] + dieNames[0]);
 					}
 					if(!d6){
 						numDie[1] = 0;
-						dieLabels[1].setText(dieNames[1] + " x " + numDie[1]);
-						dieLabels[1].pack();
+						dieLabels[1].setText(numDie[1] + dieNames[1]);
 					}
 					if(!d8){
 						numDie[2] = 0;
-						dieLabels[2].setText(dieNames[2] + " x " + numDie[2]);
-						dieLabels[2].pack();
+						dieLabels[2].setText(numDie[2] + dieNames[2]);
 					}
 					if(!d10){
 						numDie[3] = 0;
-						dieLabels[3].setText(dieNames[3] + " x " + numDie[3]);
-						dieLabels[3].pack();
+						dieLabels[3].setText(numDie[3] + dieNames[3]);
 					}
 					if(!d12){
 						numDie[4] = 0;
-						dieLabels[4].setText(dieNames[4] + " x " + numDie[4]);
-						dieLabels[4].pack();
+						dieLabels[4].setText(numDie[4] + dieNames[4]);
 					}
 					if(!d20){
 						numDie[5] = 0;
-						dieLabels[5].setText(dieNames[5] + " x " + numDie[5]);
-						dieLabels[5].pack();
+						dieLabels[5].setText(numDie[5] + dieNames[5]);
 					}
 					if(!d100){
 						numDie[6] = 0;
-						dieLabels[6].setText(dieNames[6] + " x " + numDie[6]);
-						dieLabels[6].pack();
+						dieLabels[6].setText(numDie[6] + dieNames[6]);
 					}
 					if(!modded){
 						modText.setText("0");
+					}
+					if(!custom){
+						dieBox.setText("0");
+						dieCountBox.setText("0");
 					}
 
 				}
