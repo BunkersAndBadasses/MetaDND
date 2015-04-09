@@ -105,6 +105,24 @@ public abstract class DNDEntity {
 		display.dispose();
 	}
 	
-	public abstract void search(String searchString);
+	public abstract void search(String searchString, Thread runningThread);
+	public type getTYPE() {
+		return TYPE;
+	}
+	public void setTYPE(type tYPE) {
+		TYPE = tYPE;
+	}
+	public LinkedHashMap<String, String> getPassedData() {
+		return passedData;
+	}
+	public void setPassedData(LinkedHashMap<String, String> passedData) {
+		this.passedData = passedData;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

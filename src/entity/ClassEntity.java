@@ -115,9 +115,199 @@ public class ClassEntity extends DNDEntity{
 
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public String getAlignmentRestriction() {
+		return alignmentRestriction;
+	}
+
+
+	public void setAlignmentRestriction(String alignmentRestriction) {
+		this.alignmentRestriction = alignmentRestriction;
+	}
+
+
+	public String[] getBonusLanguages() {
+		return bonusLanguages;
+	}
+
+
+	public void setBonusLanguages(String[] bonusLanguages) {
+		this.bonusLanguages = bonusLanguages;
+	}
+
+
+	public String getHitDie() {
+		return hitDie;
+	}
+
+
+	public void setHitDie(String hitDie) {
+		this.hitDie = hitDie;
+	}
+
+
+	public String[] getBaseAttackBonus() {
+		return baseAttackBonus;
+	}
+
+
+	public void setBaseAttackBonus(String[] baseAttackBonus) {
+		this.baseAttackBonus = baseAttackBonus;
+	}
+
+
+	public int[] getFortSave() {
+		return fortSave;
+	}
+
+
+	public void setFortSave(int[] fortSave) {
+		this.fortSave = fortSave;
+	}
+
+
+	public int[] getReflexSave() {
+		return reflexSave;
+	}
+
+
+	public void setReflexSave(int[] reflexSave) {
+		this.reflexSave = reflexSave;
+	}
+
+
+	public int[] getWillSave() {
+		return willSave;
+	}
+
+
+	public void setWillSave(int[] willSave) {
+		this.willSave = willSave;
+	}
+
+
+	public String getSpecial() {
+		return special;
+	}
+
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+
+	public String getSpellsPerDay() {
+		return spellsPerDay;
+	}
+
+
+	public void setSpellsPerDay(String spellsPerDay) {
+		this.spellsPerDay = spellsPerDay;
+	}
+
+
+	public String getSpellsKnown() {
+		return spellsKnown;
+	}
+
+
+	public void setSpellsKnown(String spellsKnown) {
+		this.spellsKnown = spellsKnown;
+	}
+
+
+	public String getClassSkills() {
+		return classSkills;
+	}
+
+
+	public void setClassSkills(String classSkills) {
+		this.classSkills = classSkills;
+	}
+
+
+	public String getSkillPointsFirstLevel() {
+		return skillPointsFirstLevel;
+	}
+
+
+	public void setSkillPointsFirstLevel(String skillPointsFirstLevel) {
+		this.skillPointsFirstLevel = skillPointsFirstLevel;
+	}
+
+
+	public String getSkillPointsPerLevel() {
+		return skillPointsPerLevel;
+	}
+
+
+	public void setSkillPointsPerLevel(String skillPointsPerLevel) {
+		this.skillPointsPerLevel = skillPointsPerLevel;
+	}
+
+
+	public String[] getBonusFeats() {
+		return bonusFeats;
+	}
+
+
+	public void setBonusFeats(String[] bonusFeats) {
+		this.bonusFeats = bonusFeats;
+	}
+
+
+	public String getClassAbilities() {
+		return classAbilities;
+	}
+
+
+	public void setClassAbilities(String classAbilities) {
+		this.classAbilities = classAbilities;
+	}
+
+
+	public String getDruidCompanion() {
+		return druidCompanion;
+	}
+
+
+	public void setDruidCompanion(String druidCompanion) {
+		this.druidCompanion = druidCompanion;
+	}
+
+
+	public String getPaladinMount() {
+		return paladinMount;
+	}
+
+
+	public void setPaladinMount(String paladinMount) {
+		this.paladinMount = paladinMount;
+	}
+
+
+	public String getFamiliar() {
+		return familiar;
+	}
+
+
+	public void setFamiliar(String familiar) {
+		this.familiar = familiar;
+	}
+
+
+	public String getExclass() {
+		return exclass;
+	}
+
+
+	public void setExclass(String exclass) {
+		this.exclass = exclass;
 	}
 
 }

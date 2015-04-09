@@ -13,9 +13,57 @@ public class WeaponEntity extends DNDEntity{
 	private int magicBonus; // if isMagic == false, leave null
 	private String[] magicProperties; // if isMagic == false, leave null
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+	public Roll getDamage() {
+		return damage;
+	}
+	public void setDamage(Roll damage) {
+		this.damage = damage;
+	}
+	public int[] getCriticalRange() {
+		return criticalRange;
+	}
+	public void setCriticalRange(int[] criticalRange) {
+		this.criticalRange = criticalRange;
+	}
+	public int getCriticalMultiplier() {
+		return criticalMultiplier;
+	}
+	public void setCriticalMultiplier(int criticalMultiplier) {
+		this.criticalMultiplier = criticalMultiplier;
+	}
+	public int getRange() {
+		return range;
+	}
+	public void setRange(int range) {
+		this.range = range;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public boolean isMagic() {
+		return isMagic;
+	}
+	public void setMagic(boolean isMagic) {
+		this.isMagic = isMagic;
+	}
+	public int getMagicBonus() {
+		return magicBonus;
+	}
+	public void setMagicBonus(int magicBonus) {
+		this.magicBonus = magicBonus;
+	}
+	public String[] getMagicProperties() {
+		return magicProperties;
+	}
+	public void setMagicProperties(String[] magicProperties) {
+		this.magicProperties = magicProperties;
 	}
 		
 }

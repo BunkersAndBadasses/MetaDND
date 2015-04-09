@@ -59,12 +59,12 @@ public class DieWindow {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Die Roller");
-		shell.setSize(WIDTH, HEIGHT);
+		//shell.setSize(WIDTH, HEIGHT);
 		dieWin = new Composite(shell, SWT.NONE);
 		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
 
 		createPageContent();
-
+		shell.pack();
 		run();
 	}
 

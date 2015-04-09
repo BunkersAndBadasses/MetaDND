@@ -6,9 +6,17 @@ public class DungeonEntity extends DNDEntity{
 	String imageFilePath;
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
 	}
 
 }

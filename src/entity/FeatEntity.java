@@ -48,9 +48,49 @@ public class FeatEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getPrerequisite() {
+		return prerequisite;
+	}
+
+	public void setPrerequisite(String prerequisite) {
+		this.prerequisite = prerequisite;
+	}
+
+	public String getSpecial() {
+		return special;
+	}
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+	public String getNormal() {
+		return normal;
+	}
+
+	public void setNormal(String normal) {
+		this.normal = normal;
+	}
+
+	public String getBenefit() {
+		return benefit;
+	}
+
+	public void setBenefit(String benefit) {
+		this.benefit = benefit;
+	}
+
+	public String getFighterBonus() {
+		return fighterBonus;
+	}
+
+	public void setFighterBonus(String fighterBonus) {
+		this.fighterBonus = fighterBonus;
 	}
 
 }

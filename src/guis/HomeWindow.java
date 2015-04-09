@@ -234,7 +234,7 @@ public class HomeWindow {
         		rdg.GenerateDungeon();
         		rdg.printDungeon(true);
 
-        		GridMapper gm = new GridMapper("generatedDungeon.bnb");
+        		GridMapper gm = new GridMapper("generatedDungeon.txt");
         		gm.generateSVG();
         		
         		svgCanvas.setURI("file:///C:\\Users\\Curt\\Workspace\\MetaDND\\generatedDungeon.svg");

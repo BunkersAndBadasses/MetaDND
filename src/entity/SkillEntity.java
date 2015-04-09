@@ -62,9 +62,81 @@ public class SkillEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString) {
+	public void search(String searchString, Thread runningThread) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getSkillParentAttribute() {
+		return skillParentAttribute;
+	}
+
+	public void setSkillParentAttribute(String skillParentAttribute) {
+		this.skillParentAttribute = skillParentAttribute;
+	}
+
+	public String getCheck() {
+		return check;
+	}
+
+	public void setCheck(String check) {
+		this.check = check;
+	}
+
+	public String getSpecial() {
+		return special;
+	}
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+	public String getTryagain() {
+		return tryagain;
+	}
+
+	public void setTryagain(String tryagain) {
+		this.tryagain = tryagain;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public String getSynergy() {
+		return synergy;
+	}
+
+	public void setSynergy(String synergy) {
+		this.synergy = synergy;
+	}
+
+	public String getRestriction() {
+		return restriction;
+	}
+
+	public void setRestriction(String restriction) {
+		this.restriction = restriction;
+	}
+
+	public String getUntrained() {
+		return untrained;
+	}
+
+	public void setUntrained(String untrained) {
+		this.untrained = untrained;
+	}
+
+	public boolean isArmorCheckPenalty() {
+		return armorCheckPenalty;
+	}
+
+	public void setArmorCheckPenalty(boolean armorCheckPenalty) {
+		this.armorCheckPenalty = armorCheckPenalty;
 	}
 
 }
