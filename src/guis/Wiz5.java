@@ -134,7 +134,7 @@ public class Wiz5 {
 		// add feat button
 		Button addButton = new Button(wiz5, SWT.PUSH);
 		addButton.setText("Add");
-		addButton.setLocation(0, 60);
+		addButton.setLocation(WIDTH/2 - 100, 60);
 		addButton.pack();
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -152,6 +152,10 @@ public class Wiz5 {
 		});
 		
 		// remove feat button
+		Button removeButton = new Button(wiz5, SWT.PUSH);
+		removeButton.setText("Remove");
+		removeButton.setLocation(WIDTH/2 + 10, 60);
+		removeButton.pack();
 		
 		
 
