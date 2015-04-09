@@ -1,6 +1,6 @@
 package core;
 
-public class ClassSkillList {
+public class SkillInfo {
 
 	private static final String[] charClasses = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
 	private static final String[] barbarian = {"Climb", "Craft", "Handle Animal", "Intimidate", "Jump", "Listen", "Ride", "Survival", "Swim"};
@@ -15,6 +15,7 @@ public class ClassSkillList {
 	private static final String[] sorcerer = {"Bluff", "Concentration", "Craft", "Knowledge(arcana)", "Profession", "Spellcraft"};
 	private static final String[] wizard = {"Concentration", "Craft", "Decipher Script", "Knowledge(arcana)", "Knowledge(architecture and engineering)", "Knowledge(dungeoneering)", "Knowledge(geography)", "Knowledge(history)", "Knowledge(local)", "Knowledge(nature)", "Knowledge(nobility and royalty)", "Knowledge(religion)", "Knowledge(the planes)", "Profession", "Spellcraft"};
 	private static final String [][] classSkills = {barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, wizard};
+	private static final String[] trained = {"Decipher Script", "Disable Device", "Handle Animal", "Knowledge(arcana)", "Knowledge(architecture and engineering)", "Knowledge(dungeoneering)", "Knowledge(geography)", "Knowledge(history)", "Knowledge(local)", "Knowledge(nature)", "Knowledge(nobility and royalty)", "Knowledge(religion)", "Knowledge(the planes)", "Open Lock", "Profession", "Sleight of Hand", "Speak Language", "Spellcraft", "Tumble", "Use Magic Device"};
 	
 	public static String[] getClassSkillList(String charClass) {
 		for (int i = 0; i < charClasses.length; i++) {
@@ -35,6 +36,13 @@ public class ClassSkillList {
 		return false;
 	}
 	
+	public static boolean useUntrained(String skillName) {
+		for (int i = 0; i < trained.length; i++) {
+			if (skillName.equalsIgnoreCase(trained[i]))
+				return false;
+		}
+		return true;
+	}
 	
 	
 	

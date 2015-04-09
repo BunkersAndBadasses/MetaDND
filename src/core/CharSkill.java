@@ -10,18 +10,19 @@ public class CharSkill {
 	private int miscMod = 0;
 	private boolean classSkill = false;
 	private boolean acPen;
+	private boolean untrained = false;
 	private boolean halfPoint = false;
-
 	
 	public CharSkill(SkillEntity s, Character c) {
 		skill = s;
 		character = c;
 		String charClass = character.getCharClass(); // TODO
-		classSkill = ClassSkillList.isClassSkill(charClass, skill.getName());
+		classSkill = SkillInfo.isClassSkill(charClass, skill.getName());
 		abilityType = skill.skillParentAttribute;
 		abilityMod = setAbilityMod(); 
 		// TODO set miscMod
 		acPen = skill.armorCheckPenalty;
+		untrained = SkillInfo.useUntrained(skill.getName());
 	}
 	
 	// TODO check this logic // TODO int rounding off
@@ -94,4 +95,6 @@ public class CharSkill {
 	public boolean isClassSkill() { return classSkill; }
 	
 	public boolean hasACPen() { return acPen; }
+	
+	public boolean useUntrained() { return untrained; }
 }

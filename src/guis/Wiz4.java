@@ -188,12 +188,11 @@ public class Wiz4 {
 					acPen = "*";
 			} else 
 				acPen = "";
-			final String untrained = "    ";
-			//TODO
-//			if (current.getSkill().canUseUntrained())
-//				untrained = "■";
-//			else 
-//				untrained = "    ";
+			final String untrained;
+			if (current.useUntrained())
+				untrained = "■";
+			else 
+				untrained = "    ";
 			skillName.setText(untrained + current.getSkill().getName() + " (" 
 					+ current.getAbilityType() + ")" + acPen + " = " + abilityMod + " + " 
 					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());
