@@ -42,13 +42,14 @@ public class DieWindow {
 	private static Text nameBox;
 	private static Text total;
 	private static Device dev;
-	private static Label badInputText;
-	private static Label badSaveText;
-	private static Label badLoadText;
-	private static Label badDeleteText;
+	private static Label invalidOperation;
+	//private static Label badInputText;
+	//private static Label badSaveText;
+	//private static Label badLoadText;
+	//private static Label badDeleteText;
 	private static Label badSaveFinal;
 	private static Combo favList;
-	private final int WIDTH = 700;
+	private final int WIDTH = 230;
 	private final int HEIGHT = 500;
 	private int[] numDie = {0, 0, 0, 0, 0, 0, 0};
 	private static String modString = "0";
@@ -60,7 +61,7 @@ public class DieWindow {
 		shell.setText("Die Roller");
 		shell.setSize(WIDTH, HEIGHT);
 		dieWin = new Composite(shell, SWT.NONE);
-		dieWin.setBounds(0, 0, WIDTH, HEIGHT);
+		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
 
 		createPageContent();
 
@@ -94,34 +95,20 @@ public class DieWindow {
 	private void createPageContent() {
 
 		GridLayout layout = new GridLayout();
-		shell.setLayout(layout);
+		layout.makeColumnsEqualWidth = false;
+		layout.horizontalSpacing = 3;
+		layout.numColumns = 3;
+		dieWin.setLayout(layout);
 
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
 		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
 				"d12  ", "d20  ", "d100"};
 		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20, 100};
-		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-
-		// this appears when there is invalid int in the mod box
-		badInputText = new Label(dieWin, SWT.NONE);
-		badInputText.setForeground(new Color(dev,255,0,0));
-		badInputText.setLocation(WIDTH/2 -150,440);
-		badInputText.setVisible(false);
-		badInputText.setText("Invalid modifier: must be an integer -100 < X < 100");
-		badInputText.pack();
-
-		// this appears when there is an empty save
-		badSaveText = new Label(dieWin, SWT.NONE);
-		badSaveText.setForeground(new Color(dev,255,0,0));
-		badSaveText.setLocation(WIDTH/2 -150,440);
-		badSaveText.setVisible(false);
-		badSaveText.setText("Invalid Save: must have at least 1 die or modifier");
-		badSaveText.pack();
 		
 		//DIE TEXT AND INC/DEC BUTTONS
 		Label[] dieLabels = new Label[7]; 
-
+		//GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		for(int i = 0; i < 7; i++){
 
 			// The die X number text that's updated on button push
@@ -130,14 +117,19 @@ public class DieWindow {
 			Font font1 = new Font(display, new FontData("Arial", 24,
 					SWT.NONE));
 			dieText.setFont(font1);
-			dieText.setLocation(20, (i*40) + 24);
+			//dieText.setLocation(20, (i*40) + 24);
 			dieText.setText(dieNames[i] + " x " + numDie[i]);
-			dieText.pack();
+			GridData gridData = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+			gridData.horizontalIndent = 5;
+			dieText.setLayoutData(gridData);
+			//dieText.pack();
 
 			Button inc = new Button(dieWin, SWT.PUSH);
 			inc.setText("+");
-			inc.setLocation(145, (i*40) + 20);
-			inc.setSize(33,33);
+			//inc.setLocation(145, (i*40) + 20);
+			//inc.setSize(33,33);
+			gridData = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+			inc.setLayoutData(gridData);
 			final int index = i;
 			inc.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
@@ -146,14 +138,16 @@ public class DieWindow {
 
 					numDie[index] ++;
 					dieText.setText(dieNames[index] + " x " + numDie[index]);
-					dieText.pack();
+					//dieText.pack();
 				}
 			});
 			incButtons.add(inc);
 
 			Button dec = new Button(dieWin, SWT.PUSH);
 			dec.setText("-");
-			dec.setBounds(175, (i*40) + 20, 33, 33);
+			//dec.setBounds(175, (i*40) + 20, 33, 33);
+			gridData = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+			dec.setLayoutData(gridData);
 			dec.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (numDie[index] <= 0) 
@@ -161,7 +155,7 @@ public class DieWindow {
 
 					numDie[index] --;
 					dieText.setText(dieNames[index] + " x " + numDie[index]);
-					dieText.pack();
+					//dieText.pack();
 
 				}
 			});
@@ -173,17 +167,19 @@ public class DieWindow {
 		Font font2 = new Font(display, new FontData("Arial", 24,
 				SWT.NONE));
 		mod.setFont(font2);//TODO make this not bold
-		mod.setLocation(20, 310);
-		//gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		//gridData.horizontalIndent = 5;
-		//mod.setLayoutData(gridData);
 		mod.setText("Modifier = ");
-		mod.pack();
+		GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		mod.setLayoutData(gridData);
+		//mod.pack();
 
 		//Mod text box
 		modText = new Text(dieWin, SWT.BORDER);
 		modText.setText("0");
-		modText.setBounds(180,308,30,30);
+		//modText.setBounds(180,308,30,30);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		modText.setLayoutData(gridData);
 		modText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				Text text = (Text) e.widget;
@@ -196,19 +192,20 @@ public class DieWindow {
 		Font font4 = new Font(display, new FontData("Arial", 24,
 				SWT.BOLD));
 		totalText.setFont(font4);
-		totalText.setLocation(55, 345);
 		totalText.setText("Total = ");
-		totalText.pack();
+		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		totalText.setLayoutData(gridData);
 
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		total.setLocation(180, 343);//138
-		total.setSize(48, 30);
 		total.setText("0");
 		Font font5 = new Font(display, new FontData("Arial", 16,
 				SWT.NONE));
 		total.setFont(font5);
-
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		total.setLayoutData(gridData);
 
 		// ROLL BUTTON
 		Font font3 = new Font(display, new FontData("Arial", 15,
@@ -216,26 +213,37 @@ public class DieWindow {
 		Button roll = new Button(dieWin, SWT.PUSH);
 		roll.setText("Roll");
 		roll.setFont(font3);
-		roll.setLocation(75, 380);
-		roll.setSize(85, 50);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalIndent = 5;
+		roll.setLayoutData(gridData);
 		roll.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int modInt = 0;
 				int rollTotal = 0;
+				boolean dieRolled = false;
 
 				try{
 
-					badDeleteText.setVisible(false);
-					badLoadText.setVisible(false);
-					badInputText.setVisible(false);
-					badSaveText.setVisible(false);
+					invalidOperation.setVisible(false);
 					modInt = Integer.parseInt(modString);
 
 					if(modInt <= -100 || modInt >= 100)
 						throw new Exception();
+					
+					for(int i = 0; i < 7; i++){
+						if(numDie[i] != 0)
+							dieRolled = true;
+					}
 
+					if(!dieRolled){
+						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
+						invalidOperation.setVisible(true);
+					}
+					
 				}catch(Exception error){
-					badInputText.setVisible(true);
+					invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+					invalidOperation.setVisible(true);
+					
 					return;
 				}
 
@@ -255,23 +263,25 @@ public class DieWindow {
 		Button save = new Button(dieWin, SWT.PUSH);
 		save.setText("Save");
 		save.setFont(font3);
-		save.setLocation(175, 380);
-		save.setSize(85, 50);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		save.setLayoutData(gridData);
 		save.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int modInt = 0;
 				boolean notUsed = true;
 				try{
 
-					badInputText.setVisible(false);
-					badSaveText.setVisible(false);
+					invalidOperation.setVisible(false);
 					modInt = Integer.parseInt(modString);
 
 					if(modInt <= -100 || modInt >= 100)
 						throw new Exception();
 
 				}catch(Exception error){
-					badInputText.setVisible(true);
+					invalidOperation.setText("Invalid modifier: -100 < mod < 100");
+					invalidOperation.setVisible(true);
+					
 					return;
 				}
 
@@ -290,7 +300,8 @@ public class DieWindow {
 					roll.add(new Roll(0, 0, modInt));
 
 				}else if(notUsed){
-					badSaveText.setVisible(true);
+					invalidOperation.setText("Invalid Save: at least 1 die or mod.");
+					invalidOperation.setVisible(true);
 					return;
 				}
 
@@ -380,10 +391,13 @@ public class DieWindow {
 			}
 		});
 
-
 		favList = new Combo(dieWin, SWT.DROP_DOWN | SWT.READ_ONLY);
-		favList.setBounds(250, 90, 200, 30);
+		//favList.setBounds(250, 90, 200, 30);
 		favList.add("Favorite Die Roll");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 3;
+		gridData.horizontalIndent = 3;
+		favList.setLayoutData(gridData);
 		favList.select(0);
 
 		try {
@@ -402,29 +416,22 @@ public class DieWindow {
 
 		}
 
-		// this appears when there is an empty load
-		badLoadText = new Label(dieWin, SWT.NONE);
-		badLoadText.setForeground(new Color(dev,255,0,0));
-		badLoadText.setLocation(WIDTH/2 -150,440);
-		badLoadText.setVisible(false);
-		badLoadText.setText("Invalid Load: must select a file.");
-		badLoadText.pack();
-
 		// The button that loads the selected file name into the die window.
 		Button load = new Button(dieWin, SWT.PUSH);
 		load.setText("Load");
 		load.setFont(font3);
-		load.setLocation(280, 120);
-		load.setSize(70, 40);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalIndent = 5;
+		load.setLayoutData(gridData);
 		load.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 
-				badDeleteText.setVisible(false);
-				badLoadText.setVisible(false);
-				badInputText.setVisible(false);
-				badSaveText.setVisible(false);
+				invalidOperation.setVisible(false);
+				
 				if(favList.getSelectionIndex() == 0){
-					badLoadText.setVisible(true);
+					invalidOperation.setText("Invalid Load: must select a file.");
+					invalidOperation.setVisible(true);
+					
 					return;
 				}
 
@@ -531,30 +538,22 @@ public class DieWindow {
 
 			}
 		});
-
-		
-		// this appears when there is an empty save
-		badDeleteText = new Label(dieWin, SWT.NONE);
-		badDeleteText.setForeground(new Color(dev,255,0,0));
-		badDeleteText.setLocation(WIDTH/2 -150,440);
-		badDeleteText.setVisible(false);
-		badDeleteText.setText("Invalid Delete: must select a file.");
-		badDeleteText.pack();
 		
 		Button delete = new Button(dieWin, SWT.PUSH);
 		delete.setText("Delete");
 		delete.setFont(font3);
-		delete.setLocation(355, 120);
-		delete.setSize(70, 40);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		delete.setLayoutData(gridData);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				
-				badDeleteText.setVisible(false);
-				badLoadText.setVisible(false);
-				badInputText.setVisible(false);
-				badSaveText.setVisible(false);
+				invalidOperation.setVisible(false);
+				
 				if(favList.getSelectionIndex() == 0){
-					badDeleteText.setVisible(true);
+					invalidOperation.setText("Invalid Delete: must select a file.");
+					invalidOperation.setVisible(true);
+					
 					return;
 				}
 
@@ -599,6 +598,19 @@ public class DieWindow {
 			}
 		});
 
+		// this appears when there is an invalid operation attempt
+		invalidOperation = new Label(dieWin, SWT.NONE);
+		invalidOperation.setForeground(new Color(dev,255,0,0));
+		invalidOperation.setVisible(false);
+		invalidOperation.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 3;
+		gridData.verticalSpan = 2;
+		invalidOperation.setLayoutData(gridData);
+		
+		dieWin.pack();
+		return;
+		
 	}
 
 	public static void main(String[] args) {
