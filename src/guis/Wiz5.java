@@ -6,6 +6,7 @@ import java.util.Iterator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -37,6 +38,7 @@ public class Wiz5 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
+	private int numFeats;
 	private static GameState gs = Main.gameState;
 	
 	private static Label numFeatsLabel;
@@ -74,7 +76,7 @@ public class Wiz5 {
 		featsLabel.pack();
 
 		// number of remaining feats
-		int numFeats = 1;
+		numFeats = 10;
 		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
 			numFeats += 1;
 		
@@ -100,7 +102,7 @@ public class Wiz5 {
 		
 		// create scrollable list of feats
 		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
-		featScreenScroll.setBounds(10, 110, WIDTH/2 - 15, HEIGHT - 210);
+		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
 	    featScreenScroll.setExpandHorizontal(true);
 	    featScreenScroll.setExpandVertical(true);
 	    featScreenScroll.setMinSize(WIDTH, HEIGHT);
@@ -111,53 +113,82 @@ public class Wiz5 {
 		
 		// create scrollable list of selected feats
 		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
-		charFeatScreenScroll.setBounds(WIDTH/2 + 5, 110, WIDTH/2 - 25, HEIGHT - 210);
+		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charFeatScreenScroll.setExpandHorizontal(true);
 	    charFeatScreenScroll.setExpandVertical(true);
 	    charFeatScreenScroll.setMinSize(WIDTH, HEIGHT);
 		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
-		charFeatScreen.setLayout(featLayout);
+		charFeatScreen.setBackground(new Color(dev, 255, 0, 0));
 		charFeatScreenScroll.setContent(charFeatScreen);
 		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
+		charFeatScreen.setLayout(featLayout);
+		
+		GridData gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		
 		// available feats list
 		List featsList = new List(featListScreen, SWT.NONE);
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 			System.out.println(feats.get(i).getName());
 		}
-		featsList.setLayoutData(new GridData());
+		featsList.setLayoutData(gridData);
 		
 		// selected feats list
 		List charFeatsList = new List(charFeatScreen, SWT.NONE);
 		
+//		charFeatsList.setLayoutData(gridData);
+		
 		// add feat button
 		Button addButton = new Button(wiz5, SWT.PUSH);
-		addButton.setText("Add");
-		addButton.setLocation(WIDTH/2 - 100, 60);
+		addButton.setText("Add >");
+		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
 		addButton.pack();
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				boolean error = false;
+				if (numFeats == 0)
+					error = true;
 				int index = featsList.getSelectionIndex();
 				if (index == -1)
 					error = true;
-				if (charFeats.contains(featsList.getItem(index)))
-					error = true;
+				for(int i = 0; i < charFeats.size(); i++) {
+					if (charFeats.get(i).getName().equals(featsList.getItem(index)))
+						error = true;
+				}
 				if (error)
 					return;
 				charFeatsList.add(featsList.getItem(index));
 				charFeats.add(feats.get(index));
+				numFeats--;
+				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.pack();
 			}
 		});
 		
 		// remove feat button
 		Button removeButton = new Button(wiz5, SWT.PUSH);
-		removeButton.setText("Remove");
-		removeButton.setLocation(WIDTH/2 + 10, 60);
+		removeButton.setText("< Remove");
+		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
 		removeButton.pack();
+		removeButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (charFeats.isEmpty())
+					return;
+				int index = charFeatsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				charFeatsList.remove(index);
+				charFeats.remove(index);
+				numFeats++;
+				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.pack();
+			}
+		});
 		
-		
+		featListScreen.pack();
+		charFeatScreen.pack();
 
 		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
 		wiz5NextButton.addListener(SWT.Selection, new Listener() {
