@@ -105,6 +105,6 @@ public abstract class DNDEntity {
 		display.dispose();
 	}
 	
-	public abstract void search();
+	public abstract void search(String searchString);
 
 }

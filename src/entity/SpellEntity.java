@@ -83,9 +83,21 @@ public class SpellEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search() {
+	public void search(String searchString) {
 		// TODO Auto-generated method stub
-		System.out.println("Searching " + this.name);
+		
+		if(this.name.toLowerCase().contains(searchString)){
+			System.out.println(this.name + " contains " + searchString + " in NAME");
+		}
+		
+		if(this.description.toLowerCase().contains(searchString)){
+			System.out.println(this.name + " contains " + searchString + " in DESCRIPTION");
+		}
+		if(this.effect != null && this.effect.toLowerCase().contains(searchString)){
+			System.out.println(this.name + " contains " + searchString + " in EFFECT");
+		}
+		
+		//System.out.println("Searching " + this.name);
 		
 	}
 }
