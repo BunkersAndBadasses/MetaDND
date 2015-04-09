@@ -7,6 +7,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -15,6 +16,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.ScrollBar;
 
 import core.character;
 import core.GameState;
@@ -96,45 +98,55 @@ public class Wiz5 {
 
 		
 		// grid layout for both available and selected feat lists
-		GridLayout featLayout = new GridLayout();
-		featLayout.numColumns = 1;
+		FillLayout featLayout = new FillLayout();
+//		featLayout.numColumns = 1;
 		
 		// create scrollable list of feats
 		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
 		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
 	    featScreenScroll.setExpandHorizontal(true);
 	    featScreenScroll.setExpandVertical(true);
-	    featScreenScroll.setMinSize(WIDTH, HEIGHT);
+//	    featScreenScroll.setMinSize(WIDTH, feats.size()*23);
 		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
 		featScreenScroll.setContent(featListScreen);
 		featListScreen.setLayout(featLayout);
-		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		
+		featListScreen.setSize(WIDTH/2-70, featScreenScroll.getSize().y);
+				
 		// create scrollable list of selected feats
 		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
 		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charFeatScreenScroll.setExpandHorizontal(true);
 	    charFeatScreenScroll.setExpandVertical(true);
-	    charFeatScreenScroll.setMinSize(WIDTH, HEIGHT);
+	    charFeatScreenScroll.setMinWidth(WIDTH);
 		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
 		charFeatScreenScroll.setContent(charFeatScreen);
 		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		charFeatScreen.setLayout(featLayout);
 		
-		GridData gridData = new GridData();
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.grabExcessHorizontalSpace = true;
+//		GridData gridData = new GridData();
+//		gridData.horizontalAlignment = GridData.FILL;
+//		gridData.grabExcessHorizontalSpace = true;
 		
 		// available feats list
 		List featsList = new List(featListScreen, SWT.NONE);
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 		}
-		featsList.setLayoutData(gridData);
+		featsList.pack();
+//		featsList.setLayoutData(gridData);
+//		featListScreen.layout();
+	    // Scroll to the bottom
+//	    featsList.select(featsList.getItemCount() - 1);
+//	    featsList.showSelection();
+		featScreenScroll.setMinHeight(featsList.getBounds().height);
+	    
+	    // Get the scroll bar
+//	    ScrollBar sb = featsList.getVerticalBar();
 		
 		// selected feats list
 		List charFeatsList = new List(charFeatScreen, SWT.NONE);
-		charFeatsList.setLayoutData(gridData);
+//		charFeatsList.setLayoutData(gridData);
+		charFeatScreenScroll.setMinSize(charFeatsList.getSize());
 		charFeatScreen.layout();
 		
 		// add feat button
