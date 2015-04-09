@@ -382,6 +382,8 @@ public class Feat_wizard
 				+ "\nDescription: " + featscript);
 		wiz8Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
+		Button Back = createBackButton(verific, wizPanel, wizLayout);
+		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
 		confirm.addListener(SWT.Selection, new Listener()

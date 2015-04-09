@@ -289,6 +289,8 @@ public class Item_wizard {
 				+ "\nValue: " + ItemValue + "\nDescription: " + ItemScript);
 		wiz5Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
+		Button Back = createBackButton(verific, p, l);
+		Button Cancel = createCancelButton(verific, p, l);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
 		confirm.addListener(SWT.Selection, new Listener()
