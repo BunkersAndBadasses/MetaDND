@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import core.CharSkill;
 import core.GameState;
+import core.Main;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -16,7 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
+
 import entity.*;
 import core.Character;
 /*
@@ -45,6 +46,7 @@ public class Wiz4 {
 	private String charClass;
 	private int numSkillPoints;
 	private ArrayList<CharSkill> charSkills = new ArrayList<CharSkill>();
+	private GameState gs = Main.gameState;
 	
 	
 	public Wiz4(Device dev, int WIDTH, int HEIGHT, final Character character, 
@@ -76,8 +78,8 @@ public class Wiz4 {
 
 
 		// set number of skill points
-		String charClass = CharacterWizard.getCharacter().getCharClass();
-		int classPoints; // TODO - different for each class
+		charClass = CharacterWizard.getCharacter().getCharClass();
+		int classPoints;
 		switch(charClass) {
 		case ("Cleric") :
 		case ("Fighter") :
@@ -147,7 +149,6 @@ public class Wiz4 {
 		untrainedLabel.setText("■ : skill can be used untrained");
 		untrainedLabel.pack();
 
-		GameState gs = new GameState();
 		Collection<DNDEntity> skillsCol =  gs.skills.values();
 		Iterator<DNDEntity> itr = skillsCol.iterator();
 		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
@@ -179,6 +180,14 @@ public class Wiz4 {
 			final CharSkill current = charSkills.get(i);
 			final int abilityMod = current.getAbilityMod();
 			final int miscMod = current.getMiscMod();
+			final String acPen;
+			if (current.hasACPen()) {
+				if (current.getSkill().getName().equalsIgnoreCase("Swim"))
+					acPen = "**";
+				else 
+					acPen = "*";
+			} else 
+				acPen = "";
 			final String untrained = "    ";
 			//TODO
 //			if (current.getSkill().canUseUntrained())
@@ -186,7 +195,7 @@ public class Wiz4 {
 //			else 
 //				untrained = "    ";
 			skillName.setText(untrained + current.getSkill().getName() + " (" 
-					+ current.getAbilityType() + ") = " + abilityMod + " + " 
+					+ current.getAbilityType() + ")" + acPen + " = " + abilityMod + " + " 
 					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());
 			if (current.isClassSkill())
 				skillName.setForeground(classSkillColor);
@@ -203,7 +212,7 @@ public class Wiz4 {
 						return;
 					if (current.incRank()) {
 						skillName.setText(untrained + current.getSkill().getName() + " (" 
-								+ current.getAbilityType() + ") = " 
+								+ current.getAbilityType() + ")" + acPen + " = " 
 								+ abilityMod + " + " + miscMod + " + " 
 								+ current.getRank() + " = " + current.getTotal());
 						skillName.pack();
@@ -222,7 +231,7 @@ public class Wiz4 {
 				public void handleEvent(Event event) {
 					if (current.decRank()) {
 						skillName.setText(untrained + current.getSkill().getName() + " (" 
-								+ current.getAbilityType() + ") = " + abilityMod 
+								+ current.getAbilityType() + ")" + acPen + " = " + abilityMod 
 								+ " + " + miscMod + " + " + current.getRank() 
 								+ " = " + current.getTotal());
 						skillName.pack();
@@ -254,10 +263,10 @@ public class Wiz4 {
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// make sure all skill points are used
-//				if (numSkillPoints > 0) {
-//					unusedSkillPointsError.setVisible(true);
-//					return;
-//				} // TODO uncomment when done testing
+				if (numSkillPoints > 0) {
+					unusedSkillPointsError.setVisible(true);
+					return;
+				}
 				
 				// save to character
 				CharacterWizard.getCharacter().setSkills(charSkills);

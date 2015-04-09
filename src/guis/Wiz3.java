@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import entity.*;
 import core.Character;
 
 public class Wiz3 {
@@ -283,73 +282,68 @@ public class Wiz3 {
 		});
 		
 		
-		// TODO
-		// add additional ability points section - level/4 rounded down extra points
-		
 		// next button
 		Button wiz3NextButton = CharacterWizard.createNextButton(wiz3);
 		wiz3NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking - make sure each list has something selected
 				boolean error = false;
-//				{
-//					String[] selection = strList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = dexList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = conList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = intList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else
-//						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = wisList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = chaList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
-//				}
-//				
-//				if (error) return;
-//				
-//				// if all is good, save to character
-//				CharacterWizard.character.setAbilityScores(abilityScoresAfter[0], 
-//						abilityScoresAfter[1], abilityScoresAfter[2], 
-//						abilityScoresAfter[3], abilityScoresAfter[4], 
-//						abilityScoresAfter[5]);
-				// TODO uncomment when done testing
+				{
+					String[] selection = strList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = dexList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = conList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = intList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else
+						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = wisList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = chaList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
+				}
 				
+				if (error) return;
+				
+				// if all is good, save to character
+				CharacterWizard.getCharacter().setAbilityScores(abilityScoresAfter[0], 
+						abilityScoresAfter[1], abilityScoresAfter[2], 
+						abilityScoresAfter[3], abilityScoresAfter[4], 
+						abilityScoresAfter[5]);				
 				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;

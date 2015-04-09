@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import entity.*;
 import core.Character;
 
 /* TODO
@@ -92,7 +91,7 @@ public class Wiz2 {
 		classLabel.setLocation(WIDTH/2 - 40,150);
 		classLabel.pack();
 
-		// secondary class label TODO
+		// secondary class label
 		Label secClassLabel = new Label(wiz2, SWT.NONE);
 		secClassLabel.setText("Secondary Class: ");
 		secClassLabel.setLocation(WIDTH-230,150);
@@ -252,20 +251,20 @@ public class Wiz2 {
 
 				// error checking
 				boolean error = false;
-//				badRaceSelect.setVisible(false);	// clear any past errors
-//				// check if user selected a race
-//
-//				if (charRace.length() == 0) {
-//					badRaceSelect.setVisible(true);
-//					error = true;
-//				}
-//
-//				badClassSelect.setVisible(false);	// clear any past errors
-//				// check if user selected a class
-//				if (charClass.length() == 0) {
-//					badClassSelect.setVisible(true);
-//					error = true;					
-//				} // TODO uncomment when done testing
+				badRaceSelect.setVisible(false);	// clear any past errors
+				// check if user selected a race
+
+				if (charRace.length() == 0) {
+					badRaceSelect.setVisible(true);
+					error = true;
+				}
+
+				badClassSelect.setVisible(false);	// clear any past errors
+				// check if user selected a class
+				if (charClass.length() == 0) {
+					badClassSelect.setVisible(true);
+					error = true;					
+				}
 
 				// user cannot move on with an error
 				if (error) return;

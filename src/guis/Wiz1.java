@@ -1,5 +1,4 @@
 package guis;
-import entity.*;
 import core.Character;
 
 import java.util.ArrayList;

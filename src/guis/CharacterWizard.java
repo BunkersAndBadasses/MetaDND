@@ -2,16 +2,29 @@ package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
-import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
-import java.util.Random;
 import core.Character;
-import core.GameState;
-import core.xmlLoader;
+
+
+
+/*
+ * TODO: 
+ * 
+ * comment out sec class
+ * comment out back buttons
+ * fix modifier logic (not rounding up)
+ * add manual/random pages ("Coming soon!")
+ * save character? 
+ * launch wizards (add custom)
+ * add search pop-up ("Coming soon!")
+ */
+
 /*
  * iteration 2: 
  * 
+ * second class
+ * searching
  * back button
  * starting at level > 1
  * adding custom skills
@@ -331,7 +344,7 @@ public class CharacterWizard {
 
 	public static void main(String[] args) {
 		Display display = new Display();
-		CharacterWizard cw = new CharacterWizard(display);
+		new CharacterWizard(display);
 		display.dispose();
 	}
 

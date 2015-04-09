@@ -3,24 +3,51 @@ import entity.*;
 
 public class CharSkill {
 	private SkillEntity skill;
+	private Character character;
 	private int rank = 0;
 	private String abilityType;
 	private int abilityMod;
 	private int miscMod = 0;
 	private boolean classSkill = false;
+	private boolean acPen;
 	private boolean halfPoint = false;
+
 	
 	public CharSkill(SkillEntity s, Character c) {
-		// search skills for skill(name)
-		// set that this.skill = returned skill
-		// 
 		skill = s;
-		String charClass = c.getCharClass(); // TODO
-		classSkill = false; // TODO get info from class if this skill is a class skill
-		//TODO
-		//abilityType = Character.abilityScoreTypes[skill.getAbilityType()];
-		//abilityMod = ((c.getAbilityScores()[skill.getAbilityType()]) - 8) / 2; // TODO check this logic // TODO int rounding off
+		character = c;
+		String charClass = character.getCharClass(); // TODO
+		classSkill = ClassSkillList.isClassSkill(charClass, skill.getName());
+		abilityType = skill.skillParentAttribute;
+		abilityMod = setAbilityMod(); 
 		// TODO set miscMod
+		acPen = skill.armorCheckPenalty;
+	}
+	
+	// TODO check this logic // TODO int rounding off
+	private int setAbilityMod() {
+		int base;
+		switch(skill.skillParentAttribute) {
+		case ("STR"):
+			base = character.getAbilityScores()[Character.STRENGTH];
+		break;
+		case ("DEX"):
+			base = character.getAbilityScores()[Character.DEXTERITY];
+		break;
+		case ("CON"):
+			base = character.getAbilityScores()[Character.CONSTITUTION];
+		break;
+		case ("INT"):
+			base = character.getAbilityScores()[Character.INTELLIGENCE];
+		break;
+		case ("WIS"):
+			base = character.getAbilityScores()[Character.WISDOM];
+		break;
+		default: // CHA
+			base = character.getAbilityScores()[Character.CHARISMA];
+		break;
+		}
+		return (base - 8) / 2;
 	}
 	
 	public SkillEntity getSkill() { return skill; }
@@ -65,4 +92,6 @@ public class CharSkill {
 	public int getTotal() { return rank + abilityMod + miscMod; }
 	
 	public boolean isClassSkill() { return classSkill; }
+	
+	public boolean hasACPen() { return acPen; }
 }
