@@ -20,7 +20,6 @@ public class Main {
 		
 		
 		Display display = new Display();
-		Shell shell = new Shell(display);
 		new HomeWindow(display);
 		//shell.setBounds(0,0,500,500);
 		//shell.setText("Testing box");
@@ -54,12 +53,7 @@ public class Main {
 //        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		//shell.open();
 		
-		while(!shell.isDisposed()){
-			if(!display.readAndDispatch())
-				display.sleep();
-		}
 		display.dispose();
-		shell.dispose();
 		System.out.println("Exiting");
 		System.exit(0);
 	}
