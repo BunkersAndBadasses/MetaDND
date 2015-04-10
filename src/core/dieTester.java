@@ -12,7 +12,6 @@ public class dieTester {
 		ArrayList<Roll> roll = new ArrayList<Roll>(10);
 		roll.add(new Roll(size, count));
 		roll.add(new Roll(20, 3, 2, 1));
-
 		DnDie.saveFavDie("test", roll);
 
 		ArrayList<Roll> loaded = new ArrayList<Roll>(10);

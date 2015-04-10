@@ -36,7 +36,7 @@ public class ItemEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString, Thread runningThread) {
+	public void search(String searchString, Thread runningThread) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}

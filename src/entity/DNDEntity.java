@@ -106,7 +106,7 @@ public abstract class DNDEntity {
 		display.dispose();
 	}
 	
-	public abstract void search(String searchString, Thread runningThread);
+	public abstract void search(String searchString, Thread runningThread) throws InterruptedException;
 	public type getTYPE() {
 		return TYPE;
 	}

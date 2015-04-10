@@ -1,10 +1,5 @@
 package core;
-import guis.CharacterWizard;
 import guis.HomeWindow;
-import guis.Item_wizard;
-import guis.MenuBar;
-
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
 public class Main {
@@ -12,15 +7,14 @@ public class Main {
 	public static GameState gameState;
 
 	public static void main(String[] args) {
-		gameState = new GameState();
-		xmlLoader xmls = new xmlLoader("xmlTestThread");
-		SearchThread st1 = new SearchThread("Spells");
-		SearchThread st2 = new SearchThread("Spells");
-		xmls.start();
+		//gameState = new GameState();
+		//xmlLoader xmls = new xmlLoader("xmlTestThread");
+		//SearchThread st1 = new SearchThread("Spells");
+		//SearchThread st2 = new SearchThread("Spells");
+		//xmls.start();
 		
 		
 		Display display = new Display();
-		Shell shell = new Shell(display);
 		new HomeWindow(display);
 		//shell.setBounds(0,0,500,500);
 		//shell.setText("Testing box");
@@ -54,12 +48,7 @@ public class Main {
 //        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
 		//shell.open();
 		
-		while(!shell.isDisposed()){
-			if(!display.readAndDispatch())
-				display.sleep();
-		}
 		display.dispose();
-		shell.dispose();
 		System.out.println("Exiting");
 		System.exit(0);
 	}
