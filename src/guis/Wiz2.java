@@ -318,14 +318,14 @@ public class Wiz2 {
 
 
 		// back button
-		Button wiz2BackButton = CharacterWizard.createBackButton(wiz2, panel, layout);
-		wiz2BackButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				badSearch.setVisible(false);
-				badRaceSelect.setVisible(false);
-				badClassSelect.setVisible(false);
-			}
-		});
+//		Button wiz2BackButton = CharacterWizard.createBackButton(wiz2, panel, layout);
+//		wiz2BackButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				badSearch.setVisible(false);
+//				badRaceSelect.setVisible(false);
+//				badClassSelect.setVisible(false);
+//			}
+//		});
 
 
 		// cancel button

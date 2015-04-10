@@ -264,7 +264,7 @@ public class Wiz7 {
 			}
 		});
 
-		Button wiz7BackButton = CharacterWizard.createBackButton(wiz7, panel, layout);
+		//Button wiz7BackButton = CharacterWizard.createBackButton(wiz7, panel, layout);
 		Button wiz7CancelButton = CharacterWizard.createCancelButton(wiz7, home, homePanel, homeLayout);
 		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {

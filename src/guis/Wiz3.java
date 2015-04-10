@@ -360,7 +360,7 @@ public class Wiz3 {
 
 
 		// back button
-		Button wiz3BackButton = CharacterWizard.createBackButton(wiz3, panel, layout);
+		//Button wiz3BackButton = CharacterWizard.createBackButton(wiz3, panel, layout);
 
 
 		// cancel button
