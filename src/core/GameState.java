@@ -1,5 +1,6 @@
 package core;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Semaphore;
@@ -19,6 +20,7 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> armor;
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
+	public static final File USERDATAFOLDER = new File(System.getProperty("user.dir") + "//" + "User Data");
 	
 	
 	// 0 = homeScreen
@@ -49,6 +51,7 @@ public class GameState {
 		traps = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
 		searchResults = new HashMap<String, DNDEntity>();
+		USERDATAFOLDER.mkdir();
 	}
 	
 	public void saveCustomContent(){
