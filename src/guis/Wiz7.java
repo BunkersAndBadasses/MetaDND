@@ -10,8 +10,6 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -131,6 +129,8 @@ public class Wiz7 {
 		itemListScreen.setSize(itemListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		itemListScreen.setLayout(itemLayout);
 		
+		// TODO scroll not working....
+		
 		// create scrollable list of selected items
 		final ScrolledComposite charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
 		charItemScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
@@ -176,7 +176,6 @@ public class Wiz7 {
 						charItems.get(i).incCount();
 						numCharItems.set(i, charItems.get(i).getCount());
 						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
-						System.out.println("incrementing " + charItems.get(i).getName()); //TODO
 						return;
 					}
 				}
@@ -185,7 +184,6 @@ public class Wiz7 {
 				charItems.add(c);
 				charItemsList.add("1 x " + selection);
 				numCharItems.add(c.getCount());
-				System.out.println("adding " + itemsList.getItem(index)); //TODO
 			
 
 
@@ -209,7 +207,6 @@ public class Wiz7 {
 				if (index == -1)
 					return;
 				if (charItems.get(index).decCount()) {
-					System.out.println("successfully decremented " + itemsList.getItem(index)); //TODO
 					numCharItems.set(index, charItems.get(index).getCount());
 					charItemsList.setItem(index, Integer.toString(numCharItems.get(index)) + " x " + charItems.get(index).getName());
 				}

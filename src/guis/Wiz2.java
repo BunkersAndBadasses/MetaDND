@@ -104,8 +104,6 @@ public class Wiz2 {
 		secClassLabel.pack();
 
 		// get races from references
-		//TODO
-		System.out.println(Main.gameState);
 		Collection<DNDEntity> racesCol = Main.gameState.races.values();
 		Iterator<DNDEntity> itr = racesCol.iterator();
 		ArrayList<RaceEntity> races = new ArrayList<RaceEntity>();
@@ -293,7 +291,6 @@ public class Wiz2 {
 
 				// if all goes well, save race/class
 				CharacterWizard.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
-				System.out.println(CharacterWizard.getCharacter().getCharRace().getName()); //TODO
 				CharacterWizard.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
 				int secClassIndex = secClassDropDown.getSelectionIndex();
 				if (secClassIndex < 1)
@@ -372,8 +369,6 @@ public class Wiz2 {
 		CharacterWizard.wizPageCreated[2] = true;
 		CharacterWizard.wizs.add(new Wiz3(dev, WIDTH, HEIGHT, character, panel, home,
 				homePanel, layout, homeLayout, wizPages, CharacterWizard.baseAbilityScores));
-		//TODO
-		System.out.println(CharacterWizard.wizs.size());
 		layout.topControl = nextPage;
 		panel.layout();
 	}

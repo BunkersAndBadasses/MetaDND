@@ -381,9 +381,6 @@ public class Wiz3 {
 	
 	public void updateCharRace() {
 		charRace = CharacterWizard.getCharacter().getCharRace();
-		System.out.println(CharacterWizard.getCharacter().getCharRace().getName()); //TODO
-		System.out.println(charRace.getName()); //TODO
-
 		String text = charRace.getName() + " " + charClass.getName();
 		choiceLabel2.setText(text);
 		choiceLabel2.pack();
