@@ -232,18 +232,18 @@ public class Wiz5 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[5] = true;
-		new Wiz6(dev, WIDTH, HEIGHT, character,  panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, character,  panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 
 	public Composite getWiz5() { return wiz5; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
-		Wiz4.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
+		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
 		// TODO
 	}
 }

@@ -49,7 +49,7 @@ public class Wiz1 {
 	private static Text wiz1AS5;
 	private static Text wiz1AS6;
 	private static Label badLevelInputText;
-	private static Label badASInputText;
+	private Label badASInputText;
 
 
 	public Wiz1(Device dev, int WIDTH, int HEIGHT, final character character, 
@@ -226,11 +226,11 @@ public class Wiz1 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[1] = true;
-		new Wiz2(dev, WIDTH, HEIGHT, character, panel, home, homePanel,
-				layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz2(dev, WIDTH, HEIGHT, character, panel, home, homePanel,
+				layout, homeLayout, wizPages));
 	}
 	
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
 		badLevelInputText.setVisible(false);
 		badASInputText.setVisible(false);

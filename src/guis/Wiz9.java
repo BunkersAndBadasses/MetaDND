@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+
 import entity.*;
 import core.character;
 
@@ -78,21 +79,21 @@ public class Wiz9{
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[9] = true;
-		new Wiz10(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz10(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 	
 	public Composite getWiz9() { return wiz9; }
 	
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
-		Wiz4.cancelClear();
-		Wiz5.cancelClear();
-		Wiz6.cancelClear();
-		Wiz7.cancelClear();
-		Wiz8.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
+		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
+		((Wiz5)CharacterWizard.wizs.get(4)).cancelClear();
+		((Wiz6)CharacterWizard.wizs.get(5)).cancelClear();
+		((Wiz7)CharacterWizard.wizs.get(6)).cancelClear();
+		((Wiz8)CharacterWizard.wizs.get(7)).cancelClear();
 	}
 }

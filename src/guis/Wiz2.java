@@ -377,9 +377,9 @@ public class Wiz2 {
 		panel.layout();
 	}
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
 		raceDropDown.deselectAll();
 		classDropDown.deselectAll();
 		secClassDropDown.deselectAll();

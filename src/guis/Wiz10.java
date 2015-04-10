@@ -395,16 +395,16 @@ public class Wiz10 {
 
 	public Composite getWiz10() { return wiz10; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
-		Wiz4.cancelClear();
-		Wiz5.cancelClear();
-		Wiz6.cancelClear();
-		Wiz7.cancelClear();
-		Wiz8.cancelClear();
-		Wiz9.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
+		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
+		((Wiz5)CharacterWizard.wizs.get(4)).cancelClear();
+		((Wiz6)CharacterWizard.wizs.get(5)).cancelClear();
+		((Wiz7)CharacterWizard.wizs.get(6)).cancelClear();
+		((Wiz8)CharacterWizard.wizs.get(7)).cancelClear();
+		((Wiz9)CharacterWizard.wizs.get(8)).cancelClear();
 	}
 }

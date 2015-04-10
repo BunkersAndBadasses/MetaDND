@@ -34,7 +34,7 @@ import core.character;
 public class CharacterWizard {
 
 	int pageNum = -1;
- 
+
 	private static Device dev;
 	private static Display display;
 	private Shell shell;
@@ -44,9 +44,11 @@ public class CharacterWizard {
 	public static int wizPageNum = -1;
 	public static boolean cancel = false;
 	public static boolean[] wizPageCreated = { false, false, false, false,
-			false, false, false, false, false, false };
+		false, false, false, false, false, false };
 
 	private static ArrayList<Composite> wizPages;
+
+	public static ArrayList<Object> wizs = new ArrayList<Object>();
 
 	private static character character;
 
@@ -153,6 +155,7 @@ public class CharacterWizard {
 		// set home as the first screen viewed when new character window  is launched
 		homeLayout.topControl = home;
 
+
 		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
 
 		final Composite wizPanel = new Composite(homePanel, SWT.BORDER);
@@ -160,6 +163,7 @@ public class CharacterWizard {
 		wizPanel.setBackground(new Color(dev, 255, 0, 0));
 		wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
+
 
 		// ///////////////// MANUAL PANEL SETUP ///////////////////////////
 
@@ -176,6 +180,7 @@ public class CharacterWizard {
 		csManual.setText("Coming Soon!");
 		csManual.pack();
 
+
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
 
 		final Composite randomPanel = new Composite(homePanel, SWT.BORDER);
@@ -191,30 +196,7 @@ public class CharacterWizard {
 		csRandom.setText("Coming Soon!");
 		csRandom.pack();
 
-		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
 
-		wizardButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				wizLayout.topControl = wizPages.get(0);
-				wizPanel.layout();
-				homeLayout.topControl = wizPanel;
-				homePanel.layout();
-			}
-		});
-		manualButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				homeLayout.topControl = manualPanel;
-				homePanel.layout();
-			}
-		});
-		randomButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				homeLayout.topControl = randomPanel;
-				homePanel.layout();
-			}
-		});
-
-		
 		/////////////////////// WIZARD PAGES ////////////////////////////
 
 		// initialize all pages
@@ -239,9 +221,33 @@ public class CharacterWizard {
 		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
 		wizPages.add(wiz10);
 
-		// create the first page (creates next pages at runtime)
-		new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
-				homePanel, wizLayout, homeLayout, wizPages);
+
+		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
+
+		wizardButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// create the first page (creates next pages at runtime)
+				wizs.add(new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
+						homePanel, wizLayout, homeLayout, wizPages));
+				wizLayout.topControl = wizPages.get(0);
+				wizPanel.layout();
+				homeLayout.topControl = wizPanel;
+				homePanel.layout();
+			}
+		});
+		manualButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				homeLayout.topControl = manualPanel;
+				homePanel.layout();
+			}
+		});
+		randomButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				homeLayout.topControl = randomPanel;
+				homePanel.layout();
+			}
+		});
+
 	}
 
 
@@ -347,7 +353,7 @@ public class CharacterWizard {
 		});
 		return cancelButton;
 	}
-	
+
 	public static character getCharacter() {
 		return character;
 	}
@@ -357,6 +363,7 @@ public class CharacterWizard {
 		for (int i = 0; i < wizPageCreated.length; i++) {
 			wizPageCreated[i] = false;
 		}
+		wizs = new ArrayList<Object>();
 	}
 
 	public static void main(String[] args) {

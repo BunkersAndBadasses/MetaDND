@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
+
 import entity.*;
 import core.character;
 
@@ -513,19 +514,19 @@ public class Wiz6 {
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[6] = true;
-		new Wiz7(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 
 	public Composite getWiz6() { return wiz6; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
-		Wiz4.cancelClear();
-		Wiz5.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
+		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
+		((Wiz5)CharacterWizard.wizs.get(4)).cancelClear();
 		
 		nameInput.setText("");
 		alignmentInput1.deselectAll();

@@ -276,19 +276,19 @@ public class Wiz7 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[7] = true;
-		new Wiz8(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz8(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 
 	public Composite getWiz7() { return wiz7; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
-		Wiz4.cancelClear();
-		Wiz5.cancelClear();
-		Wiz6.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
+		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
+		((Wiz5)CharacterWizard.wizs.get(4)).cancelClear();
+		((Wiz6)CharacterWizard.wizs.get(5)).cancelClear();
 	}
 }

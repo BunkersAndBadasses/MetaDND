@@ -318,17 +318,17 @@ public class Wiz4 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[4] = true;		
-		new Wiz5(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz5(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 
 	public Composite getWiz4() { return wiz4; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
-		Wiz3.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
+		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
 		unusedSkillPointsError.setVisible(false);
 	}
 

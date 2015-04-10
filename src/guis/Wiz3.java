@@ -375,8 +375,8 @@ public class Wiz3 {
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[3] = true;
-		new Wiz4(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages);
+		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages));
 	}
 	
 	public static void updateCharRace() {
@@ -408,10 +408,10 @@ public class Wiz3 {
 
 	public Composite getWiz3() { return wiz3; }
 
-	public static void cancelClear() {
+	public void cancelClear() {
 		CharacterWizard.reset();
-		Wiz1.cancelClear();
-		Wiz2.cancelClear();
+		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
 		errorLabel.setVisible(false);
 		strList.deselectAll();
 		dexList.deselectAll();
