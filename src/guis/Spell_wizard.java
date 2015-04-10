@@ -515,7 +515,7 @@ public class Spell_wizard {
 							{
 								if(Integer.parseInt(wizpage11text.getText()) >= 0)
 								{
-							spelllevel = wizpage11text.getText();
+							spelllevel = String.valueOf(Integer.parseInt(wizpage11text.getText()));
 							if(wizpagenum < wizPages.size() - 1)
 							{
 								wizpagenum++;

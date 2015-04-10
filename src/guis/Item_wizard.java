@@ -153,7 +153,7 @@ public class Item_wizard {
 					{
 					if(Integer.parseInt(wizpage2text.getText()) >= 0)
 					{
-						ItemWeight = wizpage2text.getText();
+						ItemWeight = String.valueOf(Integer.parseInt(wizpage2text.getText()));
 						if(wizPageNum < wizPages.size() - 1)
 						{
 							wizPageNum++;
@@ -199,10 +199,6 @@ public class Item_wizard {
 			{
 				if(wizpage3text.getText() != "")
 				{
-					try
-					{
-						if(Integer.parseInt(wizpage3text.getText()) >= 0)
-						{
 					ItemValue = wizpage3text.getText();
 					if(wizPageNum < wizPages.size() - 1)
 					{
@@ -214,17 +210,8 @@ public class Item_wizard {
 					{
 						shell.close();
 					}
-						}
-						else
-						{
-							wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
-						}
-					}
-					catch(NumberFormatException a)
-					{
-						wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					}
 				}
+						
 				else
 				{
 					wiz3Label.setBackground(display.getSystemColor(SWT.COLOR_RED));
