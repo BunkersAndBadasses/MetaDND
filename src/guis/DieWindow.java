@@ -443,10 +443,10 @@ public class DieWindow {
 				// this appears when there is an empty save
 				badSaveFinal = new Label(saveName, SWT.NONE);
 				badSaveFinal.setForeground(new Color(dev,255,0,0));
-				//badSaveFinal.setLocation(10,110);
+				badSaveFinal.setLocation(10,110);
 				badSaveFinal.setVisible(false);
 				badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
-				//badSaveFinal.pack();
+				badSaveFinal.pack();
 
 				Label name = new Label(saveName, SWT.NONE);
 				name.setLocation(77,50);
@@ -477,7 +477,7 @@ public class DieWindow {
 						badSaveFinal.setVisible(false);
 						boolean found = false;
 						Pattern p1 = Pattern.compile(".*\\W+.*");
-						Pattern p2 = Pattern.compile("(\\p{Lower} || \\p{Upper})(\\d||(\\p{Lower}||(\\p{Upper})))*");
+
 						if(nameBox.getText().equalsIgnoreCase("")){
 							badSaveFinal.setText("Invalid Save: must have a file name.");
 							badSaveFinal.setVisible(true);
@@ -493,17 +493,18 @@ public class DieWindow {
 							badSaveFinal.setVisible(true);
 							return;
 						}		
-						m = p2.matcher(nameBox.getText());
-						if(!m.find()){
-							badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
-							badSaveFinal.setVisible(true);
-							return;
-						}		
 
+						try{
 						DnDie.saveFavDie(nameBox.getText(), rollFinal);
 						
 						if(favList.indexOf(nameBox.getText()) == -1)
 							favList.add(nameBox.getText());
+						}catch(Exception e){
+							badSaveFinal.setText("Invalid Save: start with a letter");
+							badSaveFinal.setVisible(true);
+							
+							return;
+						}
 						
 						saveName.dispose();
 					}
