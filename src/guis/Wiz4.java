@@ -166,7 +166,8 @@ public class Wiz4 {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
 //		GridData gridData = new GridData();
-//		gridData.horizontalAlignment = SWT.LEFT;
+//		gridData.horizontalAl	public ArrayList<CharSkill> getSkills(){ return skillsList;}
+ignment = SWT.LEFT;
 		
 		// set up scrollable composite
 		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
