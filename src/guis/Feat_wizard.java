@@ -31,7 +31,7 @@ public class Feat_wizard
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
-	private FeatEntity newfeat;
+	private static FeatEntity newfeat;
 	private static int wizpagenum;
 	static String featname;
 	static String featprereq;

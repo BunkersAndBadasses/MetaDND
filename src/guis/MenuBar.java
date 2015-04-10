@@ -145,7 +145,7 @@ public class MenuBar {
         spellWizardItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	Spell_wizard a = new Spell_wizard(shell.getDisplay());
             }
         });
         
@@ -157,10 +157,31 @@ public class MenuBar {
         itemWizardItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	Item_wizard b = new Item_wizard(shell.getDisplay());
             }
         });
         
+        //Ability Wizard
+        MenuItem itemAbilityItem = new MenuItem(toolsMenu, SWT.PUSH);
+        itemAbilityItem.setText("&Ability Wizard");
+        
+        itemAbilityItem.addSelectionListener(new SelectionAdapter(){
+        	public void widgetSelected(SelectionEvent e)
+        	{
+        		Ability_wizard c = new Ability_wizard(shell.getDisplay());
+        	}
+        });
+        
+      //Feat Wizard
+        MenuItem itemFeatItem = new MenuItem(toolsMenu, SWT.PUSH);
+        itemFeatItem.setText("&Feat Wizard");
+        
+        itemFeatItem.addSelectionListener(new SelectionAdapter(){
+        	public void widgetSelected(SelectionEvent e)
+        	{
+        		Feat_wizard d = new Feat_wizard(shell.getDisplay());
+        	}
+        });
         //Character Generator
         MenuItem charGenItem = new MenuItem(toolsMenu, SWT.PUSH);
         charGenItem.setText("&Character Generator");
