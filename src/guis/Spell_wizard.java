@@ -646,6 +646,10 @@ public class Spell_wizard {
 	 */
 	private void CreateVerificationPage(final Composite wizPanel,
 			final StackLayout wizLayout) {
+		if(wizPages.size() > wizpagenum + 1)
+		{
+			wizPages.remove(wizpagenum + 1);
+		}
 		final Composite verific = new Composite(wizPanel, SWT.NONE);
 		Label wiz14Label = new Label(verific, SWT.NONE);
 		wiz14Label.setText("Name: " + spellname +"\nComponent: "+ spellcomp
@@ -657,7 +661,7 @@ public class Spell_wizard {
 				"\nSpell Resistance: " + spellresistance + "\nDescription: " + spellscript);
 		wiz14Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		//Button Back = createBackButton(verific, wizPanel, wizLayout);
+		Button Back = createBackButton(verific, wizPanel, wizLayout);
 		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);

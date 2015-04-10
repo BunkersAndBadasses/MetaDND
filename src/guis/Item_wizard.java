@@ -270,13 +270,17 @@ public class Item_wizard {
 	 */
 	public static void CreateVerificationPage(final Composite p, final StackLayout l)
 	{
+		if(wizPages.size() > wizPageNum + 1)
+		{
+			wizPages.remove(wizPageNum + 1);
+		}
 		final Composite verific = new Composite(p, SWT.NONE);
 		Label wiz5Label = new Label(verific, SWT.NONE);
 		wiz5Label.setText("Name: " + ItemName + "\nWeight: " + ItemWeight 
 				+ "\nValue: " + ItemValue + "\nDescription: " + ItemScript);
 		wiz5Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		//Button Back = createBackButton(verific, p, l);
+		Button Back = createBackButton(verific, p, l);
 		Button Cancel = createCancelButton(verific, p, l);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);

@@ -169,12 +169,16 @@ public class Ability_wizard {
 	}
 	private void CreateVerificationPage(final Composite wizPanel,
 			final StackLayout wizLayout) {
+		if(wizPages.size() > wizpagenum + 1)
+		{
+			wizPages.remove(wizpagenum + 1);
+		}
 		final Composite verific = new Composite(wizPanel, SWT.NONE);
 		Label wiz8Label = new Label(verific, SWT.NONE);
 		wiz8Label.setText("Name: " + abilityname + "\nDescription: " + abilityscript);
 		wiz8Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		//Button Back = createBackButton(verific, wizPanel, wizLayout);
+		Button Back = createBackButton(verific, wizPanel, wizLayout);
 		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
