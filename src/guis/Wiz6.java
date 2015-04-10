@@ -21,11 +21,11 @@ import core.character;
 
 public class Wiz6 {
 
-	private static Composite wiz6;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz6;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -35,35 +35,35 @@ public class Wiz6 {
 	private Composite nextPage;
 	private int wizPagesSize;
 	
-	private static Text nameInput;
-	private static Combo alignmentInput1;
-	private static Combo alignmentInput2;
-	private static Text deityInput;
-	private static Combo deityListInput;
-	private static boolean deitySelect = false;
-	private static Text heightInput;
-	private static Text weightInput;
-	private static Text ageInput;
-	private static Text genderInput;
-	private static Text eyesInput;
-	private static Text hairInput;
-	private static Text skinInput;
-	private static Text descriptionInput;
-	private static Text langInput;
-	private static String possibleLangList = "Abyssal, Aquan, Auran, Celestial,"
+	private Text nameInput;
+	private Combo alignmentInput1;
+	private Combo alignmentInput2;
+	private Text deityInput;
+	private Combo deityListInput;
+	private boolean deitySelect = false;
+	private Text heightInput;
+	private Text weightInput;
+	private Text ageInput;
+	private Text genderInput;
+	private Text eyesInput;
+	private Text hairInput;
+	private Text skinInput;
+	private Text descriptionInput;
+	private Text langInput;
+	private String possibleLangList = "Abyssal, Aquan, Auran, Celestial,"
 							+ " Common, Draconic, Druidic, Dwarven, Elven, "
 							+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 							+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private static int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE] - 8 ) /2;
+	private int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE] - 8 ) /2;
 	
-	private static Random rng = new Random();
+	private Random rng = new Random();
 	
-	private static String charClass;
-	private static String charRace;
+	private String charClass;
+	private String charRace;
 	
-	private static final Color red = new Color(dev, 255, 100, 100);
-	private static final Color white = new Color(dev, 255, 255, 255);
+	private final Color red = new Color(dev, 255, 100, 100);
+	private final Color white = new Color(dev, 255, 255, 255);
 
 	
 
@@ -72,10 +72,10 @@ public class Wiz6 {
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz6 = wizPages.get(5);
-		Wiz6.dev = dev;
-		Wiz6.WIDTH = WIDTH;
-		Wiz6.HEIGHT = HEIGHT;
-		Wiz6.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;

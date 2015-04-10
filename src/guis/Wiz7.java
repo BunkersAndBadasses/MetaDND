@@ -28,11 +28,11 @@ import core.character;
 
 public class Wiz7 {
 
-	private static Composite wiz7;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz7;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -45,7 +45,7 @@ public class Wiz7 {
 	private Text goldText;
 	private String charRace;
 	private String charClass;
-	private final static Random rng = new Random();
+	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
 
 	public Wiz7(Device dev, int WIDTH, int HEIGHT, final character character, 
@@ -53,10 +53,10 @@ public class Wiz7 {
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz7 = wizPages.get(6);
-		Wiz7.dev = dev;
-		Wiz7.WIDTH = WIDTH;
-		Wiz7.HEIGHT = HEIGHT;
-		Wiz7.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;

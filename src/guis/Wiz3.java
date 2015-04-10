@@ -20,11 +20,11 @@ import entity.RaceEntity;
 
 public class Wiz3 {
 
-	private static Composite wiz3;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz3;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -34,28 +34,28 @@ public class Wiz3 {
 	private Composite nextPage;
 	private int wizPagesSize;
 	
-	private static List strList;
-	private static List dexList;
-	private static List conList;
-	private static List intList;
-	private static List wisList;
-	private static List chaList;
+	private List strList;
+	private List dexList;
+	private List conList;
+	private List intList;
+	private List wisList;
+	private List chaList;
 
 	private int[] abilityScoresBefore;
 	private int[] abilityScoresAfter = new int[6];
-	private static Label errorLabel;
-	private static RaceEntity charRace;
-	private static ClassEntity charClass;
-	private static ClassEntity charSecClass;
-	private static Label choiceLabel2;
+	private Label errorLabel;
+	private RaceEntity charRace;
+	private ClassEntity charClass;
+	private ClassEntity charSecClass;
+	private Label choiceLabel2;
 
 	public Wiz3(Device dev, int WIDTH, int HEIGHT, final character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
-		Wiz3.dev = dev;
-		Wiz3.WIDTH = WIDTH;
-		Wiz3.HEIGHT = HEIGHT;
-		Wiz3.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -379,7 +379,7 @@ public class Wiz3 {
 				homePanel, layout, homeLayout, wizPages));
 	}
 	
-	public static void updateCharRace() {
+	public void updateCharRace() {
 		charRace = CharacterWizard.getCharacter().getCharRace();
 		System.out.println(CharacterWizard.getCharacter().getCharRace().getName()); //TODO
 		System.out.println(charRace.getName()); //TODO
@@ -389,13 +389,13 @@ public class Wiz3 {
 		choiceLabel2.pack();
 	}
 	
-	public static void updateCharClass() {
+	public void updateCharClass() {
 		charClass = CharacterWizard.getCharacter().getCharClass();
 		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		choiceLabel2.pack();
 	}
 	
-	public static void updateCharSecClass() {
+	public void updateCharSecClass() {
 		charSecClass = CharacterWizard.getCharacter().getCharSecClass();
 		if (charSecClass == null)
 			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());

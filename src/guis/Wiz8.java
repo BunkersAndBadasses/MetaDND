@@ -15,11 +15,11 @@ import core.character;
 
 public class Wiz8{
 
-	private static Composite wiz8;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz8;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -34,10 +34,10 @@ public class Wiz8{
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz8 = wizPages.get(7);
-		Wiz8.dev = dev;
-		Wiz8.WIDTH = WIDTH;
-		Wiz8.HEIGHT = HEIGHT;
-		Wiz8.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;

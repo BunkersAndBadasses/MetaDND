@@ -26,29 +26,29 @@ import org.eclipse.swt.widgets.Text;
 public class Wiz1 {
 	
 
-	private static Composite wiz1;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
-	private static Composite panel;
-	private static Composite home;
-	private static Composite homePanel;
-	private static StackLayout layout;
-	private static StackLayout homeLayout;
-	private static ArrayList<Composite> wizPages;
-	private static Composite nextPage;
+	private Composite wiz1;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
+	private Composite panel;
+	private Composite home;
+	private Composite homePanel;
+	private StackLayout layout;
+	private StackLayout homeLayout;
+	private ArrayList<Composite> wizPages;
+	private Composite nextPage;
 	private int wizPagesSize;
 
-	public static int[] as = new int[6]; // ability scores array
-	private static Text wiz1LevelText;
-	private static Text wiz1AS1;
-	private static Text wiz1AS2;
-	private static Text wiz1AS3;
-	private static Text wiz1AS4;
-	private static Text wiz1AS5;
-	private static Text wiz1AS6;
-	private static Label badLevelInputText;
+	public int[] as = new int[6]; // ability scores array
+	private Text wiz1LevelText;
+	private Text wiz1AS1;
+	private Text wiz1AS2;
+	private Text wiz1AS3;
+	private Text wiz1AS4;
+	private Text wiz1AS5;
+	private Text wiz1AS6;
+	private Label badLevelInputText;
 	private Label badASInputText;
 
 
@@ -60,17 +60,17 @@ public class Wiz1 {
 		CharacterWizard.wizPageNum = 0;
 		layout.topControl = wiz1;
 		panel.layout();
-		Wiz1.dev = dev;
-		Wiz1.WIDTH = WIDTH;
-		Wiz1.HEIGHT = HEIGHT;
-		Wiz1.character = character;
-		Wiz1.panel = panel;
-		Wiz1.home = home;
-		Wiz1.homePanel = homePanel;
-		Wiz1.layout = layout;
-		Wiz1.homeLayout = homeLayout;
-		Wiz1.wizPages = wizPages;
-		Wiz1.nextPage = wizPages.get(1);
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
+		this.panel = panel;
+		this.home = home;
+		this.homePanel = homePanel;
+		this.layout = layout;
+		this.homeLayout = homeLayout;
+		this.wizPages = wizPages;
+		this.nextPage = wizPages.get(1);
 		this.wizPagesSize = wizPages.size();
 
 		createPageContent();

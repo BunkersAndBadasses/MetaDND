@@ -34,46 +34,46 @@ import entity.RaceEntity;
 
 public class Wiz2 {
 
-	private static Composite wiz2;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
-	private static Composite panel;
-	private static Composite home;
-	private static Composite homePanel;
-	private static StackLayout layout;
+	private Composite wiz2;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
+	private Composite panel;
+	private Composite home;
+	private Composite homePanel;
+	private StackLayout layout;
 	private StackLayout homeLayout;
-	private static ArrayList<Composite> wizPages;
-	private static Composite nextPage;
+	private ArrayList<Composite> wizPages;
+	private Composite nextPage;
 	private int wizPagesSize;
 
 	private GameState gs = Main.gameState;
-	private static Label badRaceSelect;
-	private static Label badClassSelect;
-	private static Label badSearch;
-	private static Combo raceDropDown;
-	private static Combo classDropDown;
-	private static Combo secClassDropDown;
-	private final static String[] races = {"Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"}; // TODO add import from references?
-	private final static String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
+	private Label badRaceSelect;
+	private Label badClassSelect;
+	private Label badSearch;
+	private Combo raceDropDown;
+	private Combo classDropDown;
+	private Combo secClassDropDown;
+	private final String[] races = {"Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"}; // TODO add import from references?
+	private final String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
 
 	public Wiz2(Device dev, int WIDTH, int HEIGHT, final character character,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz2 = wizPages.get(1);
-		Wiz2.dev = dev;
-		Wiz2.WIDTH = WIDTH;
-		Wiz2.HEIGHT = HEIGHT;
-		Wiz2.character = character;
-		Wiz2.panel = panel;
-		Wiz2.home = home;
-		Wiz2.homePanel = homePanel;
-		Wiz2.layout = layout;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
+		this.panel = panel;
+		this.home = home;
+		this.homePanel = homePanel;
+		this.layout = layout;
 		this.homeLayout = homeLayout;
-		Wiz2.wizPages = wizPages;
-		Wiz2.nextPage = wizPages.get(2);
+		this.wizPages = wizPages;
+		this.nextPage = wizPages.get(2);
 		this.wizPagesSize = wizPages.size();
 
 		createPageContent();
@@ -107,22 +107,22 @@ public class Wiz2 {
 		// get races from references
 		// TODO
 		System.out.println(gs);
-		Collection<DNDEntity> racesCol =  gs.races.values();
+		Collection<DNDEntity> racesCol = gs.races.values();
 		Iterator<DNDEntity> itr = racesCol.iterator();
 		ArrayList<RaceEntity> races = new ArrayList<RaceEntity>();
 		while (itr.hasNext()) {
 			races.add((RaceEntity) itr.next());
 		}
-		
+
 		// get classes from references
-		Collection<DNDEntity> classesCol =  gs.classes.values();
+		Collection<DNDEntity> classesCol = gs.classes.values();
 		Iterator<DNDEntity> itr2 = classesCol.iterator();
 		ArrayList<ClassEntity> classes = new ArrayList<ClassEntity>();
 		while (itr2.hasNext()) {
 			classes.add((ClassEntity) itr2.next());
 		}
-		
-		
+
+
 		// drop down menus for race, class, and secondary class
 		// race drop down menu
 		raceDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -171,7 +171,7 @@ public class Wiz2 {
 		});
 		secClassDropDown.pack();
 		secClassDropDown.setEnabled(false);
-		
+
 
 		// error handling
 		// this appears when an item is not selected and search is clicked
@@ -301,10 +301,10 @@ public class Wiz2 {
 					CharacterWizard.getCharacter().setCharSecClass(null);
 				else 
 					CharacterWizard.getCharacter().setCharSecClass(classes.get(secClassIndex));
-//				Wiz3.updateCharRace();
-//				Wiz3.updateCharClass();
-//				Wiz3.updateCharSecClass();
-				
+				//				Wiz3.updateCharRace();
+				//				Wiz3.updateCharClass();
+				//				Wiz3.updateCharSecClass();
+
 				// change to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
@@ -321,14 +321,14 @@ public class Wiz2 {
 
 
 		// back button
-//		Button wiz2BackButton = CharacterWizard.createBackButton(wiz2, panel, layout);
-//		wiz2BackButton.addListener(SWT.Selection, new Listener() {
-//			public void handleEvent(Event event) {
-//				badSearch.setVisible(false);
-//				badRaceSelect.setVisible(false);
-//				badClassSelect.setVisible(false);
-//			}
-//		});
+		//		Button wiz2BackButton = CharacterWizard.createBackButton(wiz2, panel, layout);
+		//		wiz2BackButton.addListener(SWT.Selection, new Listener() {
+		//			public void handleEvent(Event event) {
+		//				badSearch.setVisible(false);
+		//				badRaceSelect.setVisible(false);
+		//				badClassSelect.setVisible(false);
+		//			}
+		//		});
 
 
 		// cancel button
@@ -347,7 +347,7 @@ public class Wiz2 {
 	 * to "Search"
 	 * @return
 	 */
-	private static Button createSearchButton(Composite c) {
+	private Button createSearchButton(Composite c) {
 		Button searchButton = new Button(c, SWT.PUSH);
 		searchButton.setText("Search");
 		searchButton.setSize(80,30);
@@ -360,7 +360,7 @@ public class Wiz2 {
 	 * to "Add Custom"
 	 * @return
 	 */
-	private static Button createAddCustomButton(Composite c) {
+	private Button createAddCustomButton(Composite c) {
 		Button addCustomButton = new Button(c, SWT.PUSH);
 		addCustomButton.setText("Add Custom");
 		addCustomButton.setSize(100,30);

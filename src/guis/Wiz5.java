@@ -27,11 +27,11 @@ import entity.FeatEntity;
 
 public class Wiz5 {
 
-	private static Composite wiz5;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz5;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -41,19 +41,19 @@ public class Wiz5 {
 	private Composite nextPage;
 	private int wizPagesSize;
 	private int numFeats;
-	private static GameState gs = Main.gameState;
+	private GameState gs = Main.gameState;
 	
-	private static Label numFeatsLabel;
+	private Label numFeatsLabel;
 
 	public Wiz5(Device dev, int WIDTH, int HEIGHT, final character character, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz5 = wizPages.get(4);
-		Wiz5.dev = dev;
-		Wiz5.WIDTH = WIDTH;
-		Wiz5.HEIGHT = HEIGHT;
-		Wiz5.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;

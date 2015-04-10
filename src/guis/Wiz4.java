@@ -29,11 +29,11 @@ import core.character;
 
 public class Wiz4 {
 
-	private static Composite wiz4;
-	private static Device dev;
-	private static int WIDTH;
-	private static int HEIGHT;
-	private static character character;
+	private Composite wiz4;
+	private Device dev;
+	private int WIDTH;
+	private int HEIGHT;
+	private character character;
 	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
@@ -44,7 +44,7 @@ public class Wiz4 {
 	private int wizPagesSize;
 
 	private Label numSkillPointsLabel;
-	private static Label unusedSkillPointsError;
+	private Label unusedSkillPointsError;
 	private String charClass;
 	private int numSkillPoints;
 	private ArrayList<CharSkill> charSkills = new ArrayList<CharSkill>();
@@ -56,10 +56,10 @@ public class Wiz4 {
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz4 = wizPages.get(3);
-		Wiz4.dev = dev;
-		Wiz4.WIDTH = WIDTH;
-		Wiz4.HEIGHT = HEIGHT;
-		Wiz4.character = character;
+		this.dev = dev;
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		this.character = character;
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
