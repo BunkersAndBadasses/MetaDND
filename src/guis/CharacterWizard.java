@@ -134,7 +134,7 @@ public class CharacterWizard {
 		homeLabel2.pack();
 
 		Button wizardButton = new Button(home, SWT.PUSH);
-		wizardButton.setText("Interactive\nCharacter Wizard");
+		wizardButton.setText("Interactive\n Character Wizard");
 		wizardButton.setFont(font2);
 		wizardButton.setBounds(WIDTH / 2 - 150, 150, 300, 150);
 
