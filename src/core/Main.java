@@ -7,11 +7,11 @@ public class Main {
 	public static GameState gameState;
 
 	public static void main(String[] args) {
-		//gameState = new GameState();
-		//xmlLoader xmls = new xmlLoader("xmlTestThread");
+		gameState = new GameState();
+		xmlLoader xmls = new xmlLoader("xmlTestThread");
 		//SearchThread st1 = new SearchThread("Spells");
 		//SearchThread st2 = new SearchThread("Spells");
-		//xmls.start();
+		xmls.start();
 		
 		
 		Display display = new Display();
