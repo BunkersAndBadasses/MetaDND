@@ -728,6 +728,7 @@ public class DieWindow {
 					}
 				});
 				
+				favList.select(0);
 				deleteFile.pack();
 
 				deleteFile.open();
@@ -737,6 +738,7 @@ public class DieWindow {
 					}
 				}
 			}
+			
 		});
 
 		// this appears when there is an invalid operation attempt
