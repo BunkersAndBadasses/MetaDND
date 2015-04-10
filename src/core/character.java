@@ -40,7 +40,8 @@ public class character {
 	private String skin;
 	private String[] appearance = {eyes, hair, skin};
 	private String description;
-	private int[] abilityScores = new int[6];
+	// "STR", "DEX", "CON", "INT", "WIS", "CHA"
+	private int[] abilityScores = new int[6];// "STR", "DEX", "CON", "INT", "WIS", "CHA"
 	private int hp; // hitpoints
 	private int remainingHP;
 	private ArrayList<CharSkill> skillsList;
