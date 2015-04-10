@@ -143,9 +143,8 @@ public class DieWindow {
 						return;
 
 					numDie[index] ++;
-					//dieText.setText(dieNames[index] + " x " + numDie[index]);
 					dieText.setText(numDie[index] + dieNames[index]);
-					//dieText.pack();
+					dieWin.layout();
 				}
 			});
 			incButtons.add(inc);
@@ -161,9 +160,8 @@ public class DieWindow {
 						return;
 
 					numDie[index] --;
-					//dieText.setText(dieNames[index] + " x " + numDie[index]);
 					dieText.setText(numDie[index] + dieNames[index]);
-					//dieText.pack();
+					dieWin.layout();
 
 				}
 			});
@@ -268,7 +266,7 @@ public class DieWindow {
 					}
 					
 					if(custDieCount < 0 || custDieCount > 20){
-						invalidOperation.setText("Invalid Custom Die count: 0 < count <20");
+						invalidOperation.setText("Invalid Custom Cnt: 0< count< 20");
 						invalidOperation.setVisible(true);
 						
 						return;
@@ -363,7 +361,7 @@ public class DieWindow {
 					}
 					
 					if(custDieCount < 0 || custDieCount > 20){
-						invalidOperation.setText("Invalid Custom Die count: 0 < count <20");
+						invalidOperation.setText("Invalid Custom Cnt: 0< count< 20");
 						invalidOperation.setVisible(true);
 						
 						return;
@@ -583,37 +581,43 @@ public class DieWindow {
 					if(loaded.get(i).getDieSize() == 4){
 						numDie[0] = loaded.get(i).getDieCount();
 						dieLabels[0].setText(numDie[0] + dieNames[0]);
+						dieWin.layout();
 						d4 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 6){
 						numDie[1] = loaded.get(i).getDieCount();
 						dieLabels[1].setText(numDie[1] + dieNames[1]);
+						dieWin.layout();
 						d6 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 8){
 						numDie[2] = loaded.get(i).getDieCount();
 						dieLabels[2].setText(numDie[2] + dieNames[2]);
+						dieWin.layout();
 						d8 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 10){
 						numDie[3] = loaded.get(i).getDieCount();
 						dieLabels[3].setText(numDie[3] + dieNames[3]);
+						dieWin.layout();
 						d10 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 12){
 						numDie[4] = loaded.get(i).getDieCount();
 						dieLabels[4].setText(numDie[4] + dieNames[4]);
+						dieWin.layout();
 						d12 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 20){
 						numDie[5] = loaded.get(i).getDieCount();
 						dieLabels[5].setText(numDie[5] + dieNames[5]);
+						dieWin.layout();
 						d20 = true;
 					}
 					else if(loaded.get(i).getDieSize() == 100){
 						numDie[6] = loaded.get(i).getDieCount();
 						dieLabels[6].setText(numDie[6] + dieNames[6]);
-
+						dieWin.layout();
 						d100 = true;
 					}else if(loaded.get(i).getDieSize() != 0){
 						custom = true;
@@ -628,30 +632,37 @@ public class DieWindow {
 					if(!d4){
 						numDie[0] = 0;
 						dieLabels[0].setText(numDie[0] + dieNames[0]);
+						dieWin.layout();
 					}
 					if(!d6){
 						numDie[1] = 0;
 						dieLabels[1].setText(numDie[1] + dieNames[1]);
+						dieWin.layout();
 					}
 					if(!d8){
 						numDie[2] = 0;
 						dieLabels[2].setText(numDie[2] + dieNames[2]);
+						dieWin.layout();
 					}
 					if(!d10){
 						numDie[3] = 0;
 						dieLabels[3].setText(numDie[3] + dieNames[3]);
+						dieWin.layout();
 					}
 					if(!d12){
 						numDie[4] = 0;
 						dieLabels[4].setText(numDie[4] + dieNames[4]);
+						dieWin.layout();
 					}
 					if(!d20){
 						numDie[5] = 0;
 						dieLabels[5].setText(numDie[5] + dieNames[5]);
+						dieWin.layout();
 					}
 					if(!d100){
 						numDie[6] = 0;
 						dieLabels[6].setText(numDie[6] + dieNames[6]);
+						dieWin.layout();
 					}
 					if(!modded){
 						modText.setText("0");
