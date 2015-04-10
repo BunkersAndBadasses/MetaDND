@@ -10,6 +10,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -19,6 +20,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 import entity.*;
+import core.CharItem;
 import core.GameState;
 import core.Main;
 import core.character;
@@ -108,7 +110,7 @@ public class Wiz7 {
 		Collection<DNDEntity> itemsCol =  gs.items.values();
 		Iterator<DNDEntity> itr = itemsCol.iterator();
 		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
-		ArrayList<ItemEntity> charItems = new ArrayList<ItemEntity>();
+		ArrayList<CharItem> charItems = new ArrayList<CharItem>();
 		while (itr.hasNext()) {
 			items.add((ItemEntity) itr.next());
 		}
@@ -136,7 +138,7 @@ public class Wiz7 {
 		final Composite charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		charItemScroll.setContent(charItemScreen);
 		charItemScreen.setSize(charItemScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		charItemScreen.setLayout(itemLayout);
+		charItemScreen.setLayout(new GridLayout(2, false));
 
 		
 		// available items list
@@ -147,9 +149,83 @@ public class Wiz7 {
 		itemsList.pack();
 		itemScroll.setMinHeight(itemsList.getBounds().height);
 	    
+		// number items list
+		List numCharItemsList = new List(charItemScreen, SWT.NONE);
+		numCharItemsList.pack();
+		
 		// selected items list
-		List charItesmList = new List(charItemScreen, SWT.NONE);
-		charItesmList.pack();
+		List charItemsList = new List(charItemScreen, SWT.NONE);
+		charItemsList.pack();
+		
+		// add item button
+		Button addButton = new Button(wiz7, SWT.PUSH);
+		addButton.setText("Add >");
+		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
+		addButton.pack();
+		addButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int index = itemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				for(int i = 0; i < charItems.size(); i++) {
+					// if item is already added, increment
+					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
+						charItems.get(i).incCount();
+						numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
+					} else {
+						// otherwise add it to the list
+						charItems.add(new CharItem(items.get(index)));
+						charItemsList.add(itemsList.getItem(index));
+						numCharItemsList.add(Integer.toString(charItems.get(i).getCount()));
+					}
+				}
+				charItemsList.pack();
+				numCharItemsList.pack();
+				charItemScroll.setMinHeight(charItemsList.getBounds().height);
+				charItemScreen.layout();
+			}
+		});
+		
+		// remove item button
+		Button removeButton = new Button(wiz7, SWT.PUSH);
+		removeButton.setText("< Remove");
+		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
+		removeButton.pack();
+		removeButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (charItems.isEmpty())
+					return;
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
+						if (charItems.get(i).decCount()) {
+							numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
+						} else {
+							numCharItemsList.remove(i);
+							return;
+						}
+					} else {
+						charItemsList.remove(index);
+						charItems.remove(index);
+					}
+					
+				}
+				charItemsList.pack();
+				numCharItemsList.pack();
+				charItemScroll.setMinHeight(charItemsList.getBounds().height);
+				charItemScreen.layout();
+				
+			}
+		});
+
+		
+		
+		
+		
+		
+		
 		
 		
 		Button wiz7NextButton = CharacterWizard.createNextButton(wiz7);
