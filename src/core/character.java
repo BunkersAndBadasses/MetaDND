@@ -124,7 +124,10 @@ public class character {
 	public String getHair(){return hair;}
 	public String getSkin(){return skin;}
 	public String getDescription(){return description;}
-	
+	public int getHp(){return hp;}
+	public int getRemainingHp(){return remainingHP;}
+	public ArrayList<CharSkill> getSkills(){ return skillsList;}
+	public String getLanguages(){return languages;}
 	// blah
 	
 	

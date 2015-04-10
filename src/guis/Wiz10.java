@@ -62,7 +62,7 @@ public class Wiz10 {
 
 		createPageContent();
 	}
-	
+
 	private void createPageContent() {
 		Label wiz10Label = new Label(wiz10, SWT.NONE);
 		wiz10Label.setText("Done!");
@@ -74,41 +74,41 @@ public class Wiz10 {
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// save
-				
-//				private String name;
-//				private int level = 1;
-//				private int exp = 0;
-//				private ClassEntity charClass;		// change to type Class once refs are added
-//				private RaceEntity charRace;				// ^^ ditto for Race
-//				private ClassEntity charSecClass;
-//				private String alignment;
-//				private String deity;
-//				private int size; // TODO int? string?
-//				private String age; 
-//				private String gender;
-//				private String height;
-//				private String weight;
-//				private String eyes;
-//				private String hair;
-//				private String skin;
-//				private String[] appearance = {eyes, hair, skin};
-//				private String description;
-//				// "STR", "DEX", "CON", "INT", "WIS", "CHA"
-//				private int[] abilityScores = new int[6];
-//				private int hp; // hitpoints
-//				private int remainingHP;
-//				private ArrayList<CharSkill> skillsList;
-//				private String languages;
-//				private int gold;
-//				private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
-//				private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
-//				private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
-//				private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
-//				private ArrayList<CharItem> items = new ArrayList<CharItem>();
-//				private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-//				private ArrayList<ArmorEntity> armors = new ArrayList<ArmorEntity>();
-//				private String notes;
-//				
+
+				//				private String name;
+				//				private int level = 1;
+				//				private int exp = 0;
+				//				private ClassEntity charClass;		// change to type Class once refs are added
+				//				private RaceEntity charRace;				// ^^ ditto for Race
+				//				private ClassEntity charSecClass;
+				//				private String alignment;
+				//				private String deity;
+				//				private int size; // TODO int? string?
+				//				private String age; 
+				//				private String gender;
+				//				private String height;
+				//				private String weight;
+				//				private String eyes;
+				//				private String hair;
+				//				private String skin;
+				//				private String[] appearance = {eyes, hair, skin};
+				//				private String description;
+				//				// "STR", "DEX", "CON", "INT", "WIS", "CHA"
+				//				private int[] abilityScores = new int[6];
+				//				private int hp; // hitpoints
+				//				private int remainingHP;
+				//				private ArrayList<CharSkill> skillsList;
+				//				private String languages;
+				//				private int gold;
+				//				private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+				//				private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
+				//				private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+				//				private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
+				//				private ArrayList<CharItem> items = new ArrayList<CharItem>();
+				//				private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+				//				private ArrayList<ArmorEntity> armors = new ArrayList<ArmorEntity>();
+				//				private String notes;
+				//				
 				try {
 
 					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -119,110 +119,178 @@ public class Wiz10 {
 					Element rootElement = doc.createElement(character.getName());
 					doc.appendChild(rootElement);
 
-					
-						// Character
-						Element Character = doc.createElement("CHARACTER");
-						rootElement.appendChild(Character);
 
-						// Character name
-						Element Name = doc.createElement("NAME");
-						Name.appendChild(doc.createTextNode(character.getName()));
-						Character.appendChild(Name);
+					// Character
+					Element Character = doc.createElement("CHARACTER");
+					rootElement.appendChild(Character);
 
-						// Level
-						Element Level = doc.createElement("LEVEL");
-						Level.appendChild(doc.createTextNode(
-								Integer.toString(character.getLevel())));
-						Character.appendChild(Level);
+					// Character name
+					Element Name = doc.createElement("NAME");
+					Name.appendChild(doc.createTextNode(character.getName()));
+					Character.appendChild(Name);
 
-						// Exp
-						Element Exp = doc.createElement("EXP");
-						Exp.appendChild(doc.createTextNode(
-								Integer.toString(character.getExp())));
-						Character.appendChild(Exp);
+					// Level
+					Element Level = doc.createElement("LEVEL");
+					Level.appendChild(doc.createTextNode(
+							Integer.toString(character.getLevel())));
+					Character.appendChild(Level);
 
-						// Class
-						Element Class = doc.createElement("CLASS");
-						Class.appendChild(doc.createTextNode(character.getCharClass().getName()));
-						Character.appendChild(Class);
-						
-						// Race
-						Element Race = doc.createElement("RACE");
-						Race.appendChild(doc.createTextNode(character.getCharRace().getName()));
-						Character.appendChild(Race);		
+					// Exp
+					Element Exp = doc.createElement("EXP");
+					Exp.appendChild(doc.createTextNode(
+							Integer.toString(character.getExp())));
+					Character.appendChild(Exp);
 
-						// Alignment
-						Element Alignment = doc.createElement("ALIGNMENT");
-						Alignment.appendChild(doc.createTextNode(character.getAlignment()));
-						Character.appendChild(Alignment);		
-						
-						// Size
-						Element Size = doc.createElement("SIZE");
-						Size.appendChild(doc.createTextNode(
-								Integer.toString(character.getSize())));
-						Character.appendChild(Size);		
-						
-						// Age
-						Element Age = doc.createElement("AGE");
-						Age.appendChild(doc.createTextNode(character.getAge()));
-						Character.appendChild(Age);	
-						
-						// Gender
-						Element Gender = doc.createElement("GENDER");
-						Gender.appendChild(doc.createTextNode(character.getGender()));
-						Character.appendChild(Gender);	
-						
-						// Height
-						Element Height = doc.createElement("HEIGHT");
-						Height.appendChild(doc.createTextNode(character.getHeight()));
-						Character.appendChild(Height);	
-						
-						// Weight
-						Element Weight = doc.createElement("WEIGHT");
-						Weight.appendChild(doc.createTextNode(character.getWeight()));
-						Character.appendChild(Weight);	
-						
-						// Eyes
-						Element Eyes = doc.createElement("EYES");
-						Eyes.appendChild(doc.createTextNode(character.getEyes()));
-						Character.appendChild(Eyes);	
-						
-						// Strength
-						Element Strength = doc.createElement("STRENGTH");
-						Strength.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[0])));
-						Character.appendChild(Strength);	
-						
-						// Dexterity
-						Element Dexterity = doc.createElement("DEXTERITY");
-						Dexterity.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[1])));
-						Character.appendChild(Dexterity);	
-						
-						// Constitution
-						Element Constitution = doc.createElement("CONSTITUTION");
-						Constitution.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[2])));
-						Character.appendChild(Constitution);	
-						
-						// Intelligence
-						Element Intelligence = doc.createElement("INTELLIGENCE");
-						Intelligence.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[3])));
-						Character.appendChild(Intelligence);	
-						
-						// Wisdom
-						Element Wisdom = doc.createElement("WISDOM");
-						Wisdom.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[4])));
-						Character.appendChild(Wisdom);	
-						
-						// Charisma
-						Element Charisma = doc.createElement("Charisma");
-						Charisma.appendChild(doc.createTextNode(
-								Integer.toString(character.getAbilityScores()[5])));
-						Character.appendChild(Charisma);	
-						
+					// Class
+					Element Class = doc.createElement("CLASS");
+					Class.appendChild(doc.createTextNode(character.getCharClass().getName()));
+					Character.appendChild(Class);
+
+					if(character.getCharSecClass().getName() != null){
+						// Second Class
+						Element SecClass = doc.createElement("SECOND_CLASS");
+						SecClass.appendChild(doc.createTextNode(character.getCharSecClass().getName()));
+						Character.appendChild(SecClass);
+					}
+
+					// Race
+					Element Race = doc.createElement("RACE");
+					Race.appendChild(doc.createTextNode(character.getCharRace().getName()));
+					Character.appendChild(Race);		
+
+					// Alignment
+					Element Alignment = doc.createElement("ALIGNMENT");
+					Alignment.appendChild(doc.createTextNode(character.getAlignment()));
+					Character.appendChild(Alignment);		
+
+					// Size
+					Element Size = doc.createElement("SIZE");
+					Size.appendChild(doc.createTextNode(
+							Integer.toString(character.getSize())));
+					Character.appendChild(Size);		
+
+					// Age
+					Element Age = doc.createElement("AGE");
+					Age.appendChild(doc.createTextNode(character.getAge()));
+					Character.appendChild(Age);	
+
+					// Gender
+					Element Gender = doc.createElement("GENDER");
+					Gender.appendChild(doc.createTextNode(character.getGender()));
+					Character.appendChild(Gender);	
+
+					// Height
+					Element Height = doc.createElement("HEIGHT");
+					Height.appendChild(doc.createTextNode(character.getHeight()));
+					Character.appendChild(Height);	
+
+					// Weight
+					Element Weight = doc.createElement("WEIGHT");
+					Weight.appendChild(doc.createTextNode(character.getWeight()));
+					Character.appendChild(Weight);	
+
+					// Eyes
+					Element Eyes = doc.createElement("EYES");
+					Eyes.appendChild(doc.createTextNode(character.getEyes()));
+					Character.appendChild(Eyes);	
+
+					// Hair
+					Element Hair = doc.createElement("HAIR");
+					Hair.appendChild(doc.createTextNode(character.getHair()));
+					Character.appendChild(Hair);	
+
+					// Skin
+					Element Skin = doc.createElement("SKIN");
+					Skin.appendChild(doc.createTextNode(character.getSkin()));
+					Character.appendChild(Skin);	
+
+					// Strength
+					Element Strength = doc.createElement("STRENGTH");
+					Strength.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[0])));
+					Character.appendChild(Strength);	
+
+					// Dexterity
+					Element Dexterity = doc.createElement("DEXTERITY");
+					Dexterity.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[1])));
+					Character.appendChild(Dexterity);	
+
+					// Constitution
+					Element Constitution = doc.createElement("CONSTITUTION");
+					Constitution.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[2])));
+					Character.appendChild(Constitution);	
+
+					// Intelligence
+					Element Intelligence = doc.createElement("INTELLIGENCE");
+					Intelligence.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[3])));
+					Character.appendChild(Intelligence);	
+
+					// Wisdom
+					Element Wisdom = doc.createElement("WISDOM");
+					Wisdom.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[4])));
+					Character.appendChild(Wisdom);	
+
+					// Charisma
+					Element Charisma = doc.createElement("CHARISMA");
+					Charisma.appendChild(doc.createTextNode(
+							Integer.toString(character.getAbilityScores()[5])));
+					Character.appendChild(Charisma);	
+
+					// Hitpoints
+					Element Hitpoints = doc.createElement("HITPOINTS");
+					Hitpoints.appendChild(doc.createTextNode(
+							Integer.toString(character.getHp())));
+					Character.appendChild(Hitpoints);	
+
+					// Remaining Hitpoints
+					Element RemainingHP = doc.createElement("REMAINING_HITPOINTS");
+					RemainingHP.appendChild(doc.createTextNode(
+							Integer.toString(character.getRemainingHp())));
+					Character.appendChild(RemainingHP);	
+
+					//Go through the Skill list
+					for(int i = 0; i < character.getSkills().size(); i++){
+						// Skill Name
+						Element SkillName = doc.createElement("SKILL_NAME");
+						SkillName.appendChild(doc.createTextNode(
+								character.getSkills().get(i).getSkill().getName()));
+						Character.appendChild(SkillName);	
+
+						// Skill Rank
+						Element SkillRank = doc.createElement("SKILL_RANK");
+						SkillRank.appendChild(doc.createTextNode(
+								Integer.toString(character.getSkills().get(i).getRank())));
+						Character.appendChild(SkillRank);	
+					}
+
+					// Launguages
+					Element Launguages = doc.createElement("LANGUAGES");
+					Launguages.appendChild(doc.createTextNode(character.getLanguages()));
+					Character.appendChild(Launguages);	
+
+					// Gold
+					Element Gold = doc.createElement("GOLD");
+					Gold.appendChild(doc.createTextNode(
+							Integer.toString(character.getgold())));
+					Character.appendChild(Gold);
+
+					//Go through the Feat list
+					for(int i = 0; i < character.getSkills().size(); i++){
+						// Skill Name
+						Element SkillName = doc.createElement("SKILL_NAME");
+						SkillName.appendChild(doc.createTextNode(
+								character.getSkills().get(i).getSkill().getName()));
+						Character.appendChild(SkillName);	
+
+					}
+
+
+
+
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
@@ -242,7 +310,7 @@ public class Wiz10 {
 					tfe.printStackTrace();
 				}
 				return;
-				
+
 			}
 		});
 
@@ -255,9 +323,9 @@ public class Wiz10 {
 			}
 		});
 	}
-	
+
 	public Composite getWiz10() { return wiz10; }
-	
+
 	public static void cancelClear() {
 		CharacterWizard.reset();
 		Wiz1.cancelClear();
