@@ -10,7 +10,7 @@ public class ArmorEntity extends DNDEntity {
 	private int magicBonus; // if isMagic == false, leave null
 	private String[] magicProperties; // if isMagic == false, leave null
 	@Override
-	public void search(String searchString, Thread runningThread) {
+	public void search(String searchString, Thread runningThread) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,5 +1,6 @@
 package core;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
@@ -32,7 +33,7 @@ public class GameState {
 	public String currCharFilePath;
 	public boolean playerMode;
 	
-	public LinkedList<DNDEntity> searchResults;
+	public HashMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
 	
 	public GameState(){
@@ -47,11 +48,38 @@ public class GameState {
 		monsters = new LinkedHashMap<String, DNDEntity>();
 		traps = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
-		searchResults = new LinkedList<DNDEntity>();
+		searchResults = new HashMap<String, DNDEntity>();
 	}
 	
 	public void saveCustomContent(){
 		
+	}
+	
+	public boolean search(String searchString){
+		SearchThread st1 = new SearchThread("Spells");
+		SearchThread st2 = new SearchThread("Feats");
+		SearchThread st3 = new SearchThread("Skills");
+		SearchThread st4 = new SearchThread("Classes");
+		SearchThread st5 = new SearchThread("Races");
+		
+		st1.start(this.spells, searchString);
+		st2.start(this.feats, searchString);
+		st3.start(this.skills, searchString);
+		st4.start(this.classes, searchString);
+		st5.start(this.races, searchString);
+		
+		try {
+			st1.getSearchThread().join();
+			st2.getSearchThread().join();
+			st3.getSearchThread().join();
+			st4.getSearchThread().join();
+			st5.getSearchThread().join();
+		} catch (InterruptedException e) {
+			System.out.println("Error joining threads!");
+			return false;
+		}
+		System.out.println("All threads joined. Ending search!");
+		return true;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -138,8 +139,7 @@ public class Wiz7 {
 		final Composite charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		charItemScroll.setContent(charItemScreen);
 		charItemScreen.setSize(charItemScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		charItemScreen.setLayout(new GridLayout(2, false));
-
+		charItemScreen.setLayout(itemLayout);
 		
 		// available items list
 		List itemsList = new List(itemListScreen, SWT.NONE);
@@ -149,10 +149,10 @@ public class Wiz7 {
 		itemsList.pack();
 		itemScroll.setMinHeight(itemsList.getBounds().height);
 	    
-		// number items list
-		List numCharItemsList = new List(charItemScreen, SWT.NONE);
-		numCharItemsList.pack();
-		
+//		// number items list
+//		List numCharItemsList = new List(charItemScreen, SWT.NONE);
+//		numCharItemsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+//		
 		// selected items list
 		List charItemsList = new List(charItemScreen, SWT.NONE);
 		charItemsList.pack();
@@ -171,16 +171,15 @@ public class Wiz7 {
 					// if item is already added, increment
 					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
 						charItems.get(i).incCount();
-						numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
+						//numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
 					} else {
 						// otherwise add it to the list
 						charItems.add(new CharItem(items.get(index)));
 						charItemsList.add(itemsList.getItem(index));
-						numCharItemsList.add(Integer.toString(charItems.get(i).getCount()));
+						//numCharItemsList.add(Integer.toString(charItems.get(i).getCount()));
 					}
 				}
 				charItemsList.pack();
-				numCharItemsList.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
 				charItemScreen.layout();
 			}
@@ -201,9 +200,9 @@ public class Wiz7 {
 				for(int i = 0; i < charItems.size(); i++) {
 					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
 						if (charItems.get(i).decCount()) {
-							numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
+							//numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
 						} else {
-							numCharItemsList.remove(i);
+							//numCharItemsList.remove(i);
 							return;
 						}
 					} else {
@@ -212,14 +211,14 @@ public class Wiz7 {
 					}
 					
 				}
-				charItemsList.pack();
-				numCharItemsList.pack();
+				charItemScreen.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
 				charItemScreen.layout();
 				
 			}
 		});
-
+		itemListScreen.pack();
+		charItemScreen.pack();
 		
 		
 		
