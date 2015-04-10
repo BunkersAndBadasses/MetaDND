@@ -13,7 +13,7 @@ public final class DungeonConstants {
 	public static final int RIGHT = 2;
 	public static final int BOTTOM = 3;
 	
-	public static final File SAVEDDUNGEONSDIR = new File(System.getProperty("user.dir") + "//" + "GeneratedDungeons");
+	public static final File SAVEDDUNGEONSDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Generated Dungeons");
 
 	enum Tile {
 	    Unpassable, Difficult, Passable, Wall, Chest, Monster, Obstacle, Upstairs, Downstairs
