@@ -112,6 +112,7 @@ public class Wiz7 {
 		Iterator<DNDEntity> itr = itemsCol.iterator();
 		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
 		ArrayList<CharItem> charItems = new ArrayList<CharItem>();
+		ArrayList<Integer> numCharItems = new ArrayList<Integer>();
 		while (itr.hasNext()) {
 			items.add((ItemEntity) itr.next());
 		}
@@ -165,23 +166,33 @@ public class Wiz7 {
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int index = itemsList.getSelectionIndex();
+				String selection = itemsList.getItem(index);
 				if (index == -1)
 					return;
+
 				for(int i = 0; i < charItems.size(); i++) {
 					// if item is already added, increment
-					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
+					if (charItems.get(i).getName().equals(selection)) {
 						charItems.get(i).incCount();
-						//numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
-					} else {
-						// otherwise add it to the list
-						charItems.add(new CharItem(items.get(index)));
-						charItemsList.add(itemsList.getItem(index));
-						//numCharItemsList.add(Integer.toString(charItems.get(i).getCount()));
+						numCharItems.set(i, charItems.get(i).getCount());
+						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						System.out.println("incrementing " + charItems.get(i).getName()); //TODO
+						return;
 					}
 				}
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index));
+				charItems.add(c);
+				charItemsList.add("1 x " + selection);
+				numCharItems.add(c.getCount());
+				System.out.println("adding " + itemsList.getItem(index)); //TODO
+			
+
+
 				charItemsList.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
 				charItemScreen.layout();
+				charItemScroll.layout();
 			}
 		});
 		
@@ -197,23 +208,22 @@ public class Wiz7 {
 				int index = charItemsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				for(int i = 0; i < charItems.size(); i++) {
-					if (charItems.get(i).getName().equals(itemsList.getItem(index))) {
-						if (charItems.get(i).decCount()) {
-							//numCharItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()));
-						} else {
-							//numCharItemsList.remove(i);
-							return;
-						}
-					} else {
-						charItemsList.remove(index);
-						charItems.remove(index);
-					}
-					
+				if (charItems.get(index).decCount()) {
+					System.out.println("successfully decremented " + itemsList.getItem(index)); //TODO
+					numCharItems.set(index, charItems.get(index).getCount());
+					charItemsList.setItem(index, Integer.toString(numCharItems.get(index)) + " x " + charItems.get(index).getName());
 				}
+				else {
+					charItemsList.remove(index);
+					charItems.remove(index);
+					numCharItems.remove(index);
+				}
+
+
 				charItemScreen.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
 				charItemScreen.layout();
+				charItemScroll.layout();
 				
 			}
 		});
@@ -254,7 +264,7 @@ public class Wiz7 {
 			}
 		});
 
-		Button wiz7BackButton = CharacterWizard.createBackButton(wiz7, panel, layout);
+		//Button wiz7BackButton = CharacterWizard.createBackButton(wiz7, panel, layout);
 		Button wiz7CancelButton = CharacterWizard.createCancelButton(wiz7, home, homePanel, homeLayout);
 		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {

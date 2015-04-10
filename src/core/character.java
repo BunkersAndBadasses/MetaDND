@@ -112,6 +112,18 @@ public class character {
 	public void addWeapon(WeaponEntity w) { weapons.add(w); }
 	public void addArmor(ArmorEntity a) { armors.add(a); }
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
+	public int getLevel() { return level;}
+	public int getExp() {return exp;}
+	public String getAlignment() {return alignment;}
+	public int getSize(){return size;}
+	public String getAge(){return age;}
+	public String getGender(){return gender;}
+	public String getHeight(){return height;}
+	public String getWeight(){return weight;}
+	public String getEyes(){return eyes;}
+	public String getHair(){return hair;}
+	public String getSkin(){return skin;}
+	public String getDescription(){return description;}
 	
 	// blah
 	

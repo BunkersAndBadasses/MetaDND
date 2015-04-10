@@ -498,7 +498,7 @@ public class Wiz6 {
 
 		
 		// back button
-		Button wiz6BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
+		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
 		
 		
 		// cancel button
