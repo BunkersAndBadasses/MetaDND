@@ -59,7 +59,8 @@ public class GridMapper {
 		this.writer.println("<defs>\n<g id = \"downstairs\">");
 		this.writer.print("<rect x=\"0\" y=\"0\" width=\"");
 		this.writer.print(this.sizeOfSquare + "\" height=\"");
-		this.writer.println(this.sizeOfSquare + "\" style=\"fill:tan;stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		this.writer.print(this.sizeOfSquare + "\" style=\"fill:tan;stroke:black;stroke-width:" + sizeOfStep);
+		this.writer.println(";fill-opacity:1;stroke-opacity:0.9\"/>");
 		for (int i = 1; i < 5; i++) {
 				this.writer.print("<line x1=\"");
 				this.writer.print(sizeOfStep*i + "\" y1=\"" + sizeOfStep*i + "\" x2=\"");
@@ -70,10 +71,14 @@ public class GridMapper {
 		
 		this.writer.println("</g>");
 		this.writer.println("<g id = \"unpassableTerrain\">");
-		this.writer.println("<rect x=\"0\" y=\"0\" width=\"30\" height=\"30\" style=\"fill:rgb(123,105,93);stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		this.writer.print("<rect x=\"0\" y=\"0\" width=\"" + this.sizeOfSquare);
+		this.writer.print("\" height=\"" + this.sizeOfSquare + "\" style=\"fill:rgb(123,105,93);stroke:black;stroke-width:");
+		this.writer.print(sizeOfStep + ";fill-opacity:1;stroke-opacity:0.9\"/>");
 		this.writer.println("</g>");
 		this.writer.println("<g id = \"passableTerrain\">\n");
-		this.writer.println("<rect x=\"0\" y=\"0\" width=\"30\" height=\"30\" style=\"fill:white;stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		this.writer.print("<rect x=\"0\" y=\"0\" width=\"" + this.sizeOfSquare);
+		this.writer.print("\" height=\"" + this.sizeOfSquare + "\" style=\"fill:white;stroke:black;stroke-width:");
+		this.writer.println(sizeOfStep + ";fill-opacity:1;stroke-opacity:0.9\"/>");
 		this.writer.println("</g>");
 		
 		this.writer.println("</defs>");

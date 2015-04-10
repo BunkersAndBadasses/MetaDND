@@ -38,6 +38,7 @@ public class HomeWindow {
 	private static final int WIDTH = 900;
 	private static final int HEIGHT = 700;
 	public static boolean cancel = false;
+	private HomeWindow hw;
 	
 	private StackLayout m_mainWindowLayout;
 	private Composite m_mainWindow;
@@ -46,6 +47,8 @@ public class HomeWindow {
 	public static int[] baseAbilityScores = new int[6];
 
 	public HomeWindow(Display d) {
+		
+		hw = this;
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Meta D&D");
@@ -174,6 +177,7 @@ public class HomeWindow {
 		generateButton.setText("Generate New");
 		generateButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				new MenuBarDungeon(shell, hw);
 				mainWindowLayout.topControl = dungeonGenConfig;
 				mainWindow.layout();
 			}
@@ -190,9 +194,15 @@ public class HomeWindow {
         // embed the swing element in the swt composite
         java.awt.Frame fileTableFrame = SWT_AWT.new_Frame(dungeonViewer);
         java.awt.Panel panel = new java.awt.Panel(new java.awt.BorderLayout());
+        
         JScrollPane jsp = new JScrollPane(svgCanvas);
+        jsp.setViewportView(svgCanvas);
+        //jsp.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //jsp.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        //jsp.setWheelScrollingEnabled(true);
         fileTableFrame.add(panel);
         panel.add(jsp);
+        
         ///////////////////DUNGEON VIEWER////////////////////////// 
         
         ///////////////////DUNGEON GENCONFIG////////////////////////// 
@@ -219,6 +229,7 @@ public class HomeWindow {
         cancelButton.setText("Cancel");
         cancelButton.addListener(SWT.Selection, new Listener() {
         	public void handleEvent(Event event) {
+        		new MenuBarDungeon(shell, hw);
         		mainWindowLayout.topControl = dungeonScreen;
         		mainWindow.layout();
         	}
@@ -233,6 +244,30 @@ public class HomeWindow {
         		int densitySelection = densitySlider.getSelection();
         		double density = 1 - ((double)densitySelection/100);
         		
+        		// This seems like magic, and it kind of is, but just go with it.
+        		int sizeOfSquare;
+        		if (sizeSelection >= 10 && sizeSelection < 20) {
+        			sizeOfSquare = 50;
+        		}
+        		else if (sizeSelection >= 20 && sizeSelection < 30) {
+        			sizeOfSquare = 40;
+        		}
+        		else if (sizeSelection >= 30 && sizeSelection < 40) {
+        			sizeOfSquare = 30;
+        		}
+        		else if (sizeSelection >= 40 && sizeSelection < 50) {
+        			sizeOfSquare = 30;
+        		}
+        		else if (sizeSelection >= 50 && sizeSelection < 60) {
+        			sizeOfSquare = 20;
+        		}
+        		else if (sizeSelection >= 60 && sizeSelection < 100) {
+        			sizeOfSquare = 10;
+        		}
+        		else {
+        			sizeOfSquare = 30;
+        		}
+        		
         		//System.out.println(sizeSelection);
         		//System.out.println(density);
         		
@@ -240,12 +275,13 @@ public class HomeWindow {
         		rdg.GenerateDungeon();
         		rdg.printDungeon(true);
 
-        		GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", 30); //TODO: make this not hard coded.
+        		GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", sizeOfSquare); //TODO: make this not hard coded.
         		gm.generateSVG();
         		
-        		svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "\\generatedDungeon.svg" );
+        		svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "\\generatedDungeon.svg");
+        		
         		GameState.PAGE_NUMBER = 2;
-        		new MenuBarDungeon(shell);
+        		new MenuBarDungeon(shell, hw);
         		mainWindowLayout.topControl = dungeonViewer;
         		mainWindow.layout();
         	}
@@ -300,8 +336,9 @@ public class HomeWindow {
 					toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
 					svgCanvas.setURI(toSet);
 					
-					new MenuBarDungeon(shell);
+					new MenuBarDungeon(shell, hw);
 					
+					shell.setMaximized(true);
 					GameState.PAGE_NUMBER = 2;
 					mainWindowLayout.topControl = dungeonViewer;
 					mainWindow.layout();
@@ -314,9 +351,12 @@ public class HomeWindow {
 		}
 		});
 		
+		mainWindowLayout.topControl = homeScreen;
+		
 	}
 		
 	public void navigateToDungeonScreen() {
+		new MenuBarDungeon(shell, hw);
 		GameState.PAGE_NUMBER = 1;
 		this.m_mainWindowLayout.topControl = this.m_dungeonScreen;
 		this.m_mainWindow.layout();

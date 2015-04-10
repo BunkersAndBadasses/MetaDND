@@ -23,10 +23,12 @@ public class MenuBarDungeon {
 	private MenuItem cascadeToolsMenu;
 	private Menu fileMenu;
 	private MenuItem saveItem;
+	private HomeWindow m_hw;
 	
-	public MenuBarDungeon(final Shell shell)
+	public MenuBarDungeon(final Shell shell, HomeWindow hw)
 	{
 		
+		this.m_hw = hw;
 		this.m_shell = shell;
 		
 		menuBar = new Menu(shell, SWT.BAR);
@@ -188,13 +190,13 @@ public class MenuBarDungeon {
         
         //Dungeon Generator
         MenuItem dunGenItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunGenItem.setText("&Dungeon Generator");
+        dunGenItem.setText("&Dungeons");
         
 
         dunGenItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                //TODO
+                m_hw.navigateToDungeonScreen();
             }
         });
         
