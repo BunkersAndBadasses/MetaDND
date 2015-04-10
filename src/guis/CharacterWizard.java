@@ -167,6 +167,14 @@ public class CharacterWizard {
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout manualLayout = new StackLayout();
 		manualPanel.setLayout(manualLayout);
+		final Composite manualPage1 = new Composite(manualPanel, SWT.NONE);
+		manualPage1.setSize(manualPanel.getSize());
+		manualLayout.topControl = manualPage1;
+		manualPanel.layout();
+		Label csManual = new Label(manualPage1, SWT.BOLD);
+		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
+		csManual.setText("Coming Soon!");
+		csManual.pack();
 
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
 
@@ -174,6 +182,14 @@ public class CharacterWizard {
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout randomLayout = new StackLayout();
 		randomPanel.setLayout(randomLayout);
+		final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
+		randomPage1.setSize(manualPanel.getSize());
+		randomLayout.topControl = randomPage1;
+		randomPanel.layout();
+		Label csRandom = new Label(randomPage1, SWT.BOLD);
+		csRandom.setLocation(WIDTH/2-50, HEIGHT/2);
+		csRandom.setText("Coming Soon!");
+		csRandom.pack();
 
 		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
 
