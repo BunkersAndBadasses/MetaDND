@@ -101,7 +101,7 @@ public class Wiz10 {
 				//				private String languages;
 				//				private int gold;
 				//				private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
-				//				private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
+				//				private ArrayList<AbilityEntity> specialAbilities = new ArrayList<AbilityEntity>();
 				//				private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
 				//				private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
 				//				private ArrayList<CharItem> items = new ArrayList<CharItem>();
@@ -243,13 +243,13 @@ public class Wiz10 {
 					// Hitpoints
 					Element Hitpoints = doc.createElement("HITPOINTS");
 					Hitpoints.appendChild(doc.createTextNode(
-							Integer.toString(character.getHp())));
+							Integer.toString(character.getHitPoints())));
 					Character.appendChild(Hitpoints);	
 
 					// Remaining Hitpoints
 					Element RemainingHP = doc.createElement("REMAINING_HITPOINTS");
 					RemainingHP.appendChild(doc.createTextNode(
-							Integer.toString(character.getRemainingHp())));
+							Integer.toString(character.getRemainingHitPoints())));
 					Character.appendChild(RemainingHP);	
 
 					//Go through the Skill list
@@ -279,18 +279,87 @@ public class Wiz10 {
 					Character.appendChild(Gold);
 
 					//Go through the Feat list
-					for(int i = 0; i < character.getSkills().size(); i++){
-						// Skill Name
-						Element SkillName = doc.createElement("SKILL_NAME");
-						SkillName.appendChild(doc.createTextNode(
-								character.getSkills().get(i).getSkill().getName()));
-						Character.appendChild(SkillName);	
+					for(int i = 0; i < character.getFeats().size(); i++){
+						
+						// Feat
+						Element Feat = doc.createElement("FEAT");
+						Feat.appendChild(doc.createTextNode(
+								character.getFeats().get(i).getSkill().getName()));
+						Character.appendChild(Feat);	
+
+					}
+					
+					//Go through the Abilities list
+					for(int i = 0; i < character.getSpecialAbilities().size(); i++){
+						
+						// Ability
+						Element Ability = doc.createElement("ABILITY");
+						Ability.appendChild(doc.createTextNode(
+								character.getSpecialAbilites().get(i).getSkill().getName()));
+						Character.appendChild(Ability);	
+
+					}
+					
+					//Go through the Spell list
+					for(int i = 0; i < character.getSpells().size(); i++){
+						
+						// Spell Name
+						Element Spell = doc.createElement("SPELL");
+						Spell.appendChild(doc.createTextNode(
+								character.getSpells().get(i).getSkill().getName()));
+						Character.appendChild(Spell);	
 
 					}
 
+					//Go through the Prep Spell list
+					for(int i = 0; i < character.getPrepSpells().size(); i++){
+						
+						// Prep Spell Name
+						Element PrepSpell = doc.createElement("PREP_SPELL");
+						PrepSpell.appendChild(doc.createTextNode(
+								character.getPrepSpells().get(i).getSkill().getName()));
+						Character.appendChild(PrepSpell);	
 
+					}
 
+					//Go through the Items list
+					for(int i = 0; i < character.getItems().size(); i++){
+						
+						// Item Name
+						Element Item = doc.createElement("ITEM");
+						Item.appendChild(doc.createTextNode(
+								character.getItems().get(i).getSkill().getName()));
+						Character.appendChild(Item);	
 
+					}
+					
+					//Go through the Weapons list
+					for(int i = 0; i < character.getWeapons().size(); i++){
+						
+						// Weapons Name
+						Element Weapon = doc.createElement("WEAPON");
+						Weapon.appendChild(doc.createTextNode(
+								character.getWeapons().get(i).getSkill().getName()));
+						Character.appendChild(Weapon);	
+
+					}
+					
+					//Go through the Armor list
+					for(int i = 0; i < character.getArmor().size(); i++){
+						
+						// Armor Name
+						Element Armor = doc.createElement("ARMOR");
+						Armor.appendChild(doc.createTextNode(
+								character.getArmor().get(i).getSkill().getName()));
+						Character.appendChild(Armor);	
+
+					}
+
+					// Notes
+					Element Notes = doc.createElement("NOTES");
+					Notes.appendChild(doc.createTextNode(character.getNotes()));
+					Character.appendChild(Notes);	
+					
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
