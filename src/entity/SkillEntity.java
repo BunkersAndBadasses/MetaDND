@@ -3,6 +3,10 @@ package entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.text.WordUtils;
+
+import core.Main;
+
 public class SkillEntity extends DNDEntity{
 
 	public String skillParentAttribute;
@@ -28,6 +32,7 @@ public class SkillEntity extends DNDEntity{
 				String temp2 = splits[1].substring(0, 3);
 				this.armorCheckPenalty = splits[1].contains("ARMOR CHECK PENALTY");
 				this.skillParentAttribute = temp2;
+		    	temp = WordUtils.capitalize(temp.toLowerCase());
 		    	this.name = temp;
 		    	break;
 			case "CHECK":
@@ -62,8 +67,25 @@ public class SkillEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString, Thread runningThread) {
-		// TODO Auto-generated method stub
+	public void search(String searchString, Thread runningThread) throws InterruptedException {
+		
+		if(this.name != null && this.name.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.description != null && this.description.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
 		
 	}
 

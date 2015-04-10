@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.text.WordUtils;
+
+import core.Main;
+
 
 public class RaceEntity extends DNDEntity{
 
@@ -48,7 +52,10 @@ public class RaceEntity extends DNDEntity{
 		    String value = entry.getValue();
 		    switch(field){
 		    case "NAME":
-		    	this.name = value;
+		    	String tempN = new String(value.split("\\[")[0].trim());
+		    	tempN = WordUtils.capitalize(tempN.toLowerCase());
+				tempN = WordUtils.capitalize(tempN, '(', '[');
+		    	this.name = tempN;
 		    	break;
 		    case "DESCRIPTION":
 		    	this.description = value;
@@ -117,8 +124,34 @@ public class RaceEntity extends DNDEntity{
 	}
 
 	@Override
-	public void search(String searchString, Thread runningThread) {
-		// TODO Auto-generated method stub
+	public void search(String searchString, Thread runningThread) throws InterruptedException {
+		
+		if(this.name != null && this.name.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.description != null && this.description.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.favoredClass != null && this.favoredClass.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
 		
 	}
 
