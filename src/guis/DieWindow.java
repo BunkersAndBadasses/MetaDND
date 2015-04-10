@@ -487,7 +487,7 @@ public class DieWindow {
 						}
 						Matcher m = p1.matcher(nameBox.getText());
 						if(m.find()){
-							badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
+							badSaveFinal.setText("Invalid Save: must be alphanumeric values only");
 							badSaveFinal.setVisible(true);
 							return;
 						}		
