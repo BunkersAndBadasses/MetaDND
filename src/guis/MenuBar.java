@@ -172,7 +172,7 @@ public class MenuBar {
         	}
         });
         
-      //Feat Wizard
+        //Feat Wizard
         MenuItem itemFeatItem = new MenuItem(toolsMenu, SWT.PUSH);
         itemFeatItem.setText("&Feat Wizard");
         
@@ -199,6 +199,17 @@ public class MenuBar {
         
 
         dunGenItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                //TODO
+            }
+        });
+        //Character Sheet
+        MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunChaItem.setText("&Character Sheet");
+        
+
+        dunChaItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 //TODO
