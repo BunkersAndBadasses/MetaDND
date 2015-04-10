@@ -1,10 +1,5 @@
 package core;
-import guis.CharacterWizard;
 import guis.HomeWindow;
-import guis.Item_wizard;
-import guis.MenuBar;
-
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
 public class Main {
@@ -12,11 +7,11 @@ public class Main {
 	public static GameState gameState;
 
 	public static void main(String[] args) {
-		gameState = new GameState();
-		xmlLoader xmls = new xmlLoader("xmlTestThread");
-		SearchThread st1 = new SearchThread("Spells");
-		SearchThread st2 = new SearchThread("Spells");
-		xmls.start();
+		//gameState = new GameState();
+		//xmlLoader xmls = new xmlLoader("xmlTestThread");
+		//SearchThread st1 = new SearchThread("Spells");
+		//SearchThread st2 = new SearchThread("Spells");
+		//xmls.start();
 		
 		
 		Display display = new Display();
