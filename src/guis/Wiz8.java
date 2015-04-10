@@ -66,7 +66,7 @@ public class Wiz8{
 			}
 		});
 
-		Button wiz8BackButton = CharacterWizard.createBackButton(wiz8, panel, layout);
+		//Button wiz8BackButton = CharacterWizard.createBackButton(wiz8, panel, layout);
 		Button wiz8CancelButton = CharacterWizard.createCancelButton(wiz8, home, homePanel, homeLayout);
 		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {

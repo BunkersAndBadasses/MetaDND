@@ -220,7 +220,7 @@ public class Wiz5 {
 			}
 		});
 
-		Button wiz5BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
+		//Button wiz5BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
 		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
 		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {

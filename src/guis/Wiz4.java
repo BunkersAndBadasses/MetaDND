@@ -294,13 +294,13 @@ public class Wiz4 {
 			}
 		});
 
-		// back button
-		Button wiz4BackButton = CharacterWizard.createBackButton(wiz4, panel, layout);
-		wiz4BackButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				unusedSkillPointsError.setVisible(false);
-			}
-		});
+//		// back button
+//		Button wiz4BackButton = CharacterWizard.createBackButton(wiz4, panel, layout);
+//		wiz4BackButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				unusedSkillPointsError.setVisible(false);
+//			}
+//		});
 		
 		// cancel button
 		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
