@@ -1,5 +1,7 @@
 package core;
 
+import java.io.File;
+
 public final class DungeonConstants {
 	public static final int MIN_DUNGEON_SIZE = 10;
 	public static final int MAX_DUNGEON_SIZE = 100;
@@ -10,6 +12,8 @@ public final class DungeonConstants {
 	public static final int TOP = 1;
 	public static final int RIGHT = 2;
 	public static final int BOTTOM = 3;
+	
+	public static final File SAVEDDUNGEONSDIR = new File(System.getProperty("user.dir") + "//" + "GeneratedDungeons");
 
 	enum Tile {
 	    Unpassable, Difficult, Passable, Wall, Chest, Monster, Obstacle, Upstairs, Downstairs
