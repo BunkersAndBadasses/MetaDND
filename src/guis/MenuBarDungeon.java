@@ -152,7 +152,7 @@ public class MenuBarDungeon {
             	//TODO
             }
         });
-        
+
         //Spell Wizard
         MenuItem spellWizardItem = new MenuItem(toolsMenu, SWT.PUSH);
         spellWizardItem.setText("&Spell Wizard");
@@ -161,7 +161,7 @@ public class MenuBarDungeon {
         spellWizardItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new Spell_wizard(shell.getDisplay());
             }
         });
         
@@ -173,10 +173,31 @@ public class MenuBarDungeon {
         itemWizardItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new Item_wizard(shell.getDisplay());
             }
         });
         
+        //Ability Wizard
+        MenuItem itemAbilityItem = new MenuItem(toolsMenu, SWT.PUSH);
+        itemAbilityItem.setText("&Ability Wizard");
+        
+        itemAbilityItem.addSelectionListener(new SelectionAdapter(){
+        	public void widgetSelected(SelectionEvent e)
+        	{
+        		new Ability_wizard(shell.getDisplay());
+        	}
+        });
+        
+      //Feat Wizard
+        MenuItem itemFeatItem = new MenuItem(toolsMenu, SWT.PUSH);
+        itemFeatItem.setText("&Feat Wizard");
+        
+        itemFeatItem.addSelectionListener(new SelectionAdapter(){
+        	public void widgetSelected(SelectionEvent e)
+        	{
+        	    new Feat_wizard(shell.getDisplay());
+        	}
+        });
         //Character Generator
         MenuItem charGenItem = new MenuItem(toolsMenu, SWT.PUSH);
         charGenItem.setText("&Character Generator");
@@ -199,7 +220,16 @@ public class MenuBarDungeon {
                 m_hw.navigateToDungeonScreen();
             }
         });
+        MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunHomeItem.setText("&Home Screen");
         
+        dunHomeItem.addSelectionListener(new SelectionAdapter()
+        {
+        public void widgetSelected(SelectionEvent e)
+        {
+
+        	new HomeWindow(shell.getDisplay());
+        }});
         shell.setMenuBar(menuBar);
 	}
 }
