@@ -282,6 +282,7 @@ public class HomeWindow {
 					
 					String toSet = "file:///";
 					toSet += savedDungeonsLoc.toString() + "//" + dungeonList.getSelection()[dungeonList.getSelectionIndex()];
+					//TODO ArrayIndexOutOfBound Check?
 					svgCanvas.setURI(toSet);
 					mainWindowLayout.topControl = dungeonViewer;
 					mainWindow.layout();

@@ -1,5 +1,6 @@
 package core;
 import guis.CharacterWizard;
+import guis.HomeWindow;
 import guis.Item_wizard;
 import guis.MenuBar;
 
@@ -20,25 +21,26 @@ public class Main {
 		
 		Display display = new Display();
 		Shell shell = new Shell(display);
-		shell.setBounds(0,0,500,500);
-		shell.setText("Testing box");
-		new MenuBar(shell);
-		Button button = new Button(shell, SWT.PUSH);
-		button.setText("I'm a button");
-		button.setBounds(75,75,100,50);
-		button.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
+		new HomeWindow(display);
+		//shell.setBounds(0,0,500,500);
+		//shell.setText("Testing box");
+		//new MenuBar(shell);
+		//Button button = new Button(shell, SWT.PUSH);
+		//button.setText("I'm a button");
+		//button.setBounds(75,75,100,50);
+		//button.addListener(SWT.Selection, new Listener() {
+		//	public void handleEvent(Event event) {
 				//System.out.println("You clicked the button");
 				
-				st1.start(Main.gameState.spells, "acid");
-				st2.start(Main.gameState.spells, "fire");
-			}
-		});
+		//		st1.start(Main.gameState.spells, "acid");
+		//		st2.start(Main.gameState.spells, "fire");
+		//	}
+		//});
 		
-		int die = 20;
-		int number = 3;
-		int array[] = new int [number];
-		String dieRolls = "";
+		//int die = 20;
+		//int number = 3;
+		//int array[] = new int [number];
+		//String dieRolls = "";
 		
 //		array = DnDie.roll(die, number);
 //		
@@ -50,7 +52,7 @@ public class Main {
 //		helloWorldTest.setText(dieRolls);
 //		helloWorldTest.pack();
 //        Item_wizard item_wizard = new Item_wizard(display);   //To open and test item_wizard
-		shell.open();
+		//shell.open();
 		
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
