@@ -724,11 +724,11 @@ public class DieWindow {
 
 						DnDie.deleteFavDie(favList.getItem(favList.getSelectionIndex()));
 						favList.remove(favList.getItem(favList.getSelectionIndex()));
+						favList.select(0);
 						deleteFile.dispose();
 					}
 				});
 				
-				favList.select(0);
 				deleteFile.pack();
 
 				deleteFile.open();
