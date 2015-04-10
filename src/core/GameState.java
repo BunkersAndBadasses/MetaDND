@@ -7,7 +7,8 @@ import java.util.concurrent.Semaphore;
 import entity.DNDEntity;
 
 public class GameState {
-	//Everything you need to access globally, store it here
+	//Everything you need to access globally, store it here 
+	
 	public LinkedHashMap<String, DNDEntity> races;
 	public LinkedHashMap<String, DNDEntity> classes;
 	public LinkedHashMap<String, DNDEntity> spells;
