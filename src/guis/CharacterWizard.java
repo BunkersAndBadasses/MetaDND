@@ -45,6 +45,8 @@ public class CharacterWizard {
 	public static boolean cancel = false;
 	public static boolean[] wizPageCreated = { false, false, false, false,
 		false, false, false, false, false, false };
+	
+	private Composite wizPanel;
 
 	private static ArrayList<Composite> wizPages;
 
@@ -158,7 +160,7 @@ public class CharacterWizard {
 
 		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
 
-		final Composite wizPanel = new Composite(homePanel, SWT.BORDER);
+		wizPanel = new Composite(homePanel, SWT.BORDER);
 		wizPanel.setBounds(0, 0, WIDTH, HEIGHT);
 		wizPanel.setBackground(new Color(dev, 255, 0, 0));
 		wizLayout = new StackLayout();
@@ -197,38 +199,15 @@ public class CharacterWizard {
 		csRandom.pack();
 
 
-		/////////////////////// WIZARD PAGES ////////////////////////////
-
-		// initialize all pages
-		final Composite wiz1 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz1);
-		final Composite wiz2 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz2);
-		final Composite wiz3 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz3);
-		final Composite wiz4 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz4);
-		final Composite wiz5 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz5);
-		final Composite wiz6 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz6);
-		final Composite wiz7 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz7);
-		final Composite wiz8 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz8);
-		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz9);
-		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz10);
-
-
 		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
 
 		wizardButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
-				wizs.add(new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
-						homePanel, wizLayout, homeLayout, wizPages));
+				instantiateWizPages();
+				Wiz1 wiz1 = new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
+						homePanel, wizLayout, homeLayout, wizPages);
+				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);
 				wizPanel.layout();
 				homeLayout.topControl = wizPanel;
@@ -357,6 +336,31 @@ public class CharacterWizard {
 	public static character getCharacter() {
 		return character;
 	}
+	
+	private void instantiateWizPages() {
+		// initialize all pages
+		wizPages = new ArrayList<Composite>();
+		final Composite wiz1 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz1);
+		final Composite wiz2 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz2);
+		final Composite wiz3 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz3);
+		final Composite wiz4 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz4);
+		final Composite wiz5 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz5);
+		final Composite wiz6 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz6);
+		final Composite wiz7 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz7);
+		final Composite wiz8 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz8);
+		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz9);
+		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
+		wizPages.add(wiz10);
+	}
 
 	public static void reset() {
 		character = new character();
@@ -364,12 +368,7 @@ public class CharacterWizard {
 			wizPageCreated[i] = false;
 		}
 		wizs = new ArrayList<Object>();
+		for (int i = 0; i < wizPages.size(); i++)
+			wizPages.get(i).dispose();
 	}
-
-	public static void main(String[] args) {
-		Display display = new Display();
-		new CharacterWizard(display);
-		display.dispose();
-	}
-
 }

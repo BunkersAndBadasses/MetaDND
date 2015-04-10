@@ -232,18 +232,18 @@ public class Wiz1 {
 	
 	public void cancelClear() {
 		CharacterWizard.reset();
-		badLevelInputText.setVisible(false);
-		badASInputText.setVisible(false);
-		wiz1LevelText.setText("1");
-		wiz1AS1.setText("");
-		wiz1AS2.setText("");
-		wiz1AS3.setText("");
-		wiz1AS4.setText("");
-		wiz1AS5.setText("");
-		wiz1AS6.setText("");
-		for (int i = 0; i < as.length; i++) {
-			as[i] = 0;
-		}
+//		badLevelInputText.setVisible(false);
+//		badASInputText.setVisible(false);
+//		wiz1LevelText.setText("1");
+//		wiz1AS1.setText("");
+//		wiz1AS2.setText("");
+//		wiz1AS3.setText("");
+//		wiz1AS4.setText("");
+//		wiz1AS5.setText("");
+//		wiz1AS6.setText("");
+//		for (int i = 0; i < as.length; i++) {
+//			as[i] = 0;
+//		}
 	}
 
 }

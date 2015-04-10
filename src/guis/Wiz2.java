@@ -47,8 +47,7 @@ public class Wiz2 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-
-	private GameState gs = Main.gameState;
+	
 	private Label badRaceSelect;
 	private Label badClassSelect;
 	private Label badSearch;
@@ -105,9 +104,9 @@ public class Wiz2 {
 		secClassLabel.pack();
 
 		// get races from references
-		// TODO
-		System.out.println(gs);
-		Collection<DNDEntity> racesCol = gs.races.values();
+		//TODO
+		System.out.println(Main.gameState);
+		Collection<DNDEntity> racesCol = Main.gameState.races.values();
 		Iterator<DNDEntity> itr = racesCol.iterator();
 		ArrayList<RaceEntity> races = new ArrayList<RaceEntity>();
 		while (itr.hasNext()) {
@@ -115,7 +114,7 @@ public class Wiz2 {
 		}
 
 		// get classes from references
-		Collection<DNDEntity> classesCol = gs.classes.values();
+		Collection<DNDEntity> classesCol = Main.gameState.classes.values();
 		Iterator<DNDEntity> itr2 = classesCol.iterator();
 		ArrayList<ClassEntity> classes = new ArrayList<ClassEntity>();
 		while (itr2.hasNext()) {
@@ -305,10 +304,10 @@ public class Wiz2 {
 				//				Wiz3.updateCharClass();
 				//				Wiz3.updateCharSecClass();
 
-				// change to next page
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[2])
+//				// change to next page
+//				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
+//					CharacterWizard.wizPageNum++;
+//				if (!CharacterWizard.wizPageCreated[2])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
@@ -371,15 +370,19 @@ public class Wiz2 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[2] = true;
-		new Wiz3(dev, WIDTH, HEIGHT, character, panel, home,
-				homePanel, layout, homeLayout, wizPages, CharacterWizard.baseAbilityScores);
+		CharacterWizard.wizs.add(new Wiz3(dev, WIDTH, HEIGHT, character, panel, home,
+				homePanel, layout, homeLayout, wizPages, CharacterWizard.baseAbilityScores));
+		//TODO
+		System.out.println(CharacterWizard.wizs.size());
 		layout.topControl = nextPage;
 		panel.layout();
 	}
 
 	public void cancelClear() {
 		CharacterWizard.reset();
-		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
+		//TODO
+		System.out.println(CharacterWizard.wizs.size());
+//		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
 		raceDropDown.deselectAll();
 		classDropDown.deselectAll();
 		secClassDropDown.deselectAll();
