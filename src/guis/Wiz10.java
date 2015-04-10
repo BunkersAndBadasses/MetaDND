@@ -284,7 +284,7 @@ public class Wiz10 {
 						// Feat
 						Element Feat = doc.createElement("FEAT");
 						Feat.appendChild(doc.createTextNode(
-								character.getFeats().get(i).getSkill().getName()));
+								character.getFeats().get(i).getName()));
 						Character.appendChild(Feat);	
 
 					}
@@ -295,7 +295,7 @@ public class Wiz10 {
 						// Ability
 						Element Ability = doc.createElement("ABILITY");
 						Ability.appendChild(doc.createTextNode(
-								character.getSpecialAbilites().get(i).getSkill().getName()));
+								character.getSpecialAbilities().get(i).getName()));
 						Character.appendChild(Ability);	
 
 					}
@@ -306,7 +306,7 @@ public class Wiz10 {
 						// Spell Name
 						Element Spell = doc.createElement("SPELL");
 						Spell.appendChild(doc.createTextNode(
-								character.getSpells().get(i).getSkill().getName()));
+								character.getSpells().get(i).getName()));
 						Character.appendChild(Spell);	
 
 					}
@@ -317,7 +317,7 @@ public class Wiz10 {
 						// Prep Spell Name
 						Element PrepSpell = doc.createElement("PREP_SPELL");
 						PrepSpell.appendChild(doc.createTextNode(
-								character.getPrepSpells().get(i).getSkill().getName()));
+								character.getPrepSpells().get(i).getName()));
 						Character.appendChild(PrepSpell);	
 
 					}
@@ -328,7 +328,7 @@ public class Wiz10 {
 						// Item Name
 						Element Item = doc.createElement("ITEM");
 						Item.appendChild(doc.createTextNode(
-								character.getItems().get(i).getSkill().getName()));
+								character.getItems().get(i).getName()));
 						Character.appendChild(Item);	
 
 					}
@@ -339,7 +339,7 @@ public class Wiz10 {
 						// Weapons Name
 						Element Weapon = doc.createElement("WEAPON");
 						Weapon.appendChild(doc.createTextNode(
-								character.getWeapons().get(i).getSkill().getName()));
+								character.getWeapons().get(i).getName()));
 						Character.appendChild(Weapon);	
 
 					}
@@ -350,7 +350,7 @@ public class Wiz10 {
 						// Armor Name
 						Element Armor = doc.createElement("ARMOR");
 						Armor.appendChild(doc.createTextNode(
-								character.getArmor().get(i).getSkill().getName()));
+								character.getArmor().get(i).getName()));
 						Character.appendChild(Armor);	
 
 					}
