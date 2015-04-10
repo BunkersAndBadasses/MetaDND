@@ -724,7 +724,7 @@ public class DieWindow {
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
 
-						DnDie.deleteFavDie(favList.getItem(favList.getSelectionIndex()));
+						DnDie.deleteFavDie(deleteMe);
 						favList.remove(deleteMe);
 						favList.select(0);
 						deleteFile.dispose();
