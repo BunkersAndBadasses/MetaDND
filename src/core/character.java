@@ -51,7 +51,7 @@ public class character {
 	private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
 	private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
-	private ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
+	private ArrayList<CharItem> items = new ArrayList<CharItem>();
 	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
 	private ArrayList<ArmorEntity> armors = new ArrayList<ArmorEntity>();
 	private String notes;
@@ -108,7 +108,7 @@ public class character {
 	public void addSpell(SpellEntity s) { spells.add(s); }
 	public void prepSpell(SpellEntity s) { prepSpells.add(s); } // TODO type spell or string?
 	public void unprepSpell(SpellEntity s) { prepSpells.remove(s); } // remove spell from prepSpell list
-	public void addItem(ItemEntity i) { items.add(i); }
+	public void addItem(CharItem i) { items.add(i); }
 	public void addWeapon(WeaponEntity w) { weapons.add(w); }
 	public void addArmor(ArmorEntity a) { armors.add(a); }
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
