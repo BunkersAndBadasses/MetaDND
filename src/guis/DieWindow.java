@@ -686,6 +686,8 @@ public class DieWindow {
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				
+				String deleteMe = favList.getItem(favList.getSelectionIndex());
+				
 				invalidOperation.setVisible(false);
 				
 				if(favList.getSelectionIndex() == 0){
@@ -723,7 +725,7 @@ public class DieWindow {
 					public void handleEvent(Event event) {
 
 						DnDie.deleteFavDie(favList.getItem(favList.getSelectionIndex()));
-						favList.remove(favList.getItem(favList.getSelectionIndex()));
+						favList.remove(deleteMe);
 						favList.select(0);
 						deleteFile.dispose();
 					}
