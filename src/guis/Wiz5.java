@@ -165,6 +165,7 @@ public class Wiz5 {
 				charFeatsList.pack();
 				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
 				charFeatScreen.layout();
+				charFeatScreenScroll.layout();
 			}
 		});
 		
@@ -189,6 +190,7 @@ public class Wiz5 {
 				charFeatsList.pack();
 				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
 				charFeatScreen.layout();
+				charFeatScreenScroll.layout();
 			}
 		});
 		

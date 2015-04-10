@@ -16,7 +16,7 @@ public class CharItem {
 	}
 	
 	public boolean decCount() {
-		if (count == 0) 
+		if (count == 1)
 			return false;
 		count--;
 		return true;
