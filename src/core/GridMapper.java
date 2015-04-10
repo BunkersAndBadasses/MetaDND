@@ -17,7 +17,7 @@ public class GridMapper {
 	
 	private String svgStart1, svgStart2;
 	
-	public GridMapper(String filename) {
+	public GridMapper(String filename, int sizeOfSquare) {
 		this.filename = filename;
 		
 		try {
@@ -27,7 +27,7 @@ public class GridMapper {
 		}
 		
 		try {
-			this.writer = new PrintWriter("generatedDungeon.svg", "UTF-8");
+			this.writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.svg", "UTF-8");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -38,7 +38,7 @@ public class GridMapper {
 		this.svgStart2 = "xmlns:xlink=\"http://www.w3.org/1999/xlink\">";
 				
 		//TODO: make this configurable
-		this.sizeOfSquare = 30;
+		this.sizeOfSquare = sizeOfSquare;
 
 		
 	}
@@ -51,10 +51,32 @@ public class GridMapper {
 		imageSize += "\" width=\"";
 		imageSize += Integer.toString(this.sizeOfSquare * this.sizeOfSquare);
 		imageSize += "\" ";
+		int sizeOfStep = this.sizeOfSquare / 6;
 		
 		this.writer.print(this.svgStart1);
 		this.writer.print(imageSize);
 		this.writer.println(this.svgStart2);
+		this.writer.println("<defs>\n<g id = \"downstairs\">");
+		this.writer.print("<rect x=\"0\" y=\"0\" width=\"");
+		this.writer.print(this.sizeOfSquare + "\" height=\"");
+		this.writer.println(this.sizeOfSquare + "\" style=\"fill:tan;stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		for (int i = 1; i < 5; i++) {
+				this.writer.print("<line x1=\"");
+				this.writer.print(sizeOfStep*i + "\" y1=\"" + sizeOfStep*i + "\" x2=\"");
+				this.writer.println(sizeOfStep*(i+1) + "\" y2=\"" + sizeOfStep*i + "\" style=\"stroke:black;stroke-width:2\" />");
+				this.writer.print("<line x1=\"" + sizeOfStep*(i+1) + "\" y1=\"" + sizeOfStep*i);
+				this.writer.println("\" x2=\"" + sizeOfStep*(i+1) + "\" y2=\"" + sizeOfStep*(i+1) + "\" style=\"stroke:black;stroke-width:2\" />");
+		}
+		
+		this.writer.println("</g>");
+		this.writer.println("<g id = \"unpassableTerrain\">");
+		this.writer.println("<rect x=\"0\" y=\"0\" width=\"30\" height=\"30\" style=\"fill:rgb(123,105,93);stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		this.writer.println("</g>");
+		this.writer.println("<g id = \"passableTerrain\">\n");
+		this.writer.println("<rect x=\"0\" y=\"0\" width=\"30\" height=\"30\" style=\"fill:white;stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>");
+		this.writer.println("</g>");
+		
+		this.writer.println("</defs>");
 		
 		int size;
 		String line;
@@ -71,16 +93,22 @@ public class GridMapper {
 				for (String s: line.split(", ")) {
 					switch (s)  {
 						case "X":
-							svgLine = generateLine(Tile.Unpassable, counter*30, i*30);
+							svgLine = generateLine(Tile.Unpassable, counter*this.sizeOfSquare, i*this.sizeOfSquare);
 							break;
 						case "_":
-							svgLine = generateLine(Tile.Passable, counter*30, i*30);
+							svgLine = generateLine(Tile.Passable, counter*this.sizeOfSquare, i*this.sizeOfSquare);
+							break;
+						case "S":
+							svgLine = generateLine(Tile.Downstairs, counter*this.sizeOfSquare, i*this.sizeOfSquare);
+							break;
+						case "U":
+							svgLine = generateLine(Tile.Upstairs, counter*this.sizeOfSquare, i*this.sizeOfSquare);
 							break;
 						default:
 							break;
 					}
 					counter++;
-					this.writer.println(svgLine + "\n");
+					this.writer.println(svgLine);
 				}
 			}
 		} catch (Exception e) {
@@ -98,21 +126,25 @@ public class GridMapper {
 	}
 	
 	public String generateLine(Tile tileType, int x, int y) {
-		String retStr = "<rect x=\"" + Integer.toString(x) + "\" y=\"" + Integer.toString(y);
-		retStr += "\" width=\"";
-		retStr += Integer.toString(this.sizeOfSquare) + "\" height=\"";
-		retStr += Integer.toString(this.sizeOfSquare) + "\" style=\"fill:";
+		String retStr = "<use xlink:href=\"";
 		switch (tileType) {
 			case Passable:
-				retStr += "blue;stroke:black;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9\"/>"; 
+				retStr += "#passableTerrain\"";
 				break;
 			case Unpassable:
-				retStr += "rgb(123,105,93);stroke:black;stroke-width:5;fill-opacity:1;stroke-opacity:0.9\"/>"; 
+				retStr += "#unpassableTerrain\"";
+				break;
+			case Downstairs:
+				retStr += "#downstairs\"";
+				break;
+			case Upstairs:
+				retStr += "#downstairs\""; //TODO: fix this.
 				break;
 			default:
-				System.out.println("LOL! Error.");
+				System.out.println(tileType);
 				break;
 		}
+		retStr += " x=\"" + Integer.toString(x) + "\" y=\"" + Integer.toString(y) + "\" />";
 		return retStr;
 	}
 

@@ -19,6 +19,12 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
 	
+	
+	// 0 = homeScreen
+	// 1 = dungeonScreen
+	// 2 = dungeonViewer
+	public static int PAGE_NUMBER = -1;
+	
 	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml
 	public LinkedHashMap<String, DNDEntity> customContent;
 	

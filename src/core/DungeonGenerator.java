@@ -1,8 +1,12 @@
 package core;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 
 
 /*
@@ -406,7 +410,8 @@ public class DungeonGenerator {
 		for (DungeonSquare d: toPlace.getDungeonSquares()) {
 			m_grid[d.getX()][d.getY()] = DungeonConstants.Tile.Passable;
 			this.m_solidEarthRemaining--;
-			printDungeon(false);
+			//System.out.println(this.m_solidEarthRemaining);
+			//System.out.println(this.m_stoppingCondition);
 		}
 	}
 	
@@ -489,7 +494,7 @@ public class DungeonGenerator {
 		PrintWriter writer;
 		if (writeToFile) {
 			try {
-				writer = new PrintWriter("generatedDungeon.txt", "UTF-8");
+				writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", "UTF-8");
 				writer.println(toPrint);
 				writer.close();
 			} catch (FileNotFoundException e) {
