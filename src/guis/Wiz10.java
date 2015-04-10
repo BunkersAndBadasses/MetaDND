@@ -1,6 +1,16 @@
 package guis;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -10,7 +20,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import entity.*;
+import core.CharItem;
+import core.CharSkill;
 import core.character;
 
 public class Wiz10 {
@@ -59,6 +74,103 @@ public class Wiz10 {
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// save
+				
+//				private String name;
+//				private int level = 1;
+//				private int exp = 0;
+//				private ClassEntity charClass;		// change to type Class once refs are added
+//				private RaceEntity charRace;				// ^^ ditto for Race
+//				private ClassEntity charSecClass;
+//				private String alignment;
+//				private String deity;
+//				private int size; // TODO int? string?
+//				private String age; 
+//				private String gender;
+//				private String height;
+//				private String weight;
+//				private String eyes;
+//				private String hair;
+//				private String skin;
+//				private String[] appearance = {eyes, hair, skin};
+//				private String description;
+//				// "STR", "DEX", "CON", "INT", "WIS", "CHA"
+//				private int[] abilityScores = new int[6];
+//				private int hp; // hitpoints
+//				private int remainingHP;
+//				private ArrayList<CharSkill> skillsList;
+//				private String languages;
+//				private int gold;
+//				private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+//				private ArrayList<AbilityEntity> abilities = new ArrayList<AbilityEntity>();
+//				private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+//				private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
+//				private ArrayList<CharItem> items = new ArrayList<CharItem>();
+//				private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+//				private ArrayList<ArmorEntity> armors = new ArrayList<ArmorEntity>();
+//				private String notes;
+//				
+				try {
+
+					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+					// root elements
+					Document doc = docBuilder.newDocument();
+					Element rootElement = doc.createElement("character.getName()");
+					doc.appendChild(rootElement);
+
+					
+						// Character
+						Element Character = doc.createElement("CHARACTER");
+						rootElement.appendChild(Character);
+
+						// Character name
+						Element Name = doc.createElement("NAME");
+						Name.appendChild(doc.createTextNode(character.getName()));
+						Character.appendChild(Name);
+
+						// Level
+						Element Level = doc.createElement("LEVEL");
+						Level.appendChild(doc.createTextNode(
+								Integer.toString(character.getLevel())));
+						Character.appendChild(Level);
+
+						// Exp
+						Element Exp = doc.createElement("EXP");
+						Exp.appendChild(doc.createTextNode(
+								Integer.toString(character.getExp())));
+						Character.appendChild(Exp);
+
+						// Class
+						Element Class = doc.createElement("CLASS");
+						Class.appendChild(doc.createTextNode(character.getCharClass().getName()));
+						Character.appendChild(Class);
+						
+						// Race
+						Element Race = doc.createElement("RACE");
+						Race.appendChild(doc.createTextNode(character.getCharClass().getName()));
+						Character.appendChild(Race);		
+
+					// write the content into xml file
+					TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					Transformer transformer = transformerFactory.newTransformer();
+					DOMSource source = new DOMSource(doc);
+					StreamResult result = new StreamResult(new File("favRolls/" + fileName + ".xml"));
+
+					// Output to console for testing
+					// StreamResult result = new StreamResult(System.out);
+
+					transformer.transform(source, result);
+
+					System.out.println("File saved!");
+
+				} catch (ParserConfigurationException pce) {
+					pce.printStackTrace();
+				} catch (TransformerException tfe) {
+					tfe.printStackTrace();
+				}
+				return;
+				
 			}
 		});
 

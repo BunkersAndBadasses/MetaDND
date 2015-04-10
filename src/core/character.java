@@ -112,6 +112,8 @@ public class character {
 	public void addWeapon(WeaponEntity w) { weapons.add(w); }
 	public void addArmor(ArmorEntity a) { armors.add(a); }
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
+	public int getLevel() { return level;}
+	public int getExp() {return exp;}
 	
 	// blah
 	
