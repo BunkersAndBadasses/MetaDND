@@ -121,7 +121,7 @@ public class MenuBar {
         dieRollerItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new DieWindow(shell.getDisplay());
             }
         });
         
