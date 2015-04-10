@@ -380,15 +380,13 @@ public class Wiz2 {
 
 	public void cancelClear() {
 		CharacterWizard.reset();
-		//TODO
-		System.out.println(CharacterWizard.wizs.size());
 //		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
-		raceDropDown.deselectAll();
-		classDropDown.deselectAll();
-		secClassDropDown.deselectAll();
-		badRaceSelect.setVisible(false);
-		badClassSelect.setVisible(false);
-		badSearch.setVisible(false);
+//		raceDropDown.deselectAll();
+//		classDropDown.deselectAll();
+//		secClassDropDown.deselectAll();
+//		badRaceSelect.setVisible(false);
+//		badClassSelect.setVisible(false);
+//		badSearch.setVisible(false);
 	}
 
 }
