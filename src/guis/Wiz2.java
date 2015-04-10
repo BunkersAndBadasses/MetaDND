@@ -336,7 +336,7 @@ public class Wiz2 {
 		wiz2CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
-					cancelClear();
+					CharacterWizard.reset();
 			}
 		});
 	}
@@ -376,17 +376,6 @@ public class Wiz2 {
 		System.out.println(CharacterWizard.wizs.size());
 		layout.topControl = nextPage;
 		panel.layout();
-	}
-
-	public void cancelClear() {
-		CharacterWizard.reset();
-//		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
-//		raceDropDown.deselectAll();
-//		classDropDown.deselectAll();
-//		secClassDropDown.deselectAll();
-//		badRaceSelect.setVisible(false);
-//		badClassSelect.setVisible(false);
-//		badSearch.setVisible(false);
 	}
 
 }

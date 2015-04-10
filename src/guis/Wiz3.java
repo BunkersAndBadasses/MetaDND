@@ -368,7 +368,7 @@ public class Wiz3 {
 		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
-					cancelClear();
+					CharacterWizard.reset();
 			}
 		});	
 	}
@@ -407,19 +407,5 @@ public class Wiz3 {
 	}
 
 	public Composite getWiz3() { return wiz3; }
-
-	public void cancelClear() {
-		CharacterWizard.reset();
-		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
-		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
-		errorLabel.setVisible(false);
-		strList.deselectAll();
-		dexList.deselectAll();
-		conList.deselectAll();
-		intList.deselectAll();
-		wisList.deselectAll();
-		chaList.deselectAll();
-	
-	}
 
 }

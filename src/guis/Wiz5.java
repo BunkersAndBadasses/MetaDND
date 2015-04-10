@@ -225,7 +225,7 @@ public class Wiz5 {
 		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
-					cancelClear();
+					CharacterWizard.reset();
 			}
 		});
 	}
@@ -237,13 +237,4 @@ public class Wiz5 {
 	}
 
 	public Composite getWiz5() { return wiz5; }
-
-	public void cancelClear() {
-		CharacterWizard.reset();
-		((Wiz1)CharacterWizard.wizs.get(0)).cancelClear();
-		((Wiz2)CharacterWizard.wizs.get(1)).cancelClear();
-		((Wiz3)CharacterWizard.wizs.get(2)).cancelClear();
-		((Wiz4)CharacterWizard.wizs.get(3)).cancelClear();
-		// TODO
-	}
 }

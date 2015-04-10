@@ -196,7 +196,7 @@ public class Wiz1 {
 		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
-					cancelClear();
+					CharacterWizard.reset();
 			}
 		});
 	}
@@ -228,22 +228,6 @@ public class Wiz1 {
 		CharacterWizard.wizPageCreated[1] = true;
 		CharacterWizard.wizs.add(new Wiz2(dev, WIDTH, HEIGHT, character, panel, home, homePanel,
 				layout, homeLayout, wizPages));
-	}
-	
-	public void cancelClear() {
-		CharacterWizard.reset();
-//		badLevelInputText.setVisible(false);
-//		badASInputText.setVisible(false);
-//		wiz1LevelText.setText("1");
-//		wiz1AS1.setText("");
-//		wiz1AS2.setText("");
-//		wiz1AS3.setText("");
-//		wiz1AS4.setText("");
-//		wiz1AS5.setText("");
-//		wiz1AS6.setText("");
-//		for (int i = 0; i < as.length; i++) {
-//			as[i] = 0;
-//		}
 	}
 
 }
