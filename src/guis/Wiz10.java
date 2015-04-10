@@ -26,6 +26,7 @@ import org.w3c.dom.Element;
 import entity.*;
 import core.CharItem;
 import core.CharSkill;
+import core.Main;
 import core.character;
 
 public class Wiz10 {
@@ -280,7 +281,7 @@ public class Wiz10 {
 
 					//Go through the Feat list
 					for(int i = 0; i < character.getFeats().size(); i++){
-						
+
 						// Feat
 						Element Feat = doc.createElement("FEAT");
 						Feat.appendChild(doc.createTextNode(
@@ -288,10 +289,10 @@ public class Wiz10 {
 						Character.appendChild(Feat);	
 
 					}
-					
+
 					//Go through the Abilities list
 					for(int i = 0; i < character.getSpecialAbilities().size(); i++){
-						
+
 						// Ability
 						Element Ability = doc.createElement("ABILITY");
 						Ability.appendChild(doc.createTextNode(
@@ -299,10 +300,10 @@ public class Wiz10 {
 						Character.appendChild(Ability);	
 
 					}
-					
+
 					//Go through the Spell list
 					for(int i = 0; i < character.getSpells().size(); i++){
-						
+
 						// Spell Name
 						Element Spell = doc.createElement("SPELL");
 						Spell.appendChild(doc.createTextNode(
@@ -313,7 +314,7 @@ public class Wiz10 {
 
 					//Go through the Prep Spell list
 					for(int i = 0; i < character.getPrepSpells().size(); i++){
-						
+
 						// Prep Spell Name
 						Element PrepSpell = doc.createElement("PREP_SPELL");
 						PrepSpell.appendChild(doc.createTextNode(
@@ -324,7 +325,7 @@ public class Wiz10 {
 
 					//Go through the Items list
 					for(int i = 0; i < character.getItems().size(); i++){
-						
+
 						// Item Name
 						Element Item = doc.createElement("ITEM");
 						Item.appendChild(doc.createTextNode(
@@ -332,10 +333,10 @@ public class Wiz10 {
 						Character.appendChild(Item);	
 
 					}
-					
+
 					//Go through the Weapons list
 					for(int i = 0; i < character.getWeapons().size(); i++){
-						
+
 						// Weapons Name
 						Element Weapon = doc.createElement("WEAPON");
 						Weapon.appendChild(doc.createTextNode(
@@ -343,10 +344,10 @@ public class Wiz10 {
 						Character.appendChild(Weapon);	
 
 					}
-					
+
 					//Go through the Armor list
 					for(int i = 0; i < character.getArmor().size(); i++){
-						
+
 						// Armor Name
 						Element Armor = doc.createElement("ARMOR");
 						Armor.appendChild(doc.createTextNode(
@@ -359,17 +360,29 @@ public class Wiz10 {
 					Element Notes = doc.createElement("NOTES");
 					Notes.appendChild(doc.createTextNode(character.getNotes()));
 					Character.appendChild(Notes);	
-					
+
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
 					DOMSource source = new DOMSource(doc);
-					StreamResult result = new StreamResult(new File("favRolls/" + character.getName() + ".xml"));
 
+					//change back to character.getName() is not working correctly
+					String charName = character.getName().replaceAll("[^A-Za-z0-9]", "");
+					try{
+						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + charName);
+						CHARDIR.mkdir();
+						StreamResult result = new StreamResult(new File("User Data//" + charName + "//" + charName + ".xml"));
+					
+						transformer.transform(source, result);
+					}catch(Exception e){
+						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
+						CHARDIR.mkdir();
+						StreamResult result = new StreamResult(new File("User Data//" + charName + "//DND" + charName + ".xml"));
+					
+						transformer.transform(source, result);
+					}
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
-
-					transformer.transform(source, result);
 
 					System.out.println("File saved!");
 
