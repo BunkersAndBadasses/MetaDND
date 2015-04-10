@@ -113,7 +113,7 @@ public class character {
 	public void addArmor(ArmorEntity a) { armors.add(a); }
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	
-	
+	// blah
 	
 	
 	
