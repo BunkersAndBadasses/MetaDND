@@ -116,7 +116,7 @@ public class Wiz10 {
 
 					// root elements
 					Document doc = docBuilder.newDocument();
-					Element rootElement = doc.createElement("character.getName()");
+					Element rootElement = doc.createElement(character.getName());
 					doc.appendChild(rootElement);
 
 					
@@ -148,14 +148,86 @@ public class Wiz10 {
 						
 						// Race
 						Element Race = doc.createElement("RACE");
-						Race.appendChild(doc.createTextNode(character.getCharClass().getName()));
+						Race.appendChild(doc.createTextNode(character.getCharRace().getName()));
 						Character.appendChild(Race);		
 
+						// Alignment
+						Element Alignment = doc.createElement("ALIGNMENT");
+						Alignment.appendChild(doc.createTextNode(character.getAlignment()));
+						Character.appendChild(Alignment);		
+						
+						// Size
+						Element Size = doc.createElement("SIZE");
+						Size.appendChild(doc.createTextNode(
+								Integer.toString(character.getSize())));
+						Character.appendChild(Size);		
+						
+						// Age
+						Element Age = doc.createElement("AGE");
+						Age.appendChild(doc.createTextNode(character.getAge()));
+						Character.appendChild(Age);	
+						
+						// Gender
+						Element Gender = doc.createElement("GENDER");
+						Gender.appendChild(doc.createTextNode(character.getGender()));
+						Character.appendChild(Gender);	
+						
+						// Height
+						Element Height = doc.createElement("HEIGHT");
+						Height.appendChild(doc.createTextNode(character.getHeight()));
+						Character.appendChild(Height);	
+						
+						// Weight
+						Element Weight = doc.createElement("WEIGHT");
+						Weight.appendChild(doc.createTextNode(character.getWeight()));
+						Character.appendChild(Weight);	
+						
+						// Eyes
+						Element Eyes = doc.createElement("EYES");
+						Eyes.appendChild(doc.createTextNode(character.getEyes()));
+						Character.appendChild(Eyes);	
+						
+						// Strength
+						Element Strength = doc.createElement("STRENGTH");
+						Strength.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[0])));
+						Character.appendChild(Strength);	
+						
+						// Dexterity
+						Element Dexterity = doc.createElement("DEXTERITY");
+						Dexterity.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[1])));
+						Character.appendChild(Dexterity);	
+						
+						// Constitution
+						Element Constitution = doc.createElement("CONSTITUTION");
+						Constitution.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[2])));
+						Character.appendChild(Constitution);	
+						
+						// Intelligence
+						Element Intelligence = doc.createElement("INTELLIGENCE");
+						Intelligence.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[3])));
+						Character.appendChild(Intelligence);	
+						
+						// Wisdom
+						Element Wisdom = doc.createElement("WISDOM");
+						Wisdom.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[4])));
+						Character.appendChild(Wisdom);	
+						
+						// Charisma
+						Element Charisma = doc.createElement("Charisma");
+						Charisma.appendChild(doc.createTextNode(
+								Integer.toString(character.getAbilityScores()[5])));
+						Character.appendChild(Charisma);	
+						
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
 					DOMSource source = new DOMSource(doc);
-					StreamResult result = new StreamResult(new File("favRolls/" + fileName + ".xml"));
+					StreamResult result = new StreamResult(new File("favRolls/" + character.getName() + ".xml"));
 
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
@@ -174,7 +246,7 @@ public class Wiz10 {
 			}
 		});
 
-		Button wiz10BackButton = CharacterWizard.createBackButton(wiz10, panel, layout);
+		//Button wiz10BackButton = CharacterWizard.createBackButton(wiz10, panel, layout);
 		Button wiz10CancelButton = CharacterWizard.createCancelButton(wiz10, home, homePanel, homeLayout);
 		wiz10CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
