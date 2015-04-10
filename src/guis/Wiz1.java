@@ -15,16 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-
-/* TODO
- * 
- * FIX: when user returns to this page (hitting back button) and changes a value, that change is not saved.....
- *
- */
-
-
-public class Wiz1 {
-	
+public class Wiz1 {	
 
 	private Composite wiz1;
 	private Device dev;
@@ -146,16 +137,14 @@ public class Wiz1 {
 				int level = 1;
 				try {
 					badLevelInputText.setVisible(false);
-					// TODO add cap for level
 					level = Integer.parseInt(wiz1LevelText.getText());
-					if (level <= 0) throw new Exception();
+					if (level <= 0 || level > 25) throw new Exception();
 				} catch (Exception e) {
 					badLevelInputText.setVisible(true);
 					error = true;
 				}
 
 				// error checking for ability scores
-
 				try {
 					badASInputText.setVisible(false);
 					as[0] = Integer.parseInt(wiz1AS1.getText());

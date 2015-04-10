@@ -14,23 +14,11 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
-import core.GameState;
 import core.Main;
 import core.character;
 import entity.ClassEntity;
 import entity.DNDEntity;
-import entity.FeatEntity;
 import entity.RaceEntity;
-
-/* TODO
- * 
- * add get from references
- * 
- * add listeners to class and sec class drop downs, fix next button - updateClass in wiz3
- * 
- * 
- */
-
 
 public class Wiz2 {
 
@@ -46,7 +34,6 @@ public class Wiz2 {
 	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
-	private int wizPagesSize;
 	
 	private Label badRaceSelect;
 	private Label badClassSelect;
@@ -54,9 +41,6 @@ public class Wiz2 {
 	private Combo raceDropDown;
 	private Combo classDropDown;
 	private Combo secClassDropDown;
-	private final String[] races = {"Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"}; // TODO add import from references?
-	private final String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
-
 	public Wiz2(Device dev, int WIDTH, int HEIGHT, final character character,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
@@ -73,7 +57,6 @@ public class Wiz2 {
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(2);
-		this.wizPagesSize = wizPages.size();
 
 		createPageContent();
 
@@ -119,25 +102,16 @@ public class Wiz2 {
 			classes.add((ClassEntity) itr2.next());
 		}
 
-
-		// drop down menus for race, class, and secondary class
 		// race drop down menu
 		raceDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
-		// TODO add from references instead
 		for (int i = 0; i < races.size(); i++) {
 			raceDropDown.add(races.get(i).getName());
 		}
 		raceDropDown.setLocation(100,HEIGHT/2 - 75);
-		raceDropDown.addListener(SWT.Selection, new Listener () {
-			public void handleEvent(Event event) {
-				int index = raceDropDown.getSelectionIndex();
-			}
-		});
 		raceDropDown.pack();
 
 		// class drop down menu
 		classDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
-		// TODO add from references instead
 		for (int i = 0; i < classes.size(); i++) {
 			classDropDown.add(classes.get(i).getName());
 		}
@@ -152,7 +126,6 @@ public class Wiz2 {
 
 		// secondary class drop down menu
 		secClassDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
-		// TODO add from references instead
 		secClassDropDown.add("");
 		for (int i = 0; i < classes.size(); i++) {
 			secClassDropDown.add(classes.get(i).getName());
@@ -192,7 +165,7 @@ public class Wiz2 {
 		badClassSelect.setVisible(false);
 		badClassSelect.setText("you must select a class!");
 
-
+/*
 		// search buttons - searches references using selection in drop down 
 		Button raceSearchButton = createSearchButton(wiz2);
 		raceSearchButton.setLocation(106, HEIGHT/2 - 30);
@@ -203,7 +176,7 @@ public class Wiz2 {
 					badSearch.setVisible(true);
 				} else {
 					badSearch.setVisible(false);
-					// launch search TODO
+					// launch search
 				}
 			}
 		});
@@ -217,7 +190,7 @@ public class Wiz2 {
 					badSearch.setVisible(true);
 				} else {
 					badSearch.setVisible(false);
-					// launch search TODO
+					// launch search
 				}
 			}
 		});
@@ -231,7 +204,7 @@ public class Wiz2 {
 					badSearch.setVisible(true);
 				} else {
 					badSearch.setVisible(false);
-					// launch search TODO
+					// launch search
 				}
 			}
 		});		
@@ -242,7 +215,7 @@ public class Wiz2 {
 		raceAddCustomButton.setLocation(97, HEIGHT/2 + 20);
 		raceAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				// launch race wizard TODO
+				// launch race wizard
 			}
 		});
 
@@ -250,7 +223,7 @@ public class Wiz2 {
 		classAddCustomButton.setLocation(WIDTH/2 - 67, HEIGHT/2 + 20);
 		classAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				// launch class wizard TODO
+				// launch class wizard
 			}
 		});
 
@@ -258,10 +231,10 @@ public class Wiz2 {
 		secClassAddCustomButton.setLocation(WIDTH - 222, HEIGHT/2 + 20);
 		secClassAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				// launch class wizard TODO
+				// launch class wizard
 			}
 		});
-
+*/ // TODO add later
 
 		// next button
 		Button wiz2NextButton = CharacterWizard.createNextButton(wiz2);
@@ -337,32 +310,34 @@ public class Wiz2 {
 			}
 		});
 	}
-	/**
-	 * creates a 'search' button. does not set location or add listener.
-	 * literally only creates a button with a specific size with the text set 
-	 * to "Search"
-	 * @return
-	 */
-	private Button createSearchButton(Composite c) {
-		Button searchButton = new Button(c, SWT.PUSH);
-		searchButton.setText("Search");
-		searchButton.setSize(80,30);
-		return searchButton;
-	}
 
-	/**
-	 * creates a 'add custom' button. does not set location or add listener.
-	 * literally only creates a button with a specific size with the text set 
-	 * to "Add Custom"
-	 * @return
-	 */
-	private Button createAddCustomButton(Composite c) {
-		Button addCustomButton = new Button(c, SWT.PUSH);
-		addCustomButton.setText("Add Custom");
-		addCustomButton.setSize(100,30);
-		return addCustomButton;
-	}
-
+//	/**
+//	 * creates a 'search' button. does not set location or add listener.
+//	 * literally only creates a button with a specific size with the text set 
+//	 * to "Search"
+//	 * @return
+//	 */
+//	private Button createSearchButton(Composite c) {
+//		Button searchButton = new Button(c, SWT.PUSH);
+//		searchButton.setText("Search");
+//		searchButton.setSize(80,30);
+//		return searchButton;
+//	}
+//
+//	/**
+//	 * creates a 'add custom' button. does not set location or add listener.
+//	 * literally only creates a button with a specific size with the text set 
+//	 * to "Add Custom"
+//	 * @return
+//	 */
+//	private Button createAddCustomButton(Composite c) {
+//		Button addCustomButton = new Button(c, SWT.PUSH);
+//		addCustomButton.setText("Add Custom");
+//		addCustomButton.setSize(100,30);
+//		return addCustomButton;
+//	}
+// TODO add later
+	
 	public Composite getWiz2() { return wiz2; }
 
 	private void createNextPage() {
@@ -372,5 +347,4 @@ public class Wiz2 {
 		layout.topControl = nextPage;
 		panel.layout();
 	}
-
 }

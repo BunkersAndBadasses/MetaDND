@@ -2,8 +2,12 @@ package guis;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
+
 import java.util.ArrayList;
+
 import core.character;
 
 
@@ -287,42 +291,58 @@ public class CharacterWizard {
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				cancel = false;
+				
+				// create shell
 				final Shell areYouSureShell = new Shell(display);
 				areYouSureShell.setText("Cancel");
-				areYouSureShell.setSize(300, 200);
-				center(areYouSureShell);
+				GridLayout gridLayout = new GridLayout(2, true);
+				areYouSureShell.setLayout(gridLayout);
 
-				Label areYouSure = new Label(areYouSureShell, SWT.NONE);
-				areYouSure.setLocation(40,50);
+				// label - Are you sure? 
+				GridData gd1 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				gd1.horizontalSpan = 2;
+				Label areYouSure = new Label(areYouSureShell, SWT.WRAP);
 				areYouSure.setText("Are you sure you want to cancel?");
+				areYouSure.setLayoutData(gd1);
 				areYouSure.pack();
-
+				
+				// yes button
 				Button yes = new Button(areYouSureShell, SWT.PUSH);
-				yes.setBounds(10,130,130,30);
 				yes.setText("Yes, Cancel");
+				yes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 				yes.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
 						cancel = true;
 						areYouSureShell.dispose();
 					}
 				});
+				yes.pack();
 
+				// no button
 				Button no = new Button(areYouSureShell, SWT.PUSH);
-				no.setBounds(160,130,130,30);
 				no.setText("No, Don't Cancel");
+				no.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 				no.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
 						cancel = false;
 						areYouSureShell.dispose();
 					}
 				});
+				no.pack();
 
+				// open shell
+				areYouSureShell.pack();
+				center(areYouSureShell);
 				areYouSureShell.open();
+				
+				// check if disposed
 				while (!areYouSureShell.isDisposed()) {
 					if (!display.readAndDispatch()) {
 						display.sleep();
 					}
 				}
+				
+				// if user clicks yes, return to new character home
 				if (cancel) {
 					wizPageNum = -1;
 					layout.topControl = home;
