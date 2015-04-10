@@ -105,6 +105,8 @@ public class Wiz2 {
 		secClassLabel.pack();
 
 		// get races from references
+		// TODO
+		System.out.println(gs);
 		Collection<DNDEntity> racesCol =  gs.races.values();
 		Iterator<DNDEntity> itr = racesCol.iterator();
 		ArrayList<RaceEntity> races = new ArrayList<RaceEntity>();
@@ -168,7 +170,8 @@ public class Wiz2 {
 			}
 		});
 		secClassDropDown.pack();
-
+		secClassDropDown.setEnabled(false);
+		
 
 		// error handling
 		// this appears when an item is not selected and search is clicked

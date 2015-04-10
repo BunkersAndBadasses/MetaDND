@@ -235,6 +235,8 @@ public class Wiz4 {
 								+ abilityMod + " + " + miscMod + " + " 
 								+ current.getRank() + " = " + current.getTotal());
 						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints--;
 						numSkillPoints--;
 						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
 						numSkillPointsLabel.pack();
@@ -252,6 +254,8 @@ public class Wiz4 {
 								+ " + " + miscMod + " + " + current.getRank() 
 								+ " = " + current.getTotal());
 						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints++;
 						numSkillPoints++;
 						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
 						numSkillPointsLabel.pack();

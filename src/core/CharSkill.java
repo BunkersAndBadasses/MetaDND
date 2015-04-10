@@ -58,13 +58,13 @@ public class CharSkill {
 	public boolean incRank() {
 		if ((classSkill && rank ==4) || (!classSkill && rank == 2))
 			return false;
-		if(!classSkill){
-			if (!halfPoint) {
-				halfPoint = true;
-				return true;		
-			} else 
-				halfPoint = false;
-		}
+//		if(!classSkill){
+//			if (!halfPoint) {
+//				halfPoint = true;
+//				return true;		
+//			} else 
+//				halfPoint = false;
+//		}
 		rank++;
 		return true;
 	}
@@ -72,14 +72,14 @@ public class CharSkill {
 	public boolean decRank() {
 		if (rank == 0)
 			return false;
-		if (!classSkill) {
-			if (halfPoint) {
-				halfPoint = false;
-			} else {
-				halfPoint = true;
-				return true;
-			}
-		}
+//		if (!classSkill) {
+//			if (halfPoint) {
+//				halfPoint = false;
+//			} else {
+//				halfPoint = true;
+//				return true;
+//			}
+//		}
 		rank--;
 		return true;
 	}
