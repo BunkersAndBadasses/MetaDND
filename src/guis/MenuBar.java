@@ -92,7 +92,6 @@ public class MenuBar {
             	//TODO
             }
         });
-        
         //Close
         MenuItem closeItem = new MenuItem(fileMenu, SWT.PUSH);
         closeItem.setText("&Close");
@@ -215,7 +214,16 @@ public class MenuBar {
                 //TODO
             }
         });
+        //Home Screen
+        MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunHomeItem.setText("&Home Screen");
         
+        dunHomeItem.addSelectionListener(new SelectionAdapter()
+        {
+        public void widgetSelected(SelectionEvent e)
+        {
+        	new HomeWindow(shell.getDisplay());
+        }});
         shell.setMenuBar(menuBar);
 	}
 }
