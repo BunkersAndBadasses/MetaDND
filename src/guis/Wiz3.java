@@ -49,13 +49,16 @@ public class Wiz3 {
 	private ClassEntity charSecClass;
 	private Label choiceLabel2;
 
-	public Wiz3(Device dev, int WIDTH, int HEIGHT, final character character, final Composite panel, Composite home, Composite homePanel, final StackLayout layout, final StackLayout homeLayout, final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
+	public Wiz3(Device dev, int WIDTH, int HEIGHT, 
+			final Composite panel, Composite home, Composite homePanel, 
+			final StackLayout layout, final StackLayout homeLayout, 
+			final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -375,7 +378,7 @@ public class Wiz3 {
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[3] = true;
-		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, character, panel, home,
+		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 	

@@ -22,33 +22,32 @@ public class character {
 	private final static int SIZE_HUGE = 6;
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
+	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
 	
 	//////////////// VARIABLES /////////////////
-	private String name;
+	private String name = "<empty>";
 	private int level = 1;
 	private int exp = 0;
-	private ClassEntity charClass;		// change to type Class once refs are added
-	private RaceEntity charRace;				// ^^ ditto for Race
-	private ClassEntity charSecClass;
-	private String alignment;
-	private String deity;
-	private int size; // TODO int? string?
-	private String age; 
-	private String gender;
-	private String height;
-	private String weight;
-	private String eyes;
-	private String hair;
-	private String skin;
-	private String[] appearance = {eyes, hair, skin};
-	private String description;
-	// "STR", "DEX", "CON", "INT", "WIS", "CHA"
-	private int[] abilityScores = new int[6];
-	private int hp; // hitpoints
-	private int remainingHP;
-	private ArrayList<CharSkill> skillsList;
-	private String languages;
-	private int gold;
+	private ClassEntity charClass = null;
+	private RaceEntity charRace = null;	
+	private ClassEntity charSecClass = null;
+	private String alignment = "<empty>";
+	private String deity = "<empty>";
+	private int size;
+	private String age = "<empty>"; 
+	private String gender = "<empty>";
+	private String height = "<empty>"; 
+	private String weight = "<empty>"; 
+	private String eyes = "<empty>"; 
+	private String hair = "<empty>"; 
+	private String skin = "<empty>"; 
+	private String description = "<empty>"; 
+	private int[] abilityScores = {0,0,0,0,0,0};	// STR, DEX, CON, INT, WIS, CHA
+	private int hp = 0; // hitpoints
+	private int remainingHP = 0;
+	private ArrayList<CharSkill> skills = new ArrayList<CharSkill>();
+	private String languages = "<empty>";
+	private int gold = 0;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<AbilityEntity> specialAbilities = new ArrayList<AbilityEntity>();
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
@@ -56,9 +55,10 @@ public class character {
 	private ArrayList<CharItem> items = new ArrayList<CharItem>();
 	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
 	private ArrayList<ArmorEntity> armor = new ArrayList<ArmorEntity>();
-	private String notes;
+	private String notes = "<empty>";
 
 	
+	//////////////// METHODS ///////////////////
 	public character() {}
 	
 	public String getName() { return name; }
@@ -101,13 +101,13 @@ public class character {
 	public void setWeight(String w) { weight = w; }
 	public String getWeight(){ return weight; }
 
-	public void setAppearance(String eyes, String hair, String skin) {
-		this.eyes = eyes;
-		this.hair = hair;
-		this.skin = skin;
-	}
+	public void setEyes(String e) { eyes = e; }
 	public String getEyes(){ return eyes; }
+	
+	public void setHair(String h) { hair = h; }
 	public String getHair(){ return hair; }
+	
+	public void setSkin(String s) { skin = s; }
 	public String getSkin(){ return skin; }
 	
 	public void setDescription(String d) { description = d; }
@@ -123,7 +123,7 @@ public class character {
 	}
 	public int[] getAbilityScores() { return abilityScores; }
 	
-	public void setHitPoints(int hp) { this.hp = hp; }
+	public void setHitPoints(int hp) { this.hp = hp; resetRemainingHitPoints(); }
 	public int getHitPoints() { return hp; }
 	
 	public void setRemainingHitPoints(int rhp) { remainingHP = rhp; }
@@ -132,8 +132,8 @@ public class character {
 	public void changeRemainingHitPoints(int adj) { remainingHP += adj; }
 	public void resetRemainingHitPoints() { remainingHP = hp; }
 	
-	public void setSkills(ArrayList<CharSkill> s) { skillsList = s; }
-	public ArrayList<CharSkill> getSkills(){ return skillsList;}
+	public void setSkills(ArrayList<CharSkill> s) { skills = s; }
+	public ArrayList<CharSkill> getSkills(){ return skills;}
 
 	public void setLanguages(String l) { languages = l; }
 	public String getLanguages(){ return languages; }
@@ -171,4 +171,65 @@ public class character {
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
 		
+	
+	public String toString() {
+		String s = "";
+		s += "Name: " + name + "\n";
+		s += "Level: " + level + "\n";
+		s += "Exp: " + exp + "\n";
+		if (charRace == null)
+			s += "Race: <empty>\n";
+		else
+			s += "Race: " + charRace.getName()  + "\n";
+		if (charClass == null)
+			s += "Class: <empty>\n";
+		else
+			s += "Class: " + charClass.getName() + "\n";
+		if (charSecClass != null)
+			s += "Second Class: " + charSecClass.getName() + "\n";
+		s += "Alignment: " + alignment + "\n";
+		s += "Deity: " + deity + "\n";
+		s += "Size: " + sizeStrings[size] + "\n";
+		s += "Age: " + age + "\n";
+		s += "Gender: " + gender + "\n";
+		s += "Height: " + height + "\n";
+		s += "Weight: " + weight + "\n";
+		s += "Eyes: " + eyes + "\n";
+		s += "Hair: " + hair + "\n";
+		s += "Skin: " + skin + "\n";
+		s += "Description: " + description + "\n";
+		s += "Ability Scores: " + "\n";
+		for (int i = 0; i < abilityScores.length; i++)
+			s += "\t" + abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
+		s += "HP: " + hp + "\n";
+		s += "Remaining HP: " + remainingHP + "\n";
+		s += "Skills: " + "\n";
+		for (int i = 0; i < skills.size(); i++)
+			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";
+		s += "Languages: " + languages + "\n";
+		s += "Gold: " + gold + "\n";
+		s += "Feats: " + "\n";
+		for (int i = 0; i < feats.size(); i++)
+			s += "\t" + feats.get(i).getName() + "\n";
+		s += "Special Abilities: " + "\n";
+		for (int i = 0; i < specialAbilities.size(); i++)
+			s += "\t" + specialAbilities.get(i).getName() + "\n";
+		s += "Spells: " + "\n";
+		for (int i = 0; i < spells.size(); i++)
+			s += "\t" + spells.get(i).getName() + "\n";
+		s += "Prepared Spells: " + "\n";
+		for (int i = 0; i < prepSpells.size(); i++)
+			s += "\t" + prepSpells.get(i).getName() + "\n";
+		s += "Items: " + "\n";
+		for (int i = 0; i < items.size(); i++)
+			s += "\t" + items.get(i).getItem().getName() + ": " + items.get(i).getCount() + "\n";
+		s += "Weapons: " + "\n";
+		for (int i = 0; i < weapons.size(); i++)
+			s += "\t" + weapons.get(i).getName() + "\n";
+		s += "Armor: " + "\n";
+		for (int i = 0; i < armor.size(); i++)
+			s += "\t" + armor.get(i).getName() + "\n";
+		s += "Notes: " + notes + "\n";
+		return s; 
+	}
 }

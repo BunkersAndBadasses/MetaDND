@@ -41,7 +41,7 @@ public class Wiz2 {
 	private Combo raceDropDown;
 	private Combo classDropDown;
 	private Combo secClassDropDown;
-	public Wiz2(Device dev, int WIDTH, int HEIGHT, final character character,
+	public Wiz2(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -49,7 +49,7 @@ public class Wiz2 {
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -342,7 +342,7 @@ public class Wiz2 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[2] = true;
-		CharacterWizard.wizs.add(new Wiz3(dev, WIDTH, HEIGHT, character, panel, home,
+		CharacterWizard.wizs.add(new Wiz3(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages, CharacterWizard.baseAbilityScores));
 		layout.topControl = nextPage;
 		panel.layout();

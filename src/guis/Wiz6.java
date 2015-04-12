@@ -67,7 +67,7 @@ public class Wiz6 {
 
 	
 
-	public Wiz6(Device dev, int WIDTH, int HEIGHT, final character character, 
+	public Wiz6(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -75,7 +75,7 @@ public class Wiz6 {
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -470,21 +470,32 @@ public class Wiz6 {
 				character.setName(nameInput.getText());	
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() == -1)
-					a1 = "";
+					a1 = "<empty>";
 				else 
 					a1 = alignmentInput1.getText() + " ";
 				if (alignmentInput2.getSelectionIndex() == -1)
-					a2 = "";
+					a2 = "<empty>";
 				else
 					a2 = alignmentInput2.getText();
 				character.setAlignment(a1 + a2);
-				character.setDeity(deityInput.getText());
-				character.setHeight(heightInput.getText());
-				character.setWeight(weightInput.getText());
-				character.setAge(ageInput.getText());
-				character.setGender(genderInput.getText());
-				character.setAppearance(eyesInput.getText(), hairInput.getText(), skinInput.getText());
-				character.setDescription(descriptionInput.getText());
+				if (deityInput.getText().length() != 0)
+					character.setDeity(deityInput.getText());
+				if (heightInput.getText().length() != 0)
+					character.setHeight(heightInput.getText());
+				if (weightInput.getText().length() != 0)
+					character.setWeight(weightInput.getText());
+				if (ageInput.getText().length() != 0)
+					character.setAge(ageInput.getText());
+				if (genderInput.getText().length() != 0)
+					character.setGender(genderInput.getText());
+				if (eyesInput.getText().length() != 0)
+					character.setEyes(eyesInput.getText());
+				if (hairInput.getText().length() != 0)
+					character.setHair(hairInput.getText());
+				if (skinInput.getText().length() != 0)
+					character.setSkin(skinInput.getText());
+				if (descriptionInput.getText().length() != 0)
+					character.setDescription(descriptionInput.getText());
 				character.setLanguages(langInput.getText());
 				
 				// change to next page				
@@ -514,7 +525,7 @@ public class Wiz6 {
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[6] = true;
-		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, character, panel, home,
+		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

@@ -44,7 +44,7 @@ public class Wiz10 {
 	private ArrayList<Composite> wizPages;
 	private int wizPagesSize;
 
-	public Wiz10(Device dev, int WIDTH, int HEIGHT, final character character, 
+	public Wiz10(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -52,7 +52,7 @@ public class Wiz10 {
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -75,7 +75,7 @@ public class Wiz10 {
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// save
-
+				System.out.println("name: " + character.getName());
 				//				private String name;
 				//				private int level = 1;
 				//				private int exp = 0;

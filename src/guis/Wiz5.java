@@ -45,7 +45,7 @@ public class Wiz5 {
 	
 	private Label numFeatsLabel;
 
-	public Wiz5(Device dev, int WIDTH, int HEIGHT, final character character, 
+	public Wiz5(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -53,7 +53,7 @@ public class Wiz5 {
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -160,7 +160,7 @@ public class Wiz5 {
 				charFeats.add(feats.get(index));
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setForeground(new Color(dev, 0, 0, 0));
+				numFeatsLabel.setBackground(null);
 				numFeatsLabel.pack();
 				charFeatsList.pack();
 				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
@@ -185,7 +185,7 @@ public class Wiz5 {
 				charFeats.remove(index);
 				numFeats++;
 				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setForeground(new Color(dev, 0, 0, 0));
+				numFeatsLabel.setBackground(null);
 				numFeatsLabel.pack();
 				charFeatsList.pack();
 				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
@@ -202,7 +202,7 @@ public class Wiz5 {
 			public void handleEvent(Event event) {
 				// error checking
 				if (numFeats > 0) {
-					numFeatsLabel.setForeground(new Color(dev, 255, 0, 0));
+					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
 				
@@ -232,7 +232,7 @@ public class Wiz5 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[5] = true;
-		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, character,  panel, home,
+		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

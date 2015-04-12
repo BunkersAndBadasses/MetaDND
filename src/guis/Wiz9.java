@@ -29,7 +29,7 @@ public class Wiz9{
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	public Wiz9(Device dev, int WIDTH, int HEIGHT, final character character, 
+	public Wiz9(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -37,7 +37,7 @@ public class Wiz9{
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -58,6 +58,10 @@ public class Wiz9{
 		Button wiz9NextButton = CharacterWizard.createNextButton(wiz9);
 		wiz9NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				
+				//TODO
+				System.out.print(character);
+				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
 				if (!CharacterWizard.wizPageCreated[9])
@@ -79,7 +83,7 @@ public class Wiz9{
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[9] = true;
-		CharacterWizard.wizs.add(new Wiz10(dev, WIDTH, HEIGHT, character, panel, home,
+		CharacterWizard.wizs.add(new Wiz10(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 	

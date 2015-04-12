@@ -18,11 +18,12 @@ import core.character;
  * comment out sec class
  * comment out back buttons
  * fix modifier logic (not rounding up)
- * add manual/random pages ("Coming soon!")
- * save character? 
  * launch wizards (add custom)
  * add search pop-up ("Coming soon!")
  * check feat prerequisites
+ * save items
+ * set hp
+ * set size
  */
 
 /*
@@ -209,7 +210,7 @@ public class CharacterWizard {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
 				instantiateWizPages();
-				Wiz1 wiz1 = new Wiz1(dev, WIDTH, HEIGHT, character, wizPanel, home,
+				Wiz1 wiz1 = new Wiz1(dev, WIDTH, HEIGHT, wizPanel, home,
 						homePanel, wizLayout, homeLayout, wizPages);
 				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);

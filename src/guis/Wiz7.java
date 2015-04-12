@@ -46,7 +46,7 @@ public class Wiz7 {
 	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
 
-	public Wiz7(Device dev, int WIDTH, int HEIGHT, final character character, 
+	public Wiz7(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
@@ -54,7 +54,7 @@ public class Wiz7 {
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = character;
+		this.character = CharacterWizard.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -273,7 +273,7 @@ public class Wiz7 {
 
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[7] = true;
-		CharacterWizard.wizs.add(new Wiz8(dev, WIDTH, HEIGHT, character, panel, home,
+		CharacterWizard.wizs.add(new Wiz8(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
