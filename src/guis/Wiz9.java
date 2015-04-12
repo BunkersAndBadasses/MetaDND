@@ -1,3 +1,7 @@
+/*
+ * CHOOSE SPELLS
+ */
+
 package guis;
 import java.util.ArrayList;
 

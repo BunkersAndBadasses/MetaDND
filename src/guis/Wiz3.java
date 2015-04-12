@@ -1,3 +1,7 @@
+/*
+ * APPLY ABILITY SCORES
+ */
+
 package guis;
 import java.util.ArrayList;
 

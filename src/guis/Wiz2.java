@@ -1,3 +1,7 @@
+/*
+ * CHOOSE RACE AND CLASS
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;

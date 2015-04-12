@@ -1,3 +1,7 @@
+/*
+ * ADD RANKS TO SKILLS
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +28,7 @@ import entity.*;
 import core.character;
 /*
  * add text box to add custom skill
- * add boxes next to craft, profession, etcS
+ * add boxes next to craft, profession, etc
  */
 
 public class Wiz4 {
@@ -103,7 +107,7 @@ public class Wiz4 {
 			classPoints = 8;
 			break;	
 		}
-		int intMod = ((CharacterWizard.getCharacter().getAbilityScores()[core.character.INTELLIGENCE]) - 8)/2; // TODO check this logic
+		int intMod = CharacterWizard.getCharacter().getAbilityModifiers()[core.character.INTELLIGENCE];
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;
@@ -284,9 +288,9 @@ public class Wiz4 {
 //					unusedSkillPointsError.setVisible(true);
 //					return;
 //				}
-//TODO				
+//				
 				// save to character
-				CharacterWizard.getCharacter().setSkills(charSkills);
+				character.setSkills(charSkills);
 
 				// move on to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)

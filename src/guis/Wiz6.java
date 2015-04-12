@@ -1,3 +1,7 @@
+/*
+ * ADD DESCRIPTION
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +20,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 
-import entity.*;
 import core.character;
 
 public class Wiz6 {
@@ -34,7 +37,7 @@ public class Wiz6 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	
+
 	private Text nameInput;
 	private Combo alignmentInput1;
 	private Combo alignmentInput2;
@@ -51,21 +54,21 @@ public class Wiz6 {
 	private Text descriptionInput;
 	private Text langInput;
 	private String possibleLangList = "Abyssal, Aquan, Auran, Celestial,"
-							+ " Common, Draconic, Druidic, Dwarven, Elven, "
-							+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
-							+ "Infernal, Orc, Sylvan, Terran, Undercommon";
+			+ " Common, Draconic, Druidic, Dwarven, Elven, "
+			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
+			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private int numBonusLangs = (CharacterWizard.getCharacter().getAbilityScores()[character.INTELLIGENCE] - 8 ) /2;
-	
+	private int numBonusLangs = CharacterWizard.getCharacter().getAbilityModifiers()[core.character.INTELLIGENCE];
+
 	private Random rng = new Random();
-	
+
 	private String charClass;
 	private String charRace;
-	
+
 	private final Color red = new Color(dev, 255, 100, 100);
 	private final Color white = new Color(dev, 255, 255, 255);
 
-	
+
 
 	public Wiz6(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
@@ -84,7 +87,7 @@ public class Wiz6 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
-		
+
 		charClass = CharacterWizard.getCharacter().getCharClass().getName();
 		charRace = CharacterWizard.getCharacter().getCharRace().getName();
 
@@ -92,18 +95,18 @@ public class Wiz6 {
 	}
 
 	private void createPageContent() {
-				
+
 		Label wiz6Label = new Label(wiz6, SWT.NONE);
 		wiz6Label.setText("Add Description");
 		wiz6Label.pack();
 
-		
+
 		// name
 		Label name = new Label(wiz6, SWT.NONE);
 		name.setText("Name:");
 		name.setLocation(5, 50);
 		name.pack();
-		
+
 		nameInput = new Text(wiz6, SWT.BORDER);
 		nameInput.setBounds(85, 50, 400, 30);
 		nameInput.setText("");
@@ -113,13 +116,13 @@ public class Wiz6 {
 				text.setBackground(white);
 			}
 		});
-		
+
 		// alignment
 		Label alignment = new Label(wiz6, SWT.NONE);
 		alignment.setText("Alignment:");
 		alignment.setLocation(5, 100);
 		alignment.pack();
-		
+
 		alignmentInput1 = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput1.add("Lawful");
 		alignmentInput1.add("Neutral");
@@ -133,8 +136,8 @@ public class Wiz6 {
 		alignmentInput2.add("Evil");
 		alignmentInput2.setLocation(180, 100);
 		alignmentInput2.pack();
-		
-		
+
+
 		// deity
 		String[] deities = { "Boccob(N): god of magic", 
 				"Corellon Larethian(CG): god of the elves", 
@@ -154,25 +157,25 @@ public class Wiz6 {
 				"St. Cuthbert(LN): god of retribution", 
 				"Vecna(NE): god of secrets", 
 				"Wee Jas(LN): goddess of death and magic",
-				"Yondalla(LG): goddess of the halflings" };
+		"Yondalla(LG): goddess of the halflings" };
 		final String[] deityNames = {"Boccob", "Corellon Larethian", "Ehlonna", 
 				"Erythnul", "Fharlanghn", "Garl Glittergold", "Gruumsh", 
 				"Heironeous", "Hextor", "Kord", "Moradin", "Nerull", 
 				"Obad-Hai", "Olidammara", "Pelor", "St.Cuthbert", "Vecna", 
 				"Wee Jas", "Yondalla" };
-		
+
 		Label deity = new Label(wiz6, SWT.NONE);
 		deity.setText("Deity:");
 		deity.setLocation(5, 150);
 		deity.pack();
-		
+
 		deityListInput = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
 		deityListInput.setBounds(85, 150, 310, 30);
 		deityListInput.add("");
 		for (int i = 0; i < deities.length; i++) {
 			deityListInput.add(deities[i]);
 		}
-		
+
 		deityInput = new Text(wiz6, SWT.BORDER);
 		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
@@ -183,7 +186,7 @@ public class Wiz6 {
 				deitySelect = false;
 			}
 		});
-		
+
 		deityListInput.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				deitySelect = true;
@@ -193,19 +196,19 @@ public class Wiz6 {
 					deityInput.setText(deityNames[deityListInput.getSelectionIndex()-1]);
 			}
 		});
-		
-		
+
+
 		// height
 		Label height = new Label(wiz6, SWT.NONE);
 		height.setText("Height:");
 		height.setLocation(5, 200);
 		height.pack();
-		
+
 		heightInput = new Text(wiz6, SWT.BORDER);
 		heightInput.setLocation(85, 200);
 		heightInput.setText("");
 		heightInput.pack();
-		
+
 		Button heightRandom = new Button(wiz6, SWT.PUSH);
 		heightRandom.setLocation(165, 200);
 		heightRandom.setText("Random Height");
@@ -218,34 +221,34 @@ public class Wiz6 {
 
 				case ("Dwarf"):
 					min = 45;
-					max = 53;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 53;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Elf"):
 					min = 55;
-					max = 65;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 65;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Gnome"): 
 					min = 36;
-					max = 44;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 44;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Half-elf"):
 					min = 55;
-					max = 71;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 71;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Half-orc"):
 					min = 55;
-					max = 82;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 82;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Halfling"):
 					min = 32;
-					max = 40;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 40;
+				height = rng.nextInt(max - min) + min + 1;
+				break;
 				default:
 					// human
 					min = 55;
@@ -262,19 +265,19 @@ public class Wiz6 {
 			}
 		});
 		heightRandom.pack();
-		
-		
+
+
 		// weight
 		Label weight = new Label(wiz6, SWT.NONE);
 		weight.setText("Weight:");
 		weight.setLocation(5, 250);
 		weight.pack();
-		
+
 		weightInput = new Text(wiz6, SWT.BORDER);
 		weightInput.setLocation(85, 250);
 		weightInput.setText("");
 		weightInput.pack();
-		
+
 		Button weightRandom = new Button(wiz6, SWT.PUSH);
 		weightRandom.setLocation(165, 250);
 		weightRandom.setText("Random Weight");
@@ -287,34 +290,34 @@ public class Wiz6 {
 
 				case ("Dwarf"):
 					min = 85;
-					max = 230;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 230;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Elf"):
 					min = 80;
-					max = 160;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 160;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Gnome"): 
 					min = 35;
-					max = 50;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 50;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Half-elf"):
 					min = 80;
-					max = 230;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 230;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Half-orc"):
 					min = 110;
-					max = 440;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 440;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				case ("Halfling"):
 					min = 25;
-					max = 40;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
+				max = 40;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
 				default:
 					// human
 					min = 125;
@@ -327,19 +330,19 @@ public class Wiz6 {
 			}
 		});
 		weightRandom.pack();
-		
-		
+
+
 		// age
 		Label age = new Label(wiz6, SWT.NONE);
 		age.setText("Age:");
 		age.setLocation(435, 100);
 		age.pack();
-		
+
 		ageInput = new Text(wiz6, SWT.BORDER);
 		ageInput.setBounds(475, 100, 50, 30);
 		ageInput.setText("");
-		
-		
+
+
 		// gender
 		Label gender = new Label(wiz6, SWT.NONE);
 		gender.setText("Gender:");
@@ -350,8 +353,8 @@ public class Wiz6 {
 		genderInput = new Text(wiz6, SWT.BORDER);
 		genderInput.setBounds(355, 100, 50, 30);
 		genderInput.setText("");
-		
-		
+
+
 		// eyes
 		Label eyes = new Label(wiz6, SWT.NONE);
 		eyes.setText("Eyes:");
@@ -361,46 +364,46 @@ public class Wiz6 {
 		eyesInput = new Text(wiz6, SWT.BORDER);
 		eyesInput.setBounds(330, 200, 75, 30);
 		eyesInput.setText("");
-		
-		
+
+
 		// hair 
 		Label hair = new Label(wiz6, SWT.NONE);
 		hair.setText("Hair:");
 		hair.setLocation(430, 200);
 		hair.pack();
-		
+
 		hairInput = new Text(wiz6, SWT.BORDER);
 		hairInput.setBounds(470, 200, 75, 30);
 		hairInput.setText("");
-		
-		
+
+
 		// skin
 		Label skin = new Label(wiz6, SWT.NONE);
 		skin.setText("Skin:");
 		skin.setLocation(565, 200);
 		skin.pack();
-		
+
 		skinInput = new Text(wiz6, SWT.BORDER);
 		skinInput.setBounds(605,200,75,30);
 		skinInput.setText("");
-		
-		
+
+
 		// description
 		Label description = new Label(wiz6, SWT.NONE);
 		description.setText("Description:");
 		description.setLocation(290,250);
 		description.pack();
-		
+
 		descriptionInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		descriptionInput.setBounds(380,250, 300, 90);
 		descriptionInput.setText("");
-		
+
 		// languages
 		Label languages = new Label(wiz6, SWT.NONE);
 		languages.setText("Languages:");
 		languages.setLocation(5, 300);
 		languages.pack();
-		
+
 		langInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		langInput.setBounds(85, 300, 285, 40);
 		langInput.addListener(SWT.MouseUp, new Listener() {
@@ -409,52 +412,54 @@ public class Wiz6 {
 				text.setBackground(white);
 			}
 		});
-		
+
 		Label addLang = new Label(wiz6, SWT.NONE);		
 		if (numBonusLangs < 0)
 			numBonusLangs = 0;
 		addLang.setText("Pick " + Integer.toString(numBonusLangs) + " More:");
 		addLang.setLocation(5,350);
 		addLang.pack();
-		
+
 
 		String langList = "Common";
 		switch(charRace) {
 		case ("Dwarf"):
 			langList += ", Dwarven";
-			break;
+		break;
 		case ("Elf"):
 			langList += ", Elven";
-			break;
+		break;
 		case ("Gnome"):
 			langList += ", Gnome";
-			break;
+		break;
 		case ("Half-Elf"):
 			langList += ", Elven";
-			break;
+		break;
 		case ("Half-Orc"):
 			langList += ", Orc";
-			break;
+		break;
 		case ("Halfling"):
 			langList += ", Halfling";
-			break;
+		break;
 		default : // human
 			break;
 		}
 		langInput.setText(langList);
-		
+
 		Label possibleLangs = new Label(wiz6, SWT.WRAP);
 		possibleLangs.setText(possibleLangList);
 		possibleLangs.setBounds(95,350,580,40);
-		
-		
+
+
 		// next button
 		Button wiz6NextButton = CharacterWizard.createNextButton(wiz6);
 		wiz6NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking
 				boolean error = false;
-				if (nameInput.getText().length() == 0){
+				// checks if name is the empty string or comprised of only whitespace characters
+				if (nameInput.getText().replaceAll("\\s","").length() == 0) {
+					nameInput.setText("");
 					nameInput.setBackground(red);
 					error = true;
 				}
@@ -464,7 +469,7 @@ public class Wiz6 {
 				}
 				if (error)
 					return;
-				
+
 				// if no errors, save to character
 				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
 				character.setName(nameInput.getText());	
@@ -497,7 +502,7 @@ public class Wiz6 {
 				if (descriptionInput.getText().length() != 0)
 					character.setDescription(descriptionInput.getText());
 				character.setLanguages(langInput.getText());
-				
+
 				// change to next page				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
@@ -508,11 +513,11 @@ public class Wiz6 {
 			}
 		});
 
-		
+
 		// back button
 		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
-		
-		
+
+
 		// cancel button
 		Button wiz6CancelButton = CharacterWizard.createCancelButton(wiz6, home, homePanel, homeLayout);
 		wiz6CancelButton.addListener(SWT.Selection, new Listener() {
@@ -522,7 +527,7 @@ public class Wiz6 {
 			}
 		});
 	}
-	
+
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[6] = true;
 		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, panel, home,

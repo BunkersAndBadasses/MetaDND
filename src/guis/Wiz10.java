@@ -1,3 +1,7 @@
+/*
+ * DONE! SAVE CHARACTER TO XML
+ */
+
 package guis;
 
 import java.io.File;
@@ -23,43 +27,29 @@ import org.eclipse.swt.widgets.Listener;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import entity.*;
-import core.CharItem;
-import core.CharSkill;
-import core.Main;
 import core.character;
 
 public class Wiz10 {
 
 	private Composite wiz10;
-	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
 	private Composite home;
 	private Composite homePanel;
-	private StackLayout layout;
 	private StackLayout homeLayout;
-	private ArrayList<Composite> wizPages;
-	private int wizPagesSize;
 
 	public Wiz10(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz10 = wizPages.get(9);
-		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = CharacterWizard.getCharacter();
-		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
-		this.layout = layout;
 		this.homeLayout = homeLayout;
-		this.wizPages = wizPages;
-		this.wizPagesSize = wizPages.size();
 
 		createPageContent();
 	}
@@ -75,16 +65,15 @@ public class Wiz10 {
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// save
-				System.out.println("name: " + character.getName());
 				//				private String name;
 				//				private int level = 1;
 				//				private int exp = 0;
-				//				private ClassEntity charClass;		// change to type Class once refs are added
-				//				private RaceEntity charRace;				// ^^ ditto for Race
+				//				private ClassEntity charClass;
+				//				private RaceEntity charRace;				
 				//				private ClassEntity charSecClass;
 				//				private String alignment;
 				//				private String deity;
-				//				private int size; // TODO int? string?
+				//				private int size;
 				//				private String age; 
 				//				private String gender;
 				//				private String height;

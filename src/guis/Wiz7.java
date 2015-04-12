@@ -1,3 +1,7 @@
+/*
+ * CHOOSE ITEMS
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +47,7 @@ public class Wiz7 {
 	private Text goldText;
 	private String charRace;
 	private String charClass;
+	private ArrayList<CharItem> charItems;
 	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
 
@@ -109,7 +114,7 @@ public class Wiz7 {
 		Collection<DNDEntity> itemsCol =  gs.items.values();
 		Iterator<DNDEntity> itr = itemsCol.iterator();
 		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
-		ArrayList<CharItem> charItems = new ArrayList<CharItem>();
+		charItems = new ArrayList<CharItem>();
 		ArrayList<Integer> numCharItems = new ArrayList<Integer>();
 		while (itr.hasNext()) {
 			items.add((ItemEntity) itr.next());
@@ -237,7 +242,6 @@ public class Wiz7 {
 		Button wiz7NextButton = CharacterWizard.createNextButton(wiz7);
 		wiz7NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				boolean error = false;
 				int gold = 0;
 				try {
 					gold = Integer.parseInt(goldText.getText());
@@ -245,12 +249,12 @@ public class Wiz7 {
 						throw new Exception();
 				} catch (Exception e) {
 					goldText.setBackground(new Color(dev, 255, 100, 100));
-					error = true;
+					return;
 				}
 				
-				if (error)
-					return;
-				
+				for (int i = 0; i < charItems.size(); i++) {
+					character.addItem(charItems.get(i));
+				}
 				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;

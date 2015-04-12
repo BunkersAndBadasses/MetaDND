@@ -15,8 +15,6 @@ import core.character;
 /*
  * TODO: 
  * 
- * comment out sec class
- * comment out back buttons
  * fix modifier logic (not rounding up)
  * launch wizards (add custom)
  * add search pop-up ("Coming soon!")
@@ -24,6 +22,7 @@ import core.character;
  * save items
  * set hp
  * set size
+ * 
  */
 
 /*

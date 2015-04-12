@@ -1,3 +1,7 @@
+/*
+ * CHOOSE DOMAIN/SPECIALTY SCHOOL
+ */
+
 package guis;
 import java.util.ArrayList;
 

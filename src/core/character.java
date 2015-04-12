@@ -122,6 +122,12 @@ public class character {
 		abilityScores[CHARISMA] = cha;
 	}
 	public int[] getAbilityScores() { return abilityScores; }
+	public int[] getAbilityModifiers() {
+		int[] mods = new int[6];
+		for (int i = 0; i < abilityScores.length; i++)
+			mods[i] = (abilityScores[i]/2)-5;
+		return mods;
+	}
 	
 	public void setHitPoints(int hp) { this.hp = hp; resetRemainingHitPoints(); }
 	public int getHitPoints() { return hp; }

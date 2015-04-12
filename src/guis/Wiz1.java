@@ -1,3 +1,7 @@
+/*
+ * CHOOSE ABILITY SCORES
+ */
+
 package guis;
 import core.character;
 

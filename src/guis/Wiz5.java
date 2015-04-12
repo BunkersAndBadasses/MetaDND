@@ -1,3 +1,7 @@
+/*
+ * CHOOSE FEATS
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,15 +13,12 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.ScrollBar;
 
 import core.character;
 import core.GameState;
@@ -208,7 +209,7 @@ public class Wiz5 {
 				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
-					CharacterWizard.getCharacter().addFeat(charFeats.get(i));
+					character.addFeat(charFeats.get(i));
 				
 				// switch to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
