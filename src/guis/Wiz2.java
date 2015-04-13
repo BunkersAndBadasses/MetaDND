@@ -446,6 +446,7 @@ public class Wiz2 {
 			feList.setLayoutData(gd6);
 			feList.pack();
 			
+			// favored enemy subtype list for humanoid/outsider
 			Label subtypeLabel = new Label(classExtrasShell, SWT.NONE);
 			subtypeLabel.setText("Subtype: ");
 			GridData gd7 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
@@ -485,7 +486,6 @@ public class Wiz2 {
 					return;
 				}
 			});
-
 			break;
 		case ("sorcerer"):
 			break;

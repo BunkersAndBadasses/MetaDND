@@ -36,7 +36,25 @@ public class character {
 	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
 	private ArrayList<ArmorEntity> armor = new ArrayList<ArmorEntity>();
 	private String notes = "<empty>";
-
+	
+	// TODO add
+	private int AC = 0;
+	private int touchAC = 0;
+	private int flatFootedAC = 0;
+	private int initMod = 0;
+	private int[] savingThrows = {0,0,0}; // fortitude, reflex, will
+	private int baseAttackBonus = 0;
+	private int spellResistance = 0;
+	private int grappleMod = 0;
+	private int speed = 0;
+	private int damageReduction = 0;
+	private String[] clericDomains = null;
+	private String druidAnimalCompanion = null;
+	private String rangerFavoredEnemy = null;
+	private String familiar = null;
+	private String wizardSpecialtySchool = null;
+	private String[] wizardProhibitedSchools = null;
+	
 	
 	//////////////// METHODS ///////////////////
 	public character() {}
@@ -157,6 +175,60 @@ public class character {
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
 		
+	public void setAC(int ac) { AC = ac; }
+	public int getAC() { return AC; }
+	
+	public void setTouchAC(int t) { touchAC = t; }
+	public int getTouchAC() { return touchAC; }
+	
+	public void setFlatFootedAC(int f) { flatFootedAC = f; }
+	public int getFlatFootedAC() { return flatFootedAC; }
+	
+	public void setInitMod(int i) { initMod = i; }
+	public int getInitMod() { return initMod; }
+	
+	public void setSavingThrows(int f, int r, int w) { 
+		savingThrows[0] = f;
+		savingThrows[1] = r; 
+		savingThrows[2] = w;
+	}
+	public int[] getSavingThrows() { return savingThrows; }
+	
+	public void setBaseAttackBonus(int b) { baseAttackBonus = b; }
+	public int getBaseAttackBonus() { return baseAttackBonus; }
+	
+	public void setSpellResistance(int s) { spellResistance = s; }
+	public int getSpellResistance() { return spellResistance; }
+	
+	public void setGrappleMod(int g) { grappleMod = g; }
+	public int getGrappleMod() { return grappleMod; }
+	
+	public void setSpeed(int s) { speed = s; }
+	public int getSpeed() { return speed; }
+	
+	public void setDamageReduction(int d) { damageReduction = d; }
+	public int getDamageReduction() { return damageReduction; }
+	
+	public void setClericDomains(String[] d) {
+		clericDomains[0] = d[0];
+		clericDomains[1] = d[1];
+	}
+	public String[] getClericDomains() { return clericDomains; }
+	
+	public void setDruidAnimalCompanion(String a) { druidAnimalCompanion = a; }
+	public String getDruidAnimalCompanion() { return druidAnimalCompanion; }
+	
+	public void setRangerFavoredEnemy(String f) { rangerFavoredEnemy = f; }
+//	public String 
+//	
+//	private String familiar = null;
+//	private String wizardSpecialtySchool = null;
+//	private String[] wizardProhibitedSchools = null;
+//	
+//	
+//	
+	
+	
 	public String toString() {
 		String s = "";
 		s += "Name: " + name + "\n";

@@ -248,7 +248,7 @@ public class Wiz6 {
 				panel.layout();
 			}
 		});
-
+		
 		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
 		Button wiz6CancelButton = CharacterWizard.createCancelButton(wiz6, home, homePanel, homeLayout);
 		wiz6CancelButton.addListener(SWT.Selection, new Listener() {

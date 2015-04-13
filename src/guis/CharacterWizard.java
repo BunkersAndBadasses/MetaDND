@@ -42,7 +42,7 @@ public class CharacterWizard {
 
 	private static Device dev;
 	private static Display display;
-	public Shell shell;
+	private static Shell shell;
 	private static StackLayout wizLayout;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
@@ -384,7 +384,9 @@ public class CharacterWizard {
 		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
 		wizPages.add(wiz10);
 	}
-
+	
+	public static void disposeShell() { shell.dispose(); }
+	
 	public static void reset() {
 		character = new character();
 		for (int i = 0; i < wizPageCreated.length; i++) {
