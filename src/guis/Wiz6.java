@@ -70,7 +70,6 @@ public class Wiz6 {
 	private final Color white = new Color(dev, 255, 255, 255);
 
 
-
 	public Wiz6(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
