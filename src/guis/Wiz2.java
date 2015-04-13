@@ -8,15 +8,21 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import core.Main;
 import core.character;
@@ -267,6 +273,13 @@ public class Wiz2 {
 				if (error) return;
 
 				// if all goes well, save race/class
+				String charClass = classes.get(classDropDown.getSelectionIndex()).getName();
+				if (charClass.equalsIgnoreCase("druid") 
+						| charClass.equalsIgnoreCase("ranger")
+						| charClass.equalsIgnoreCase("sorcerer")
+						| charClass.equalsIgnoreCase("wizard")
+						)
+					extraStuffWindow(charClass);
 				CharacterWizard.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
 				CharacterWizard.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
 				int secClassIndex = secClassDropDown.getSelectionIndex();
@@ -341,6 +354,114 @@ public class Wiz2 {
 //		return addCustomButton;
 //	}
 // TODO add later
+	
+	private void extraStuffWindow(String charClass) {
+		// druid - animal companion
+		// ranger - favored enemy
+		// sorcerer - familiar
+		// wizard - specialty school, familiar
+		
+		// create shell
+		Display display = wiz2.getDisplay();
+		final Shell classExtrasShell = new Shell(display);
+		classExtrasShell.setText("Class Extras");
+		GridLayout gridLayout = new GridLayout(2, true);
+		classExtrasShell.setLayout(gridLayout);
+		classExtrasShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            event.doit = false;
+	        	return;
+	        }
+	    });
+		
+		charClass = charClass.toLowerCase();
+		switch(charClass) {
+		case ("druid"):
+			// label - select an animal companion
+			Label druidLabel = new Label(classExtrasShell, SWT.NONE);
+			druidLabel.setText("Select an animal companion");
+			GridData gd1 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd1.horizontalSpan = 2;
+			druidLabel.setLayoutData(gd1);
+			druidLabel.pack();
+			
+			// list of available animal companions
+			Combo acList = new Combo(classExtrasShell, SWT.DROP_DOWN);
+			String[] companions = {"badger", "camel", "dire rat", "dog", "riding dog", "eagle", "hawk", "horse(light)", "horse(heavy)", "owl", "pony", "snake(small)", "snake(medium)", "wolf", "porpoise", "shark(medium)", "squid"};
+			for (int i = 0; i < companions.length; i++){
+				acList.add(companions[i]);
+			}
+			GridData gd2 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd2.horizontalSpan = 2;
+			acList.setLayoutData(gd2);
+			acList.pack();
+			
+			// label - add custom companion
+			Label customLabel = new Label(classExtrasShell, SWT.NONE);
+			customLabel.setText("OR Enter Custom: ");
+			GridData gd3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			customLabel.setLayoutData(gd3);
+			customLabel.pack();
+			
+			// text input for custom companion
+			Text customInput = new Text(classExtrasShell, SWT.BORDER);
+			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			customInput.setLayoutData(gd4);
+			customInput.pack();
+			
+			// user can either select from the list OR enter a custom
+			// when the list is selected, the custom input is erased
+			// when the custom input is selected, the list is deselected 
+			customInput.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					acList.deselectAll();
+				}
+			});
+			
+			acList.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					customInput.setText("");
+				}
+			});
+			
+			break;
+		case ("ranger"):
+			break;
+		case ("sorcerer"):
+			break;
+		default: // wizard
+			break;
+		}
+		// TODO 
+		// add cancel button
+		
+		// done button
+		Button done = new Button(classExtrasShell, SWT.PUSH);
+		done.setText("Done");
+		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		doneGD.horizontalSpan = 2;
+		done.setLayoutData(doneGD);
+		done.pack();
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				classExtrasShell.dispose();
+			}
+		});
+		
+		// open shell
+		classExtrasShell.pack();
+		CharacterWizard.center(classExtrasShell);
+		classExtrasShell.open();
+		
+		// check if disposed
+		while (!classExtrasShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	
+		
+	}
 	
 	public Composite getWiz2() { return wiz2; }
 

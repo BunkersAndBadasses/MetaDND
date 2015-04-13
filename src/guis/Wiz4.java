@@ -487,6 +487,9 @@ public class Wiz4 {
 				if (error)
 					return;
 
+				if (charClass.equalsIgnoreCase("cleric"))
+					clericPopUp();
+				
 				// if no errors, save to character
 				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
 				character.setName(nameInput.getText());	
@@ -543,6 +546,12 @@ public class Wiz4 {
 					CharacterWizard.reset();
 			}
 		});
+	}
+	
+	private void clericPopUp() {
+		// choose domain based on deity select
+		//TODO
+		
 	}
 
 	private void createNextPage() {
