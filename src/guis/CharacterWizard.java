@@ -42,7 +42,7 @@ public class CharacterWizard {
 
 	private static Device dev;
 	private static Display display;
-	private Shell shell;
+	public Shell shell;
 	private static StackLayout wizLayout;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
