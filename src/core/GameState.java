@@ -20,8 +20,7 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> armor;
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
-	public static final File USERDATAFOLDER = new File(System.getProperty("user.dir") + "//" + "User Data");
-	
+	public static final File USERDATAFOLDER = new File(System.getProperty("user.dir") + "//" + "User Data");	
 	
 	// 0 = homeScreen
 	// 1 = dungeonScreen
@@ -37,6 +36,28 @@ public class GameState {
 	
 	public HashMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
+	
+	
+	//////////////// CONSTANTS /////////////////
+	public final static int STRENGTH = 0;
+	public final static int DEXTERITY = 1;
+	public final static int CONSTITUTION = 2;
+	public final static int INTELLIGENCE = 3;
+	public final static int WISDOM = 4;
+	public final static int CHARISMA = 5;
+	public final static String[] abilityScoreTypes = {"STR", "DEX", "CON", "INT", "WIS", "CHA"};
+	
+	private final static int SIZE_FINE = 0;
+	private final static int SIZE_DIMINUTIVE = 1;
+	private final static int SIZE_TINY = 2;
+	private final static int SIZE_SMALL = 3;
+	private final static int SIZE_MEDIUM = 4;
+	private final static int SIZE_LARGE = 5;
+	private final static int SIZE_HUGE = 6;
+	private final static int SIZE_GARGANTUAN = 7;
+	private final static int SIZE_COLOSSAL = 8;
+	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+	
 	
 	public GameState(){
 		spells = new LinkedHashMap<String, DNDEntity>();

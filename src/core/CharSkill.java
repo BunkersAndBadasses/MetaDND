@@ -30,22 +30,22 @@ public class CharSkill {
 		int base;
 		switch(skill.skillParentAttribute) {
 		case ("STR"):
-			base = character.getAbilityScores()[core.character.STRENGTH];
+			base = character.getAbilityScores()[GameState.STRENGTH];
 		break;
 		case ("DEX"):
-			base = character.getAbilityScores()[core.character.DEXTERITY];
+			base = character.getAbilityScores()[GameState.DEXTERITY];
 		break;
 		case ("CON"):
-			base = character.getAbilityScores()[core.character.CONSTITUTION];
+			base = character.getAbilityScores()[GameState.CONSTITUTION];
 		break;
 		case ("INT"):
-			base = character.getAbilityScores()[core.character.INTELLIGENCE];
+			base = character.getAbilityScores()[GameState.INTELLIGENCE];
 		break;
 		case ("WIS"):
-			base = character.getAbilityScores()[core.character.WISDOM];
+			base = character.getAbilityScores()[GameState.WISDOM];
 		break;
 		default: // CHA
-			base = character.getAbilityScores()[core.character.CHARISMA];
+			base = character.getAbilityScores()[GameState.CHARISMA];
 		break;
 		}
 		return (base - 8) / 2;

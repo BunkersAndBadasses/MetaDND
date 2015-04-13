@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 
+import core.GameState;
 import core.character;
 
 public class Wiz6 {
@@ -58,7 +59,7 @@ public class Wiz6 {
 			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private int numBonusLangs = CharacterWizard.getCharacter().getAbilityModifiers()[core.character.INTELLIGENCE];
+	private int numBonusLangs = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
 
 	private Random rng = new Random();
 
@@ -457,8 +458,10 @@ public class Wiz6 {
 			public void handleEvent(Event event) {
 				// error checking
 				boolean error = false;
-				// checks if name is the empty string or comprised of only whitespace characters
-				if (nameInput.getText().replaceAll("\\s","").length() == 0) {
+				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
+				String condensed = nameInput.getText().replaceAll("\\s","");
+				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
+				if (condensed.length() == 0) {
 					nameInput.setText("");
 					nameInput.setBackground(red);
 					error = true;

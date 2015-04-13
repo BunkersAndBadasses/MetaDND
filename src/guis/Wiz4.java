@@ -107,7 +107,7 @@ public class Wiz4 {
 			classPoints = 8;
 			break;	
 		}
-		int intMod = CharacterWizard.getCharacter().getAbilityModifiers()[core.character.INTELLIGENCE];
+		int intMod = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;

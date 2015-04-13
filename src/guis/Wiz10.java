@@ -2,6 +2,13 @@
  * DONE! SAVE CHARACTER TO XML
  */
 
+/*
+ * TODO: 
+ * 
+ * display character information
+ * 
+ */
+
 package guis;
 
 import java.io.File;
@@ -136,7 +143,7 @@ public class Wiz10 {
 					Class.appendChild(doc.createTextNode(character.getCharClass().getName()));
 					Character.appendChild(Class);
 
-					if(character.getCharSecClass().getName() != null){
+					if(character.getCharSecClass() != null){
 						// Second Class
 						Element SecClass = doc.createElement("SECOND_CLASS");
 						SecClass.appendChild(doc.createTextNode(character.getCharSecClass().getName()));

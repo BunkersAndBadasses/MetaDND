@@ -2,27 +2,7 @@ package core;
 import java.util.ArrayList;
 import entity.*;
 
-public class character {
-	
-	//////////////// CONSTANTS /////////////////
-	public final static int STRENGTH = 0;
-	public final static int DEXTERITY = 1;
-	public final static int CONSTITUTION = 2;
-	public final static int INTELLIGENCE = 3;
-	public final static int WISDOM = 4;
-	public final static int CHARISMA = 5;
-	public final static String[] abilityScoreTypes = {"STR", "DEX", "CON", "INT", "WIS", "CHA"};
-	
-	private final static int SIZE_FINE = 0;
-	private final static int SIZE_DIMINUTIVE = 1;
-	private final static int SIZE_TINY = 2;
-	private final static int SIZE_SMALL = 3;
-	private final static int SIZE_MEDIUM = 4;
-	private final static int SIZE_LARGE = 5;
-	private final static int SIZE_HUGE = 6;
-	private final static int SIZE_GARGANTUAN = 7;
-	private final static int SIZE_COLOSSAL = 8;
-	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+public class character {	
 	
 	//////////////// VARIABLES /////////////////
 	private String name = "<empty>";
@@ -33,7 +13,7 @@ public class character {
 	private ClassEntity charSecClass = null;
 	private String alignment = "<empty>";
 	private String deity = "<empty>";
-	private int size;
+	private int size = 0;
 	private String age = "<empty>"; 
 	private String gender = "<empty>";
 	private String height = "<empty>"; 
@@ -114,12 +94,12 @@ public class character {
 	public String getDescription(){ return description; }
 
 	public void setAbilityScores(int str, int dex, int con, int intel, int wis, int cha) { // TODO change this to AbilityScore class (setting the base scores?)
-		abilityScores[STRENGTH] = str;
-		abilityScores[DEXTERITY] = dex;
-		abilityScores[CONSTITUTION] = con;
-		abilityScores[INTELLIGENCE] = intel;
-		abilityScores[WISDOM] = wis;
-		abilityScores[CHARISMA] = cha;
+		abilityScores[GameState.STRENGTH] = str;
+		abilityScores[GameState.DEXTERITY] = dex;
+		abilityScores[GameState.CONSTITUTION] = con;
+		abilityScores[GameState.INTELLIGENCE] = intel;
+		abilityScores[GameState.WISDOM] = wis;
+		abilityScores[GameState.CHARISMA] = cha;
 	}
 	public int[] getAbilityScores() { return abilityScores; }
 	public int[] getAbilityModifiers() {
@@ -177,7 +157,6 @@ public class character {
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
 		
-	
 	public String toString() {
 		String s = "";
 		s += "Name: " + name + "\n";
@@ -195,7 +174,7 @@ public class character {
 			s += "Second Class: " + charSecClass.getName() + "\n";
 		s += "Alignment: " + alignment + "\n";
 		s += "Deity: " + deity + "\n";
-		s += "Size: " + sizeStrings[size] + "\n";
+		s += "Size: " + GameState.sizeStrings[size] + "\n";
 		s += "Age: " + age + "\n";
 		s += "Gender: " + gender + "\n";
 		s += "Height: " + height + "\n";
@@ -206,7 +185,7 @@ public class character {
 		s += "Description: " + description + "\n";
 		s += "Ability Scores: " + "\n";
 		for (int i = 0; i < abilityScores.length; i++)
-			s += "\t" + abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
+			s += "\t" + GameState.abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
 		s += "HP: " + hp + "\n";
 		s += "Remaining HP: " + remainingHP + "\n";
 		s += "Skills: " + "\n";
@@ -215,24 +194,38 @@ public class character {
 		s += "Languages: " + languages + "\n";
 		s += "Gold: " + gold + "\n";
 		s += "Feats: " + "\n";
+		if (feats.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < feats.size(); i++)
 			s += "\t" + feats.get(i).getName() + "\n";
 		s += "Special Abilities: " + "\n";
+		if (specialAbilities.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < specialAbilities.size(); i++)
 			s += "\t" + specialAbilities.get(i).getName() + "\n";
 		s += "Spells: " + "\n";
+		if (spells.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < spells.size(); i++)
 			s += "\t" + spells.get(i).getName() + "\n";
 		s += "Prepared Spells: " + "\n";
+		if (prepSpells.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < prepSpells.size(); i++)
 			s += "\t" + prepSpells.get(i).getName() + "\n";
 		s += "Items: " + "\n";
+		if (items.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < items.size(); i++)
 			s += "\t" + items.get(i).getItem().getName() + ": " + items.get(i).getCount() + "\n";
 		s += "Weapons: " + "\n";
+		if (weapons.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < weapons.size(); i++)
 			s += "\t" + weapons.get(i).getName() + "\n";
 		s += "Armor: " + "\n";
+		if (armor.size() == 0)
+			s += "<empty>";
 		for (int i = 0; i < armor.size(); i++)
 			s += "\t" + armor.get(i).getName() + "\n";
 		s += "Notes: " + notes + "\n";
