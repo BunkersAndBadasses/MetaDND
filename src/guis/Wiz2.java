@@ -45,7 +45,7 @@ public class Wiz2 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	
+
 	private Label badRaceSelect;
 	private Label badClassSelect;
 	private Label badSearch;
@@ -177,7 +177,7 @@ public class Wiz2 {
 		badClassSelect.setVisible(false);
 		badClassSelect.setText("you must select a class!");
 
-/*
+		/*
 		// search buttons - searches references using selection in drop down 
 		Button raceSearchButton = createSearchButton(wiz2);
 		raceSearchButton.setLocation(106, HEIGHT/2 - 30);
@@ -246,7 +246,7 @@ public class Wiz2 {
 				// launch class wizard
 			}
 		});
-*/ // TODO add later
+		 */ // TODO add later
 
 		// next button
 		Button wiz2NextButton = CharacterWizard.createNextButton(wiz2);
@@ -330,39 +330,39 @@ public class Wiz2 {
 		});
 	}
 
-//	/**
-//	 * creates a 'search' button. does not set location or add listener.
-//	 * literally only creates a button with a specific size with the text set 
-//	 * to "Search"
-//	 * @return
-//	 */
-//	private Button createSearchButton(Composite c) {
-//		Button searchButton = new Button(c, SWT.PUSH);
-//		searchButton.setText("Search");
-//		searchButton.setSize(80,30);
-//		return searchButton;
-//	}
-//
-//	/**
-//	 * creates a 'add custom' button. does not set location or add listener.
-//	 * literally only creates a button with a specific size with the text set 
-//	 * to "Add Custom"
-//	 * @return
-//	 */
-//	private Button createAddCustomButton(Composite c) {
-//		Button addCustomButton = new Button(c, SWT.PUSH);
-//		addCustomButton.setText("Add Custom");
-//		addCustomButton.setSize(100,30);
-//		return addCustomButton;
-//	}
-// TODO add later
-	
+	//	/**
+	//	 * creates a 'search' button. does not set location or add listener.
+	//	 * literally only creates a button with a specific size with the text set 
+	//	 * to "Search"
+	//	 * @return
+	//	 */
+	//	private Button createSearchButton(Composite c) {
+	//		Button searchButton = new Button(c, SWT.PUSH);
+	//		searchButton.setText("Search");
+	//		searchButton.setSize(80,30);
+	//		return searchButton;
+	//	}
+	//
+	//	/**
+	//	 * creates a 'add custom' button. does not set location or add listener.
+	//	 * literally only creates a button with a specific size with the text set 
+	//	 * to "Add Custom"
+	//	 * @return
+	//	 */
+	//	private Button createAddCustomButton(Composite c) {
+	//		Button addCustomButton = new Button(c, SWT.PUSH);
+	//		addCustomButton.setText("Add Custom");
+	//		addCustomButton.setSize(100,30);
+	//		return addCustomButton;
+	//	}
+	// TODO add later
+
 	private void extraStuffWindow(String charClass) {
 		// druid - animal companion
 		// ranger - favored enemy
 		// sorcerer - familiar
 		// wizard - specialty school, familiar
-		
+
 		// create shell
 		Display display = wiz2.getDisplay();
 		final Shell classExtrasShell = new Shell(display);
@@ -370,15 +370,16 @@ public class Wiz2 {
 		GridLayout gridLayout = new GridLayout(2, true);
 		classExtrasShell.setLayout(gridLayout);
 		classExtrasShell.addListener(SWT.Close, new Listener() {
-	        public void handleEvent(Event event) {
-	            event.doit = false;
-	        	return;
-	        }
-	    });
-		
+			public void handleEvent(Event event) {
+				event.doit = false;
+				return;
+			}
+		});
+
 		charClass = charClass.toLowerCase();
 		switch(charClass) {
-		case ("druid"):
+		case ("druid"): 
+		{
 			// label - select an animal companion
 			Label druidLabel = new Label(classExtrasShell, SWT.NONE);
 			druidLabel.setText("Select an animal companion");
@@ -386,10 +387,10 @@ public class Wiz2 {
 			gd1.horizontalSpan = 2;
 			druidLabel.setLayoutData(gd1);
 			druidLabel.pack();
-			
+
 			// list of available animal companions
 			Combo acList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			String[] companions = {"badger", "camel", "dire rat", "dog", "riding dog", "eagle", "hawk", "horse(light)", "horse(heavy)", "owl", "pony", "snake(small)", "snake(medium)", "wolf", "porpoise", "shark(medium)", "squid"};
+			String[] companions = {"Badger", "Camel", "Dire Rat", "Dog", "Riding Rog", "Eagle", "Hawk", "Horse(light)", "Horse(heavy)", "Owl", "Pony", "Snake(small)", "Snake(medium)", "Wolf", "Porpoise", "Shark(medium)", "Squid"};
 			for (int i = 0; i < companions.length; i++){
 				acList.add(companions[i]);
 			}
@@ -397,20 +398,20 @@ public class Wiz2 {
 			gd2.horizontalSpan = 2;
 			acList.setLayoutData(gd2);
 			acList.pack();
-			
+
 			// label - add custom companion
 			Label customLabel = new Label(classExtrasShell, SWT.NONE);
 			customLabel.setText("OR Enter Custom: ");
 			GridData gd3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
 			customLabel.setLayoutData(gd3);
 			customLabel.pack();
-			
+
 			// text input for custom companion
 			Text customInput = new Text(classExtrasShell, SWT.BORDER);
 			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
 			customInput.setLayoutData(gd4);
 			customInput.pack();
-			
+
 			// user can either select from the list OR enter a custom
 			// when the list is selected, the custom input is erased
 			// when the custom input is selected, the list is deselected 
@@ -419,22 +420,23 @@ public class Wiz2 {
 					acList.deselectAll();
 				}
 			});
-			
+
 			acList.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
 					customInput.setText("");
 				}
 			});
-			
-			break;
+		}
+		break;
 		case ("ranger"):
+		{
 			Label rangerLabel = new Label(classExtrasShell, SWT.NONE);
 			rangerLabel.setText("Select a favored enemy");
 			GridData gd5 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 			gd5.horizontalSpan = 2;
 			rangerLabel.setLayoutData(gd5);
 			rangerLabel.pack();
-			
+
 			// list of available animal companions
 			Combo feList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] enemies = {"Aberration", "Animal", "Construct", "Dragon", "Elemental", "Fey", "Giant", "Humanoid", "Magical Beast", "Monstrous humanoid", "Ooze", "Outsider", "Plant", "Undead", "Vermin"};
@@ -445,7 +447,7 @@ public class Wiz2 {
 			gd6.horizontalSpan = 2;
 			feList.setLayoutData(gd6);
 			feList.pack();
-			
+
 			// favored enemy subtype list for humanoid/outsider
 			Label subtypeLabel = new Label(classExtrasShell, SWT.NONE);
 			subtypeLabel.setText("Subtype: ");
@@ -453,26 +455,26 @@ public class Wiz2 {
 			subtypeLabel.setLayoutData(gd7);
 			subtypeLabel.pack();
 			subtypeLabel.setVisible(false);
-			
+
 			Combo subtypeList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			GridData gd8 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
 			subtypeList.setLayoutData(gd8);
 			subtypeList.pack();
 			subtypeList.setVisible(false);
-			
+
 			feList.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event e) {
 					if (feList.getItem(feList.getSelectionIndex()).equals("Humanoid")){
 						subtypeList.deselectAll();
 						subtypeList.removeAll();
-						String[] humanoids = {"aquatic", "dwarf", "elf", "goblinoid", "gnoll", "gnome", "halfling", "human", "orc", "reptillian"};
+						String[] humanoids = {"Aquatic", "Dwarf", "Elf", "Goblinoid", "Gnoll", "Gnome", "Halfling", "Human", "Orc", "Reptillian"};
 						for (int i = 0; i < humanoids.length; i++)
 							subtypeList.add(humanoids[i]);
 						subtypeList.pack();
 					} else if (feList.getItem(feList.getSelectionIndex()).equals("Outsider")){
 						subtypeList.deselectAll();
 						subtypeList.removeAll();
-						String[] outsiders = {"air", "chaotic", "earth", "evil", "fire", "good", "lawful", "native", "water"};
+						String[] outsiders = {"Air", "Chaotic", "Earth", "Evil", "Fire", "Good", "Lawful", "Native", "Water"};
 						for (int i = 0; i < outsiders.length; i++)
 							subtypeList.add(outsiders[i]);
 						subtypeList.pack();
@@ -486,15 +488,142 @@ public class Wiz2 {
 					return;
 				}
 			});
-			break;
+
+			// label - add custom favored enemy
+			Label customLabel = new Label(classExtrasShell, SWT.NONE);
+			customLabel.setText("OR Enter Custom: ");
+			GridData gd3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			customLabel.setLayoutData(gd3);
+			customLabel.pack();
+
+			// text input for custom favored enemy
+			Text customInput = new Text(classExtrasShell, SWT.BORDER);
+			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			customInput.setLayoutData(gd4);
+			customInput.pack();
+
+			// user can either select from the list OR enter a custom
+			// when the list is selected, the custom input is erased
+			// when the custom input is selected, the list is deselected 
+			customInput.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					subtypeLabel.setVisible(false);
+					subtypeList.setVisible(false);
+					feList.deselectAll();
+				}
+			});
+
+			feList.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					customInput.setText("");
+				}
+			});
+		}
+		break;
 		case ("sorcerer"):
-			break;
+		{
+			// label - select an animal companion
+			Label sorcererLabel = new Label(classExtrasShell, SWT.NONE);
+			sorcererLabel.setText("Select a familiar");
+			GridData gd1 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd1.horizontalSpan = 2;
+			sorcererLabel.setLayoutData(gd1);
+			sorcererLabel.pack();
+
+			// list of available familiars
+			Combo famList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			String[] familiars = {"Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"};
+			for (int i = 0; i < familiars.length; i++){
+				famList.add(familiars[i]);
+			}
+			GridData gd2 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd2.horizontalSpan = 2;
+			famList.setLayoutData(gd2);
+			famList.pack();
+
+			// label - add custom familiar
+			Label customLabel = new Label(classExtrasShell, SWT.NONE);
+			customLabel.setText("OR Enter Custom: ");
+			GridData gd3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			customLabel.setLayoutData(gd3);
+			customLabel.pack();
+
+			// text input for custom companion
+			Text customInput = new Text(classExtrasShell, SWT.BORDER);
+			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			customInput.setLayoutData(gd4);
+			customInput.pack();
+
+			// user can either select from the list OR enter a custom
+			// when the list is selected, the custom input is erased
+			// when the custom input is selected, the list is deselected 
+			customInput.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					famList.deselectAll();
+				}
+			});
+
+			famList.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					customInput.setText("");
+				}
+			});
+		}
+		break;
 		default: // wizard
-			break;
+		{
+			// label - select an animal companion
+			Label sorcererLabel = new Label(classExtrasShell, SWT.NONE);
+			sorcererLabel.setText("Select a familiar");
+			GridData gd1 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd1.horizontalSpan = 2;
+			sorcererLabel.setLayoutData(gd1);
+			sorcererLabel.pack();
+
+			// list of available familiars
+			Combo famList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			String[] familiars = {"Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"};
+			for (int i = 0; i < familiars.length; i++){
+				famList.add(familiars[i]);
+			}
+			GridData gd2 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd2.horizontalSpan = 2;
+			famList.setLayoutData(gd2);
+			famList.pack();
+
+			// label - add custom familiar
+			Label customLabel = new Label(classExtrasShell, SWT.NONE);
+			customLabel.setText("OR Enter Custom: ");
+			GridData gd3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			customLabel.setLayoutData(gd3);
+			customLabel.pack();
+
+			// text input for custom companion
+			Text customInput = new Text(classExtrasShell, SWT.BORDER);
+			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			customInput.setLayoutData(gd4);
+			customInput.pack();
+
+			// user can either select from the list OR enter a custom
+			// when the list is selected, the custom input is erased
+			// when the custom input is selected, the list is deselected 
+			customInput.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					famList.deselectAll();
+				}
+			});
+
+			famList.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					customInput.setText("");
+				}
+			});
+		}
+		break;
 		}
 		// TODO 
 		// add cancel button
-		
+
 		// done button
 		Button done = new Button(classExtrasShell, SWT.PUSH);
 		done.setText("Done");
@@ -507,22 +636,22 @@ public class Wiz2 {
 				classExtrasShell.dispose();
 			}
 		});
-		
+
 		// open shell
 		classExtrasShell.pack();
 		CharacterWizard.center(classExtrasShell);
 		classExtrasShell.open();
-		
+
 		// check if disposed
 		while (!classExtrasShell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}
-	
-		
+
+
 	}
-	
+
 	public Composite getWiz2() { return wiz2; }
 
 	private void createNextPage() {

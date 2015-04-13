@@ -23,7 +23,8 @@ import core.character;
  * set hp
  * set size
  * monk - add wis to ac
- * change error labels to one singular label, method in cw that sets color/location, set text/visibility in error check
+ * 
+ * make it so only one instance of char wiz can be open at one time
  */
 
 /*
@@ -34,6 +35,7 @@ import core.character;
  * back button
  * starting at level > 1
  * adding custom skills
+ * saving character image
  */
 
 public class CharacterWizard {

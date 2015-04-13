@@ -219,14 +219,22 @@ public class character {
 	public String getDruidAnimalCompanion() { return druidAnimalCompanion; }
 	
 	public void setRangerFavoredEnemy(String f) { rangerFavoredEnemy = f; }
-//	public String 
-//	
-//	private String familiar = null;
-//	private String wizardSpecialtySchool = null;
-//	private String[] wizardProhibitedSchools = null;
-//	
-//	
-//	
+	public String getRangerFavoredEnemy() { return rangerFavoredEnemy; }
+	
+	public void setFamiliar(String f) { familiar = f; }
+	public String getFamiliar() { return familiar; }
+	
+	public void setWizardSpecialtySchool(String s) { wizardSpecialtySchool = s; }
+	public String getWizardSpecialtySchool() { return wizardSpecialtySchool; }
+	
+	public void setWizardProhibitedSchools(String[] p) {
+		wizardProhibitedSchools[0] = p[0];
+		if (p.length > 1) 
+			wizardProhibitedSchools[1] = p[1];
+	}
+	public String[] getWizardProhibitedSchools() { return wizardProhibitedSchools; }
+	
+	
 	
 	
 	public String toString() {
