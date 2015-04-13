@@ -78,8 +78,7 @@ public class Wiz10 {
 		wiz10SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				//TODO
-				System.out.print(character);
+				
 				// save
 				//				private String name;
 				//				private int level = 1;
@@ -376,26 +375,31 @@ public class Wiz10 {
 					try{
 						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + charName);
 						CHARDIR.mkdir();
-						StreamResult result = new StreamResult(new File("User Data//" + charName + "//" + charName + ".xml"));
-					
+						StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
+						
+						
 						transformer.transform(source, result);
 					}catch(Exception e){
 						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
 						CHARDIR.mkdir();
-						StreamResult result = new StreamResult(new File("User Data//" + charName + "//DND" + charName + ".xml"));
+						StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
 					
 						transformer.transform(source, result);
 					}
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
 
+					CharacterWizard.disposeShell();
 					System.out.println("File saved!");
+					
+					
 
 				} catch (ParserConfigurationException pce) {
 					pce.printStackTrace();
 				} catch (TransformerException tfe) {
 					tfe.printStackTrace();
 				}
+				
 				return;
 
 			}
