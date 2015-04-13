@@ -40,7 +40,7 @@ import core.character;
 
 public class Wiz4 {
 
-	private Composite wiz6;
+	private Composite wiz4;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -89,7 +89,7 @@ public class Wiz4 {
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		wiz6 = wizPages.get(5);
+		wiz4 = wizPages.get(3);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
@@ -100,7 +100,7 @@ public class Wiz4 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(6);
+		this.nextPage = wizPages.get(4);
 		this.wizPagesSize = wizPages.size();
 
 		charClass = CharacterWizard.getCharacter().getCharClass().getName();
@@ -111,18 +111,18 @@ public class Wiz4 {
 
 	private void createPageContent() {
 
-		Label wiz6Label = new Label(wiz6, SWT.NONE);
-		wiz6Label.setText("Add Description");
-		wiz6Label.pack();
+		Label wiz4Label = new Label(wiz4, SWT.NONE);
+		wiz4Label.setText("Add Description");
+		wiz4Label.pack();
 
 
 		// name
-		Label name = new Label(wiz6, SWT.NONE);
+		Label name = new Label(wiz4, SWT.NONE);
 		name.setText("Name:");
 		name.setLocation(5, 50);
 		name.pack();
 
-		nameInput = new Text(wiz6, SWT.BORDER);
+		nameInput = new Text(wiz4, SWT.BORDER);
 		nameInput.setBounds(85, 50, 400, 30);
 		nameInput.setText("");
 		nameInput.addListener(SWT.MouseUp, new Listener() {
@@ -133,19 +133,19 @@ public class Wiz4 {
 		});
 
 		// alignment
-		Label alignment = new Label(wiz6, SWT.NONE);
+		Label alignment = new Label(wiz4, SWT.NONE);
 		alignment.setText("Alignment:");
 		alignment.setLocation(5, 100);
 		alignment.pack();
 
-		alignmentInput1 = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
+		alignmentInput1 = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput1.add("Lawful");
 		alignmentInput1.add("Neutral");
 		alignmentInput1.add("Chaotic");
 		alignmentInput1.setLocation(85, 100);
 		alignmentInput1.pack();
 
-		alignmentInput2 = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
+		alignmentInput2 = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput2.add("Good");
 		alignmentInput2.add("Neutral");
 		alignmentInput2.add("Evil");
@@ -179,19 +179,19 @@ public class Wiz4 {
 				"Obad-Hai", "Olidammara", "Pelor", "St.Cuthbert", "Vecna", 
 				"Wee Jas", "Yondalla" };
 
-		Label deity = new Label(wiz6, SWT.NONE);
+		Label deity = new Label(wiz4, SWT.NONE);
 		deity.setText("Deity:");
 		deity.setLocation(5, 150);
 		deity.pack();
 
-		deityListInput = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
+		deityListInput = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		deityListInput.setBounds(85, 150, 310, 30);
 		deityListInput.add("");
 		for (int i = 0; i < deities.length; i++) {
 			deityListInput.add(deities[i]);
 		}
 
-		deityInput = new Text(wiz6, SWT.BORDER);
+		deityInput = new Text(wiz4, SWT.BORDER);
 		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
 		deityInput.addModifyListener(new ModifyListener() {
@@ -214,17 +214,17 @@ public class Wiz4 {
 
 
 		// height
-		Label height = new Label(wiz6, SWT.NONE);
+		Label height = new Label(wiz4, SWT.NONE);
 		height.setText("Height:");
 		height.setLocation(5, 200);
 		height.pack();
 
-		heightInput = new Text(wiz6, SWT.BORDER);
+		heightInput = new Text(wiz4, SWT.BORDER);
 		heightInput.setLocation(85, 200);
 		heightInput.setText("");
 		heightInput.pack();
 
-		Button heightRandom = new Button(wiz6, SWT.PUSH);
+		Button heightRandom = new Button(wiz4, SWT.PUSH);
 		heightRandom.setLocation(165, 200);
 		heightRandom.setText("Random Height");
 		heightRandom.addListener(SWT.Selection, new Listener() {
@@ -283,17 +283,17 @@ public class Wiz4 {
 
 
 		// weight
-		Label weight = new Label(wiz6, SWT.NONE);
+		Label weight = new Label(wiz4, SWT.NONE);
 		weight.setText("Weight:");
 		weight.setLocation(5, 250);
 		weight.pack();
 
-		weightInput = new Text(wiz6, SWT.BORDER);
+		weightInput = new Text(wiz4, SWT.BORDER);
 		weightInput.setLocation(85, 250);
 		weightInput.setText("");
 		weightInput.pack();
 
-		Button weightRandom = new Button(wiz6, SWT.PUSH);
+		Button weightRandom = new Button(wiz4, SWT.PUSH);
 		weightRandom.setLocation(165, 250);
 		weightRandom.setText("Random Weight");
 		weightRandom.addListener(SWT.Selection, new Listener() {
@@ -348,78 +348,78 @@ public class Wiz4 {
 
 
 		// age
-		Label age = new Label(wiz6, SWT.NONE);
+		Label age = new Label(wiz4, SWT.NONE);
 		age.setText("Age:");
 		age.setLocation(435, 100);
 		age.pack();
 
-		ageInput = new Text(wiz6, SWT.BORDER);
+		ageInput = new Text(wiz4, SWT.BORDER);
 		ageInput.setBounds(475, 100, 50, 30);
 		ageInput.setText("");
 
 
 		// gender
-		Label gender = new Label(wiz6, SWT.NONE);
+		Label gender = new Label(wiz4, SWT.NONE);
 		gender.setText("Gender:");
 		gender.setLocation(290, 100);
 		gender.pack();
 
 		ageInput.pack();
-		genderInput = new Text(wiz6, SWT.BORDER);
+		genderInput = new Text(wiz4, SWT.BORDER);
 		genderInput.setBounds(355, 100, 50, 30);
 		genderInput.setText("");
 
 
 		// eyes
-		Label eyes = new Label(wiz6, SWT.NONE);
+		Label eyes = new Label(wiz4, SWT.NONE);
 		eyes.setText("Eyes:");
 		eyes.setLocation(290,200);
 		eyes.pack();
 
-		eyesInput = new Text(wiz6, SWT.BORDER);
+		eyesInput = new Text(wiz4, SWT.BORDER);
 		eyesInput.setBounds(330, 200, 75, 30);
 		eyesInput.setText("");
 
 
 		// hair 
-		Label hair = new Label(wiz6, SWT.NONE);
+		Label hair = new Label(wiz4, SWT.NONE);
 		hair.setText("Hair:");
 		hair.setLocation(430, 200);
 		hair.pack();
 
-		hairInput = new Text(wiz6, SWT.BORDER);
+		hairInput = new Text(wiz4, SWT.BORDER);
 		hairInput.setBounds(470, 200, 75, 30);
 		hairInput.setText("");
 
 
 		// skin
-		Label skin = new Label(wiz6, SWT.NONE);
+		Label skin = new Label(wiz4, SWT.NONE);
 		skin.setText("Skin:");
 		skin.setLocation(565, 200);
 		skin.pack();
 
-		skinInput = new Text(wiz6, SWT.BORDER);
+		skinInput = new Text(wiz4, SWT.BORDER);
 		skinInput.setBounds(605,200,75,30);
 		skinInput.setText("");
 
 
 		// description
-		Label description = new Label(wiz6, SWT.NONE);
+		Label description = new Label(wiz4, SWT.NONE);
 		description.setText("Description:");
 		description.setLocation(290,250);
 		description.pack();
 
-		descriptionInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+		descriptionInput = new Text(wiz4, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		descriptionInput.setBounds(380,250, 300, 90);
 		descriptionInput.setText("");
 
 		// languages
-		Label languages = new Label(wiz6, SWT.NONE);
+		Label languages = new Label(wiz4, SWT.NONE);
 		languages.setText("Languages:");
 		languages.setLocation(5, 300);
 		languages.pack();
 
-		langInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+		langInput = new Text(wiz4, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
 		langInput.setBounds(85, 300, 285, 40);
 		langInput.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
@@ -428,7 +428,7 @@ public class Wiz4 {
 			}
 		});
 
-		Label addLang = new Label(wiz6, SWT.NONE);		
+		Label addLang = new Label(wiz4, SWT.NONE);		
 		if (numBonusLangs < 0)
 			numBonusLangs = 0;
 		addLang.setText("Pick " + Integer.toString(numBonusLangs) + " More:");
@@ -461,14 +461,14 @@ public class Wiz4 {
 		}
 		langInput.setText(langList);
 
-		Label possibleLangs = new Label(wiz6, SWT.WRAP);
+		Label possibleLangs = new Label(wiz4, SWT.WRAP);
 		possibleLangs.setText(possibleLangList);
 		possibleLangs.setBounds(95,350,580,40);
 
 
 		// next button
-		Button wiz6NextButton = CharacterWizard.createNextButton(wiz6);
-		wiz6NextButton.addListener(SWT.Selection, new Listener() {
+		Button wiz4NextButton = CharacterWizard.createNextButton(wiz4);
+		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking
 				boolean error = false;
@@ -532,12 +532,12 @@ public class Wiz4 {
 
 
 		// back button
-		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
+		//Button wiz4BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
 
 
 		// cancel button
-		Button wiz6CancelButton = CharacterWizard.createCancelButton(wiz6, home, homePanel, homeLayout);
-		wiz6CancelButton.addListener(SWT.Selection, new Listener() {
+		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
+		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
 					CharacterWizard.reset();
@@ -546,10 +546,10 @@ public class Wiz4 {
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[6] = true;
-		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, panel, home,
+		CharacterWizard.wizPageCreated[4] = true;
+		CharacterWizard.wizs.add(new Wiz5(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	public Composite getWiz6() { return wiz6; }
+	public Composite getWiz6() { return wiz4; }
 }

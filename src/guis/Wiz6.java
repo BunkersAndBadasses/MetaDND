@@ -32,7 +32,7 @@ import entity.FeatEntity;
 
 public class Wiz6 {
 
-	private Composite wiz5;
+	private Composite wiz6;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -57,7 +57,7 @@ public class Wiz6 {
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		wiz5 = wizPages.get(4);
+		wiz6 = wizPages.get(5);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
@@ -68,7 +68,7 @@ public class Wiz6 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(5);
+		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
 		
 		// get feats from references 
@@ -83,12 +83,12 @@ public class Wiz6 {
 	}
 
 	private void createPageContent() {
-		Label wiz5Label = new Label(wiz5, SWT.NONE);
-		wiz5Label.setText("Choose Feats");
-		wiz5Label.pack();
+		Label wiz6Label = new Label(wiz6, SWT.NONE);
+		wiz6Label.setText("Choose Feats");
+		wiz6Label.pack();
 		
 		// "number of feats remaining: " label
-		Label featsLabel = new Label(wiz5, SWT.NONE);
+		Label featsLabel = new Label(wiz6, SWT.NONE);
 		featsLabel.setLocation(240,30);
 		featsLabel.setText("Number of Feats Remaining:");
 		featsLabel.pack();
@@ -99,7 +99,7 @@ public class Wiz6 {
 			numFeats += 1;
 		
 		// number of remaining feats label
-		numFeatsLabel = new Label(wiz5, SWT.NONE);
+		numFeatsLabel = new Label(wiz6, SWT.NONE);
 		numFeatsLabel.setLocation(435, 30);
 		numFeatsLabel.setText(Integer.toString(numFeats));
 		numFeatsLabel.pack();
@@ -108,7 +108,7 @@ public class Wiz6 {
 		FillLayout featLayout = new FillLayout();
 		
 		// create scrollable list of feats
-		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
+		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
 		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
 	    featScreenScroll.setExpandHorizontal(true);
 	    featScreenScroll.setExpandVertical(true);
@@ -120,7 +120,7 @@ public class Wiz6 {
 				
 		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
 		// create scrollable list of selected feats
-		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
+		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
 		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charFeatScreenScroll.setExpandHorizontal(true);
 	    charFeatScreenScroll.setExpandVertical(true);
@@ -145,7 +145,7 @@ public class Wiz6 {
 		charFeatsList.pack();
 		
 		// error message
-		Label errorMsg = new Label(wiz5, SWT.NONE);
+		Label errorMsg = new Label(wiz6, SWT.NONE);
 		errorMsg.setLocation(WIDTH/2 - 150, HEIGHT - 75);
 		errorMsg.setForeground(new Color(dev, 255, 0, 0));
 		errorMsg.setText("You cannot remove a class bonus feat!");
@@ -154,7 +154,7 @@ public class Wiz6 {
 		
 		// add feat button
 
-		Button addButton = new Button(wiz5, SWT.PUSH);
+		Button addButton = new Button(wiz6, SWT.PUSH);
 		addButton.setText("Add >");
 		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
 		addButton.pack();
@@ -190,7 +190,7 @@ public class Wiz6 {
 		});
 		
 		// remove feat button
-		Button removeButton = new Button(wiz5, SWT.PUSH);
+		Button removeButton = new Button(wiz6, SWT.PUSH);
 		removeButton.setText("< Remove");
 		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
 		removeButton.pack();
@@ -226,8 +226,8 @@ public class Wiz6 {
 		featListScreen.pack();
 		charFeatScreen.pack();
 
-		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
-		wiz5NextButton.addListener(SWT.Selection, new Listener() {
+		Button wiz6NextButton = CharacterWizard.createNextButton(wiz6);
+		wiz6NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking
 				if (numFeats > 0) {
@@ -249,9 +249,9 @@ public class Wiz6 {
 			}
 		});
 
-		//Button wiz5BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
-		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
-		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
+		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
+		Button wiz6CancelButton = CharacterWizard.createCancelButton(wiz6, home, homePanel, homeLayout);
+		wiz6CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
 					CharacterWizard.reset();
@@ -282,7 +282,7 @@ public class Wiz6 {
 			return;
 		
 		// create shell
-		Display display = wiz5.getDisplay();
+		Display display = wiz6.getDisplay();
 		final Shell bonusFeatShell = new Shell(display);
 		bonusFeatShell.setText("Select Bonus Feat");
 		GridLayout gridLayout = new GridLayout(2, true);
@@ -349,10 +349,10 @@ public class Wiz6 {
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[5] = true;
-		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, panel, home,
+		CharacterWizard.wizPageCreated[6] = true;
+		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	public Composite getWiz5() { return wiz5; }
+	public Composite getWiz6() { return wiz6; }
 }

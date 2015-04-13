@@ -38,7 +38,7 @@ import core.character;
 
 public class Wiz5 {
 
-	private Composite wiz4;
+	private Composite wiz5;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -64,7 +64,7 @@ public class Wiz5 {
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		wiz4 = wizPages.get(3);
+		wiz5 = wizPages.get(4);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
@@ -75,16 +75,16 @@ public class Wiz5 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(4);
+		this.nextPage = wizPages.get(5);
 		this.wizPagesSize = wizPages.size();
 
 		createPageContent();
 	}
 
 	private void createPageContent() {
-		Label wiz4Label = new Label(wiz4, SWT.NONE);
-		wiz4Label.setText("Add Ranks to Skills");
-		wiz4Label.pack();
+		Label wiz5Label = new Label(wiz5, SWT.NONE);
+		wiz5Label.setText("Add Ranks to Skills");
+		wiz5Label.pack();
 
 
 
@@ -120,26 +120,26 @@ public class Wiz5 {
 			numSkillPoints += 4;
 
 		// "skill points remaining: " label
-		Label skillPointsLabel = new Label(wiz4, SWT.NONE);
+		Label skillPointsLabel = new Label(wiz5, SWT.NONE);
 		skillPointsLabel.setLocation(250,30);
 		skillPointsLabel.setText("Skill Points Remaining:");
 		skillPointsLabel.pack();
 
 		// number of remaining skill points label
-		numSkillPointsLabel = new Label(wiz4, SWT.NONE);
+		numSkillPointsLabel = new Label(wiz5, SWT.NONE);
 		numSkillPointsLabel.setLocation(405, 30);
 		numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
 		numSkillPointsLabel.pack();
 
 		// example skill label
-		Label exampleSkillLabel = new Label(wiz4, SWT.NONE);
+		Label exampleSkillLabel = new Label(wiz5, SWT.NONE);
 		exampleSkillLabel.setLocation(25, 60);
 		exampleSkillLabel.setText("Skill (Type) = (Ability Mod) + (Misc Mod) + (Rank) = (Total)" 
 					+ "         *: AC penalty  **: double AC penalty");
 		exampleSkillLabel.pack();
 
 		// class skill label
-		Label classSkillLabel = new Label(wiz4, SWT.NONE);
+		Label classSkillLabel = new Label(wiz5, SWT.NONE);
 		classSkillLabel.setLocation(20, 85);
 		Color classSkillColor = new Color(dev, 0, 200, 100);
 		classSkillLabel.setForeground(classSkillColor);
@@ -147,7 +147,7 @@ public class Wiz5 {
 		classSkillLabel.pack();
 
 		// cross-class skill label
-		Label crossClassSkillLabel = new Label(wiz4, SWT.NONE);
+		Label crossClassSkillLabel = new Label(wiz5, SWT.NONE);
 		crossClassSkillLabel.setLocation(225, 85);
 		Color crossClassSkillColor = new Color(dev, 0, 0, 255);
 		crossClassSkillLabel.setForeground(crossClassSkillColor);
@@ -155,7 +155,7 @@ public class Wiz5 {
 		crossClassSkillLabel.pack();
 		
 		// untrained label
-		Label untrainedLabel = new Label(wiz4, SWT.NONE);
+		Label untrainedLabel = new Label(wiz5, SWT.NONE);
 		untrainedLabel.setLocation(470, 85);
 		untrainedLabel.setText(Character.toString((char)8226) + " : skill can be used untrained");
 		untrainedLabel.pack();
@@ -178,7 +178,7 @@ public class Wiz5 {
 //		gridData.horizontalAlignment = SWT.LEFT;
 		
 		// set up scrollable composite
-		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
+		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
 		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
 	    skillsScreenScroll.setExpandHorizontal(true);
 	    skillsScreenScroll.setExpandVertical(true);
@@ -277,7 +277,7 @@ public class Wiz5 {
 		}
 
 		// create error label
-		unusedSkillPointsError = new Label(wiz4, SWT.NONE);
+		unusedSkillPointsError = new Label(wiz5, SWT.NONE);
 		unusedSkillPointsError.setVisible(false);
 		unusedSkillPointsError.setLocation(200, HEIGHT - 75);
 		unusedSkillPointsError.setText("You must use all of your skill points!");
@@ -285,8 +285,8 @@ public class Wiz5 {
 		unusedSkillPointsError.pack();
 		
 		// next button
-		Button wiz4NextButton = CharacterWizard.createNextButton(wiz4);
-		wiz4NextButton.addListener(SWT.Selection, new Listener() {
+		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
+		wiz5NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// make sure all skill points are used
 //				if (numSkillPoints > 0) {
@@ -317,8 +317,8 @@ public class Wiz5 {
 //		});
 		
 		// cancel button
-		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
-		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
+		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
+		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
 					CharacterWizard.reset();
@@ -327,11 +327,11 @@ public class Wiz5 {
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[4] = true;		
+		CharacterWizard.wizPageCreated[5] = true;		
 		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	public Composite getWiz4() { return wiz4; }
+	public Composite getWiz5() { return wiz5; }
 
 }
