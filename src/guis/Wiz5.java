@@ -301,11 +301,11 @@ public class Wiz5 {
 				// move on to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[4])
+				if (!CharacterWizard.wizPageCreated[5])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
-				((Wiz6) CharacterWizard.wizs.get(6)).createBonusPopUp();
+				((Wiz6) CharacterWizard.wizs.get(5)).createBonusPopUp();
 			}
 		});
 

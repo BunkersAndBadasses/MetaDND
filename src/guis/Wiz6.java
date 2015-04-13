@@ -242,7 +242,7 @@ public class Wiz6 {
 				// switch to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[5])
+				if (!CharacterWizard.wizPageCreated[6])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();

@@ -44,6 +44,7 @@ public class Wiz2 {
 	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
+	private int wizPagesSize;
 	
 	private Label badRaceSelect;
 	private Label badClassSelect;
@@ -67,6 +68,7 @@ public class Wiz2 {
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(2);
+		wizPagesSize = wizPages.size();
 
 		createPageContent();
 
@@ -291,10 +293,10 @@ public class Wiz2 {
 				//				Wiz3.updateCharClass();
 				//				Wiz3.updateCharSecClass();
 
-//				// change to next page
-//				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-//					CharacterWizard.wizPageNum++;
-//				if (!CharacterWizard.wizPageCreated[2])
+				// change to next page
+				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
+					CharacterWizard.wizPageNum++;
+				if (!CharacterWizard.wizPageCreated[2])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();

@@ -186,6 +186,7 @@ public class CharacterWizard {
 		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
 		csManual.setText("Coming Soon!");
 		csManual.pack();
+		createCancelButton(manualPage1, home, homePanel, homeLayout);
 
 
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
@@ -202,6 +203,7 @@ public class CharacterWizard {
 		csRandom.setLocation(WIDTH/2-50, HEIGHT/2);
 		csRandom.setText("Coming Soon!");
 		csRandom.pack();
+		createCancelButton(randomPage1, home, homePanel, homeLayout);
 
 
 		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
