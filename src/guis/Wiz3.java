@@ -382,7 +382,7 @@ public class Wiz3 {
 	
 	private void createNextPage() {
 		CharacterWizard.wizPageCreated[3] = true;
-		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, panel, home,
+		CharacterWizard.wizs.add(new Wiz5(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 	

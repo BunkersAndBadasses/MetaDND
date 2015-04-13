@@ -1,36 +1,38 @@
 /*
- * ADD DESCRIPTION
- */
-
-/*
- * TODO 
- * ranger - select favored enemy (p.47)
+ * CHOOSE FEATS
  */
 
 package guis;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 
-import core.GameState;
 import core.character;
+import core.Main;
+import entity.DNDEntity;
+import entity.FeatEntity;
 
 public class Wiz6 {
 
-	private Composite wiz6;
+	private Composite wiz5;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -43,43 +45,19 @@ public class Wiz6 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-
-	private Text nameInput;
-	private Combo alignmentInput1;
-	private Combo alignmentInput2;
-	private Text deityInput;
-	private Combo deityListInput;
-	private boolean deitySelect = false;
-	private Text heightInput;
-	private Text weightInput;
-	private Text ageInput;
-	private Text genderInput;
-	private Text eyesInput;
-	private Text hairInput;
-	private Text skinInput;
-	private Text descriptionInput;
-	private Text langInput;
-	private String possibleLangList = "Abyssal, Aquan, Auran, Celestial,"
-			+ " Common, Draconic, Druidic, Dwarven, Elven, "
-			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
-			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
-
-	private int numBonusLangs = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
-
-	private Random rng = new Random();
-
+	private int numFeats;
 	private String charClass;
-	private String charRace;
+	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+	private ArrayList<FeatEntity> charFeats = new ArrayList<FeatEntity>();
+	List charFeatsList;
+	
+	private Label numFeatsLabel;
 
-	private final Color red = new Color(dev, 255, 100, 100);
-	private final Color white = new Color(dev, 255, 255, 255);
-
-
-	public Wiz6(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz6(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		wiz6 = wizPages.get(5);
+		wiz5 = wizPages.get(4);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
@@ -90,456 +68,291 @@ public class Wiz6 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(6);
+		this.nextPage = wizPages.get(5);
 		this.wizPagesSize = wizPages.size();
-
-		charClass = CharacterWizard.getCharacter().getCharClass().getName();
-		charRace = CharacterWizard.getCharacter().getCharRace().getName();
-
+		
+		// get feats from references 
+		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
+		Iterator<DNDEntity> itr = featsCol.iterator();
+		while (itr.hasNext()) {
+			feats.add((FeatEntity) itr.next());
+		}
+		
 		createPageContent();
+		charClass = character.getCharClass().getName();
 	}
 
 	private void createPageContent() {
+		Label wiz5Label = new Label(wiz5, SWT.NONE);
+		wiz5Label.setText("Choose Feats");
+		wiz5Label.pack();
+		
+		// "number of feats remaining: " label
+		Label featsLabel = new Label(wiz5, SWT.NONE);
+		featsLabel.setLocation(240,30);
+		featsLabel.setText("Number of Feats Remaining:");
+		featsLabel.pack();
 
-		Label wiz6Label = new Label(wiz6, SWT.NONE);
-		wiz6Label.setText("Add Description");
-		wiz6Label.pack();
-
-
-		// name
-		Label name = new Label(wiz6, SWT.NONE);
-		name.setText("Name:");
-		name.setLocation(5, 50);
-		name.pack();
-
-		nameInput = new Text(wiz6, SWT.BORDER);
-		nameInput.setBounds(85, 50, 400, 30);
-		nameInput.setText("");
-		nameInput.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event event) {
-				Text text = (Text) event.widget;
-				text.setBackground(white);
-			}
-		});
-
-		// alignment
-		Label alignment = new Label(wiz6, SWT.NONE);
-		alignment.setText("Alignment:");
-		alignment.setLocation(5, 100);
-		alignment.pack();
-
-		alignmentInput1 = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
-		alignmentInput1.add("Lawful");
-		alignmentInput1.add("Neutral");
-		alignmentInput1.add("Chaotic");
-		alignmentInput1.setLocation(85, 100);
-		alignmentInput1.pack();
-
-		alignmentInput2 = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
-		alignmentInput2.add("Good");
-		alignmentInput2.add("Neutral");
-		alignmentInput2.add("Evil");
-		alignmentInput2.setLocation(180, 100);
-		alignmentInput2.pack();
-
-
-		// deity
-		String[] deities = { "Boccob(N): god of magic", 
-				"Corellon Larethian(CG): god of the elves", 
-				"Ehlonna(NG): goddess of the woodlands", 
-				"Erythnul(CE): god of slaughter", 
-				"Fharlanghn(N): god of roads", 
-				"Garl Glittergold(NG): god of the gnomes",
-				"Gruumsh(CE): chief god of the orcs", 
-				"Heironeous(LG): god of valor", 
-				"Hextor(LE): god of tyranny",
-				"Kord(CG): god of strength",
-				"Moradin(LG): god of the dwarves",
-				"Nerull(NE): god of death",
-				"Obad-Hai(N): god of nature",
-				"Olidammara(CN): god of rogues",
-				"Pelor(NG): god of the sun",
-				"St. Cuthbert(LN): god of retribution", 
-				"Vecna(NE): god of secrets", 
-				"Wee Jas(LN): goddess of death and magic",
-		"Yondalla(LG): goddess of the halflings" };
-		final String[] deityNames = {"Boccob", "Corellon Larethian", "Ehlonna", 
-				"Erythnul", "Fharlanghn", "Garl Glittergold", "Gruumsh", 
-				"Heironeous", "Hextor", "Kord", "Moradin", "Nerull", 
-				"Obad-Hai", "Olidammara", "Pelor", "St.Cuthbert", "Vecna", 
-				"Wee Jas", "Yondalla" };
-
-		Label deity = new Label(wiz6, SWT.NONE);
-		deity.setText("Deity:");
-		deity.setLocation(5, 150);
-		deity.pack();
-
-		deityListInput = new Combo(wiz6, SWT.DROP_DOWN | SWT.READ_ONLY);
-		deityListInput.setBounds(85, 150, 310, 30);
-		deityListInput.add("");
-		for (int i = 0; i < deities.length; i++) {
-			deityListInput.add(deities[i]);
+		// number of remaining feats
+		numFeats = 1;
+		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
+			numFeats += 1;
+		
+		// number of remaining feats label
+		numFeatsLabel = new Label(wiz5, SWT.NONE);
+		numFeatsLabel.setLocation(435, 30);
+		numFeatsLabel.setText(Integer.toString(numFeats));
+		numFeatsLabel.pack();
+		
+		// grid layout for both available and selected feat lists
+		FillLayout featLayout = new FillLayout();
+		
+		// create scrollable list of feats
+		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
+		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
+	    featScreenScroll.setExpandHorizontal(true);
+	    featScreenScroll.setExpandVertical(true);
+	    featScreenScroll.setMinWidth(WIDTH);
+		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
+		featScreenScroll.setContent(featListScreen);
+		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		featListScreen.setLayout(featLayout);
+				
+		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
+		// create scrollable list of selected feats
+		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
+		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
+	    charFeatScreenScroll.setExpandHorizontal(true);
+	    charFeatScreenScroll.setExpandVertical(true);
+	    charFeatScreenScroll.setMinWidth(WIDTH);
+		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
+		charFeatScreenScroll.setContent(charFeatScreen);
+		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		charFeatScreen.setLayout(featLayout);
+		
+		// available feats list
+		List featsList = new List(featListScreen, SWT.NONE);
+		for (int i = 0; i < feats.size(); i++) {
+			featsList.add(feats.get(i).getName());
 		}
+		featsList.pack();
+		featScreenScroll.setMinHeight(featsList.getBounds().height);
+	    	
+		// selected feats list
+		charFeatsList = new List(charFeatScreen, SWT.NONE);
+		for (int i = 0; i < charFeats.size(); i++)
+			charFeatsList.add(charFeats.get(i).getName());
+		charFeatsList.pack();
+		
+		// error message
+		Label errorMsg = new Label(wiz5, SWT.NONE);
+		errorMsg.setLocation(WIDTH/2 - 150, HEIGHT - 75);
+		errorMsg.setForeground(new Color(dev, 255, 0, 0));
+		errorMsg.setText("You cannot remove a class bonus feat!");
+		errorMsg.setVisible(false);
+		errorMsg.pack();                                                              
+		
+		// add feat button
 
-		deityInput = new Text(wiz6, SWT.BORDER);
-		deityInput.setBounds(400, 150, 180, 30);
-		deityInput.setText("");
-		deityInput.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent event) {
-				if (!deitySelect)
-					deityListInput.deselectAll();
-				deitySelect = false;
-			}
-		});
-
-		deityListInput.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				deitySelect = true;
-				if (deityListInput.getSelectionIndex() == 0)
-					deityInput.setText("");
-				else 
-					deityInput.setText(deityNames[deityListInput.getSelectionIndex()-1]);
-			}
-		});
-
-
-		// height
-		Label height = new Label(wiz6, SWT.NONE);
-		height.setText("Height:");
-		height.setLocation(5, 200);
-		height.pack();
-
-		heightInput = new Text(wiz6, SWT.BORDER);
-		heightInput.setLocation(85, 200);
-		heightInput.setText("");
-		heightInput.pack();
-
-		Button heightRandom = new Button(wiz6, SWT.PUSH);
-		heightRandom.setLocation(165, 200);
-		heightRandom.setText("Random Height");
-		heightRandom.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				int height = 0;
-				int min = 0;
-				int max = 0;
-				switch (charRace) {
-
-				case ("Dwarf"):
-					min = 45;
-				max = 53;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Elf"):
-					min = 55;
-				max = 65;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Gnome"): 
-					min = 36;
-				max = 44;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-elf"):
-					min = 55;
-				max = 71;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-orc"):
-					min = 55;
-				max = 82;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Halfling"):
-					min = 32;
-				max = 40;
-				height = rng.nextInt(max - min) + min + 1;
-				break;
-				default:
-					// human
-					min = 55;
-					max = 78;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				String heightString = "";
-				heightString += Integer.toString(height/12);
-				heightString += "'";
-				heightString += Integer.toString(height % 12);
-				heightString += "\"";
-				heightInput.setText(heightString);
-			}
-		});
-		heightRandom.pack();
-
-
-		// weight
-		Label weight = new Label(wiz6, SWT.NONE);
-		weight.setText("Weight:");
-		weight.setLocation(5, 250);
-		weight.pack();
-
-		weightInput = new Text(wiz6, SWT.BORDER);
-		weightInput.setLocation(85, 250);
-		weightInput.setText("");
-		weightInput.pack();
-
-		Button weightRandom = new Button(wiz6, SWT.PUSH);
-		weightRandom.setLocation(165, 250);
-		weightRandom.setText("Random Weight");
-		weightRandom.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				int weight = 0;
-				int min = 0;
-				int max = 0;
-				switch (charRace) {
-
-				case ("Dwarf"):
-					min = 85;
-				max = 230;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Elf"):
-					min = 80;
-				max = 160;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Gnome"): 
-					min = 35;
-				max = 50;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-elf"):
-					min = 80;
-				max = 230;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-orc"):
-					min = 110;
-				max = 440;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Halfling"):
-					min = 25;
-				max = 40;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				default:
-					// human
-					min = 125;
-					max = 280;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				String weightString = Integer.toString(weight)+ " lbs";
-				weightInput.setText(weightString);
-			}
-		});
-		weightRandom.pack();
-
-
-		// age
-		Label age = new Label(wiz6, SWT.NONE);
-		age.setText("Age:");
-		age.setLocation(435, 100);
-		age.pack();
-
-		ageInput = new Text(wiz6, SWT.BORDER);
-		ageInput.setBounds(475, 100, 50, 30);
-		ageInput.setText("");
-
-
-		// gender
-		Label gender = new Label(wiz6, SWT.NONE);
-		gender.setText("Gender:");
-		gender.setLocation(290, 100);
-		gender.pack();
-
-		ageInput.pack();
-		genderInput = new Text(wiz6, SWT.BORDER);
-		genderInput.setBounds(355, 100, 50, 30);
-		genderInput.setText("");
-
-
-		// eyes
-		Label eyes = new Label(wiz6, SWT.NONE);
-		eyes.setText("Eyes:");
-		eyes.setLocation(290,200);
-		eyes.pack();
-
-		eyesInput = new Text(wiz6, SWT.BORDER);
-		eyesInput.setBounds(330, 200, 75, 30);
-		eyesInput.setText("");
-
-
-		// hair 
-		Label hair = new Label(wiz6, SWT.NONE);
-		hair.setText("Hair:");
-		hair.setLocation(430, 200);
-		hair.pack();
-
-		hairInput = new Text(wiz6, SWT.BORDER);
-		hairInput.setBounds(470, 200, 75, 30);
-		hairInput.setText("");
-
-
-		// skin
-		Label skin = new Label(wiz6, SWT.NONE);
-		skin.setText("Skin:");
-		skin.setLocation(565, 200);
-		skin.pack();
-
-		skinInput = new Text(wiz6, SWT.BORDER);
-		skinInput.setBounds(605,200,75,30);
-		skinInput.setText("");
-
-
-		// description
-		Label description = new Label(wiz6, SWT.NONE);
-		description.setText("Description:");
-		description.setLocation(290,250);
-		description.pack();
-
-		descriptionInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-		descriptionInput.setBounds(380,250, 300, 90);
-		descriptionInput.setText("");
-
-		// languages
-		Label languages = new Label(wiz6, SWT.NONE);
-		languages.setText("Languages:");
-		languages.setLocation(5, 300);
-		languages.pack();
-
-		langInput = new Text(wiz6, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-		langInput.setBounds(85, 300, 285, 40);
-		langInput.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event event) {
-				Text text = (Text) event.widget;
-				text.setBackground(white);
-			}
-		});
-
-		Label addLang = new Label(wiz6, SWT.NONE);		
-		if (numBonusLangs < 0)
-			numBonusLangs = 0;
-		addLang.setText("Pick " + Integer.toString(numBonusLangs) + " More:");
-		addLang.setLocation(5,350);
-		addLang.pack();
-
-
-		String langList = "Common";
-		switch(charRace) {
-		case ("Dwarf"):
-			langList += ", Dwarven";
-		break;
-		case ("Elf"):
-			langList += ", Elven";
-		break;
-		case ("Gnome"):
-			langList += ", Gnome";
-		break;
-		case ("Half-Elf"):
-			langList += ", Elven";
-		break;
-		case ("Half-Orc"):
-			langList += ", Orc";
-		break;
-		case ("Halfling"):
-			langList += ", Halfling";
-		break;
-		default : // human
-			break;
-		}
-		langInput.setText(langList);
-
-		Label possibleLangs = new Label(wiz6, SWT.WRAP);
-		possibleLangs.setText(possibleLangList);
-		possibleLangs.setBounds(95,350,580,40);
-
-
-		// next button
-		Button wiz6NextButton = CharacterWizard.createNextButton(wiz6);
-		wiz6NextButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				// error checking
+		Button addButton = new Button(wiz5, SWT.PUSH);
+		addButton.setText("Add >");
+		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
+		addButton.pack();
+		addButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				errorMsg.setVisible(false);
 				boolean error = false;
-				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
-				String condensed = nameInput.getText().replaceAll("\\s","");
-				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
-				if (condensed.length() == 0) {
-					nameInput.setText("");
-					nameInput.setBackground(red);
+				if (numFeats == 0)
 					error = true;
-				}
-				if (langInput.getText().length() == 0){
-					langInput.setBackground(red);
+				int index = featsList.getSelectionIndex();
+				if (index == -1)
 					error = true;
+				else {
+					for(int i = 0; i < charFeats.size(); i++) {
+						if (charFeats.get(i).getName().equals(featsList.getItem(index)))
+							error = true;
+					}
 				}
 				if (error)
 					return;
+				// TODO check prerequisites
+				charFeatsList.add(featsList.getItem(index));
+				charFeats.add(feats.get(index));
+				numFeats--;
+				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.setBackground(null);
+				numFeatsLabel.pack();
+				charFeatsList.pack();
+				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
+				charFeatScreen.layout();
+				charFeatScreenScroll.layout();
+			}
+		});
+		
+		// remove feat button
+		Button removeButton = new Button(wiz5, SWT.PUSH);
+		removeButton.setText("< Remove");
+		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
+		removeButton.pack();
+		removeButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				errorMsg.setVisible(false);
+				if (charFeats.isEmpty())
+					return;
+				int index = charFeatsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				if ((charClass.equalsIgnoreCase("Fighter")
+						| charClass.equalsIgnoreCase("Monk") 
+						| charClass.equalsIgnoreCase("Ranger")
+						| charClass.equalsIgnoreCase("Wizard")) 
+						&& charFeatsList.getSelectionIndex() == 0) {
+					errorMsg.setVisible(true);
+					return;
+				}
+				charFeatsList.remove(index);
+				charFeats.remove(index);
+				numFeats++;
+				numFeatsLabel.setText(Integer.toString(numFeats));
+				numFeatsLabel.setBackground(null);
+				numFeatsLabel.pack();
+				charFeatsList.pack();
+				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
+				charFeatScreen.layout();
+				charFeatScreenScroll.layout();
+			}
+		});
+		
+		featListScreen.pack();
+		charFeatScreen.pack();
 
-				// if no errors, save to character
-				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
-				character.setName(nameInput.getText());	
-				String a1, a2;
-				if (alignmentInput1.getSelectionIndex() == -1)
-					a1 = "<empty>";
-				else 
-					a1 = alignmentInput1.getText() + " ";
-				if (alignmentInput2.getSelectionIndex() == -1)
-					a2 = "<empty>";
-				else
-					a2 = alignmentInput2.getText();
-				character.setAlignment(a1 + a2);
-				if (deityInput.getText().length() != 0)
-					character.setDeity(deityInput.getText());
-				if (heightInput.getText().length() != 0)
-					character.setHeight(heightInput.getText());
-				if (weightInput.getText().length() != 0)
-					character.setWeight(weightInput.getText());
-				if (ageInput.getText().length() != 0)
-					character.setAge(ageInput.getText());
-				if (genderInput.getText().length() != 0)
-					character.setGender(genderInput.getText());
-				if (eyesInput.getText().length() != 0)
-					character.setEyes(eyesInput.getText());
-				if (hairInput.getText().length() != 0)
-					character.setHair(hairInput.getText());
-				if (skinInput.getText().length() != 0)
-					character.setSkin(skinInput.getText());
-				if (descriptionInput.getText().length() != 0)
-					character.setDescription(descriptionInput.getText());
-				character.setLanguages(langInput.getText());
-
-				// change to next page				
+		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
+		wiz5NextButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// error checking
+				if (numFeats > 0) {
+					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
+					return;
+				}
+				
+				// if all is good, save to character
+				for (int i = 0; i < charFeats.size(); i++)
+					character.addFeat(charFeats.get(i));
+				
+				// switch to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[6])
+				if (!CharacterWizard.wizPageCreated[5])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
 			}
 		});
 
-
-		// back button
-		//Button wiz6BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
-
-
-		// cancel button
-		Button wiz6CancelButton = CharacterWizard.createCancelButton(wiz6, home, homePanel, homeLayout);
-		wiz6CancelButton.addListener(SWT.Selection, new Listener() {
+		//Button wiz5BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
+		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
+		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
 					CharacterWizard.reset();
 			}
 		});
 	}
+	
+	void createBonusPopUp() {
+		// get lists of bonus feats
+		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
+		if (charClass.equalsIgnoreCase("Fighter")){
+			for (int i = 0; i < feats.size(); i++){
+				if (feats.get(i).getFighterBonus() != null)
+					bonusFeats.add(feats.get(i));
+			}
+		} else if (charClass.equalsIgnoreCase("Monk")){
+			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
+			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
+		} else if (charClass.equalsIgnoreCase("Ranger")){
+			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Track"));
+			charFeatsList.add(charFeats.get(0).getName());
+			return;
+		} else if (charClass.equalsIgnoreCase("Wizard")){
+			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Scribe Scroll"));
+			charFeatsList.add(charFeats.get(0).getName());
+			return;
+		} else
+			return;
+		
+		// create shell
+		Display display = wiz5.getDisplay();
+		final Shell bonusFeatShell = new Shell(display);
+		bonusFeatShell.setText("Select Bonus Feat");
+		GridLayout gridLayout = new GridLayout(2, true);
+		bonusFeatShell.setLayout(gridLayout);
+		bonusFeatShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            event.doit = false;
+	        	return;
+	        }
+	    });
+
+		// label - select a bonus feat
+		Label selectBonusFeat = new Label(bonusFeatShell, SWT.WRAP);
+		selectBonusFeat.setText("Select A Bonus Feat");
+		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		selectGD.horizontalSpan = 2;
+		selectBonusFeat.setLayoutData(selectGD);
+		selectBonusFeat.pack();
+		
+		// drop down menu containing bonus feat options
+		CCombo bonusFeatCombo = new CCombo(bonusFeatShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		for (int i = 0; i < bonusFeats.size(); i++)
+			bonusFeatCombo.add(bonusFeats.get(i).getName());
+		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		featsGD.horizontalSpan = 2;
+		bonusFeatCombo.setLayoutData(featsGD);
+		bonusFeatCombo.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				bonusFeatCombo.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
+		bonusFeatCombo.pack();
+		
+		// done button
+		Button done = new Button(bonusFeatShell, SWT.PUSH);
+		done.setText("Done");
+		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		doneGD.horizontalSpan = 2;
+		done.setLayoutData(doneGD);
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (bonusFeatCombo.getSelectionIndex() == -1) {
+					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
+					return;
+				}
+				charFeats.add(0, bonusFeats.get(bonusFeatCombo.getSelectionIndex()));
+				charFeatsList.add(charFeats.get(0).getName());
+				bonusFeatShell.dispose();
+			}
+		});
+		done.pack();
+
+		// open shell
+		bonusFeatShell.pack();
+		CharacterWizard.center(bonusFeatShell);
+		bonusFeatShell.open();
+		
+		// check if disposed
+		while (!bonusFeatShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[6] = true;
-		CharacterWizard.wizs.add(new Wiz7(dev, WIDTH, HEIGHT, panel, home,
+		CharacterWizard.wizPageCreated[5] = true;
+		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	public Composite getWiz6() { return wiz6; }
+	public Composite getWiz5() { return wiz5; }
 }

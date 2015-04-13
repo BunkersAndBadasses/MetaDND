@@ -1,43 +1,44 @@
 /*
- * CHOOSE FEATS
+ * ADD RANKS TO SKILLS
  */
 
 /*
- * TODO add error (try to delete class bonus feat)
+ * TODO add barbarian illiteracy, custom skills, profession/craft boxes
+ * add class modifiers - i.e. druid gets +2 Knowledge(nature) and Survival checks
  */
-
 
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import core.CharSkill;
+import core.GameState;
+import core.Main;
+
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
 
+import entity.*;
 import core.character;
-import core.Main;
-import entity.DNDEntity;
-import entity.FeatEntity;
+/*
+ * add text box to add custom skill
+ * add boxes next to craft, profession, etc
+ */
 
 public class Wiz5 {
 
-	private Composite wiz5;
+	private Composite wiz4;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -50,19 +51,20 @@ public class Wiz5 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	private int numFeats;
-	private String charClass;
-	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
-	private ArrayList<FeatEntity> charFeats = new ArrayList<FeatEntity>();
-	List charFeatsList;
-	
-	private Label numFeatsLabel;
 
-	public Wiz5(Device dev, int WIDTH, int HEIGHT,
+	private Label numSkillPointsLabel;
+	private Label unusedSkillPointsError;
+	private String charClass;
+	private int numSkillPoints;
+	private ArrayList<CharSkill> charSkills = new ArrayList<CharSkill>();
+	private GameState gs = Main.gameState;
+	
+	
+	public Wiz5(Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		wiz5 = wizPages.get(4);
+		wiz4 = wizPages.get(3);
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
@@ -73,273 +75,263 @@ public class Wiz5 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(5);
+		this.nextPage = wizPages.get(4);
 		this.wizPagesSize = wizPages.size();
-		
-		// get feats from references 
-		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
-		Iterator<DNDEntity> itr = featsCol.iterator();
-		while (itr.hasNext()) {
-			feats.add((FeatEntity) itr.next());
-		}
-		
+
 		createPageContent();
-		charClass = character.getCharClass().getName();
 	}
 
 	private void createPageContent() {
-		Label wiz5Label = new Label(wiz5, SWT.NONE);
-		wiz5Label.setText("Choose Feats");
-		wiz5Label.pack();
-		
-		// "number of feats remaining: " label
-		Label featsLabel = new Label(wiz5, SWT.NONE);
-		featsLabel.setLocation(240,30);
-		featsLabel.setText("Number of Feats Remaining:");
-		featsLabel.pack();
+		Label wiz4Label = new Label(wiz4, SWT.NONE);
+		wiz4Label.setText("Add Ranks to Skills");
+		wiz4Label.pack();
 
-		// number of remaining feats
-		numFeats = 1;
-		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
-			numFeats += 1;
-		
-		// number of remaining feats label
-		numFeatsLabel = new Label(wiz5, SWT.NONE);
-		numFeatsLabel.setLocation(435, 30);
-		numFeatsLabel.setText(Integer.toString(numFeats));
-		numFeatsLabel.pack();
-		
-		// grid layout for both available and selected feat lists
-		FillLayout featLayout = new FillLayout();
-		
-		// create scrollable list of feats
-		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
-		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
-	    featScreenScroll.setExpandHorizontal(true);
-	    featScreenScroll.setExpandVertical(true);
-	    featScreenScroll.setMinWidth(WIDTH);
-		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
-		featScreenScroll.setContent(featListScreen);
-		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		featListScreen.setLayout(featLayout);
-				
-		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
-		// create scrollable list of selected feats
-		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
-		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
-	    charFeatScreenScroll.setExpandHorizontal(true);
-	    charFeatScreenScroll.setExpandVertical(true);
-	    charFeatScreenScroll.setMinWidth(WIDTH);
-		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
-		charFeatScreenScroll.setContent(charFeatScreen);
-		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		charFeatScreen.setLayout(featLayout);
-		
-		// available feats list
-		List featsList = new List(featListScreen, SWT.NONE);
-		for (int i = 0; i < feats.size(); i++) {
-			featsList.add(feats.get(i).getName());
+
+
+		// set number of skill points
+		charClass = CharacterWizard.getCharacter().getCharClass().getName();
+		int classPoints;
+		switch(charClass) {
+		case ("Cleric") :
+		case ("Fighter") :
+		case ("Paladin") :
+		case ("Sorcerer") :
+		case ("Wizard") :
+			classPoints = 2;
+			break;
+		case ("Barbarian") :
+		case ("Monk") :
+		case ("Druid") :
+			classPoints = 4;
+			break;
+		case ("Bard") :
+		case ("Ranger") :
+			classPoints = 6;
+		break;
+		default : // Rogue
+			classPoints = 8;
+			break;	
 		}
-		featsList.pack();
-		featScreenScroll.setMinHeight(featsList.getBounds().height);
-	    	
-		// selected feats list
-		charFeatsList = new List(charFeatScreen, SWT.NONE);
-		for (int i = 0; i < charFeats.size(); i++)
-			charFeatsList.add(charFeats.get(i).getName());
-		charFeatsList.pack();
-				
-		// add feat button
-		Button addButton = new Button(wiz5, SWT.PUSH);
-		addButton.setText("Add >");
-		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
-		addButton.pack();
-		addButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				boolean error = false;
-				if (numFeats == 0)
-					error = true;
-				int index = featsList.getSelectionIndex();
-				if (index == -1)
-					error = true;
-				for(int i = 0; i < charFeats.size(); i++) {
-					if (charFeats.get(i).getName().equals(featsList.getItem(index)))
-						error = true;
-				}
-				if (error)
-					return;
-				// TODO check prerequisites
-				charFeatsList.add(featsList.getItem(index));
-				charFeats.add(feats.get(index));
-				numFeats--;
-				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setBackground(null);
-				numFeatsLabel.pack();
-				charFeatsList.pack();
-				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
-				charFeatScreen.layout();
-				charFeatScreenScroll.layout();
-			}
-		});
-		
-		// remove feat button
-		Button removeButton = new Button(wiz5, SWT.PUSH);
-		removeButton.setText("< Remove");
-		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
-		removeButton.pack();
-		removeButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				if (charFeats.isEmpty())
-					return;
-				int index = charFeatsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				if ((charClass.equalsIgnoreCase("Fighter")
-						| charClass.equalsIgnoreCase("Monk") 
-						| charClass.equalsIgnoreCase("Ranger")
-						| charClass.equalsIgnoreCase("Wizard")) 
-						&& charFeatsList.getSelectionIndex() == 0) {
-					// TODO pop up error label
-					return;
-				}
-				charFeatsList.remove(index);
-				charFeats.remove(index);
-				numFeats++;
-				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setBackground(null);
-				numFeatsLabel.pack();
-				charFeatsList.pack();
-				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
-				charFeatScreen.layout();
-				charFeatScreenScroll.layout();
-			}
-		});
-		
-		featListScreen.pack();
-		charFeatScreen.pack();
+		int intMod = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
+		numSkillPoints = (classPoints + intMod) * 4;
+		if (numSkillPoints < 4) 
+			numSkillPoints = 4;
+		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
+			numSkillPoints += 4;
 
-		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
-		wiz5NextButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				// error checking
-				if (numFeats > 0) {
-					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
-					return;
+		// "skill points remaining: " label
+		Label skillPointsLabel = new Label(wiz4, SWT.NONE);
+		skillPointsLabel.setLocation(250,30);
+		skillPointsLabel.setText("Skill Points Remaining:");
+		skillPointsLabel.pack();
+
+		// number of remaining skill points label
+		numSkillPointsLabel = new Label(wiz4, SWT.NONE);
+		numSkillPointsLabel.setLocation(405, 30);
+		numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+		numSkillPointsLabel.pack();
+
+		// example skill label
+		Label exampleSkillLabel = new Label(wiz4, SWT.NONE);
+		exampleSkillLabel.setLocation(25, 60);
+		exampleSkillLabel.setText("Skill (Type) = (Ability Mod) + (Misc Mod) + (Rank) = (Total)" 
+					+ "         *: AC penalty  **: double AC penalty");
+		exampleSkillLabel.pack();
+
+		// class skill label
+		Label classSkillLabel = new Label(wiz4, SWT.NONE);
+		classSkillLabel.setLocation(20, 85);
+		Color classSkillColor = new Color(dev, 0, 200, 100);
+		classSkillLabel.setForeground(classSkillColor);
+		classSkillLabel.setText("Class Skills: 1 point = 1 rank");
+		classSkillLabel.pack();
+
+		// cross-class skill label
+		Label crossClassSkillLabel = new Label(wiz4, SWT.NONE);
+		crossClassSkillLabel.setLocation(225, 85);
+		Color crossClassSkillColor = new Color(dev, 0, 0, 255);
+		crossClassSkillLabel.setForeground(crossClassSkillColor);
+		crossClassSkillLabel.setText("Cross-Class Skills: 2 points = 1 rank");
+		crossClassSkillLabel.pack();
+		
+		// untrained label
+		Label untrainedLabel = new Label(wiz4, SWT.NONE);
+		untrainedLabel.setLocation(470, 85);
+		untrainedLabel.setText(Character.toString((char)8226) + " : skill can be used untrained");
+		untrainedLabel.pack();
+
+		// get skills from references
+		Collection<DNDEntity> skillsCol =  gs.skills.values();
+		Iterator<DNDEntity> itr = skillsCol.iterator();
+		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+		while (itr.hasNext()) {
+			skills.add((SkillEntity) itr.next());
+		}
+		
+		for (int i = 0; i < skills.size(); i++) {
+			charSkills.add(new CharSkill(skills.get(i), character));
+		}
+
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 3;
+//		GridData gridData = new GridData();
+//		gridData.horizontalAlignment = SWT.LEFT;
+		
+		// set up scrollable composite
+		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz4, SWT.V_SCROLL | SWT.BORDER);
+		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
+	    skillsScreenScroll.setExpandHorizontal(true);
+	    skillsScreenScroll.setExpandVertical(true);
+	    skillsScreenScroll.setMinSize(WIDTH, (charSkills.size() * 30 + 10));
+		final Composite skillsScreen = new Composite(skillsScreenScroll, SWT.NONE);
+		skillsScreenScroll.setContent(skillsScreen);
+		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		skillsScreen.setLayout(gridLayout);
+		
+		// create content (+/- buttons, skills, ranks, mods, etc
+		ArrayList<Label> skillNameLabels = new ArrayList<Label>();
+		ArrayList<Button> incButtons = new ArrayList<Button>();
+		ArrayList<Button> decButtons = new ArrayList<Button>();
+
+		for(int i = 0; i < charSkills.size(); i++) {
+			Button inc = new Button(skillsScreen, SWT.PUSH);
+			inc.setText("+");
+			GridData incGD = new GridData(SWT.LEFT);
+			incGD.widthHint = 30;
+			inc.setLayoutData(incGD);
+			Button dec = new Button(skillsScreen, SWT.PUSH);
+			dec.setText("-");
+			GridData decGD = new GridData(SWT.LEFT);
+			decGD.widthHint = 30;
+			dec.setLayoutData(decGD);
+			final Label skillName = new Label(skillsScreen, SWT.NONE);
+			skillName.setLayoutData(new GridData(SWT.LEFT));
+//			skillName.setLocation(260, (i*30) + 10);
+			final CharSkill current = charSkills.get(i);
+			final int abilityMod = current.getAbilityMod();
+			final int miscMod = current.getMiscMod();
+			final String acPen;
+			if (current.hasACPen()) {
+				if (current.getSkill().getName().equalsIgnoreCase("Swim"))
+					acPen = "**";
+				else 
+					acPen = "*";
+			} else 
+				acPen = "";
+			final String untrained;
+			if (current.useUntrained())
+				untrained = Character.toString ((char) 8226);
+			else 
+				untrained = "  ";
+			skillName.setText(untrained + current.getSkill().getName() + " (" 
+					+ current.getAbilityType() + ")" + acPen + " = " + abilityMod + " + " 
+					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());
+			if (current.isClassSkill())
+				skillName.setForeground(classSkillColor);
+			else
+				skillName.setForeground(crossClassSkillColor);
+			skillName.pack();
+			skillNameLabels.add(skillName);
+
+//			inc.setBounds(200, (i*30) + 10, 20, 20);
+			inc.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (numSkillPoints == 0)
+						return;
+					if (current.incRank()) {
+						skillName.setText(untrained + current.getSkill().getName() + " (" 
+								+ current.getAbilityType() + ")" + acPen + " = " 
+								+ abilityMod + " + " + miscMod + " + " 
+								+ current.getRank() + " = " + current.getTotal());
+						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints--;
+						numSkillPoints--;
+						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+						numSkillPointsLabel.pack();
+						unusedSkillPointsError.setVisible(false);
+					}
 				}
-				
-				// if all is good, save to character
-				for (int i = 0; i < charFeats.size(); i++)
-					character.addFeat(charFeats.get(i));
-				
-				// switch to next page
+			});
+			incButtons.add(inc);
+//			dec.setBounds(220, (i*30) + 10, 20, 20);
+			dec.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (current.decRank()) {
+						skillName.setText(untrained + current.getSkill().getName() + " (" 
+								+ current.getAbilityType() + ")" + acPen + " = " + abilityMod 
+								+ " + " + miscMod + " + " + current.getRank() 
+								+ " = " + current.getTotal());
+						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints++;
+						numSkillPoints++;
+						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+						numSkillPointsLabel.pack();
+						unusedSkillPointsError.setVisible(false);
+					}
+				}
+			});
+			decButtons.add(dec);
+			skillsScreen.pack();
+		}
+
+		// create error label
+		unusedSkillPointsError = new Label(wiz4, SWT.NONE);
+		unusedSkillPointsError.setVisible(false);
+		unusedSkillPointsError.setLocation(200, HEIGHT - 75);
+		unusedSkillPointsError.setText("You must use all of your skill points!");
+		unusedSkillPointsError.setForeground(new Color(dev, 255,0,0));
+		unusedSkillPointsError.pack();
+		
+		// next button
+		Button wiz4NextButton = CharacterWizard.createNextButton(wiz4);
+		wiz4NextButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// make sure all skill points are used
+//				if (numSkillPoints > 0) {
+//					unusedSkillPointsError.setVisible(true);
+//					return;
+//				}
+//				
+				// save to character
+				character.setSkills(charSkills);
+
+				// move on to next page
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[5])
+				if (!CharacterWizard.wizPageCreated[4])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
+				((Wiz6) CharacterWizard.wizs.get(4)).createBonusPopUp();
 			}
 		});
 
-		//Button wiz5BackButton = CharacterWizard.createBackButton(wiz5, panel, layout);
-		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
-		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
+//		// back button
+//		Button wiz4BackButton = CharacterWizard.createBackButton(wiz4, panel, layout);
+//		wiz4BackButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				unusedSkillPointsError.setVisible(false);
+//			}
+//		});
+		
+		// cancel button
+		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
+		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (CharacterWizard.cancel)
 					CharacterWizard.reset();
 			}
 		});
 	}
-	
-	void createBonusPopUp() {
-		// get lists of bonus feats
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
-		if (charClass.equalsIgnoreCase("Fighter")){
-			for (int i = 0; i < feats.size(); i++){
-				if (feats.get(i).getFighterBonus() != null)
-					bonusFeats.add(feats.get(i));
-			}
-		} else if (charClass.equalsIgnoreCase("Monk")){
-			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
-			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
-		} else if (charClass.equalsIgnoreCase("Ranger")){
-			charFeats.add((FeatEntity)Main.gameState.feats.get("Track"));
-		} else if (charClass.equalsIgnoreCase("Wizard")){
-			charFeats.add((FeatEntity)Main.gameState.feats.get("Scribe Scroll"));
-		} else
-			return;
-		
-		// create shell
-		Display display = wiz5.getDisplay();
-		final Shell bonusFeatShell = new Shell(display);
-		bonusFeatShell.setText("Select Bonus Feat");
-		GridLayout gridLayout = new GridLayout(2, true);
-		bonusFeatShell.setLayout(gridLayout);
-		bonusFeatShell.addListener(SWT.Close, new Listener() {
-	        public void handleEvent(Event event) {
-	            return;
-	        }
-	    });
-
-		// label - select a bonus feat
-		Label selectBonusFeat = new Label(bonusFeatShell, SWT.WRAP);
-		selectBonusFeat.setText("Select A Bonus Feat");
-		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		selectGD.horizontalSpan = 2;
-		selectBonusFeat.setLayoutData(selectGD);
-		selectBonusFeat.pack();
-		
-		// drop down menu containing bonus feat options
-		CCombo bonusFeatCombo = new CCombo(bonusFeatShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		for (int i = 0; i < bonusFeats.size(); i++)
-			bonusFeatCombo.add(bonusFeats.get(i).getName());
-		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		featsGD.horizontalSpan = 2;
-		bonusFeatCombo.setLayoutData(featsGD);
-		bonusFeatCombo.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event event) {
-				bonusFeatCombo.setBackground(new Color(dev, 255, 255, 255));
-			}
-		});
-		bonusFeatCombo.pack();
-		
-		// done button
-		Button done = new Button(bonusFeatShell, SWT.PUSH);
-		done.setText("Done");
-		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		doneGD.horizontalSpan = 2;
-		done.setLayoutData(doneGD);
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (bonusFeatCombo.getSelectionIndex() == -1) {
-					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
-					return;
-				}
-				charFeats.add(0, bonusFeats.get(bonusFeatCombo.getSelectionIndex()));
-				charFeatsList.add(charFeats.get(0).getName());
-				bonusFeatShell.dispose();
-			}
-		});
-		done.pack();
-
-		// open shell
-		bonusFeatShell.pack();
-		CharacterWizard.center(bonusFeatShell);
-		bonusFeatShell.open();
-		
-		// check if disposed
-		while (!bonusFeatShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[5] = true;
+		CharacterWizard.wizPageCreated[4] = true;		
 		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	public Composite getWiz5() { return wiz5; }
+	public Composite getWiz4() { return wiz4; }
+
 }

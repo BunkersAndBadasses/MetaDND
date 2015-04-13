@@ -13,7 +13,7 @@
  * fighter - no spells
  * monk - lawful, no spells, 
  * paladin - wis, divine, lawful good!, spells at 4th level, mount(5th level)
- * ranger - divine, 5th level
+ * ranger - divine, 5th level, favored enemy
  * rogue - no spells
  * sorcerer - cha, arcane, familiar
  * wizard - int, arcane, familiar, school specialization(optional), must choose 2 two schools to give up(not divination), if divination, give up 1
