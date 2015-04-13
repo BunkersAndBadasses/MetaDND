@@ -127,7 +127,11 @@ public class DnDie {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("favRolls/" + fileName + ".xml"));
+			
+	
+			File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//favRolls");
+			CHARDIR.mkdir();
+			StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
 
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
@@ -151,7 +155,8 @@ public class DnDie {
 
 		try {
 
-			File fXmlFile = new File("favRolls/" + fileName + ".xml");
+			File fXmlFile = new File(System.getProperty("user.dir") + "//" + 
+					"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -205,7 +210,8 @@ public class DnDie {
 
 	// delete a favorite die from the xml
 	public static void deleteFavDie(String fileName){
-		File file = new File("favRolls/" + fileName + ".xml");
+		File file = new File(System.getProperty("user.dir") + "//" + 
+				"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
 
 		try{
 
