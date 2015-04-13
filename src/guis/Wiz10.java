@@ -7,6 +7,13 @@
  * 
  * display character information
  * 
+ * add: 
+ * 	cleric domain
+ * 	druid animal companion
+ * 	ranger favored enemy
+ *  sorcerer familiar
+ *  wizard familiar, specialty school/prohibited school
+ * 
  */
 
 package guis;
@@ -71,6 +78,8 @@ public class Wiz10 {
 		wiz10SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				//TODO
+				System.out.print(character);
 				// save
 				//				private String name;
 				//				private int level = 1;

@@ -386,7 +386,7 @@ public class Wiz2 {
 			druidLabel.pack();
 			
 			// list of available animal companions
-			Combo acList = new Combo(classExtrasShell, SWT.DROP_DOWN);
+			Combo acList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] companions = {"badger", "camel", "dire rat", "dog", "riding dog", "eagle", "hawk", "horse(light)", "horse(heavy)", "owl", "pony", "snake(small)", "snake(medium)", "wolf", "porpoise", "shark(medium)", "squid"};
 			for (int i = 0; i < companions.length; i++){
 				acList.add(companions[i]);
@@ -426,6 +426,64 @@ public class Wiz2 {
 			
 			break;
 		case ("ranger"):
+			Label rangerLabel = new Label(classExtrasShell, SWT.NONE);
+			rangerLabel.setText("Select a favored enemy");
+			GridData gd5 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd5.horizontalSpan = 2;
+			rangerLabel.setLayoutData(gd5);
+			rangerLabel.pack();
+			
+			// list of available animal companions
+			Combo feList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			String[] enemies = {"Aberration", "Animal", "Construct", "Dragon", "Elemental", "Fey", "Giant", "Humanoid", "Magical Beast", "Monstrous humanoid", "Ooze", "Outsider", "Plant", "Undead", "Vermin"};
+			for (int i = 0; i < enemies.length; i++){
+				feList.add(enemies[i]);
+			}
+			GridData gd6 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd6.horizontalSpan = 2;
+			feList.setLayoutData(gd6);
+			feList.pack();
+			
+			Label subtypeLabel = new Label(classExtrasShell, SWT.NONE);
+			subtypeLabel.setText("Subtype: ");
+			GridData gd7 = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			subtypeLabel.setLayoutData(gd7);
+			subtypeLabel.pack();
+			subtypeLabel.setVisible(false);
+			
+			Combo subtypeList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			GridData gd8 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			subtypeList.setLayoutData(gd8);
+			subtypeList.pack();
+			subtypeList.setVisible(false);
+			
+			feList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					if (feList.getItem(feList.getSelectionIndex()).equals("Humanoid")){
+						subtypeList.deselectAll();
+						subtypeList.removeAll();
+						String[] humanoids = {"aquatic", "dwarf", "elf", "goblinoid", "gnoll", "gnome", "halfling", "human", "orc", "reptillian"};
+						for (int i = 0; i < humanoids.length; i++)
+							subtypeList.add(humanoids[i]);
+						subtypeList.pack();
+					} else if (feList.getItem(feList.getSelectionIndex()).equals("Outsider")){
+						subtypeList.deselectAll();
+						subtypeList.removeAll();
+						String[] outsiders = {"air", "chaotic", "earth", "evil", "fire", "good", "lawful", "native", "water"};
+						for (int i = 0; i < outsiders.length; i++)
+							subtypeList.add(outsiders[i]);
+						subtypeList.pack();
+					} else {
+						subtypeList.setVisible(false);
+						subtypeLabel.setVisible(false);
+						return;
+					}
+					subtypeList.setVisible(true);
+					subtypeLabel.setVisible(true);
+					return;
+				}
+			});
+
 			break;
 		case ("sorcerer"):
 			break;

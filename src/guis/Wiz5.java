@@ -31,7 +31,8 @@ import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
 import core.character;
-/*
+/* TODO
+ * fix + - buttons
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
  */
@@ -304,7 +305,7 @@ public class Wiz5 {
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
-				((Wiz6) CharacterWizard.wizs.get(4)).createBonusPopUp();
+				((Wiz6) CharacterWizard.wizs.get(6)).createBonusPopUp();
 			}
 		});
 
