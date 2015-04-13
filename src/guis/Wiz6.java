@@ -2,6 +2,11 @@
  * ADD DESCRIPTION
  */
 
+/*
+ * TODO 
+ * ranger - select favored enemy (p.47)
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Random;

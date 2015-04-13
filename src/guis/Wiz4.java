@@ -2,6 +2,11 @@
  * ADD RANKS TO SKILLS
  */
 
+/*
+ * TODO add barbarian illiteracy, custom skills, profession/craft boxes
+ * add class modifiers - i.e. druid gets +2 Knowledge(nature) and Survival checks
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -164,7 +169,7 @@ public class Wiz4 {
 		}
 		
 		for (int i = 0; i < skills.size(); i++) {
-			charSkills.add(new CharSkill(skills.get(i), CharacterWizard.getCharacter()));
+			charSkills.add(new CharSkill(skills.get(i), character));
 		}
 
 		GridLayout gridLayout = new GridLayout();
@@ -299,6 +304,7 @@ public class Wiz4 {
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
+				((Wiz5) CharacterWizard.wizs.get(4)).createBonusPopUp();
 			}
 		});
 

@@ -2,26 +2,35 @@
  * CHOOSE FEATS
  */
 
+/*
+ * TODO add error (try to delete class bonus feat)
+ */
+
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 
 import core.character;
-import core.GameState;
 import core.Main;
 import entity.DNDEntity;
 import entity.FeatEntity;
@@ -42,7 +51,10 @@ public class Wiz5 {
 	private Composite nextPage;
 	private int wizPagesSize;
 	private int numFeats;
-	private GameState gs = Main.gameState;
+	private String charClass;
+	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+	private ArrayList<FeatEntity> charFeats = new ArrayList<FeatEntity>();
+	List charFeatsList;
 	
 	private Label numFeatsLabel;
 
@@ -64,7 +76,15 @@ public class Wiz5 {
 		this.nextPage = wizPages.get(5);
 		this.wizPagesSize = wizPages.size();
 		
+		// get feats from references 
+		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
+		Iterator<DNDEntity> itr = featsCol.iterator();
+		while (itr.hasNext()) {
+			feats.add((FeatEntity) itr.next());
+		}
+		
 		createPageContent();
+		charClass = character.getCharClass().getName();
 	}
 
 	private void createPageContent() {
@@ -88,16 +108,6 @@ public class Wiz5 {
 		numFeatsLabel.setLocation(435, 30);
 		numFeatsLabel.setText(Integer.toString(numFeats));
 		numFeatsLabel.pack();
-		
-		// get feats from references
-		Collection<DNDEntity> featsCol =  gs.feats.values();
-		Iterator<DNDEntity> itr = featsCol.iterator();
-		ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
-		ArrayList<FeatEntity> charFeats = new ArrayList<FeatEntity>();
-		while (itr.hasNext()) {
-			feats.add((FeatEntity) itr.next());
-		}
-
 		
 		// grid layout for both available and selected feat lists
 		FillLayout featLayout = new FillLayout();
@@ -134,9 +144,11 @@ public class Wiz5 {
 		featScreenScroll.setMinHeight(featsList.getBounds().height);
 	    	
 		// selected feats list
-		List charFeatsList = new List(charFeatScreen, SWT.NONE);
+		charFeatsList = new List(charFeatScreen, SWT.NONE);
+		for (int i = 0; i < charFeats.size(); i++)
+			charFeatsList.add(charFeats.get(i).getName());
 		charFeatsList.pack();
-		
+				
 		// add feat button
 		Button addButton = new Button(wiz5, SWT.PUSH);
 		addButton.setText("Add >");
@@ -182,6 +194,14 @@ public class Wiz5 {
 				int index = charFeatsList.getSelectionIndex();
 				if (index == -1)
 					return;
+				if ((charClass.equalsIgnoreCase("Fighter")
+						| charClass.equalsIgnoreCase("Monk") 
+						| charClass.equalsIgnoreCase("Ranger")
+						| charClass.equalsIgnoreCase("Wizard")) 
+						&& charFeatsList.getSelectionIndex() == 0) {
+					// TODO pop up error label
+					return;
+				}
 				charFeatsList.remove(index);
 				charFeats.remove(index);
 				numFeats++;
@@ -229,6 +249,90 @@ public class Wiz5 {
 					CharacterWizard.reset();
 			}
 		});
+	}
+	
+	void createBonusPopUp() {
+		// get lists of bonus feats
+		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
+		if (charClass.equalsIgnoreCase("Fighter")){
+			for (int i = 0; i < feats.size(); i++){
+				if (feats.get(i).getFighterBonus() != null)
+					bonusFeats.add(feats.get(i));
+			}
+		} else if (charClass.equalsIgnoreCase("Monk")){
+			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
+			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
+		} else if (charClass.equalsIgnoreCase("Ranger")){
+			charFeats.add((FeatEntity)Main.gameState.feats.get("Track"));
+		} else if (charClass.equalsIgnoreCase("Wizard")){
+			charFeats.add((FeatEntity)Main.gameState.feats.get("Scribe Scroll"));
+		} else
+			return;
+		
+		// create shell
+		Display display = wiz5.getDisplay();
+		final Shell bonusFeatShell = new Shell(display);
+		bonusFeatShell.setText("Select Bonus Feat");
+		GridLayout gridLayout = new GridLayout(2, true);
+		bonusFeatShell.setLayout(gridLayout);
+		bonusFeatShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            return;
+	        }
+	    });
+
+		// label - select a bonus feat
+		Label selectBonusFeat = new Label(bonusFeatShell, SWT.WRAP);
+		selectBonusFeat.setText("Select A Bonus Feat");
+		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		selectGD.horizontalSpan = 2;
+		selectBonusFeat.setLayoutData(selectGD);
+		selectBonusFeat.pack();
+		
+		// drop down menu containing bonus feat options
+		CCombo bonusFeatCombo = new CCombo(bonusFeatShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		for (int i = 0; i < bonusFeats.size(); i++)
+			bonusFeatCombo.add(bonusFeats.get(i).getName());
+		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		featsGD.horizontalSpan = 2;
+		bonusFeatCombo.setLayoutData(featsGD);
+		bonusFeatCombo.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				bonusFeatCombo.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
+		bonusFeatCombo.pack();
+		
+		// done button
+		Button done = new Button(bonusFeatShell, SWT.PUSH);
+		done.setText("Done");
+		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		doneGD.horizontalSpan = 2;
+		done.setLayoutData(doneGD);
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (bonusFeatCombo.getSelectionIndex() == -1) {
+					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
+					return;
+				}
+				charFeats.add(0, bonusFeats.get(bonusFeatCombo.getSelectionIndex()));
+				charFeatsList.add(charFeats.get(0).getName());
+				bonusFeatShell.dispose();
+			}
+		});
+		done.pack();
+
+		// open shell
+		bonusFeatShell.pack();
+		CharacterWizard.center(bonusFeatShell);
+		bonusFeatShell.open();
+		
+		// check if disposed
+		while (!bonusFeatShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
 	}
 
 	private void createNextPage() {

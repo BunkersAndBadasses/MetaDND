@@ -2,6 +2,24 @@
  * CHOOSE SPELLS
  */
 
+/*
+ * barbarian - no spells, non lawful
+ * bard - cha, arcane(bard spell list), non lawful
+ * cleric - wis, divine(cleric spell list), alignment must match domain, alignment must be within 1 step of deities, st cuthbert only LN or LG, 
+ * 		choose god/domain (choose two from god's domains list, or choose no deity and select any two), 
+ * 		domain adds class skills!
+ * druid - wis, divine(druid spell list), can't use spells that are opposite his/her own alignment, 
+ * 		animal companion 35, must have neutral?
+ * fighter - no spells
+ * monk - lawful, no spells, 
+ * paladin - wis, divine, lawful good!, spells at 4th level, mount(5th level)
+ * ranger - divine, 5th level
+ * rogue - no spells
+ * sorcerer - cha, arcane, familiar
+ * wizard - int, arcane, familiar, school specialization(optional), must choose 2 two schools to give up(not divination), if divination, give up 1
+ * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
+ */
+
 package guis;
 import java.util.ArrayList;
 

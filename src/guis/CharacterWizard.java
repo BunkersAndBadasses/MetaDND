@@ -22,7 +22,8 @@ import core.character;
  * save items
  * set hp
  * set size
- * 
+ * monk - add wis to ac
+ * change error labels to one singular label, method in cw that sets color/location, set text/visibility in error check
  */
 
 /*
@@ -85,7 +86,7 @@ public class CharacterWizard {
 		}
 	}
 
-	private static void center(Shell shell) {
+	public static void center(Shell shell) {
 
 		Rectangle bds = shell.getDisplay().getBounds();
 
