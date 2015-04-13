@@ -81,9 +81,6 @@ public class Wiz9{
 		wiz9NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				
-				//TODO
-				System.out.print(character);
-				
 				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
 					CharacterWizard.wizPageNum++;
 				if (!CharacterWizard.wizPageCreated[9])
