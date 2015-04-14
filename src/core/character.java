@@ -228,9 +228,14 @@ public class character {
 	public String getWizardSpecialtySchool() { return wizardSpecialtySchool; }
 	
 	public void setWizardProhibitedSchools(String[] p) {
-		wizardProhibitedSchools[0] = p[0];
-		if (p.length > 1) 
+		if (p.length > 1) {
+			wizardProhibitedSchools = new String[2];
+			wizardProhibitedSchools[0] = p[0];
 			wizardProhibitedSchools[1] = p[1];
+		} else {
+			wizardProhibitedSchools = new String[1];
+			wizardProhibitedSchools[0] = p[0];
+		}
 	}
 	public String[] getWizardProhibitedSchools() { return wizardProhibitedSchools; }
 	

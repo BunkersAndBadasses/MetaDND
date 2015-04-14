@@ -34,6 +34,7 @@ import javax.swing.filechooser.FileSystemView;
 public class HomeWindow {
  
 	private static Display display;
+	private Device dev;
 	private Shell shell;
 	private static final int WIDTH = 900;
 	private static final int HEIGHT = 700;
@@ -168,6 +169,23 @@ public class HomeWindow {
         ///////////////////PLAYER SCREEN//////////////////////////
         
         // TODO ryan create the composite here
+        
+        Composite characterComp = new Composite(playerScreen, SWT.NONE);
+        Label playerLabel = new Label(characterComp, SWT.NONE);
+        playerLabel.setText("Characters:");
+		Font playerFont = new Font(playerLabel.getDisplay(), new FontData("Arial", 18,
+				SWT.BOLD));
+		playerLabel.setFont(playerFont);
+		
+		// placeholder labels take up columns 2 and 3 in the grid.
+        new Label(characterComp, SWT.NONE);  
+        new Label(characterComp, SWT.NONE); 
+        
+        
+        
+        characterComp.pack();
+        
+        referencePanel rp = new referencePanel(playerScreen);
         
         ///////////////////PLAYER SCREEN//////////////////////////
         
@@ -391,9 +409,9 @@ public class HomeWindow {
 		this.m_mainWindow.layout();
 	}
 
-	public static void main(String[] args) {
-		Display display = new Display();
-		HomeWindow hw = new HomeWindow(display);
-		display.dispose();
-	}
+//	public static void main(String[] args) {
+//		Display display = new Display();
+//		HomeWindow hw = new HomeWindow(display);
+//		display.dispose();
+//	}
 }
