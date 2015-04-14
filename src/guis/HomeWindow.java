@@ -404,9 +404,9 @@ public class HomeWindow {
 		this.m_mainWindow.layout();
 	}
 
-	public static void main(String[] args) {
-		Display display = new Display();
-		HomeWindow hw = new HomeWindow(display);
-		display.dispose();
-	}
+//	public static void main(String[] args) {
+//		Display display = new Display();
+//		HomeWindow hw = new HomeWindow(display);
+//		display.dispose();
+//	}
 }
