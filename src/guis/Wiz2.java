@@ -858,10 +858,11 @@ public class Wiz2 {
 			break;
 		}
 		}
+		
+		
 		// TODO 
 		// add cancel button
-
-
+		
 
 		// open shell
 		classExtrasShell.pack();
