@@ -376,6 +376,8 @@ public class Wiz2 {
 			}
 		});
 
+		// TODO add done listener for each
+		
 		charClass = charClass.toLowerCase();
 		switch(charClass) {
 		case ("druid"): 
@@ -574,7 +576,7 @@ public class Wiz2 {
 		{
 			// label - select an animal companion
 			Label sorcererLabel = new Label(classExtrasShell, SWT.NONE);
-			sorcererLabel.setText("Select a familiar");
+			sorcererLabel.setText("Select a Familiar");
 			GridData gd1 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 			gd1.horizontalSpan = 2;
 			sorcererLabel.setLayoutData(gd1);
@@ -616,6 +618,54 @@ public class Wiz2 {
 			famList.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
 					customInput.setText("");
+				}
+			});
+			
+			// label - select specialty school
+			Label sorcererLabel2 = new Label(classExtrasShell, SWT.NONE);
+			sorcererLabel2.setText("Select a Specialty School");
+			GridData gd5 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd5.horizontalSpan = 2;
+			sorcererLabel2.setLayoutData(gd5);
+			sorcererLabel2.pack();
+
+			// list of specialty schools
+			Combo ssList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			String[] schools = {"Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"};
+			for (int i = 0; i < schools.length; i++){
+				ssList.add(schools[i]);
+			}
+			GridData gd6 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd6.horizontalSpan = 2;
+			ssList.setLayoutData(gd6);
+			ssList.pack();
+			
+			// label - select forbidden school(s)
+			Label sorcererLabel3 = new Label(classExtrasShell, SWT.NONE);
+			sorcererLabel3.setText("Select a Specialty School");
+			GridData gd7 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd7.horizontalSpan = 2;
+			sorcererLabel2.setLayoutData(gd7);
+			sorcererLabel2.pack();
+
+			// list of prohibited schools
+			Combo psList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			GridData gd8 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd8.horizontalSpan = 2;
+			psList.setLayoutData(gd8);
+			psList.pack();
+			psList.setEnabled(false);
+			
+			ssList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					psList.removeAll();
+					for (int i = 0; i < schools.length; i++) {
+						if (!(ssList.getItem(ssList.getSelectionIndex()).equals(schools[i])))
+							if (!(ssList.getItem(ssList.getSelectionIndex()).equals("Divination")))
+							psList.add(schools[i]);
+					}
+					psList.pack();
+					psList.setEnabled(true);
 				}
 			});
 		}

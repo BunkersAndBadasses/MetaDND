@@ -169,6 +169,10 @@ public class Wiz5 {
 			skills.add((SkillEntity) itr.next());
 		}
 		
+		// TODO add misc modifiers
+		// class racial modifiers? 
+		// familiars modifiers
+		
 		for (int i = 0; i < skills.size(); i++) {
 			charSkills.add(new CharSkill(skills.get(i), character));
 		}
