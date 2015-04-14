@@ -4,6 +4,7 @@ import org.apache.batik.swing.JSVGCanvas;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
@@ -140,6 +141,15 @@ public class HomeWindow {
         playersButton.setText("Players");
         playersButton.setSize(new Point(300, 400));
         playersButton.pack();
+        playersButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+					// uncomment after constructor is made
+					// look at DieWindow for example of code structure
+	            	//new CharacterMain(shell.getDisplay());
+	            
+			}
+		});
         
         // each element should have its own griddata object.
         GridData dungeonMastersGD = new GridData();
