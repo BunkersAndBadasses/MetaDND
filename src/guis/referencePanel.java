@@ -62,6 +62,8 @@ public class referencePanel {
 		searchBar.addSelectionListener( new SelectionAdapter() { 
 			public void widgetDefaultSelected( SelectionEvent e ) { 
 				//TODO populate the search list
+				//feed method in the gamestate this string
+				// populate the list with results
 			}
 		});
 

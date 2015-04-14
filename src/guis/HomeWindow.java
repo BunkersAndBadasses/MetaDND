@@ -171,6 +171,8 @@ public class HomeWindow {
         // TODO ryan create the composite here
         
         Composite characterComp = new Composite(playerScreen, SWT.NONE);
+        GridData gridData = new GridData(SWT.FILL, SWT.CENTER, false, true);
+        characterComp.setLayoutData(gridData);
         Label playerLabel = new Label(characterComp, SWT.NONE);
         playerLabel.setText("Characters:");
 		Font playerFont = new Font(playerLabel.getDisplay(), new FontData("Arial", 18,
@@ -186,6 +188,10 @@ public class HomeWindow {
         characterComp.pack();
         
         referencePanel rp = new referencePanel(playerScreen);
+        Composite refPanel = rp.getRefPanel();
+        gridData = new GridData(SWT.FILL, SWT.CENTER, false, true);
+        refPanel.setLayoutData(gridData);
+        
         
         ///////////////////PLAYER SCREEN//////////////////////////
         
