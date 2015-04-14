@@ -25,6 +25,7 @@ public class GameState {
 	// 0 = homeScreen
 	// 1 = dungeonScreen
 	// 2 = dungeonViewer
+	// 3 = playerScreen
 	public static int PAGE_NUMBER = -1;
 	
 	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml

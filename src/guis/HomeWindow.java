@@ -44,6 +44,7 @@ public class HomeWindow {
 	private StackLayout m_mainWindowLayout;
 	private Composite m_mainWindow;
 	private Composite m_dungeonScreen;
+	private Composite m_playerScreen;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -104,11 +105,13 @@ public class HomeWindow {
         final Composite dungeonScreen = new Composite(mainWindow, SWT.NONE);
         final Composite dungeonViewer = new Composite(mainWindow, SWT.EMBEDDED);
         final Composite dungeonGenConfig = new Composite(mainWindow, SWT.NONE);
+        final Composite playerScreen = new Composite(mainWindow, SWT.NONE);
         
         
         this.m_mainWindow = mainWindow;
         this.m_mainWindowLayout = mainWindowLayout;
         this.m_dungeonScreen = dungeonScreen;
+        this.m_playerScreen = playerScreen;
         
         // this grid layout size allows us to have permanent centering of these buttons,
         // regardless of user resize.
@@ -118,6 +121,10 @@ public class HomeWindow {
         GridLayout dungeonScreenLayout = new GridLayout(1, true);
         dungeonScreenLayout.marginLeft = 10;
         dungeonScreen.setLayout(dungeonScreenLayout);
+        
+        GridLayout playerScreenLayout = new GridLayout(2, true);
+        playerScreenLayout.marginLeft = 10;
+        playerScreen.setLayout(playerScreenLayout);
         
         GridLayout dungeonGenConfigLayout = new GridLayout(2, true);
         dungeonGenConfig.setLayout(dungeonGenConfigLayout);
@@ -141,15 +148,6 @@ public class HomeWindow {
         playersButton.setText("Players");
         playersButton.setSize(new Point(300, 400));
         playersButton.pack();
-        playersButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				
-					// uncomment after constructor is made
-					// look at DieWindow for example of code structure
-	            	//new CharacterMain(shell.getDisplay());
-	            
-			}
-		});
         
         // each element should have its own griddata object.
         GridData dungeonMastersGD = new GridData();
@@ -169,6 +167,11 @@ public class HomeWindow {
 
         ///////////////////HOME SCREEN//////////////////////////
         
+        ///////////////////PLAYER SCREEN//////////////////////////
+        
+        // TODO ryan create the composite here
+        
+        ///////////////////PLAYER SCREEN//////////////////////////
         
         ///////////////////DUNGEON SCREEN//////////////////////////
         
@@ -303,6 +306,18 @@ public class HomeWindow {
         //		loadButton
         //      
 				
+        playersButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+				//TODO stuff here? 
+					// uncomment after constructor is made
+					// look at DieWindow for example of code structure
+	            	//new CharacterMain(shell.getDisplay());
+	            playerScreen.pack();
+	            navigateToPlayerScreen();
+			}
+		});
+        
 		dungeonMastersButton.addListener(SWT.Selection, new Listener() {
 		public void handleEvent(Event event) {
 			final List dungeonList = new List(dungeonScreen, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
@@ -372,6 +387,11 @@ public class HomeWindow {
 		this.m_mainWindow.layout();
 	}
 	
+	public void navigateToPlayerScreen() {
+		GameState.PAGE_NUMBER = 3;
+		this.m_mainWindowLayout.topControl = this.m_playerScreen;
+		this.m_mainWindow.layout();
+	}
 
 	public static void main(String[] args) {
 		Display display = new Display();
