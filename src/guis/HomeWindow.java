@@ -25,11 +25,10 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileSystemView;
 
 /*
- * iteration 2: 
+ * TODO
  * 
- * back button
- * starting at level > 1
- * adding custom skills
+ * fix menu bar home screen link - opens a new home window instead of navigating back to home in the same window
+ * but if no homewindow is open, open one (only one can be open at a time)
  */
 
 public class HomeWindow {
@@ -122,8 +121,7 @@ public class HomeWindow {
         dungeonScreenLayout.marginLeft = 10;
         dungeonScreen.setLayout(dungeonScreenLayout);
         
-        GridLayout playerScreenLayout = new GridLayout(2, true);
-        playerScreenLayout.marginLeft = 10;
+        GridLayout playerScreenLayout = new GridLayout(2, false);
         playerScreen.setLayout(playerScreenLayout);
         
         GridLayout dungeonGenConfigLayout = new GridLayout(2, true);
