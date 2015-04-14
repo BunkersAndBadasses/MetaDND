@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
@@ -20,36 +24,28 @@ import core.character;
 
 public class referencePanel {
 
-	private Composite wiz4;
 	private Device dev;
-	private int WIDTH;
-	private int HEIGHT;
-	private character character;
 	private Composite refPanel;
-	private Composite results;
+	private Composite view;
+	private Composite list;
 	private Composite info;
-	private StackLayout layout;
-	private StackLayout homeLayout;
+	private StackLayout stackLayout;
 
 	private Text searchBar;
+	private Text infoText;
 
-	private final Color white = new Color(dev, 255, 255, 255);
-
-	public referencePanel(Device dev, int WIDTH, int HEIGHT, 
-			final Composite info, Composite refPanel, Composite results, 
-			final StackLayout layout, final StackLayout homeLayout) {
-		this.dev = dev;
-		this.WIDTH = WIDTH;
-		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
-		this.info = info;
-		this.refPanel = refPanel;
-		this.results = results;
-		this.layout = layout;
-		this.homeLayout = homeLayout;
-
+	public referencePanel(Composite page) {
+		refPanel = new Composite(page, SWT.NONE);
+		stackLayout = new StackLayout();
+		
+		view = new Composite(refPanel, SWT.NONE);
+		list = new Composite(view, SWT.NONE);
+		info = new Composite(view, SWT.NONE);
 		createPageContent();
+		
 	}
+	
+	public Composite getRefPanel(){ return refPanel; }
 
 	private void createPageContent() {
 
@@ -65,7 +61,7 @@ public class referencePanel {
 		searchBar.setLayoutData(gridData);
 		searchBar.addSelectionListener( new SelectionAdapter() { 
 			public void widgetDefaultSelected( SelectionEvent e ) { 
-					//TODO populate the search list
+				//TODO populate the search list
 			}
 		});
 
@@ -75,10 +71,52 @@ public class referencePanel {
 		backButton.setVisible(false);
 		backButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-					//TODO close the information page
+				backButton.setVisible(false);
+				stackLayout.topControl = list;
 			}
 		});
+
 		
+		System.out.println("view: " + view);
+		System.out.println("stackLayout: " + stackLayout);
+		view.setLayout(stackLayout);
+
+		FillLayout fillLayout = new FillLayout();
+		fillLayout.type = SWT.VERTICAL;
+
+		//LIST COMPOSITE
+
+		list.setLayout(fillLayout);
+
+		List searchList = new List(list, SWT.V_SCROLL);
+		searchList.addMouseListener(new MouseListener()
+		{
+			public void mouseDown(MouseEvent e){}
+			public void mouseUp(MouseEvent e){}
+			public void mouseDoubleClick(MouseEvent e)
+			{
+				//TODO populate the info text box 
+				backButton.setVisible(true);
+				stackLayout.topControl = info;
+
+			}
+
+		});
+
+		list.layout();
+
+		//INFO COMPOSITE
+
+		info.setLayout(fillLayout);
+
+		infoText = new Text(refPanel, SWT.MULTI | 
+				SWT.V_SCROLL | SWT.WRAP | SWT.READ_ONLY);
+		infoText.setText("INFO");
+
+		info.layout();
+
+		stackLayout.topControl = list;
+		view.layout();
 
 	}
 
