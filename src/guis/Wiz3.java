@@ -25,6 +25,7 @@ import entity.RaceEntity;
 public class Wiz3 {
 
 	private Composite wiz3;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -53,16 +54,17 @@ public class Wiz3 {
 	private ClassEntity charSecClass;
 	private Label choiceLabel2;
 
-	public Wiz3(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz3(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -73,8 +75,8 @@ public class Wiz3 {
 		this.wizPagesSize = wizPages.size();
 		abilityScoresBefore = abilityScoresIn;
 		choiceLabel2 = new Label(wiz3, SWT.NONE);
-		charRace = CharacterWizard.getCharacter().getCharRace();
-		charClass = CharacterWizard.getCharacter().getCharClass();
+		charRace = cw.getCharacter().getCharRace();
+		charClass = cw.getCharacter().getCharClass();
 		
 
 		createPageContent();
@@ -293,72 +295,71 @@ public class Wiz3 {
 		
 		
 		// next button
-		Button wiz3NextButton = CharacterWizard.createNextButton(wiz3);
+		Button wiz3NextButton = cw.createNextButton(wiz3);
 		wiz3NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking - make sure each list has something selected
-//				boolean error = false;
-//				{
-//					String[] selection = strList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = dexList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = conList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = intList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else
-//						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = wisList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
-//				}
-//				{
-//					String[] selection = chaList.getSelection();
-//					if (selection.length == 0) {
-//						errorLabel.setVisible(true);
-//						error = true;
-//					} else 
-//						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
-//				}
-//				
-//				if (error) return;
-				//TODO
+				boolean error = false;
+				{
+					String[] selection = strList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = dexList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = conList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = intList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else
+						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = wisList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
+				}
+				{
+					String[] selection = chaList.getSelection();
+					if (selection.length == 0) {
+						errorLabel.setVisible(true);
+						error = true;
+					} else 
+						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
+				}
+				
+				if (error) return;
 				
 				// if all is good, save to character
-				CharacterWizard.getCharacter().setAbilityScores(abilityScoresAfter[0], 
+				cw.getCharacter().setAbilityScores(abilityScoresAfter[0], 
 						abilityScoresAfter[1], abilityScoresAfter[2], 
 						abilityScoresAfter[3], abilityScoresAfter[4], 
 						abilityScoresAfter[5]);				
 				
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[3])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[3])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
@@ -367,40 +368,40 @@ public class Wiz3 {
 
 
 		// back button
-		//Button wiz3BackButton = CharacterWizard.createBackButton(wiz3, panel, layout);
+		//Button wiz3BackButton = cw.createBackButton(wiz3, panel, layout);
 
 
 		// cancel button
-		Button wiz3CancelButton = CharacterWizard.createCancelButton(wiz3, home, homePanel, homeLayout);
+		Button wiz3CancelButton = cw.createCancelButton(wiz3, home, homePanel, homeLayout);
 		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});	
 	}
 	
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[3] = true;
-		CharacterWizard.wizs.add(new Wiz4(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[3] = true;
+		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 	
 	public void updateCharRace() {
-		charRace = CharacterWizard.getCharacter().getCharRace();
+		charRace = cw.getCharacter().getCharRace();
 		String text = charRace.getName() + " " + charClass.getName();
 		choiceLabel2.setText(text);
 		choiceLabel2.pack();
 	}
 	
 	public void updateCharClass() {
-		charClass = CharacterWizard.getCharacter().getCharClass();
+		charClass = cw.getCharacter().getCharClass();
 		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		choiceLabel2.pack();
 	}
 	
 	public void updateCharSecClass() {
-		charSecClass = CharacterWizard.getCharacter().getCharSecClass();
+		charSecClass = cw.getCharacter().getCharSecClass();
 		if (charSecClass == null)
 			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
 		else if (charSecClass.equals(""))

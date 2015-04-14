@@ -38,6 +38,7 @@ import core.character;
 public class Wiz9{
 
 	private Composite wiz9;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -51,15 +52,16 @@ public class Wiz9{
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	public Wiz9(Device dev, int WIDTH, int HEIGHT,
+	public Wiz9(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz9 = wizPages.get(8);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -74,35 +76,35 @@ public class Wiz9{
 	
 	private void createPageContent() {
 		Label wiz9Label = new Label(wiz9, SWT.NONE);
-		wiz9Label.setText("Select Known Spells");
+		wiz9Label.setText("Select Known Spells - Almost Done, Coming Soon!"); //TODO
 		wiz9Label.pack();
 
-		Button wiz9NextButton = CharacterWizard.createNextButton(wiz9);
+		Button wiz9NextButton = cw.createNextButton(wiz9);
 		wiz9NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[9])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[9])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
 			}
 		});
 
-		//Button wiz9BackButton = CharacterWizard.createBackButton(wiz9, panel, layout);
-		Button wiz9CancelButton = CharacterWizard.createCancelButton(wiz9, home, homePanel, homeLayout);
+		//Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
+		Button wiz9CancelButton = cw.createCancelButton(wiz9, home, homePanel, homeLayout);
 		wiz9CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
 	
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[9] = true;
-		CharacterWizard.wizs.add(new Wiz10(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[9] = true;
+		cw.wizs.add(new Wiz10(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 	

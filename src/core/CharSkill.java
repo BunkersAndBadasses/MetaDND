@@ -55,8 +55,8 @@ public class CharSkill {
 	
 	public int getRank() { return rank; }
 	
-	public boolean incRank() {
-		if ((classSkill && rank ==4) || (!classSkill && rank == 2))
+	public boolean incRank(int numSkillPoints) {
+		if ((classSkill && rank ==4) || (!classSkill && (rank == 2 || numSkillPoints == 1)))
 			return false;
 //		if(!classSkill){
 //			if (!halfPoint) {

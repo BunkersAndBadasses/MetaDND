@@ -31,6 +31,7 @@ import core.character;
 public class Wiz7 {
 
 	private Composite wiz7;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -51,25 +52,26 @@ public class Wiz7 {
 	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
 
-	public Wiz7(Device dev, int WIDTH, int HEIGHT,
+	public Wiz7(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz7 = wizPages.get(6);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(7);
+		this.nextPage = wizPages.get(8);
 		this.wizPagesSize = wizPages.size();
-		charRace = CharacterWizard.getCharacter().getCharRace().getName();
-		charClass = CharacterWizard.getCharacter().getCharClass().getName();
+		charRace = cw.getCharacter().getCharRace().getName();
+		charClass = cw.getCharacter().getCharClass().getName();
 
 		createPageContent();
 	}
@@ -232,14 +234,8 @@ public class Wiz7 {
 		itemListScreen.pack();
 		charItemScreen.pack();
 		
-		
-		
-		
-		
-		
-		
-		
-		Button wiz7NextButton = CharacterWizard.createNextButton(wiz7);
+		// next button
+		Button wiz7NextButton = cw.createNextButton(wiz7);
 		wiz7NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int gold = 0;
@@ -251,33 +247,34 @@ public class Wiz7 {
 					goldText.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
+				character.setGold(gold);
 				
 				for (int i = 0; i < charItems.size(); i++) {
 					character.addItem(charItems.get(i));
 				}
 				
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[7])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum+=2;
+				if (!cw.wizPageCreated[8])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
 			}
 		});
 
-		//Button wiz7BackButton = CharacterWizard.createBackButton(wiz7, panel, layout);
-		Button wiz7CancelButton = CharacterWizard.createCancelButton(wiz7, home, homePanel, homeLayout);
+		//Button wiz7BackButton = cw.createBackButton(wiz7, panel, layout);
+		Button wiz7CancelButton = cw.createCancelButton(wiz7, home, homePanel, homeLayout);
 		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[7] = true;
-		CharacterWizard.wizs.add(new Wiz8(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[8] = true;
+		cw.wizs.add(new Wiz9(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

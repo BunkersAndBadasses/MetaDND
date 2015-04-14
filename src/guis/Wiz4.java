@@ -41,6 +41,7 @@ import core.character;
 public class Wiz4 {
 
 	private Composite wiz4;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -74,7 +75,7 @@ public class Wiz4 {
 			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
 
-	private int numBonusLangs = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
+	private int numBonusLangs;
 
 	private Random rng = new Random();
 
@@ -85,15 +86,17 @@ public class Wiz4 {
 	private final Color white = new Color(dev, 255, 255, 255);
 
 
-	public Wiz4(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz4(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
+		numBonusLangs = cw.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
 		wiz4 = wizPages.get(3);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -103,8 +106,8 @@ public class Wiz4 {
 		this.nextPage = wizPages.get(4);
 		this.wizPagesSize = wizPages.size();
 
-		charClass = CharacterWizard.getCharacter().getCharClass().getName();
-		charRace = CharacterWizard.getCharacter().getCharRace().getName();
+		charClass = cw.getCharacter().getCharClass().getName();
+		charRace = cw.getCharacter().getCharRace().getName();
 
 		createPageContent();
 	}
@@ -467,7 +470,7 @@ public class Wiz4 {
 
 
 		// next button
-		Button wiz4NextButton = CharacterWizard.createNextButton(wiz4);
+		Button wiz4NextButton = cw.createNextButton(wiz4);
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking
@@ -524,9 +527,9 @@ public class Wiz4 {
 				character.setLanguages(langInput.getText());
 
 				// change to next page				
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[4])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[4])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
@@ -535,15 +538,15 @@ public class Wiz4 {
 
 
 		// back button
-		//Button wiz4BackButton = CharacterWizard.createBackButton(wiz6, panel, layout);
+		//Button wiz4BackButton = cw.createBackButton(wiz6, panel, layout);
 
 
 		// cancel button
-		Button wiz4CancelButton = CharacterWizard.createCancelButton(wiz4, home, homePanel, homeLayout);
+		Button wiz4CancelButton = cw.createCancelButton(wiz4, home, homePanel, homeLayout);
 		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
@@ -555,8 +558,8 @@ public class Wiz4 {
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[4] = true;
-		CharacterWizard.wizs.add(new Wiz5(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[4] = true;
+		cw.wizs.add(new Wiz5(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

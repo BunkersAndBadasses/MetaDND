@@ -35,11 +35,13 @@ import core.character;
  * fix + - buttons
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
+ * add extra cleric class skills
  */
 
 public class Wiz5 {
 
 	private Composite wiz5;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -61,15 +63,16 @@ public class Wiz5 {
 	private GameState gs = Main.gameState;
 	
 	
-	public Wiz5(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz5(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz5 = wizPages.get(4);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -90,7 +93,7 @@ public class Wiz5 {
 
 
 		// set number of skill points
-		charClass = CharacterWizard.getCharacter().getCharClass().getName();
+		charClass = cw.getCharacter().getCharClass().getName();
 		int classPoints;
 		switch(charClass) {
 		case ("Cleric") :
@@ -113,11 +116,11 @@ public class Wiz5 {
 			classPoints = 8;
 			break;	
 		}
-		int intMod = CharacterWizard.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
+		int intMod = cw.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
 		numSkillPoints = (classPoints + intMod) * 4;
 		if (numSkillPoints < 4) 
 			numSkillPoints = 4;
-		if (CharacterWizard.getCharacter().getCharRace().equals("Human"))
+		if (cw.getCharacter().getCharRace().equals("Human"))
 			numSkillPoints += 4;
 
 		// "skill points remaining: " label
@@ -202,13 +205,13 @@ public class Wiz5 {
 			Button inc = new Button(skillsScreen, SWT.PUSH);
 			inc.setText("+");
 			GridData incGD = new GridData(SWT.LEFT);
-			incGD.widthHint = 30;
 			inc.setLayoutData(incGD);
+			inc.pack();
 			Button dec = new Button(skillsScreen, SWT.PUSH);
 			dec.setText("-");
 			GridData decGD = new GridData(SWT.LEFT);
-			decGD.widthHint = 30;
 			dec.setLayoutData(decGD);
+			dec.pack();
 			final Label skillName = new Label(skillsScreen, SWT.NONE);
 			skillName.setLayoutData(new GridData(SWT.LEFT));
 //			skillName.setLocation(260, (i*30) + 10);
@@ -243,7 +246,7 @@ public class Wiz5 {
 				public void handleEvent(Event event) {
 					if (numSkillPoints == 0)
 						return;
-					if (current.incRank()) {
+					if (current.incRank(numSkillPoints)) {
 						skillName.setText(untrained + current.getSkill().getName() + " (" 
 								+ current.getAbilityType() + ")" + acPen + " = " 
 								+ abilityMod + " + " + miscMod + " + " 
@@ -290,31 +293,31 @@ public class Wiz5 {
 		unusedSkillPointsError.pack();
 		
 		// next button
-		Button wiz5NextButton = CharacterWizard.createNextButton(wiz5);
+		Button wiz5NextButton = cw.createNextButton(wiz5);
 		wiz5NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// make sure all skill points are used
-//				if (numSkillPoints > 0) {
-//					unusedSkillPointsError.setVisible(true);
-//					return;
-//				}
-//				
+				if (numSkillPoints > 0) {
+					unusedSkillPointsError.setVisible(true);
+					return;
+				}
+				
 				// save to character
 				character.setSkills(charSkills);
 
 				// move on to next page
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[5])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[5])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
-				((Wiz6) CharacterWizard.wizs.get(5)).createBonusPopUp();
+				((Wiz6) cw.wizs.get(5)).createBonusPopUp();
 			}
 		});
 
 //		// back button
-//		Button wiz4BackButton = CharacterWizard.createBackButton(wiz4, panel, layout);
+//		Button wiz4BackButton = cw.createBackButton(wiz4, panel, layout);
 //		wiz4BackButton.addListener(SWT.Selection, new Listener() {
 //			public void handleEvent(Event event) {
 //				unusedSkillPointsError.setVisible(false);
@@ -322,18 +325,18 @@ public class Wiz5 {
 //		});
 		
 		// cancel button
-		Button wiz5CancelButton = CharacterWizard.createCancelButton(wiz5, home, homePanel, homeLayout);
+		Button wiz5CancelButton = cw.createCancelButton(wiz5, home, homePanel, homeLayout);
 		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[5] = true;		
-		CharacterWizard.wizs.add(new Wiz6(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[5] = true;		
+		cw.wizs.add(new Wiz6(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

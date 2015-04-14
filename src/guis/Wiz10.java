@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -45,6 +46,7 @@ import core.character;
 
 public class Wiz10 {
 
+	private CharacterWizard cw;
 	private Composite wiz10;
 	private int WIDTH;
 	private int HEIGHT;
@@ -53,14 +55,15 @@ public class Wiz10 {
 	private Composite homePanel;
 	private StackLayout homeLayout;
 
-	public Wiz10(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz10(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz10 = wizPages.get(9);
+		this.cw = cw;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.home = home;
 		this.homePanel = homePanel;
 		this.homeLayout = homeLayout;
@@ -72,6 +75,11 @@ public class Wiz10 {
 		Label wiz10Label = new Label(wiz10, SWT.NONE);
 		wiz10Label.setText("Done!");
 		wiz10Label.pack();
+		
+		Text charText = new Text(wiz10, SWT.BORDER | SWT.READ_ONLY | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+		charText.setBounds(10, 20, WIDTH - 40, HEIGHT - 110);
+		charText.setText(character.toString());
+		//charText.pack();
 
 		Button wiz10SaveButton = new Button(wiz10, SWT.PUSH);
 		wiz10SaveButton.setText("Save");
@@ -389,7 +397,7 @@ public class Wiz10 {
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
 
-					CharacterWizard.disposeShell();
+					cw.disposeShell();
 					System.out.println("File saved!");
 					
 					
@@ -405,12 +413,12 @@ public class Wiz10 {
 			}
 		});
 
-		//Button wiz10BackButton = CharacterWizard.createBackButton(wiz10, panel, layout);
-		Button wiz10CancelButton = CharacterWizard.createCancelButton(wiz10, home, homePanel, homeLayout);
+		//Button wiz10BackButton = cw.createBackButton(wiz10, panel, layout);
+		Button wiz10CancelButton = cw.createCancelButton(wiz10, home, homePanel, homeLayout);
 		wiz10CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}

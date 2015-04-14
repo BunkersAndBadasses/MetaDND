@@ -33,6 +33,7 @@ import entity.RaceEntity;
 public class Wiz2 {
 
 	private Composite wiz2;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -53,15 +54,16 @@ public class Wiz2 {
 	private Combo classDropDown;
 	private Combo secClassDropDown;
 
-	public Wiz2(Device dev, int WIDTH, int HEIGHT,
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, final StackLayout homeLayout, 
-			final ArrayList<Composite> wizPages) {
+	public Wiz2(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
+			Composite panel, Composite home, Composite homePanel, 
+			StackLayout layout, StackLayout homeLayout, 
+			ArrayList<Composite> wizPages) {
 		wiz2 = wizPages.get(1);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -250,7 +252,7 @@ public class Wiz2 {
 		 */ // TODO add later
 
 		// next button
-		Button wiz2NextButton = CharacterWizard.createNextButton(wiz2);
+		Button wiz2NextButton = cw.createNextButton(wiz2);
 		wiz2NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				badSearch.setVisible(false);
@@ -283,21 +285,21 @@ public class Wiz2 {
 						| charClass.equalsIgnoreCase("wizard")
 						)
 					extraStuffWindow(charClass);
-				CharacterWizard.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
-				CharacterWizard.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
+				cw.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
+				cw.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
 				int secClassIndex = secClassDropDown.getSelectionIndex();
 				if (secClassIndex < 1)
-					CharacterWizard.getCharacter().setCharSecClass(null);
+					cw.getCharacter().setCharSecClass(null);
 				else 
-					CharacterWizard.getCharacter().setCharSecClass(classes.get(secClassIndex));
+					cw.getCharacter().setCharSecClass(classes.get(secClassIndex));
 				//				Wiz3.updateCharRace();
 				//				Wiz3.updateCharClass();
 				//				Wiz3.updateCharSecClass();
 
 				// change to next page
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[2])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[2])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
@@ -321,12 +323,12 @@ public class Wiz2 {
 
 
 		// cancel button
-		Button wiz2CancelButton = CharacterWizard.createCancelButton(wiz2, home,
+		Button wiz2CancelButton = cw.createCancelButton(wiz2, home,
 				homePanel, homeLayout);
 		wiz2CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
@@ -376,8 +378,6 @@ public class Wiz2 {
 				return;
 			}
 		});
-
-		// TODO add done listener for each
 
 		final String charClass = c.toLowerCase();
 		switch(charClass) {
@@ -591,6 +591,7 @@ public class Wiz2 {
 			// list of available familiars
 			Combo famList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] familiars = {"Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"};
+			famList.add("<none>");
 			for (int i = 0; i < familiars.length; i++){
 				famList.add(familiars[i]);
 			}
@@ -598,6 +599,7 @@ public class Wiz2 {
 			gd2.horizontalSpan = 2;
 			famList.setLayoutData(gd2);
 			famList.pack();
+			famList.select(0);
 
 			// label - add custom familiar
 			Label customLabel = new Label(classExtrasShell, SWT.NONE);
@@ -617,7 +619,7 @@ public class Wiz2 {
 			// when the custom input is selected, the list is deselected 
 			customInput.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
-					famList.deselectAll();
+					famList.select(0);
 				}
 			});
 
@@ -636,7 +638,7 @@ public class Wiz2 {
 			done.pack();
 			done.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event e) {
-					if (famList.getSelectionIndex() != -1) {
+					if (famList.getSelectionIndex() > 0) {
 						character.setFamiliar(famList.getItem(famList.getSelectionIndex()));
 					} else if (customInput.getText().length() > 0) {
 						character.setFamiliar(customInput.getText());
@@ -659,6 +661,7 @@ public class Wiz2 {
 			// list of available familiars
 			CCombo famList = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] familiars = {"Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"};
+			famList.add("<none>");
 			for (int i = 0; i < familiars.length; i++){
 				famList.add(familiars[i]);
 			}
@@ -666,6 +669,7 @@ public class Wiz2 {
 			gd2.horizontalSpan = 2;
 			famList.setLayoutData(gd2);
 			famList.pack();
+			famList.select(0);
 
 			// label - add custom familiar
 			Label customLabel = new Label(classExtrasShell, SWT.NONE);
@@ -685,7 +689,7 @@ public class Wiz2 {
 			// when the custom input is selected, the list is deselected 
 			customInput.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
-					famList.deselectAll();
+					famList.select(0);
 				}
 			});
 
@@ -819,13 +823,12 @@ public class Wiz2 {
 				public void handleEvent(Event e) {
 					boolean error = false;
 					// save familiar
-					if (famList.getSelectionIndex() != -1) {
+					if (famList.getSelectionIndex() > 0) {
 						character.setFamiliar(famList.getItem(famList.getSelectionIndex()));
 					} else if (customInput.getText().length() > 0) {
 						character.setFamiliar(customInput.getText());
 					}
 					// save specialty school
-					System.out.println(ssList.getSelectionIndex()); // TODO
 					if (ssList.getSelectionIndex() > 0) {
 						if (psList1.getSelectionIndex() == -1) {
 							psList1.setBackground(new Color(dev, 255, 100, 100));
@@ -839,8 +842,6 @@ public class Wiz2 {
 							if (psList2.getSelectionIndex() != -1) {
 								prohibitedSchools[0] = psList1.getItem(psList1.getSelectionIndex());
 								prohibitedSchools[1] = psList2.getItem(psList2.getSelectionIndex());
-								System.out.println(prohibitedSchools[0]); //TODO
-								System.out.println(prohibitedSchools[1]); //TODO
 								character.setWizardProhibitedSchools(prohibitedSchools);
 							} else {
 								prohibitedSchools = new String[1];
@@ -880,9 +881,9 @@ public class Wiz2 {
 	public Composite getWiz2() { return wiz2; }
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[2] = true;
-		CharacterWizard.wizs.add(new Wiz3(dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages, CharacterWizard.baseAbilityScores));
+		cw.wizPageCreated[2] = true;
+		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, home,
+				homePanel, layout, homeLayout, wizPages, cw.getBaseAbilityScores()));
 		layout.topControl = nextPage;
 		panel.layout();
 	}

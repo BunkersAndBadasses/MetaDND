@@ -280,37 +280,37 @@ public class character {
 		s += "Gold: " + gold + "\n";
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < feats.size(); i++)
 			s += "\t" + feats.get(i).getName() + "\n";
 		s += "Special Abilities: " + "\n";
 		if (specialAbilities.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < specialAbilities.size(); i++)
 			s += "\t" + specialAbilities.get(i).getName() + "\n";
 		s += "Spells: " + "\n";
 		if (spells.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < spells.size(); i++)
 			s += "\t" + spells.get(i).getName() + "\n";
 		s += "Prepared Spells: " + "\n";
 		if (prepSpells.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < prepSpells.size(); i++)
 			s += "\t" + prepSpells.get(i).getName() + "\n";
 		s += "Items: " + "\n";
 		if (items.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < items.size(); i++)
 			s += "\t" + items.get(i).getItem().getName() + ": " + items.get(i).getCount() + "\n";
 		s += "Weapons: " + "\n";
 		if (weapons.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < weapons.size(); i++)
 			s += "\t" + weapons.get(i).getName() + "\n";
 		s += "Armor: " + "\n";
 		if (armor.size() == 0)
-			s += "<empty>";
+			s += "<empty>\n";
 		for (int i = 0; i < armor.size(); i++)
 			s += "\t" + armor.get(i).getName() + "\n";
 		s += "Notes: " + notes + "\n";

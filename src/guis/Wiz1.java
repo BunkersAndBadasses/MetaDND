@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Text;
 public class Wiz1 {	
 
 	private Composite wiz1;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -47,18 +48,19 @@ public class Wiz1 {
 	private Label badASInputText;
 
 
-	public Wiz1(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz1(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz1 = wizPages.get(0);
-		CharacterWizard.wizPageNum = 0;
+		//CharacterWizard.wizPageNum = 0;
 		layout.topControl = wiz1;
 		panel.layout();
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -133,7 +135,7 @@ public class Wiz1 {
 
 
 		// next button
-		Button wiz1NextButton = CharacterWizard.createNextButton(wiz1);
+		Button wiz1NextButton = cw.createNextButton(wiz1);
 		wiz1NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking for level
@@ -169,15 +171,15 @@ public class Wiz1 {
 
 				// if all goes well, save info
 				character.setLevel(level);
-				CharacterWizard.baseAbilityScores = as;
+				cw.setBaseAbilityScores(as);
 
 				// clears any past error messages
 				badLevelInputText.setVisible(false);
 				badASInputText.setVisible(false);
 
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[1])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[1])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
@@ -185,11 +187,11 @@ public class Wiz1 {
 		});
 		
 		// cancel button
-		Button wiz1CancelButton = CharacterWizard.createCancelButton(wiz1, home, homePanel, homeLayout);
+		Button wiz1CancelButton = cw.createCancelButton(wiz1, home, homePanel, homeLayout);
 		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
@@ -218,8 +220,8 @@ public class Wiz1 {
 	public Composite getWiz1() { return wiz1; }
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[1] = true;
-		CharacterWizard.wizs.add(new Wiz2(dev, WIDTH, HEIGHT, panel, home, homePanel,
+		cw.wizPageCreated[1] = true;
+		cw.wizs.add(new Wiz2(cw, dev, WIDTH, HEIGHT, panel, home, homePanel,
 				layout, homeLayout, wizPages));
 	}
 

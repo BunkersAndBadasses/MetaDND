@@ -20,6 +20,7 @@ import core.character;
 public class Wiz8{
 
 	private Composite wiz8;
+	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
@@ -33,15 +34,16 @@ public class Wiz8{
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	public Wiz8(Device dev, int WIDTH, int HEIGHT, 
+	public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
 		wiz8 = wizPages.get(7);
+		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.character = CharacterWizard.getCharacter();
+		this.character = cw.getCharacter();
 		this.panel = panel;
 		this.home = home;
 		this.homePanel = homePanel;
@@ -59,31 +61,31 @@ public class Wiz8{
 		wiz8Label.setText("Choose Domain/Specialty School");
 		wiz8Label.pack();
 
-		Button wiz8NextButton = CharacterWizard.createNextButton(wiz8);
+		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.wizPageNum < wizPagesSize - 1)
-					CharacterWizard.wizPageNum++;
-				if (!CharacterWizard.wizPageCreated[8])
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[8])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
 			}
 		});
 
-		//Button wiz8BackButton = CharacterWizard.createBackButton(wiz8, panel, layout);
-		Button wiz8CancelButton = CharacterWizard.createCancelButton(wiz8, home, homePanel, homeLayout);
+		//Button wiz8BackButton = cw.createBackButton(wiz8, panel, layout);
+		Button wiz8CancelButton = cw.createCancelButton(wiz8, home, homePanel, homeLayout);
 		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (CharacterWizard.cancel)
-					CharacterWizard.reset();
+				if (cw.cancel)
+					cw.reset();
 			}
 		});
 	}
 
 	private void createNextPage() {
-		CharacterWizard.wizPageCreated[8] = true;
-		CharacterWizard.wizs.add(new Wiz9(dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[8] = true;
+		cw.wizs.add(new Wiz9(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

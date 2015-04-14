@@ -42,26 +42,27 @@ public class CharacterWizard {
 
 	int pageNum = -1;
 
-	private static Device dev;
-	private static Display display;
-	private static Shell shell;
-	private static StackLayout wizLayout;
+	private Device dev;
+	private Display display;
+	private Shell shell;
+	private StackLayout wizLayout;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
-	public static int wizPageNum = -1;
-	public static boolean cancel = false;
-	public static boolean[] wizPageCreated = { false, false, false, false,
+	public int wizPageNum = -1;
+	public boolean cancel = false;
+	public boolean[] wizPageCreated = { false, false, false, false,
 		false, false, false, false, false, false };
 	
 	private Composite wizPanel;
 
-	private static ArrayList<Composite> wizPages;
+	private ArrayList<Composite> wizPages;
 
-	public static ArrayList<Object> wizs = new ArrayList<Object>();
+	public ArrayList<Object> wizs = new ArrayList<Object>();
 
-	private static character character;
+	private character character;
+	private CharacterWizard cw = this;
 
-	public static int[] baseAbilityScores = new int[6];
+	public int[] baseAbilityScores = new int[6];
 
 	public CharacterWizard(Display d) {
 		display = d;
@@ -209,12 +210,12 @@ public class CharacterWizard {
 
 
 		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
-
+		
 		wizardButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
 				instantiateWizPages();
-				Wiz1 wiz1 = new Wiz1(dev, WIDTH, HEIGHT, wizPanel, home,
+				Wiz1 wiz1 = new Wiz1(cw, dev, WIDTH, HEIGHT, wizPanel, home,
 						homePanel, wizLayout, homeLayout, wizPages);
 				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);
@@ -246,7 +247,7 @@ public class CharacterWizard {
 	 * @param c
 	 * @return
 	 */
-	public static Button createNextButton(Composite c) {
+	public Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
 		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
@@ -262,7 +263,7 @@ public class CharacterWizard {
 	 * @param layout
 	 * @return
 	 */
-	public static Button createBackButton(Composite c, final Composite panel,
+	public Button createBackButton(Composite c, final Composite panel,
 			final StackLayout layout) {
 		Button backButton = new Button(c, SWT.PUSH);
 		backButton.setText("Back");
@@ -288,7 +289,7 @@ public class CharacterWizard {
 	 * @param layout
 	 * @return
 	 */
-	public static Button createCancelButton(Composite c, final Composite home,
+	public Button createCancelButton(Composite c, final Composite home,
 			final Composite panel, final StackLayout layout) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
@@ -358,7 +359,7 @@ public class CharacterWizard {
 		return cancelButton;
 	}
 
-	public static character getCharacter() {
+	public character getCharacter() {
 		return character;
 	}
 	
@@ -387,9 +388,14 @@ public class CharacterWizard {
 		wizPages.add(wiz10);
 	}
 	
-	public static void disposeShell() { shell.dispose(); }
+	public CharacterWizard getThis() { return cw; }
 	
-	public static void reset() {
+	public void disposeShell() { shell.dispose(); }
+	
+	public int[] getBaseAbilityScores() { return baseAbilityScores; }
+	public void setBaseAbilityScores(int[] a) { baseAbilityScores = a; }
+	
+	public void reset() {
 		character = new character();
 		for (int i = 0; i < wizPageCreated.length; i++) {
 			wizPageCreated[i] = false;
