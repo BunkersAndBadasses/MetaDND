@@ -52,6 +52,7 @@ public class Wiz2 {
 	private Combo raceDropDown;
 	private Combo classDropDown;
 	private Combo secClassDropDown;
+
 	public Wiz2(Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
@@ -357,7 +358,7 @@ public class Wiz2 {
 	//	}
 	// TODO add later
 
-	private void extraStuffWindow(String charClass) {
+	private void extraStuffWindow(String c) {
 		// druid - animal companion
 		// ranger - favored enemy
 		// sorcerer - familiar
@@ -377,8 +378,8 @@ public class Wiz2 {
 		});
 
 		// TODO add done listener for each
-		
-		charClass = charClass.toLowerCase();
+
+		final String charClass = c.toLowerCase();
 		switch(charClass) {
 		case ("druid"): 
 		{
@@ -428,8 +429,25 @@ public class Wiz2 {
 					customInput.setText("");
 				}
 			});
+
+			// done button
+			Button done = new Button(classExtrasShell, SWT.PUSH);
+			done.setText("Done");
+			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			doneGD.horizontalSpan = 2;
+			done.setLayoutData(doneGD);
+			done.pack();
+			done.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					if (acList.getSelectionIndex() != -1)
+						character.setDruidAnimalCompanion(acList.getItem(acList.getSelectionIndex()));
+					else if (customInput.getText().length() > 0)
+						character.setDruidAnimalCompanion(customInput.getText());
+					classExtrasShell.dispose();
+				}
+			});
+			break;
 		}
-		break;
 		case ("ranger"):
 		{
 			Label rangerLabel = new Label(classExtrasShell, SWT.NONE);
@@ -463,9 +481,15 @@ public class Wiz2 {
 			subtypeList.setLayoutData(gd8);
 			subtypeList.pack();
 			subtypeList.setVisible(false);
+			subtypeList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					subtypeList.setBackground(null);
+				}
+			});
 
 			feList.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event e) {
+					subtypeList.setBackground(null);
 					if (feList.getItem(feList.getSelectionIndex()).equals("Humanoid")){
 						subtypeList.deselectAll();
 						subtypeList.removeAll();
@@ -509,6 +533,7 @@ public class Wiz2 {
 			// when the custom input is selected, the list is deselected 
 			customInput.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
+					subtypeList.setBackground(null);
 					subtypeLabel.setVisible(false);
 					subtypeList.setVisible(false);
 					feList.deselectAll();
@@ -520,8 +545,39 @@ public class Wiz2 {
 					customInput.setText("");
 				}
 			});
+
+			// done button
+			Button done = new Button(classExtrasShell, SWT.PUSH);
+			done.setText("Done");
+			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			doneGD.horizontalSpan = 2;
+			done.setLayoutData(doneGD);
+			done.pack();
+			done.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					boolean error = false;
+					if (feList.getSelectionIndex() != -1) {
+						if (feList.getItem(feList.getSelectionIndex()).equals("Humanoid") 
+								|| feList.getItem(feList.getSelectionIndex()).equals("Outsider")) {
+							if (subtypeList.getSelectionIndex() != -1) {
+								character.setRangerFavoredEnemy(feList.getItem(feList.getSelectionIndex()) + "(" 
+										+ subtypeList.getItem(subtypeList.getSelectionIndex()) + ")");
+							} else {
+								subtypeList.setBackground(new Color(dev, 255, 100, 100));
+								error = true;
+							}
+						} else {
+							character.setRangerFavoredEnemy(feList.getItem(feList.getSelectionIndex()));
+						}
+					} else if (customInput.getText().length() > 0) {
+						character.setRangerFavoredEnemy(customInput.getText());
+					}
+					if (!error)
+						classExtrasShell.dispose();
+				}
+			});
+			break;
 		}
-		break;
 		case ("sorcerer"):
 		{
 			// label - select an animal companion
@@ -570,8 +626,26 @@ public class Wiz2 {
 					customInput.setText("");
 				}
 			});
+
+			// done button
+			Button done = new Button(classExtrasShell, SWT.PUSH);
+			done.setText("Done");
+			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			doneGD.horizontalSpan = 2;
+			done.setLayoutData(doneGD);
+			done.pack();
+			done.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					if (famList.getSelectionIndex() != -1) {
+						character.setFamiliar(famList.getItem(famList.getSelectionIndex()));
+					} else if (customInput.getText().length() > 0) {
+						character.setFamiliar(customInput.getText());
+					}
+					classExtrasShell.dispose();
+				}
+			});
+			break;
 		}
-		break;
 		default: // wizard
 		{
 			// label - select an animal companion
@@ -620,7 +694,7 @@ public class Wiz2 {
 					customInput.setText("");
 				}
 			});
-			
+
 			// label - select specialty school
 			Label sorcererLabel2 = new Label(classExtrasShell, SWT.NONE);
 			sorcererLabel2.setText("Select a Specialty School");
@@ -639,7 +713,7 @@ public class Wiz2 {
 			gd6.horizontalSpan = 2;
 			ssList.setLayoutData(gd6);
 			ssList.pack();
-			
+
 			// label - select forbidden school(s)
 			Label sorcererLabel3 = new Label(classExtrasShell, SWT.NONE);
 			sorcererLabel3.setText("Select a Specialty School");
@@ -649,43 +723,98 @@ public class Wiz2 {
 			sorcererLabel2.pack();
 
 			// list of prohibited schools
-			Combo psList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			Combo psList1 = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			GridData gd8 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-			gd8.horizontalSpan = 2;
-			psList.setLayoutData(gd8);
-			psList.pack();
-			psList.setEnabled(false);
+			psList1.setLayoutData(gd8);
+			psList1.pack();
+			psList1.setEnabled(false);
 			
+			// list of prohibited schools
+			Combo psList2 = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			GridData gd9 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			psList2.setLayoutData(gd9);
+			psList2.pack();
+			psList2.setEnabled(false);
+
 			ssList.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event e) {
-					psList.removeAll();
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+					psList1.removeAll();
 					for (int i = 0; i < schools.length; i++) {
 						if (!(ssList.getItem(ssList.getSelectionIndex()).equals(schools[i])))
 							if (!(ssList.getItem(ssList.getSelectionIndex()).equals("Divination")))
-							psList.add(schools[i]);
+								psList1.add(schools[i]);
 					}
-					psList.pack();
-					psList.setEnabled(true);
+					psList1.pack();
+					psList1.setEnabled(true);
+					psList2.setEnabled(false);
 				}
 			});
+			
+			psList1.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+					if (ssList.getItem(ssList.getSelectionIndex()).equals("Divination"))
+						return;
+					psList2.removeAll();
+					for (int i = 0; i < psList1.getItemCount(); i++) {
+						if (i != psList1.getSelectionIndex()) {
+							psList2.add(psList1.getItem(i));
+						}
+					}
+					psList2.pack();
+					psList2.setEnabled(true);
+				}
+			});
+			
+			psList2.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+				}
+			});
+
+			// done button
+			Button done = new Button(classExtrasShell, SWT.PUSH);
+			done.setText("Done");
+			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+			doneGD.horizontalSpan = 2;
+			done.setLayoutData(doneGD);
+			done.pack();
+			done.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					boolean error = false;
+					// save familiar
+					if (famList.getSelectionIndex() != -1) {
+						character.setFamiliar(famList.getItem(famList.getSelectionIndex()));
+					} else if (customInput.getText().length() > 0) {
+						character.setFamiliar(customInput.getText());
+					}
+					// save specialty school
+					if (ssList.getSelectionIndex() != -1) {
+						if (psList1.getSelectionIndex() == -1) {
+							psList1.setBackground(new Color(dev, 255, 100, 100));
+							error = true;
+						} else if (psList2.getSelectionIndex() == -1 && !ssList.getItem(ssList.getSelectionIndex()).equals("Divination")) {
+							psList2.setBackground(new Color(dev, 255, 100, 100));
+							error = true;
+						} else {
+							// save TODO
+						}
+					}
+					if (!error)
+						classExtrasShell.dispose();
+				}
+			});
+			break;
 		}
-		break;
 		}
 		// TODO 
 		// add cancel button
 
-		// done button
-		Button done = new Button(classExtrasShell, SWT.PUSH);
-		done.setText("Done");
-		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		doneGD.horizontalSpan = 2;
-		done.setLayoutData(doneGD);
-		done.pack();
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				classExtrasShell.dispose();
-			}
-		});
+
 
 		// open shell
 		classExtrasShell.pack();
