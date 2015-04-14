@@ -393,7 +393,7 @@ public class Wiz2 {
 
 			// list of available animal companions
 			Combo acList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			String[] companions = {"Badger", "Camel", "Dire Rat", "Dog", "Riding Rog", "Eagle", "Hawk", "Horse(light)", "Horse(heavy)", "Owl", "Pony", "Snake(small)", "Snake(medium)", "Wolf", "Porpoise", "Shark(medium)", "Squid"};
+			String[] companions = {"Badger", "Camel", "Dire Rat", "Dog", "Riding Dog", "Eagle", "Hawk", "Horse(light)", "Horse(heavy)", "Owl", "Pony", "Snake(small)", "Snake(medium)", "Wolf", "Porpoise", "Shark(medium)", "Squid"};
 			for (int i = 0; i < companions.length; i++){
 				acList.add(companions[i]);
 			}
@@ -411,7 +411,7 @@ public class Wiz2 {
 
 			// text input for custom companion
 			Text customInput = new Text(classExtrasShell, SWT.BORDER);
-			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			GridData gd4 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			customInput.setLayoutData(gd4);
 			customInput.pack();
 
@@ -524,7 +524,7 @@ public class Wiz2 {
 
 			// text input for custom favored enemy
 			Text customInput = new Text(classExtrasShell, SWT.BORDER);
-			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			GridData gd4 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			customInput.setLayoutData(gd4);
 			customInput.pack();
 
@@ -610,7 +610,7 @@ public class Wiz2 {
 
 			// text input for custom companion
 			Text customInput = new Text(classExtrasShell, SWT.BORDER);
-			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			GridData gd4 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			customInput.setLayoutData(gd4);
 			customInput.pack();
 
