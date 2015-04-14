@@ -169,6 +169,19 @@ public class HomeWindow {
         
         // TODO ryan create the composite here
         
+        Label playerLabel = new Label(playerScreen, SWT.NONE);
+        playerLabel.setText("Characters:");
+		Font playerFont = new Font(playerLabel.getDisplay(), new FontData("Arial", 18,
+				SWT.BOLD));
+		playerLabel.setFont(playerFont);
+		
+		// placeholder labels take up columns 2 and 3 in the grid.
+        new Label(playerScreen, SWT.NONE);  
+        new Label(playerScreen, SWT.NONE); 
+        
+		playerScreen.pack();
+        
+        
         ///////////////////PLAYER SCREEN//////////////////////////
         
         ///////////////////DUNGEON SCREEN//////////////////////////
