@@ -657,7 +657,7 @@ public class Wiz2 {
 			sorcererLabel.pack();
 
 			// list of available familiars
-			Combo famList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			CCombo famList = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] familiars = {"Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"};
 			for (int i = 0; i < familiars.length; i++){
 				famList.add(familiars[i]);
@@ -676,7 +676,7 @@ public class Wiz2 {
 
 			// text input for custom companion
 			Text customInput = new Text(classExtrasShell, SWT.BORDER);
-			GridData gd4 = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			GridData gd4 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			customInput.setLayoutData(gd4);
 			customInput.pack();
 
@@ -704,34 +704,36 @@ public class Wiz2 {
 			sorcererLabel2.pack();
 
 			// list of specialty schools
-			Combo ssList = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			CCombo ssList = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 			String[] schools = {"Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"};
+			ssList.add("<none>");
 			for (int i = 0; i < schools.length; i++){
 				ssList.add(schools[i]);
 			}
 			GridData gd6 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 			gd6.horizontalSpan = 2;
 			ssList.setLayoutData(gd6);
+			ssList.select(0);
 			ssList.pack();
 
 			// label - select forbidden school(s)
 			Label sorcererLabel3 = new Label(classExtrasShell, SWT.NONE);
-			sorcererLabel3.setText("Select a Specialty School");
+			sorcererLabel3.setText("Select Prohibited Schools");
 			GridData gd7 = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 			gd7.horizontalSpan = 2;
-			sorcererLabel2.setLayoutData(gd7);
-			sorcererLabel2.pack();
+			sorcererLabel3.setLayoutData(gd7);
+			sorcererLabel3.pack();
 
 			// list of prohibited schools
-			Combo psList1 = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			GridData gd8 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			CCombo psList1 = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			GridData gd8 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			psList1.setLayoutData(gd8);
 			psList1.pack();
 			psList1.setEnabled(false);
-			
+
 			// list of prohibited schools
-			Combo psList2 = new Combo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			GridData gd9 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			CCombo psList2 = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			GridData gd9 = new GridData(SWT.FILL, SWT.CENTER, true, false);
 			psList2.setLayoutData(gd9);
 			psList2.pack();
 			psList2.setEnabled(false);
@@ -741,17 +743,32 @@ public class Wiz2 {
 					psList1.setBackground(null);
 					psList2.setBackground(null);
 					psList1.removeAll();
+					psList2.removeAll();
+					if (ssList.getSelectionIndex() == 0) {
+						psList1.setEnabled(false);
+						psList2.setEnabled(false);
+						return;
+					}
 					for (int i = 0; i < schools.length; i++) {
 						if (!(ssList.getItem(ssList.getSelectionIndex()).equals(schools[i])))
-							if (!(ssList.getItem(ssList.getSelectionIndex()).equals("Divination")))
+							if (!(schools[i]).equals("Divination")) {
 								psList1.add(schools[i]);
+							}
 					}
 					psList1.pack();
 					psList1.setEnabled(true);
 					psList2.setEnabled(false);
+					classExtrasShell.layout();
 				}
 			});
 			
+			ssList.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+				}
+			});
+
 			psList1.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event e) {
 					psList1.setBackground(null);
@@ -766,10 +783,25 @@ public class Wiz2 {
 					}
 					psList2.pack();
 					psList2.setEnabled(true);
+					classExtrasShell.layout();
 				}
 			});
 			
+			psList1.addListener(SWT.MouseUp, new Listener() {
+				public void handleEvent(Event e) {
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+				}
+			});
+
 			psList2.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					psList1.setBackground(null);
+					psList2.setBackground(null);
+				}
+			});
+			
+			psList2.addListener(SWT.MouseUp, new Listener() {
 				public void handleEvent(Event e) {
 					psList1.setBackground(null);
 					psList2.setBackground(null);
@@ -793,7 +825,8 @@ public class Wiz2 {
 						character.setFamiliar(customInput.getText());
 					}
 					// save specialty school
-					if (ssList.getSelectionIndex() != -1) {
+					System.out.println(ssList.getSelectionIndex()); // TODO
+					if (ssList.getSelectionIndex() > 0) {
 						if (psList1.getSelectionIndex() == -1) {
 							psList1.setBackground(new Color(dev, 255, 100, 100));
 							error = true;
@@ -801,7 +834,20 @@ public class Wiz2 {
 							psList2.setBackground(new Color(dev, 255, 100, 100));
 							error = true;
 						} else {
-							// save TODO
+							character.setWizardSpecialtySchool(ssList.getItem(ssList.getSelectionIndex()));
+							String[] prohibitedSchools = new String[2];
+							if (psList2.getSelectionIndex() != -1) {
+								prohibitedSchools[0] = psList1.getItem(psList1.getSelectionIndex());
+								prohibitedSchools[1] = psList2.getItem(psList2.getSelectionIndex());
+								System.out.println(prohibitedSchools[0]); //TODO
+								System.out.println(prohibitedSchools[1]); //TODO
+								character.setWizardProhibitedSchools(prohibitedSchools);
+							} else {
+								prohibitedSchools = new String[1];
+								prohibitedSchools[0] = psList1.getItem(psList1.getSelectionIndex());
+							}
+							character.setWizardProhibitedSchools(prohibitedSchools);
+
 						}
 					}
 					if (!error)
