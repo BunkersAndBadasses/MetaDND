@@ -266,7 +266,7 @@ public class DieWindow {
 					}
 					
 					if(custDieCount < 0 || custDieCount > 20){
-						invalidOperation.setText("Invalid Custom Cnt: 0< count< 20");
+						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
 						
 						return;
@@ -361,7 +361,7 @@ public class DieWindow {
 					}
 					
 					if(custDieCount < 0 || custDieCount > 20){
-						invalidOperation.setText("Invalid Custom Cnt: 0< count< 20");
+						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
 						
 						return;
