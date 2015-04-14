@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><Character>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Character>
 	<Name>Biggus Dickus</Name>
+	<Image>images/BiggusDickus.jpg</Image>
 	<Level>1</Level>
 	<SecLevel>0</SecLevel>
 	<STR>10</STR>
@@ -30,11 +31,20 @@
 	<Inventory>	</Inventory>
 	<Money>	</Money>
 	<PreparedSpells> </PreparedSpells>
-	<Notes>These are some notes dfhdfhg  jfjtjdymdhmhfmhdf</Notes>
-	<Weapon> </Weapon>
-	<SecWeapon> </SecWeapon>
-	<Armor> </Armor>
+	<Notes>This is a sample character with more and more being added to it every day&#13;
+Romani ite domum</Notes>
+	<Armor>Leather Armor</Armor>
 	<Shield> </Shield>
-	
+	<DamageTaken>1</DamageTaken>
+	<Items>Candle/Candlestick/Bag of Many Things</Items>
+	<Languages>Latin</Languages>
+	<Armors>Leather Armor</Armors>
+	<Weapons>Dagger/Longsword/Shortsword</Weapons>
+	<Spells> </Spells>
+	<Skills>Diplomacy/Gather Information</Skills>
+	<Feats>Combat Expertise/Diehard</Feats>
+	<PrimaryWeapon>Longsword</PrimaryWeapon>
+	<SecondaryWeapon>Dagger</SecondaryWeapon>
+	<Shields> </Shields>
 
 </Character>
