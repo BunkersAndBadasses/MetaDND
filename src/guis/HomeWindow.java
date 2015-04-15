@@ -124,7 +124,7 @@ public class HomeWindow {
         dungeonScreenLayout.marginLeft = 10;
         dungeonScreen.setLayout(dungeonScreenLayout);
         
-        GridLayout playerScreenLayout = new GridLayout(2, false);
+        GridLayout playerScreenLayout = new GridLayout(4, true);
         playerScreen.setLayout(playerScreenLayout);
         
         GridLayout dungeonGenConfigLayout = new GridLayout(2, true);
@@ -174,6 +174,7 @@ public class HomeWindow {
         
         Composite characterComp = new Composite(playerScreen, SWT.NONE);
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        gridData.horizontalSpan = 3;
         characterComp.setLayoutData(gridData);
         
         GridLayout characterCompLayout = new GridLayout(1, false);
@@ -216,7 +217,7 @@ public class HomeWindow {
         
         referencePanel rp = new referencePanel(playerScreen);
         Composite refPanel = rp.getRefPanel();
-        gridData = new GridData(SWT.FILL, SWT.BEGINNING, true, true);
+        gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         refPanel.setLayoutData(gridData);
         
         
