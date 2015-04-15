@@ -38,9 +38,6 @@ public class referencePanel {
 		refPanel = new Composite(page, SWT.NONE);
 		stackLayout = new StackLayout();
 		
-		view = new Composite(refPanel, SWT.NONE);
-		list = new Composite(view, SWT.NONE);
-		info = new Composite(view, SWT.NONE);
 		createPageContent();
 		
 	}
@@ -56,7 +53,7 @@ public class referencePanel {
 		refPanel.setLayout(layout);
 
 		searchBar = new Text(refPanel, SWT.BORDER);
-		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
 		searchBar.setText("Search");
 		searchBar.setLayoutData(gridData);
 		searchBar.addSelectionListener( new SelectionAdapter() { 
@@ -78,16 +75,17 @@ public class referencePanel {
 			}
 		});
 
+		view = new Composite(refPanel, SWT.NONE);
+		list = new Composite(view, SWT.NONE);
+		info = new Composite(view, SWT.NONE);
 		
-		System.out.println("view: " + view);
-		System.out.println("stackLayout: " + stackLayout);
+		gridData = new GridData(SWT.FILL, SWT.BEGINNING, true, true);
+		view.setLayoutData(gridData);
 		view.setLayout(stackLayout);
 
-		FillLayout fillLayout = new FillLayout();
-		fillLayout.type = SWT.VERTICAL;
 
 		//LIST COMPOSITE
-
+		FillLayout fillLayout = new FillLayout(SWT.VERTICAL);
 		list.setLayout(fillLayout);
 
 		List searchList = new List(list, SWT.V_SCROLL);
@@ -108,10 +106,10 @@ public class referencePanel {
 		list.layout();
 
 		//INFO COMPOSITE
-
+		fillLayout = new FillLayout(SWT.VERTICAL);
 		info.setLayout(fillLayout);
 
-		infoText = new Text(refPanel, SWT.MULTI | 
+		infoText = new Text(info, SWT.MULTI | 
 				SWT.V_SCROLL | SWT.WRAP | SWT.READ_ONLY);
 		infoText.setText("INFO");
 

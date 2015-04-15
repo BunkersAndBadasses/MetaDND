@@ -4,6 +4,8 @@ import org.apache.batik.swing.JSVGCanvas;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
@@ -171,26 +173,54 @@ public class HomeWindow {
         // TODO ryan create the composite here
         
         Composite characterComp = new Composite(playerScreen, SWT.NONE);
-        GridData gridData = new GridData(SWT.FILL, SWT.CENTER, false, true);
+        GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         characterComp.setLayoutData(gridData);
+        
+        GridLayout characterCompLayout = new GridLayout(1, false);
+		characterComp.setLayout(characterCompLayout);
+		GridData chargridData = new GridData(SWT.FILL, SWT.FILL, false, false);
+        
+		
         Label playerLabel = new Label(characterComp, SWT.NONE);
         playerLabel.setText("Characters:");
 		Font playerFont = new Font(playerLabel.getDisplay(), new FontData("Arial", 18,
 				SWT.BOLD));
 		playerLabel.setFont(playerFont);
-		
-		// placeholder labels take up columns 2 and 3 in the grid.
-        new Label(characterComp, SWT.NONE);  
-        new Label(characterComp, SWT.NONE); 
+		playerLabel.setLayoutData(chargridData);
         
+		List searchList = new List(characterComp, SWT.V_SCROLL);
+		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		searchList.setLayoutData(chargridData);
+		searchList.addMouseListener(new MouseListener()
+		{
+			public void mouseDown(MouseEvent e){}
+			public void mouseUp(MouseEvent e){}
+			public void mouseDoubleClick(MouseEvent e)
+			{
+				//TODO populate the info text box 
+
+			}
+
+		});
         
+		Button addChar = new Button(characterComp, SWT.PUSH);
+		addChar.setText("Add Character");
+		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		addChar.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				//TODO pull up the character generator
+			}
+		});
         
-        characterComp.pack();
+        //characterComp.pack();
         
         referencePanel rp = new referencePanel(playerScreen);
         Composite refPanel = rp.getRefPanel();
-        gridData = new GridData(SWT.FILL, SWT.CENTER, false, true);
+        gridData = new GridData(SWT.FILL, SWT.BEGINNING, true, true);
         refPanel.setLayoutData(gridData);
+        
+        
+        playerScreen.layout();
         
         
         ///////////////////PLAYER SCREEN//////////////////////////
