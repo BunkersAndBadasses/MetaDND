@@ -258,6 +258,7 @@ public class CharacterWizard {
      * The other information of character, if you want to change it, should be done
      * @author Innocentius
      */
+	@SuppressWarnings("unused")
 	private void randomgeneration(final Composite randomPanel, final StackLayout randomLayout) 
 	{
 		character = new character();
