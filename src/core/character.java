@@ -37,7 +37,6 @@ public class character {
 	private ArrayList<ArmorEntity> armor = new ArrayList<ArmorEntity>();
 	private String notes = "<empty>";
 	
-	// TODO add
 	private int AC = 0;
 	private int touchAC = 0;
 	private int flatFootedAC = 0;

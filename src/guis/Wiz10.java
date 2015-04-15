@@ -406,10 +406,88 @@ public class Wiz10 {
 					Character.appendChild(reflexSave);	
 					
 					// Will Saving throw
-					Element willSave = doc.createElement("ReflexSave");
-					reflexSave.appendChild(doc.createTextNode(Integer.toString(
-							character.getSavingThrows()[1])));
-					Character.appendChild(reflexSave);	
+					Element willSave = doc.createElement("WillSave");
+					willSave.appendChild(doc.createTextNode(Integer.toString(
+							character.getSavingThrows()[2])));
+					Character.appendChild(willSave);	
+					
+					// baseAttackBonus
+					Element baseAttackBonus = doc.createElement("BaseAttackBonus");
+					baseAttackBonus.appendChild(doc.createTextNode(Integer.toString(
+							character.getBaseAttackBonus())));
+					Character.appendChild(baseAttackBonus);	
+					
+					// spellResistance
+					Element spellResistance = doc.createElement("SpellResistance");
+					spellResistance.appendChild(doc.createTextNode(Integer.toString(
+							character.getSpellResistance())));
+					Character.appendChild(spellResistance);	
+					
+					// grappleMod
+					Element grappleMod = doc.createElement("GrappleMod");
+					grappleMod.appendChild(doc.createTextNode(Integer.toString(
+							character.getGrappleMod())));
+					Character.appendChild(grappleMod);	
+					
+					// Speed
+					Element Speed = doc.createElement("Speed");
+					Speed.appendChild(doc.createTextNode(Integer.toString(
+							character.getSpeed())));
+					Character.appendChild(Speed);
+					
+					// damageReduction
+					Element damageReduction = doc.createElement("DamageReduction");
+					damageReduction.appendChild(doc.createTextNode(Integer.toString(
+							character.getDamageReduction())));
+					Character.appendChild(damageReduction);
+					
+					//Go through the ClericDomains list
+					String clericDomainList = "";
+					for(int i = 0; i < character.getClericDomains().length; i++){
+
+						// Item Name
+						clericDomainList += character.getClericDomains()[i] + "/";
+
+					}
+					Element clericDomains = doc.createElement("ClericDomains");
+					clericDomains.appendChild(doc.createTextNode(clericDomainList));
+					Character.appendChild(clericDomains);
+					
+					// druidAnimalCompanion
+					Element druidAnimalCompanion = doc.createElement("DruidAnimalCompanion");
+					druidAnimalCompanion.appendChild(doc.createTextNode(
+							character.getDruidAnimalCompanion()));
+					Character.appendChild(druidAnimalCompanion);
+					
+					// rangerFavoredEnemy
+					Element rangerFavoredEnemy = doc.createElement("RangerFavoredEnemy");
+					rangerFavoredEnemy.appendChild(doc.createTextNode(
+							character.getRangerFavoredEnemy()));
+					Character.appendChild(rangerFavoredEnemy);
+					
+					// familiar
+					Element familiar = doc.createElement("Familiar");
+					familiar.appendChild(doc.createTextNode(
+							character.getFamiliar()));
+					Character.appendChild(familiar);
+					
+					// wizardSpecialtySchool
+					Element wizardSpecialtySchool = doc.createElement("WizardSpecialtySchool");
+					wizardSpecialtySchool.appendChild(doc.createTextNode(
+							character.getWizardSpecialtySchool()));
+					Character.appendChild(wizardSpecialtySchool);
+					
+					//Go through the wizardProhibitedSchools list
+					String wizardProhibitedSchoolsList = "";
+					for(int i = 0; i < character.getClericDomains().length; i++){
+
+						// Item Name
+						wizardProhibitedSchoolsList += character.getWizardProhibitedSchools()[i] + "/";
+
+					}
+					Element wizardProhibitedSchools = doc.createElement("WizardProhibitedSchools");
+					wizardProhibitedSchools.appendChild(doc.createTextNode(wizardProhibitedSchoolsList));
+					Character.appendChild(wizardProhibitedSchools);
 					
 					// Notes
 					Element Notes = doc.createElement("Notes");
