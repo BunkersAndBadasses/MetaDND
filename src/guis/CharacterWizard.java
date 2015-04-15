@@ -232,14 +232,27 @@ public class CharacterWizard {
 		});
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = randomPanel;
-				homePanel.layout();
+				randomgeneration();
 			}
+
 		});
 
 	}
 
-
+    /**
+     * This method is called when the random generation of character is called.
+     * It generate a new character
+     * The character's description will always be: This is a random generation character.
+     * The other user specified stuff will leave as <empty>, but the critical information
+     * especially numbers, we will fill it out.
+     * The other information of character, if you want to change it, should be done
+     * @author Innocentius
+     */
+	private void randomgeneration() 
+	{
+		
+		
+	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
 	 * this does NOT set the listener! (each one is different, that is set 
