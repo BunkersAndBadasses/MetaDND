@@ -1,6 +1,7 @@
 package guis;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import javax.swing.JList;
 
@@ -24,20 +25,20 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
+import core.Main;
 import core.character;
+import entity.DNDEntity;
 
 public class referencePanel {
 
-	private Device dev;
 	private Composite refPanel;
 	private Composite view;
 	private Composite list;
-	private Composite info;
 	private StackLayout stackLayout;
 
 	private Text searchBar;
-	private Text infoText;
-
+	private List searchList;
+	
 	public referencePanel(Composite page) {
 		refPanel = new Composite(page, SWT.NONE);
 		stackLayout = new StackLayout();
@@ -57,30 +58,22 @@ public class referencePanel {
 
 		searchBar = new Text(refPanel, SWT.BORDER);
 		GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
-		searchBar.setText("Search");
+		searchBar.setMessage("Search");
 		searchBar.setLayoutData(gridData);
 		searchBar.addSelectionListener( new SelectionAdapter() { 
 			public void widgetDefaultSelected( SelectionEvent e ) { 
-				//TODO populate the search list
-				//feed method in the gamestate this string
-				// populate the list with results
-			}
-		});
-
-		// generate new dungeon
-		Button backButton = new Button(refPanel, SWT.PUSH);
-		backButton.setText("Back");
-		backButton.setVisible(false);
-		backButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				backButton.setVisible(false);
-				stackLayout.topControl = list;
+				searchList.removeAll();
+				if(Main.gameState.search(searchBar.getText())){
+					for(Entry<String, DNDEntity> entry : 
+						Main.gameState.searchResults.entrySet()){
+						searchList.add(entry.getKey());
+					}
+				}
 			}
 		});
 
 		view = new Composite(refPanel, SWT.NONE);
 		list = new Composite(view, SWT.NONE);
-		info = new Composite(view, SWT.NONE);
 		
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		view.setLayoutData(gridData);
@@ -91,13 +84,17 @@ public class referencePanel {
 		FillLayout fillLayout = new FillLayout(SWT.VERTICAL);
 		list.setLayout(fillLayout);
 
-		List searchList = new List(list, SWT.V_SCROLL);
+		searchList = new List(list, SWT.V_SCROLL);
 		//searchList.add("empty");
 		searchList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
-				//TODO populate the info text box 
-				backButton.setVisible(true);
-				stackLayout.topControl = info;
+				
+				DNDEntity searchEntity = Main.gameState.searchResults.get(searchList.getSelection()[0]);
+				
+				searchEntity.toTooltipWindow();
+				
+				//backButton.setVisible(true);
+				//stackLayout.topControl = info;
 			}
 
 			@Override
@@ -106,16 +103,6 @@ public class referencePanel {
 		});
 
 		list.layout();
-
-		//INFO COMPOSITE
-		fillLayout = new FillLayout(SWT.VERTICAL);
-		info.setLayout(fillLayout);
-
-		infoText = new Text(info, SWT.MULTI | 
-				SWT.V_SCROLL | SWT.WRAP | SWT.READ_ONLY);
-		infoText.setText("INFO");
-
-		info.layout();
 
 		stackLayout.topControl = list;
 		view.layout();

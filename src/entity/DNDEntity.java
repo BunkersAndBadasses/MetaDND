@@ -55,7 +55,7 @@ public abstract class DNDEntity {
 	
 	public void toTooltipWindow(){
 	
-		Display display = new Display();
+		Display display = Display.getCurrent();
 		Shell shell = new Shell(display);
 		Monitor monitor = display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();

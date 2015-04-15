@@ -7,8 +7,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
+import core.Main;
+import core.RNG;
 import core.character;
+import entity.ClassEntity;
+import entity.DNDEntity;
+import entity.RaceEntity;
 
 
 
@@ -46,6 +52,7 @@ public class CharacterWizard {
 	private Display display;
 	private Shell shell;
 	private StackLayout wizLayout;
+	private static RNG randomgene;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
 	public int wizPageNum = -1;
@@ -71,7 +78,7 @@ public class CharacterWizard {
 		shell.setSize(WIDTH, HEIGHT);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
-
+        randomgene = new RNG();
 		createPageContent();
 
 		run();
@@ -250,8 +257,121 @@ public class CharacterWizard {
      */
 	private void randomgeneration() 
 	{
-		
-		
+		character.setLevel(1);
+		character.setExp(0);
+		Collection<DNDEntity> racecol = Main.gameState.races.values();
+		character.setCharRace((RaceEntity) racecol.toArray()[randomgene.GetRandomInteger(0, racecol.size()-1)]);
+		Collection<DNDEntity> classcol = Main.gameState.classes.values();
+		character.setCharClass((ClassEntity) classcol.toArray()[randomgene.GetRandomInteger(0, classcol.size()-1)]);
+		//Alignment
+		String[] Alignments = {"Lawful Good", "Lawful Neutral", "Lawful Evil", 
+				"Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", 
+				"Chaotic Neutral", "Chaotic Evil"};
+		character.setAlignment(Alignments[randomgene.GetRandomInteger(0, Alignments.length - 1)]);
+		//Deity
+		String[] deities = { 
+				"Boccob(N): god of magic", 
+				"Corellon Larethian(CG): god of the elves", 
+				"Ehlonna(NG): goddess of the woodlands", 
+				"Erythnul(CE): god of slaughter", 
+				"Fharlanghn(N): god of roads", 
+				"Garl Glittergold(NG): god of the gnomes",
+				"Gruumsh(CE): chief god of the orcs", 
+				"Heironeous(LG): god of valor", 
+				"Hextor(LE): god of tyranny",
+				"Kord(CG): god of strength",
+				"Moradin(LG): god of the dwarves",
+				"Nerull(NE): god of death",
+				"Obad-Hai(N): god of nature",
+				"Olidammara(CN): god of rogues",
+				"Pelor(NG): god of the sun",
+				"St. Cuthbert(LN): god of retribution", 
+				"Vecna(NE): god of secrets", 
+				"Wee Jas(LN): goddess of death and magic",
+				"Yondalla(LG): goddess of the halflings" };
+		character.setDeity(deities[randomgene.GetRandomInteger(0, deities.length - 1)]);
+		//Size
+		character.setSize(character.getCharRace().getSize());
+		//Age
+		//110-175 Elf
+		//15-35 Human
+		//40-125 Dwarf
+		//40-100 Gnome
+		//20-62 Half-elf
+		//14-30 Half-orc
+		//20-50 Halfling
+		RaceEntity racec = character.getCharRace();
+		if(racec.getName().equalsIgnoreCase("Elf"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(110, 175)));
+		if(racec.getName().equalsIgnoreCase("Human"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(15, 35)));
+		if(racec.getName().equalsIgnoreCase("Dwarf"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(40, 125)));
+		if(racec.getName().equalsIgnoreCase("Gnome"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(40, 100)));
+		if(racec.getName().equalsIgnoreCase("Half-elf"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(20, 62)));
+		if(racec.getName().equalsIgnoreCase("Half-orc"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(14, 30)));
+		if(racec.getName().equalsIgnoreCase("Halfling"))
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(20, 50)));
+		else// TODO create a race field of AGE BOUNDARY
+		{
+			character.setAge(String.valueOf(randomgene.GetRandomInteger(18, 50)));
+		}
+		//Gender
+		String[] gend = {"Male", "Female"};
+		character.setGender(gend[randomgene.GetRandomInteger(0, gend.length - 1)]);
+		//Height
+		int height = 0;
+		if(racec.getName().equalsIgnoreCase("Elf"))
+			height = randomgene.GetRandomInteger(55, 65);
+		if(racec.getName().equalsIgnoreCase("Human"))
+			height = randomgene.GetRandomInteger(55, 78);
+		if(racec.getName().equalsIgnoreCase("Dwarf"))
+			height = randomgene.GetRandomInteger(45, 53);
+		if(racec.getName().equalsIgnoreCase("Gnome"))
+			height = randomgene.GetRandomInteger(36, 44);
+		if(racec.getName().equalsIgnoreCase("Half-elf"))
+			height = randomgene.GetRandomInteger(55, 71);
+		if(racec.getName().equalsIgnoreCase("Half-orc"))
+			height = randomgene.GetRandomInteger(55, 82);
+		if(racec.getName().equalsIgnoreCase("Halfling"))
+			height = randomgene.GetRandomInteger(32, 40);
+		else// TODO create a race field of height BOUNDARY
+		{
+			height = randomgene.GetRandomInteger(55, 78);
+		}
+		String heightString = "";
+		heightString += Integer.toString(height/12);
+		heightString += "'";
+		heightString += Integer.toString(height % 12);
+		heightString += "\"";
+		character.setHeight(heightString);
+		//Weight
+		//Eyes will fill by the user
+		//Hair will fill by the user
+		//Skin will fill by the user
+		//Description
+		//Ability score for
+		//STR
+		//DEX
+		//CON
+		//INT
+		//WIS
+		//CHA
+		//HP and remaining HP
+		//Languages -- pick three
+		//Gold
+		//Feats
+		//Special Ability
+		//Spells
+		//Prepared spells
+		//Items
+		//Weapons
+		//Armor
+		//Notes will be <empty>
+		System.out.println(character.toString());
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.

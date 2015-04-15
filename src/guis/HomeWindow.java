@@ -45,6 +45,7 @@ public class HomeWindow {
 	private HomeWindow hw;
 	
 	private StackLayout m_mainWindowLayout;
+	private StackLayout charLayout;
 	private Composite m_mainWindow;
 	private Composite m_dungeonScreen;
 	private Composite m_playerScreen;
@@ -188,7 +189,13 @@ public class HomeWindow {
 		playerLabel.setFont(playerFont);
 		playerLabel.setLayoutData(chargridData);
         
-		List charList = new List(characterComp, SWT.V_SCROLL);
+		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		Composite view = new Composite(characterComp, SWT.NONE);
+		charLayout = new StackLayout();
+		view.setLayoutData(gridData);
+		view.setLayout(charLayout);
+		
+		List charList = new List(view, SWT.V_SCROLL);
 		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		charList.setLayoutData(chargridData);
 		charList.addSelectionListener(new SelectionListener(){
@@ -201,6 +208,9 @@ public class HomeWindow {
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
+		
+		charLayout.topControl = charList;
+		view.layout();
         
 		Button addChar = new Button(characterComp, SWT.PUSH);
 		addChar.setText("Add Character");
