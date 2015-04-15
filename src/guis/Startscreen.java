@@ -54,7 +54,7 @@ public class Startscreen {
 		a.setText("MetaDND by Bunkers and BadAsses "
 				+ "\nVer 0.2.23"+"\nDeveloper Only!");
 		a.pack();
-		Button b = new Button(shell, SWT.PUSH);
+		Label b = new Label(shell, SWT.PUSH);
 		b.setImage(bb);
 		b.pack();
 		shell.pack();
