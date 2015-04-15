@@ -14,6 +14,7 @@ import core.RNG;
 import core.character;
 import entity.ClassEntity;
 import entity.DNDEntity;
+import entity.FeatEntity;
 import entity.RaceEntity;
 
 
@@ -257,6 +258,7 @@ public class CharacterWizard {
      */
 	private void randomgeneration() 
 	{
+		character = new character();
 		character.setLevel(1);
 		character.setExp(0);
 		Collection<DNDEntity> racecol = Main.gameState.races.values();
@@ -290,7 +292,9 @@ public class CharacterWizard {
 				"Wee Jas(LN): goddess of death and magic",
 				"Yondalla(LG): goddess of the halflings" };
 		if(character.getCharClass().getName().equalsIgnoreCase("Cleric"))
+		{
 		character.setDeity(deities[randomgene.GetRandomInteger(0, deities.length - 1)]);
+		}
 		//Size
 		character.setSize(character.getCharRace().getSize());
 		//Age
@@ -390,14 +394,61 @@ public class CharacterWizard {
 			character.setHitPoints(3);
 		}
 		//Languages -- pick three
+		character.setLanguages("Common");
+		if(character.getCharClass().getName().equalsIgnoreCase("Druid"))
+		{
+			character.setLanguages(character.getLanguages() + ", Druidic");
+		}
 		//Gold
+		character.setGold(randomgene.GetRandomInteger(0, 200));
 		//Feats
+		Collection<DNDEntity> featcol = Main.gameState.feats.values();
+		//Random 1 feat
+		character.addFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+		//Human gain "Feat for select"
+		if(character.getCharRace().getName().equalsIgnoreCase("Human"))
+		{
+			character.addFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+		}
+		//Fighter get a "Fighter bonus feat"
+		if(character.getCharClass().getName().equalsIgnoreCase("Fighter"))
+		{
+			boolean a = false;
+			do
+			{
+				FeatEntity b = (FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)];
+				if(b.getFighterBonus() == null)
+				{
+					a = true;
+				}
+				else
+				{
+					a = false;
+					character.addFeat(b);
+				}
+			} while(a = true);
+		}
+		//Wizard gain "Scribe Scroll"
+		if(character.getCharClass().getName().equalsIgnoreCase("Wizard"))
+		{
+			character.addFeat((FeatEntity) Main.gameState.feats.get("Scribe Scroll"));
+		}
+		//Ranger gain "Track"
+		if(character.getCharClass().getName().equalsIgnoreCase("Ranger"))
+		{
+			character.addFeat((FeatEntity) Main.gameState.feats.get("Track"));
+		}
 		//Special Ability
+		//TODO
 		//Spells
-		//Prepared spells
-		//Items
-		//Weapons
-		//Armor
+		Collection<DNDEntity> spellcol = Main.gameState.spells.values();
+		//wizard get all level 0 spell + (3 + INT modifier) of level 1 spell
+		//Sorcerer get 4 level 0 spell + 2 level 1 spell
+		//TODO
+		//Prepared spells are <empty>
+		//Items is <empty>
+		//Weapons is <empty>
+		//Armor is <empty>
 		//Notes will be <empty>
 		System.out.println(character.toString());
 	}
