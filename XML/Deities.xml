@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEITIES>
+	<DEITY>
+		<NAME>
+			Boccob: God of Magic
+		</NAME>
+		<DOMAIN>
+			Knowledge, Magic, Trickery
+		</DOMAIN>
+		<ALIGNMENT>
+			True Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+		<DEITY>
+		<NAME>
+			Corellon Larethian: God of the Elves
+		</NAME>
+		<DOMAIN>
+			Chaos, Good, Protection, War
+		</DOMAIN>
+		<ALIGNMENT>
+			Chaotic Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Ehlonna: Goddess of the Woodlands
+		</NAME>
+		<DOMAIN>
+			Animal, Good, Plant, Sun
+		</DOMAIN>
+		<ALIGNMENT>
+			Neutral Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Erythnul: God of Slaughter
+		</NAME>
+		<DOMAIN>
+			Chaos, Evil, Trickery, War
+		</DOMAIN>
+		<ALIGNMENT>
+			Chaotic Evil
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Fharlanghn: God of Roads
+		</NAME>
+		<DOMAIN>
+			Luck, Protection, Travel
+		</DOMAIN>
+		<ALIGNMENT>
+			True Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Garl Glittergold: God of the Gnomes
+		</NAME>
+		<DOMAIN>
+			Good, Protection, Trickery
+		</DOMAIN>
+		<ALIGNMENT>
+			Neutral Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Gruumsh: Chief God of the Orcs
+		</NAME>
+		<DOMAIN>
+			Chaos, Evil, Strength, War
+		</DOMAIN>
+		<ALIGNMENT>
+			Chaotic Evil
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Heironeous: God of Valor
+		</NAME>
+		<DOMAIN>
+			Good, Law, War
+		</DOMAIN>
+		<ALIGNMENT>
+			Lawful Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Hextor: God of Tyranny
+		</NAME>
+		<DOMAIN>
+			Destruction, Evil, Law, War
+		</DOMAIN>
+		<ALIGNMENT>
+			Lawful Evil
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Kord: God of Strength
+		</NAME>
+		<DOMAIN>
+			Chaos, Good, Luck, Strength
+		</DOMAIN>
+		<ALIGNMENT>
+			Chaotic Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Moradin: God of the Dwarves
+		</NAME>
+		<DOMAIN>
+			Earth, Good, Law, Protection
+		</DOMAIN>
+		<ALIGNMENT>
+			Lawful Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Nerull: God of Death
+		</NAME>
+		<DOMAIN>
+			Death, Evil, Trickery
+		</DOMAIN>
+		<ALIGNMENT>
+			Neutral Evil
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Obad-Hai: God of Nature
+		</NAME>
+		<DOMAIN>
+			Air, Animal, Earth, Fire, Plant, Water
+		</DOMAIN>
+		<ALIGNMENT>
+			True Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Olidammara: God of Rogues
+		</NAME>
+		<DOMAIN>
+			Chaos, Luck, Trickery
+		</DOMAIN>
+		<ALIGNMENT>
+			Chaotic Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Pelor: God of the Sun
+		</NAME>
+		<DOMAIN>
+			Good, Healing, Strength, Sun
+		</DOMAIN>
+		<ALIGNMENT>
+			Neutral Good
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			St. Cuthbert: God of Retribution
+		</NAME>
+		<DOMAIN>
+			Destruction, Law, Protection, Strength
+		</DOMAIN>
+		<ALIGNMENT>
+			Lawful Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Vecna: God of Secrets
+		</NAME>
+		<DOMAIN>
+			Evil, Knowledge, Magic
+		</DOMAIN>
+		<ALIGNMENT>
+			Neutral Evil
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Wee Jas: Goddess of Death and Magic
+		</NAME>
+		<DOMAIN>
+			Death, Law, Magic
+		</DOMAIN>
+		<ALIGNMENT>
+			Lawful Neutral
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+	<DEITY>
+		<NAME>
+			Yondalla: Goddess of the Halflings
+		</NAME>
+		<DOMAIN>
+			Lawful Good
+		</DOMAIN>
+		<ALIGNMENT>
+			Good, Law, Protection
+		</ALIGNMENT>
+		<DESCRIPTION>
+
+		</DESCRIPTION>
+	</DEITY>
+</DEITIES>
