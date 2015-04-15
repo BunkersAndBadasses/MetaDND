@@ -82,7 +82,8 @@ public class CharacterMain {
 
     public static void main(String[] args) {
         getPlayerInfo();
-
+        String intString = "string 5";
+        System.out.println(Integer.parseInt(intString.replaceAll("[\\D]", "")));
 
         // TODO Auto-generated method stub
         Display display = new Display();
