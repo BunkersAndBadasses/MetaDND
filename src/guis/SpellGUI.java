@@ -18,6 +18,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
+import core.GameState;
+import core.Main;
+
 
 public class SpellGUI {
 	private static ArrayList<String> spellsKnown;
@@ -38,7 +41,7 @@ public class SpellGUI {
 
 	private static ArrayList<String> getAllSpells() {
 		allSpells = new ArrayList<String>();
-		allSpells.add("TODO: All Spells");
+		allSpells.addAll(Main.gameState.spells.keySet());
 		return allSpells;
 	}
 
