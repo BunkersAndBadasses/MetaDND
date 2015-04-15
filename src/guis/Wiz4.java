@@ -27,10 +27,14 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
@@ -81,6 +85,8 @@ public class Wiz4 {
 
 	private String charClass;
 	private String charRace;
+
+	private boolean goOn;
 
 	private final Color red = new Color(dev, 255, 100, 100);
 	private final Color white = new Color(dev, 255, 255, 255);
@@ -157,7 +163,8 @@ public class Wiz4 {
 
 
 		// deity
-		String[] deities = { "Boccob(N): god of magic", 
+		String[] deities = { 
+				"Boccob(N): god of magic", 
 				"Corellon Larethian(CG): god of the elves", 
 				"Ehlonna(NG): goddess of the woodlands", 
 				"Erythnul(CE): god of slaughter", 
@@ -175,7 +182,7 @@ public class Wiz4 {
 				"St. Cuthbert(LN): god of retribution", 
 				"Vecna(NE): god of secrets", 
 				"Wee Jas(LN): goddess of death and magic",
-		"Yondalla(LG): goddess of the halflings" };
+				"Yondalla(LG): goddess of the halflings" };
 		final String[] deityNames = {"Boccob", "Corellon Larethian", "Ehlonna", 
 				"Erythnul", "Fharlanghn", "Garl Glittergold", "Gruumsh", 
 				"Heironeous", "Hextor", "Kord", "Moradin", "Nerull", 
@@ -490,24 +497,35 @@ public class Wiz4 {
 				if (error)
 					return;
 
-				if (charClass.equalsIgnoreCase("cleric"))
-					clericPopUp();
-				
-				// if no errors, save to character
-				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
-				character.setName(nameInput.getText());	
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() == -1)
 					a1 = "<empty>";
 				else 
-					a1 = alignmentInput1.getText() + " ";
+					a1 = alignmentInput1.getText();
 				if (alignmentInput2.getSelectionIndex() == -1)
 					a2 = "<empty>";
 				else
 					a2 = alignmentInput2.getText();
-				character.setAlignment(a1 + a2);
-				if (deityInput.getText().length() != 0)
-					character.setDeity(deityInput.getText());
+				String deitySelect;
+				if (deityListInput.getSelectionIndex() != -1)
+					deitySelect = deityListInput.getItem(deityListInput.getSelectionIndex());
+				else
+					deitySelect = "";
+				
+				boolean done = true;
+
+				done = checkAlignmentPopUp(a1, a2, deitySelect);
+
+				if (done) {
+					if (charClass.equalsIgnoreCase("cleric"))
+						clericPopUp();
+				} else 
+					return;
+				// if no errors, save to character
+				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
+				character.setName(nameInput.getText());	
+
+				character.setAlignment(a1 + " " + a2);
 				if (heightInput.getText().length() != 0)
 					character.setHeight(heightInput.getText());
 				if (weightInput.getText().length() != 0)
@@ -550,11 +568,154 @@ public class Wiz4 {
 			}
 		});
 	}
-	
+
+	private boolean checkAlignmentPopUp(String a1, String a2, String deity) {
+		if (a1.equals("<empty>") || a2.equals("<empty>"))
+			return true;
+
+		goOn = false;
+
+		// create shell
+		Display display = wiz4.getDisplay();
+		final Shell alignmentShell = new Shell(display);
+		alignmentShell.setText("Check Alignment");
+		GridLayout gridLayout = new GridLayout(2, true);
+		alignmentShell.setLayout(gridLayout);
+		alignmentShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				event.doit = false;
+				return;
+			}
+		});
+
+		// warning label
+		Label warning = new Label(alignmentShell, SWT.WRAP);
+		GridData warningGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		warningGD.horizontalSpan = 2;
+		warning.setLayoutData(warningGD);
+
+
+		switch(charClass) {
+		case("Barbarian"): 
+		{
+			// must be non-lawful
+			if (!a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Barbarians should be non-lawful.");
+			break;
+		}
+		case("Bard"): 
+		{
+			// must be non-lawful
+			if (!a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Bards should be non-lawful.");
+			break;
+		}
+		case("Cleric"): 
+		{
+			if (a1.equals("<empty>") || a2.equals("<empty>"))
+				return true;
+			String deityAlignment = deity.substring(deity.indexOf('(')+1, deity.indexOf(')'));
+			deityAlignment = deityAlignment.toLowerCase();
+			String alignment = Character.toString(a1.charAt(0)) + Character.toString(a2.charAt(0));
+			alignment = alignment.toLowerCase();
+			// TODO do comparison
+			break;
+		}
+		case("Druid"): 
+		{
+			// must have at lease one neutral
+			if (a1.equalsIgnoreCase("neutral") | a2.equalsIgnoreCase("neutral"))
+				return true;
+			warning.setText("Druids should have at least one neutral alignment.");
+			break;
+		}
+		case("Monk"): 
+		{
+			// must be lawful
+			if (a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Monks should be lawful.");
+			break;
+		}
+		case("Paladin"): 
+		{
+			// must be lawful good
+			if (a1.equalsIgnoreCase("lawful") && a2.equalsIgnoreCase("good"))
+				return true;
+			warning.setText("Paladins should be lawful good.");
+			break;
+		}
+		case("Fighter"): 
+		case("Ranger"): 
+		case("Rogue"): 
+		case("Sorcerer"): 
+		default: // wizard
+			// no alignment restrictions
+			return true;
+		}
+		warning.pack();
+
+		// display user's alignment choice
+		Label userChoice = new Label(alignmentShell, SWT.NONE);
+		userChoice.setText("You chose: " + a1 + " " + a2);
+		GridData userChoiceGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		userChoiceGD.horizontalSpan = 2;
+		userChoice.setLayoutData(userChoiceGD);
+		userChoice.pack();
+
+		// label - do you want to continue
+		Label continueLabel = new Label(alignmentShell, SWT.WRAP);
+		continueLabel.setText("Do you want to continue with this alignment?");
+		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		continueGD.horizontalSpan = 2;
+		continueLabel.setLayoutData(continueGD);
+		continueLabel.pack();
+		
+		// no button
+		Button no = new Button(alignmentShell, SWT.PUSH);
+		no.setText("No");
+		no.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		no.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				goOn = false;
+				alignmentShell.dispose();
+			}
+		});
+		no.pack();
+
+		// yes button
+		Button yes = new Button(alignmentShell, SWT.PUSH);
+		yes.setText("Yes");
+		yes.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		yes.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				goOn = true;
+				alignmentShell.dispose();
+			}
+		});
+		yes.pack();
+
+		// open shell
+		alignmentShell.pack();
+		CharacterWizard.center(alignmentShell);
+		alignmentShell.open();
+
+		// check if disposed
+		while (!alignmentShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+
+		return goOn;
+	}
+
 	private void clericPopUp() {
 		// choose domain based on deity select
 		//TODO
-		
+
 	}
 
 	private void createNextPage() {

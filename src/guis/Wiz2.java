@@ -31,7 +31,7 @@ import entity.DNDEntity;
 import entity.RaceEntity;
 
 public class Wiz2 {
-
+	
 	private Composite wiz2;
 	private CharacterWizard cw;
 	private Device dev;
@@ -53,7 +53,8 @@ public class Wiz2 {
 	private Combo raceDropDown;
 	private Combo classDropDown;
 	private Combo secClassDropDown;
-
+	private boolean finished;
+	
 	public Wiz2(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			Composite panel, Composite home, Composite homePanel, 
 			StackLayout layout, StackLayout homeLayout, 
@@ -249,7 +250,7 @@ public class Wiz2 {
 				// launch class wizard
 			}
 		});
-		 */ // TODO add later
+		 */ // 
 
 		// next button
 		Button wiz2NextButton = cw.createNextButton(wiz2);
@@ -278,13 +279,16 @@ public class Wiz2 {
 				if (error) return;
 
 				// if all goes well, save race/class
+				boolean done = true;
 				String charClass = classes.get(classDropDown.getSelectionIndex()).getName();
 				if (charClass.equalsIgnoreCase("druid") 
 						| charClass.equalsIgnoreCase("ranger")
 						| charClass.equalsIgnoreCase("sorcerer")
 						| charClass.equalsIgnoreCase("wizard")
 						)
-					extraStuffWindow(charClass);
+					done = extraStuffWindow(charClass);
+				if (!done)
+					return;
 				cw.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
 				cw.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
 				int secClassIndex = secClassDropDown.getSelectionIndex();
@@ -358,14 +362,16 @@ public class Wiz2 {
 	//		addCustomButton.setSize(100,30);
 	//		return addCustomButton;
 	//	}
-	// TODO add later
+	// 
 
-	private void extraStuffWindow(String c) {
+	private boolean extraStuffWindow(String c) {
 		// druid - animal companion
 		// ranger - favored enemy
 		// sorcerer - familiar
 		// wizard - specialty school, familiar
 
+		finished = false;
+		
 		// create shell
 		Display display = wiz2.getDisplay();
 		final Shell classExtrasShell = new Shell(display);
@@ -430,11 +436,22 @@ public class Wiz2 {
 				}
 			});
 
+			// cancel button
+			Button cancel = new Button(classExtrasShell, SWT.PUSH);
+			cancel.setText("Cancel");
+			GridData gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			cancel.setLayoutData(gd);
+			cancel.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					classExtrasShell.dispose();
+					finished = false;
+				}
+			});
+			
 			// done button
 			Button done = new Button(classExtrasShell, SWT.PUSH);
 			done.setText("Done");
 			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-			doneGD.horizontalSpan = 2;
 			done.setLayoutData(doneGD);
 			done.pack();
 			done.addListener(SWT.Selection, new Listener() {
@@ -444,6 +461,7 @@ public class Wiz2 {
 					else if (customInput.getText().length() > 0)
 						character.setDruidAnimalCompanion(customInput.getText());
 					classExtrasShell.dispose();
+					finished = true;
 				}
 			});
 			break;
@@ -546,11 +564,22 @@ public class Wiz2 {
 				}
 			});
 
+			// cancel button
+			Button cancel = new Button(classExtrasShell, SWT.PUSH);
+			cancel.setText("Cancel");
+			GridData gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			cancel.setLayoutData(gd);
+			cancel.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					classExtrasShell.dispose();
+					finished = false;
+				}
+			});
+			
 			// done button
 			Button done = new Button(classExtrasShell, SWT.PUSH);
 			done.setText("Done");
 			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-			doneGD.horizontalSpan = 2;
 			done.setLayoutData(doneGD);
 			done.pack();
 			done.addListener(SWT.Selection, new Listener() {
@@ -572,8 +601,10 @@ public class Wiz2 {
 					} else if (customInput.getText().length() > 0) {
 						character.setRangerFavoredEnemy(customInput.getText());
 					}
-					if (!error)
+					if (!error) {
 						classExtrasShell.dispose();
+						finished = true;
+					}
 				}
 			});
 			break;
@@ -629,11 +660,22 @@ public class Wiz2 {
 				}
 			});
 
+			// cancel button
+			Button cancel = new Button(classExtrasShell, SWT.PUSH);
+			cancel.setText("Cancel");
+			GridData gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			cancel.setLayoutData(gd);
+			cancel.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					classExtrasShell.dispose();
+					finished = false;
+				}
+			});
+			
 			// done button
 			Button done = new Button(classExtrasShell, SWT.PUSH);
 			done.setText("Done");
 			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-			doneGD.horizontalSpan = 2;
 			done.setLayoutData(doneGD);
 			done.pack();
 			done.addListener(SWT.Selection, new Listener() {
@@ -644,6 +686,7 @@ public class Wiz2 {
 						character.setFamiliar(customInput.getText());
 					}
 					classExtrasShell.dispose();
+					finished = true;
 				}
 			});
 			break;
@@ -812,11 +855,22 @@ public class Wiz2 {
 				}
 			});
 
+			// cancel button
+			Button cancel = new Button(classExtrasShell, SWT.PUSH);
+			cancel.setText("Cancel");
+			GridData gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+			cancel.setLayoutData(gd);
+			cancel.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					classExtrasShell.dispose();
+					finished = false;
+				}
+			});
+			
 			// done button
 			Button done = new Button(classExtrasShell, SWT.PUSH);
 			done.setText("Done");
 			GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-			doneGD.horizontalSpan = 2;
 			done.setLayoutData(doneGD);
 			done.pack();
 			done.addListener(SWT.Selection, new Listener() {
@@ -851,18 +905,15 @@ public class Wiz2 {
 
 						}
 					}
-					if (!error)
+					if (!error) {
 						classExtrasShell.dispose();
+						finished = true;
+					}
 				}
 			});
 			break;
 		}
-		}
-		
-		
-		// TODO 
-		// add cancel button
-		
+		}		
 
 		// open shell
 		classExtrasShell.pack();
@@ -876,7 +927,7 @@ public class Wiz2 {
 			}
 		}
 
-
+		return finished;
 	}
 
 	public Composite getWiz2() { return wiz2; }

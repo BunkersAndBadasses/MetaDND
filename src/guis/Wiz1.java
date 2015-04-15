@@ -85,7 +85,7 @@ public class Wiz1 {
 		wiz1LevelLabel.setBounds(WIDTH/2 - 65, 135, 100, 100);
 		wiz1LevelLabel.pack();
 		// text box
-		wiz1LevelText = new Text(wiz1, SWT.BORDER | SWT.READ_ONLY); // TODO change when logic for higher levels is added
+		wiz1LevelText = new Text(wiz1, SWT.BORDER | SWT.READ_ONLY);
 		wiz1LevelText.setBounds(WIDTH/2 + 35,130,30,30);
 		wiz1LevelText.setText("1");
 

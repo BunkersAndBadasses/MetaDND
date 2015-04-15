@@ -352,7 +352,7 @@ public class Wiz3 {
 				if (error) return;
 				
 				// if all is good, save to character
-				cw.getCharacter().setAbilityScores(abilityScoresAfter[0], 
+				character.setAbilityScores(abilityScoresAfter[0], 
 						abilityScoresAfter[1], abilityScoresAfter[2], 
 						abilityScoresAfter[3], abilityScoresAfter[4], 
 						abilityScoresAfter[5]);				
