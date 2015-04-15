@@ -12,7 +12,7 @@ public class Main {
 		gameState = new GameState();
 			
 		Display display = new Display();
-		new Startscreen(display);
+		//new Startscreen(display);
 		new HomeWindow(display);
 		
 		display.dispose();
