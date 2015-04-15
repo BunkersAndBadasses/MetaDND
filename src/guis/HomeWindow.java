@@ -371,10 +371,8 @@ public class HomeWindow {
         playersButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				
-				//TODO stuff here? 
-					// uncomment after constructor is made
-					// look at DieWindow for example of code structure
-	            	//new CharacterMain(shell.getDisplay());
+				//TODO call function to populate charList with characters
+					
 	            playerScreen.pack();
 	            navigateToPlayerScreen();
 			}
@@ -453,6 +451,24 @@ public class HomeWindow {
 		GameState.PAGE_NUMBER = 3;
 		this.m_mainWindowLayout.topControl = this.m_playerScreen;
 		this.m_mainWindow.layout();
+	}
+	
+	//Parse through the user folders, and load the characters into
+	//	the charList on the player window
+	public void loadCharacters(){
+		
+		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Characters");
+		File[] files =CHARDIR.listFiles();
+		
+		for(int i = 0; i < files.length; i++){
+			
+			if(files[i].isDirectory()){
+				//TODO load the characters
+				
+			}
+			
+			
+		}
 	}
 
 //	public static void main(String[] args) {
