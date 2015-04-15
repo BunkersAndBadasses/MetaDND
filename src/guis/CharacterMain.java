@@ -237,7 +237,8 @@ public class CharacterMain {
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                SpellGUI.main(args);
+                String[] arry = {filename};
+            	SpellGUI.main(arry);
             }
         }); 
 
