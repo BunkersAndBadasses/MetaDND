@@ -206,15 +206,15 @@ public class CharacterWizard {
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout randomLayout = new StackLayout();
 		randomPanel.setLayout(randomLayout);
-		final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
-		randomPage1.setSize(manualPanel.getSize());
-		randomLayout.topControl = randomPage1;
-		randomPanel.layout();
-		Label csRandom = new Label(randomPage1, SWT.BOLD);
-		csRandom.setLocation(WIDTH/2-50, HEIGHT/2);
-		csRandom.setText("Coming Soon!");
-		csRandom.pack();
-		createCancelButton(randomPage1, home, homePanel, homeLayout);
+		//final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
+		//randomPage1.setSize(manualPanel.getSize());
+		//randomLayout.topControl = randomPage1;
+		//randomPanel.layout();
+		//Label csRandom = new Label(randomPage1, SWT.BOLD);
+		//csRandom.setLocation(WIDTH/2-50, HEIGHT/2);
+		//csRandom.setText("Coming Soon!");
+		//csRandom.pack();
+		//createCancelButton(randomPage1, home, homePanel, homeLayout);
 
 
 		// ////////////////// HOME BUTTON LISTENERS ///////////////////////
@@ -240,7 +240,9 @@ public class CharacterWizard {
 		});
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				randomgeneration();
+				randomgeneration(randomPanel, randomLayout);
+				homeLayout.topControl = randomPanel;
+				homePanel.layout();
 			}
 
 		});
@@ -256,7 +258,7 @@ public class CharacterWizard {
      * The other information of character, if you want to change it, should be done
      * @author Innocentius
      */
-	private void randomgeneration() 
+	private void randomgeneration(final Composite randomPanel, final StackLayout randomLayout) 
 	{
 		character = new character();
 		character.setLevel(1);
@@ -450,7 +452,13 @@ public class CharacterWizard {
 		//Weapons is <empty>
 		//Armor is <empty>
 		//Notes will be <empty>
-		System.out.println(character.toString());
+		final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
+		randomPage1.setSize(randomPanel.getSize());
+		randomLayout.topControl = randomPage1;
+		randomPanel.layout();
+	    Label csRandom = new Label(randomPage1, SWT.BOLD);
+	    csRandom.setText(character.toString());
+	    csRandom.pack();
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
