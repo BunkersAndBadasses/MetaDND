@@ -289,6 +289,7 @@ public class CharacterWizard {
 				"Vecna(NE): god of secrets", 
 				"Wee Jas(LN): goddess of death and magic",
 				"Yondalla(LG): goddess of the halflings" };
+		if(character.getCharClass().getName().equalsIgnoreCase("Cleric"))
 		character.setDeity(deities[randomgene.GetRandomInteger(0, deities.length - 1)]);
 		//Size
 		character.setSize(character.getCharRace().getSize());
@@ -301,19 +302,20 @@ public class CharacterWizard {
 		//14-30 Half-orc
 		//20-50 Halfling
 		RaceEntity racec = character.getCharRace();
+		boolean x = false;
 		if(racec.getName().equalsIgnoreCase("Elf"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(110, 175)));
-		if(racec.getName().equalsIgnoreCase("Human"))
+		else if(racec.getName().equalsIgnoreCase("Human"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(15, 35)));
-		if(racec.getName().equalsIgnoreCase("Dwarf"))
+		else if(racec.getName().equalsIgnoreCase("Dwarf"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(40, 125)));
-		if(racec.getName().equalsIgnoreCase("Gnome"))
+		else if(racec.getName().equalsIgnoreCase("Gnome"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(40, 100)));
-		if(racec.getName().equalsIgnoreCase("Half-elf"))
+		else if(racec.getName().equalsIgnoreCase("Half-elf"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(20, 62)));
-		if(racec.getName().equalsIgnoreCase("Half-orc"))
+		else if(racec.getName().equalsIgnoreCase("Half-orc"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(14, 30)));
-		if(racec.getName().equalsIgnoreCase("Halfling"))
+		else if(racec.getName().equalsIgnoreCase("Halfling"))
 			character.setAge(String.valueOf(randomgene.GetRandomInteger(20, 50)));
 		else// TODO create a race field of AGE BOUNDARY
 		{
@@ -349,18 +351,44 @@ public class CharacterWizard {
 		heightString += "\"";
 		character.setHeight(heightString);
 		//Weight
+		int weight = 0;
+		if(racec.getName().equalsIgnoreCase("Elf"))
+			weight = randomgene.GetRandomInteger(80, 160);
+		if(racec.getName().equalsIgnoreCase("Human"))
+			weight = randomgene.GetRandomInteger(125, 280);
+		if(racec.getName().equalsIgnoreCase("Dwarf"))
+			weight = randomgene.GetRandomInteger(85, 230);
+		if(racec.getName().equalsIgnoreCase("Gnome"))
+			weight = randomgene.GetRandomInteger(35, 50);
+		if(racec.getName().equalsIgnoreCase("Half-elf"))
+			weight = randomgene.GetRandomInteger(80, 230);
+		if(racec.getName().equalsIgnoreCase("Half-orc"))
+			weight = randomgene.GetRandomInteger(110, 400);
+		if(racec.getName().equalsIgnoreCase("Halfling"))
+			weight = randomgene.GetRandomInteger(25, 40);
+		else// TODO create a race field of height BOUNDARY
+		{
+			weight = randomgene.GetRandomInteger(125, 280);
+		}
+		String weightString = Integer.toString(weight)+ " lbs";
+		character.setWeight(weightString);
 		//Eyes will fill by the user
 		//Hair will fill by the user
 		//Skin will fill by the user
 		//Description
-		//Ability score for
-		//STR
-		//DEX
-		//CON
-		//INT
-		//WIS
-		//CHA
+		character.setDescription("This is a random generation character");
+		//Ability score
+		do
+		{
+		character.setAbilityScores(randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), 
+				randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18));
+		} while(character.checkreroll());
 		//HP and remaining HP
+		character.setHitPoints(Integer.parseInt(character.getCharClass().getHitDie().split("d")[1]) + character.getAbilityModifiers()[2]);
+		if(character.getHitPoints() < 3)
+		{
+			character.setHitPoints(3);
+		}
 		//Languages -- pick three
 		//Gold
 		//Feats

@@ -126,7 +126,42 @@ public class character {
 			mods[i] = (abilityScores[i]/2)-5;
 		return mods;
 	}
-	
+	public boolean checkreroll()
+	{
+		//reroll is true if ability modifiers sum <= 0
+		//or the highest die roll is less or equal 13
+		try
+		{
+		int totalmod = 0;
+		int[] mods = getAbilityModifiers();
+		for(int i = 0; i < mods.length; i++)
+		{
+			totalmod += mods[i];
+		}
+		if(totalmod <= 0)
+		{
+			return true;
+		}
+		int highest = 0;
+		int[] scores = getAbilityScores();
+		for(int j = 0; j < scores.length; j++)
+		{
+			if(scores[j] > highest)
+			{
+				highest = scores[j];
+			}
+		}
+		if(highest <= 13)
+		{
+			return true;
+		}
+		return false;
+		}
+		catch(Exception a)
+		{
+			return false;
+		}
+	}
 	public void setHitPoints(int hp) { this.hp = hp; resetRemainingHitPoints(); }
 	public int getHitPoints() { return hp; }
 	
