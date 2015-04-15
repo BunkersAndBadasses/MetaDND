@@ -2,21 +2,6 @@
  * ADD DESCRIPTION
  */
 
-/*
- * TODO 
- * barb - non lawful
- * bard - non lawful
- * cleric - align must be within 1 step of deity's align, must match domain (if applicable)
- * druid - must have one neutral, animal companion
- * fighter - none
- * monk - lawful
- * paladin - lawful good!
- * ranger - select favored enemy (p.47)
- * rogue - none
- * sorcerer - none
- * wizard - specialization school, familiar
- */
-
 package guis;
 import java.util.ArrayList;
 import java.util.Random;
@@ -98,7 +83,6 @@ public class Wiz4 {
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
 			final ArrayList<Composite> wizPages) {
-		numBonusLangs = cw.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
 		wiz4 = wizPages.get(3);
 		this.cw = cw;
 		this.dev = dev;
@@ -114,6 +98,7 @@ public class Wiz4 {
 		this.nextPage = wizPages.get(4);
 		this.wizPagesSize = wizPages.size();
 
+		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		charClass = cw.getCharacter().getCharClass().getName();
 		charRace = cw.getCharacter().getCharRace().getName();
 

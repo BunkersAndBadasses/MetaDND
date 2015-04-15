@@ -2,12 +2,6 @@
  * APPLY ABILITY SCORES
  */
 
-/*
- * TODO
- * add racial modifiers
- * add class modifiers
- */
-
 package guis;
 import java.util.ArrayList;
 
@@ -358,10 +352,14 @@ public class Wiz3 {
 				if (error) return;
 				
 				// if all is good, save to character
-				character.setAbilityScores(abilityScoresAfter[0], 
-						abilityScoresAfter[1], abilityScoresAfter[2], 
-						abilityScoresAfter[3], abilityScoresAfter[4], 
-						abilityScoresAfter[5]);				
+				int[] racialMods = character.getCharRace().getAbilityAdj();
+				character.setAbilityScores(
+						abilityScoresAfter[0] + racialMods[0], 
+						abilityScoresAfter[1] + racialMods[1], 
+						abilityScoresAfter[2] + racialMods[2], 
+						abilityScoresAfter[3] + racialMods[3], 
+						abilityScoresAfter[4] + racialMods[4], 
+						abilityScoresAfter[5] + racialMods[5]);				
 				
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
