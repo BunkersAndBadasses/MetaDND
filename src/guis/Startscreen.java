@@ -18,7 +18,7 @@ public class Startscreen {
 	public Startscreen(Display d)
 	{
 		display = d;
-		shell = new Shell(d);
+		shell = new Shell(d/*, SWT.NO_TRIM*/);
 		shell.setText("Welcome!");
 		shell.setSize(WIDTH,HEIGHT);
 		createPageContent();
@@ -49,10 +49,11 @@ public class Startscreen {
         shell.setBounds(nLeft, nTop, p.x, p.y);
     }
 	private void createPageContent() {
+		
 		Image bb = new Image(display, ".//images//bnb_logo.gif");
 		Label a = new Label(shell, SWT.BORDER);
 		a.setText("MetaDND by Bunkers and BadAsses "
-				+ "\nVer 0.2.23"+"\nDeveloper Only!");
+				+ " ver 0.2.23"+"\nDeveloper Only!");
 		a.pack();
 		Label b = new Label(shell, SWT.PUSH);
 		b.setImage(bb);

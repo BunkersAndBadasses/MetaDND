@@ -107,14 +107,12 @@ public class DnDie {
 				Die.appendChild(dieCount);
 
 				// The modifier on the die roll (if applies)
-				//TODO Need to check to see if there is a modifier or player thingy
 				Element modifier = doc.createElement("modifier");
 				modifier.appendChild(doc.createTextNode(
 						Integer.toString(roll.get(i).getModifier())));
 				Die.appendChild(modifier);
 
 				// What is this player level Adjustment?
-				//TODO Need to check to see if there is a modifier or player thingy
 				Element playerLevelAdjust = doc.createElement("player_Level_Adjust");
 				playerLevelAdjust.appendChild(doc.createTextNode(
 						Integer.toString(roll.get(i).getPlayerLevelAdjust())));
@@ -123,7 +121,6 @@ public class DnDie {
 			}
 
 			// write the content into xml file
-			//TODO Fix TransformerFactory BUG
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
@@ -166,8 +163,7 @@ public class DnDie {
 			doc.getDocumentElement().normalize();
 
 			System.out.println("Favorite_Die: " + doc.getDocumentElement().getNodeName());
-
-			//TODO
+			
 			NodeList nList = doc.getElementsByTagName("Die");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
