@@ -1,5 +1,7 @@
 package core;
 import guis.HomeWindow;
+import guis.Startscreen;
+
 import org.eclipse.swt.widgets.*;
 
 public class Main {
@@ -15,6 +17,7 @@ public class Main {
 		
 		
 		Display display = new Display();
+		new Startscreen(display);
 		new HomeWindow(display);
 		//shell.setBounds(0,0,500,500);
 		//shell.setText("Testing box");
