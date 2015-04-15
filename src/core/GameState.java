@@ -81,6 +81,9 @@ public class GameState {
 	}
 	
 	public boolean search(String searchString){
+		
+		this.searchResults.clear();
+		
 		SearchThread st1 = new SearchThread("Spells");
 		SearchThread st2 = new SearchThread("Feats");
 		SearchThread st3 = new SearchThread("Skills");
