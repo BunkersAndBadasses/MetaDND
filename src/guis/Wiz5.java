@@ -60,7 +60,6 @@ public class Wiz5 {
 	private String charClass;
 	private int numSkillPoints;
 	private ArrayList<CharSkill> charSkills = new ArrayList<CharSkill>();
-	private GameState gs = Main.gameState;
 	
 	
 	public Wiz5(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
@@ -165,7 +164,7 @@ public class Wiz5 {
 		untrainedLabel.pack();
 
 		// get skills from references
-		Collection<DNDEntity> skillsCol =  gs.skills.values();
+		Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
 		Iterator<DNDEntity> itr = skillsCol.iterator();
 		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
 		while (itr.hasNext()) {

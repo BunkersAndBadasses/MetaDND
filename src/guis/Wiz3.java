@@ -2,6 +2,12 @@
  * APPLY ABILITY SCORES
  */
 
+/*
+ * TODO
+ * add racial modifiers
+ * add class modifiers
+ */
+
 package guis;
 import java.util.ArrayList;
 
