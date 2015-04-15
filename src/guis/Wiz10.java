@@ -264,8 +264,8 @@ public class Wiz10 {
 					String skillList = ""; 
 					for(int i = 0; i < character.getSkills().size(); i++){
 						// Skill Name
-						Element SkillName = doc.createElement("SKILL_NAME");
-						skillList += character.getSkills().get(i) + " " + character.getSkills().get(i).getRank();
+						skillList += character.getSkills().get(i).getSkill().getName()
+								+ " " + character.getSkills().get(i).getRank();
 						if( i != character.getSkills().size() - 1) {
 							skillList += "/";
 						}
@@ -369,6 +369,48 @@ public class Wiz10 {
 					Armors.appendChild(doc.createTextNode(armorList));
 					Character.appendChild(Armors);	
 
+					// AC
+					Element AC = doc.createElement("AC");
+					AC.appendChild(doc.createTextNode(Integer.toString(
+							character.getAC())));
+					Character.appendChild(AC);	
+					
+					// TouchAC
+					Element TouchAC = doc.createElement("TouchAC");
+					TouchAC.appendChild(doc.createTextNode(Integer.toString(
+							character.getTouchAC())));
+					Character.appendChild(TouchAC);	
+					
+					// flatFootedAC
+					Element FlatAC = doc.createElement("FlatAC");
+					FlatAC.appendChild(doc.createTextNode(Integer.toString(
+							character.getFlatFootedAC())));
+					Character.appendChild(FlatAC);	
+					
+					// initMod
+					Element initMod = doc.createElement("InitMod");
+					initMod.appendChild(doc.createTextNode(Integer.toString(
+							character.getInitMod())));
+					Character.appendChild(initMod);	
+					
+					// Fortitude Saving throw
+					Element fortSave = doc.createElement("FortSave");
+					fortSave.appendChild(doc.createTextNode(Integer.toString(
+							character.getSavingThrows()[0])));
+					Character.appendChild(fortSave);	
+					
+					// Reflex Saving throw
+					Element reflexSave = doc.createElement("ReflexSave");
+					reflexSave.appendChild(doc.createTextNode(Integer.toString(
+							character.getSavingThrows()[1])));
+					Character.appendChild(reflexSave);	
+					
+					// Will Saving throw
+					Element willSave = doc.createElement("ReflexSave");
+					reflexSave.appendChild(doc.createTextNode(Integer.toString(
+							character.getSavingThrows()[1])));
+					Character.appendChild(reflexSave);	
+					
 					// Notes
 					Element Notes = doc.createElement("Notes");
 					Notes.appendChild(doc.createTextNode(character.getNotes()));
@@ -382,7 +424,9 @@ public class Wiz10 {
 					//change back to character.getName() is not working correctly
 					String charName = character.getName().replaceAll("[^A-Za-z0-9]", "");
 					try{
-						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + charName);
+						File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
+						CHARACTER.mkdir();
+						File CHARDIR = new File(CHARACTER.getPath() + "//" + charName);
 						CHARDIR.mkdir();
 						StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
 						

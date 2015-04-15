@@ -41,12 +41,12 @@ public class character {
 	private int AC = 0;
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
-	private int initMod = 0;
+	private int initMod = 0;//
 	private int[] savingThrows = {0,0,0}; // fortitude, reflex, will
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
 	private int grappleMod = 0;
-	private int speed = 0;
+	private int speed = 0;//
 	private int damageReduction = 0;
 	private String[] clericDomains = null;
 	private String druidAnimalCompanion = null;
