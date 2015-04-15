@@ -7,6 +7,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
@@ -170,8 +171,6 @@ public class HomeWindow {
         
         ///////////////////PLAYER SCREEN//////////////////////////
         
-        // TODO ryan create the composite here
-        
         Composite characterComp = new Composite(playerScreen, SWT.NONE);
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         gridData.horizontalSpan = 3;
@@ -189,19 +188,18 @@ public class HomeWindow {
 		playerLabel.setFont(playerFont);
 		playerLabel.setLayoutData(chargridData);
         
-		List searchList = new List(characterComp, SWT.V_SCROLL);
+		List charList = new List(characterComp, SWT.V_SCROLL);
 		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		searchList.setLayoutData(chargridData);
-		searchList.addMouseListener(new MouseListener()
-		{
-			public void mouseDown(MouseEvent e){}
-			public void mouseUp(MouseEvent e){}
-			public void mouseDoubleClick(MouseEvent e)
-			{
-				//TODO populate the info text box 
-
+		charList.setLayoutData(chargridData);
+		charList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				//TODO populate the Character sheet 
+				
 			}
 
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
 		});
         
 		Button addChar = new Button(characterComp, SWT.PUSH);
@@ -209,12 +207,13 @@ public class HomeWindow {
 		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		addChar.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				//TODO pull up the character generator
+				
+	        		new CharacterWizard(shell.getDisplay());
+	            
 			}
 		});
-        
-        //characterComp.pack();
-        
+ 
+        // Call the seach panel composite
         referencePanel rp = new referencePanel(playerScreen);
         Composite refPanel = rp.getRefPanel();
         gridData = new GridData(SWT.FILL, SWT.FILL, true, true);

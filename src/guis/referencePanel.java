@@ -92,7 +92,7 @@ public class referencePanel {
 		list.setLayout(fillLayout);
 
 		List searchList = new List(list, SWT.V_SCROLL);
-		searchList.add("empty");
+		//searchList.add("empty");
 		searchList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				//TODO populate the info text box 
