@@ -240,7 +240,7 @@ public class CharacterWizard {
 		});
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				randomgeneration(randomPanel, randomLayout);
+				randomgeneration(randomPanel, randomLayout, homePanel);
 				homeLayout.topControl = randomPanel;
 				homePanel.layout();
 			}
@@ -259,7 +259,8 @@ public class CharacterWizard {
      * @author Innocentius
      */
 	@SuppressWarnings("unused")
-	private void randomgeneration(final Composite randomPanel, final StackLayout randomLayout) 
+	private void randomgeneration(final Composite randomPanel, final StackLayout randomLayout, 
+			final Composite homePanel) 
 	{
 		character = new character();
 		character.setLevel(1);
@@ -460,6 +461,8 @@ public class CharacterWizard {
 	    Label csRandom = new Label(randomPage1, SWT.BOLD);
 	    csRandom.setText(character.toString());
 	    csRandom.pack();
+	    createCancelButton(randomPage1, homePanel, randomPanel, randomLayout);
+	    //TODO 
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
