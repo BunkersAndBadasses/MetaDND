@@ -22,12 +22,9 @@ import entity.RaceEntity;
 /*
  * TODO: 
  * 
- * fix modifier logic (not rounding up)
  * launch wizards (add custom)
- * add search pop-up ("Coming soon!")
  * check feat prerequisites
- * save items
- * set hp
+ * 
  * set size
  * monk - add wis to ac
  * 

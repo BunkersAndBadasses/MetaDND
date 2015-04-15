@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
+import core.GameState;
 import core.character;
 import entity.ClassEntity;
 import entity.RaceEntity;
@@ -352,6 +353,8 @@ public class Wiz3 {
 				if (error) return;
 				
 				// if all is good, save to character
+				
+				// set ability scores
 				int[] racialMods = character.getCharRace().getAbilityAdj();
 				character.setAbilityScores(
 						abilityScoresAfter[0] + racialMods[0], 
@@ -359,7 +362,14 @@ public class Wiz3 {
 						abilityScoresAfter[2] + racialMods[2], 
 						abilityScoresAfter[3] + racialMods[3], 
 						abilityScoresAfter[4] + racialMods[4], 
-						abilityScoresAfter[5] + racialMods[5]);				
+						abilityScoresAfter[5] + racialMods[5]);	
+				
+				// set hitpoints
+				int hitDie = Integer.parseInt(character.getCharClass().getHitDie().substring(1));
+				int hp = hitDie + character.getAbilityModifiers()[GameState.CONSTITUTION];
+				if (hp < 3)
+					hp = 3;
+				character.setHitPoints(hp);
 				
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;

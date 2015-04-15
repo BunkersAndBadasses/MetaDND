@@ -181,7 +181,7 @@ public class Wiz2 {
 		badClassSelect.setVisible(false);
 		badClassSelect.setText("you must select a class!");
 
-		/*
+		
 		// search buttons - searches references using selection in drop down 
 		Button raceSearchButton = createSearchButton(wiz2);
 		raceSearchButton.setLocation(106, HEIGHT/2 - 30);
@@ -193,6 +193,8 @@ public class Wiz2 {
 				} else {
 					badSearch.setVisible(false);
 					// launch search
+					DNDEntity search = Main.gameState.races.get(raceDropDown.getText());
+					search.toTooltipWindow();
 				}
 			}
 		});
@@ -207,6 +209,8 @@ public class Wiz2 {
 				} else {
 					badSearch.setVisible(false);
 					// launch search
+					DNDEntity search = Main.gameState.classes.get(classDropDown.getText());
+					search.toTooltipWindow();
 				}
 			}
 		});
@@ -221,11 +225,14 @@ public class Wiz2 {
 				} else {
 					badSearch.setVisible(false);
 					// launch search
+					DNDEntity search = Main.gameState.classes.get(secClassDropDown.getText());
+					search.toTooltipWindow();
 				}
 			}
-		});		
+		});	
+		secClassSearchButton.setEnabled(false);
 
-
+		/*
 		// add custom buttons - launches respective wizard to add new item
 		Button raceAddCustomButton = createAddCustomButton(wiz2);
 		raceAddCustomButton.setLocation(97, HEIGHT/2 + 20);
@@ -250,7 +257,7 @@ public class Wiz2 {
 				// launch class wizard
 			}
 		});
-		 */ // 
+		*/ 
 
 		// next button
 		Button wiz2NextButton = cw.createNextButton(wiz2);
@@ -289,16 +296,23 @@ public class Wiz2 {
 					done = extraStuffWindow(charClass);
 				if (!done)
 					return;
-				cw.getCharacter().setCharRace(races.get(raceDropDown.getSelectionIndex()));
-				cw.getCharacter().setCharClass(classes.get(classDropDown.getSelectionIndex()));
+				
+				// if all good, save
+				
+				// set race
+				character.setCharRace(races.get(raceDropDown.getSelectionIndex()));
+				// set class
+				character.setCharClass(classes.get(classDropDown.getSelectionIndex()));
+				// set second class (if any)
 				int secClassIndex = secClassDropDown.getSelectionIndex();
 				if (secClassIndex < 1)
-					cw.getCharacter().setCharSecClass(null);
+					character.setCharSecClass(null);
 				else 
-					cw.getCharacter().setCharSecClass(classes.get(secClassIndex));
-				//				Wiz3.updateCharRace();
-				//				Wiz3.updateCharClass();
-				//				Wiz3.updateCharSecClass();
+					character.setCharSecClass(classes.get(secClassIndex));
+				// set size
+				character.setSize(character.getCharRace().getSize());
+				// set size
+				character.setSpeed(character.getCharRace().getSpeed());
 
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
@@ -337,18 +351,18 @@ public class Wiz2 {
 		});
 	}
 
-	//	/**
-	//	 * creates a 'search' button. does not set location or add listener.
-	//	 * literally only creates a button with a specific size with the text set 
-	//	 * to "Search"
-	//	 * @return
-	//	 */
-	//	private Button createSearchButton(Composite c) {
-	//		Button searchButton = new Button(c, SWT.PUSH);
-	//		searchButton.setText("Search");
-	//		searchButton.setSize(80,30);
-	//		return searchButton;
-	//	}
+		/**
+		 * creates a 'search' button. does not set location or add listener.
+		 * literally only creates a button with a specific size with the text set 
+		 * to "Search"
+		 * @return
+		 */
+		private Button createSearchButton(Composite c) {
+			Button searchButton = new Button(c, SWT.PUSH);
+			searchButton.setText("Details");
+			searchButton.setSize(80,30);
+			return searchButton;
+		}
 	//
 	//	/**
 	//	 * creates a 'add custom' button. does not set location or add listener.
