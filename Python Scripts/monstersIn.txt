@@ -3363,13 +3363,13 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Air Elemental, Medium
 Medium Elemental (Air, Extraplanar)
@@ -3410,13 +3410,13 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Air Elemental, Large 
 Large Elemental (Air, Extraplanar)
@@ -3457,13 +3457,13 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Air Elemental, Huge 
 Huge Elemental (Air, Extraplanar)
@@ -3504,13 +3504,14 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+----- Whirlwind -----
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Air Elemental, Greater 
 Huge Elemental (Air, Extraplanar)
@@ -3551,13 +3552,13 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Air Elemental, Elder 
 Huge Elemental (Air, Extraplanar)
@@ -3598,13 +3599,13 @@ Those caught in the cloud must succeed on a Concentration check (DC 15 + spell l
 An elemental in whirlwind form cannot make slam attacks and does not threaten the area around it.
 Air Elemental Sizes 
 ----- Whirlwind -----
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 1 lb. 11 1d4 10-20 ft.
-Medium 8 ft. 2 lb. 13 1d6 10-30 ft.
-Large 16 ft. 4 lb. 16 2d6 10-40 ft.
-Huge 32 ft. 8 lb. 22 2d8 10-50 ft.
-Greater 36 ft. 10 lb. 25 2d8 10-60 ft.
-Elder 40 ft. 12 lb. 28 2d8 10-60 ft.
+Elemental 	Height 	Weight 	Save DC	Damage 	Height
+Small 		4 ft. 	1 lb. 	11 		1d4 	10-20 ft.
+Medium 		8 ft. 	2 lb. 	13 		1d6		10-30 ft.
+Large 		16 ft. 	4 lb. 	16 		2d6 	10-40 ft.
+Huge 		32 ft. 	8 lb. 	22 		2d8 	10-50 ft.
+Greater 	36 ft. 	10 lb. 	25 		2d8 	10-60 ft.
+Elder 		40 ft. 	12 lb. 	28 		2d8 	10-60 ft.
 
 Earth Elemental, Small 
 Small Elemental (Earth, Extraplanar)
@@ -3637,10 +3638,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Earth Elemental, Medium 
 Medium Elemental (Earth, Extraplanar)
@@ -3673,10 +3674,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Earth Elemental, Large 
 Large Elemental (Earth, Extraplanar)
@@ -3709,10 +3710,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Earth Elemental, Huge 
 Huge Elemental (Earth, Extraplanar)
@@ -3745,10 +3746,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Earth Elemental, Greater 
 Huge Elemental (Earth, Extraplanar)
@@ -3781,10 +3782,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Earth Elemental, Elder 
 Huge Elemental (Earth, Extraplanar)
@@ -3817,10 +3818,10 @@ Earth Mastery (Ex): An earth elemental gains a +1 bonus on attack and damage rol
 Push (Ex): An earth elemental can start a bull rush maneuver without provoking an attack of opportunity. The combat modifiers given in Earth Mastery, above, also apply to the elemental's opposed Strength checks.
 Earth Glide (Ex): An earth elemental can glide through stone, dirt, or almost any other sort of earth except metal as easily as a fish swims through water. Its burrowing leaves behind no tunnel or hole, nor does it create any ripple or other signs of its presence. A move earth spell cast on an area containing a burrowing earth elemental flings the elemental back 30 feet, stunning the creature for 1 round unless it succeeds on a DC 15 Fortitude save.
 Earth Elemental Sizes
-Elemental Height Weight Elemental Height Weight
-Small 4 ft. 80 lb. Huge 32 ft. 48,000 lb.
-Medium 8 ft. 750 lb. Greater 36 ft. 54,000 lb.
-Large 16 ft. 6,000 lb. Elder 40 ft. 60,000 lb.
+Elemental 	Height 	Weight 		Elemental 	Height 	Weight
+Small 		4 ft. 	80 lb. 		Huge 		32 ft. 	48,000 lb.
+Medium 		8 ft. 	750 lb. 	Greater 	36 ft. 	54,000 lb.
+Large 		16 ft. 	6,000 lb. 	Elder 		40 ft. 	60,000 lb.
 
 Fire Elemental, Small 
 Small Elemental (Fire, Extraplanar)
@@ -3852,13 +3853,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Fire Elemental, Medium 
 Medium Elemental (Fire, Extraplanar)
@@ -3890,13 +3891,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Fire Elemental, Large 
 Large Elemental (Fire, Extraplanar)
@@ -3928,13 +3929,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Fire Elemental, Huge 
 Huge Elemental (Fire, Extraplanar)
@@ -3966,13 +3967,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Fire Elemental, Greater 
 Huge Elemental (Fire, Extraplanar)
@@ -4004,13 +4005,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Fire Elemental, Elder 
 Huge Elemental (Fire, Extraplanar)
@@ -4042,13 +4043,13 @@ A fire elemental is a fierce opponent that attacks its enemies directly and sava
 Burn (Ex): A fire elemental's slam attack deals bludgeoning damage plus fire damage from the elemental's flaming body. Those hit by a fire elemental's slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental's size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
 Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental's attack, and also catch on fire unless they succeed on a Reflex save.
 Fire Elemental Sizes
-Elemental Height Weight Burn Save DC
-Small 4 ft. 1 lb. 11
-Medium 8 ft. 2 lb. 14
-Large 16 ft. 4 lb. 17
-Huge 32 ft. 8 lb. 22
-Greater 36 ft. 10 lb. 24
-Elder 40 ft. 12 lb. 26
+Elemental 	Height 	Weight 	Burn Save DC
+Small 		4 ft. 	1 lb. 	11
+Medium 		8 ft. 	2 lb. 	14
+Large 		16 ft. 	4 lb. 	17
+Huge 		32 ft. 	8 lb. 	22
+Greater 	36 ft. 	10 lb. 	24
+Elder 		40 ft. 	12 lb. 	26
 
 Water Elemental, Small 
 Small Elemental (Water, Extraplanar)
@@ -4091,13 +4092,13 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
 
 Water Elemental, Medium 
 Medium Elemental (Water, Extraplanar)
@@ -4140,13 +4141,13 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
 
 Water Elemental, Large 
 Large Elemental (Water, Extraplanar)
@@ -4189,13 +4190,13 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
 
 Water Elemental, Huge 
 Huge Elemental (Water, Extraplanar)
@@ -4238,13 +4239,14 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
+
 
 Water Elemental, Greater 
 Huge Elemental (Water, Extraplanar)
@@ -4287,13 +4289,14 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
+
 
 Water Elemental, Elder 
 Huge Elemental (Water, Extraplanar)
@@ -4336,13 +4339,14 @@ An elemental in vortex form cannot make slam attacks and does not threaten the a
 Skills: A water elemental has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line.
 Water Elemental Sizes 
 ------- Vortex -------
-Elemental Height Weight Save DC Damage Height
-Small 4 ft. 34 lb. 13 1d4 10-20 ft.
-Medium 8 ft. 280 lb. 15 1d6 10-30 ft.
-Large 16 ft. 2,250 lb. 19 2d6 10-40 ft.
-Huge 32 ft. 18,000 lb. 25 2d8 10-50 ft.
-Greater 36 ft. 21,000 lb. 28 2d8 10-60 ft.
-Elder 40 ft. 24,000 lb. 31 2d8 10-60 ft.
+Elemental 	Height 	Weight 		Save DC 	Damage Height
+Small 		4 ft. 	34 lb. 		13 1d4 		10-20 ft.
+Medium 		8 ft. 	280 lb. 	15 1d6 		10-30 ft.
+Large 		16 ft. 	2,250 lb. 	19 2d6 		10-40 ft.
+Huge 		32 ft. 	18,000 lb. 	25 2d8 		10-50 ft.
+Greater 	36 ft. 	21,000 lb. 	28 2d8 		10-60 ft.
+Elder 		40 ft. 	24,000 lb. 	31 2d8 		10-60 ft.
+
 
 Elf 
 Medium Humanoid (Elf )
