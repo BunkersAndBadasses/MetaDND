@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import core.Main;
+
 public class TrapEntity extends DNDEntity{
 	
 	int challengeRating;
@@ -28,9 +30,6 @@ public class TrapEntity extends DNDEntity{
 			switch(field){
 			case "NAME":
 				String temp = new String(value.split("\\[")[0].trim());
-				String typeTemp = value.split("\\[")[1].trim();
-				typeTemp = typeTemp.substring(0, typeTemp.length() - 1).toLowerCase();
-				this.type = WordUtils.capitalize(typeTemp);
 				temp = WordUtils.capitalize(temp.toLowerCase());
 				temp = WordUtils.capitalize(temp, '(', '[');
 		    	this.name = temp;
@@ -62,6 +61,11 @@ public class TrapEntity extends DNDEntity{
 			case "SEARCHDC":
 				this.searchDC = Integer.parseInt(value);
 				break;
+			case "DISABLEDC":
+				this.disableDC = Integer.parseInt(value);
+				break;
+			case "VALUE":
+				this.value = value;
 			default:
 				break;
 			}
@@ -71,7 +75,23 @@ public class TrapEntity extends DNDEntity{
 
 	@Override
 	public void search(String searchString, Thread runningThread) throws InterruptedException {
-		// TODO Auto-generated method stub
+		if(this.name != null && this.name.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.description != null && this.description.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
 		
 	}
 

@@ -112,6 +112,12 @@ public class xmlLoader implements Runnable{
 //					if(testClass.getName().equalsIgnoreCase("barbarian"))
 //						testClass.toTooltipWindow();
 				}
+				else if(node.getNodeName() == "TRAP"){
+					TrapEntity testTrap = new TrapEntity(entity);
+					Main.gameState.classes.put(testTrap.getName(), testTrap);
+//					if(testClass.getName().equalsIgnoreCase("barbarian"))
+//						testClass.toTooltipWindow();
+				}
 			}
 		}
 	}

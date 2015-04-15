@@ -61,6 +61,7 @@ public class GameState {
 	
 	
 	public GameState(){
+		xmlLoader xmls = new xmlLoader("xmlTestThread");
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
 		skills = new LinkedHashMap<String, DNDEntity>();
@@ -73,6 +74,7 @@ public class GameState {
 		traps = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
 		searchResults = new HashMap<String, DNDEntity>();
+		xmls.start();
 		USERDATAFOLDER.mkdir();
 	}
 	
@@ -90,12 +92,15 @@ public class GameState {
 		SearchThread st4 = new SearchThread("Classes");
 		SearchThread st5 = new SearchThread("Races");
 		SearchThread st6 = new SearchThread("Deities");
+		SearchThread st7 = new SearchThread("Traps");
 		
 		st1.start(this.spells, searchString);
 		st2.start(this.feats, searchString);
 		st3.start(this.skills, searchString);
 		st4.start(this.classes, searchString);
 		st5.start(this.races, searchString);
+		st6.start(this.races, searchString);
+		st7.start(this.races, searchString);
 		
 		try {
 			st1.getSearchThread().join();
@@ -103,6 +108,8 @@ public class GameState {
 			st3.getSearchThread().join();
 			st4.getSearchThread().join();
 			st5.getSearchThread().join();
+			st6.getSearchThread().join();
+			st7.getSearchThread().join();
 		} catch (InterruptedException e) {
 			System.out.println("Error joining threads!");
 			return false;
