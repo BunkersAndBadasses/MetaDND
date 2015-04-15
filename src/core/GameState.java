@@ -89,6 +89,7 @@ public class GameState {
 		SearchThread st3 = new SearchThread("Skills");
 		SearchThread st4 = new SearchThread("Classes");
 		SearchThread st5 = new SearchThread("Races");
+		SearchThread st6 = new SearchThread("Deities");
 		
 		st1.start(this.spells, searchString);
 		st2.start(this.feats, searchString);

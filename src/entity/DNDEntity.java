@@ -103,7 +103,6 @@ public abstract class DNDEntity {
 			if(!display.readAndDispatch())
 				display.sleep();
 		}
-		display.dispose();
 	}
 	
 	public abstract void search(String searchString, Thread runningThread) throws InterruptedException;

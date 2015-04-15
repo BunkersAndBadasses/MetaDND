@@ -106,6 +106,12 @@ public class xmlLoader implements Runnable{
 //					if(testClass.getName().equalsIgnoreCase("barbarian"))
 //						testClass.toTooltipWindow();
 				}
+				else if(node.getNodeName() == "DEITY"){
+					DeityEntity testDeity = new DeityEntity(entity);
+					Main.gameState.classes.put(testDeity.getName(), testDeity);
+//					if(testClass.getName().equalsIgnoreCase("barbarian"))
+//						testClass.toTooltipWindow();
+				}
 			}
 		}
 	}
