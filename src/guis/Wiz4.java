@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -60,8 +61,8 @@ public class Wiz4 {
 	private int wizPagesSize;
 
 	private Text nameInput;
-	private Combo alignmentInput1;
-	private Combo alignmentInput2;
+	private CCombo alignmentInput1;
+	private CCombo alignmentInput2;
 	private Text deityInput;
 	private Combo deityListInput;
 	private boolean deitySelect = false;
@@ -87,6 +88,7 @@ public class Wiz4 {
 	private String charRace;
 
 	private boolean goOn;
+	private boolean finished;
 
 	private final Color red = new Color(dev, 255, 100, 100);
 	private final Color white = new Color(dev, 255, 255, 255);
@@ -147,20 +149,31 @@ public class Wiz4 {
 		alignment.setLocation(5, 100);
 		alignment.pack();
 
-		alignmentInput1 = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
+		alignmentInput1 = new CCombo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput1.add("Lawful");
 		alignmentInput1.add("Neutral");
 		alignmentInput1.add("Chaotic");
 		alignmentInput1.setLocation(85, 100);
 		alignmentInput1.pack();
+		alignmentInput1.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				alignmentInput1.setBackground(null);
+			}
+		});
+		
 
-		alignmentInput2 = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
+		alignmentInput2 = new CCombo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput2.add("Good");
 		alignmentInput2.add("Neutral");
 		alignmentInput2.add("Evil");
 		alignmentInput2.setLocation(180, 100);
 		alignmentInput2.pack();
-
+		alignmentInput2.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				alignmentInput2.setBackground(null);
+			}
+		});
+		
 
 		// deity
 		String[] deities = { 
@@ -182,7 +195,7 @@ public class Wiz4 {
 				"St. Cuthbert(LN): god of retribution", 
 				"Vecna(NE): god of secrets", 
 				"Wee Jas(LN): goddess of death and magic",
-				"Yondalla(LG): goddess of the halflings" };
+		"Yondalla(LG): goddess of the halflings" };
 		final String[] deityNames = {"Boccob", "Corellon Larethian", "Ehlonna", 
 				"Erythnul", "Fharlanghn", "Garl Glittergold", "Gruumsh", 
 				"Heironeous", "Hextor", "Kord", "Moradin", "Nerull", 
@@ -204,8 +217,14 @@ public class Wiz4 {
 		deityInput = new Text(wiz4, SWT.BORDER);
 		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
+		deityInput.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				deityInput.setBackground(null);
+			}
+		});
 		deityInput.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
+				deityInput.setBackground(null);
 				if (!deitySelect)
 					deityListInput.deselectAll();
 				deitySelect = false;
@@ -494,6 +513,20 @@ public class Wiz4 {
 					langInput.setBackground(red);
 					error = true;
 				}
+				if (charClass.equalsIgnoreCase("cleric")) {
+					if (deityInput.getText().length() == 0) {
+						deityInput.setBackground(red);
+						error = true;
+					}
+					if (alignmentInput1.getSelectionIndex() == -1) {
+						alignmentInput1.setBackground(red);
+						error = true;
+					}
+					if (alignmentInput2.getSelectionIndex() == -1) {
+						alignmentInput2.setBackground(red);
+						error = true;
+					}
+				}
 				if (error)
 					return;
 
@@ -511,15 +544,14 @@ public class Wiz4 {
 					deitySelect = deityListInput.getItem(deityListInput.getSelectionIndex());
 				else
 					deitySelect = "";
-				
+
 				boolean done = true;
-
 				done = checkAlignmentPopUp(a1, a2, deitySelect);
-
 				if (done) {
 					if (charClass.equalsIgnoreCase("cleric"))
-						clericPopUp();
-				} else 
+						done = clericPopUp(deityInput.getText());
+				}
+				if (!done)
 					return;
 				// if no errors, save to character
 				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
@@ -614,13 +646,44 @@ public class Wiz4 {
 		}
 		case("Cleric"): 
 		{
+			// cleric's alignment must be within 1 step of deit
 			if (a1.equals("<empty>") || a2.equals("<empty>"))
 				return true;
 			String deityAlignment = deity.substring(deity.indexOf('(')+1, deity.indexOf(')'));
 			deityAlignment = deityAlignment.toLowerCase();
-			String alignment = Character.toString(a1.charAt(0)) + Character.toString(a2.charAt(0));
-			alignment = alignment.toLowerCase();
-			// TODO do comparison
+			char d1 = deityAlignment.charAt(0);
+			char d2;
+			if (deityAlignment.length() == 1)
+				d2 = deityAlignment.charAt(0);
+			else 
+				d2 = deityAlignment.charAt(1);
+			char c1 = Character.toLowerCase(a1.charAt(0));
+			char c2 = Character.toLowerCase(a2.charAt(0));
+
+			int step = 0;
+
+			if (d1 == c1){
+				if (d2 == c2); // no step difference
+				else {
+					if (d2 == 'n' || c2 == 'n')
+						step++;
+					else 
+						step += 2;
+				}
+			} else {
+				if (d1 == 'n' || c1 == 'n')
+					step++;
+				else 
+					step += 2;
+				if (d2 == c2); // no step difference
+				else if (d2 == 'n' || c2 == 'n')
+					step ++;
+				else 
+					step += 2;
+			}
+			if (step <= 1)
+				return true;
+			warning.setText("There should only be one step difference between the deity's alignment and the cleric's alignment.");
 			break;
 		}
 		case("Druid"): 
@@ -672,11 +735,11 @@ public class Wiz4 {
 		continueGD.horizontalSpan = 2;
 		continueLabel.setLayoutData(continueGD);
 		continueLabel.pack();
-		
+
 		// no button
 		Button no = new Button(alignmentShell, SWT.PUSH);
 		no.setText("No");
-		no.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+		no.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
 		no.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				goOn = false;
@@ -688,7 +751,7 @@ public class Wiz4 {
 		// yes button
 		Button yes = new Button(alignmentShell, SWT.PUSH);
 		yes.setText("Yes");
-		yes.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		yes.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
 		yes.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				goOn = true;
@@ -712,10 +775,271 @@ public class Wiz4 {
 		return goOn;
 	}
 
-	private void clericPopUp() {
+	private boolean clericPopUp(String deity) {
 		// choose domain based on deity select
-		//TODO
+		finished = false;
 
+		// create shell
+		Display display = wiz4.getDisplay();
+		final Shell clericShell = new Shell(display);
+		clericShell.setText("Set Domains");
+		GridLayout gridLayout = new GridLayout(2, true);
+		clericShell.setLayout(gridLayout);
+		clericShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				event.doit = false;
+				return;
+			}
+		});
+		// label - do you want to continue
+		Label domainsLabel = new Label(clericShell, SWT.WRAP);
+		domainsLabel.setText("Select Two Domains");
+		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		continueGD.horizontalSpan = 2;
+		domainsLabel.setLayoutData(continueGD);
+		domainsLabel.pack();
+
+		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN);
+		domains1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN);
+		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		domains2.setEnabled(false);
+
+		ArrayList<String> domains = new ArrayList<String>();
+
+		switch(deity) {
+		case("Boccob"): {
+			domains.add("Knowledge");
+			domains.add("Magic");
+			domains.add("Trickery");
+			break;
+		}
+		case("Corellon Larethian"): {
+			domains.add("Chaos");
+			domains.add("Good");
+			domains.add("Protection");
+			domains.add("War");
+			break;
+		}
+		case("Ehlonna"): {
+			domains.add("Animal");
+			domains.add("Good");
+			domains.add("Plant");
+			domains.add("Sun");
+			break;
+		}
+		case("Erythnul"): {
+			domains.add("Chaos");
+			domains.add("Evil");
+			domains.add("Trickery");
+			domains.add("War");
+			break;
+		}
+		case("Fharlanghn"): {
+			domains.add("Luck");
+			domains.add("Protection");
+			domains.add("Travel");
+			break;
+		}
+		case("Garl Glittergold"): {
+			domains.add("Good");
+			domains.add("Protection");
+			domains.add("Trickery");
+			break;
+		}
+		case("Gruumsh"): {
+			domains.add("Chaos");
+			domains.add("Evil");
+			domains.add("Strength");
+			domains.add("War");
+			break;
+		}
+		case("Heironeous"): {
+			domains.add("Good");
+			domains.add("Law");
+			domains.add("War");
+			break;
+		}
+		case("Hextor"): {
+			domains.add("Destruction");
+			domains.add("Evil");
+			domains.add("Law");
+			domains.add("War");
+			break;
+		}
+		case("Kord"): {
+			domains.add("Chaos");
+			domains.add("Good");
+			domains.add("Luck");
+			domains.add("Strength");
+			break;
+		}
+		case("Moradin"): {
+			domains.add("Earth");
+			domains.add("Good");
+			domains.add("Law");
+			domains.add("Protection");
+			break;
+		}
+		case("Nerull"): {
+			domains.add("Death");
+			domains.add("Evil");
+			domains.add("Trickery");
+			break;
+		}
+		case("Obad-Hai"): {
+			domains.add("Air");
+			domains.add("Animal");
+			domains.add("Earth");
+			domains.add("Fire");
+			domains.add("Plant");
+			domains.add("Water");
+			break;
+		}
+		case("Olidammara"): {
+			domains.add("Chaos");
+			domains.add("Luck");
+			domains.add("Trickery");
+			break;
+		}
+		case("Pelor"): {
+			domains.add("Good");
+			domains.add("Healing");
+			domains.add("Strength");
+			domains.add("Sun");
+			break;
+		}
+		case("St.Cuthbert"): {
+			domains.add("Destruction");
+			domains.add("Law");
+			domains.add("Protection");
+			domains.add("Strength");
+			break;
+		}
+		case("Vecna"): {
+			domains.add("Evil");
+			domains.add("Knowledge");
+			domains.add("Magic");
+			break;
+		}
+		case("Wee Jas"): {
+			domains.add("Death");
+			domains.add("Law");
+			domains.add("Magic");
+			break;
+		}
+		case("Yondalla"): {
+			domains.add("Good");
+			domains.add("Law");
+			domains.add("Protection");
+			break;
+		}
+		default: { 
+			// anything else - can select from any domains
+			domains.add("Air");
+			domains.add("Animal");
+			domains.add("Chaos");
+			domains.add("Death");
+			domains.add("Destruction");
+			domains.add("Earth");
+			domains.add("Evil");
+			domains.add("Fire");
+			domains.add("Good");
+			domains.add("Healing");
+			domains.add("Knowledge");
+			domains.add("Law");
+			domains.add("Luck");
+			domains.add("Magic");
+			domains.add("Plant");
+			domains.add("Protection");
+			domains.add("Strength");
+			domains.add("Sun");
+			domains.add("Travel");
+			domains.add("Trickery");
+			domains.add("War");
+			domains.add("Water");
+			break;
+		}
+		}
+
+		for(int i = 0; i < domains.size(); i++) {
+			domains1.add(domains.get(i));
+		}
+		domains1.pack();
+
+		// set listeners
+		domains1.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				domains1.setBackground(null);
+				domains2.setBackground(null);
+				domains2.removeAll();
+				for(int i = 0; i < domains.size(); i++) {
+					if(!domains1.getItem(domains1.getSelectionIndex()).equals(domains.get(i))){
+						domains2.add(domains.get(i));
+					}
+				}
+				domains2.setEnabled(true);
+				domains2.pack();
+			}
+		});
+		
+		domains2.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				domains2.setBackground(null);
+			}
+		});
+
+
+		// cancel button
+		Button cancel = new Button(clericShell, SWT.PUSH);
+		cancel.setText("Cancel");
+		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
+		cancel.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				finished = false;
+				clericShell.dispose();
+			}
+		});
+		cancel.pack();
+
+		// done button
+		Button done = new Button(clericShell, SWT.PUSH);
+		done.setText("Done");
+		done.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				boolean error = false;
+				if (domains1.getSelectionIndex() == -1) {
+					domains1.setBackground(red);
+					error = true;
+				}
+				if (domains2.getSelectionIndex() == -1) {
+					domains2.setBackground(red);
+					error = true;
+				}
+				if (error) 
+					return;
+				finished = true;
+				clericShell.dispose();
+			}
+		});
+		done.pack();
+
+		// open shell
+		clericShell.pack();
+		clericShell.layout();
+		CharacterWizard.center(clericShell);
+		clericShell.open();
+
+		// check if disposed
+		while (!clericShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+
+		return finished;
 	}
 
 	private void createNextPage() {
