@@ -46,7 +46,7 @@ public class ClassEntity extends DNDEntity{
 		    	this.bonusLanguages = value.split(", ");
 		    	break;
 		    case "HITDIE":
-		    	this.hitDie = value;
+		    	this.hitDie = value.substring(0, value.length() - 1);
 		    	break;
 		    case "BASEATTACKBONUS":
 		    	this.baseAttackBonus = value.split(", ");
