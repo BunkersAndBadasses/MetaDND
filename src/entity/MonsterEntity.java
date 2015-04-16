@@ -85,7 +85,6 @@ public class MonsterEntity extends DNDEntity {
 			case "SAVES":
 				String[] temp = value.split(", ");
 				this.saves = new int[temp.length];
-				System.out.println(this.name);
 				for(int i = 0; i < temp.length; i++){
 					temp[i] = temp[i].replaceAll("[\\D|^-]", "");
 					try{
