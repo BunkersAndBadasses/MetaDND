@@ -24,9 +24,14 @@ import entity.RaceEntity;
  * 
  * launch wizards (add custom)
  * check feat prerequisites
- * 
- * set size
+ * fix language input
+ * change description page to row layout
+ * add add 5, add 10 buttons to items page
+ * add remove all button to items page
+ * weight counter on items page
+ * add cap for items
  * monk - add wis to ac
+ * save ac, saving throws, initiative, etc
  * 
  * make it so only one instance of char wiz can be open at one time
  */
@@ -200,7 +205,6 @@ public class CharacterWizard {
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
 
 		final Composite randomPanel = new Composite(homePanel, SWT.BORDER);
-		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout randomLayout = new StackLayout();
 		randomPanel.setLayout(randomLayout);
 		//final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
@@ -387,6 +391,7 @@ public class CharacterWizard {
 		{
 		character.setAbilityScores(randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), 
 				randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18));
+		
 		} while(character.checkreroll());
 		//HP and remaining HP
 		character.setHitPoints(Integer.parseInt(character.getCharClass().getHitDie().split("d")[1]) + character.getAbilityModifiers()[2]);
@@ -459,6 +464,7 @@ public class CharacterWizard {
 	    csRandom.setText(character.toString());
 	    csRandom.pack();
 	    createCancelButton(randomPage1, homePanel, randomPanel, randomLayout);
+	    randomPage1.pack();
 	    //TODO 
 	}
 	/**

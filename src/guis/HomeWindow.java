@@ -456,12 +456,12 @@ public class HomeWindow {
 
 					}
 				});
-
+				
 				dungeonScreen.pack();
 				navigateToDungeonScreen();
 			}
 		});
-
+		homeScreen.pack();
 		mainWindowLayout.topControl = homeScreen;
 
 	}
