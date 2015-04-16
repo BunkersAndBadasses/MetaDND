@@ -200,7 +200,6 @@ public class CharacterWizard {
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
 
 		final Composite randomPanel = new Composite(homePanel, SWT.BORDER);
-		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		final StackLayout randomLayout = new StackLayout();
 		randomPanel.setLayout(randomLayout);
 		//final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
@@ -387,6 +386,7 @@ public class CharacterWizard {
 		{
 		character.setAbilityScores(randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), 
 				randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18));
+		
 		} while(character.checkreroll());
 		//HP and remaining HP
 		character.setHitPoints(Integer.parseInt(character.getCharClass().getHitDie().split("d")[1]) + character.getAbilityModifiers()[2]);
@@ -459,6 +459,7 @@ public class CharacterWizard {
 	    csRandom.setText(character.toString());
 	    csRandom.pack();
 	    createCancelButton(randomPage1, homePanel, randomPanel, randomLayout);
+	    randomPage1.pack();
 	    //TODO 
 	}
 	/**
