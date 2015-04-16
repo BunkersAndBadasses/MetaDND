@@ -3,6 +3,8 @@ package entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import core.Main;
+
 public class MonsterEntity extends DNDEntity {
 
 	String type;
@@ -139,7 +141,71 @@ public class MonsterEntity extends DNDEntity {
 	@Override
 	public void search(String searchString, Thread runningThread)
 			throws InterruptedException {
-		// TODO Auto-generated method stub
+		if(this.name != null && this.name.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.description != null && this.description.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		if(this.alignment != null && this.alignment.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		if(this.environment != null && this.environment.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		if(this.organization != null && this.organization.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			System.out.println("Lock released.");
+			return;
+		}
+		if(this.skills != null){
+			for(int i = 0; i < this.skills.length; i++){
+				if(this.skills[i].contains(searchString)){
+					Main.gameState.searchResultsLock.acquire();
+					System.out.println("Lock aquired, adding " + this.name + " to results list.");
+					Main.gameState.searchResults.put(this.name, this);
+					Main.gameState.searchResultsLock.release();
+					System.out.println("Lock released.");
+					return;
+				}
+			}
+		}
+		if(this.feats != null){
+			for(int i = 0; i < this.feats.length; i++){
+				if(this.feats[i].contains(searchString)){
+					Main.gameState.searchResultsLock.acquire();
+					System.out.println("Lock aquired, adding " + this.name + " to results list.");
+					Main.gameState.searchResults.put(this.name, this);
+					Main.gameState.searchResultsLock.release();
+					System.out.println("Lock released.");
+					return;
+				}
+			}
+		}
 
 	}
 
