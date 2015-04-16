@@ -63,7 +63,18 @@ public class HomeWindow {
 	private Composite m_mainWindow;
 	private Composite m_dungeonScreen;
 	private Composite m_playerScreen;
+	private Composite view;
 	private List charList;
+	// the stack layout allows us to navigate from one view to another.
+	private final Composite mainWindow;
+
+	private StackLayout mainWindowLayout = new StackLayout();
+	
+	private final Composite homeScreen;
+	private final Composite dungeonScreen;
+	private final Composite dungeonViewer;
+	private final Composite dungeonGenConfig;
+	private final Composite playerScreen;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -79,6 +90,19 @@ public class HomeWindow {
 		DungeonConstants.SAVEDDUNGEONSDIR.mkdir();
 
 		new MenuBar(shell); //Add menu bar to windows like this
+
+		// the stack layout allows us to navigate from one view to another.
+		mainWindow = new Composite(shell, SWT.NONE);
+
+		mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
+		mainWindowLayout = new StackLayout();
+		mainWindow.setLayout(mainWindowLayout);
+
+		homeScreen = new Composite(mainWindow, SWT.NONE);
+		dungeonScreen = new Composite(mainWindow, SWT.NONE);
+		dungeonViewer = new Composite(mainWindow, SWT.EMBEDDED);
+		dungeonGenConfig = new Composite(mainWindow, SWT.NONE);
+		playerScreen = new Composite(mainWindow, SWT.NONE);
 
 		createPageContent();
 
@@ -112,19 +136,6 @@ public class HomeWindow {
 
 	private void createPageContent() {
 
-
-		// the stack layout allows us to navigate from one view to another.
-		final Composite mainWindow = new Composite(shell, SWT.NONE);
-
-		mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
-		final StackLayout mainWindowLayout = new StackLayout();
-		mainWindow.setLayout(mainWindowLayout);
-
-		final Composite homeScreen = new Composite(mainWindow, SWT.NONE);
-		final Composite dungeonScreen = new Composite(mainWindow, SWT.NONE);
-		final Composite dungeonViewer = new Composite(mainWindow, SWT.EMBEDDED);
-		final Composite dungeonGenConfig = new Composite(mainWindow, SWT.NONE);
-		final Composite playerScreen = new Composite(mainWindow, SWT.NONE);
 
 
 		this.m_mainWindow = mainWindow;
@@ -205,7 +216,7 @@ public class HomeWindow {
 		playerLabel.setLayoutData(chargridData);
 
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		Composite view = new Composite(characterComp, SWT.NONE);
+		view = new Composite(characterComp, SWT.NONE);
 		charLayout = new StackLayout();
 		view.setLayoutData(gridData);
 		view.setLayout(charLayout);
