@@ -150,9 +150,9 @@
 		<BENEFIT>
 			If you deal a creature enough damage to make it drop (typically by dropping it to below 0 hit points or killing it), you get an immediate, extra melee attack against another creature within reach. You cannot take a 5-foot step before making this extra attack. The extra attack is with the same weapon and at the same bonus as the attack that dropped the previous creature. You can use this ability once per round.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Cleave as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -350,9 +350,9 @@
 		<BENEFIT>
 			During your action, you designate an opponent and receive a +1 dodge bonus to Armor Class against attacks from that opponent. You can select a new opponent on any action.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Dodge as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses. Also, dodge bonuses stack with each other, unlike most other types of bonuses.
 		</DESCRIPTION>
@@ -462,9 +462,9 @@
 		<BENEFIT>
 			When you use a projectile weapon, such as a bow, its range increment increases by one-half (multiply by 1-1/2). When you use a thrown weapon, its range increment is doubled.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Far Shot as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -492,9 +492,9 @@
 		<BENEFIT>
 			This feat works like Cleave, except that there is no limit to the number of times you can use it per round.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Great Cleave as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -539,9 +539,9 @@
 		<BENEFIT>
 			You get a third attack with your off-hand weapon, albeit at a -10 penalty.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Greater Two-Weapon Fighting as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			An 11th-level ranger who has chosen the two-weapon combat style is treated as having Greater Two-Weapon Fighting, even if he does not have the prerequisites for it, but only when he is wearing light or no armor.
 		</DESCRIPTION>
@@ -606,9 +606,9 @@
 		<BENEFIT>
 			When you perform a bull rush you do not provoke an attack of opportunity from the defender. You also gain a +4 bonus on the opposed Strength check you make to push back the defender.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Bull Rush as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -656,9 +656,9 @@
 		<NORMAL>
 			See the normal disarm rules.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Disarm as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A monk may select Improved Disarm as a bonus feat at 6th level, even if she does not meet the prerequisites.
 		</DESCRIPTION>
@@ -751,9 +751,9 @@
 		<NORMAL>
 			Without this feat, you provoke an attack of opportunity when you make a touch attack to start a grapple.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Grapple as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A monk may select Improved Grapple as a bonus feat at 1st level, even if she does not meet the prerequisites.
 		</DESCRIPTION>
@@ -765,9 +765,9 @@
 		<BENEFIT>
 			You get a +4 bonus on initiative checks.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Initiative as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -782,9 +782,9 @@
 		<NORMAL>
 			Without this feat, the target of an overrun can choose to avoid you or to block you.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Overrun as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -799,9 +799,9 @@
 		<NORMAL>
 			See the normal rules on the effects of cover and concealment. Without this feat, a character who shoots or throws a ranged weapon at a target involved in a grapple must roll randomly to see which grappling combatant the attack strikes.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Precise Shot as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			In addition, when you shoot or throw ranged weapons at a grappling opponent, you automatically strike at the opponent you have chosen.
 
@@ -821,9 +821,9 @@
 		<NORMAL>
 			Without this feat, a character who performs a shield bash loses the shield's shield bonus to AC until his or her next turn.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Shield Bash as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -838,9 +838,9 @@
 		<NORMAL>
 			Without this feat, you provoke an attack of opportunity when you strike at an object held or carried by another character.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Sunder as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			You also gain a +4 bonus on any attack roll made to attack an object held or carried by another character.
 		</DESCRIPTION>
@@ -892,9 +892,9 @@
 		<NORMAL>
 			Without this feat, you can only get a single extra attack with an off-hand weapon.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Improved Two-Weapon Fighting as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A 6th-level ranger who has chosen the two-weapon combat style is treated as having Improved Two-Weapon Fighting, even if he does not have the prerequisites for it, but only when he is wearing light or no armor.
 		</DESCRIPTION>
@@ -1138,9 +1138,9 @@
 		<BENEFIT>
 			You get a +4 dodge bonus to Armor Class against attacks of opportunity caused when you move out of or within a threatened area. A condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Mobility as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			Dodge bonuses stack with each other, unlike most types of bonuses.
 		</DESCRIPTION>
@@ -1155,9 +1155,9 @@
 		<BENEFIT>
 			-2 instead of -4 if your mount is taking a double move, and -4 instead of -8 if your mount is running.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Mounted Archery as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1169,9 +1169,9 @@
 		<BENEFIT>
 			Once per round when your mount is hit in combat, you may attempt a Ride check (as a reaction) to negate the hit. The hit is negated if your Ride check result is greater than the opponent's attack roll. (Essentially, the Ride check result becomes the mount's Armor Class if it's higher than the mount's regular AC.)
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Mounted Combat as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1218,9 +1218,9 @@
 		<BENEFIT>
 			You get a +1 bonus on attack and damage rolls with ranged weapons at ranges of up to 30 feet.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Point Blank Shot as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1249,9 +1249,9 @@
 		<BENEFIT>
 			You can shoot or throw ranged weapons at an opponent engaged in melee without taking the standard -4 penalty on your attack roll.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Precise Shot as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1266,9 +1266,9 @@
 		<NORMAL>
 			Without this feat, you may draw a weapon as a move action, or (if your base attack bonus is +1 or higher) as a free action as part of movement. Without this feat, you can draw a hidden weapon as a standard action.
 		</NORMAL>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Quick Draw as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A character who has selected this feat may throw weapons at his full normal rate of attacks (much like a character with a bow).
 		</DESCRIPTION>
@@ -1319,9 +1319,9 @@
 		<BENEFIT>
 			You can get one extra attack per round with a ranged weapon. The attack is at your highest base attack bonus, but each attack you make in that round (the extra one and the normal ones) takes a -2 penalty. You must use the full attack action to use this feat.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Rapid Shot as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			A 2nd-level ranger who has chosen the archery combat style is treated as having Rapid Shot, even if he does not have the prerequisites for it, but only when he is wearing light or no armor.
 		</DESCRIPTION>
@@ -1336,9 +1336,9 @@
 		<BENEFIT>
 			When you are mounted and use the charge action, you may move and attack as if with a standard charge and then move again (continuing the straight line of the charge). Your total movement for the round can't exceed double your mounted speed. You and your mount do not provoke an attack of opportunity from the opponent that you attack.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Ride-By Attack as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1397,9 +1397,9 @@
 		<BENEFIT>
 			When using the attack action with a ranged weapon, you can move both before and after the attack, provided that your total distance moved is not greater than your speed.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Shot on the Run as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1503,9 +1503,9 @@
 		<BENEFIT>
 			When mounted and using the charge action, you deal double damage with a melee weapon (or triple damage with a lance).
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Spirited Charge as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1517,9 +1517,9 @@
 		<BENEFIT>
 			When using the attack action with a melee weapon, you can move both before and after the attack, provided that your total distance moved is not greater than your speed. Moving in this way does not provoke an attack of opportunity from the defender you attack, though it might provoke attacks of opportunity from other creatures, if appropriate. You can't use this feat if you are wearing heavy armor.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Spring Attack as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			You must move at least 5 feet both before and after you make your attack in order to utilize the benefits of Spring Attack.
 		</DESCRIPTION>
@@ -1679,9 +1679,9 @@
 		<BENEFIT>
 			When you attempt to overrun an opponent while mounted, your target may not choose to avoid you. Your mount may make one hoof attack against any target you knock down, gaining the standard +4 bonus on attack rolls against prone targets.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Trample as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 	</FEAT>
 	<FEAT>
 		<NAME>
@@ -1693,9 +1693,9 @@
 		<BENEFIT>
 			When wielding a double weapon or two weapons (not including natural weapons or unarmed strikes), you gain a +1 shield bonus to your AC.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Two-Weapon Defense as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			When you are fighting defensively or using the total defense action, this shield bonus increases to +2.
 		</DESCRIPTION>
@@ -1733,9 +1733,9 @@
 		<BENEFIT>
 			With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Weapon Finesse as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			Natural weapons are always considered light weapons.
 		</DESCRIPTION>
@@ -1790,9 +1790,9 @@
 		<BENEFIT>
 			When you use the full attack action, you can give up your regular attacks and instead make one melee attack at your full base attack bonus against each opponent within reach.
 		</BENEFIT>
-		<SPECIAL>
+		<FIGHTERBONUS>
 			A fighter may select Whirlwind Attack as one of his fighter bonus feats.
-		</SPECIAL>
+		</FIGHTERBONUS>
 		<DESCRIPTION>
 			When you use the Whirlwind Attack feat, you also forfeit any bonus or extra attacks granted by other feats, spells, or abilities.
 		</DESCRIPTION>

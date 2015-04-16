@@ -81,7 +81,7 @@ public class Wiz6 {
 		}
 		
 		createPageContent();
-		charClass = character.getCharClass().getName();
+		charClass = character.getCharClass().getName().toLowerCase();
 	}
 
 	private void createPageContent() {
@@ -150,7 +150,6 @@ public class Wiz6 {
 		Label errorMsg = new Label(wiz6, SWT.NONE);
 		errorMsg.setLocation(WIDTH/2 - 150, HEIGHT - 75);
 		errorMsg.setForeground(new Color(dev, 255, 0, 0));
-		errorMsg.setText("You cannot remove a class bonus feat!");
 		errorMsg.setVisible(false);
 		errorMsg.pack();                                                              
 		
@@ -164,20 +163,33 @@ public class Wiz6 {
 			public void handleEvent(Event e) {
 				errorMsg.setVisible(false);
 				boolean error = false;
+				// check if the user can add another feat
 				if (numFeats == 0)
 					error = true;
 				int index = featsList.getSelectionIndex();
+				// check if a feat was selected
 				if (index == -1)
 					error = true;
+				// check if that feat was already added
+				//TODO skill focus, spell focus, can be added multiple times
+				// spell mastery, toughness
 				else {
 					for(int i = 0; i < charFeats.size(); i++) {
 						if (charFeats.get(i).getName().equals(featsList.getItem(index)))
 							error = true;
 					}
 				}
+				// check prerequisites TODO
+//				if () {
+//					errorMsg.setText("You cannot remove a class bonus feat!");
+//					errorMsg.setVisible(true);
+//					error = true;
+//				}
+				// if something went wrong, do not perform the add
 				if (error)
 					return;
-				// TODO check prerequisites
+
+				// otherwise, add the feat the 
 				charFeatsList.add(featsList.getItem(index));
 				charFeats.add(feats.get(index));
 				numFeats--;
@@ -204,11 +216,13 @@ public class Wiz6 {
 				int index = charFeatsList.getSelectionIndex();
 				if (index == -1)
 					return;
+				// TODO fix this - so it cannot remove ALL class bonus feats
 				if ((charClass.equalsIgnoreCase("Fighter")
 						| charClass.equalsIgnoreCase("Monk") 
 						| charClass.equalsIgnoreCase("Ranger")
 						| charClass.equalsIgnoreCase("Wizard")) 
 						&& charFeatsList.getSelectionIndex() == 0) {
+					errorMsg.setText("You cannot remove a class bonus feat!");
 					errorMsg.setVisible(true);
 					return;
 				}
@@ -263,20 +277,29 @@ public class Wiz6 {
 	
 	void createBonusPopUp() {
 		// get lists of bonus feats
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
-		if (charClass.equalsIgnoreCase("Fighter")){
+		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();		
+		if (!(charClass.equals("wizard") 
+				| charClass.equals("sorcerer") 
+				| charClass.equals("monk"))){
+			charFeats.add((FeatEntity)Main.gameState.feats.get("Armor Proficiency (Light)"));
+			charFeatsList.add(charFeats.get(charFeats.size() -1).getName());
+		}
+		//TODO here: adding all bonus feats(armor proficiency)
+		if (charClass.equals("fighter")){
+			//tower shield proficiency
 			for (int i = 0; i < feats.size(); i++){
 				if (feats.get(i).getFighterBonus() != null)
 					bonusFeats.add(feats.get(i));
 			}
-		} else if (charClass.equalsIgnoreCase("Monk")){
+		} else if (charClass.equals("monk")){
+			// Improved unarmed strike?
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
-		} else if (charClass.equalsIgnoreCase("Ranger")){
+		} else if (charClass.equals("ranger")){
 			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Track"));
 			charFeatsList.add(charFeats.get(0).getName());
 			return;
-		} else if (charClass.equalsIgnoreCase("Wizard")){
+		} else if (charClass.equals("wizard")){
 			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Scribe Scroll"));
 			charFeatsList.add(charFeats.get(0).getName());
 			return;
