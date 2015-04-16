@@ -221,6 +221,8 @@ public class HomeWindow {
 		view.setLayoutData(gridData);
 		view.setLayout(charLayout);
 
+		//TODO change this to stack layout? 
+		// How are we gonna open the character sheet?
 		charList = new List(view, SWT.V_SCROLL);
 		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		charList.setLayoutData(chargridData);
@@ -245,6 +247,17 @@ public class HomeWindow {
 			public void handleEvent(Event event) {
 
 				new CharacterWizard(shell.getDisplay());
+
+			}
+		});
+		
+		Button deleteChar = new Button(characterComp, SWT.PUSH);
+		deleteChar.setText("Delete Character");
+		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		deleteChar.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+
+				//TODO delete a char
 
 			}
 		});
