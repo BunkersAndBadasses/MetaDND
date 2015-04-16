@@ -4,6 +4,8 @@
 
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Random;
 
 import org.eclipse.swt.SWT;
@@ -26,7 +28,11 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 
 import core.GameState;
+import core.Main;
 import core.character;
+import entity.ClassEntity;
+import entity.DNDEntity;
+import entity.DeityEntity;
 
 public class Wiz4 {
 
@@ -64,6 +70,11 @@ public class Wiz4 {
 			+ " Common, Draconic, Druidic, Dwarven, Elven, "
 			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
 			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
+	
+	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
+			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
+			"Luck", "Magic", "Plant", "Protection", "Strength", "Sun", 
+			"Travel", "Trickery", "War", "Water"};
 
 	private int numBonusLangs;
 
@@ -145,7 +156,7 @@ public class Wiz4 {
 				alignmentInput1.setBackground(null);
 			}
 		});
-		
+
 
 		alignmentInput2 = new CCombo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		alignmentInput2.add("Good");
@@ -158,34 +169,17 @@ public class Wiz4 {
 				alignmentInput2.setBackground(null);
 			}
 		});
-		
+
 
 		// deity
-		String[] deities = { 
-				"Boccob(N): god of magic", 
-				"Corellon Larethian(CG): god of the elves", 
-				"Ehlonna(NG): goddess of the woodlands", 
-				"Erythnul(CE): god of slaughter", 
-				"Fharlanghn(N): god of roads", 
-				"Garl Glittergold(NG): god of the gnomes",
-				"Gruumsh(CE): chief god of the orcs", 
-				"Heironeous(LG): god of valor", 
-				"Hextor(LE): god of tyranny",
-				"Kord(CG): god of strength",
-				"Moradin(LG): god of the dwarves",
-				"Nerull(NE): god of death",
-				"Obad-Hai(N): god of nature",
-				"Olidammara(CN): god of rogues",
-				"Pelor(NG): god of the sun",
-				"St. Cuthbert(LN): god of retribution", 
-				"Vecna(NE): god of secrets", 
-				"Wee Jas(LN): goddess of death and magic",
-		"Yondalla(LG): goddess of the halflings" };
-		final String[] deityNames = {"Boccob", "Corellon Larethian", "Ehlonna", 
-				"Erythnul", "Fharlanghn", "Garl Glittergold", "Gruumsh", 
-				"Heironeous", "Hextor", "Kord", "Moradin", "Nerull", 
-				"Obad-Hai", "Olidammara", "Pelor", "St.Cuthbert", "Vecna", 
-				"Wee Jas", "Yondalla" };
+
+		// get deities from references
+		Collection<DNDEntity> deitiesCol = Main.gameState.deities.values();
+		Iterator<DNDEntity> itr2 = deitiesCol.iterator();
+		ArrayList<DeityEntity> deities = new ArrayList<DeityEntity>();
+		while (itr2.hasNext()) {
+			deities.add((DeityEntity) itr2.next());
+		}
 
 		Label deity = new Label(wiz4, SWT.NONE);
 		deity.setText("Deity:");
@@ -195,8 +189,8 @@ public class Wiz4 {
 		deityListInput = new Combo(wiz4, SWT.DROP_DOWN | SWT.READ_ONLY);
 		deityListInput.setBounds(85, 150, 310, 30);
 		deityListInput.add("");
-		for (int i = 0; i < deities.length; i++) {
-			deityListInput.add(deities[i]);
+		for (int i = 0; i < deities.size(); i++) {
+			deityListInput.add(deities.get(i).getName() + " (" + deities.get(i).getAlignment() + ")");
 		}
 
 		deityInput = new Text(wiz4, SWT.BORDER);
@@ -222,7 +216,7 @@ public class Wiz4 {
 				if (deityListInput.getSelectionIndex() == 0)
 					deityInput.setText("");
 				else 
-					deityInput.setText(deityNames[deityListInput.getSelectionIndex()-1]);
+					deityInput.setText(deities.get(deityListInput.getSelectionIndex()-1).getName());
 			}
 		});
 
@@ -524,25 +518,27 @@ public class Wiz4 {
 					a2 = "<empty>";
 				else
 					a2 = alignmentInput2.getText();
-				String deitySelect;
+
+				DeityEntity deitySelect;
 				if (deityListInput.getSelectionIndex() != -1)
-					deitySelect = deityListInput.getItem(deityListInput.getSelectionIndex());
+					deitySelect = deities.get(deityListInput.getSelectionIndex());
 				else
-					deitySelect = "";
+					deitySelect = null;
 
 				boolean done = true;
 				done = checkAlignmentPopUp(a1, a2, deitySelect);
 				if (done) {
 					if (charClass.equalsIgnoreCase("cleric"))
-						done = clericPopUp(deityInput.getText());
+						done = clericPopUp(deitySelect);
 				}
 				if (!done)
 					return;
 				// if no errors, save to character
 				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
 				character.setName(nameInput.getText());	
-
 				character.setAlignment(a1 + " " + a2);
+				if (deityInput.getText().length() != 0)
+					character.setDeity(deityInput.getText());
 				if (heightInput.getText().length() != 0)
 					character.setHeight(heightInput.getText());
 				if (weightInput.getText().length() != 0)
@@ -586,7 +582,7 @@ public class Wiz4 {
 		});
 	}
 
-	private boolean checkAlignmentPopUp(String a1, String a2, String deity) {
+	private boolean checkAlignmentPopUp(String a1, String a2, DeityEntity deity) {
 		if (a1.equals("<empty>") || a2.equals("<empty>"))
 			return true;
 
@@ -631,17 +627,17 @@ public class Wiz4 {
 		}
 		case("Cleric"): 
 		{
-			// cleric's alignment must be within 1 step of deit
+			// cleric's alignment must be within 1 step of deity
+			if (deity == null)
+				return true;
 			if (a1.equals("<empty>") || a2.equals("<empty>"))
 				return true;
-			String deityAlignment = deity.substring(deity.indexOf('(')+1, deity.indexOf(')'));
-			deityAlignment = deityAlignment.toLowerCase();
-			char d1 = deityAlignment.charAt(0);
-			char d2;
-			if (deityAlignment.length() == 1)
-				d2 = deityAlignment.charAt(0);
-			else 
-				d2 = deityAlignment.charAt(1);
+			String[] deityAlignment = deity.getAlignment().split("\\s");
+			char d1 = Character.toLowerCase(deityAlignment[0].charAt(0));
+			char d2 = Character.toLowerCase(deityAlignment[1].charAt(0));
+			// if alignment is true neutral, set d1 and d2 to n (neutral)
+			if (d1 == 't')
+				d1 = d2;
 			char c1 = Character.toLowerCase(a1.charAt(0));
 			char c2 = Character.toLowerCase(a2.charAt(0));
 
@@ -760,7 +756,7 @@ public class Wiz4 {
 		return goOn;
 	}
 
-	private boolean clericPopUp(String deity) {
+	private boolean clericPopUp(DeityEntity deity) {
 		// choose domain based on deity select
 		finished = false;
 
@@ -791,165 +787,11 @@ public class Wiz4 {
 		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		domains2.setEnabled(false);
 
-		ArrayList<String> domains = new ArrayList<String>();
+		if (deity != null)
+			domains = deity.getDomain();
 
-		switch(deity) {
-		case("Boccob"): {
-			domains.add("Knowledge");
-			domains.add("Magic");
-			domains.add("Trickery");
-			break;
-		}
-		case("Corellon Larethian"): {
-			domains.add("Chaos");
-			domains.add("Good");
-			domains.add("Protection");
-			domains.add("War");
-			break;
-		}
-		case("Ehlonna"): {
-			domains.add("Animal");
-			domains.add("Good");
-			domains.add("Plant");
-			domains.add("Sun");
-			break;
-		}
-		case("Erythnul"): {
-			domains.add("Chaos");
-			domains.add("Evil");
-			domains.add("Trickery");
-			domains.add("War");
-			break;
-		}
-		case("Fharlanghn"): {
-			domains.add("Luck");
-			domains.add("Protection");
-			domains.add("Travel");
-			break;
-		}
-		case("Garl Glittergold"): {
-			domains.add("Good");
-			domains.add("Protection");
-			domains.add("Trickery");
-			break;
-		}
-		case("Gruumsh"): {
-			domains.add("Chaos");
-			domains.add("Evil");
-			domains.add("Strength");
-			domains.add("War");
-			break;
-		}
-		case("Heironeous"): {
-			domains.add("Good");
-			domains.add("Law");
-			domains.add("War");
-			break;
-		}
-		case("Hextor"): {
-			domains.add("Destruction");
-			domains.add("Evil");
-			domains.add("Law");
-			domains.add("War");
-			break;
-		}
-		case("Kord"): {
-			domains.add("Chaos");
-			domains.add("Good");
-			domains.add("Luck");
-			domains.add("Strength");
-			break;
-		}
-		case("Moradin"): {
-			domains.add("Earth");
-			domains.add("Good");
-			domains.add("Law");
-			domains.add("Protection");
-			break;
-		}
-		case("Nerull"): {
-			domains.add("Death");
-			domains.add("Evil");
-			domains.add("Trickery");
-			break;
-		}
-		case("Obad-Hai"): {
-			domains.add("Air");
-			domains.add("Animal");
-			domains.add("Earth");
-			domains.add("Fire");
-			domains.add("Plant");
-			domains.add("Water");
-			break;
-		}
-		case("Olidammara"): {
-			domains.add("Chaos");
-			domains.add("Luck");
-			domains.add("Trickery");
-			break;
-		}
-		case("Pelor"): {
-			domains.add("Good");
-			domains.add("Healing");
-			domains.add("Strength");
-			domains.add("Sun");
-			break;
-		}
-		case("St.Cuthbert"): {
-			domains.add("Destruction");
-			domains.add("Law");
-			domains.add("Protection");
-			domains.add("Strength");
-			break;
-		}
-		case("Vecna"): {
-			domains.add("Evil");
-			domains.add("Knowledge");
-			domains.add("Magic");
-			break;
-		}
-		case("Wee Jas"): {
-			domains.add("Death");
-			domains.add("Law");
-			domains.add("Magic");
-			break;
-		}
-		case("Yondalla"): {
-			domains.add("Good");
-			domains.add("Law");
-			domains.add("Protection");
-			break;
-		}
-		default: { 
-			// anything else - can select from any domains
-			domains.add("Air");
-			domains.add("Animal");
-			domains.add("Chaos");
-			domains.add("Death");
-			domains.add("Destruction");
-			domains.add("Earth");
-			domains.add("Evil");
-			domains.add("Fire");
-			domains.add("Good");
-			domains.add("Healing");
-			domains.add("Knowledge");
-			domains.add("Law");
-			domains.add("Luck");
-			domains.add("Magic");
-			domains.add("Plant");
-			domains.add("Protection");
-			domains.add("Strength");
-			domains.add("Sun");
-			domains.add("Travel");
-			domains.add("Trickery");
-			domains.add("War");
-			domains.add("Water");
-			break;
-		}
-		}
-
-		for(int i = 0; i < domains.size(); i++) {
-			domains1.add(domains.get(i));
+		for(int i = 0; i < domains.length; i++) {
+			domains1.add(domains[i]);
 		}
 		domains1.pack();
 
@@ -959,16 +801,16 @@ public class Wiz4 {
 				domains1.setBackground(null);
 				domains2.setBackground(null);
 				domains2.removeAll();
-				for(int i = 0; i < domains.size(); i++) {
-					if(!domains1.getItem(domains1.getSelectionIndex()).equals(domains.get(i))){
-						domains2.add(domains.get(i));
+				for(int i = 0; i < domains.length; i++) {
+					if(!domains1.getItem(domains1.getSelectionIndex()).equals(domains[i])){
+						domains2.add(domains[i]);
 					}
 				}
 				domains2.setEnabled(true);
 				domains2.pack();
 			}
 		});
-		
+
 		domains2.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				domains2.setBackground(null);

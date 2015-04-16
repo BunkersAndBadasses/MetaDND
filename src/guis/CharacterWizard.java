@@ -31,7 +31,6 @@ import entity.RaceEntity;
  * weight counter on items page
  * add cap for items
  * add char list update to random character generation
- * deity not saving
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
  * barbarian illiteracy

@@ -314,6 +314,7 @@ public class Wiz2 {
 				// set size
 				character.setSpeed(character.getCharRace().getSpeed());
 				// TODO add bonus - barbarian +10
+				// TODO save special abilities, ac, saving throws, etc
 
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
