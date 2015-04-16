@@ -32,7 +32,8 @@ public abstract class DNDEntity {
 		MONSTER,
 		TRAP,
 		DUNGEON,
-		ABILITY
+		ABILITY,
+		DEITY
 	}
 	
 	type TYPE; //Enumerated type, must have to determine what type of entity this is

@@ -20,6 +20,7 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> armor;
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
+	public LinkedHashMap<String, DNDEntity> deities;
 	public static final File USERDATAFOLDER = new File(System.getProperty("user.dir") + "//" + "User Data");	
 	
 	// 0 = homeScreen
@@ -37,6 +38,7 @@ public class GameState {
 	
 	public HashMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
+
 	
 	
 	//////////////// CONSTANTS /////////////////
@@ -72,6 +74,7 @@ public class GameState {
 		armor = new LinkedHashMap<String, DNDEntity>();
 		monsters = new LinkedHashMap<String, DNDEntity>();
 		traps = new LinkedHashMap<String, DNDEntity>();
+		deities = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
 		searchResults = new HashMap<String, DNDEntity>();
 		xmls.start();
@@ -99,8 +102,8 @@ public class GameState {
 		st3.start(this.skills, searchString);
 		st4.start(this.classes, searchString);
 		st5.start(this.races, searchString);
-		st6.start(this.races, searchString);
-		st7.start(this.races, searchString);
+		st6.start(this.deities, searchString);
+		st7.start(this.traps, searchString);
 		
 		try {
 			st1.getSearchThread().join();

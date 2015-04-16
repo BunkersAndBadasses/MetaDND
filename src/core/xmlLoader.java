@@ -68,21 +68,15 @@ public class xmlLoader implements Runnable{
 						String content = children.item(j).getTextContent()
 								.trim();
 						entity.put(name, content);
-						// System.out.println(name);
-						// System.out.println(content);
 					}
 				}
 				if (node.getNodeName() == "SPELL") {
 					SpellEntity testSpell = new SpellEntity(entity);
 					Main.gameState.spells.put(testSpell.getName(), testSpell);
-//					if(testSpell.getName().equalsIgnoreCase("acid arrow"))
-//						testSpell.toTooltipWindow();
 				}
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity testFeat = new FeatEntity(entity);
 					Main.gameState.feats.put(testFeat.getName(), testFeat);
-//					if(testFeat.getName().equalsIgnoreCase("track"))
-//					testFeat.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity testSkill = new SkillEntity(entity);
@@ -91,32 +85,26 @@ public class xmlLoader implements Runnable{
 				else if(node.getNodeName() == "ITEM"){
 					ItemEntity testItem = new ItemEntity(entity);
 					Main.gameState.items.put(testItem.getName(), testItem);
-//					if(testItem.getName().equalsIgnoreCase("thunderstone"))
-//						testItem.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "RACE"){
 					RaceEntity testRace = new RaceEntity(entity);
 					Main.gameState.races.put(testRace.getName(), testRace);
-//					if(testRace.getName().equalsIgnoreCase("halfling"))
-//						testRace.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "CLASS"){
 					ClassEntity testClass = new ClassEntity(entity);
 					Main.gameState.classes.put(testClass.getName(), testClass);
-//					if(testClass.getName().equalsIgnoreCase("barbarian"))
-//						testClass.toTooltipWindow();
 				}
 				else if(node.getNodeName() == "DEITY"){
 					DeityEntity testDeity = new DeityEntity(entity);
-					Main.gameState.classes.put(testDeity.getName(), testDeity);
-//					if(testClass.getName().equalsIgnoreCase("barbarian"))
-//						testClass.toTooltipWindow();
+					Main.gameState.deities.put(testDeity.getName(), testDeity);
 				}
 				else if(node.getNodeName() == "TRAP"){
 					TrapEntity testTrap = new TrapEntity(entity);
-					Main.gameState.classes.put(testTrap.getName(), testTrap);
-//					if(testClass.getName().equalsIgnoreCase("barbarian"))
-//						testClass.toTooltipWindow();
+					Main.gameState.traps.put(testTrap.getName(), testTrap);
+				}
+				else if(node.getNodeName() == "MONSTER"){
+					MonsterEntity testMonster = new MonsterEntity(entity);
+					Main.gameState.monsters.put(testMonster.getName(), testMonster);
 				}
 			}
 		}

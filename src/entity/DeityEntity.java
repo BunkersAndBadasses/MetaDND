@@ -11,7 +11,7 @@ public class DeityEntity extends DNDEntity{
 	private String[] domain;
 
 	public DeityEntity(LinkedHashMap<String, String> input){
-		this.TYPE = DNDEntity.type.CLASS;
+		this.TYPE = DNDEntity.type.DEITY;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()){
 		    String field = entry.getKey();

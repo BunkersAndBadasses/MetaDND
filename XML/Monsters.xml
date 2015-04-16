@@ -317,7 +317,7 @@
 			Fort +1, Ref +4, Will +4
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex 12, Con -, Int 11, Wis 11, Cha 18
+			Str 0, Dex 12, Con 0, Int 11, Wis 11, Cha 18
 		</ABILITIES>
 		<SKILLS>
 			Hide +8, Intimidate +7, Listen +7, Search +4, Spot +7, Survival +0 (+2 following tracks)
@@ -677,7 +677,7 @@
 			Fort +0, Ref +2, Will -5
 		</SAVES>
 		<ABILITIES>
-			Str 8, Dex 14, Con -, Int -, Wis 1, Cha 1
+			Str 8, Dex 14, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -692,7 +692,7 @@
 			Group (4)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
@@ -773,7 +773,7 @@
 			Fort +0, Ref +1, Will -5
 		</SAVES>
 		<ABILITIES>
-			Str 10, Dex 12, Con -, Int -, Wis 1, Cha 1
+			Str 10, Dex 12, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -869,7 +869,7 @@
 			Fort +0, Ref +0, Will -5
 		</SAVES>
 		<ABILITIES>
-			Str 12, Dex 10, Con -, Int -, Wis 1, Cha 1
+			Str 12, Dex 10, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -968,7 +968,7 @@
 			Fort +1, Ref +1, Will -4
 		</SAVES>
 		<ABILITIES>
-			Str 16, Dex 10, Con -, Int -, Wis 1, Cha 1
+			Str 16, Dex 10, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -1067,7 +1067,7 @@
 			Fort +2, Ref +1, Will -3
 		</SAVES>
 		<ABILITIES>
-			 Str 20, Dex 8, Con -, Int -, Wis 1, Cha 1
+			 Str 20, Dex 8, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -1166,7 +1166,7 @@
 			 Fort +5, Ref +3, Will +0
 		</SAVES>
 		<ABILITIES>
-			 Str 24, Dex 6, Con -, Int -, Wis 1, Cha 1
+			 Str 24, Dex 6, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			 -
@@ -1262,7 +1262,7 @@
 			Fort +10, Ref +7, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 28, Dex 4, Con -, Int -, Wis 1, Cha 1
+			Str 28, Dex 4, Con 0, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -2152,7 +2152,7 @@
 			Fort +7, Ref +1, Will +2
 		</SAVES>
 		<ABILITIES>
-			Str 20, Dex 10, Con 16, Int -, Wis 13, Cha 9
+			Str 20, Dex 10, Con 16, Int 0, Wis 13, Cha 9
 		</ABILITIES>
 		<ENVIRONMENT>
 			Temperate forests
@@ -3122,7 +3122,7 @@
 			Fort +3, Ref +5, Will +7
 		</SAVES>
 		<ABILITIES>
-			Str 13, Dex 15, Con -, Int 6, Wis 12, Cha 12
+			Str 13, Dex 15, Con 0, Int 6, Wis 12, Cha 12
 		</ABILITIES>
 		<SKILLS>
 			Listen +11, Move Silently +10, Spot +11
@@ -5246,7 +5246,7 @@
 			Fort +3, Ref +6, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 31, Dex 17, Con -, Int -, Wis 11, Cha 1
+			Str 31, Dex 17, Con 0, Int 0, Wis 11, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -6544,7 +6544,7 @@
 			Fort +3, Ref +3, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 10, Dex 10, Con 10, Int -, Wis 11, Cha 5
+			Str 10, Dex 10, Con 10, Int 0, Wis 11, Cha 5
 		</ABILITIES>
 		<ENVIRONMENT>
 			A lawful evil-aligned plane
@@ -6740,7 +6740,7 @@
 			Fort +4, Ref +4, Will +11
 		</SAVES>
 		<ABILITIES>
-			Str 28, Dex 10, Con -, Int 16, Wis 16, Cha 17
+			Str 28, Dex 10, Con 0, Int 16, Wis 16, Cha 17
 		</ABILITIES>
 		<SKILLS>
 			Climb +24, Concentration +18, Diplomacy +5, Jump +24, Listen +18, Move Silently +15, Search +10, Sense Motive +11, Spot +18, Survival +3 (+5 following tracks)
@@ -7839,7 +7839,7 @@
 			Solitary or pack (11-20)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/3
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
@@ -8802,7 +8802,7 @@
 			Team (2-4), squad (11-20 plus 2 3rd-level sergeants and 1 leader of 3rd-6th level), or clan (30-100 plus 30% noncombatants plus 1 3rd-level sergeant per 10 adults, 5 5th-level lieutenants, and 3 7th-level captains)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard coins; double goods; standard items
@@ -9777,7 +9777,7 @@
 			Darkvision 60 ft., earth glide, elemental traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +4, Ref -1, Will +0
+			Fort +4, Ref 01, Will +0
 		</SAVES>
 		<ABILITIES>
 			Str 17, Dex 8, Con 13, Int 4, Wis 11, Cha 11
@@ -11405,14 +11405,11 @@
 	</MONSTER>
 	<MONSTER>
 		<NAME>
-			
+			Water Elemental, Greater 
 		</NAME>
 		<TYPE>
-			Water Elemental, Greater 
-		</TYPE>
-		<DESCRIPTION>
 			Huge Elemental (Water, Extraplanar)
-		</DESCRIPTION>
+		</TYPE>
 		<HITDICE>
 			21d8+105 (199 hp)
 		</HITDICE>
@@ -11530,14 +11527,11 @@
 	</MONSTER>
 	<MONSTER>
 		<NAME>
-			
+			Water Elemental, Elder 
 		</NAME>
 		<TYPE>
-			Water Elemental, Elder 
-		</TYPE>
-		<DESCRIPTION>
 			Huge Elemental (Water, Extraplanar)
-		</DESCRIPTION>
+		</TYPE>
 		<HITDICE>
 			24d8+120 (228 hp)
 		</HITDICE>
@@ -11655,7 +11649,7 @@
 	</MONSTER>
 	<MONSTER>
 		<NAME>
-			
+			Elf
 		</NAME>
 		<TYPE>
 			Elf 
@@ -11694,7 +11688,7 @@
 			Elven traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +2, Ref +1, Will -1*
+			Fort +2, Ref +1, Will -1
 		</SAVES>
 		<ABILITIES>
 			Str 13, Dex 13, Con 10, Int 10, Wis 9, Cha 8
@@ -11727,7 +11721,7 @@
 			Squad (2-4), company (11-20 plus 2 3rd-level sergeants and 1 leader of 3rd-6th level), or band (30-100 plus 20% noncombatants plus 1 3rd-level sergeant per 10 adults, 5 5th-level lieutenants, and 3 7th-level captains)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -12302,7 +12296,7 @@
 			Team (2-4) or crew (7-18)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
@@ -12660,10 +12654,10 @@
 			Fast healing 2, hive mind, immunity to poison, petrification, and cold, resistance to electricity 10, fire 10, and sonic 10, spell resistance 30, telepathy
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +19, Ref -, Will +19
+			Fort +19, Ref 0, Will +19
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex -, Con 20, Int 20, Wis 20, Cha 21
+			Str 0, Dex 0, Con 20, Int 20, Wis 20, Cha 21
 		</ABILITIES>
 		<SKILLS>
 			Appraise +28, Bluff +28, Concentration +28, Diplomacy +32, Disguise +5 (+7 acting), Intimidate +30, Knowledge (any three) +28, Listen +30, Sense Motive +28, Spellcraft +28 (+30 scrolls), Spot +30, Use Magic Device +28 (+30 scrolls)
@@ -12850,10 +12844,10 @@
 			Low-light vision, plant traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +4, Ref -, Will -4
+			Fort +4, Ref 0, Will -4
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex -, Con 13, Int -, Wis 2, Cha 1
+			Str 0, Dex 0, Con 13, Int 0, Wis 2, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -12934,10 +12928,10 @@
 			Low-light vision, plant traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +6, Ref -1, Will +0
+			Fort +6, Ref 01, Will +0
 		</SAVES>
 		<ABILITIES>
-			Str 14, Dex 8, Con 16, Int -, Wis 11, Cha 9
+			Str 14, Dex 8, Con 16, Int 0, Wis 11, Cha 9
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -13135,7 +13129,7 @@
 			Solitary, company (2-4), or band (6-15)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			5 (noble 8)
+			5 
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -13184,7 +13178,7 @@
 		
 			Noble Djinn
 		
-			Some djinn (1% of the total population) are noble. A noble djinni can grant three wishes to any being (nongenies only) who captures it. Noble djinn perform no other services and, upon granting the third wish, are free of their servitude. Noble djinn are as strong as efreet (see below), with 10 Hit Dice.
+			Some djinn (1% of the total population) are noble. A noble djinni can grant three wishes to any being (nongenies only) who captures it. Noble djinn perform no other services and, upon granting the third wish, are free of their servitude. Noble djinn are as strong as efreet (see below), with 10 Hit Dice. Noble Djinn have a challenge rating of 8.
 		
 			EFREETI 
 		
@@ -13545,7 +13539,7 @@
 			Fort +0, Ref +2, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 13, Dex 15, Con -, Int 13, Wis 14, Cha 12
+			Str 13, Dex 15, Con 0, Int 13, Wis 14, Cha 12
 		</ABILITIES>
 		<SKILLS>
 			Balance +6, Climb +5, Hide +6, Jump +5, Move Silently +6, Spot +7
@@ -13632,7 +13626,7 @@
 			Fort +1, Ref +4, Will +6
 		</SAVES>
 		<ABILITIES>
-			Str 17, Dex 17, Con -, Int 13, Wis 14, Cha 16
+			Str 17, Dex 17, Con 0, Int 13, Wis 14, Cha 16
 		</ABILITIES>
 		<SKILLS>
 			Balance +7, Climb +9, Hide +8, Jump +9, Move Silently +8, Spot +8
@@ -13889,7 +13883,7 @@
 			14d8+70 (133 hp) 14d8+84 plus 8d10+48 (231 hp)
 		</HITDICE>
 		<INITIATIVE>
-			-1 +5
+			-1
 		</INITIATIVE>
 		<SPEED>
 			40 ft. (8 squares) 30 ft. in +2 full plate armor (6 squares); base speed 40 ft.
@@ -13996,6 +13990,8 @@
 			Typical Blackguard Spells Prepared (3/1; save DC 11 + spell level): 1st-cause fear, doom, magic weapon; 2nd-bull's strength.
 		
 			Possessions: +2 frost greataxe, +2 full plate armor, cloak of Charisma +2, ring of minor energy resistance (fire), 2 doses of bloodroot poison. (Benefits of these items are included in the statistics block.)
+
+			Frost Giant Jarls have an Initiave modifier of +5.
 		</DESCRIPTION>
 	</MONSTER>
 	<MONSTER>
@@ -14616,7 +14612,7 @@
 			Company (2-4), squad (11-20 plus 1 leader of 3rd-6th level and 2 3rd-level lieutenants), or band (30-50 plus 1 3rd-level sergeant per 20 adults, 5 5th-level lieutenants, 3 7th-level captains, and 2-5 dire badgers)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -14801,7 +14797,7 @@
 			Gang (4-9), band (10-100 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults and 1 leader of 4th-6th level), warband (10-24 with worg mounts), or tribe (40-400 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults, 1 or 2 lieutenants of 4th or 5th level, 1 leader of 6th-8th level, 10-24 worgs, and 2-4 dire wolves)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/3
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -14872,7 +14868,7 @@
 			Fort +3, Ref +2, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 25, Dex 9, Con -, Int -, Wis 11, Cha 1
+			Str 25, Dex 9, Con 0, Int 0, Wis 11, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -14972,7 +14968,7 @@
 			Fort +3, Ref +2, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 21, Dex 9, Con -, Int -, Wis 11, Cha 1
+			Str 21, Dex 9, Con 0, Int 0, Wis 11, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -15066,7 +15062,7 @@
 			Fort +6, Ref +5, Will +6
 		</SAVES>
 		<ABILITIES>
-			Str 33, Dex 9, Con -, Int -, Wis 11, Cha 1
+			Str 33, Dex 9, Con 0, Int 0, Wis 11, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -15122,16 +15118,13 @@
 			Stone Golem 
 		</NAME>
 		<TYPE>
-			Stone Golem 
+			Large Construct Huge Construct 
 		</TYPE>
-		<DESCRIPTION>
-			Large Construct Huge Construct
-		</DESCRIPTION>
 		<HITDICE>
 			14d10+30 (107 hp) 42d10+40 (271 hp)
 		</HITDICE>
 		<INITIATIVE>
-			-1 -2
+			-1 
 		</INITIATIVE>
 		<SPEED>
 			20 ft. (4 squares) 20 ft. (4 squares)
@@ -15161,7 +15154,7 @@
 			Fort +4, Ref +3, Will +4 Fort +14, Ref +12, Will +14
 		</SAVES>
 		<ABILITIES>
-			Str 29, Dex 9, Con -, Int -, Wis 11, Cha 1 Str 37, Dex 7, Con -, Int -, Wis 11, Cha 1
+			Str 29, Dex 9, Con 0, Int 0, Wis 11, Cha 1 Str 37, Dex 7, Con 0, Int 0, Wis 11, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			- -
@@ -15214,6 +15207,7 @@
 			GREATER STONE GOLEM
 		
 			A greater stone golem is 18 feet tall and weighs around 32,000 pounds. It resembles a typical stone golem in all respects, except that the Will save DC is 31 against its slow ability. CL 14th; Craft Construct, antimagic field, geas/quest, symbol of stunning, caster must be at least 14th level; Price 196,000 gp; Cost 105,000 gp + 7,640 XP.
+			Greater Stone Golems have an initiave modifier of -2.
 		</DESCRIPTION>
 	</MONSTER>
 	<MONSTER>
@@ -16281,7 +16275,7 @@
 			Company (2-4), squad (11-20 plus 2 3rd-level sergeants and 1 leader of 3rd-6th level), or band (30-100 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults, 5 5th-level lieutenants, 3 7th-level captains, 6-10 dogs, and 2-5 riding dogs)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -16766,7 +16760,7 @@
 			Gang (4-9), band (10-100 plus 50% noncombatants plus 1 3rd-level sergeant per 20 adults and 1 leader of 4th-6th level), warband (10-24), or tribe (30-300 plus 50% noncombatants plus 1 3rd-level sergeant per 20 adults, 1 or 2 lieutenants of 4th or 5th level, 1 leader of 6th-8th level, 2-4 dire wolves, and 1-4 ogres or 1-2 trolls)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -16833,7 +16827,7 @@
 			Fort +0, Ref +4, Will +1
 		</SAVES>
 		<ABILITIES>
-			Str 8, Dex 15, Con -, Int 10, Wis 12, Cha 7
+			Str 8, Dex 15, Con 0, Int 10, Wis 12, Cha 7
 		</ABILITIES>
 		<SKILLS>
 			Hide +14, Listen +4, Spot +4 
@@ -17133,7 +17127,7 @@
 			Fort +6, Ref +7, Will +7
 		</SAVES>
 		<ABILITIES>
-			Str 14, Dex 13, Con -, Int 10, Wis 17, Cha 16
+			Str 14, Dex 13, Con 0, Int 10, Wis 17, Cha 16
 		</ABILITIES>
 		<SKILLS>
 			Diplomacy +5, Disguise +12, Gather Information +12, Listen +11, Search +5, Sense Motive +12, Spot +11, Survival +3 (+5 following tracks)
@@ -17227,7 +17221,7 @@
 			Fort +7, Ref +6, Will +8
 		</SAVES>
 		<ABILITIES>
-			Str 35, Dex 13, Con -, Int 12, Wis 17, Cha 18
+			Str 35, Dex 13, Con 0, Int 12, Wis 17, Cha 18
 		</ABILITIES>
 		<SKILLS>
 			Concentration +13, Diplomacy +6, Knowledge (religion) +10, Listen +16, Search +10, Sense Motive +12, Spot +16, Survival +3 (+5 following tracks)
@@ -17317,7 +17311,7 @@
 			Fort +4, Ref +2, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 21, Dex 11, Con -, Int 10, Wis 17, Cha 15
+			Str 21, Dex 11, Con 0, Int 10, Wis 17, Cha 15
 		</ABILITIES>
 		<SKILLS>
 			Diplomacy +4, Listen +9, Search +9, Sense Motive +12, Spot +9, Survival +3 (+5 following tracks)
@@ -17513,7 +17507,7 @@
 			Gang (4-9), band (10-100 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults and 1 leader of 4th-6th level), warband (10-24 plus 2-4 dire weasels), tribe (40-400 plus 1 3rd-level sergeant per 20 adults, 1 or 2 lieutenants of 4th or 5th level, 1 leader of 6th-8th level, and 5-8 dire weasels)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/4
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -18402,7 +18396,7 @@
 			Company (2-4), patrol (11-20 plus 2 3rd-level sergeants and 1 leader of 3rd-6th level), or tribe (30-100 plus 100% noncombatants plus 1 3rd-level sergeant per 10 adults, 5 5th-level lieutenants, and 3 7th-level captains)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -20281,7 +20275,7 @@
 			Company (2-4), patrol (11-20 plus 2 3rd-level lieutenants and 1 leader of 3rd-6th level), or band (30-60 plus 1 3rd-level sergeant per 20 adults, 5 5th-level lieutenants, 3 7th-level captains, and 10 porpoises)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -20532,7 +20526,7 @@
 			Fort +4, Ref +10, Will +9
 		</SAVES>
 		<ABILITIES>
-			Str 21, Dex 19, Con -, Int 11, Wis 10, Cha 10
+			Str 21, Dex 19, Con 0, Int 11, Wis 10, Cha 10
 		</ABILITIES>
 		<SKILLS>
 			Climb +13, Hide +21, Listen +11, Move Silently +21, Spot +15, Swim +9
@@ -20614,7 +20608,7 @@
 			Fort +4, Ref +2, Will +8
 		</SAVES>
 		<ABILITIES>
-			Str 24, Dex 10, Con -, Int 6, Wis 14, Cha 15
+			Str 24, Dex 10, Con 0, Int 6, Wis 14, Cha 15
 		</ABILITIES>
 		<SKILLS>
 			Hide +7, Listen +8, Move Silently +7, Spot +8
@@ -20706,7 +20700,7 @@
 			Fort +13, Ref +8, Will +20
 		</SAVES>
 		<ABILITIES>
-			Str 26, Dex 12, Con -, Int 8, Wis 20, Cha 17
+			Str 26, Dex 12, Con 0, Int 8, Wis 20, Cha 17
 		</ABILITIES>
 		<SKILLS>
 			Concentration +8, Knowledge (religion) +4, Listen +18, Move Silently +5, Spot +18
@@ -21331,7 +21325,7 @@
 			Fort +12, Ref +10, Will +23
 		</SAVES>
 		<ABILITIES>
-			Str 48, Dex 10, Con -, Int 20, Wis 20, Cha 18
+			Str 48, Dex 10, Con 0, Int 20, Wis 20, Cha 18
 		</ABILITIES>
 		<SKILLS>
 			Concentration +32, Diplomacy +6, Hide +16, Knowledge (arcana) +33, Listen +33, Move Silently +28, Search +33, Sense Motive +23, Spellcraft +35, Spot +33, Survival +5 (+7 following tracks)
@@ -21427,7 +21421,7 @@
 			Fort +11, Ref +11, Will +19
 		</SAVES>
 		<ABILITIES>
-			Str 38, Dex 14, Con -, Int 20, Wis 20, Cha 18
+			Str 38, Dex 14, Con 0, Int 20, Wis 20, Cha 18
 		</ABILITIES>
 		<SKILLS>
 			Concentration +28, Diplomacy +6, Hide +18*, Knowledge (arcana) +29, Listen +29, Move Silently +26, Search +29, Sense Motive +29, Spellcraft +31, Spot +29, Survival +5 (+7 following tracks)
@@ -21535,7 +21529,7 @@
 			Fort +9, Ref +11, Will +17
 		</SAVES>
 		<ABILITIES>
-			Str 31, Dex 18, Con -, Int 18, Wis 20, Cha 18
+			Str 31, Dex 18, Con 0, Int 18, Wis 20, Cha 18
 		</ABILITIES>
 		<SKILLS>
 			Concentration +24, Diplomacy +6, Hide +16*, Listen +25, Move Silently +24, Search +24, Sense Motive +25, Spellcraft +24, Spot +25, Survival +5 (+7 following tracks)
@@ -21913,10 +21907,10 @@
 			Blindsight 60 ft., split, ooze traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +9, Ref -2, Will -2
+			Fort +9, Ref 02, Will -2
 		</SAVES>
 		<ABILITIES>
-			Str 17, Dex 1, Con 22, Int -, Wis 1, Cha 1
+			Str 17, Dex 1, Con 22, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			Climb +11
@@ -22003,10 +21997,10 @@
 			Blindsight 60 ft., immunity to electricity, ooze traits, transparent
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +9, Ref -4, Will -4
+			Fort +9, Ref 04, Will -4
 		</SAVES>
 		<ABILITIES>
-			Str 10, Dex 1, Con 26, Int -, Wis 1, Cha 1
+			Str 10, Dex 1, Con 26, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -22091,10 +22085,10 @@
 			Blindsight 60 ft., immunity to cold and fire, ooze traits, transparent
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +6, Ref -4, Will -4
+			Fort +6, Ref 04, Will -4
 		</SAVES>
 		<ABILITIES>
-			Str 12, Dex 1, Con 21, Int -, Wis 1, Cha 1
+			Str 12, Dex 1, Con 21, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -22179,10 +22173,10 @@
 			Blindsight 60 ft., split, ooze traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +8, Ref -3, Will -3
+			Fort +8, Ref 03, Will -3
 		</SAVES>
 		<ABILITIES>
-			Str 15, Dex 1, Con 22, Int -, Wis 1, Cha 1
+			Str 15, Dex 1, Con 22, Int 0, Wis 1, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			Climb +10
@@ -22288,7 +22282,7 @@
 			Gang (2-4), squad (11-20 plus 2 3rd-level sergeants and 1 leader of 3rd-6th level), or band (30-100 plus 150% noncombatants plus 1 3rd-level sergeant per 10 adults, 5 5th-level lieutenants, and 3 7th-level captains)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -23019,7 +23013,7 @@
 			Solitary, pair, or team (3-4)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -23106,7 +23100,7 @@
 			Solitary, pair, or gang (3-4)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			Standard
@@ -24330,7 +24324,7 @@
 			Fort +1, Ref +3, Will +4 
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex 14, Con -,Int 6, Wis 12, Cha 13 
+			Str 0, Dex 14, Con 0,Int 6, Wis 12, Cha 13 
 		</ABILITIES>
 		<SKILLS>
 			Hide +8*, Listen +7, Search +4, Spot +7 
@@ -24598,7 +24592,7 @@
 			Fort +5, Ref +5, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 22, Dex 10, Con -, Int -, Wis 10, Cha 1
+			Str 22, Dex 10, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<ENVIRONMENT>
 			Any
@@ -24856,7 +24850,7 @@
 			Fort +0, Ref +1, Will +2
 		</SAVES>
 		<ABILITIES>
-			Str 13, Dex 17, Con -, Int -, Wis 10, Cha 1
+			Str 13, Dex 17, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<FEATS>
 			Improved Initiative
@@ -24868,7 +24862,7 @@
 			Any
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/3
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
@@ -24924,7 +24918,7 @@
 			Fort +0, Ref +3, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 21, Dex 14, Con -, Int -, Wis 10, Cha 1
+			Str 21, Dex 14, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<FEATS>
 			Improved Initiative
@@ -24992,7 +24986,7 @@
 			Fort +2, Ref +5, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 23, Dex 16, Con -, Int -, Wis 10, Cha 1
+			Str 23, Dex 16, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<FEATS>
 			Improved Initiative
@@ -25060,7 +25054,7 @@
 			Fort +6, Ref +7, Will +8
 		</SAVES>
 		<ABILITIES>
-			Str 31, Dex 12, Con -, Int -, Wis 10, Cha 1
+			Str 31, Dex 12, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<FEATS>
 			Improved Initiative
@@ -25210,7 +25204,7 @@
 			Fort +2, Ref +5, Will +7
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex 16, Con -, Int 14, Wis 14, Cha 15
+			Str 0, Dex 16, Con 0, Int 14, Wis 14, Cha 15
 		</ABILITIES>
 		<SKILLS>
 			Hide +13, Intimidate +12, Knowledge (religion) +12, Listen +14, Search +12, Spot +14, Survival +2 (+4 following tracks)
@@ -26015,7 +26009,7 @@
 			Colony (2-4), flock (5-8), or storm (9-14)
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
@@ -26172,7 +26166,7 @@
 			Fort +5, Ref +7, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 1, Dex 19, Con 8, Int -, Wis 10, Cha 2
+			Str 1, Dex 19, Con 8, Int 0, Wis 10, Cha 2
 		</ABILITIES>
 		<SKILLS>
 			Climb +12, Spot +4
@@ -26348,7 +26342,7 @@
 			Fort +4, Ref +6, Will +2
 		</SAVES>
 		<ABILITIES>
-			Str 1, Dex 19, Con 8, Int -, Wis 10, Cha 2
+			Str 1, Dex 19, Con 8, Int 0, Wis 10, Cha 2
 		</ABILITIES>
 		<SKILLS>
 			Listen +4, Spot +4
@@ -26512,7 +26506,7 @@
 			Fort +3, Ref +3, Will +0
 		</SAVES>
 		<ABILITIES>
-			Str 1, Dex 17, Con 10, Int -, Wis 10, Cha 2
+			Str 1, Dex 17, Con 10, Int 0, Wis 10, Cha 2
 		</ABILITIES>
 		<SKILLS>
 			Climb +11, Listen +4, Spot +4
@@ -27402,7 +27396,7 @@
 			Darkvision 90 ft.
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +5, Ref -1, Will +0
+			Fort +5, Ref 01, Will +0
 		</SAVES>
 		<ABILITIES>
 			Str 10, Dex 9, Con 14, Int 8, Wis 10, Cha 10
@@ -27869,7 +27863,7 @@
 			Fort +1, Ref +5, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 16, Dex 14, Con -, Int 13, Wis 13, Cha 14
+			Str 16, Dex 14, Con 0, Int 13, Wis 13, Cha 14
 		</ABILITIES>
 		<SKILLS>
 			Bluff +6, Climb +8, Craft or Profession (any one) +4, Diplomacy +4, Hide +10, Jump +8, Listen +11, Move Silently +10, Search +8, Sense Motive +11, Spot +11
@@ -28057,7 +28051,7 @@
 			Fort +1, Ref +2, Will +5
 		</SAVES>
 		<ABILITIES>
-			Str 12, Dex 12, Con -, Int 11, Wis 13, Cha 15
+			Str 12, Dex 12, Con 0, Int 11, Wis 13, Cha 15
 		</ABILITIES>
 		<SKILLS>
 			Hide +8, Listen +7, Move Silently +16, Spot +7 
@@ -28401,7 +28395,7 @@
 			Fort +1, Ref +4, Will +6
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex 16, Con -, Int 14, Wis 14, Cha 15
+			Str 0, Dex 16, Con 0, Int 14, Wis 14, Cha 15
 		</ABILITIES>
 		<SKILLS>
 			Diplomacy +6, Hide +11, Intimidate +10, Listen +12, Search +10, Sense Motive +8, Spot +12, Survival +2 (+4 following tracks)
@@ -28493,7 +28487,7 @@
 			Fort +5, Ref +14, Will +14
 		</SAVES>
 		<ABILITIES>
-			Str -, Dex 28, Con -, Int 17, Wis 18, Cha 24
+			Str 0, Dex 28, Con 0, Int 17, Wis 18, Cha 24
 		</ABILITIES>
 		<SKILLS>
 			Diplomacy +9, Hide +24, Intimidate +26, Knowledge (religion) +22, Listen +25, Search +22, Sense Motive +23, Spot +25, Survival +4 (+6 following tracks)
@@ -29179,10 +29173,10 @@
 			Single actions only, damage reduction 5/slashing, darkvision 60 ft., undead traits
 		</SPECIALQUALITIES>
 		<SAVES>
-			Fort +0, Ref -1, Will +3
+			Fort +0, Ref 01, Will +3
 		</SAVES>
 		<ABILITIES>
-			Str 12, Dex 8, Con -, Int -, Wis 10, Cha 1
+			Str 12, Dex 8, Con 0, Int 0, Wis 10, Cha 1
 		</ABILITIES>
 		<SKILLS>
 			-
@@ -29197,7 +29191,7 @@
 			Any
 		</ORGANIZATION>
 		<CHALLENGERATING>
-			1/2
+			1
 		</CHALLENGERATING>
 		<TREASURE>
 			None
