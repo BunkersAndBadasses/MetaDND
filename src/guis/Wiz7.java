@@ -173,12 +173,13 @@ public class Wiz7 {
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int index = itemsList.getSelectionIndex();
-				String selection = itemsList.getItem(index);
+				// check if an item is selected
 				if (index == -1)
 					return;
-
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
 				for(int i = 0; i < charItems.size(); i++) {
-					// if item is already added, increment
 					if (charItems.get(i).getName().equals(selection)) {
 						charItems.get(i).incCount();
 						numCharItems.set(i, charItems.get(i).getCount());
@@ -192,8 +193,7 @@ public class Wiz7 {
 				charItemsList.add("1 x " + selection);
 				numCharItems.add(c.getCount());
 			
-
-
+				// refresh char items list
 				charItemsList.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
 				charItemScreen.layout();

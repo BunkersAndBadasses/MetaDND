@@ -24,9 +24,14 @@ import entity.RaceEntity;
  * 
  * launch wizards (add custom)
  * check feat prerequisites
- * 
- * set size
+ * fix language input
+ * change description page to row layout
+ * add add 5, add 10 buttons to items page
+ * add remove all button to items page
+ * weight counter on items page
+ * add cap for items
  * monk - add wis to ac
+ * save ac, saving throws, initiative, etc
  * 
  * make it so only one instance of char wiz can be open at one time
  */
