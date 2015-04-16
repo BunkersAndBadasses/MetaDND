@@ -47,6 +47,7 @@ public class character {
 	private int grappleMod = 0;
 	private int speed = 0;//
 	private int damageReduction = 0;
+	
 	private String[] clericDomains = null;
 	private String druidAnimalCompanion = null;
 	private String rangerFavoredEnemy = null;
