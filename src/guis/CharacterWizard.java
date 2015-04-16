@@ -30,6 +30,8 @@ import entity.RaceEntity;
  * add remove all button to items page
  * weight counter on items page
  * add cap for items
+ * add char list update to random character generation
+ * deity not saving
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
  * 
@@ -39,6 +41,7 @@ import entity.RaceEntity;
 /*
  * iteration 2: 
  * 
+ * fix file saving - char list on mine is by creation date, ryans is alphabetical
  * second class
  * searching
  * back button
