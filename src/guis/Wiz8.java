@@ -1,6 +1,21 @@
 /*
- * CHOOSE DOMAIN/SPECIALTY SCHOOL
+ * CHOOSE WEAPONS/ARMOR
  */
+
+/*
+ * barbarian: simple/martial weapon proficiency, light/medium armor, all shields(not towers)
+ * bard: simple weapons (plus longsword, rapier, sap, short sword, shortbow, and whip), light armor, light shields
+ * cleric: simple weapons, all armors, all shields(not towers), martial weapons if deity's favored weapon is martial, weapon focus for deities favored weapon
+ * druid: club, dagger, dart, quarterstaff, scimitar, sickle, shortspear, sling, and spear, all natural attacks, light and medium armor, NO METAL ARMOR, all shields(again no metal)
+ * fighter: bonus feat (from list - must meet prerequisite), simple and martial weapons, all armor, all shields
+ * monk: club, crossbow(light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shuriken, siangham, sling, no armor or shields
+ * paladin: simple and martial weapons, all armor, all shields(not towers)
+ * ranger: simple and martial weapons, light armor, light shields(not towers)
+ * rogue: simple weapons (plus hand crossbow, rapier, sap, shortbow, short sword), light armor, no shields
+ * sorcerer: simple weapons, no armor, no shields
+ * wizard: club, dagger, crossbow(light and heavy), quarterstaff, no armor, no shields  
+ */
+
 
 package guis;
 import java.util.ArrayList;
@@ -58,7 +73,7 @@ public class Wiz8{
 
 	private void createPageContent() {
 		Label wiz8Label = new Label(wiz8, SWT.NONE);
-		wiz8Label.setText("Choose Domain/Specialty School");
+		wiz8Label.setText("Choose Weapons and Armor");
 		wiz8Label.pack();
 
 		Button wiz8NextButton = cw.createNextButton(wiz8);

@@ -277,6 +277,21 @@ public class Wiz6 {
 	
 	void createBonusPopUp() {
 		// get lists of bonus feats
+		
+		/*
+		 * barbarian: simple/martial weapon proficiency, light/medium armor, all shields(not towers)
+		 * bard: simple weapons (plus extras - p.28), light armor, light shields, bard - no silent spell
+		 * cleric: simple weapons, all armors, all shields(not towers), martial weapons if deity's favored weapon is martial, weapon focus for deities favored weapon
+		 * druid: light and medium armor, shields(not towers)
+		 * fighter: bonus feat (from list - must meet prerequisite), simple and martial weapons, all armor, all shields
+		 * monk: improved grapple/stunning fist (does not need to meet prerequisites), improved unarmed strike
+		 * paladin: simple and martial weapons, all armor, all shields(not towers)
+		 * ranger: simple and martial weapons, light armor, light shields(not towers), track
+		 * rogue: simple weapons, light armor
+		 * sorcerer: simple weapons
+		 * wizard: scribe scroll
+		 */
+		
 		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();		
 		if (!(charClass.equals("wizard") 
 				| charClass.equals("sorcerer") 

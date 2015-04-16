@@ -313,6 +313,7 @@ public class Wiz2 {
 				character.setSize(character.getCharRace().getSize());
 				// set size
 				character.setSpeed(character.getCharRace().getSpeed());
+				// TODO add bonus - barbarian +10
 
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)

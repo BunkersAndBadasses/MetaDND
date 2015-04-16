@@ -33,9 +33,11 @@ import entity.*;
 import core.character;
 /* TODO
  * fix + - buttons
+ * fix scrolling - doesn't scroll all the way
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
  * add extra cleric class skills
+ * add class bonuses (i.e. druid nature sense)
  */
 
 public class Wiz5 {
@@ -189,7 +191,7 @@ public class Wiz5 {
 		skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
 	    skillsScreenScroll.setExpandHorizontal(true);
 	    skillsScreenScroll.setExpandVertical(true);
-	    skillsScreenScroll.setMinSize(WIDTH, (charSkills.size() * 30 + 10));
+	    skillsScreenScroll.setMinWidth(WIDTH);
 		final Composite skillsScreen = new Composite(skillsScreenScroll, SWT.NONE);
 		skillsScreenScroll.setContent(skillsScreen);
 		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -282,6 +284,8 @@ public class Wiz5 {
 			decButtons.add(dec);
 			skillsScreen.pack();
 		}
+
+		skillsScreenScroll.setMinHeight(incButtons.get(incButtons.size()-1).getLocation().y + incButtons.get(incButtons.size()-1).getSize().y);
 
 		// create error label
 		unusedSkillPointsError = new Label(wiz5, SWT.NONE);

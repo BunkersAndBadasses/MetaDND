@@ -34,7 +34,9 @@ import entity.RaceEntity;
  * deity not saving
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
- * 
+ * barbarian illiteracy
+ * add deity favored weapon
+ * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
  * make it so only one instance of char wiz can be open at one time
  */
 
