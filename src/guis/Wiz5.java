@@ -33,7 +33,6 @@ import entity.*;
 import core.character;
 /* TODO
  * fix + - buttons
- * fix scrolling - doesn't scroll all the way
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
  * add extra cleric class skills
@@ -209,7 +208,7 @@ public class Wiz5 {
 			inc.setLayoutData(incGD);
 			inc.pack();
 			Button dec = new Button(skillsScreen, SWT.PUSH);
-			dec.setText("-");
+			dec.setText(Character.toString ((char) 8211));
 			GridData decGD = new GridData(SWT.LEFT);
 			dec.setLayoutData(decGD);
 			dec.pack();
