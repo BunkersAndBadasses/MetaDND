@@ -538,7 +538,8 @@ public class Wiz10 {
 					// StreamResult result = new StreamResult(System.out);
 
 					//TODO Refresh the character list when new Character is made
-					//Main.homeWindow.loadCharacters();
+					System.out.println(Main.homeWindow); //TODO
+					HomeWindow.loadCharacters();
 					cw.disposeShell();
 					System.out.println("File saved!");
 

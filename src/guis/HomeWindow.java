@@ -64,7 +64,7 @@ public class HomeWindow {
 	private Composite m_dungeonScreen;
 	private Composite m_playerScreen;
 	private Composite view;
-	private List charList;
+	private static List charList;
 	// the stack layout allows us to navigate from one view to another.
 	private final Composite mainWindow;
 
@@ -481,8 +481,9 @@ public class HomeWindow {
 
 	//Parse through the user folders, and load the characters into
 	//	the charList on the player window
-	public void loadCharacters(){
+	public static void loadCharacters(){
 
+		charList.removeAll();
 		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character");
 		File[] files = new File(CHARDIR.getPath()).listFiles();
 		character[] CharacterNames = new character[files.length];
