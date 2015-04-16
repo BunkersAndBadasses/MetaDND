@@ -49,7 +49,7 @@ public class HomeWindow {
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 	private static Document doc;
-    private static Element element;
+	private static Element element;
 	private static Display display;
 	private Device dev;
 	private Shell shell;
@@ -63,6 +63,7 @@ public class HomeWindow {
 	private Composite m_mainWindow;
 	private Composite m_dungeonScreen;
 	private Composite m_playerScreen;
+	private List charList;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -209,7 +210,7 @@ public class HomeWindow {
 		view.setLayoutData(gridData);
 		view.setLayout(charLayout);
 
-		List charList = new List(view, SWT.V_SCROLL);
+		charList = new List(view, SWT.V_SCROLL);
 		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		charList.setLayoutData(chargridData);
 		charList.addSelectionListener(new SelectionListener(){
@@ -386,7 +387,7 @@ public class HomeWindow {
 			public void handleEvent(Event event) {
 
 				//TODO call function to populate charList with characters
-
+				loadCharacters();
 				playerScreen.pack();
 				navigateToPlayerScreen();
 			}
@@ -471,14 +472,17 @@ public class HomeWindow {
 	//	the charList on the player window
 	public void loadCharacters(){
 
-		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Characters");
-		File[] files =CHARDIR.listFiles();
+		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character");
+		File[] files = new File(CHARDIR.getPath()).listFiles();
 		character[] CharacterNames = new character[files.length];
+		int numCharacters = 0;
 
 		for(int i = 0; i < files.length; i++){
 
 			if(files[i].isDirectory()){
 
+				CharacterNames[numCharacters] = new character();
+				
 				//TODO load the characters
 				try{
 					File CHARXML = new File(CHARDIR.getPath() + "//" + files[i].getName() + 
@@ -494,11 +498,19 @@ public class HomeWindow {
 
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
 						element = (Element) node;
-						CharacterNames[i].setName(getValue("Name", element));  
-						CharacterNames[i].setLevel(Integer.parseInt(getValue("Level", element)));
-						CharacterNames[i].setCharClass((ClassEntity)Main.gameState.classes.get(getValue("Class", element)));
-						CharacterNames[i].setCharRace((RaceEntity)Main.gameState.races.get(getValue("Race", element)));
+						String name = getValue("Name", element);
+						CharacterNames[numCharacters].setName(name);  
+						CharacterNames[numCharacters].setLevel(Integer.parseInt(getValue("Level", element)));
+						CharacterNames[numCharacters].setCharClass((ClassEntity)Main.gameState.classes.get(getValue("Class", element)));
+						CharacterNames[numCharacters].setCharRace((RaceEntity)Main.gameState.races.get(getValue("Race", element)));
 					}
+
+					charList.add(CharacterNames[numCharacters].getName() + ", Level " 
+							+ CharacterNames[numCharacters].getLevel() + " " 
+							+ CharacterNames[numCharacters].getCharRace().getName()
+							+ " " + CharacterNames[numCharacters].getCharClass().getName());
+
+					numCharacters ++;
 
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -509,11 +521,11 @@ public class HomeWindow {
 
 		}
 	}
-    private static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
-    }
+	private static String getValue(String tag, Element element) {
+		NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
+		Node node = (Node) nodes.item(0);
+		return node.getNodeValue();
+	}
 
 	//	public static void main(String[] args) {
 	//		Display display = new Display();

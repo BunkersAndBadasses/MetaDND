@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import core.Main;
 import core.character;
 
 public class Wiz10 {
@@ -75,7 +76,7 @@ public class Wiz10 {
 		Label wiz10Label = new Label(wiz10, SWT.NONE);
 		wiz10Label.setText("Done!");
 		wiz10Label.pack();
-		
+
 		Text charText = new Text(wiz10, SWT.BORDER | SWT.READ_ONLY | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
 		charText.setBounds(10, 20, WIDTH - 40, HEIGHT - 110);
 		charText.setText(character.toString());
@@ -86,7 +87,7 @@ public class Wiz10 {
 		wiz10SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
 		wiz10SaveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				
+
 				// save
 				//				private String name;
 				//				private int level = 1;
@@ -302,7 +303,7 @@ public class Wiz10 {
 
 						// Ability
 						abilityList += character.getSpecialAbilities().get(i).getName() + "/";
-						
+
 
 					}
 					Element Ability = doc.createElement("Abilities");
@@ -374,121 +375,137 @@ public class Wiz10 {
 					AC.appendChild(doc.createTextNode(Integer.toString(
 							character.getAC())));
 					Character.appendChild(AC);	
-					
+
 					// TouchAC
 					Element TouchAC = doc.createElement("TouchAC");
 					TouchAC.appendChild(doc.createTextNode(Integer.toString(
 							character.getTouchAC())));
 					Character.appendChild(TouchAC);	
-					
+
 					// flatFootedAC
 					Element FlatAC = doc.createElement("FlatAC");
 					FlatAC.appendChild(doc.createTextNode(Integer.toString(
 							character.getFlatFootedAC())));
 					Character.appendChild(FlatAC);	
-					
+
 					// initMod
 					Element initMod = doc.createElement("InitMod");
 					initMod.appendChild(doc.createTextNode(Integer.toString(
 							character.getInitMod())));
 					Character.appendChild(initMod);	
-					
+
 					// Fortitude Saving throw
 					Element fortSave = doc.createElement("FortSave");
 					fortSave.appendChild(doc.createTextNode(Integer.toString(
 							character.getSavingThrows()[0])));
 					Character.appendChild(fortSave);	
-					
+
 					// Reflex Saving throw
 					Element reflexSave = doc.createElement("ReflexSave");
 					reflexSave.appendChild(doc.createTextNode(Integer.toString(
 							character.getSavingThrows()[1])));
 					Character.appendChild(reflexSave);	
-					
+
 					// Will Saving throw
 					Element willSave = doc.createElement("WillSave");
 					willSave.appendChild(doc.createTextNode(Integer.toString(
 							character.getSavingThrows()[2])));
 					Character.appendChild(willSave);	
-					
+
 					// baseAttackBonus
 					Element baseAttackBonus = doc.createElement("BaseAttackBonus");
 					baseAttackBonus.appendChild(doc.createTextNode(Integer.toString(
 							character.getBaseAttackBonus())));
 					Character.appendChild(baseAttackBonus);	
-					
+
 					// spellResistance
 					Element spellResistance = doc.createElement("SpellResistance");
 					spellResistance.appendChild(doc.createTextNode(Integer.toString(
 							character.getSpellResistance())));
 					Character.appendChild(spellResistance);	
-					
+
 					// grappleMod
 					Element grappleMod = doc.createElement("GrappleMod");
 					grappleMod.appendChild(doc.createTextNode(Integer.toString(
 							character.getGrappleMod())));
 					Character.appendChild(grappleMod);	
-					
+
 					// Speed
 					Element Speed = doc.createElement("Speed");
 					Speed.appendChild(doc.createTextNode(Integer.toString(
 							character.getSpeed())));
 					Character.appendChild(Speed);
-					
+
 					// damageReduction
 					Element damageReduction = doc.createElement("DamageReduction");
 					damageReduction.appendChild(doc.createTextNode(Integer.toString(
 							character.getDamageReduction())));
 					Character.appendChild(damageReduction);
-					
+
 					//Go through the ClericDomains list
 					String clericDomainList = "";
-					for(int i = 0; i < character.getClericDomains().length; i++){
+					if(character.getClericDomains() != null){
 
-						// Item Name
-						clericDomainList += character.getClericDomains()[i] + "/";
+						for(int i = 0; i < character.getClericDomains().length; i++){
 
+							// Item Name
+							clericDomainList += character.getClericDomains()[i] + "/";
+
+						}
 					}
 					Element clericDomains = doc.createElement("ClericDomains");
 					clericDomains.appendChild(doc.createTextNode(clericDomainList));
 					Character.appendChild(clericDomains);
-					
+
 					// druidAnimalCompanion
+					String animalCompanion = "";
+					if (character.getDruidAnimalCompanion() != null)
+						animalCompanion = character.getDruidAnimalCompanion();
 					Element druidAnimalCompanion = doc.createElement("DruidAnimalCompanion");
-					druidAnimalCompanion.appendChild(doc.createTextNode(
-							character.getDruidAnimalCompanion()));
+					druidAnimalCompanion.appendChild(doc.createTextNode(animalCompanion));
 					Character.appendChild(druidAnimalCompanion);
-					
+
 					// rangerFavoredEnemy
+					String favoriteEnemy = "";
+					if (character.getRangerFavoredEnemy() != null)
+						favoriteEnemy = character.getRangerFavoredEnemy();
 					Element rangerFavoredEnemy = doc.createElement("RangerFavoredEnemy");
 					rangerFavoredEnemy.appendChild(doc.createTextNode(
-							character.getRangerFavoredEnemy()));
+							favoriteEnemy));
 					Character.appendChild(rangerFavoredEnemy);
-					
+
 					// familiar
+					String familiarName = "";
+					if (character.getFamiliar() != null)
+						familiarName = character.getFamiliar();
 					Element familiar = doc.createElement("Familiar");
 					familiar.appendChild(doc.createTextNode(
-							character.getFamiliar()));
+							familiarName));
 					Character.appendChild(familiar);
-					
+
 					// wizardSpecialtySchool
+					String specialtySchool = "";
+					if (character.getWizardSpecialtySchool() != null)
+						specialtySchool = character.getWizardSpecialtySchool();
 					Element wizardSpecialtySchool = doc.createElement("WizardSpecialtySchool");
 					wizardSpecialtySchool.appendChild(doc.createTextNode(
-							character.getWizardSpecialtySchool()));
+							specialtySchool));
 					Character.appendChild(wizardSpecialtySchool);
-					
+
 					//Go through the wizardProhibitedSchools list
 					String wizardProhibitedSchoolsList = "";
-					for(int i = 0; i < character.getClericDomains().length; i++){
+					if(character.getWizardProhibitedSchools() != null){
+						for(int i = 0; i < character.getWizardProhibitedSchools().length; i++){
 
-						// Item Name
-						wizardProhibitedSchoolsList += character.getWizardProhibitedSchools()[i] + "/";
+							// Item Name
+							wizardProhibitedSchoolsList += character.getWizardProhibitedSchools()[i] + "/";
 
+						}
 					}
 					Element wizardProhibitedSchools = doc.createElement("WizardProhibitedSchools");
 					wizardProhibitedSchools.appendChild(doc.createTextNode(wizardProhibitedSchoolsList));
 					Character.appendChild(wizardProhibitedSchools);
-					
+
 					// Notes
 					Element Notes = doc.createElement("Notes");
 					Notes.appendChild(doc.createTextNode(character.getNotes()));
@@ -507,30 +524,31 @@ public class Wiz10 {
 						File CHARDIR = new File(CHARACTER.getPath() + "//" + charName);
 						CHARDIR.mkdir();
 						StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
-						
-						
+
+
 						transformer.transform(source, result);
 					}catch(Exception e){
 						File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
 						CHARDIR.mkdir();
 						StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
-					
+
 						transformer.transform(source, result);
 					}
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
 
+					//TODO Refresh the character list when new Character is made
+					//Main.homeWindow.loadCharacters();
 					cw.disposeShell();
 					System.out.println("File saved!");
-					
-					
+
 
 				} catch (ParserConfigurationException pce) {
 					pce.printStackTrace();
 				} catch (TransformerException tfe) {
 					tfe.printStackTrace();
 				}
-				
+
 				return;
 
 			}
