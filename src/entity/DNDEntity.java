@@ -111,14 +111,9 @@ public abstract class DNDEntity {
 			textLabel.setFont(Main.regFont);
 			textLabel.pack();
 		}
-		
-		int heightSum = 0;
-		for(int i = 0; i < c.getChildren().length; i++){
-			heightSum += c.getChildren()[i].getSize().y + layout.verticalSpacing;
-		}
-		
-		sc.setMinHeight(heightSum);
 		c.pack();
+		sc.setMinHeight(c.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+
 		
 	    shell.setLocation((int)(bounds.width * .75) - c.getSize().x / 2, (int)(bounds.height * .05));
 	    

@@ -1,13 +1,16 @@
 package guis;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import core.Main;
 import core.RNG;
@@ -82,7 +85,7 @@ public class CharacterWizard {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Character");
-		shell.setSize(WIDTH, HEIGHT);
+		//shell.setSize(WIDTH, HEIGHT);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
@@ -246,8 +249,8 @@ public class CharacterWizard {
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				randomgeneration(randomPanel, randomLayout, homePanel);
-				homeLayout.topControl = randomPanel;
-				homePanel.layout();
+				//homeLayout.topControl = randomPanel;
+				//homePanel.layout();
 			}
 
 		});
@@ -341,17 +344,17 @@ public class CharacterWizard {
 		int height = 0;
 		if(racec.getName().equalsIgnoreCase("Elf"))
 			height = randomgene.GetRandomInteger(55, 65);
-		if(racec.getName().equalsIgnoreCase("Human"))
+		else if(racec.getName().equalsIgnoreCase("Human"))
 			height = randomgene.GetRandomInteger(55, 78);
-		if(racec.getName().equalsIgnoreCase("Dwarf"))
+		else if(racec.getName().equalsIgnoreCase("Dwarf"))
 			height = randomgene.GetRandomInteger(45, 53);
-		if(racec.getName().equalsIgnoreCase("Gnome"))
+		else if(racec.getName().equalsIgnoreCase("Gnome"))
 			height = randomgene.GetRandomInteger(36, 44);
-		if(racec.getName().equalsIgnoreCase("Half-elf"))
+		else if(racec.getName().equalsIgnoreCase("Half-elf"))
 			height = randomgene.GetRandomInteger(55, 71);
-		if(racec.getName().equalsIgnoreCase("Half-orc"))
+		else if(racec.getName().equalsIgnoreCase("Half-orc"))
 			height = randomgene.GetRandomInteger(55, 82);
-		if(racec.getName().equalsIgnoreCase("Halfling"))
+		else if(racec.getName().equalsIgnoreCase("Halfling"))
 			height = randomgene.GetRandomInteger(32, 40);
 		else// TODO create a race field of height BOUNDARY
 		{
@@ -367,17 +370,17 @@ public class CharacterWizard {
 		int weight = 0;
 		if(racec.getName().equalsIgnoreCase("Elf"))
 			weight = randomgene.GetRandomInteger(80, 160);
-		if(racec.getName().equalsIgnoreCase("Human"))
+		else if(racec.getName().equalsIgnoreCase("Human"))
 			weight = randomgene.GetRandomInteger(125, 280);
-		if(racec.getName().equalsIgnoreCase("Dwarf"))
+		else if(racec.getName().equalsIgnoreCase("Dwarf"))
 			weight = randomgene.GetRandomInteger(85, 230);
-		if(racec.getName().equalsIgnoreCase("Gnome"))
+		else if(racec.getName().equalsIgnoreCase("Gnome"))
 			weight = randomgene.GetRandomInteger(35, 50);
-		if(racec.getName().equalsIgnoreCase("Half-elf"))
+		else if(racec.getName().equalsIgnoreCase("Half-elf"))
 			weight = randomgene.GetRandomInteger(80, 230);
-		if(racec.getName().equalsIgnoreCase("Half-orc"))
+		else if(racec.getName().equalsIgnoreCase("Half-orc"))
 			weight = randomgene.GetRandomInteger(110, 400);
-		if(racec.getName().equalsIgnoreCase("Halfling"))
+		else if(racec.getName().equalsIgnoreCase("Halfling"))
 			weight = randomgene.GetRandomInteger(25, 40);
 		else// TODO create a race field of height BOUNDARY
 		{
@@ -436,7 +439,7 @@ public class CharacterWizard {
 					a = false;
 					character.addFeat(b);
 				}
-			} while(a = true);
+			} while(a == true);
 		}
 		//Wizard gain "Scribe Scroll"
 		if(character.getCharClass().getName().equalsIgnoreCase("Wizard"))
@@ -460,17 +463,36 @@ public class CharacterWizard {
 		//Weapons is <empty>
 		//Armor is <empty>
 		//Notes will be <empty>
-		final Composite randomPage1 = new Composite(randomPanel, SWT.NONE);
-		randomPage1.setSize(randomPanel.getSize());
-		randomLayout.topControl = randomPage1;
-		randomPanel.layout();
-	    Label csRandom = new Label(randomPage1, SWT.BOLD);
-	    csRandom.setText(character.toString());
-	    csRandom.pack();
-	    createCancelButton(randomPage1, homePanel, randomPanel, randomLayout);
-	    randomPage1.pack();
-	    homePanel.pack();
-	    shell.pack();
+		Shell newshell = new Shell(display);
+		newshell.setSize(WIDTH, HEIGHT);
+		ScrolledComposite sc = new ScrolledComposite(newshell, SWT.V_SCROLL);
+		sc.setBounds(0, 0, WIDTH - 20, HEIGHT - 50);
+		sc.setExpandHorizontal(true);
+		sc.setExpandVertical(true);
+		
+		Composite c = new Composite(sc, SWT.NONE);
+		sc.setContent(c);
+		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
+		GridLayout layout = new GridLayout(1, false);
+		c.setLayout(layout);
+		Label a = new Label(c, SWT.LEFT);
+		a.setText(character.toString());
+		a.pack();
+		sc.setMinHeight(c.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+		c.pack();
+	    center(newshell);
+		newshell.pack();
+		newshell.open();
+		newshell.addListener (SWT.Resize,  new Listener () {
+	        public void handleEvent (Event e) {
+	          Rectangle rect = newshell.getClientArea ();
+	          sc.setBounds(rect);
+	        }
+	      });
+		while(!newshell.isDisposed()){
+			if(!display.readAndDispatch())
+				display.sleep();
+		}
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
