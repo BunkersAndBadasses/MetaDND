@@ -3,6 +3,8 @@ package core;
 import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 
 import entity.DNDEntity;
@@ -36,7 +38,7 @@ public class GameState {
 	public String currCharFilePath;
 	public boolean playerMode;
 	
-	public HashMap<String, DNDEntity> searchResults;
+	public SortedMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
 
 	
@@ -76,7 +78,7 @@ public class GameState {
 		traps = new LinkedHashMap<String, DNDEntity>();
 		deities = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
-		searchResults = new HashMap<String, DNDEntity>();
+		searchResults = new TreeMap<String, DNDEntity>();
 		xmls.start();
 		USERDATAFOLDER.mkdir();
 	}
