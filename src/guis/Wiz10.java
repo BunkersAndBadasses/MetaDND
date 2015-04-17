@@ -47,7 +47,7 @@ import core.character;
 
 public class Wiz10 {
 
-    private static CharacterWizard cw;
+    private CharacterWizard cw;
     private Composite wiz10;
     private int WIDTH;
     private int HEIGHT;
