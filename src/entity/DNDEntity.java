@@ -11,7 +11,9 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
@@ -98,9 +100,17 @@ public abstract class DNDEntity {
 		
 		sc.setMinHeight(heightSum);
 		c.pack();
+		
 	    shell.setLocation((int)(bounds.width * .75) - c.getSize().x / 2, (int)(bounds.height * .05));
+	    
 		shell.pack();
 		shell.open();
+		shell.addListener (SWT.Resize,  new Listener () {
+	        public void handleEvent (Event e) {
+	          Rectangle rect = shell.getClientArea ();
+	          sc.setBounds(rect);
+	        }
+	      });
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
