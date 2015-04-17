@@ -47,7 +47,7 @@ import core.character;
 
 public class Wiz10 {
 
-    private static CharacterWizard cw;
+    private CharacterWizard cw;
     private Composite wiz10;
     private int WIDTH;
     private int HEIGHT;
@@ -90,6 +90,7 @@ public class Wiz10 {
 
                 // save
             	saveCharacter(character);
+                cw.disposeShell();
                 return;
 
             }
@@ -589,7 +590,6 @@ public class Wiz10 {
             //TODO Refresh the character list when new Character is made
             // add to random character
             HomeWindow.loadCharacters();
-            cw.disposeShell();
             System.out.println("File saved!");
 
 
