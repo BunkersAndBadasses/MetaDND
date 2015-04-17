@@ -12,14 +12,12 @@ public class Main {
 	public static GameState gameState;
 	public static HomeWindow homeWindow;
 	public static Font boldFont; 
-	public static Font regFont;
 
 	public static void main(String[] args) {
 		gameState = new GameState();
 			
 		Display display = new Display();
-		boldFont = new Font(display, new FontData( "Calibri", 12, SWT.BOLD ));
-		regFont = new Font(display, new FontData( "Calibri", 11, SWT.NONE));
+		boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
 		//new Startscreen(display);
 		homeWindow = new HomeWindow(display);
 		
