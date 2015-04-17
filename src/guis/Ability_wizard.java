@@ -34,7 +34,7 @@ public class Ability_wizard {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Ability");
-		shell.setSize(WIDTH,HEIGHT);
+		//shell.setSize(WIDTH,HEIGHT);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
@@ -119,7 +119,7 @@ public class Ability_wizard {
 			}
 		}
 		);
-		
+		wizpage1.pack();
 		wizPages.add(wizpage1);
 		//Page2 -- Description
 		final Composite wizpage2 = new Composite(wizPanel, SWT.NONE);

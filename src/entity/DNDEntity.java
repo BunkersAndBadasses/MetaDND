@@ -60,7 +60,7 @@ public abstract class DNDEntity {
 		Shell shell = new Shell(display);
 		Monitor monitor = display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();
-	    
+	    shell.setText(this.name);
 	    int WIDTH = 700;
 		int HEIGHT = (int)(bounds.height * 2.0/3.0);
 		
