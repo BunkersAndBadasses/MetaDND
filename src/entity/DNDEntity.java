@@ -93,7 +93,8 @@ public abstract class DNDEntity {
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
 		GridLayout layout = new GridLayout(1, false);
 		c.setLayout(layout);
-
+		
+		//Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
 			Label titleLabel = new Label(c, SWT.LEFT);
 			if(entry.getKey().equals("NAME"))
@@ -108,7 +109,6 @@ public abstract class DNDEntity {
 			String parsedStr = entry.getValue().replaceAll(windowSize, "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
-			textLabel.setFont(Main.regFont);
 			textLabel.pack();
 		}
 		
