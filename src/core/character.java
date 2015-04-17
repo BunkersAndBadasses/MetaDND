@@ -26,7 +26,7 @@ public class character {
 	private int hp = 0; // hitpoints
 	private int remainingHP = 0;
 	private ArrayList<CharSkill> skills = new ArrayList<CharSkill>();
-	private String languages = "<empty>";
+	private ArrayList<String> languages = new ArrayList<String>();
 	private int gold = 0;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<AbilityEntity> specialAbilities = new ArrayList<AbilityEntity>();
@@ -199,9 +199,9 @@ public class character {
 	public void setSkills(ArrayList<CharSkill> s) { skills = s; }
 	public ArrayList<CharSkill> getSkills(){ return skills;}
 
-	public void setLanguages(String l) { languages = l; }
-	public String getLanguages(){ return languages; }
-	public void addLanguage(String l) { languages += ", " + l; }
+	public void setLanguages(ArrayList<String> l) { languages = l; }
+	public ArrayList<String> getLanguages(){ return languages; }
+	public void addLanguage(String l) { languages.add(l); }
 	
 	public void setGold(int g) { gold = g; }
 	public int getgold() { return gold; }
@@ -231,6 +231,7 @@ public class character {
 	public void addArmor(ArmorEntity a) { armor.add(a); }
 	public void setArmor(ArrayList<ArmorEntity> a) { armor = a; }
 	public ArrayList<ArmorEntity> getArmor() { return armor; }
+	
 	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
@@ -340,7 +341,11 @@ public class character {
 		s += "Skills: " + "\n";
 		for (int i = 0; i < skills.size(); i++)
 			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";
-		s += "Languages: " + languages + "\n";
+		s += "Languages: ";
+		if (languages.size() == 0)
+			s += "<empty>\n";
+		for (int i = 0; i < languages.size(); i++)
+			s += "\t" + languages.get(i) + "\n";
 		s += "Gold: " + gold + "\n";
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)

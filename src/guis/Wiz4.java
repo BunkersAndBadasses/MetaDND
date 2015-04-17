@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
@@ -66,18 +67,19 @@ public class Wiz4 {
 	private Text hairInput;
 	private Text skinInput;
 	private Text descriptionInput;
-	private Text langInput;
-	private String possibleLangList = "Abyssal, Aquan, Auran, Celestial,"
-			+ " Common, Draconic, Druidic, Dwarven, Elven, "
-			+ "Giant, Gnome, Goblin, Gnoll, Halfling, Ignan, "
-			+ "Infernal, Orc, Sylvan, Terran, Undercommon";
+	private List langInput;
+	private Text customLang;
+	private int remainingBonusLangs;
+	private int numBonusLangs;
+	private String[] possibleLangList = {"Abyssal", "Aquan", "Auran", "Celestial", 
+			"Common", "Draconic", "Druidic", "Dwarven", "Elven",
+			"Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", 
+			"Infernal", "Orc", "Sylvan", "Terran", "Undercommon"};
 
 	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
 			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
 			"Luck", "Magic", "Plant", "Protection", "Strength", "Sun", 
 			"Travel", "Trickery", "War", "Water"};
-
-	private int numBonusLangs;
 
 	private Random rng = new Random();
 
@@ -123,7 +125,7 @@ public class Wiz4 {
 		wiz4Label.setText("Add Description");
 		wiz4Label.pack();
 		
-		GridLayout gl = new GridLayout(8, false);
+		GridLayout gl = new GridLayout(8, true);
 		
 		Composite inner = new Composite(wiz4, SWT.BORDER);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
@@ -138,14 +140,66 @@ public class Wiz4 {
 		nameInput.setLayoutData(gd);
 		
 		genderInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		genderInput.setLayoutData(gd);
 		
 		ageInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		ageInput.setLayoutData(gd);
+		
+		heightInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		heightInput.setLayoutData(gd);
+		
+		Button heightRandom = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		heightRandom.setLayoutData(gd);
+		
+		eyesInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		eyesInput.setLayoutData(gd);
+		
+		hairInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		hairInput.setLayoutData(gd);
+		
+		skinInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		skinInput.setLayoutData(gd);
+		
+		Label spacer = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		spacer.setLayoutData(gd);		
+		
+		weightInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weightInput.setLayoutData(gd);
+		
+		Button weightRandom = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weightRandom.setLayoutData(gd);
+		
+		descriptionInput = new Text(inner, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 4;
+		gd.verticalSpan = 2;
+		descriptionInput.setLayoutData(gd);
+		
+		alignmentInput1 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		alignmentInput1.setLayoutData(gd);	
+		
+		alignmentInput2 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		alignmentInput2.setLayoutData(gd);
 		
 		deityListInput = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
 		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
@@ -153,72 +207,42 @@ public class Wiz4 {
 		deityListInput.setLayoutData(gd);
 		
 		deityInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 3;
-		deityInput.setLayoutData(gd);
+		deityInput.setLayoutData(gd);		
 		
-		alignmentInput1 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		Label addLang = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 2;
-		alignmentInput1.setLayoutData(gd);	
+		addLang.setLayoutData(gd);
 		
-		alignmentInput2 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		langInput = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 3;
+		langInput.setLayoutData(gd);
+		
+		List possibleLangs = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 3;
+		possibleLangs.setLayoutData(gd);
+		
+		customLang = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 2;
-		alignmentInput2.setLayoutData(gd);
+		customLang.setLayoutData(gd);
 		
-		eyesInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		eyesInput.setLayoutData(gd);
-		
-		hairInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		hairInput.setLayoutData(gd);
-		
-		skinInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		skinInput.setLayoutData(gd);
-		
-		Label spacer = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		spacer.setLayoutData(gd);
-		
-		heightInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		heightInput.setLayoutData(gd);
-		
-		Button heightRandom = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		Button removeLang = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 2;
-		heightRandom.setLayoutData(gd);
-		
-		weightInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		weightInput.setLayoutData(gd);
-		
-		Button weightRandom = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		weightRandom.setLayoutData(gd);
-		
-		descriptionInput = new Text(inner, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-		
-		
-		langInput = new Text(inner, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-
-		Label addLang = new Label(inner, SWT.NONE);	
-		
-		Label possibleLangs = new Label(inner, SWT.WRAP);
+		removeLang.setLayoutData(gd);
 		
 		
 		// create content
+		
 		// name
-		//		Label name = new Label(inner, SWT.NONE);
-		//		name.setText("Name:");
-		//		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		//		name.setLayoutData(gd);
-		//		name.pack();
-
+		
 		nameInput.setText("");
 		nameInput.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
@@ -240,20 +264,13 @@ public class Wiz4 {
 			deities.add((DeityEntity) itr2.next());
 		}
 
-		//		Label deity = new Label(inner, SWT.NONE);
-		//		deity.setText("Deity:");
-		//		deity.setLocation(5, 150);
-		//		deity.pack();
-
-		//		deityListInput.setBounds(85, 150, 310, 30);
-		deityListInput.add("<none>");
+		deityListInput.add("Deity");
 		for (int i = 0; i < deities.size(); i++) {
 			deityListInput.add(deities.get(i).getName() + " (" + deities.get(i).getAlignment() + ")");
 		}
-		deityListInput.setText("Deity");
+		deityListInput.select(0);
 		deityListInput.pack();
 
-		//		deityInput.setBounds(400, 150, 180, 30);
 		deityInput.setText("");
 		deityInput.setMessage("Custom Deity");
 		deityInput.addListener(SWT.MouseUp, new Listener() {
@@ -265,13 +282,12 @@ public class Wiz4 {
 			public void modifyText(ModifyEvent event) {
 				deityInput.setBackground(null);
 				if (!deitySelect) {
-					deityListInput.deselectAll();
-					deityListInput.setText("Deity");
+					deityListInput.select(0);
 				}
 				deitySelect = false;
 			}
 		});
-//		deityInput.pack();
+		deityInput.pack();
 
 		deityListInput.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -285,15 +301,12 @@ public class Wiz4 {
 
 
 		// alignment
-		//		Label alignment = new Label(inner, SWT.NONE);
-		//		alignment.setText("Alignment:");
-		//		alignment.setLocation(5, 100);
-		//		alignment.pack();
 
+		alignmentInput1.add("Law-Chaos");
 		alignmentInput1.add("Lawful");
 		alignmentInput1.add("Neutral");
 		alignmentInput1.add("Chaotic");
-		//		alignmentInput1.setLocation(85, 100);
+		alignmentInput1.select(0);
 		alignmentInput1.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event e) {
 				alignmentInput1.setBackground(null);
@@ -301,10 +314,11 @@ public class Wiz4 {
 		});	
 		alignmentInput1.pack();
 
+		alignmentInput2.add("Good-Evil");
 		alignmentInput2.add("Good");
 		alignmentInput2.add("Neutral");
 		alignmentInput2.add("Evil");
-		//		alignmentInput2.setLocation(180, 100);
+		alignmentInput2.select(0);
 		alignmentInput2.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event e) {
 				alignmentInput2.setBackground(null);
@@ -314,55 +328,29 @@ public class Wiz4 {
 
 
 		// eyes
-//		Label eyes = new Label(inner, SWT.NONE);
-//		eyes.setText("Eyes:");
-//		eyes.setLocation(290,200);
-//		eyes.pack();
-
-//		eyesInput.setBounds(330, 200, 75, 30);
 		eyesInput.setText("");
 		eyesInput.setMessage("Eyes");
 		eyesInput.pack();
 
 
 		// hair 
-//		Label hair = new Label(inner, SWT.NONE);
-//		hair.setText("Hair:");
-//		hair.setLocation(430, 200);
-//		hair.pack();
-
-
-//		hairInput.setBounds(470, 200, 75, 30);
 		hairInput.setText("");
 		hairInput.setMessage("Hair");
 		hairInput.pack();
 
 
 		// skin
-//		Label skin = new Label(inner, SWT.NONE);
-//		skin.setText("Skin:");
-//		skin.setLocation(565, 200);
-//		skin.pack();
-
-
-//		skinInput.setBounds(605,200,75,30);
 		skinInput.setText("");
 		skinInput.setMessage("Skin");
 		skinInput.pack();
 		
 		
 		// height
-		//		Label height = new Label(inner, SWT.NONE);
-		//		height.setText("Height:");
-		//		height.setLocation(5, 200);
-		//		height.pack();
 
-		//		heightInput.setLocation(85, 200);
 		heightInput.setText("");
 		heightInput.setMessage("Height");
 		heightInput.pack();
 
-		//		heightRandom.setLocation(165, 200);
 		heightRandom.setText("Random Height");
 		heightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -433,18 +421,10 @@ public class Wiz4 {
 		heightRandom.pack();
 		
 		// weight
-//		Label weight = new Label(inner, SWT.NONE);
-//		weight.setText("Weight:");
-//		weight.setLocation(5, 250);
-//		weight.pack();
-
-
-//		weightInput.setLocation(85, 250);
 		weightInput.setText("");
 		weightInput.setMessage("Weight");
 		weightInput.pack();
 
-//		weightRandom.setLocation(165, 250);
 		weightRandom.setText("Random Weight");
 		weightRandom.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -498,90 +478,101 @@ public class Wiz4 {
 
 
 		// gender
-		//		Label gender = new Label(inner, SWT.NONE);
-		//		gender.setText("Gender:");
-		//		gender.setLocation(290, 100);
-		//		gender.pack();
-
-		//		genderInput.setBounds(355, 100, 50, 30);
 		genderInput.setText("");
 		genderInput.setMessage("Gender");
 		genderInput.pack();
 
 		
 		// age
-		//		Label age = new Label(inner, SWT.NONE);
-		//		age.setText("Age:");
-		//		age.setLocation(435, 100);
-		//		age.pack();
-
-		//		ageInput.setBounds(475, 100, 50, 30);
 		ageInput.setText("");
 		ageInput.setMessage("Age");
 		ageInput.pack();
 		
 		
 		// description
-//		Label description = new Label(inner, SWT.NONE);
-//		description.setText("Description:");
-//		description.setLocation(290,250);
-//		description.pack();
-
-//		descriptionInput.setBounds(380,250, 300, 90);
-		descriptionInput.setText("");
-		descriptionInput.setMessage("Description");
+		descriptionInput.setText("Description");
+		descriptionInput.pack();
 		
 
-//		// languages
-//		Label languages = new Label(inner, SWT.NONE);
-//		languages.setText("Languages:");
-//		languages.setLocation(5, 300);
-//		languages.pack();
-
-//		langInput.setBounds(85, 300, 285, 40);
+		// languages
 		langInput.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
-				Text text = (Text) event.widget;
-				text.setBackground(white);
+				addLang.setBackground(null);
 			}
 		});
 
-	
+		customLang.setMessage("Custom Language");
+		customLang.addListener(SWT.DefaultSelection, new Listener() {
+			public void handleEvent(Event e) {
+				if (remainingBonusLangs == 0)
+					return;
+				if (customLang.getText().length() == 0)
+					return;
+				langInput.add(customLang.getText());
+				remainingBonusLangs--;
+				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+			}
+		});
+
+		removeLang.setText("Remove");
+		removeLang.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (numBonusLangs != remainingBonusLangs) {
+					langInput.remove(langInput.getItemCount()-1);
+					remainingBonusLangs++;
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+				}
+			}
+		});
+		
 		if (numBonusLangs < 0)
 			numBonusLangs = 0;
-		addLang.setText("Pick " + Integer.toString(numBonusLangs) + " More:");
-//		addLang.setLocation(5,350);
+		remainingBonusLangs = numBonusLangs;
+		addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
 		addLang.pack();
 
 
-		String langList = "Common";
+		ArrayList<String> langList = new ArrayList<String>();
+		langList.add("Common");
 		switch(charRace) {
 		case ("Dwarf"):
-			langList += ", Dwarven";
+			langList.add("Dwarven");
 		break;
 		case ("Elf"):
-			langList += ", Elven";
+			langList.add("Elven");
 		break;
 		case ("Gnome"):
-			langList += ", Gnome";
+			langList.add("Gnome");
 		break;
 		case ("Half-Elf"):
-			langList += ", Elven";
+			langList.add("Elven");
 		break;
 		case ("Half-Orc"):
-			langList += ", Orc";
+			langList.add("Orc");
 		break;
 		case ("Halfling"):
-			langList += ", Halfling";
+			langList.add("Halfling");
 		break;
 		default : // human
 			break;
 		}
-		langInput.setText(langList);
-
-		possibleLangs.setText(possibleLangList);
-		possibleLangs.setBounds(95,350,580,40);
-
+		for (int i = 0; i < langList.size(); i++) {
+			langInput.add(langList.get(i));
+		}
+		possibleLangs.add("Possible Languages");
+		for (int i = 0; i < possibleLangList.length; i++)
+			possibleLangs.add(possibleLangList[i]);
+		possibleLangs.pack();
+		possibleLangs.addListener(SWT.DefaultSelection, new Listener() {
+			public void handleEvent(Event e) {
+				if (remainingBonusLangs == 0)
+					return;
+				langInput.add(possibleLangs.getItem(possibleLangs.getSelectionIndex()));
+				remainingBonusLangs--;
+				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+			}
+		});
+		inner.layout();
 
 		// next button
 		Button wiz4NextButton = cw.createNextButton(wiz4);
@@ -597,8 +588,8 @@ public class Wiz4 {
 					nameInput.setBackground(red);
 					error = true;
 				}
-				if (langInput.getText().length() == 0){
-					langInput.setBackground(red);
+				if (remainingBonusLangs > 0){
+					addLang.setBackground(red);
 					error = true;
 				}
 				if (charClass.equalsIgnoreCase("cleric")) {
@@ -606,11 +597,11 @@ public class Wiz4 {
 						deityInput.setBackground(red);
 						error = true;
 					}
-					if (alignmentInput1.getSelectionIndex() == -1) {
+					if (alignmentInput1.getSelectionIndex() < 1) {
 						alignmentInput1.setBackground(red);
 						error = true;
 					}
-					if (alignmentInput2.getSelectionIndex() == -1) {
+					if (alignmentInput2.getSelectionIndex() < 1) {
 						alignmentInput2.setBackground(red);
 						error = true;
 					}
@@ -619,17 +610,17 @@ public class Wiz4 {
 					return;
 
 				String a1, a2;
-				if (alignmentInput1.getSelectionIndex() == -1)
+				if (alignmentInput1.getSelectionIndex() < 1)
 					a1 = "<empty>";
 				else 
 					a1 = alignmentInput1.getText();
-				if (alignmentInput2.getSelectionIndex() == -1)
+				if (alignmentInput2.getSelectionIndex() < 1)
 					a2 = "<empty>";
 				else
 					a2 = alignmentInput2.getText();
 
 				DeityEntity deitySelect;
-				if (deityListInput.getSelectionIndex() != -1)
+				if (deityListInput.getSelectionIndex() >= 1)
 					deitySelect = deities.get(deityListInput.getSelectionIndex());
 				else
 					deitySelect = null;
@@ -664,7 +655,8 @@ public class Wiz4 {
 					character.setSkin(skinInput.getText());
 				if (descriptionInput.getText().length() != 0)
 					character.setDescription(descriptionInput.getText());
-				character.setLanguages(langInput.getText());
+				for (int i = 0; i < langInput.getItemCount(); i++)
+					character.addLanguage(langInput.getItem(i));
 
 				// change to next page				
 				if (cw.wizPageNum < wizPagesSize - 1)
