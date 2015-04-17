@@ -26,7 +26,7 @@ public class Startscreen {
 		display = d;
 		shell = new Shell(d, SWT.NO_TRIM | SWT.NO_FOCUS);
 		shell.setText("Welcome!");
-		shell.setSize(WIDTH, HEIGHT);
+		//shell.setSize(WIDTH, HEIGHT);
 		createPageContent();
 		run();
 	}

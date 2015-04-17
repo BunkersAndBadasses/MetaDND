@@ -14,8 +14,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
-import entity.AbilityEntity;
 /**
  * Class for ability_wizard, handle input and output
  * @author Innocentius
@@ -29,7 +27,6 @@ public class Ability_wizard {
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private static int wizpagenum;
-	private AbilityEntity newability; //TODO create ability entity
 	static String abilityname;
 	static String abilityscript;
 	public Ability_wizard(Display d)
@@ -94,8 +91,8 @@ public class Ability_wizard {
 		wizpage1text.setBounds(50, 50, 150, 50);
 		wizpage1text.setText("Ability_NONAME");
 		Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
-		Button Back1 = createBackButton(wizpage1, wizPanel, wizLayout);
-		Button Cancel1 = createCancelButton(wizpage1, wizPanel, wizLayout);
+		createBackButton(wizpage1, wizPanel, wizLayout);
+		createCancelButton(wizpage1, wizPanel, wizLayout);
 		next1.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -133,8 +130,8 @@ public class Ability_wizard {
 		wizpage2text.setBounds(50, 50, 300, 200);
 		wizpage2text.setText("Description here");
 		Button next2 = createNextButton(wizpage2);
-		Button Back2 = createBackButton(wizpage2, wizPanel, wizLayout);
-		Button Cancel2 = createCancelButton(wizpage2, wizPanel, wizLayout);
+		createBackButton(wizpage2, wizPanel, wizLayout);
+		createCancelButton(wizpage2, wizPanel, wizLayout);
 		next2.addListener(SWT.Selection, new Listener()
 		{
 			public void handleEvent(Event event)
@@ -178,8 +175,8 @@ public class Ability_wizard {
 		wiz8Label.setText("Name: " + abilityname + "\nDescription: " + abilityscript);
 		wiz8Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		Button Back = createBackButton(verific, wizPanel, wizLayout);
-		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
+		createBackButton(verific, wizPanel, wizLayout);
+		createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
 		confirm.addListener(SWT.Selection, new Listener()

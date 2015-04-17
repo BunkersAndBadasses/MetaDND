@@ -14,8 +14,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import entity.SpellEntity;
-
 /**
  * The class that handle Spell wizard interface, input and export.
  * @author Innocentius Shellingford
@@ -29,7 +27,6 @@ public class Spell_wizard {
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private static int wizpagenum;
-	private SpellEntity newspell;
 	static String spellname;
 	static String spellcomp;
 	static String spellschool;
@@ -125,8 +122,8 @@ public class Spell_wizard {
 				wizpage1text.setBounds(50, 50, 150, 50);
 				wizpage1text.setText("FireBall");
 				Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
-				Button Back1 = createBackButton(wizpage1, wizPanel, wizLayout);
-				Button Cancel1 = createCancelButton(wizpage1, wizPanel, wizLayout);
+				createBackButton(wizpage1, wizPanel, wizLayout);
+				createCancelButton(wizpage1, wizPanel, wizLayout);
 				next1.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -164,8 +161,8 @@ public class Spell_wizard {
 				wizpage2text.setBounds(50, 50, 150, 50);
 				wizpage2text.setText("Fire");
 				Button next2 = createNextButton(wizpage2);
-				Button Back2 = createBackButton(wizpage2, wizPanel, wizLayout);
-				Button Cancel2 = createCancelButton(wizpage2, wizPanel, wizLayout);
+				createBackButton(wizpage2, wizPanel, wizLayout);
+				createCancelButton(wizpage2, wizPanel, wizLayout);
 				next2.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -203,8 +200,8 @@ public class Spell_wizard {
 				wizpage3text.setBounds(50, 50, 150, 50);
 				wizpage3text.setText("Descruction");
 				Button next3 = createNextButton(wizpage3);
-				Button Back3 = createBackButton(wizpage3, wizPanel, wizLayout);
-				Button Cancel3 = createCancelButton(wizpage3, wizPanel, wizLayout);
+				createBackButton(wizpage3, wizPanel, wizLayout);
+				createCancelButton(wizpage3, wizPanel, wizLayout);
 				next3.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -239,8 +236,8 @@ public class Spell_wizard {
 				wizpage4text.setBounds(50, 50, 150, 50);
 				wizpage4text.setText("50 feet");
 				Button next4 = createNextButton(wizpage4);
-				Button Back4 = createBackButton(wizpage4, wizPanel, wizLayout);
-				Button Cancel4 = createCancelButton(wizpage4, wizPanel, wizLayout);
+				createBackButton(wizpage4, wizPanel, wizLayout);
+				createCancelButton(wizpage4, wizPanel, wizLayout);
 				next4.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -275,8 +272,8 @@ public class Spell_wizard {
 				wizpage5text.setBounds(50, 50, 250, 150);
 				wizpage5text.setText("No effect");
 				Button next5 = createNextButton(wizpage5);
-				Button Back5 = createBackButton(wizpage5, wizPanel, wizLayout);
-				Button Cancel5 = createCancelButton(wizpage5, wizPanel, wizLayout);
+				createBackButton(wizpage5, wizPanel, wizLayout);
+				createCancelButton(wizpage5, wizPanel, wizLayout);
 				next5.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -311,8 +308,8 @@ public class Spell_wizard {
 				wizpage6text.setBounds(50, 50, 150, 50);
 				wizpage6text.setText("1 turn");
 				Button next6 = createNextButton(wizpage6);
-				Button Back6 = createBackButton(wizpage6, wizPanel, wizLayout);
-				Button Cancel6 = createCancelButton(wizpage6, wizPanel, wizLayout);
+				createBackButton(wizpage6, wizPanel, wizLayout);
+				createCancelButton(wizpage6, wizPanel, wizLayout);
 				next6.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -347,8 +344,8 @@ public class Spell_wizard {
 				wizpage7text.setBounds(50, 50, 150, 50);
 				wizpage7text.setText("None");
 				Button next7 = createNextButton(wizpage7);
-				Button Back7 = createBackButton(wizpage7, wizPanel, wizLayout);
-				Button Cancel7 = createCancelButton(wizpage7, wizPanel, wizLayout);
+				createBackButton(wizpage7, wizPanel, wizLayout);
+				createCancelButton(wizpage7, wizPanel, wizLayout);
 				next7.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -386,8 +383,8 @@ public class Spell_wizard {
 				wizpage8text.setBounds(50, 50, 200, 100);
 				wizpage8text.setText("Will negate XX");
 				Button next8 = createNextButton(wizpage8);
-				Button Back8 = createBackButton(wizpage8, wizPanel, wizLayout);
-				Button Cancel8 = createCancelButton(wizpage8, wizPanel, wizLayout);
+				createBackButton(wizpage8, wizPanel, wizLayout);
+				createCancelButton(wizpage8, wizPanel, wizLayout);
 				next8.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -425,8 +422,8 @@ public class Spell_wizard {
 				wizpage9text.setBounds(50, 50, 200, 100);
 				wizpage9text.setText("A dart");
 				Button next9 = createNextButton(wizpage9);
-				Button Back9 = createBackButton(wizpage9, wizPanel, wizLayout);
-				Button Cancel9 = createCancelButton(wizpage9, wizPanel, wizLayout);
+				createBackButton(wizpage9, wizPanel, wizLayout);
+				createCancelButton(wizpage9, wizPanel, wizLayout);
 				next9.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -464,8 +461,8 @@ public class Spell_wizard {
 				wizpage10text.setBounds(50, 50, 150, 50);
 				wizpage10text.setText("5 Turns");
 				Button next10 = createNextButton(wizpage10);
-				Button Back10 = createBackButton(wizpage10, wizPanel, wizLayout);
-				Button Cancel10 = createCancelButton(wizpage10, wizPanel, wizLayout);
+				createBackButton(wizpage10, wizPanel, wizLayout);
+				createCancelButton(wizpage10, wizPanel, wizLayout);
 				next10.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -503,8 +500,8 @@ public class Spell_wizard {
 				wizpage11text.setBounds(50, 50, 150, 50);
 				wizpage11text.setText("1");
 				Button next11 = createNextButton(wizpage11);
-				Button Back11 = createBackButton(wizpage11, wizPanel, wizLayout);
-				Button Cancel11 = createCancelButton(wizpage11, wizPanel, wizLayout);
+				createBackButton(wizpage11, wizPanel, wizLayout);
+				createCancelButton(wizpage11, wizPanel, wizLayout);
 				next11.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -553,8 +550,8 @@ public class Spell_wizard {
 				wizpage12text.setBounds(50, 50, 150, 50);
 				wizpage12text.setText("Yes");
 				Button next12 = createNextButton(wizpage12);
-				Button Back12 = createBackButton(wizpage12, wizPanel, wizLayout);
-				Button Cancel12 = createCancelButton(wizpage12, wizPanel, wizLayout);
+				createBackButton(wizpage12, wizPanel, wizLayout);
+				createCancelButton(wizpage12, wizPanel, wizLayout);
 				next12.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -592,8 +589,8 @@ public class Spell_wizard {
 				wizpage13text.setBounds(50, 50, 300, 200);
 				wizpage13text.setText("Description here");
 				Button next13 = createNextButton(wizpage13);
-				Button Back13 = createBackButton(wizpage13, wizPanel, wizLayout);
-				Button Cancel13 = createCancelButton(wizpage13, wizPanel, wizLayout);
+				createBackButton(wizpage13, wizPanel, wizLayout);
+				createCancelButton(wizpage13, wizPanel, wizLayout);
 				next13.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -661,8 +658,8 @@ public class Spell_wizard {
 				"\nSpell Resistance: " + spellresistance + "\nDescription: " + spellscript);
 		wiz14Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		Button Back = createBackButton(verific, wizPanel, wizLayout);
-		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
+		createBackButton(verific, wizPanel, wizLayout);
+		createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
 		confirm.addListener(SWT.Selection, new Listener()

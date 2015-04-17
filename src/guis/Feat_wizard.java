@@ -15,8 +15,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import entity.FeatEntity;
-
 /**
  * The class that handle Feat wizard interface, input and export.
  * Feature Wizard don't do random generation.
@@ -31,7 +29,6 @@ public class Feat_wizard
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
-	private static FeatEntity newfeat;
 	private static int wizpagenum;
 	static String featname;
 	static String featprereq;
@@ -114,8 +111,8 @@ public class Feat_wizard
 				wizpage1text.setBounds(50, 50, 150, 50);
 				wizpage1text.setText("A Normal Human");
 				Button next1 = createNextButton(wizpage1);//TODO cancel and previous button
-				Button Back1 = createBackButton(wizpage1, wizPanel, wizLayout);
-				Button Cancel1 = createCancelButton(wizpage1, wizPanel, wizLayout);
+				createBackButton(wizpage1, wizPanel, wizLayout);
+				createCancelButton(wizpage1, wizPanel, wizLayout);
 				next1.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -153,8 +150,8 @@ public class Feat_wizard
 				wizpage2text.setBounds(50, 50, 250, 150);
 				wizpage2text.setText("Prerequisite Here");
 				Button next2 = createNextButton(wizpage2);
-				Button Back2 = createBackButton(wizpage2, wizPanel, wizLayout);
-				Button Cancel2 = createCancelButton(wizpage2, wizPanel, wizLayout);
+				createBackButton(wizpage2, wizPanel, wizLayout);
+				createCancelButton(wizpage2, wizPanel, wizLayout);
 				next2.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -191,8 +188,8 @@ public class Feat_wizard
 				wizpage3text.setBounds(50, 50, 200, 50);
 				wizpage3text.setText("No effect");
 				Button next3 = createNextButton(wizpage3);
-				Button Back3 = createBackButton(wizpage3, wizPanel, wizLayout);
-				Button Cancel3 = createCancelButton(wizpage3, wizPanel, wizLayout);
+				createBackButton(wizpage3, wizPanel, wizLayout);
+				createCancelButton(wizpage3, wizPanel, wizLayout);
 				next3.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -227,8 +224,8 @@ public class Feat_wizard
 				wizpage4text.setBounds(50, 50, 150, 50);
 				wizpage4text.setText("No effect");
 				Button next4 = createNextButton(wizpage4);
-				Button Back4 = createBackButton(wizpage4, wizPanel, wizLayout);
-				Button Cancel4 = createCancelButton(wizpage4, wizPanel, wizLayout);
+				createBackButton(wizpage4, wizPanel, wizLayout);
+				createCancelButton(wizpage4, wizPanel, wizLayout);
 				next4.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -262,8 +259,8 @@ public class Feat_wizard
 				wizpage5text.setBounds(50, 50, 150, 50);
 				wizpage5text.setText("No effect");
 				Button next5 = createNextButton(wizpage5);
-				Button Back5 = createBackButton(wizpage5, wizPanel, wizLayout);
-				Button Cancel5 = createCancelButton(wizpage5, wizPanel, wizLayout);
+				createBackButton(wizpage5, wizPanel, wizLayout);
+				createCancelButton(wizpage5, wizPanel, wizLayout);
 				wiz5Label.setText("Enter Benefit: (required)");
 				wiz5Label.pack(); 
 				next5.addListener(SWT.Selection, new Listener()
@@ -299,8 +296,8 @@ public class Feat_wizard
 				wizpage6text.setBounds(50, 50, 150, 50);
 				wizpage6text.setText("Yes");
 				Button next6 = createNextButton(wizpage6);
-				Button Back6 = createBackButton(wizpage6, wizPanel, wizLayout);
-				Button Cancel6 = createCancelButton(wizpage6, wizPanel, wizLayout);
+				createBackButton(wizpage6, wizPanel, wizLayout);
+				createCancelButton(wizpage6, wizPanel, wizLayout);
 				wiz6Label.setText("Enter If Fighter Bonus: (Yes/No)");
 				wiz6Label.pack(); 
 				next6.addListener(SWT.Selection, new Listener()
@@ -338,8 +335,8 @@ public class Feat_wizard
 				wizpage7text.setBounds(50, 50, 300, 200);
 				wizpage7text.setText("Description here");
 				Button next7 = createNextButton(wizpage7);
-				Button Back7 = createBackButton(wizpage7, wizPanel, wizLayout);
-				Button Cancel7 = createCancelButton(wizpage7, wizPanel, wizLayout);
+				createBackButton(wizpage7, wizPanel, wizLayout);
+				createCancelButton(wizpage7, wizPanel, wizLayout);
 				next7.addListener(SWT.Selection, new Listener()
 				{
 					public void handleEvent(Event event)
@@ -386,8 +383,8 @@ public class Feat_wizard
 				+ "\nDescription: " + featscript);
 		wiz8Label.pack();
 		Button confirm = new Button(verific, SWT.PUSH);
-		Button Back = createBackButton(verific, wizPanel, wizLayout);
-		Button Cancel = createCancelButton(verific, wizPanel, wizLayout);
+		createBackButton(verific, wizPanel, wizLayout);
+		createCancelButton(verific, wizPanel, wizLayout);
 		confirm.setText("Confirm");
 		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
 		confirm.addListener(SWT.Selection, new Listener()

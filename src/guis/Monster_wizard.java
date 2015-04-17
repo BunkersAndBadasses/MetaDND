@@ -22,7 +22,12 @@ public class Monster_wizard {
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static int wizpagenum;
 	private static ArrayList<Composite> wizPages;
-
+	public Monster_wizard(Display d)
+	{
+		
+		display = d;
+		shell = new Shell(display);
+	}
 	public void run()
 	{
 		center(shell);
