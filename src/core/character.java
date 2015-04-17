@@ -207,6 +207,7 @@ public class character {
 	public void setArmor(ArrayList<ArmorEntity> a) { armor = a; }
 	public ArrayList<ArmorEntity> getArmor() { return armor; }
 	
+	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
 		
