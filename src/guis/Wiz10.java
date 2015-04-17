@@ -277,7 +277,7 @@ public class Wiz10 {
 
 					// Launguages
 					Element Launguages = doc.createElement("Languages");
-					Launguages.appendChild(doc.createTextNode(character.getLanguages()));
+			//		Launguages.appendChild(doc.createTextNode(character.getLanguages())); TODO
 					Character.appendChild(Launguages);	
 
 					// Gold
