@@ -93,10 +93,12 @@ public abstract class DNDEntity {
 		c.setLayout(layout);
 		
 		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
-		
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
 			Label titleLabel = new Label(c, SWT.LEFT);
-			titleLabel.setText(entry.getKey());
+			if(entry.getKey().equals("NAME"))
+				titleLabel.setText(this.TYPE.toString() + " " + entry.getKey());
+			else
+				titleLabel.setText(entry.getKey());
 			titleLabel.setFont(boldFont);
 			titleLabel.pack();
 			Label textLabel = new Label(c, SWT.LEFT);

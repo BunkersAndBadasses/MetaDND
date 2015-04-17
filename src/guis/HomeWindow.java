@@ -249,6 +249,9 @@ public class HomeWindow {
         chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
         loadChar.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
+                if (charList.getSelectionIndex() < 0) {
+                    return;
+                }
                 String name = charList.getItem(charList.getSelectionIndex());
                 String path = filepaths.get(name);
                 String[] arg = {path};
@@ -522,7 +525,6 @@ public class HomeWindow {
 		String tmpName;
 
 		for(int i = 0; i < files.length; i++){
-		    System.out.println(files[i].getPath());
 
 			if(files[i].isDirectory()){
 
