@@ -469,7 +469,8 @@ public class CharacterWizard {
 	    csRandom.pack();
 	    createCancelButton(randomPage1, homePanel, randomPanel, randomLayout);
 	    randomPage1.pack();
-	    //TODO 
+	    homePanel.pack();
+	    shell.pack();
 	}
 	/**
 	 * creates a next button on composite c in the bottom right corner.
