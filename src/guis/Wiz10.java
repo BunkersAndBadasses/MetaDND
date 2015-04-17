@@ -275,17 +275,10 @@ public class Wiz10 {
                     Skills.appendChild(doc.createTextNode(skillList));
                     Character.appendChild(Skills);
 
-<<<<<<< HEAD
 					// Launguages
-					Element Launguages = doc.createElement("Languages");
+					Element Languages = doc.createElement("Languages");
 			//		Launguages.appendChild(doc.createTextNode(character.getLanguages())); TODO
-					Character.appendChild(Launguages);	
-=======
-                    // Launguages
-                    Element Launguages = doc.createElement("Languages");
-                    Launguages.appendChild(doc.createTextNode(character.getLanguages()));
-                    Character.appendChild(Launguages);	
->>>>>>> refs/remotes/origin/master
+					Character.appendChild(Languages);	
 
                     // Gold
                     Element Gold = doc.createElement("GP");
