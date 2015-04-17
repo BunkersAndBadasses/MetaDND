@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
+import core.Main;
+
 /**
  * Generic entity class, extend this when creating searchable entities
  * 
@@ -91,15 +93,14 @@ public abstract class DNDEntity {
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
 		GridLayout layout = new GridLayout(1, false);
 		c.setLayout(layout);
-		
-		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
+
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
 			Label titleLabel = new Label(c, SWT.LEFT);
 			if(entry.getKey().equals("NAME"))
 				titleLabel.setText(this.TYPE.toString() + " " + entry.getKey());
 			else
 				titleLabel.setText(entry.getKey());
-			titleLabel.setFont(boldFont);
+			titleLabel.setFont(Main.boldFont);
 			titleLabel.pack();
 			Label textLabel = new Label(c, SWT.LEFT);
 			String windowSize = "(.{" + bounds.width / 16 + "} )";
@@ -107,6 +108,7 @@ public abstract class DNDEntity {
 			String parsedStr = entry.getValue().replaceAll(windowSize, "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
+			textLabel.setFont(Main.regFont);
 			textLabel.pack();
 		}
 		
