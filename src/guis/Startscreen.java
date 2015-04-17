@@ -19,8 +19,8 @@ public class Startscreen {
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
-	private static final int WIDTH = 720;
-	private static final int HEIGHT = 350;
+	//private static final int WIDTH = 720;
+	//private static final int HEIGHT = 350;
 
 	public Startscreen(Display d) {
 		display = d;

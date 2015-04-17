@@ -3,15 +3,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-
 import core.Main;
 import core.RNG;
 import core.character;
@@ -415,7 +412,7 @@ public class CharacterWizard {
 		}
 		character.setLanguages(langs);
 		//Gold
-		character.setGold(randomgene.GetRandomInteger(0, 200));
+		character.setGold(randomgene.GetRandomInteger(50, 200));
 		//Feats
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
@@ -480,9 +477,34 @@ public class CharacterWizard {
 		Label a = new Label(c, SWT.LEFT);
 		a.setText(character.toString());
 		a.pack();
-		sc.setMinHeight(c.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		c.pack();
+		
 	    center(newshell);
+		
+	    Button cancelButton = new Button(c, SWT.PUSH);
+		cancelButton.setText("Cancel");
+		cancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				newshell.close();
+			}
+			
+		});
+		
+		cancelButton.pack();
+		Text namebox = new Text(c, SWT.NONE);
+		namebox.setText("Enter Name HERE!");
+		namebox.pack();
+		Button saveButton = new Button(c, SWT.PUSH);
+		saveButton.setText("Save");
+		saveButton.addListener(SWT.Selection, new Listener(){
+			public void handleEvent(Event event)
+			{
+				character.setName(namebox.getText());
+				//TODO Save
+			}
+		});
+		saveButton.pack();
+		c.pack();
+		sc.setMinHeight(c.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 		newshell.pack();
 		newshell.open();
 		newshell.addListener (SWT.Resize,  new Listener () {
