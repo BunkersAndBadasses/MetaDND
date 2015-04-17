@@ -182,8 +182,6 @@ public class Wiz5 {
 
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
-//		GridData gridData = new GridData();
-//		gridData.horizontalAlignment = SWT.LEFT;
 		
 		// set up scrollable composite
 		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(wiz5, SWT.V_SCROLL | SWT.BORDER);
@@ -214,7 +212,6 @@ public class Wiz5 {
 			dec.pack();
 			final Label skillName = new Label(skillsScreen, SWT.NONE);
 			skillName.setLayoutData(new GridData(SWT.LEFT));
-//			skillName.setLocation(260, (i*30) + 10);
 			final CharSkill current = charSkills.get(i);
 			final int abilityMod = current.getAbilityMod();
 			final int miscMod = current.getMiscMod();
@@ -240,8 +237,6 @@ public class Wiz5 {
 				skillName.setForeground(crossClassSkillColor);
 			skillName.pack();
 			skillNameLabels.add(skillName);
-
-//			inc.setBounds(200, (i*30) + 10, 20, 20);
 			inc.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (numSkillPoints == 0)
@@ -262,7 +257,6 @@ public class Wiz5 {
 				}
 			});
 			incButtons.add(inc);
-//			dec.setBounds(220, (i*30) + 10, 20, 20);
 			dec.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
 					if (current.decRank()) {
