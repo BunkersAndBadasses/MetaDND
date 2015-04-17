@@ -243,6 +243,7 @@ public class HomeWindow {
 		charLayout.topControl = charList;
 		view.layout();
 
+		//TODO Do we want a button, or do we want to double click charaacter?
 		Button loadChar = new Button(characterComp, SWT.PUSH);
 		loadChar.setText("Load Character");
 		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
@@ -255,6 +256,10 @@ public class HomeWindow {
 				String path = filepaths.get(name);
 				String[] arg = {path};
 				shell.close();
+				
+				//TODO 
+				//this crashes the program due to characters not having an 
+				// image file linked in their xml
 				CharacterMain.main(arg);
 			}
 		});
@@ -275,9 +280,14 @@ public class HomeWindow {
 		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		deleteChar.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-
+				if (charList.getSelectionIndex() < 0) {
+					return;
+				}
+				String charDescription = charList.getItem(charList.getSelectionIndex());
+				String delim = "[,]";
+				String[] tokens = charDescription.split(delim);
 				//TODO delete a char
-
+				deleteCharacter(tokens[0]);
 			}
 		});
 
@@ -515,8 +525,6 @@ public class HomeWindow {
 	//	the charList on the player window
 	public static void loadCharacters(){
 
-
-
 		charList.removeAll();
 		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character");
 		File[] files = new File(CHARDIR.getPath()).listFiles();
@@ -573,6 +581,14 @@ public class HomeWindow {
 			}
 		}
 	}
+	
+	public static void deleteCharacter(String name){
+		//TODO pull up the delete confirmation, showing the name of the character
+		//		and reminds that favRolls with the char will also be deleted.
+		//	with cancel/confirm buttons
+		// if confirm, delete the folder that the character file is in.
+	}
+	
 	private static String getValue(String tag, Element element) {
 		NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodes.item(0);
