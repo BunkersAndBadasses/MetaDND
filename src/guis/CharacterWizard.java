@@ -500,6 +500,8 @@ public class CharacterWizard {
 			{
 				character.setName(namebox.getText());
 				Wiz10.saveCharacter(character);
+				newshell.close();
+				shell.dispose();
 			}
 		});
 		saveButton.pack();
