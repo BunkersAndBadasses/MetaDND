@@ -71,7 +71,7 @@ public class HomeWindow {
 	private final Composite mainWindow;
 
 	private StackLayout mainWindowLayout = new StackLayout();
-	
+
 	private final Composite homeScreen;
 	private final Composite dungeonScreen;
 	private final Composite dungeonViewer;
@@ -242,22 +242,22 @@ public class HomeWindow {
 
 		charLayout.topControl = charList;
 		view.layout();
-		
+
 		Button loadChar = new Button(characterComp, SWT.PUSH);
-        loadChar.setText("Load Character");
-        chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
-        loadChar.addListener(SWT.Selection, new Listener() {
-            public void handleEvent(Event event) {
-                if (charList.getSelectionIndex() < 0) {
-                    return;
-                }
-                String name = charList.getItem(charList.getSelectionIndex());
-                String path = filepaths.get(name);
-                String[] arg = {path};
-                shell.close();
-                CharacterMain.main(arg);
-            }
-        });
+		loadChar.setText("Load Character");
+		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		loadChar.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (charList.getSelectionIndex() < 0) {
+					return;
+				}
+				String name = charList.getItem(charList.getSelectionIndex());
+				String path = filepaths.get(name);
+				String[] arg = {path};
+				shell.close();
+				CharacterMain.main(arg);
+			}
+		});
 
 		Button addChar = new Button(characterComp, SWT.PUSH);
 		addChar.setText("Add Character");
@@ -269,7 +269,7 @@ public class HomeWindow {
 
 			}
 		});
-		
+
 		Button deleteChar = new Button(characterComp, SWT.PUSH);
 		deleteChar.setText("Delete Character");
 		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
@@ -303,7 +303,7 @@ public class HomeWindow {
 		// placeholder labels take up columns 2 and 3 in the grid.
 		new Label(dungeonScreen, SWT.NONE);  
 		new Label(dungeonScreen, SWT.NONE); 
-		
+
 		// generate new dungeon
 		Button generateButton = new Button(dungeonScreen, SWT.PUSH);
 		generateButton.setText("Generate New");
@@ -314,7 +314,7 @@ public class HomeWindow {
 				mainWindow.layout();
 			}
 		});
-		
+
 
 		dungeonScreen.pack();
 
@@ -488,7 +488,7 @@ public class HomeWindow {
 
 					}
 				});
-				
+
 				dungeonScreen.pack();
 				navigateToDungeonScreen();
 			}
@@ -515,58 +515,62 @@ public class HomeWindow {
 	//	the charList on the player window
 	public static void loadCharacters(){
 
+
+
 		charList.removeAll();
 		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character");
 		File[] files = new File(CHARDIR.getPath()).listFiles();
-		character[] CharacterNames = new character[files.length];
-		int numCharacters = 0;
-		filepaths = new HashMap<String, String>();
-		String tmpName;
 
-		for(int i = 0; i < files.length; i++){
+		if(files != null){
+			character[] CharacterNames = new character[files.length];
+			int numCharacters = 0;
+			filepaths = new HashMap<String, String>();
+			String tmpName;
 
-			if(files[i].isDirectory()){
+			for(int i = 0; i < files.length; i++){
 
-				CharacterNames[numCharacters] = new character();
-				
-				//TODO load the characters
-				try{
-					File CHARXML = new File(CHARDIR.getPath() + "//" + files[i].getName() + 
-							"//" + files[i].getName() + ".xml");
-					dbFactory = DocumentBuilderFactory.newInstance();
-					dBuilder = dbFactory.newDocumentBuilder();
-					doc = dBuilder.parse(CHARXML);
-					doc.getDocumentElement().normalize();
+				if(files[i].isDirectory()){
 
-					NodeList nodes = doc.getElementsByTagName("Character");
+					CharacterNames[numCharacters] = new character();
 
-					Node node = nodes.item(0);
+					//TODO load the characters
+					try{
+						File CHARXML = new File(CHARDIR.getPath() + "//" + files[i].getName() + 
+								"//" + files[i].getName() + ".xml");
+						dbFactory = DocumentBuilderFactory.newInstance();
+						dBuilder = dbFactory.newDocumentBuilder();
+						doc = dBuilder.parse(CHARXML);
+						doc.getDocumentElement().normalize();
 
-					if (node.getNodeType() == Node.ELEMENT_NODE) {
-						element = (Element) node;
-						String name = getValue("Name", element);
-						CharacterNames[numCharacters].setName(name);  
-						CharacterNames[numCharacters].setLevel(Integer.parseInt(getValue("Level", element)));
-						CharacterNames[numCharacters].setCharClass((ClassEntity)Main.gameState.classes.get(getValue("Class", element)));
-						CharacterNames[numCharacters].setCharRace((RaceEntity)Main.gameState.races.get(getValue("Race", element)));
+						NodeList nodes = doc.getElementsByTagName("Character");
+
+						Node node = nodes.item(0);
+
+						if (node.getNodeType() == Node.ELEMENT_NODE) {
+							element = (Element) node;
+							String name = getValue("Name", element);
+							CharacterNames[numCharacters].setName(name);  
+							CharacterNames[numCharacters].setLevel(Integer.parseInt(getValue("Level", element)));
+							CharacterNames[numCharacters].setCharClass((ClassEntity)Main.gameState.classes.get(getValue("Class", element)));
+							CharacterNames[numCharacters].setCharRace((RaceEntity)Main.gameState.races.get(getValue("Race", element)));
+						}
+						tmpName = CharacterNames[numCharacters].getName() + ", Level " 
+								+ CharacterNames[numCharacters].getLevel() + " " 
+								+ CharacterNames[numCharacters].getCharRace().getName()
+								+ " " + CharacterNames[numCharacters].getCharClass().getName();
+
+						charList.add(tmpName);
+						filepaths.put(tmpName, CHARXML.getPath());
+
+						numCharacters ++;
+
+					} catch (Exception ex) {
+						ex.printStackTrace();
 					}
-					tmpName = CharacterNames[numCharacters].getName() + ", Level " 
-                            + CharacterNames[numCharacters].getLevel() + " " 
-                            + CharacterNames[numCharacters].getCharRace().getName()
-                            + " " + CharacterNames[numCharacters].getCharClass().getName();
 
-					charList.add(tmpName);
-					filepaths.put(tmpName, CHARXML.getPath());
-
-					numCharacters ++;
-
-				} catch (Exception ex) {
-					ex.printStackTrace();
 				}
 
 			}
-
-
 		}
 	}
 	private static String getValue(String tag, Element element) {
