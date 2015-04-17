@@ -81,12 +81,13 @@ public class CharacterMain {
 
 
     public static void main(String[] args) {
-        getPlayerInfo();
+        String pathName = args[0];
+        getPlayerInfo(pathName);
         String intString = "string 5";
         System.out.println(Integer.parseInt(intString.replaceAll("[\\D]", "")));
 
         // TODO Auto-generated method stub
-        Display display = new Display();
+        Display display = Display.getCurrent();
         Shell shell = new Shell(display);
         background = new Color(display, 255, 222, 173);
 
@@ -655,9 +656,9 @@ public class CharacterMain {
 
         return intLabel;
     }
-    private static void getPlayerInfo() {
+    private static void getPlayerInfo(String pathName) {
         // TODO Auto-generated method stub
-        filename = "XML/BD.xml";
+        filename = pathName;
         try {
 
             File stocks = new File(filename);
