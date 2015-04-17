@@ -11,7 +11,9 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
@@ -60,7 +62,7 @@ public abstract class DNDEntity {
 		Shell shell = new Shell(display);
 		Monitor monitor = display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();
-	    
+	    shell.setText(this.name);
 	    int WIDTH = 700;
 		int HEIGHT = (int)(bounds.height * 2.0/3.0);
 		
@@ -76,10 +78,12 @@ public abstract class DNDEntity {
 		c.setLayout(layout);
 		
 		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
-		
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
 			Label titleLabel = new Label(c, SWT.LEFT);
-			titleLabel.setText(entry.getKey());
+			if(entry.getKey().equals("NAME"))
+				titleLabel.setText(this.TYPE.toString() + " " + entry.getKey());
+			else
+				titleLabel.setText(entry.getKey());
 			titleLabel.setFont(boldFont);
 			titleLabel.pack();
 			Label textLabel = new Label(c, SWT.LEFT);
@@ -98,9 +102,17 @@ public abstract class DNDEntity {
 		
 		sc.setMinHeight(heightSum);
 		c.pack();
+		
 	    shell.setLocation((int)(bounds.width * .75) - c.getSize().x / 2, (int)(bounds.height * .05));
+	    
 		shell.pack();
 		shell.open();
+		shell.addListener (SWT.Resize,  new Listener () {
+	        public void handleEvent (Event e) {
+	          Rectangle rect = shell.getClientArea ();
+	          sc.setBounds(rect);
+	        }
+	      });
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
