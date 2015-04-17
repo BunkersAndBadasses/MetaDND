@@ -112,9 +112,17 @@ public class RaceEntity extends DNDEntity{
 		    	break;
 		    case "AUTOMATICLANGUAGES":
 		    	this.autoLanguages = value.split(", ");
+		    	for(int i = 0; i < this.autoLanguages.length; i++){
+		    		if(!this.autoLanguages[i].equalsIgnoreCase("common"))
+		    			Main.gameState.languages.put(autoLanguages[i],autoLanguages[i]);
+		    	}
 		    	break;
 		    case "BONUSLANGUAGES":
 		    	this.bonusLanguages = value.split(", ");
+		    	if(!this.bonusLanguages[0].startsWith("Any (other than"))
+		    		for(int i = 0; i < this.bonusLanguages.length; i++)
+		    			Main.gameState.languages.put(bonusLanguages[i],bonusLanguages[i]);
+		    	
 		    	break;
 		    default:
 		    	break;

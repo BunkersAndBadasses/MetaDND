@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -108,6 +109,18 @@ public class xmlLoader implements Runnable{
 				}
 			}
 		}
+			
+			for (Map.Entry<String, DNDEntity> entry : Main.gameState.races.entrySet()){
+				if(((RaceEntity) entry.getValue()).getBonusLanguages()[0].startsWith("Any (other than")){
+					String[] langs = new String[Main.gameState.languages.size()];
+					int i = 0;
+					for(Map.Entry<String, String> langEntry : Main.gameState.languages.entrySet()){
+						langs[i] = langEntry.getValue();
+						i++;
+					}
+					((RaceEntity) entry.getValue()).setBonusLanguages(langs);
+				}
+			}
 	}
 
 	@Override

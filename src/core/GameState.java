@@ -1,13 +1,15 @@
 package core;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 
-import entity.DNDEntity;
+import entity.*;
 
 public class GameState {
 	//Everything you need to access globally, store it here 
@@ -62,6 +64,7 @@ public class GameState {
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
 	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+	public SortedMap<String, String> languages;
 	
 	
 	public GameState(){
@@ -79,6 +82,7 @@ public class GameState {
 		deities = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
 		searchResults = new TreeMap<String, DNDEntity>();
+		languages = new TreeMap<String, String>();
 		xmls.start();
 		USERDATAFOLDER.mkdir();
 	}
