@@ -214,8 +214,7 @@ public class HomeWindow {
 
 		Label playerLabel = new Label(characterComp, SWT.NONE);
 		playerLabel.setText("Characters:");
-		Font playerFont = new Font(playerLabel.getDisplay(), new FontData("Arial", 18,
-				SWT.BOLD));
+		Font playerFont = Main.boldFont;
 		playerLabel.setFont(playerFont);
 		playerLabel.setLayoutData(chargridData);
 
@@ -249,6 +248,9 @@ public class HomeWindow {
         chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
         loadChar.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
+                if (charList.getSelectionIndex() < 0) {
+                    return;
+                }
                 String name = charList.getItem(charList.getSelectionIndex());
                 String path = filepaths.get(name);
                 String[] arg = {path};
@@ -295,14 +297,13 @@ public class HomeWindow {
 
 		Label dungeonLabel = new Label(dungeonScreen, SWT.NONE);
 		dungeonLabel.setText("Dungeons:");
-		Font dungeonFont = new Font(dungeonLabel.getDisplay(), new FontData("Arial", 18,
-				SWT.BOLD));
+		Font dungeonFont = Main.boldFont;
 		dungeonLabel.setFont(dungeonFont);
 
 		// placeholder labels take up columns 2 and 3 in the grid.
 		new Label(dungeonScreen, SWT.NONE);  
 		new Label(dungeonScreen, SWT.NONE); 
-
+		
 		// generate new dungeon
 		Button generateButton = new Button(dungeonScreen, SWT.PUSH);
 		generateButton.setText("Generate New");
@@ -313,6 +314,7 @@ public class HomeWindow {
 				mainWindow.layout();
 			}
 		});
+		
 
 		dungeonScreen.pack();
 
@@ -522,7 +524,6 @@ public class HomeWindow {
 		String tmpName;
 
 		for(int i = 0; i < files.length; i++){
-		    System.out.println(files[i].getPath());
 
 			if(files[i].isDirectory()){
 

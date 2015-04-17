@@ -1,15 +1,6 @@
 package core;
 
-/*
- * XML saving from 
- * http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
- * 
- * XML loading from 
- * http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
- * 
- */
 
-//NON-BRANCH WORK
 import java.io.File;
 import java.util.ArrayList;
 
@@ -25,12 +16,26 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
 import core.Roll;
-
+/**
+ * XML saving from 
+ * http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+ * 
+ * XML loading from 
+ * http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+ * 
+ * @author Ryan
+ */
 public class DnDie {
 
 	static RNG rng = new RNG();
 	
-	// Rolls the number of a given die (ie rolls 5 20s)
+	
+	/** Rolls the number of a given die (ie rolls 5 20s)
+	 * 
+	 * @param die
+	 * @param dieCount
+	 * @return an integer that represent the result.
+	 */
 	public static int roll (int die, int dieCount){
 
 		int number = 0;
@@ -42,7 +47,13 @@ public class DnDie {
 		return number;
 	}
 	
-	//roll the die, and add in the modifier
+	/** roll the die, and add in the modifier
+	 * 
+	 * @param die
+	 * @param dieCount
+	 * @param modifier
+	 * @return an integer that represent the result.
+	 */
 	public static int roll (int die, int dieCount, int modifier){
 
 		int number = modifier;
@@ -54,7 +65,11 @@ public class DnDie {
 		return number;
 	}
 
-	// loads the die, and then sends them off to get rolled
+	/** loads the die, and then sends them off to get rolled
+	 * 
+	 * @param fileName
+	 * @return an integer that represent the final result.
+	 */
 	public static int rollFavDie(String fileName){
 		
 		ArrayList<Roll> loaded = new ArrayList<Roll>(10);
@@ -74,7 +89,11 @@ public class DnDie {
 		return rolls;
 	}
 
-	// save the favorite die selection to the xml
+	/** save the favorite die selection to the xml
+	 * 
+	 * @param fileName
+	 * @param roll
+	 */
 	public static void saveFavDie(String fileName, ArrayList<Roll> roll){
 		try {
 
@@ -145,7 +164,11 @@ public class DnDie {
 		return;
 	}
 
-	// load the favorite die selection from the xml
+	/** load the favorite die selection from the xml
+	 * 
+	 * @param fileName
+	 * @return The selected favorite die roll as a form of ArrayList<Roll>
+	 */
 	public static ArrayList<Roll> loadFavDie(String fileName){
 
 		ArrayList<Roll> roll = new ArrayList<Roll>(50);
@@ -204,7 +227,10 @@ public class DnDie {
 		return roll;
 	}
 
-	// delete a favorite die from the xml
+	/** delete a favorite die from the xml
+	 * 
+	 * @param fileName
+	 */
 	public static void deleteFavDie(String fileName){
 		File file = new File(System.getProperty("user.dir") + "//" + 
 				"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");

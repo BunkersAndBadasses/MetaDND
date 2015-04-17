@@ -110,7 +110,15 @@ public class character {
 	
 	public void setDescription(String d) { description = d; }
 	public String getDescription(){ return description; }
-
+	/**
+	 * Set the ability score for the character.
+	 * @param str
+	 * @param dex
+	 * @param con
+	 * @param intel
+	 * @param wis
+	 * @param cha
+	 */
 	public void setAbilityScores(int str, int dex, int con, int intel, int wis, int cha) { // TODO change this to AbilityScore class (setting the base scores?)
 		abilityScores[GameState.STRENGTH] = str;
 		abilityScores[GameState.DEXTERITY] = dex;
@@ -119,13 +127,30 @@ public class character {
 		abilityScores[GameState.WISDOM] = wis;
 		abilityScores[GameState.CHARISMA] = cha;
 	}
+	/**
+	 * 
+	 * @return an int array of ability score of the character.
+	 */
 	public int[] getAbilityScores() { return abilityScores; }
+	/**
+	 * The ability modifier is calculated by : (ability score / 2) - 5, omit the number
+	 * after dot.
+	 * @return an int array of ability modifiers of the character.
+	 */
 	public int[] getAbilityModifiers() {
 		int[] mods = new int[6];
 		for (int i = 0; i < abilityScores.length; i++)
 			mods[i] = (abilityScores[i]/2)-5;
 		return mods;
 	}
+	/**
+	 * If the character has his highest ability score to be less or equal to 13
+	 * or if the total ability modifier of the character is less or equal to 0,
+	 * it will do a reroll.
+	 * This method is for the puopose to check that.
+	 * It is used when random generating character.
+	 * @return yes if the character need a reroll, no if not.
+	 */
 	public boolean checkreroll()
 	{
 		//reroll is true if ability modifiers sum <= 0
@@ -207,6 +232,7 @@ public class character {
 	public void setArmor(ArrayList<ArmorEntity> a) { armor = a; }
 	public ArrayList<ArmorEntity> getArmor() { return armor; }
 	
+	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
 		
@@ -276,7 +302,11 @@ public class character {
 	
 	
 	
-	
+	/**
+	 * Print all the information of the character.
+	 * Seperated by a "\n" symbol.
+	 * @return A string that contain all the information of the character.
+	 */
 	public String toString() {
 		String s = "";
 		s += "Name: " + name + "\n";
