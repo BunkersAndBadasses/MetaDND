@@ -30,6 +30,7 @@ public class DnDie {
 
 	static RNG rng = new RNG();
 	
+	
 	// Rolls the number of a given die (ie rolls 5 20s)
 	public static int roll (int die, int dieCount){
 
