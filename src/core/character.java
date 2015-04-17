@@ -341,9 +341,9 @@ public class character {
 		s += "Skills: " + "\n";
 		for (int i = 0; i < skills.size(); i++)
 			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";
-		s += "Languages: ";
+		s += "Languages: \n";
 		if (languages.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < languages.size(); i++)
 			s += "\t" + languages.get(i) + "\n";
 		s += "Gold: " + gold + "\n";
