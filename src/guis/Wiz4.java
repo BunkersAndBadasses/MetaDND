@@ -35,6 +35,7 @@ import core.character;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.DeityEntity;
+import entity.RaceEntity;
 
 public class Wiz4 {
 
@@ -71,10 +72,6 @@ public class Wiz4 {
 	private Text customLang;
 	private int remainingBonusLangs;
 	private int numBonusLangs;
-	private String[] possibleLangList = {"Abyssal", "Aquan", "Auran", "Celestial", 
-			"Common", "Draconic", "Druidic", "Dwarven", "Elven",
-			"Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", 
-			"Infernal", "Orc", "Sylvan", "Terran", "Undercommon"};
 
 	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
 			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
@@ -83,8 +80,8 @@ public class Wiz4 {
 
 	private Random rng = new Random();
 
-	private String charClass;
-	private String charRace;
+	private ClassEntity charClass;
+	private RaceEntity charRace;
 
 	private boolean goOn;
 	private boolean finished;
@@ -113,8 +110,8 @@ public class Wiz4 {
 		this.wizPagesSize = wizPages.size();
 
 		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
-		charClass = cw.getCharacter().getCharClass().getName();
-		charRace = cw.getCharacter().getCharRace().getName();
+		charClass = cw.getCharacter().getCharClass();
+		charRace = cw.getCharacter().getCharRace();
 
 		createPageContent();
 	}
@@ -212,29 +209,29 @@ public class Wiz4 {
 		deityInput.setLayoutData(gd);		
 		
 		Label addLang = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
 		gd.horizontalSpan = 2;
 		addLang.setLayoutData(gd);
 		
 		langInput = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 3;
 		langInput.setLayoutData(gd);
 		
 		List possibleLangs = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 3;
 		possibleLangs.setLayoutData(gd);
 		
 		customLang = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
 		gd.horizontalSpan = 2;
 		customLang.setLayoutData(gd);
 		
 		Button removeLang = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
 		gd.horizontalSpan = 2;
 		removeLang.setLayoutData(gd);
 		
@@ -357,7 +354,7 @@ public class Wiz4 {
 				int height = 0;
 				int min = 0;
 				int max = 0;
-				switch (charRace) {
+				switch (charRace.getName()) {
 
 				case ("Dwarf"): 
 				{
@@ -431,7 +428,7 @@ public class Wiz4 {
 				int weight = 0;
 				int min = 0;
 				int max = 0;
-				switch (charRace) {
+				switch (charRace.getName()) {
 
 				case ("Dwarf"):
 					min = 85;
@@ -510,7 +507,8 @@ public class Wiz4 {
 					return;
 				langInput.add(customLang.getText());
 				remainingBonusLangs--;
-				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language(s)");
+				addLang.setBackground(null);
 			}
 		});
 
@@ -520,7 +518,7 @@ public class Wiz4 {
 				if (numBonusLangs != remainingBonusLangs) {
 					langInput.remove(langInput.getItemCount()-1);
 					remainingBonusLangs++;
-					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language(s)");
 				}
 			}
 		});
@@ -528,40 +526,21 @@ public class Wiz4 {
 		if (numBonusLangs < 0)
 			numBonusLangs = 0;
 		remainingBonusLangs = numBonusLangs;
-		addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+		addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language(s)");
 		addLang.pack();
 
-
-		ArrayList<String> langList = new ArrayList<String>();
-		langList.add("Common");
-		switch(charRace) {
-		case ("Dwarf"):
-			langList.add("Dwarven");
-		break;
-		case ("Elf"):
-			langList.add("Elven");
-		break;
-		case ("Gnome"):
-			langList.add("Gnome");
-		break;
-		case ("Half-Elf"):
-			langList.add("Elven");
-		break;
-		case ("Half-Orc"):
-			langList.add("Orc");
-		break;
-		case ("Halfling"):
-			langList.add("Halfling");
-		break;
-		default : // human
-			break;
+		String[] raceLangs = charRace.getAutoLanguages(); 
+		for(int i = 0; i < raceLangs.length; i++) 
+			langInput.add(raceLangs[i]);
+		
+		String[] raceBonusLangs = charRace.getBonusLanguages();
+		for (int i = 0; i < raceBonusLangs.length; i++)
+			possibleLangs.add(raceBonusLangs[i]);
+		String[] classBonusLangs = charClass.getBonusLanguages();
+		if (classBonusLangs != null) {
+		for (int i = 0; i < classBonusLangs.length; i++)
+			possibleLangs.add(classBonusLangs[i]);
 		}
-		for (int i = 0; i < langList.size(); i++) {
-			langInput.add(langList.get(i));
-		}
-		possibleLangs.add("Possible Languages");
-		for (int i = 0; i < possibleLangList.length; i++)
-			possibleLangs.add(possibleLangList[i]);
 		possibleLangs.pack();
 		possibleLangs.addListener(SWT.DefaultSelection, new Listener() {
 			public void handleEvent(Event e) {
@@ -569,7 +548,8 @@ public class Wiz4 {
 					return;
 				langInput.add(possibleLangs.getItem(possibleLangs.getSelectionIndex()));
 				remainingBonusLangs--;
-				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+				addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language(s)");
+				addLang.setBackground(null);
 			}
 		});
 		inner.layout();
@@ -592,7 +572,7 @@ public class Wiz4 {
 					addLang.setBackground(red);
 					error = true;
 				}
-				if (charClass.equalsIgnoreCase("cleric")) {
+				if (charClass.getName().equalsIgnoreCase("cleric")) {
 					if (deityInput.getText().length() == 0) {
 						deityInput.setBackground(red);
 						error = true;
@@ -628,7 +608,7 @@ public class Wiz4 {
 				boolean done = true;
 				done = checkAlignmentPopUp(a1, a2, deitySelect);
 				if (done) {
-					if (charClass.equalsIgnoreCase("cleric"))
+					if (charClass.getName().equalsIgnoreCase("cleric"))
 						done = clericPopUp(deitySelect);
 				}
 				if (!done)
@@ -711,7 +691,7 @@ public class Wiz4 {
 		warning.setLayoutData(warningGD);
 
 
-		switch(charClass) {
+		switch(charClass.getName()) {
 		case("Barbarian"): 
 		{
 			// must be non-lawful
