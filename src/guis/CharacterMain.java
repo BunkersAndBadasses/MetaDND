@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -635,6 +636,15 @@ public class CharacterMain {
                 writeValue("CP", cpText.getText(), element);
             }
         });
+        
+        
+        
+        referencePanel rp = new referencePanel(shell);
+        Composite refPanel = rp.getRefPanel();
+        FormData refPanelData = new FormData(200,485);
+        refPanelData.left = new FormAttachment(hpLabel, 10, SWT.RIGHT);
+        refPanelData.top = new FormAttachment(hpLabel, -5, SWT.TOP);
+        refPanel.setLayoutData(refPanelData);
 
 
 
