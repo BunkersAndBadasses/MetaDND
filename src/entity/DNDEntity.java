@@ -17,8 +17,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
-/*
+import core.Main;
+
+/**
  * Generic entity class, extend this when creating searchable entities
+ * 
  */
 public abstract class DNDEntity {
 	
@@ -45,17 +48,31 @@ public abstract class DNDEntity {
 	
 	
 	//TODO Replace void with actual window object
+	/**
+	 * Get name of the entity.
+	 * @return The name of the entity, in a plain string.
+	 */
 	public String getName(){
 		return this.name;
 	}
+	/**
+	 * Get Description of the entity.
+	 * @return The Description of the entity, in a string, including "\n" symbol.
+	 */
 	public String getDescription(){
 		return this.description;
 	}
-	
+	/**
+	 * Get the type of the entity.
+	 * @return The type of the entity.
+	 */
 	public type getEntityType(){
 		return this.TYPE;
 	}
-	
+	/**
+	 * Create a new shell that display the DNDEntity information on it.
+	 * The window will be automaticlly adjusted and scrollable.
+	 */
 	public void toTooltipWindow(){
 	
 		Display display = Display.getCurrent();
@@ -76,15 +93,14 @@ public abstract class DNDEntity {
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
 		GridLayout layout = new GridLayout(1, false);
 		c.setLayout(layout);
-		
-		Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
+
 		for (Map.Entry<String, String> entry : passedData.entrySet()){
 			Label titleLabel = new Label(c, SWT.LEFT);
 			if(entry.getKey().equals("NAME"))
 				titleLabel.setText(this.TYPE.toString() + " " + entry.getKey());
 			else
 				titleLabel.setText(entry.getKey());
-			titleLabel.setFont(boldFont);
+			titleLabel.setFont(Main.boldFont);
 			titleLabel.pack();
 			Label textLabel = new Label(c, SWT.LEFT);
 			String windowSize = "(.{" + bounds.width / 16 + "} )";
@@ -92,6 +108,7 @@ public abstract class DNDEntity {
 			String parsedStr = entry.getValue().replaceAll(windowSize, "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
+			textLabel.setFont(Main.regFont);
 			textLabel.pack();
 		}
 		
@@ -120,21 +137,47 @@ public abstract class DNDEntity {
 	}
 	
 	public abstract void search(String searchString, Thread runningThread) throws InterruptedException;
+	/**
+	 * Same as Getentitytype.
+	 * @return Get the type of the entity.
+	 */
 	public type getTYPE() {
 		return TYPE;
 	}
-	public void setTYPE(type tYPE) {
-		TYPE = tYPE;
+	/**
+	 * Set the type of the entity.
+	 * @param Type
+	 */
+	public void setTYPE(type Type) {
+		TYPE = Type;
 	}
+	/**
+	 * Get the data from the XML that create this entity.
+	 * @return
+	 */
 	public LinkedHashMap<String, String> getPassedData() {
 		return passedData;
 	}
+	/**
+	 * Don't do anything.
+	 * Sorry we created this method by accident and
+	 * didn't think about the usage of it.
+	 * @param passedData
+	 */
 	public void setPassedData(LinkedHashMap<String, String> passedData) {
-		this.passedData = passedData;
+		//this.passedData = passedData;
 	}
+	/**
+	 * Set the name of entity.
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+	/**
+	 * Set the description of entity.
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
