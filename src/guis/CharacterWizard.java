@@ -407,11 +407,13 @@ public class CharacterWizard {
 			character.setHitPoints(3);
 		}
 		//Languages -- pick three
-		character.setLanguages("Common");
+		ArrayList<String> langs = new ArrayList<String>();
+		langs.add("Common");
 		if(character.getCharClass().getName().equalsIgnoreCase("Druid"))
 		{
-			character.setLanguages(character.getLanguages() + ", Druidic");
+			langs.add("Druidic");	
 		}
+		character.setLanguages(langs);
 		//Gold
 		character.setGold(randomgene.GetRandomInteger(0, 200));
 		//Feats
