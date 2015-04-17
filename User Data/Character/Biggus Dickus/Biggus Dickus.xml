@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Character>
+<?xml version="1.0" encoding="UTF-8"?><Character>
 	<Name>Biggus Dickus</Name>
 	<Image>images/BiggusDickus.jpg</Image>
 	<Level>1</Level>
@@ -25,10 +25,6 @@
 	<Size> </Size>
 	<Alignment>	</Alignment>
 	<DMG>0</DMG>
-	<Skills> </Skills>
-	<Spells> </Spells>
-	<Feats> </Feats>
-	<Languages>	</Languages>
 	<Inventory>	</Inventory>
 	<Money>	</Money>
 	<PreparedSpells> </PreparedSpells>
@@ -46,5 +42,9 @@
 	<PrimaryWeapon>Longsword</PrimaryWeapon>
 	<SecondaryWeapon>Dagger</SecondaryWeapon>
 	<Shields> </Shields>
+	<PP>0</PP>
+	<GP>5</GP>
+	<SP>10</SP>
+	<CP>35</CP>
 
 </Character>
