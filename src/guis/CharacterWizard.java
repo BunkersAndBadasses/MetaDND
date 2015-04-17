@@ -499,7 +499,7 @@ public class CharacterWizard {
 			public void handleEvent(Event event)
 			{
 				character.setName(namebox.getText());
-				//TODO Save
+				Wiz10.saveCharacter(character);
 			}
 		});
 		saveButton.pack();

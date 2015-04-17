@@ -47,7 +47,7 @@ import core.character;
 
 public class Wiz10 {
 
-    private CharacterWizard cw;
+    private static CharacterWizard cw;
     private Composite wiz10;
     private int WIDTH;
     private int HEIGHT;
@@ -104,7 +104,7 @@ public class Wiz10 {
             }
         });
     }
-    public void saveCharacter(character character) {
+    public static void saveCharacter(character character) {
     	try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
