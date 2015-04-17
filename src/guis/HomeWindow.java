@@ -28,6 +28,7 @@ import entity.RaceEntity;
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -57,6 +58,7 @@ public class HomeWindow {
 	private static final int HEIGHT = 700;
 	public static boolean cancel = false;
 	private HomeWindow hw;
+	private static HashMap<String, String> filepaths;
 
 	private StackLayout m_mainWindowLayout;
 	private StackLayout charLayout;
@@ -83,6 +85,8 @@ public class HomeWindow {
 		hw = this;
 		display = d;
 		shell = new Shell(d);
+		Image logo = new Image(d, "images/bnb_logo.gif");
+		shell.setImage(logo);
 		shell.setText("Meta D&D");
 		shell.setSize(WIDTH, HEIGHT);
 		shell.setLayout(new GridLayout(3, false));
@@ -239,6 +243,19 @@ public class HomeWindow {
 
 		charLayout.topControl = charList;
 		view.layout();
+		
+		Button loadChar = new Button(characterComp, SWT.PUSH);
+        loadChar.setText("Load Character");
+        chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+        loadChar.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event event) {
+                String name = charList.getItem(charList.getSelectionIndex());
+                String path = filepaths.get(name);
+                String[] arg = {path};
+                shell.close();
+                CharacterMain.main(arg);
+            }
+        });
 
 		Button addChar = new Button(characterComp, SWT.PUSH);
 		addChar.setText("Add Character");
@@ -501,8 +518,11 @@ public class HomeWindow {
 		File[] files = new File(CHARDIR.getPath()).listFiles();
 		character[] CharacterNames = new character[files.length];
 		int numCharacters = 0;
+		filepaths = new HashMap<String, String>();
+		String tmpName;
 
 		for(int i = 0; i < files.length; i++){
+		    System.out.println(files[i].getPath());
 
 			if(files[i].isDirectory()){
 
@@ -529,11 +549,13 @@ public class HomeWindow {
 						CharacterNames[numCharacters].setCharClass((ClassEntity)Main.gameState.classes.get(getValue("Class", element)));
 						CharacterNames[numCharacters].setCharRace((RaceEntity)Main.gameState.races.get(getValue("Race", element)));
 					}
+					tmpName = CharacterNames[numCharacters].getName() + ", Level " 
+                            + CharacterNames[numCharacters].getLevel() + " " 
+                            + CharacterNames[numCharacters].getCharRace().getName()
+                            + " " + CharacterNames[numCharacters].getCharClass().getName();
 
-					charList.add(CharacterNames[numCharacters].getName() + ", Level " 
-							+ CharacterNames[numCharacters].getLevel() + " " 
-							+ CharacterNames[numCharacters].getCharRace().getName()
-							+ " " + CharacterNames[numCharacters].getCharClass().getName());
+					charList.add(tmpName);
+					filepaths.put(tmpName, CHARXML.getPath());
 
 					numCharacters ++;
 
