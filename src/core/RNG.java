@@ -12,12 +12,16 @@ public class RNG {
 
 	/**
 	 * A random generater that generate an integer given boundary of min and max.
-	 * WILL GENERATE A NEGATIVE NUMBER IF MAX < MIN!
+	 * Always return 0 if max < min.
 	 * @param min
 	 * @param max
 	 * @return
 	 */
 	public int GetRandomInteger(int min, int max){
+		if(max < min)
+		{
+			return 0;
+		}
 		if (min == max) {
 			return this.m_random.nextInt(max + 1) + min;
 		}
