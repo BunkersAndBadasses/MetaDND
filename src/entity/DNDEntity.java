@@ -83,8 +83,9 @@ public abstract class DNDEntity {
 			titleLabel.setFont(boldFont);
 			titleLabel.pack();
 			Label textLabel = new Label(c, SWT.LEFT);
+			String windowSize = "(.{" + bounds.width / 16 + "} )";
 			//This guy finds a space every 120 characters and makes a new line, nice text formatting for the tooltip windows
-			String parsedStr = entry.getValue().replaceAll("(.{120} )", "$1\n");
+			String parsedStr = entry.getValue().replaceAll(windowSize, "$1\n");
 			parsedStr = parsedStr.replaceAll("\t", "");
 			textLabel.setText(parsedStr);
 			textLabel.pack();

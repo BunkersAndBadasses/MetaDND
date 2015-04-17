@@ -9,6 +9,7 @@ public class DeityEntity extends DNDEntity{
 
 	private String alignment;
 	private String[] domain;
+	private String favoredWeapon;
 
 	public DeityEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.DEITY;
@@ -28,6 +29,10 @@ public class DeityEntity extends DNDEntity{
 		    	break;
 		    case "DESCRIPTION":
 		    	this.description = value;
+		    	break;
+		    case "FAVOREDWEAPON":
+		    	this.favoredWeapon = value;
+		    	break;
 		    default:
 		    	break;
 		    }
