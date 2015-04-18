@@ -1,6 +1,7 @@
 
 package guis;
 import org.apache.batik.swing.JSVGCanvas;
+import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -16,6 +17,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import core.DnDie;
 import core.DungeonConstants;
 import core.DungeonGenerator;
 import core.GameState;
@@ -256,7 +258,7 @@ public class HomeWindow {
 				String path = filepaths.get(name);
 				String[] arg = {path};
 				shell.close();
-				
+
 				//TODO 
 				//this crashes the program due to characters not having an 
 				// image file linked in their xml
@@ -581,14 +583,62 @@ public class HomeWindow {
 			}
 		}
 	}
-	
+
 	public static void deleteCharacter(String name){
 		//TODO pull up the delete confirmation, showing the name of the character
 		//		and reminds that favRolls with the char will also be deleted.
 		//	with cancel/confirm buttons
 		// if confirm, delete the folder that the character file is in.
+
+		final Shell deleteChar = new Shell(display);
+		deleteChar.setText("Delete");
+		//deleteFile.setSize(250, 150);
+		center(deleteChar);
+
+		Label confirm = new Label(deleteChar, SWT.NONE);
+		confirm.setLocation(20,40);
+		confirm.setText("Are you sure you want to delete " + name + "?");
+		confirm.pack();
+
+		Button cancel = new Button(deleteChar, SWT.PUSH);
+		cancel.setBounds(10,90,80,30);
+		cancel.setText("Cancel");
+		cancel.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+
+				deleteChar.dispose();
+			}
+		});
+
+		Button saveFinal = new Button(deleteChar, SWT.PUSH);
+		saveFinal.setBounds(160,90,80,30);
+		saveFinal.setText("Delete");
+		saveFinal.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+
+				File charDirectory = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character" + "//" + name);
+				try {
+					FileUtils.deleteDirectory(charDirectory);
+					loadCharacters();
+					deleteChar.dispose();
+				} catch (IOException e) {
+					System.out.println("Could not delete Character.");
+				}
+				deleteChar.dispose();
+			}
+		});
+
+		deleteChar.pack();
+
+		deleteChar.open();
+		while (!deleteChar.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
 	}
-	
+
+
 	private static String getValue(String tag, Element element) {
 		NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodes.item(0);
