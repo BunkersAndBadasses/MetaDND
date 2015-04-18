@@ -82,7 +82,7 @@ public class CharacterWizard {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Character");
-		//shell.setSize(WIDTH, HEIGHT);
+		shell.setSize(WIDTH, HEIGHT);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
@@ -140,41 +140,81 @@ public class CharacterWizard {
 		// this screen is what is first seen when the window opens. 
 		// it contains the buttons that link to the character wizard, the manual
 		// character entering, and the random character generation
-		final Composite home = new Composite(homePanel, SWT.NONE);
-		home.setBounds(0, 0, WIDTH, HEIGHT);
-
+		final Composite home = new Composite(homePanel, SWT.BORDER);
+		home.setLocation(homePanel.getLocation());
+		home.setSize(homePanel.getSize().x, homePanel.getSize().y - 25);
+		GridLayout gridLayout = new GridLayout(4, true);
+		home.setLayout(gridLayout);
+		
+		GridData gd;
+		
 		Label homeLabel = new Label(home, SWT.NONE);
 		homeLabel.setText("Let's create a character!");
 		Font font1 = new Font(homeLabel.getDisplay(), new FontData("Arial", 24,
 				SWT.BOLD));
 		homeLabel.setFont(font1);
-		homeLabel.setBounds(WIDTH / 2 - 180, 40, 100, 100);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		homeLabel.setLayoutData(gd);
 		homeLabel.pack();
 
+		//
+		
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		
 		Label homeLabel2 = new Label(home, SWT.NONE);
-		homeLabel2.setText("\nChoose a method:");
+		homeLabel2.setText("Choose a method:");
 		Font font2 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
 				SWT.BOLD));
 		homeLabel2.setFont(font2);
-		homeLabel2.setBounds(WIDTH / 2 - 100, 65, 100, 100);
-		homeLabel2.pack();
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		homeLabel2.setLayoutData(gd);
 
-		Button wizardButton = new Button(home, SWT.PUSH);
-		wizardButton.setText("Interactive\n Character Wizard");
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		
+		//
+		
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		
+		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.MULTI | SWT.CENTER);
+		wizardButton.setText("Interactive Character Wizard");
 		wizardButton.setFont(font2);
-		wizardButton.setBounds(WIDTH / 2 - 150, 150, 300, 150);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		wizardButton.setLayoutData(gd);
+
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+
+		//
+		
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
 
 		Button manualButton = new Button(home, SWT.PUSH);
 		manualButton.setText("Manual");
 		Font font3 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
 				SWT.NONE));
 		manualButton.setFont(font3);
-		manualButton.setBounds(WIDTH / 2 - 150, 310, 145, 75);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		manualButton.setLayoutData(gd);
 
 		Button randomButton = new Button(home, SWT.PUSH);
 		randomButton.setText("Random");
 		randomButton.setFont(font3);
-		randomButton.setBounds(WIDTH / 2 + 5, 310, 145, 75);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		randomButton.setLayoutData(gd);
+
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+
+		//
+		
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+		new Label(home, SWT.NONE).setLayoutData(new GridData());
+
+		//home.pack();
+		home.layout();
 
 		// set home as the first screen viewed when new character window  is launched
 		homeLayout.topControl = home;
