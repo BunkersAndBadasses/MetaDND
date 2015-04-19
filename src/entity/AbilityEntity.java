@@ -4,6 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class AbilityEntity extends DNDEntity{
+    
+    public AbilityEntity(String n, String d){
+        this.name = n;
+        this.description = d;
+    }
 
 	public AbilityEntity(LinkedHashMap<String, String> input)
 	{
