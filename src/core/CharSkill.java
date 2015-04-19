@@ -97,4 +97,6 @@ public class CharSkill {
 	public boolean hasACPen() { return acPen; }
 	
 	public boolean useUntrained() { return untrained; }
+	
+	public void setRank(int r) { rank = r ; }
 }

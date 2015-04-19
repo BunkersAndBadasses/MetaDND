@@ -1,6 +1,8 @@
 package core;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,15 +12,22 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import entity.ArmorEntity;
 import entity.ClassEntity;
+import entity.FeatEntity;
+import entity.ItemEntity;
+import entity.SkillEntity;
+import entity.SpellEntity;
+import entity.WeaponEntity;
 
 public class LoadCharacter {
-    
+
     private File stocks;
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
     private Document doc;
     private Element element;
+    private String delims = "[/]+"; 
 
     public LoadCharacter(String xmlLocation, character loadChar){
         try {
@@ -41,50 +50,102 @@ public class LoadCharacter {
                 c.setLevel(Integer.parseInt(getValue("Level", element)));
                 temp = getValue("Class", element);
                 c.setCharClass((ClassEntity) Main.gameState.classes.get(temp));
-                c.set = Integer.parseInt(getValue("SecLevel", element));
-                charSecClass = getValue("SecClass", element);
-                strVal = Integer.parseInt(getValue("STR", element));
-                dexVal = Integer.parseInt(getValue("DEX", element));
-                conVal = Integer.parseInt(getValue("CON", element));
-                intVal = Integer.parseInt(getValue("INT", element));
-                wisVal = Integer.parseInt(getValue("WIS", element));
-                chaVal = Integer.parseInt(getValue("CHA", element));
-                hpVal = Integer.parseInt(getValue("HP", element));
-                speedVal = Integer.parseInt(getValue("Speed", element));
-                priWeapon = getValue("PrimaryWeapon", element);
-                secWeapon =  getValue("SecondaryWeapon", element);
-                armorName = getValue("Armor", element);
-                shieldName  = getValue("Shield", element);
-                notes = getValue("Notes", element);
-                dmgTaken = getValue("DamageTaken", element);
-                pp = getValue("PP", element);
-                gp = getValue("GP", element);
-                sp = getValue("SP", element);
-                cp = getValue("CP", element);
+                c.setSecLevel(Integer.parseInt(getValue("SecLevel", element)));
+                temp = getValue("SecClass", element);
+                c.setCharClass((ClassEntity) Main.gameState.classes.get(temp));
 
-                String raw = getValue("Items", element);
-                items = raw.split(delims);
-
-                raw = getValue("Languages", element);
-                languages = raw.split(delims);
-
-                raw = getValue("Weapons", element);
-                weapons = raw.split(delims);
-
-                raw = getValue("Armors", element);
-                armors = raw.split(delims);
-
-                raw = getValue("Skills", element);
-                skills = raw.split(delims);
-
-                raw = getValue("Spells", element);
-                spells = raw.split(delims);
-
-                raw = getValue("Shields", element);
-                shields = raw.split(delims);
+                c.setAbilityScores(Integer.parseInt(getValue("STR", element)),
+                        Integer.parseInt(getValue("DEX", element)),
+                        Integer.parseInt(getValue("CON", element)),
+                        Integer.parseInt(getValue("INT", element)),
+                        Integer.parseInt(getValue("WIS", element)),
+                        Integer.parseInt(getValue("CHA", element)));
+                c.setHitPoints(Integer.parseInt(getValue("HP", element)));
+                c.setSpeed(Integer.parseInt(getValue("Speed", element)));
                 
-                raw = getValue("Feats", element);
-                feats = raw.split(delims);
+                temp = getValue("PrimaryWeapon", element);
+                c.setPrimary((WeaponEntity) Main.gameState.weapons.get(temp));
+                temp =  getValue("SecondaryWeapon", element);
+                c.setSecondary((WeaponEntity) Main.gameState.weapons.get(temp));
+                
+                temp = getValue("Armor", element);
+                c.setCurrArmor((ArmorEntity) Main.gameState.armor.get(temp));
+                temp  = getValue("Shield", element);
+                c.setShield((ArmorEntity) Main.gameState.armor.get(temp));
+                c.setNotes(getValue("Notes", element));
+                c.setDamageTaken(Integer.parseInt(getValue("DamageTaken", element)));
+                c.setPP(Integer.parseInt(getValue("PP", element)));
+                c.setGold(Integer.parseInt(getValue("GP", element)));
+                c.setSP(Integer.parseInt(getValue("SP", element)));
+                c.setCP(Integer.parseInt(getValue("CP", element)));
+
+                temp = getValue("Items", element);
+                String[] tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
+                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(tempArr[i]));
+                    ci.setCouunt(count);
+                    c.addItem(ci);
+                }
+
+                temp = getValue("Languages", element);
+                c.setLanguages(new ArrayList<String>(Arrays.asList(temp.split(delims))));
+
+                temp = getValue("Weapons", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
+                    WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(tempArr[i]));
+                    we.setQuanitity(count);
+                    c.addWeapon(we);
+                }
+
+                temp = getValue("Armors", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
+                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(tempArr[i]));
+                    ae.setQuanitity(count);
+                    c.addArmor(ae);
+                }
+
+                temp = getValue("Skills", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
+                    CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(tempArr[i])),c);
+                    cs.setRank(count);
+                }
+
+                temp = getValue("Spells", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    SpellEntity se =  (SpellEntity) (Main.gameState.spells.get(tempArr[i]));
+                    c.addSpell(se);
+                }
+
+                temp = getValue("Shields", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
+                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(tempArr[i]));
+                    ae.setQuanitity(count);
+                    c.addShield(ae);
+                }
+
+                temp = getValue("Feats", element);
+                tempArr = temp.split(delims);
+                for(int i = 0; i < tempArr.length; i++){
+                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    FeatEntity fe = (FeatEntity) (Main.gameState.feats.get(tempArr[i]));
+                    c.addFeat(fe);
+                }
 
             }
 

@@ -76,6 +76,9 @@ public class character {
 	public void setLevel(int l) { level = l; }
 	public int getLevel() { return level; }
 	
+	public void setSecLevel(int l) { secLevel = l; }
+    public int getSecLevel() { return secLevel; }
+	
 	public void setExp(int exp) { this.exp = exp; }
 	public void incExp(int exp) { this.exp += exp; }
 	public int getExp() {return exp;}
@@ -85,6 +88,9 @@ public class character {
 	
 	public void setCharClass(ClassEntity c) { charClass = c; }
 	public ClassEntity getCharClass() { return charClass; }
+	
+	public void setSetClass(ClassEntity c) { secClass = c; }
+    public ClassEntity getSecClass() { return secClass; }
 	
 	public void setCharSecClass(ClassEntity c) { charSecClass = c; }
 	public ClassEntity getCharSecClass() { return charSecClass; }
@@ -217,8 +223,8 @@ public class character {
 	public void setHitPoints(int hp) { this.hp = hp; resetDamage(); }
 	public int getHitPoints() { return hp; }
 	
-	public void setRemainingHitPoints(int rhp) { dmg = rhp; }
-	public int getRemainingHitPoints(){ return dmg; }
+	public void setDamageTaken(int rhp) { dmg = rhp; }
+	public int getDamageTaken(){ return dmg; }
 
 	public void changeDamage(int adj) { dmg += adj; }
 	public void resetDamage() { dmg = 0; }

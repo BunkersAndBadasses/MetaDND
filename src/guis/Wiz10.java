@@ -241,7 +241,7 @@ public class Wiz10 {
             // Remaining Hitpoints
             Element RemainingHP = doc.createElement("DMG");
             RemainingHP.appendChild(doc.createTextNode(
-                    Integer.toString(character.getRemainingHitPoints())));
+                    Integer.toString(character.getDamageTaken())));
             Character.appendChild(RemainingHP);	
 
             //Go through the Skill list

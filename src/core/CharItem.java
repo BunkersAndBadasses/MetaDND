@@ -15,6 +15,10 @@ public class CharItem {
 		count++;
 	}
 	
+	public void setCouunt(int i) {
+	    count = i;
+	}
+	
 	public boolean decCount() {
 		if (count == 1)
 			return false;

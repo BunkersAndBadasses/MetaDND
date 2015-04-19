@@ -9,6 +9,7 @@ public class ArmorEntity extends DNDEntity {
 	private boolean isMagic;
 	private int magicBonus; // if isMagic == false, leave null
 	private String[] magicProperties; // if isMagic == false, leave null
+    private int quantity;
 	@Override
 	public void search(String searchString, Thread runningThread) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -56,5 +57,12 @@ public class ArmorEntity extends DNDEntity {
 	public void setMagicProperties(String[] magicProperties) {
 		this.magicProperties = magicProperties;
 	}
+    public void setQuanitity(int count) {
+        quantity = count;
+    }
+    
+    public int getQuantity() {
+        return quantity;
+    }
 	
 }
