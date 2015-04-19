@@ -8,6 +8,8 @@ public class character {
 	private String name = "<empty>";
 	private int level = 1;
 	private int exp = 0;
+	private ClassEntity secClass;//
+	private int secLevel = 0;//
 	private ClassEntity charClass = null;
 	private RaceEntity charRace = null;	
 	private ClassEntity charSecClass = null;
@@ -24,10 +26,14 @@ public class character {
 	private String description = "<empty>"; 
 	private int[] abilityScores = {0,0,0,0,0,0};	// STR, DEX, CON, INT, WIS, CHA
 	private int hp = 0; // hitpoints
-	private int remainingHP = 0;
+	private int dmg = 0;//
 	private ArrayList<CharSkill> skills = new ArrayList<CharSkill>();
 	private ArrayList<String> languages = new ArrayList<String>();
-	private int gold = 0;
+	private int gp = 0;
+	private int pp = 0;//
+	private int sp = 0;//
+	private int cp = 0;//
+	private String imageUrl;//
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<AbilityEntity> specialAbilities = new ArrayList<AbilityEntity>();
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
@@ -36,6 +42,11 @@ public class character {
 	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
 	private ArrayList<ArmorEntity> armor = new ArrayList<ArmorEntity>();
 	private String notes = "<empty>";
+	private ArmorEntity currArmor;//
+	private ArmorEntity currShield;//
+	private WeaponEntity priWeapon;//
+	private WeaponEntity secWeapon;//
+	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
 	private int AC = 0;
 	private int touchAC = 0;
@@ -187,14 +198,30 @@ public class character {
 			return false;
 		}
 	}
-	public void setHitPoints(int hp) { this.hp = hp; resetRemainingHitPoints(); }
+	
+	public void setImage(String url){ imageUrl = url; }
+	public String getImage() { return imageUrl; }
+	
+	public void setPrimary(WeaponEntity pri){ priWeapon = pri; }
+    public WeaponEntity getPrimary() { return priWeapon; }
+    
+    public void setSecondary(WeaponEntity sec){ secWeapon= sec; }
+    public WeaponEntity getSecondary() { return secWeapon; }
+    
+    public void setShield(ArmorEntity shi){ currShield = shi; }
+    public ArmorEntity getShield() { return currShield; }
+    
+    public void setCurrArmor(ArmorEntity arm){ currArmor = arm; }
+    public ArmorEntity getCurrArmor() { return currArmor; }
+	
+	public void setHitPoints(int hp) { this.hp = hp; resetDamage(); }
 	public int getHitPoints() { return hp; }
 	
-	public void setRemainingHitPoints(int rhp) { remainingHP = rhp; }
-	public int getRemainingHitPoints(){ return remainingHP; }
+	public void setRemainingHitPoints(int rhp) { dmg = rhp; }
+	public int getRemainingHitPoints(){ return dmg; }
 
-	public void changeRemainingHitPoints(int adj) { remainingHP += adj; }
-	public void resetRemainingHitPoints() { remainingHP = hp; }
+	public void changeDamage(int adj) { dmg += adj; }
+	public void resetDamage() { dmg = 0; }
 	
 	public void setSkills(ArrayList<CharSkill> s) { skills = s; }
 	public ArrayList<CharSkill> getSkills(){ return skills;}
@@ -203,13 +230,24 @@ public class character {
 	public ArrayList<String> getLanguages(){ return languages; }
 	public void addLanguage(String l) { languages.add(l); }
 	
-	public void setGold(int g) { gold = g; }
-	public int getgold() { return gold; }
+	public void setPP(int g) { pp = g; }
+	public int getPP() { return pp; }
+	
+	public void setGold(int g) { gp = g; }
+    public int getgold() { return gp; }
+    
+    public void setSP(int g) { sp = g; }
+    public int getSP() { return sp; }
+    
+    public void setCP(int g) { cp = g; }
+    public int getCP() { return cp; }
 	
 	public void addFeat(FeatEntity f) { feats.add(f); }
+	public void delFeat(FeatEntity f) { feats.remove(f); }
 	public ArrayList<FeatEntity> getFeats() { return feats; }
 	
 	public void addSpecialAbility(AbilityEntity a) { specialAbilities.add(a); }
+	public void delSpecialAbility(AbilityEntity a) { specialAbilities.remove(a); }
 	public ArrayList<AbilityEntity> getSpecialAbilities() { return specialAbilities; }
 	
 	public void addSpell(SpellEntity s) { spells.add(s); }
@@ -221,16 +259,24 @@ public class character {
 	public ArrayList<SpellEntity> getPrepSpells() { return prepSpells; }
 	
 	public void addItem(CharItem i) { items.add(i); }
+	public void delItem(CharItem i) { items.remove(i); }
 	public void setItems(ArrayList<CharItem> i) { items = i; }
 	public ArrayList<CharItem> getItems() { return items; }	
 	
 	public void addWeapon(WeaponEntity w) { weapons.add(w); }
+	public void delWeapon(WeaponEntity w) { weapons.remove(w); }
 	public void setWeapons(ArrayList<WeaponEntity> w) { weapons = w; }
 	public ArrayList<WeaponEntity> getWeapons() { return weapons; }
 	
 	public void addArmor(ArmorEntity a) { armor.add(a); }
+	public void delArmor(ArmorEntity a) { armor.remove(a); }
 	public void setArmor(ArrayList<ArmorEntity> a) { armor = a; }
 	public ArrayList<ArmorEntity> getArmor() { return armor; }
+	
+	public void addShield(ArmorEntity a) { shields.add(a); }
+    public void delShield(ArmorEntity a) { shields.remove(a); }
+    public void setShield(ArrayList<ArmorEntity> a) { shields = a; }
+    public ArrayList<ArmorEntity> getShields() { return shields; }
 	
 	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
@@ -337,7 +383,7 @@ public class character {
 		for (int i = 0; i < abilityScores.length; i++)
 			s += "\t" + GameState.abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
 		s += "HP: " + hp + "\n";
-		s += "Remaining HP: " + remainingHP + "\n";
+		s += "Remaining HP: " + dmg + "\n";
 		s += "Skills: " + "\n";
 		for (int i = 0; i < skills.size(); i++)
 			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";
@@ -346,7 +392,7 @@ public class character {
 			s += "\t<empty>\n";
 		for (int i = 0; i < languages.size(); i++)
 			s += "\t" + languages.get(i) + "\n";
-		s += "Gold: " + gold + "\n";
+		s += "Gold: " + gp + "\n";
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)
 			s += "<empty>\n";

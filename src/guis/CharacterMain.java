@@ -694,7 +694,7 @@ public class CharacterMain {
                 priWeapon = getValue("PrimaryWeapon", element);
                 secWeapon =  getValue("SecondaryWeapon", element);
                 armorName = getValue("Armor", element);
-                shieldName = getValue("Shield", element);
+                shieldName  = getValue("Shield", element);
                 notes = getValue("Notes", element);
                 dmgTaken = getValue("DamageTaken", element);
                 pp = getValue("PP", element);
