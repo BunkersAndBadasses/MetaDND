@@ -73,13 +73,13 @@ if __name__ == '__main__':
             for item in value:
                 description += item
         except KeyError:
-            print name.lower()
+            print(name.lower())
         writeline(o, '\t\t\t' + description )
         writeline(o, '\t\t</DESCRIPTION>')
         writeline(o, '\t</ARMOR>')
 
     writeline(o, '</ARMORS>')
-    writeline(o, '</xml>')
+#    writeline(o, '</xml>')
     i.close()
     o.close()
 
