@@ -192,18 +192,7 @@ public class MenuBar {
         		new CharacterWizard(shell.getDisplay());
             }
         });
-        
-        //Dungeon Generator
-        MenuItem dunGenItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunGenItem.setText("&Dungeon Generator");
-        
 
-        dunGenItem.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                //TODO
-            }
-        });
         //Character Sheet
         MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
         dunChaItem.setText("&Character Sheet");
@@ -215,16 +204,6 @@ public class MenuBar {
                 //TODO
             }
         });
-        //Home Screen
-        MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunHomeItem.setText("&Home Screen");
-        
-        dunHomeItem.addSelectionListener(new SelectionAdapter()
-        {
-        public void widgetSelected(SelectionEvent e)
-        {
-        	new HomeWindow(shell.getDisplay());
-        }});
         shell.setMenuBar(menuBar);
 	}
 }

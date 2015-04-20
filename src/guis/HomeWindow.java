@@ -54,7 +54,6 @@ public class HomeWindow {
 	private static Document doc;
 	private static Element element;
 	private static Display display;
-	private Device dev;
 	private Shell shell;
 	private static final int WIDTH = 900;
 	private static final int HEIGHT = 700;
@@ -65,8 +64,6 @@ public class HomeWindow {
 	private StackLayout m_mainWindowLayout;
 	private StackLayout charLayout;
 	private Composite m_mainWindow;
-	private Composite m_dungeonScreen;
-	private Composite m_playerScreen;
 	private Composite view;
 	private static List charList;
 	// the stack layout allows us to navigate from one view to another.
@@ -79,6 +76,13 @@ public class HomeWindow {
 	private final Composite dungeonViewer;
 	private final Composite dungeonGenConfig;
 	private final Composite playerScreen;
+	private referencePanel playerScreenReferencePanel;
+	private referencePanel homeScreenReferencePanel;
+	private referencePanel dungeonScreenReferencePanel;
+
+	
+	private final JSVGCanvas svgCanvas = new JSVGCanvas();
+	private boolean dungeonScreenPopulated = false;
 
 	public static int[] baseAbilityScores = new int[6];
 
@@ -95,7 +99,7 @@ public class HomeWindow {
 
 		DungeonConstants.SAVEDDUNGEONSDIR.mkdir();
 
-		new MenuBar(shell); //Add menu bar to windows like this
+		
 
 		// the stack layout allows us to navigate from one view to another.
 		mainWindow = new Composite(shell, SWT.NONE);
@@ -111,8 +115,11 @@ public class HomeWindow {
 		playerScreen = new Composite(mainWindow, SWT.NONE);
 
 		createPageContent();
-
+		
+		new MenuBarHomeScreen(shell, this); //Add menu bar to windows like this
+		
 		run();
+		
 	}
 
 	public void run() {
@@ -146,15 +153,13 @@ public class HomeWindow {
 
 		this.m_mainWindow = mainWindow;
 		this.m_mainWindowLayout = mainWindowLayout;
-		this.m_dungeonScreen = dungeonScreen;
-		this.m_playerScreen = playerScreen;
 
 		// this grid layout size allows us to have permanent centering of these buttons,
 		// regardless of user resize.
 		GridLayout homeScreenLayout = new GridLayout(6, true);
 		homeScreen.setLayout(homeScreenLayout);
 
-		GridLayout dungeonScreenLayout = new GridLayout(1, true);
+		GridLayout dungeonScreenLayout = new GridLayout(4, true);
 		dungeonScreenLayout.marginLeft = 10;
 		dungeonScreen.setLayout(dungeonScreenLayout);
 
@@ -294,10 +299,10 @@ public class HomeWindow {
 		});
 
 		// Call the seach panel composite
-		referencePanel rp = new referencePanel(playerScreen);
-		Composite refPanel = rp.getRefPanel();
+		playerScreenReferencePanel = new referencePanel(playerScreen);
+		Composite ps_rp = playerScreenReferencePanel.getRefPanel();
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		refPanel.setLayoutData(gridData);
+		ps_rp.setLayoutData(gridData);
 
 
 		playerScreen.layout();
@@ -307,34 +312,11 @@ public class HomeWindow {
 
 		///////////////////DUNGEON SCREEN//////////////////////////
 
-		Label dungeonLabel = new Label(dungeonScreen, SWT.NONE);
-		dungeonLabel.setText("Dungeons:");
-		Font dungeonFont = Main.boldFont;
-		dungeonLabel.setFont(dungeonFont);
-
-		// placeholder labels take up columns 2 and 3 in the grid.
-		new Label(dungeonScreen, SWT.NONE);  
-		new Label(dungeonScreen, SWT.NONE); 
-
-		// generate new dungeon
-		Button generateButton = new Button(dungeonScreen, SWT.PUSH);
-		generateButton.setText("Generate New");
-		generateButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				new MenuBarDungeon(shell, hw);
-				mainWindowLayout.topControl = dungeonGenConfig;
-				mainWindow.layout();
-			}
-		});
-
-
-		dungeonScreen.pack();
+		populateDungeonScreen();
 
 		///////////////////DUNGEON SCREEN//////////////////////////    
 
 		///////////////////DUNGEON VIEWER//////////////////////////   
-
-		final JSVGCanvas svgCanvas = new JSVGCanvas();
 
 		// embed the swing element in the swt composite
 		java.awt.Frame fileTableFrame = SWT_AWT.new_Frame(dungeonViewer);
@@ -388,8 +370,10 @@ public class HomeWindow {
 				int sizeSelection = sizeSlider.getSelection();
 				int densitySelection = densitySlider.getSelection();
 				double density = 1 - ((double)densitySelection/100);
-
+				
 				// This seems like magic, and it kind of is, but just go with it.
+				// it makes the screen size and dungeon tile size proportional
+				// to the configurations that the user selected.
 				int sizeOfSquare;
 				if (sizeSelection >= 10 && sizeSelection < 20) {
 					sizeOfSquare = 50;
@@ -406,12 +390,15 @@ public class HomeWindow {
 				else if (sizeSelection >= 50 && sizeSelection < 60) {
 					sizeOfSquare = 20;
 				}
-				else if (sizeSelection >= 60 && sizeSelection < 100) {
+				else if (sizeSelection >= 60) {
 					sizeOfSquare = 10;
 				}
 				else {
 					sizeOfSquare = 30;
 				}
+				
+				int totalSize = sizeSelection*sizeOfSquare + 100;
+				shell.setSize(totalSize, totalSize);
 
 				//System.out.println(sizeSelection);
 				//System.out.println(density);
@@ -450,58 +437,7 @@ public class HomeWindow {
 
 		dungeonMastersButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				final List dungeonList = new List(dungeonScreen, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
-				int counter = 0;
-
-				// populate the list
-				for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
-					if (s.contains(".svg")) {
-						dungeonList.add(s);
-						counter++;
-					}
-				}
-				for (int i = counter; i < 20; i++) {
-					dungeonList.add("");
-				}
-
-				// make the list look good.
-				GridData listGD = new GridData();
-				listGD.grabExcessHorizontalSpace = true;
-				listGD.grabExcessVerticalSpace = true;
-				listGD.widthHint = 400;
-				listGD.heightHint = 500;
-				dungeonList.setLayoutData(listGD);
-
-				// placeholder labels to make it look gooder
-				new Label(dungeonScreen, SWT.NONE);  
-				new Label(dungeonScreen, SWT.NONE); 
-				new Label(dungeonScreen, SWT.NONE);  
-				new Label(dungeonScreen, SWT.NONE); 
-
-				// load dungeon
-				Button loadButton = new Button(dungeonScreen, SWT.PUSH);
-				loadButton.setText("Load Dungeon");
-				loadButton.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event event) {
-						String dungeonToLoad = dungeonList.getSelection()[dungeonList.getSelectionIndex()];
-						if (dungeonToLoad.equals("")){
-							return;
-						}
-						String toSet = "file:///";
-						toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
-						svgCanvas.setURI(toSet);
-
-						new MenuBarDungeon(shell, hw);
-
-						shell.setMaximized(true);
-						GameState.PAGE_NUMBER = 2;
-						mainWindowLayout.topControl = dungeonViewer;
-						mainWindow.layout();
-
-					}
-				});
-
-				dungeonScreen.pack();
+				populateDungeonScreen();
 				navigateToDungeonScreen();
 			}
 		});
@@ -509,17 +445,25 @@ public class HomeWindow {
 		mainWindowLayout.topControl = homeScreen;
 
 	}
+	
+	public void navigateToHomeScreen() {
+		new MenuBarHomeScreen(shell, hw);
+		GameState.PAGE_NUMBER = 0;
+		this.m_mainWindowLayout.topControl = this.homeScreen;
+		this.m_mainWindow.layout();
+	}
 
 	public void navigateToDungeonScreen() {
 		new MenuBarDungeon(shell, hw);
 		GameState.PAGE_NUMBER = 1;
-		this.m_mainWindowLayout.topControl = this.m_dungeonScreen;
+		this.m_mainWindowLayout.topControl = this.dungeonScreen;
 		this.m_mainWindow.layout();
 	}
 
 	public void navigateToPlayerScreen() {
+		new MenuBarHomeScreen(shell, hw);
 		GameState.PAGE_NUMBER = 3;
-		this.m_mainWindowLayout.topControl = this.m_playerScreen;
+		this.m_mainWindowLayout.topControl = this.playerScreen;
 		this.m_mainWindow.layout();
 	}
 
@@ -645,6 +589,102 @@ public class HomeWindow {
 		return node.getNodeValue();
 	}
 
+	public void populateDungeonScreen() {
+		if (!dungeonScreenPopulated) {
+			
+			Composite dungeonScreenComp = new Composite(dungeonScreen, SWT.NONE);
+			GridData dungeonScreenCompGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+			dungeonScreenCompGD.horizontalSpan = 3;
+			dungeonScreenComp.setLayoutData(dungeonScreenCompGD);
+			
+			GridLayout dungeonScreenCompLayout = new GridLayout(1, false);
+			dungeonScreenComp.setLayout(dungeonScreenCompLayout);
+			
+			Label dungeonLabel = new Label(dungeonScreenComp, SWT.NONE);
+			dungeonLabel.setText("Dungeons:");
+			Font dungeonFont = Main.boldFont;
+			dungeonLabel.setFont(dungeonFont);
+
+			// placeholder labels take up columns 2 and 3 in the grid.
+			new Label(dungeonScreenComp, SWT.NONE);  
+			new Label(dungeonScreenComp, SWT.NONE); 
+
+			// generate new dungeon
+			Button generateButton = new Button(dungeonScreenComp, SWT.PUSH);
+			generateButton.setText("Generate New");
+			generateButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					new MenuBarDungeon(shell, hw);
+					mainWindowLayout.topControl = dungeonGenConfig;
+					mainWindow.layout();
+				}
+			});
+			
+			final List dungeonList = new List(dungeonScreenComp, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+			int counter = 0;
+	
+			// populate the list
+			for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
+				if (s.contains(".svg")) {
+					dungeonList.add(s);
+					counter++;
+				}
+			}
+			for (int i = counter; i < 20; i++) {
+				dungeonList.add("");
+			}
+	
+			// make the list look good.
+			GridData listGD = new GridData();
+			listGD.grabExcessHorizontalSpace = true;
+			listGD.grabExcessVerticalSpace = true;
+			listGD.widthHint = 400;
+			listGD.heightHint = 500;
+			dungeonList.setLayoutData(listGD);
+	
+			// placeholder labels to make it look gooder
+			new Label(dungeonScreenComp, SWT.NONE);  
+			new Label(dungeonScreenComp, SWT.NONE); 
+			new Label(dungeonScreenComp, SWT.NONE);  
+			new Label(dungeonScreenComp, SWT.NONE); 
+			
+			
+	
+			// load dungeon
+			Button loadButton = new Button(dungeonScreenComp, SWT.PUSH);
+			loadButton.setText("Load Dungeon");
+			loadButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					String dungeonToLoad = dungeonList.getSelection()[dungeonList.getSelectionIndex()];
+					if (dungeonToLoad.equals("")){
+						return;
+					}
+					String toSet = "file:///";
+					toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
+					svgCanvas.setURI(toSet);
+	
+					new MenuBarDungeon(shell, hw);
+	
+					shell.setMaximized(true);
+					GameState.PAGE_NUMBER = 2;
+					mainWindowLayout.topControl = dungeonViewer;
+					mainWindow.layout();
+	
+				}
+			});
+			
+			// Call the search panel composite
+			dungeonScreenReferencePanel = new referencePanel(dungeonScreen);
+			Composite ds_rp = dungeonScreenReferencePanel.getRefPanel();
+			GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+			ds_rp.setLayoutData(gridData);
+			
+			dungeonScreen.pack();
+			dungeonScreenPopulated = true;
+		}
+		
+	}
+	
 	//	public static void main(String[] args) {
 	//		Display display = new Display();
 	//		HomeWindow hw = new HomeWindow(display);

@@ -1,47 +1,32 @@
 package guis;
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.FileDialog;
-
-import core.DungeonConstants;
 
 
-public class MenuBarDungeon {
+public class MenuBarHomeScreen {
 	
-	private Shell m_shell;
-	private Menu menuBar;
-	private MenuItem cascadeFileMenu;
-	private MenuItem cascadeToolsMenu;
-	private Menu fileMenu;
-	private MenuItem saveItem;
 	private HomeWindow parent;
 	
-	public MenuBarDungeon(final Shell shell, HomeWindow parent)
+	public MenuBarHomeScreen(final Shell shell, HomeWindow parent)
 	{
-		
 		this.parent = parent;
-		this.m_shell = shell;
-		
-		menuBar = new Menu(shell, SWT.BAR);
-		cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
+		Menu menuBar = new Menu(shell, SWT.BAR);
+        MenuItem cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
         cascadeFileMenu.setText("&File");
         
-        cascadeToolsMenu = new MenuItem(menuBar, SWT.CASCADE);
+        MenuItem cascadeToolsMenu = new MenuItem(menuBar, SWT.CASCADE);
         cascadeToolsMenu.setText("&Tools");
         
         
-        fileMenu = new Menu(shell, SWT.DROP_DOWN);
+        Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
         cascadeFileMenu.setMenu(fileMenu);
         
         //Save
-        saveItem = new MenuItem(fileMenu, SWT.PUSH);
+        MenuItem saveItem = new MenuItem(fileMenu, SWT.PUSH);
         saveItem.setText("&Save");
         
 
@@ -49,28 +34,33 @@ public class MenuBarDungeon {
             @Override
             public void widgetSelected(SelectionEvent e) {
             	//TODO:
-            	FileDialog dialog = new FileDialog(m_shell, SWT.SAVE);
-            	dialog.setText("Save");
-            	dialog.setFilterPath(DungeonConstants.SAVEDDUNGEONSDIR.toString());
-                String[] filterExt = { "*.svg"};
-                dialog.setFilterExtensions(filterExt);
-                String selected = dialog.open();
-                File toBeRenamed = new File(DungeonConstants.SAVEDDUNGEONSDIR, "generatedDungeon.svg");
-                File newFile = new File(selected);
-				try {
-					if(newFile.exists()) throw new java.io.IOException("file exists");
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				boolean success = toBeRenamed.renameTo(newFile);
-			    if (!success) {
-			        System.out.println("fail");
-			    }
-				
+            	
+            	}
+        });
+        
+        //Save as
+        MenuItem saveAsItem = new MenuItem(fileMenu, SWT.PUSH);
+        saveAsItem.setText("&Save As...");
+        
+
+        saveAsItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	//TODO
             }
         });
         
+        //New
+        MenuItem newItem = new MenuItem(fileMenu, SWT.PUSH);
+        newItem.setText("&New");
+        
+
+        newItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	//TODO
+            }
+        });
         
         //Open
         MenuItem openItem = new MenuItem(fileMenu, SWT.PUSH);
@@ -95,7 +85,6 @@ public class MenuBarDungeon {
             	//TODO
             }
         });
-        
         //Close
         MenuItem closeItem = new MenuItem(fileMenu, SWT.PUSH);
         closeItem.setText("&Close");
@@ -135,7 +124,7 @@ public class MenuBarDungeon {
         dieRollerItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new DieWindow(shell.getDisplay());
             }
         });
         
@@ -150,7 +139,7 @@ public class MenuBarDungeon {
             	//TODO
             }
         });
-
+        
         //Spell Wizard
         MenuItem spellWizardItem = new MenuItem(toolsMenu, SWT.PUSH);
         spellWizardItem.setText("&Spell Wizard");
@@ -186,7 +175,7 @@ public class MenuBarDungeon {
         	}
         });
         
-      //Feat Wizard
+        //Feat Wizard
         MenuItem itemFeatItem = new MenuItem(toolsMenu, SWT.PUSH);
         itemFeatItem.setText("&Feat Wizard");
         
@@ -215,9 +204,22 @@ public class MenuBarDungeon {
         dunGenItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+            	parent.populateDungeonScreen();
                 parent.navigateToDungeonScreen();
             }
         });
+        //Character Sheet
+        MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunChaItem.setText("&Characters");
+        
+
+        dunChaItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                parent.navigateToPlayerScreen();
+            }
+        });
+        //Home Screen
         MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
         dunHomeItem.setText("&Home Screen");
         
@@ -225,7 +227,6 @@ public class MenuBarDungeon {
         {
         public void widgetSelected(SelectionEvent e)
         {
-        	
         	parent.navigateToHomeScreen();
         }});
         shell.setMenuBar(menuBar);
