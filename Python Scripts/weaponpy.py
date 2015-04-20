@@ -74,10 +74,10 @@ if __name__ == '__main__':
         writeline(o, '\t\t\t' + s[j])
         j += 1
         writeline(o, '\t\t</WEIGHT>')
-        writeline(o, '\t\t<TYPE>')
+        writeline(o, '\t\t<DAMAGETYPE>')
         writeline(o, '\t\t\t' + s[j][:-1])
         j += 1
-        writeline(o, '\t\t</TYPE>')
+        writeline(o, '\t\t</DAMAGETYPE>')
         writeline(o, '\t\t<ISMAGIC>')
         writeline(o, '\t\t\tFalse')
         writeline(o, '\t\t</ISMAGIC>')
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         writeline(o, '\t</WEAPON>')
 
     writeline(o, '</WEAPONS>')
-    writeline(o, '</xml>')
+#    writeline(o, '</xml>')
     i.close()
     o.close()
 

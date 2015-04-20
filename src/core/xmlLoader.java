@@ -107,6 +107,10 @@ public class xmlLoader implements Runnable{
 					MonsterEntity testMonster = new MonsterEntity(entity);
 					Main.gameState.monsters.put(testMonster.getName(), testMonster);
 				}
+				else if(node.getNodeName() == "WEAPON"){
+					WeaponEntity testWeapon = new WeaponEntity(entity);
+					Main.gameState.weapons.put(testWeapon.getName(), testWeapon);
+				}
 			}
 		}
 			

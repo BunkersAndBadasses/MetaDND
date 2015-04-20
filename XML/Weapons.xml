@@ -35,12 +35,12 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			This metal glove lets you deal lethal damage rather than nonlethal damage with unarmed strikes. A strike with a gauntlet is otherwise considered an unarmed attack. The cost and weight given are for a single gauntlet. Medium and heavy armors (except breastplate) come with gauntlets.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
 		<NAME>
-			Unarmed strike
+			Unarmed Strike
 		</NAME>
 		<TYPE>
 			Simple
@@ -73,7 +73,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A Medium character deals 1d3 points of nonlethal damage with an unarmed strike. A Small character deals 1d2 points of nonlethal damage. A monk or any character with the Improved Unarmed Strike feat can deal lethal or nonlethal damage with unarmed strikes, at her option. The damage from an unarmed strike is considered weapon damage for the purposes of effects that give you a bonus on weapon damage rolls.An unarmed strike is always considered a light weapon. Therefore, you can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an unarmed strike.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -111,7 +111,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You get a +2 bonus on Sleight of Hand checks made to conceal a dagger on your body (see the Sleight of Hand skill).
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -187,7 +187,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			Your opponent cannot use a disarm action to disarm you of spiked gauntlets. The cost and weight given are for a single gauntlet. An attack with a spiked gauntlet is considered an armed attack.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -263,7 +263,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A sickle can be used to make trip attacks. If you are tripped during your own trip attempt, you can drop the sickle to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -415,7 +415,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A shortspear is small enough to wield one-handed. It may also be thrown.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -453,7 +453,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A longspear has reach. You can strike opponents 10 feet away with it, but you can't use it against an adjacent foe. If you use a ready action to set a longspear against a charge, you deal double damage on a successful hit against a charging character.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -491,7 +491,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A quarterstaff is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. A creature wielding a quarterstaff in one hand can't use it as a double weapon-only one end of the weapon can be used in any given round.The quarterstaff is a special monk weapon. This designation gives a monk wielding a quarterstaff special options.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -529,7 +529,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A spear can be thrown. If you use a ready action to set a spear against a charge, you deal double damage on a successful hit against a charging character.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -567,7 +567,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You draw a heavy crossbow back by turning a small winch. Loading a heavy crossbow is a full-round action that provokes attacks of opportunity.Normally, operating a heavy crossbow requires two hands. However, you can shoot, but not load, a heavy crossbow with one hand at a -4 penalty on attack rolls. You can shoot a heavy crossbow with each hand, but you take a penalty on attack rolls as if attacking with two one-handed weapons. This penalty is cumulative with the penalty for one-handed firing.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -643,7 +643,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You draw a light crossbow back by pulling a lever. Loading a light crossbow is a move action that provokes attacks of opportunity.Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a -2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -757,7 +757,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			Since it is not designed for melee, you are treated as nonproficient with it and take a -4 penalty on attack rolls if you use a javelin as a melee weapon.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -795,7 +795,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand. Loading a sling is a move action that requires two hands and provokes attacks of opportunity.You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a -1 penalty on attack rolls.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -824,7 +824,7 @@
 			-
 		</WEIGHT>
 		<DAMAGETYPE>
-			
+			Bullets come in a leather pouch that holds 10 bullets. A bullet that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost.
 		</DAMAGETYPE>
 		<ISMAGIC>
 			False
@@ -1099,7 +1099,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can bash with a shield instead of using it for defense. See Armor for details.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1137,7 +1137,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can outfit your armor with spikes, which can deal damage in a grapple or as a separate attack. See Armor for details.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1175,7 +1175,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can bash with a spiked shield instead of using it for defense. See Armor for details.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1289,7 +1289,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			With a flail, you get a +2 bonus on opposed attack rolls made to disarm an enemy (including the roll to avoid being disarmed if such an attempt fails).You can also use this weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the flail to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1403,7 +1403,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier sized for you, even though it isn't a light weapon for you. You can't wield a rapier in two hands in order to apply 1-1/2 times your Strength bonus to damage.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1479,7 +1479,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can bash with a shield instead of using it for defense. See Armor for details.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1517,7 +1517,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can bash with a spiked shield instead of using it for defense. See Armor for details.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1555,7 +1555,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			This weapon can be thrown. If you use a ready action to set a trident against a charge, you deal double damage on a successful hit against a charging character.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1669,7 +1669,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A glaive has reach. You can strike opponents 10 feet away with it, but you can't use it against an adjacent foe.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1783,7 +1783,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			With a flail, you get a +2 bonus on opposed attack rolls made to disarm an enemy (including the roll to avoid being disarmed if such an attempt fails).You can also use this weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the flail to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1859,7 +1859,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A guisarme has reach. You can strike opponents 10 feet away with it, but you can't use it against an adjacent foe.You can also use it to make trip attacks. If you are tripped during your own trip attempt, you can drop the guisarme to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1897,7 +1897,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			If you use a ready action to set a halberd against a charge, you deal double damage on a successful hit against a charging character.You can use a halberd to make trip attacks. If you are tripped during your own trip attempt, you can drop the halberd to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1935,7 +1935,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A lance deals double damage when used from the back of a charging mount. It has reach, so you can strike opponents 10 feet away with it, but you can't use it against an adjacent foe.While mounted, you can wield a lance with one hand.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -1973,7 +1973,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A ranseur has reach. You can strike opponents 10 feet away with it, but you can't use it against an adjacent foe.With a ranseur, you get a +2 bonus on opposed attack rolls made to disarm an opponent (including the roll to avoid being disarmed if such an attempt fails).
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2011,7 +2011,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A scythe can be used to make trip attacks. If you are tripped during your own trip attempt, you can drop the scythe to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2049,7 +2049,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You need at least two hands to use a bow, regardless of its size. A longbow is too unwieldy to use while you are mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a longbow. If you have a bonus for high Strength, you can apply it to damage rolls when you use a composite longbow (see below) but not a regular longbow.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2087,7 +2087,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			An arrow used as a melee weapon is treated as a light improvised weapon (-4 penalty on attack rolls) and deals damage as a dagger of its size (critical multiplier x2). Arrows come in a leather quiver that holds 20 arrows. An arrow that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2125,7 +2125,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You need at least two hands to use a bow, regardless of its size. You can use a composite longbow while mounted. All composite bows are made with a particular strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is less than the strength rating of the composite bow, you can't effectively use it, so you take a -2 penalty on attacks with it. The default composite longbow requires a Strength modifier of +0 or higher to use with proficiency. A composite longbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 100 gp to its cost.For purposes of weapon proficiency and similar feats, a composite longbow is treated as if it were a longbow.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2201,7 +2201,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You need at least two hands to use a bow, regardless of its size. You can use a shortbow while mounted. If you have a penalty for low Strength, apply it to damage rolls when you use a shortbow. If you have a bonus for high Strength, you can apply it to damage rolls when you use a composite shortbow (see below) but not a regular shortbow.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2277,7 +2277,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You need at least two hands to use a bow, regardless of its size. You can use a composite shortbow while mounted. All composite bows are made with a particular strength rating (that is, each requires a minimum Strength modifier to use with proficiency). If your Strength bonus is lower than the strength rating of the composite bow, you can't effectively use it, so you take a -2 penalty on attacks with it. The default composite shortbow requires a Strength modifier of +0 or higher to use with proficiency. A composite shortbow can be made with a high strength rating to take advantage of an above-average Strength score; this feature allows you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow. Each point of Strength bonus granted by the bow adds 75 gp to its cost. For purposes of weapon proficiency and similar feats, a composite shortbow is treated as if it were a shortbow.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2353,7 +2353,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			The kama is a special monk weapon. This designation gives a monk wielding a kama special options.You can use a kama to make trip attacks. If you are tripped during your own trip attempt, you can drop the kama to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2391,7 +2391,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			The nunchaku is a special monk weapon. This designation gives a monk wielding a nunchaku special options. With a nunchaku, you get a +2 bonus on opposed attack rolls made to disarm an enemy (including the roll to avoid being disarmed if such an attempt fails).
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2429,7 +2429,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			With a sai, you get a +4 bonus on opposed attack rolls made to disarm an enemy (including the roll to avoid being disarmed if such an attempt fails).The sai is a special monk weapon. This designation gives a monk wielding a sai special options.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2467,7 +2467,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			The siangham is a special monk weapon. This designation gives a monk wielding a siangham special options.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2505,12 +2505,12 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A bastard sword is too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
 		<NAME>
-			Waraxe, dwarven
+			Waraxe, Dwarven
 		</NAME>
 		<TYPE>
 			Exotic
@@ -2543,7 +2543,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A dwarven waraxe is too large to use in one hand without special training; thus, it is an exotic weapon. A Medium character can use a dwarven waraxe two-handed as a martial weapon, or a Large creature can use it one-handed in the same way. A dwarf treats a dwarven waraxe as a martial weapon even when using it in one hand.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2581,7 +2581,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A whip deals nonlethal damage. It deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher. The whip is treated as a melee weapon with 15-foot reach, though you don't threaten the area into which you can make an attack. In addition, unlike most other weapons with reach, you can use it against foes anywhere within your reach (including adjacent foes).Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon.You can make trip attacks with a whip. If you are tripped during your own trip attempt, you can drop the whip to avoid being tripped.When using a whip, you get a +2 bonus on opposed attack rolls made to disarm an opponent (including the roll to keep from being disarmed if the attack fails).You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a whip sized for you, even though it isn't a light weapon for you.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2619,7 +2619,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			 An orc double axe is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon.A creature wielding an orc double axe in one hand can't use it as a double weapon-only one end of the weapon can be used in any given round.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2657,7 +2657,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A spiked chain has reach, so you can strike opponents 10 feet away with it. In addition, unlike most other weapons with reach, it can be used against an adjacent foe.You can make trip attacks with the chain. If you are tripped during your own trip attempt, you can drop the chain to avoid being tripped.When using a spiked chain, you get a +2 bonus on opposed attack rolls made to disarm an opponent (including the roll to avoid being disarmed if such an attempt fails).You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn't a light weapon for you.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2695,7 +2695,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A dire flail is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. A creature wielding a dire flail in one hand can't use it as a double weapon- only one end of the weapon can be used in any given round.When using a dire flail, you get a +2 bonus on opposed attack rolls made to disarm an enemy (including the opposed attack roll to avoid being disarmed if such an attempt fails).You can also use this weapon to make trip attacks. If you are tripped during your own trip attempt, you can drop the dire flail to avoid being tripped.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2715,7 +2715,7 @@
 			1d8/1d6
 		</DAMAGEMEDIUM>
 		<CRITICAL>
-			x3/x4
+			x3
 		</CRITICAL>
 		<RANGEINCREMENT>
 			-
@@ -2733,7 +2733,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A gnome hooked hammer is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. The hammer's blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit x3). Its hook is a piercing weapon that deals 1d4 points of damage (crit x4). You can use either head as the primary weapon. The other head is the offhand weapon. A creature wielding a gnome hooked hammer in one hand can't use it as a double weapon-only one end of the weapon can be used in any given round.You can use a gnome hooked hammer to make trip attacks. If you are tripped during your own trip attempt, you can drop the gnome hooked hammer to avoid being tripped.Gnomes treat gnome hooked hammers as martial weapons.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2771,7 +2771,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A two-bladed sword is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. A creature wielding a two-bladed sword in one hand can't use it as a double weapon-only one end of the weapon can be used in any given round.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2809,7 +2809,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A dwarven urgrosh is a double weapon. You can fight with it as if fighting with two weapons, but if you do, you incur all the normal attack penalties associated with fighting with two weapons, just as if you were using a one-handed weapon and a light weapon. The urgrosh's axe head is a slashing weapon that deals 1d8 points of damage. Its spear head is a piercing weapon that deals 1d6 points of damage. You can use either head as the primary weapon. The other is the off-hand weapon. A creature wielding a dwarven urgrosh in one hand can't use it as a double weapon-only one end of the weapon can be used in any given round.If you use a ready action to set an urgrosh against a charge, you deal double damage if you score a hit against a charging character. If you use an urgrosh against a charging character, the spear head is the part of the weapon that deals damage.Dwarves treat dwarven urgroshes as martial weapons.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2847,7 +2847,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can use this weapon to make a ranged trip attack against an opponent. You can't be tripped during your own trip attempt when using a set of bolas.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2885,7 +2885,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			You can draw a hand crossbow back by hand. Loading a hand crossbow is a move action that provokes attacks of opportunity.You can shoot, but not load, a hand crossbow with one hand at no penalty. You can shoot a hand crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2923,7 +2923,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A crossbow bolt used as a melee weapon is treated as a light improvised weapon (-4 penalty on attack rolls) and deals damage as a dagger of its size (crit x2). Bolts come in a wooden case that holds 10 bolts (or 5, for a repeating crossbow). A bolt that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -2961,7 +2961,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			The repeating crossbow holds 5 crossbow bolts. As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -3037,7 +3037,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			The repeating crossbow holds 5 crossbow bolts. As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity.You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -3095,16 +3095,16 @@
 			-
 		</DAMAGEMEDIUM>
 		<CRITICAL>
-			10ft.
+			-
 		</CRITICAL>
 		<RANGEINCREMENT>
-			6lb.
+			10ft.
 		</RANGEINCREMENT>
 		<WEIGHT>
-			-
+			6lb.
 		</WEIGHT>
 		<DAMAGETYPE>
-			
+			-
 		</DAMAGETYPE>
 		<ISMAGIC>
 			False
@@ -3113,7 +3113,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A net is used to entangle enemies. When you throw a net, you make a ranged touch attack against your target. A net's maximum range is 10 feet. If you hit, the target is entangled. An entangled creature takes a -2 penalty on attack rolls and a -4 penalty on Dexterity, can move at only half speed, and cannot charge or run. If you control the trailing rope by succeeding on an opposed Strength check while holding it, the entangled creature can move only within the limits that the rope allows. If the entangled creature attempts to cast a spell, it must make a DC 15 Concentration check or be unable to cast the spell.An entangled creature can escape with a DC 20 Escape Artist check (a full-round action). The net has 5 hit points and can be burst with a DC 25 Strength check (also a full-round action).A net is useful only against creatures within one size category of you.A net must be folded to be thrown effectively. The first time you throw your net in a fight, you make a normal ranged touch attack roll. After the net is unfolded, you take a -4 penalty on attack rolls with it. It takes 2 rounds for a proficient user to fold a net and twice that long for a nonproficient one to do so.
 		</DESCRIPTION>
 	</WEAPON>
 	<WEAPON>
@@ -3151,7 +3151,7 @@
 			None
 		</MAGICPROPERTIES>
 		<DESCRIPTION>
-			
+			A shuriken is a special monk weapon. This designation gives a monk wielding shuriken special options. A shuriken can't be used as a melee weapon.Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them, crafting masterwork or otherwise special versions of them and what happens to them after they are thrown.
 		</DESCRIPTION>
 	</WEAPON>
 </WEAPONS>
