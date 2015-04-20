@@ -1,0 +1,21 @@
+Padded 5gp +1 +8 0 5% 30ft. 20 ft. 10 lb.
+Leather 10gp +2 +6 0 10% 30 ft. 20 ft. 15 lb.
+Studded leather 25gp +3 +5 -1 15% 30 ft. 20 ft. 20 lb.
+Chain shirt 100gp +4 +4 -2 20% 30 ft. 20 ft. 25 lb.        
+Hide 15gp +3 +4 -3 20% 20 ft. 15 ft. 25 lb.
+Scale mail 50gp +4 +3 -4 25% 20 ft. 15 ft. 30 lb.
+Chainmail 150 gp +5 +2 -5 30% 20 ft. 15 ft. 40 lb.
+Breastplate 200 gp +5 +3 -4 25% 20 ft. 15 ft. 30 lb.      
+Splint mail 200 gp +6 +0 -7 40% 20 ft.2 15 ft.2 45 lb.
+Banded mail 250 gp +6 +1 -6 35% 20 ft.2 15 ft.2 35 lb.
+Half-plate 600 gp +7 +0 -7 40% 20 ft.2 15 ft.2 50 lb.
+Full plate 1,500 gp +8 +1 -6 35% 20 ft.2 15 ft.2 50 lb.     
+Buckler 15 gp +1 $ -1 5% $ $ 5 lb.
+Shield, Light Wooden 3 gp +1 $ -1 5% $ $ 5 lb.
+Shield, Light Steel 9 gp +1 $ -1 5% $ $ 6 lb.
+Shield, Heavy Wooden 7 gp +2 $ -2 15% $ $ 10 lb.
+Shield, Heavy Steel 20 gp +2 $ -2 15% $ $ 15 lb.
+Shield, Tower 30 gp +43 +2 -10 50% $ $ 45 lb.       
+Armor spikes +50 gp $ $ $ $ $ $ +10 lb.
+Gauntlet, locked 8 gp $ $ Special 4 $ $ +5 lb.
+Shield spikes +10 gp $ $ $ $ $ $ +5 lb.

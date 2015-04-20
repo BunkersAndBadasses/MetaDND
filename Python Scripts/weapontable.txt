@@ -1,0 +1,86 @@
+Simple
+Gauntlet 2gp 1d2 1d3 x2 - 1lb. Bludgeoning
+Unarmed strike - 1d23 1d33 x2 - - Bludgeoning
+Dagger 2gp 1d3 1d4 19–20/x2 10ft. 1lb. Piercing or slashing
+Dagger, punching 2gp 1d3 1d4 x3 - 1lb. Piercing
+Gauntlet, spiked 5gp 1d3 1d4 x2 - 1lb. Piercing
+Mace, light 5gp 1d4 1d6 x2 - 4lb. Bludgeoning
+Sickle 6gp 1d4 1d6 x2 - 2lb. Slashing
+Club - 1d4 1d6 x2 10ft. 3lb. Bludgeoning
+Mace, heavy 12gp 1d6 1d8 x2 - 8lb. Bludgeoning
+Morningstar 8gp 1d6 1d8 x2 - 6lb. Bludgeoning and piercing
+Shortspear 1gp 1d4 1d6 x2 20ft. 3lb. Piercing
+Longspear 5gp 1d6 1d8 x3 - 9lb. Piercing
+Quarterstaff - 1d4/1d4 1d6/1d6 x2 - 4lb. Bludgeoning
+Spear 2gp 1d6 1d8 x3 20ft. 6lb. Piercing
+Crossbow, heavy 50gp 1d8 1d10 19–20/x2 120ft. 8lb. Piercing
+Bolts, crossbow (10) 1gp - - - - 1lb. -
+Crossbow, light 35gp 1d6 1d8 19–20/x2 80ft. 4lb. Piercing
+Bolts, crossbow (10) 1gp - - - - 1lb. -
+Dart 5sp 1d3 1d4 x2 20ft. 1/2lb. Piercing
+Javelin 1gp 1d4 1d6 x2 30ft. 2lb. Piercing
+Sling - 1d3 1d4 x2 50ft. 0lb. Bludgeoning
+Bullets, sling (10) 1 sp - - - - 5lb. -
+Martial
+Axe, throwing 8gp 1d4 1d6 x2 10ft. 2lb. Slashing
+Hammer, light 1gp 1d3 1d4 x2 20ft. 2lb. Bludgeoning
+Handaxe 6gp 1d4 1d6 x3 - 3lb. Slashing
+Kukri 8gp 1d3 1d4 18–20/x2 - 2lb. Slashing
+Pick, light 4gp 1d3 1d4 x4 - 3lb. Piercing
+Sap 1gp 1d43 1d63 x2 - 2lb. Bludgeoning
+Shield, light special 1d2 1d3 x2 - special Bludgeoning
+Spiked armor special 1d4 1d6 x2 - special Piercing
+Spiked shield, light special 1d3 1d4 x2 - special Piercing
+Sword, short 10gp 1d4 1d6 19–20/x2 - 2lb. Piercing
+Battleaxe 10gp 1d6 1d8 x3 - 6lb. Slashing
+Flail 8gp 1d6 1d8 x2 - 5lb. Bludgeoning
+Longsword 15gp 1d6 1d8 19–20/x2 - 4lb. Slashing
+Pick, heavy 8gp 1d4 1d6 x4 - 6lb. Piercing
+Rapier 20gp 1d4 1d6 18–20/x2 - 2lb. Piercing
+Scimitar 15gp 1d4 1d6 18–20/x2 - 4lb. Slashing
+Shield, heavy special 1d3 1d4 x2 - special Bludgeoning
+Spiked shield, heavy special 1d4 1d6 x2 - special Piercing
+Trident 15gp 1d6 1d8 x2 10ft. 4lb. Piercing
+Warhammer 12gp 1d6 1d8 x3 - 5lb. Bludgeoning
+Falchion 75gp 1d6 2d4 18–20/x2 - 8lb. Slashing
+Glaive 8gp 1d8 1d10 x3 - 10lb. Slashing
+Greataxe 20gp 1d10 1d12 x3 - 12lb. Slashing
+Greatclub 5gp 1d8 1d10 x2 - 8lb. Bludgeoning
+Flail, heavy 15gp 1d8 1d10 19–20/x2 - 10lb. Bludgeoning
+Greatsword 50gp 1d10 2d6 19–20/x2 - 8lb. Slashing
+Guisarme 9gp 1d6 2d4 x3 - 12lb. Slashing
+Halberd 10gp 1d8 1d10 x3 - 12lb. Piercing or slashing
+Lance 10gp 1d6 1d8 x3 - 10lb. Piercing
+Ranseur 10gp 1d6 2d4 x3 - 12lb. Piercing
+Scythe 18gp 1d6 2d4 x4 - 10lb. Piercing or slashing
+Longbow 75gp 1d6 1d8 x3 100ft. 3lb. Piercing
+Arrows (20) 1gp - - - - 3lb. -
+Longbow, composite 100gp 1d6 1d8 x3 110ft. 3lb. Piercing
+Arrows (20) 1gp - - - - 3lb. -
+Shortbow 30gp 1d4 1d6 x3 60ft. 2lb. Piercing
+Arrows (20) 1gp - - - - 3lb. -
+Shortbow, composite 75gp 1d4 1d6 x3 70ft. 2lb. Piercing
+Arrows (20) 1gp - - - - 3lb. -
+Exotic
+Kama 2gp 1d4 1d6 x2 - 2lb. Slashing
+Nunchaku 2gp 1d4 1d6 x2 - 2lb. Bludgeoning
+Sai 1gp 1d3 1d4 x2 10ft. 1lb. Bludgeoning
+Siangham 3gp 1d4 1d6 x2 - 1lb. Piercing
+Sword, bastard 35gp 1d8 1d10 19–20/x2 - 6lb. Slashing
+Waraxe, dwarven 30gp 1d8 1d10 x3 - 8lb. Slashing
+Whip 1gp 1d23 1d33 x2  2lb. Slashing
+Axe, orc double 60gp 1d6/1d6 1d8/1d8 x3 - 15lb. Slashing
+Chain, spiked 25gp 1d6 2d4 x2 - 10lb. Piercing
+Flail, dire 90gp 1d6/1d6 1d8/1d8 x2 - 10lb. Bludgeoning
+Hammer, gnome hooked 20gp 1d6/1d4 1d8/1d6 x3/x4 - 6lb. Bludgeoning and piercing
+Sword, two-bladed 100gp 1d6/1d6 1d8/1d8 19–20/x2 - 10lb. Slashing
+Urgrosh, dwarven 50gp 1d6/1d4 1d8/1d6 x3 - 12lb. Slashing or piercing
+Bolas 5gp 1d33 1d43 x2 10ft. 2lb. Bludgeoning
+Crossbow, hand 100gp 1d3 1d4 19–20/x2 30ft. 2lb. Piercing
+Bolts 1gp - - - - 1lb. -
+Crossbow, repeating heavy 400gp 1d8 1d10 19–20/x2 120ft. 12lb. Piercing
+Bolts 1gp - - - 1lb. - 
+Crossbow, repeating light 250gp 1d6 1d8 19–20/x2 80ft. 6lb. Piercing
+Bolts 1gp - - - 1lb. - 
+Net 20gp - - 10ft. 6lb. - 
+Shuriken 1gp 1 1d2 x2 10ft. 1/2lb. Piercing
