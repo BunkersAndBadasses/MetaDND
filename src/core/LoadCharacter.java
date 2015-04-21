@@ -35,7 +35,8 @@ public class LoadCharacter {
     public LoadCharacter(String xmlLocation, character loadChar){
         try {
             character c = loadChar;
-            stocks = new File(xmlLocation);
+            c.setFilename(xmlLocation);
+            stocks = new File(c.getFilename());
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(stocks);
@@ -54,7 +55,7 @@ public class LoadCharacter {
                 
                 c.setExp(Integer.parseInt(getValue("EXP", element)));
                 c.setCharRace((RaceEntity) Main.gameState.races.get(getValue("Race", element)));
-                c.setAlignment(getValue("Allignment", element));
+                c.setAlignment(getValue("Alignment", element));
                 c.setDeity(getValue("Deity", element));
                 c.setSize(Integer.parseInt(getValue("Size", element)));
                 c.setAge(getValue("Age", element));
@@ -103,10 +104,12 @@ public class LoadCharacter {
                 temp = getValue("ClericDomains", element);
                 tempArr = temp.split(delims);
                 c.setClericDomains(tempArr);
+                
                 c.setDruidAnimalCompanion(getValue("DruidCompanion", element));
                 c.setRangerFavoredEnemy(getValue("RangerFavoredEnemy", element));
                 c.setFamiliar(getValue("Familiar", element));
                 c.setWizardSpecialtySchool(getValue("WizardSpecialty", element));
+                
                 temp = getValue("WizardProhibitedSchools", element);
                 tempArr= temp.split(delims);
                 c.setWizardProhibitedSchools(tempArr);
@@ -119,7 +122,7 @@ public class LoadCharacter {
                 c.setCharClass((ClassEntity) Main.gameState.classes.get(temp));
                 c.setSecLevel(Integer.parseInt(getValue("SecLevel", element)));
                 temp = getValue("SecClass", element);
-                c.setCharClass((ClassEntity) Main.gameState.classes.get(temp));
+                c.setCharSecClass((ClassEntity) Main.gameState.classes.get(temp));
 
                 c.setAbilityScores(Integer.parseInt(getValue("STR", element)),
                         Integer.parseInt(getValue("DEX", element)),
@@ -151,7 +154,7 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(tempArr[i]));
+                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp));
                     ci.setCouunt(count);
                     c.addItem(ci);
                 }
@@ -164,7 +167,7 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(tempArr[i]));
+                    WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(temp));
                     we.setQuanitity(count);
                     c.addWeapon(we);
                 }
@@ -174,7 +177,7 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(tempArr[i]));
+                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
                     ae.setQuanitity(count);
                     c.addArmor(ae);
                 }
@@ -184,16 +187,8 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(tempArr[i])),c);
+                    CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
                     cs.setRank(count);
-                }
-
-                temp = getValue("Spells", element);
-                tempArr = temp.split(delims);
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
-                    SpellEntity se =  (SpellEntity) (Main.gameState.spells.get(tempArr[i]));
-                    c.addSpell(se);
                 }
 
                 temp = getValue("Shields", element);
@@ -201,7 +196,7 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(tempArr[i]));
+                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
                     ae.setQuanitity(count);
                     c.addShield(ae);
                 }
@@ -209,7 +204,6 @@ public class LoadCharacter {
                 temp = getValue("Feats", element);
                 tempArr = temp.split(delims);
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     FeatEntity fe = (FeatEntity) (Main.gameState.feats.get(tempArr[i]));
                     c.addFeat(fe);
                 }
