@@ -6,8 +6,8 @@ will update saving feats to character as CharFeats (instead of FeatEntitys)
 make it so only one instance of char wiz can be open at one time
 ^^ ditto for other wizards
 
-add clear button to die window
-//DONEdie window bug (load/save directory)? 
+//DONE add clear button to die window
+//DONE die window bug (load/save directory)? 
 
 upload picture for character?
 //DONE double click vs load for character load
