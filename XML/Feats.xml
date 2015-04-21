@@ -40,13 +40,13 @@
 			ARMOR PROFICIENCY (HEAVY) [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Armor Proficiency (light), Armor Proficiency (medium).
+			Armor Proficiency (Light), Armor Proficiency (Medium)
 		</PREREQUISITES>
 		<BENEFIT>
-			See Armor Proficiency (light).
+			See Armor Proficiency (Light).
 		</BENEFIT>
 		<NORMAL>
-			See Armor Proficiency (light).
+			See Armor Proficiency (Light).
 		</NORMAL>
 		<SPECIAL>
 			Fighters, paladins, and clerics automatically have Armor Proficiency (heavy) as a bonus feat. They need not select it.
@@ -71,13 +71,13 @@
 			ARMOR PROFICIENCY (MEDIUM) [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Armor Proficiency (light).
+			Armor Proficiency (Light)
 		</PREREQUISITE>
 		<BENEFIT>
-			See Armor Proficiency (light).
+			See Armor Proficiency (Light).
 		</BENEFIT>
 		<NORMAL>
-			See Armor Proficiency (light).
+			See Armor Proficiency (Light).
 		</NORMAL>
 		<SPECIAL>
 			Fighters, barbarians, paladins, clerics, druids, and bards automatically have Armor Proficiency (medium) as a bonus feat. They need not select it.
@@ -96,7 +96,7 @@
 			AUGMENT SUMMONING [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Spell Focus (conjuration).
+			Spell Focus (Conjuration)
 		</PREREQUISITE>
 		<BENEFIT>
 			Each creature you conjure with any summon spell gains a +4 enhancement bonus to Strength and Constitution for the duration of the spell that summoned it.
@@ -129,7 +129,7 @@
 			BREW POTION [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 3rd.
+			Caster level 3
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create a potion of any 3rd-level or lower spell that you know and that targets one or more creatures. Brewing a potion takes one day. When you create a potion, you set the caster level, which must be sufficient to cast the spell in question and no higher than your own level. The base price of a potion is its spell level x its caster level x 50 gp. To brew a potion, you must spend 1/25 of this base price in XP and use up raw materials costing one half this base price.
@@ -145,7 +145,7 @@
 			CLEAVE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Str 13, Power Attack.
+			Str 13, Power Attack
 		</PREREQUISITES>
 		<BENEFIT>
 			If you deal a creature enough damage to make it drop (typically by dropping it to below 0 hit points or killing it), you get an immediate, extra melee attack against another creature within reach. You cannot take a 5-foot step before making this extra attack. The extra attack is with the same weapon and at the same bonus as the attack that dropped the previous creature. You can use this ability once per round.
@@ -167,7 +167,7 @@
 			COMBAT EXPERTISE [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Int 13.
+			Int 13
 		</PREREQUISITE>
 		<BENEFIT>
 			When you use the attack action or the full attack action in melee, you can take a penalty of as much as -5 on your attack roll and add the same number (+5 or less) as a dodge bonus to your Armor Class. This number may not exceed your base attack bonus. The changes to attack rolls and Armor Class last until your next action.
@@ -206,7 +206,7 @@
 			CRAFT MAGIC ARMS AND ARMOR [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 5th.
+			Caster level 5
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create any magic weapon, armor, or shield whose prerequisites you meet. Enhancing a weapon, suit of armor, or shield takes one day for each 1,000 gp in the price of its magical features. To enhance a weapon, suit of armor, or shield, you must spend 1/25 of its features' total price in XP and use up raw materials costing one-half of this total price.
@@ -222,7 +222,7 @@
 			CRAFT ROD [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 9th.
+			Caster level 9
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create any rod whose prerequisites you meet. Crafting a rod takes one day for each 1,000 gp in its base price. To craft a rod, you must spend 1/25 of its base price in XP and use up raw materials costing one-half of its base price.
@@ -236,7 +236,7 @@
 			CRAFT STAFF [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 12th.
+			Caster level 12
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create any staff whose prerequisites you meet.
@@ -252,7 +252,7 @@
 			CRAFT WAND [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 5th.
+			Caster level 5
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create a wand of any 4th-level or lower spell that you know. Crafting a wand takes one day for each 1,000 gp in its base price. The base price of a wand is its caster level x the spell level x 750 gp. To craft a wand, you must spend 1/25 of this base price in XP and use up raw materials costing one-half of this base price. A newly created wand has 50 charges.
@@ -266,7 +266,7 @@
 			CRAFT WONDROUS ITEM [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 3rd.
+			Caster level 3
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create any wondrous item whose prerequisites you meet. Enchanting a wondrous item takes one day for each 1,000 gp in its price. To enchant a wondrous item, you must spend 1/25 of the item's price in XP and use up raw materials costing half of this price.
@@ -290,7 +290,7 @@
 			DEFLECT ARROWS [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Improved Unarmed Strike.
+			Dex 13, Improved Unarmed Strike
 		</PREREQUISITES>
 		<BENEFIT>
 			You must have at least one hand free (holding nothing) to use this feat. Once per round when you would normally be hit with a ranged weapon, you may deflect it so that you take no damage from it. You must be aware of the attack and not flatfooted.
@@ -318,7 +318,7 @@
 			DIEHARD [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Endurance.
+			Endurance
 		</PREREQUISITE>
 		<BENEFIT>
 			When reduced to between -1 and -9 hit points, you automatically become stable. You don't have to roll d% to see if you lose 1 hit point each round.
@@ -345,7 +345,7 @@
 			DODGE [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Dex 13.
+			Dex 13
 		</PREREQUISITE>
 		<BENEFIT>
 			During your action, you designate an opponent and receive a +1 dodge bonus to Armor Class against attacks from that opponent. You can select a new opponent on any action.
@@ -406,7 +406,7 @@
 			EXOTIC WEAPON PROFICIENCY [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Base attack bonus +1 (plus Str 13 for bastard sword or dwarven waraxe).
+			base attack bonus +1 (plus Str 13 for bastard sword or dwarven waraxe)
 		</PREREQUISITE>
 		<BENEFIT>
 			You make attack rolls with the weapon normally.
@@ -437,7 +437,7 @@
 			EXTRA TURNING [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Ability to turn or rebuke creatures.
+			Ability to turn or rebuke creatures
 		</PREREQUISITE>
 		<BENEFIT>
 			Each time you take this feat, you can use your ability to turn or rebuke creatures four more times per day than normal.
@@ -457,7 +457,7 @@
 			FAR SHOT [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Point Blank Shot.
+			Point Blank Shot
 		</PREREQUISITE>
 		<BENEFIT>
 			When you use a projectile weapon, such as a bow, its range increment increases by one-half (multiply by 1-1/2). When you use a thrown weapon, its range increment is doubled.
@@ -471,7 +471,7 @@
 			FORGE RING [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 12th.
+			Caster level 12
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create any ring whose prerequisites you meet. Crafting a ring takes one day for each 1,000 gp in its base price. To craft a ring, you must spend 1/25 of its base price in XP and use up raw materials costing one-half of its base price.
@@ -487,7 +487,7 @@
 			GREAT CLEAVE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Str 13, Cleave, Power Attack, base attack bonus +4.
+			Str 13, Cleave, Power Attack, base attack bonus +4
 		</PREREQUISITES>
 		<BENEFIT>
 			This feat works like Cleave, except that there is no limit to the number of times you can use it per round.
@@ -523,7 +523,7 @@
 			GREATER SPELL PENETRATION [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Spell Penetration.
+			Spell Penetration
 		</PREREQUISITE>
 		<BENEFIT>
 			You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance. This bonus stacks with the one from Spell Penetration.
@@ -534,7 +534,7 @@
 			GREATER TWO-WEAPON FIGHTING [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 19, Improved Two-Weapon Fighting, Two-Weapon Fighting, base attack bonus +11.
+			Dex 19, Improved Two-Weapon Fighting, Two-Weapon Fighting, base attack bonus +11
 		</PREREQUISITES>
 		<BENEFIT>
 			You get a third attack with your off-hand weapon, albeit at a -10 penalty.
@@ -551,7 +551,7 @@
 			GREATER WEAPON FOCUS [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Proficiency with selected weapon, Weapon Focus with selected weapon, fighter level 8th.
+			Proficiency with selected weapon, Weapon Focus with selected weapon, Fighter level 8
 		</PREREQUISITES>
 		<BENEFIT>
 			You gain a +1 bonus on all attack rolls you make using the selected weapon. This bonus stacks with other bonuses on attack rolls, including the one from Weapon Focus (see below).
@@ -573,7 +573,7 @@
 			GREATER WEAPON SPECIALIZATION [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Proficiency with selected weapon, Greater Weapon Focus with selected weapon, Weapon Focus with selected weapon, Weapon Specialization with selected weapon, fighter level 12th.
+			Proficiency with selected weapon, Greater Weapon Focus with selected weapon, Weapon Focus with selected weapon, Weapon Specialization with selected weapon, Fighter level 12
 		</PREREQUISITES>
 		<BENEFIT>
 			You gain a +2 bonus on all damage rolls you make using the selected weapon. This bonus stacks with other bonuses on damage rolls, including the one from Weapon Specialization (see below).
@@ -601,7 +601,7 @@
 			IMPROVED BULL RUSH [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Str 13, Power Attack.
+			Str 13, Power Attack
 		</PREREQUISITES>
 		<BENEFIT>
 			When you perform a bull rush you do not provoke an attack of opportunity from the defender. You also gain a +4 bonus on the opposed Strength check you make to push back the defender.
@@ -626,7 +626,7 @@
 			IMPROVED CRITICAL [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Proficient with weapon, base attack bonus +8.
+			Proficiency with selected weapon, base attack bonus +8
 		</PREREQUISITE>
 		<BENEFIT>
 			When using the weapon you selected, your threat range is doubled.
@@ -648,7 +648,7 @@
 			IMPROVED DISARM [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Int 13, Combat Expertise.
+			Int 13, Combat Expertise
 		</PREREQUISITES>
 		<BENEFIT>
 			You do not provoke an attack of opportunity when you attempt to disarm an opponent, nor does the opponent have a chance to disarm you. You also gain a +4 bonus on the opposed attack roll you make to disarm your opponent.
@@ -726,7 +726,7 @@
 			IMPROVED FEINT [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Int 13, Combat Expertise.
+			Int 13, Combat Expertise
 		</PREREQUISITES>
 		<BENEFIT>
 			You can make a Bluff check to feint in combat as a move action.
@@ -743,7 +743,7 @@
 			IMPROVED GRAPPLE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Improved Unarmed Strike.
+			Dex 13, Improved Unarmed Strike
 		</PREREQUISITES>
 		<BENEFIT>
 			You do not provoke an attack of opportunity when you make a touch attack to start a grapple. You also gain a +4 bonus on all grapple checks, regardless of whether you started the grapple.
@@ -774,7 +774,7 @@
 			IMPROVED OVERRUN [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Str 13, Power Attack.
+			Str 13, Power Attack
 		</PREREQUISITES>
 		<BENEFIT>
 			When you attempt to overrun an opponent, the target may not choose to avoid you. You also gain a +4 bonus on your Strength check to knock down your opponent.
@@ -791,7 +791,7 @@
 			IMPROVED PRECISE SHOT [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 19, Point Blank Shot, Precise Shot, base attack bonus +11.
+			Dex 19, Point Blank Shot, Precise Shot, base attack bonus +11
 		</PREREQUISITES>
 		<BENEFIT>
 			Your ranged attacks ignore the AC bonus granted to targets by anything less than total cover, and the miss chance granted to targets by anything less than total concealment. Total cover and total concealment provide their normal benefits against your ranged attacks.
@@ -813,7 +813,7 @@
 			IMPROVED SHIELD BASH [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Shield Proficiency.
+			Shield Proficiency
 		</PREREQUISITE>
 		<BENEFIT>
 			When you perform a shield bash, you may still apply the shield's shield bonus to your AC.
@@ -830,7 +830,7 @@
 			IMPROVED SUNDER [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Str 13, Power Attack.
+			Str 13, Power Attack
 		</PREREQUISITES>
 		<BENEFIT>
 			When you strike at an object held or carried by an opponent (such as a weapon or shield), you do not provoke an attack of opportunity.
@@ -850,7 +850,7 @@
 			IMPROVED TRIP [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Int 13, Combat Expertise.
+			Int 13, Combat Expertise
 		</PREREQUISITES>
 		<BENEFIT>
 			You do not provoke an attack of opportunity when you attempt to trip an opponent while you are unarmed. You also gain a +4 bonus on your Strength check to trip your opponent.
@@ -873,7 +873,7 @@
 			IMPROVED TURNING [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Ability to turn or rebuke creatures.
+			Ability to turn or rebuke creatures
 		</PREREQUISITE>
 		<BENEFIT>
 			You turn or rebuke creatures as if you were one level higher than you are in the class that grants you the ability.
@@ -884,7 +884,7 @@
 			IMPROVED TWO-WEAPON FIGHTING [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 17, Two-Weapon Fighting, base attack bonus +6.
+			Dex 17, Two-Weapon Fighting, base attack bonus +6
 		</PREREQUISITES>
 		<BENEFIT>
 			In addition to the standard single extra attack you get with an off-hand weapon, you get a second attack with it, albeit at a -5 penalty.
@@ -940,7 +940,7 @@
 			LEADERSHIP [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Character level 6th.
+			Character level 6
 		</PREREQUISITE>
 		<DESCRIPTION>
 			Benefits: Having this feat enables the character to attract loyal companions and devoted followers, subordinates who assist her. See the table below for what sort of cohort and how many followers the character can recruit.
@@ -1133,7 +1133,7 @@
 			MOBILITY [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Dodge.
+			Dex 13, Dodge
 		</PREREQUISITES>
 		<BENEFIT>
 			You get a +4 dodge bonus to Armor Class against attacks of opportunity caused when you move out of or within a threatened area. A condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses.
@@ -1150,7 +1150,7 @@
 			MOUNTED ARCHERY [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Ride 1 rank, Mounted Combat.
+			Ride 1 rank, Mounted Combat
 		</PREREQUISITES>
 		<BENEFIT>
 			-2 instead of -4 if your mount is taking a double move, and -4 instead of -8 if your mount is running.
@@ -1164,7 +1164,7 @@
 			MOUNTED COMBAT [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Ride 1 rank.
+			Ride 1 rank
 		</PREREQUISITE>
 		<BENEFIT>
 			Once per round when your mount is hit in combat, you may attempt a Ride check (as a reaction) to negate the hit. The hit is negated if your Ride check result is greater than the opponent's attack roll. (Essentially, the Ride check result becomes the mount's Armor Class if it's higher than the mount's regular AC.)
@@ -1178,7 +1178,7 @@
 			NATURAL SPELL [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Wis 13, wild shape ability.
+			Wis 13, wild shape ability
 		</PREREQUISITES>
 		<BENEFIT>
 			You can complete the verbal and somatic components of spells while in a wild shape. You substitute various noises and gestures for the normal verbal and somatic components of a spell.
@@ -1227,7 +1227,7 @@
 			POWER ATTACK [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Str 13.
+			Str 13
 		</PREREQUISITE>
 		<BENEFIT>
 			On your action, before making attack rolls for a round, you may choose to subtract a number from all melee attack rolls and add the same number to all melee damage rolls. This number may not exceed your base attack bonus. The penalty on attacks and bonus on damage apply until your next turn.
@@ -1244,7 +1244,7 @@
 			PRECISE SHOT [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Point Blank Shot.
+			Point Blank Shot
 		</PREREQUISITE>
 		<BENEFIT>
 			You can shoot or throw ranged weapons at an opponent engaged in melee without taking the standard -4 penalty on your attack roll.
@@ -1258,7 +1258,7 @@
 			QUICK DRAW [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Base attack bonus +1.
+			Base attack bonus +1
 		</PREREQUISITE>
 		<BENEFIT>
 			You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon (see the Sleight of Hand skill) as a move action.
@@ -1289,7 +1289,7 @@
 			RAPID RELOAD [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Weapon Proficiency (crossbow type chosen).
+			Weapon Proficiency (crossbow type chosen)
 		</PREREQUISITE>
 		<BENEFIT>
 			The time required for you to reload your chosen type of crossbow is reduced to a free action (for a hand or light crossbow) or a move action (for a heavy crossbow). Reloading a crossbow still provokes an attack of opportunity.
@@ -1314,7 +1314,7 @@
 			RAPID SHOT [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Point Blank Shot.
+			Dex 13, Point Blank Shot
 		</PREREQUISITES>
 		<BENEFIT>
 			You can get one extra attack per round with a ranged weapon. The attack is at your highest base attack bonus, but each attack you make in that round (the extra one and the normal ones) takes a -2 penalty. You must use the full attack action to use this feat.
@@ -1331,7 +1331,7 @@
 			RIDE-BY ATTACK [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Ride 1 rank, Mounted Combat.
+			Ride 1 rank, Mounted Combat
 		</PREREQUISITES>
 		<BENEFIT>
 			When you are mounted and use the charge action, you may move and attack as if with a standard charge and then move again (continuing the straight line of the charge). Your total movement for the round can't exceed double your mounted speed. You and your mount do not provoke an attack of opportunity from the opponent that you attack.
@@ -1356,7 +1356,7 @@
 			SCRIBE SCROLL [ITEM CREATION]
 		</NAME>
 		<PREREQUISITE>
-			Caster level 1st.
+			Caster level 1
 		</PREREQUISITE>
 		<BENEFIT>
 			You can create a scroll of any spell that you know. Scribing a scroll takes one day for each 1,000 gp in its base price. The base price of a scroll is its spell level x its caster level x 25 gp. To scribe a scroll, you must spend 1/25 of this base price in XP and use up raw materials costing one-half of this base price.
@@ -1392,7 +1392,7 @@
 			SHOT ON THE RUN [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Dodge, Mobility, Point Blank Shot, base attack bonus +4.
+			Dex 13, Dodge, Mobility, Point Blank Shot, base attack bonus +4
 		</PREREQUISITES>
 		<BENEFIT>
 			When using the attack action with a ranged weapon, you can move both before and after the attack, provided that your total distance moved is not greater than your speed.
@@ -1445,7 +1445,7 @@
 			SNATCH ARROWS [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 15, Deflect Arrows, Improved Unarmed Strike.
+			Dex 15, Deflect Arrows, Improved Unarmed Strike
 		</PREREQUISITES>
 		<BENEFIT>
 			When using the Deflect Arrows feat you may catch the weapon instead of just deflecting it. Thrown weapons can immediately be thrown back at the original attacker (even though it isn't your turn) or kept for later use.
@@ -1476,7 +1476,7 @@
 			SPELL MASTERY [SPECIAL]
 		</NAME>
 		<PREREQUISITE>
-			Wizard level 1st.
+			Wizard level 1
 		</PREREQUISITE>
 		<BENEFIT>
 			Each time you take this feat, choose a number of spells equal to your Intelligence modifier that you already know. From that point on, you can prepare these spells without referring to a spellbook.
@@ -1498,7 +1498,7 @@
 			SPIRITED CHARGE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Ride 1 rank, Mounted Combat, Ride-By Attack.
+			Ride 1 rank, Mounted Combat, Ride-By Attack
 		</PREREQUISITES>
 		<BENEFIT>
 			When mounted and using the charge action, you deal double damage with a melee weapon (or triple damage with a lance).
@@ -1512,7 +1512,7 @@
 			SPRING ATTACK [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Dodge, Mobility, base attack bonus +4.
+			Dex 13, Dodge, Mobility, base attack bonus +4
 		</PREREQUISITES>
 		<BENEFIT>
 			When using the attack action with a melee weapon, you can move both before and after the attack, provided that your total distance moved is not greater than your speed. Moving in this way does not provoke an attack of opportunity from the defender you attack, though it might provoke attacks of opportunity from other creatures, if appropriate. You can't use this feat if you are wearing heavy armor.
@@ -1548,7 +1548,7 @@
 			STUNNING FIST [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Wis 13, Improved Unarmed Strike, base attack bonus +8.
+			Dex 13, Wis 13, Improved Unarmed Strike, base attack bonus +8
 		</PREREQUISITES>
 		<BENEFIT>
 			You must declare that you are using this feat before you make your attack roll (thus, a failed attack roll ruins the attempt). Stunning Fist forces a foe damaged by your unarmed attack to make a Fortitude saving throw (DC 10 + 1/2 your character level + your Wis modifier), in addition to dealing damage normally. A defender who fails this saving throw is stunned for 1 round (until just before your next action). A stunned character can't act, loses any Dexterity bonus to AC, and takes a -2 penalty to AC. You may attempt a stunning attack once per day for every four levels you have attained (but see Special), and no more than once per round. Constructs, oozes, plants, undead, incorporeal creatures, and creatures immune to critical hits cannot be stunned.
@@ -1576,7 +1576,7 @@
 			TOWER SHIELD PROFICIENCY [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Shield Proficiency.
+			Shield Proficiency
 		</PREREQUISITE>
 		<BENEFIT>
 			You can use a tower shield and suffer only the standard penalties.
@@ -1674,7 +1674,7 @@
 			TRAMPLE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Ride 1 rank, Mounted Combat.
+			Ride 1 rank, Mounted Combat
 		</PREREQUISITES>
 		<BENEFIT>
 			When you attempt to overrun an opponent while mounted, your target may not choose to avoid you. Your mount may make one hoof attack against any target you knock down, gaining the standard +4 bonus on attack rolls against prone targets.
@@ -1688,7 +1688,7 @@
 			TWO-WEAPON DEFENSE [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 15, Two-Weapon Fighting.
+			Dex 15, Two-Weapon Fighting
 		</PREREQUISITES>
 		<BENEFIT>
 			When wielding a double weapon or two weapons (not including natural weapons or unarmed strikes), you gain a +1 shield bonus to your AC.
@@ -1705,7 +1705,7 @@
 			TWO-WEAPON FIGHTING [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Dex 15.
+			Dex 15
 		</PREREQUISITE>
 		<BENEFIT>
 			Your penalties on attack rolls for fighting with two weapons are reduced. The penalty for your primary hand lessens by 2 and the one for your off hand lessens by 6.
@@ -1728,7 +1728,7 @@
 			WEAPON FINESSE [GENERAL]
 		</NAME>
 		<PREREQUISITE>
-			Base attack bonus +1.
+			Base attack bonus +1
 		</PREREQUISITE>
 		<BENEFIT>
 			With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.
@@ -1745,7 +1745,7 @@
 			WEAPON FOCUS [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Proficiency with selected weapon, base attack bonus +1.
+			Proficiency with selected weapon, base attack bonus +1
 		</PREREQUISITES>
 		<BENEFIT>
 			You gain a +1 bonus on all attack rolls you make using the selected weapon.
@@ -1765,7 +1765,7 @@
 			WEAPON SPECIALIZATION [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Proficiency with selected weapon, Weapon Focus with selected weapon, fighter level 4th.
+			Proficiency with selected weapon, Weapon Focus with selected weapon, Fighter level 4
 		</PREREQUISITES>
 		<BENEFIT>
 			You gain a +2 bonus on all damage rolls you make using the selected weapon.
@@ -1785,7 +1785,7 @@
 			WHIRLWIND ATTACK [GENERAL]
 		</NAME>
 		<PREREQUISITES>
-			Dex 13, Int 13, Combat Expertise, Dodge, Mobility, Spring Attack, base attack bonus +4.
+			Dex 13, Int 13, Combat Expertise, Dodge, Mobility, Spring Attack, base attack bonus +4
 		</PREREQUISITES>
 		<BENEFIT>
 			When you use the full attack action, you can give up your regular attacks and instead make one melee attack at your full base attack bonus against each opponent within reach.

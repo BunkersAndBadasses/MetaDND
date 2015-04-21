@@ -37,6 +37,9 @@
 		<SKILLPOINTS>
 			4 + Int modifier.
 		</SKILLPOINTS>
+		<BONUSFEATS>
+			Armor Proficiency (Light), Armor Proficiency (Medium), Simple Weapon Proficiency, Martial Weapon Proficiency, Shield Proficiency
+		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the barbarian.
 			Weapon and Armor Proficiency: A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).
@@ -142,6 +145,7 @@
 			6 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Simple Weapon Proficiency, Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the bard.
@@ -258,6 +262,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency, Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			Weapon and Armor Proficiency: Clerics are proficient with all simple weapons, with all types of armor (light, medium, and heavy), and with shields (except tower shields).
@@ -354,6 +359,7 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Armor Proficiency (Medium), Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the druid.
@@ -566,6 +572,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency, Martial Weapon Proficiency, Shield Proficiency, Tower Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the fighter.
@@ -626,6 +633,7 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Improved Unarmed Strike
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the monk.
@@ -762,6 +770,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency, Martial Weapon Proficiency, Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the paladin.
@@ -915,7 +924,7 @@
 			6 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-
+			Track, Armor Proficiency (Light), Simple Weapon Proficiency, Martial Weapon Proficiency, Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the ranger.
@@ -1041,6 +1050,7 @@
 			8 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Armor Proficiency (Light), Simple Weapon Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the rogue.
@@ -1165,6 +1175,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Simple Weapon Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the sorcerer.
@@ -1277,6 +1288,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
+			Scribe Scroll
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the wizard.

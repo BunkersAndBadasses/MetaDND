@@ -24,8 +24,6 @@ import entity.RaceEntity;
  * 
  * launch wizards (add custom)
  * check feat prerequisites
- * fix language input
- * change description page to row layout
  * add add 5, add 10 buttons to items page
  * add remove all button to items page
  * weight counter on items page
@@ -36,14 +34,15 @@ import entity.RaceEntity;
  * barbarian illiteracy
  * add deity favored weapon
  * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
- * make it so only one instance of char wiz can be open at one time
+ * spells!
+ * 
+ * FINISH BEFORE WEEKEND
  */
 
 /*
- * iteration 2: 
+ * iteration 2 -  weekend!: 
  * 
- * fix file saving - char list on mine is by creation date, ryans is alphabetical
- * second class
+ * change skill list - numbers in line, headers
  * searching
  * back button
  * starting at level > 1

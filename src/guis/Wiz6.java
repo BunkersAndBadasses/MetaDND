@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import core.character;
 import core.Main;
+import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
 
@@ -47,7 +48,8 @@ public class Wiz6 {
 	private Composite nextPage;
 	private int wizPagesSize;
 	private int numFeats;
-	private String charClass;
+	private int numBonusFeats = 0;
+	private ClassEntity charClass;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<FeatEntity> charFeats = new ArrayList<FeatEntity>();
 	List charFeatsList;
@@ -81,7 +83,7 @@ public class Wiz6 {
 		}
 		
 		createPageContent();
-		charClass = character.getCharClass().getName().toLowerCase();
+		charClass = character.getCharClass();
 	}
 
 	private void createPageContent() {
@@ -165,31 +167,37 @@ public class Wiz6 {
 				boolean error = false;
 				// check if the user can add another feat
 				if (numFeats == 0)
-					error = true;
+					return;
 				int index = featsList.getSelectionIndex();
 				// check if a feat was selected
 				if (index == -1)
-					error = true;
+					return;
 				// check if that feat was already added
-				//TODO skill focus, spell focus, can be added multiple times
-				// spell mastery, toughness
-				else {
-					for(int i = 0; i < charFeats.size(); i++) {
-						if (charFeats.get(i).getName().equals(featsList.getItem(index)))
-							error = true;
+				// TODO check prerequisites
+				FeatEntity feat = (FeatEntity) Main.gameState.feats.get(featsList.getItem(index));
+				for(int i = 0; i < charFeats.size(); i++) {
+					if (charFeats.get(i).getName().equals(featsList.getItem(index))) {
+						// check if that feat can be added multiple times TODO
+						//TODO skill focus, spell focus, can be added multiple times
+						// spell mastery, toughness
+						// otherwise, error
+						// TODO overwrite error message
+						error = true;
 					}
 				}
-				// check prerequisites TODO
-//				if () {
-//					errorMsg.setText("You cannot remove a class bonus feat!");
-//					errorMsg.setVisible(true);
-//					error = true;
-//				}
 				// if something went wrong, do not perform the add
 				if (error)
 					return;
+				//TODO pop-up for extra info (i.e. spell focus = school, weapon focus = weapon)
+				if (!checkPrerequisites(feat, character)) {
+					// TODO show error message
+					return;
+				}
 
-				// otherwise, add the feat the 
+
+				// otherwise, add the feat
+				// check if feat applies to a specific weapon/spell etc TODO
+				// pop-up if it does
 				charFeatsList.add(featsList.getItem(index));
 				charFeats.add(feats.get(index));
 				numFeats--;
@@ -211,21 +219,20 @@ public class Wiz6 {
 		removeButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				errorMsg.setVisible(false);
+				// check if there are any feats to remove
 				if (charFeats.isEmpty())
 					return;
 				int index = charFeatsList.getSelectionIndex();
+				// check if a feat is selected
 				if (index == -1)
 					return;
-				// TODO fix this - so it cannot remove ALL class bonus feats
-				if ((charClass.equalsIgnoreCase("Fighter")
-						| charClass.equalsIgnoreCase("Monk") 
-						| charClass.equalsIgnoreCase("Ranger")
-						| charClass.equalsIgnoreCase("Wizard")) 
-						&& charFeatsList.getSelectionIndex() == 0) {
+				// user cannot remove a bonus feat
+				if (index < numBonusFeats) {
 					errorMsg.setText("You cannot remove a class bonus feat!");
 					errorMsg.setVisible(true);
 					return;
 				}
+				// if nothing goes wrong, remove the feat
 				charFeatsList.remove(index);
 				charFeats.remove(index);
 				numFeats++;
@@ -292,32 +299,27 @@ public class Wiz6 {
 		 * wizard: scribe scroll
 		 */
 		
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();		
-		if (!(charClass.equals("wizard") 
-				| charClass.equals("sorcerer") 
-				| charClass.equals("monk"))){
-			charFeats.add((FeatEntity)Main.gameState.feats.get("Armor Proficiency (Light)"));
-			charFeatsList.add(charFeats.get(charFeats.size() -1).getName());
+		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
+		
+		// add automatic feats (like armor/weapon proficiency)
+		String[] autoFeats = charClass.getBonusFeats();
+		for (int i = 0; i < autoFeats.length; i ++) {
+			charFeats.add(0, (FeatEntity)Main.gameState.feats.get(autoFeats[i]));
+			charFeatsList.add(charFeats.get(0).getName());
 		}
-		//TODO here: adding all bonus feats(armor proficiency)
-		if (charClass.equals("fighter")){
-			//tower shield proficiency
+		numBonusFeats = autoFeats.length;
+		
+		// compile list of bonus feats (from which the user can choose one)
+		if (charClass.getName().toLowerCase().equals("fighter")){
+			numBonusFeats++;
 			for (int i = 0; i < feats.size(); i++){
 				if (feats.get(i).getFighterBonus() != null)
 					bonusFeats.add(feats.get(i));
 			}
-		} else if (charClass.equals("monk")){
-			// Improved unarmed strike?
+		} else if (charClass.getName().toLowerCase().equals("monk")){
+			numBonusFeats++;
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
-		} else if (charClass.equals("ranger")){
-			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Track"));
-			charFeatsList.add(charFeats.get(0).getName());
-			return;
-		} else if (charClass.equals("wizard")){
-			charFeats.add(0, (FeatEntity)Main.gameState.feats.get("Scribe Scroll"));
-			charFeatsList.add(charFeats.get(0).getName());
-			return;
 		} else
 			return;
 		
@@ -377,7 +379,7 @@ public class Wiz6 {
 
 		// open shell
 		bonusFeatShell.pack();
-		cw.center(bonusFeatShell);
+		CharacterWizard.center(bonusFeatShell);
 		bonusFeatShell.open();
 		
 		// check if disposed
@@ -386,6 +388,119 @@ public class Wiz6 {
 				display.sleep();
 			}
 		}
+	}
+	
+	public boolean checkPrerequisites(FeatEntity feat, character character) {
+		/*
+		 * prerequisite possibilities: 
+		 * 
+		 *           another feat
+		 * 		Spell Focus (Conjuration)
+		 *        Caster level x
+		 * 		Str xx
+		 * 		Int xx
+		 * 		Dex xx
+		 * 		Wis xx
+		 * 		base attack bonus +x
+		 * 		(plus Str 13 for bastard sword or dwarven waraxe)
+		 * 		Ability to turn or rebuke creatures
+		 * 		Proficiency with selected weapon
+		 * 		Weapon Focus with selected weapon
+		 * 		Greater Weapon Focus with selected weapon
+		 * 		Weapon Specialization with selected weapon
+		 * 		Fighter level x
+		 * 		Ability to acquire a new familiar
+		 * 		compatible alignment
+		 * 		sufficiently high level
+		 * 		Character level x
+		 * 		Ride 1 rank
+		 * 		wild shape ability
+		 * 		Weapon Proficiency (crossbow type chosen)
+		 * 		Wizard level x
+		 */
+		String[] reqs = feat.getPrerequisite().split(", ");
+		if (feat.getName().equalsIgnoreCase("Improved Familiar")) {
+			// TODO
+		}
+		for (int i = 0; i < reqs.length; i++) {
+			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str")) {
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex")) {
+				
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con")) {
+				
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int")) {
+				
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis")) {
+				
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha")) {
+				
+			} else if (reqs[i].contains("base attack bonus")) {
+				 if (reqs[i].contains("plus Str 13")) {
+					 // TODO here bastard sword/dwarven waraxe
+				 }
+			} else if (reqs[i].contains("Barbarian level")) {
+				
+			} else if (reqs[i].contains("Bard level")) {
+				
+			} else if (reqs[i].contains("Cleric level")) {
+				
+			} else if (reqs[i].contains("Druid level")) {
+				
+			} else if (reqs[i].contains("Fighter level")) {
+				
+			} else if (reqs[i].contains("Monk level")) {
+				
+			} else if (reqs[i].contains("Paladin level")) {
+				
+			} else if (reqs[i].contains("Ranger level")) {
+				
+			} else if (reqs[i].contains("Sorcerer level")) {
+				
+			} else if (reqs[i].contains("Wizard level")) {
+				
+			} else if (reqs[i].contains("Caster level")) {
+				
+			} else if (reqs[i].contains("Character level")) {
+				
+			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
+				
+			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
+
+			} else if (reqs[i].contains("with selected weapon")) {
+				// TODO fix this after addding charFeats
+				if (reqs[i].contains("Weapon Focus")) {
+
+				} else if (reqs[i].contains("Greater Weapon Focus")) {
+
+				} else if (reqs[i].contains("Weapon Specialization")) {
+				
+				} 
+			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
+				
+			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
+				
+			} else if (reqs[i].equalsIgnoreCase("Spell Focus (Conjuration)")) {
+				
+			} else {
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(reqs[i]);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(i).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
+				// otherwise, assume it's fine
+			}
+		}
+		return true;
 	}
 
 	private void createNextPage() {
