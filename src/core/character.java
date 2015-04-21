@@ -1,5 +1,6 @@
 package core;
 import java.util.ArrayList;
+
 import entity.*;
 
 public class character {	
@@ -65,6 +66,7 @@ public class character {
 	private String familiar = null;
 	private String wizardSpecialtySchool = null;
 	private String[] wizardProhibitedSchools = null;
+    private String filename;
 	
 	
 	//////////////// METHODS ///////////////////
@@ -437,4 +439,12 @@ public class character {
 		s += "Notes: " + notes + "\n";
 		return s; 
 	}
+
+    public String getFilename() {
+        return filename;
+    }
+    
+    public void setFilename(String fn) {
+       filename = fn; 
+    }
 }
