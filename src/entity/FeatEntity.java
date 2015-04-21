@@ -9,7 +9,7 @@ import core.Main;
 
 public class FeatEntity extends DNDEntity{
 
-	String prerequisite;
+	String[] prerequisites;
 	String special;
 	String normal;
 	String benefit;
@@ -32,8 +32,8 @@ public class FeatEntity extends DNDEntity{
 				temp = WordUtils.capitalize(temp, '(', '[');
 		    	this.name = temp;
 		    	break;
-			case "PREREQUISITE":
-				this.prerequisite = value;
+			case "PREREQUISITES":
+				this.prerequisites = value.split(", ");
 				break;
 			case "NORMAL":
 				this.normal = value;
@@ -117,12 +117,12 @@ public class FeatEntity extends DNDEntity{
 		
 	}
 
-	public String getPrerequisite() {
-		return prerequisite;
+	public String[] getPrerequisites() {
+		return prerequisites;
 	}
 
-	public void setPrerequisite(String prerequisite) {
-		this.prerequisite = prerequisite;
+	public void setPrerequisites(String[] prerequisites) {
+		this.prerequisites = prerequisites;
 	}
 
 	public String getSpecial() {

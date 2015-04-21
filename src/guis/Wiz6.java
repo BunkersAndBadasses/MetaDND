@@ -99,7 +99,7 @@ public class Wiz6 {
 
 		// number of remaining feats
 		numFeats = 1;
-		if (cw.getCharacter().getCharRace().equals("Human"))
+		if (cw.getCharacter().getCharRace().getName().equals("Human"))
 			numFeats += 1;
 		
 		// number of remaining feats label
@@ -166,14 +166,21 @@ public class Wiz6 {
 				errorMsg.setVisible(false);
 				boolean error = false;
 				// check if the user can add another feat
-				if (numFeats == 0)
+				if (numFeats == 0) {
+					errorMsg.setText("You cannot add any more feats");
+					errorMsg.pack();
+					errorMsg.setVisible(true);
 					return;
+				}
 				int index = featsList.getSelectionIndex();
 				// check if a feat was selected
-				if (index == -1)
+				if (index == -1) {
+					errorMsg.setText("You must select a feat to add");
+					errorMsg.pack();
+					errorMsg.setVisible(true);
 					return;
+				}
 				// check if that feat was already added
-				// TODO check prerequisites
 				FeatEntity feat = (FeatEntity) Main.gameState.feats.get(featsList.getItem(index));
 				for(int i = 0; i < charFeats.size(); i++) {
 					if (charFeats.get(i).getName().equals(featsList.getItem(index))) {
@@ -181,7 +188,9 @@ public class Wiz6 {
 						//TODO skill focus, spell focus, can be added multiple times
 						// spell mastery, toughness
 						// otherwise, error
-						// TODO overwrite error message
+						errorMsg.setText("Feat already added");
+						errorMsg.pack();
+						errorMsg.setVisible(true);
 						error = true;
 					}
 				}
@@ -190,7 +199,9 @@ public class Wiz6 {
 					return;
 				//TODO pop-up for extra info (i.e. spell focus = school, weapon focus = weapon)
 				if (!checkPrerequisites(feat, character)) {
-					// TODO show error message
+					errorMsg.setText("Feat requirements not met");
+					errorMsg.pack();
+					errorMsg.setVisible(true);
 					return;
 				}
 
@@ -220,15 +231,24 @@ public class Wiz6 {
 			public void handleEvent(Event e) {
 				errorMsg.setVisible(false);
 				// check if there are any feats to remove
-				if (charFeats.isEmpty())
+				if (charFeats.isEmpty()) {
+					errorMsg.setText("There are no feats to remove");
+					errorMsg.pack();
+					errorMsg.setVisible(true);
 					return;
+				}
 				int index = charFeatsList.getSelectionIndex();
 				// check if a feat is selected
-				if (index == -1)
+				if (index == -1){
+					errorMsg.setText("You must select a feat to remove");
+					errorMsg.pack();
+					errorMsg.setVisible(true);
 					return;
+				}
 				// user cannot remove a bonus feat
 				if (index < numBonusFeats) {
-					errorMsg.setText("You cannot remove a class bonus feat!");
+					errorMsg.setText("You cannot remove a class bonus feat");
+					errorMsg.pack();
 					errorMsg.setVisible(true);
 					return;
 				}
@@ -418,7 +438,9 @@ public class Wiz6 {
 		 * 		Weapon Proficiency (crossbow type chosen)
 		 * 		Wizard level x
 		 */
-		String[] reqs = feat.getPrerequisite().split(", ");
+		if (feat.getPrerequisites() == null) 
+			return true;
+		String[] reqs = feat.getPrerequisites();
 		if (feat.getName().equalsIgnoreCase("Improved Familiar")) {
 			// TODO
 		}
@@ -489,7 +511,7 @@ public class Wiz6 {
 					// check if user has already added the required feat
 					boolean found = false;
 					for (int j = 0; j < charFeats.size() && !found; j++) {
-						if (charFeats.get(i).getName().equals(reqFeat.getName())) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
 							// the required feat has already been added
 							found = true;
 						}
