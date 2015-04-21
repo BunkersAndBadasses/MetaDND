@@ -138,7 +138,7 @@ public class GameState {
 			System.out.println("Error joining threads!");
 			return false;
 		}
-		System.out.println("All threads joined. Ending search!");
+		//System.out.println("All threads joined. Ending search!");
 		return true;
 	}
 
