@@ -554,13 +554,15 @@ public class HomeWindow {
 			}
 		});
 
-		Button saveFinal = new Button(deleteChar, SWT.PUSH);
-		saveFinal.setBounds(160,90,80,30);
-		saveFinal.setText("Delete");
-		saveFinal.addListener(SWT.Selection, new Listener() {
+		Button deleteFinal = new Button(deleteChar, SWT.PUSH);
+		deleteFinal.setBounds(160,90,80,30);
+		deleteFinal.setText("Delete");
+		deleteFinal.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 
-				File charDirectory = new File(System.getProperty("user.dir") + "//" + "User Data" + "//Character" + "//" + name);
+				String charName = name.replaceAll("[^A-Za-z0-9]", "");
+				File charDirectory = new File(System.getProperty("user.dir")
+						+ "//" + "User Data" + "//Character" + "//" + charName);
 				try {
 					FileUtils.deleteDirectory(charDirectory);
 					loadCharacters();
