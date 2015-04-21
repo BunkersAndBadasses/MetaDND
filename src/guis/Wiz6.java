@@ -11,6 +11,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
@@ -109,6 +111,12 @@ public class Wiz6 {
 		numFeatsLabel.setText(Integer.toString(numFeats));
 		numFeatsLabel.pack();
 		
+		// search label
+		Label searchLabel = new Label(wiz6, SWT.NONE);
+		searchLabel.setLocation(240, 60);
+		searchLabel.setText("Double click on a feat to see details");
+		searchLabel.pack();
+		
 		// grid layout for both available and selected feat lists
 		FillLayout featLayout = new FillLayout();
 		
@@ -140,6 +148,18 @@ public class Wiz6 {
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 		}
+		featsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = featsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String featName = featsList.getItem(featsList.getSelectionIndex());
+				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		featsList.pack();
 		featScreenScroll.setMinHeight(featsList.getBounds().height);
 	    	
@@ -147,6 +167,18 @@ public class Wiz6 {
 		charFeatsList = new List(charFeatScreen, SWT.NONE);
 		for (int i = 0; i < charFeats.size(); i++)
 			charFeatsList.add(charFeats.get(i).getName());
+		charFeatsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = charFeatsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String featName = charFeatsList.getItem(index);
+				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		charFeatsList.pack();
 		
 		// error message
