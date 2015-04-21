@@ -8,7 +8,7 @@ double click vs load for character load
 loading character closes home window, unable to return
 changed languages from string to string[], character sheet crashes, save crashes
 add clear button to die window
-die window bug (load/save directory)? 
+//DONE die window bug (load/save directory)? 
 manual character entering, character editing?
 random character saving - cannot load? exception when loading items. null checking?
 //DONE cannot delete characters with whitespace in names - need checking
