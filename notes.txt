@@ -10,9 +10,11 @@ add clear button to die window
 //DONEdie window bug (load/save directory)? 
 
 upload picture for character?
-double click vs load for character load
+//DONE double click vs load for character load
 changed languages from string to string[], character sheet crashes, save crashes? 
 loading character closes home window, unable to return
+^^ change to a composite, and overlay the charList
+
 random character saving - cannot load? exception when loading items. null checking?
 //DONE cannot delete characters with whitespace in names - need checking
 //DONE cannot delete characters with illegal characters in name - need checking
