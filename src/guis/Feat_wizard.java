@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Text;
 
 import core.Main;
 import entity.AbilityEntity;
+import entity.FeatEntity;
 
 /**
  * The class that handle Feat wizard interface, input and export.
@@ -36,6 +37,7 @@ public class Feat_wizard
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private static int wizpagenum;
+	public static FeatEntity newfeat;
 	static String featname;
 	static String featprereq;
 	static String featnormal;
@@ -140,19 +142,23 @@ public class Feat_wizard
 		specialInput.pack();
 		
 		//Benefit
-		Text benifitInput = new Text(shell, SWT.WRAP | SWT.BORDER | SWT.SEARCH);
-		benifitInput.setMessage("Benifit");
+		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER | SWT.SEARCH);
+		benefitInput.setMessage("Benefit");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 5;
-		benifitInput.setLayoutData(gd);
-		benifitInput.pack();
+		benefitInput.setLayoutData(gd);
+		benefitInput.pack();
 	    //Fighter bonus
-		Text FighterInput = new Text(shell, SWT.BORDER);
-		FighterInput.setMessage("FighterBonus");
+		Label FighterLabel = new Label(shell, SWT.NONE);
+		FighterLabel.setText("Fighter Bonus");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 1;
-		gd.verticalSpan = 5;
+		FighterLabel.setLayoutData(gd);
+		FighterLabel.pack();
+		Button FighterInput = new Button(shell, SWT.CHECK);
+		gd = new GridData(GridData.CENTER, GridData.FILL, true, false);
+		gd.horizontalSpan = 1;
 		FighterInput.setLayoutData(gd);
 		FighterInput.pack();
 		//Description
@@ -163,8 +169,6 @@ public class Feat_wizard
 		gd.verticalSpan = 15;
 		descriptionInput.setLayoutData(gd);
 		descriptionInput.pack();
-		shell.layout();
-		shell.pack();
 		Label blank = new Label(shell, SWT.NONE);
 		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 4;
@@ -190,26 +194,47 @@ public class Feat_wizard
 				}
 				if(normalInput.getText().equals(""))
 				{
-					//TODO
+					normalInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					checkfault = true;
 				}
 				if(specialInput.getText().equals(""))
 				{
-					
+					specialInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					checkfault = true;
 				}
-				if(benifitInput.getText().equals(""))
+				if(benefitInput.getText().equals(""))
 				{
-					
+					benefitInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					checkfault = true;
 				}
-				if(FighterInput.getText().equals(""))
+				if(checkfault)
 				{
-					
+					return;
 				}
+				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
+				if(FighterInput.getSelection())
+				{
+					featfighter = "Yes";
+					a.put("FIGHTERBONUS", featfighter);
+				}
+				featname = nameInput.getText();
+				a.put("NAME", nameInput.getText());
+				a.put("PREREQUISITES", prereqInput.getText());
+				a.put("NORMAL", normalInput.getText());
+				a.put("SPECIAL", specialInput.getText());
+				a.put("BENEFIT", benefitInput.getText());
+				a.put("DESCRIPTION", descriptionInput.getText());
+				newfeat = new FeatEntity(a);
+				Main.gameState.abilities.put(featname, newfeat);
+				Main.gameState.customContent.put(featname, newfeat);
 			}
 		}
 		);
 		gd = new GridData(GridData.FILL, GridData.CENTER, false, false);
 		gd.horizontalSpan = 1;
 		save.setLayoutData(gd);
+		shell.layout();
+		shell.pack();
 //		//wizard
 //				final Composite wizPanel = new Composite(shell, SWT.BORDER);
 //				wizPanel.setBounds(0,0,WIDTH, HEIGHT);
