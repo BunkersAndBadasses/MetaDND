@@ -23,11 +23,6 @@ import entity.RaceEntity;
  * TODO: 
  * 
  * launch wizards (add custom)
- * check feat prerequisites
- * add add 5, add 10 buttons to items page
- * add remove all button to items page
- * weight counter on items page
- * add cap for items
  * add char list update to random character generation
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
@@ -37,9 +32,7 @@ import entity.RaceEntity;
  * spells!
  * 
  * FINISH BEFORE WEEKEND
- */
-
-/*
+ * 
  * iteration 2 -  weekend!: 
  * 
  * change skill list - numbers in line, headers
