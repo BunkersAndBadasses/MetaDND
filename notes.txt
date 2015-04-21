@@ -1,16 +1,21 @@
 fix class special abilities(2d array per level)
 ability entity?
+
 will update saving feats to character as CharFeats (instead of FeatEntitys)
+
 make it so only one instance of char wiz can be open at one time
-^^ ditto for other wizards and die roller
+^^ ditto for other wizards
+
+add clear button to die window
+//DONEdie window bug (load/save directory)? 
+
 upload picture for character?
 double click vs load for character load
+changed languages from string to string[], character sheet crashes, save crashes? 
 loading character closes home window, unable to return
-changed languages from string to string[], character sheet crashes, save crashes
-add clear button to die window
-//DONE die window bug (load/save directory)? 
-manual character entering, character editing?
 random character saving - cannot load? exception when loading items. null checking?
 //DONE cannot delete characters with whitespace in names - need checking
 //DONE cannot delete characters with illegal characters in name - need checking
 connect character to fav die saving
+
+manual character entering, character editing?
