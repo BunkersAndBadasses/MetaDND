@@ -425,45 +425,45 @@ public class Wiz6 {
 		for (int i = 0; i < reqs.length; i++) {
 			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str")) {
 			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex")) {
-				
+
 			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con")) {
-				
+
 			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int")) {
-				
+
 			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis")) {
-				
+
 			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha")) {
-				
+
 			} else if (reqs[i].contains("base attack bonus")) {
-				 if (reqs[i].contains("plus Str 13")) {
-					 // TODO here bastard sword/dwarven waraxe
-				 }
+				if (reqs[i].contains("plus Str 13")) {
+					// TODO here bastard sword/dwarven waraxe
+				}
 			} else if (reqs[i].contains("Barbarian level")) {
-				
+
 			} else if (reqs[i].contains("Bard level")) {
-				
+
 			} else if (reqs[i].contains("Cleric level")) {
-				
+
 			} else if (reqs[i].contains("Druid level")) {
-				
+
 			} else if (reqs[i].contains("Fighter level")) {
-				
+
 			} else if (reqs[i].contains("Monk level")) {
-				
+
 			} else if (reqs[i].contains("Paladin level")) {
-				
+
 			} else if (reqs[i].contains("Ranger level")) {
-				
+
 			} else if (reqs[i].contains("Sorcerer level")) {
-				
+
 			} else if (reqs[i].contains("Wizard level")) {
-				
+
 			} else if (reqs[i].contains("Caster level")) {
-				
+
 			} else if (reqs[i].contains("Character level")) {
-				
+
 			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
-				
+
 			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
 
 			} else if (reqs[i].contains("with selected weapon")) {
@@ -473,14 +473,14 @@ public class Wiz6 {
 				} else if (reqs[i].contains("Greater Weapon Focus")) {
 
 				} else if (reqs[i].contains("Weapon Specialization")) {
-				
+
 				} 
 			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
-				
+
 			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
-				
+
 			} else if (reqs[i].equalsIgnoreCase("Spell Focus (Conjuration)")) {
-				
+
 			} else {
 				// assume the prerequisite is another feat
 				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(reqs[i]);
