@@ -20,6 +20,7 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> feats;
 	public LinkedHashMap<String, DNDEntity> skills;
 	public LinkedHashMap<String, DNDEntity> items;
+	public LinkedHashMap<String, DNDEntity> abilities;
 	public LinkedHashMap<String, DNDEntity> weapons;
 	public LinkedHashMap<String, DNDEntity> armor;
 	public LinkedHashMap<String, DNDEntity> monsters;
@@ -75,11 +76,13 @@ public class GameState {
 		races = new LinkedHashMap<String, DNDEntity>();
 		classes = new LinkedHashMap<String, DNDEntity>();
 		items = new LinkedHashMap<String, DNDEntity>();
+		abilities = new LinkedHashMap<String, DNDEntity>();
 		weapons = new LinkedHashMap<String, DNDEntity>();
 		armor = new LinkedHashMap<String, DNDEntity>();
 		monsters = new LinkedHashMap<String, DNDEntity>();
 		traps = new LinkedHashMap<String, DNDEntity>();
 		deities = new LinkedHashMap<String, DNDEntity>();
+		customContent = new LinkedHashMap<String, DNDEntity>();
 		searchResultsLock = new Semaphore(1);
 		searchResults = new TreeMap<String, DNDEntity>();
 		languages = new TreeMap<String, String>();

@@ -530,13 +530,18 @@ public class CharacterWizard {
 		
 		cancelButton.pack();
 		Text namebox = new Text(c, SWT.NONE);
-		namebox.setText("Enter Name HERE!");
+		namebox.setMessage("Enter Name HERE!");
 		namebox.pack();
 		Button saveButton = new Button(c, SWT.PUSH);
 		saveButton.setText("Save");
 		saveButton.addListener(SWT.Selection, new Listener(){
 			public void handleEvent(Event event)
 			{
+				if(namebox.getText().equals(""))
+				{
+					namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					return;
+				}
 				character.setName(namebox.getText());
 				Wiz10.saveCharacter(character);
 				newshell.close();
