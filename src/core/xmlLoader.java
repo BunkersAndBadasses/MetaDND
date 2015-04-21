@@ -33,7 +33,7 @@ public class xmlLoader implements Runnable{
 	
 	xmlLoader(String name){
 		threadName = name;
-		System.out.println("Creating " +  threadName );
+		//System.out.println("Creating " +  threadName );
 	}
 
 	public void loadFiles() throws Exception {
@@ -51,9 +51,9 @@ public class xmlLoader implements Runnable{
 				}
 			}
 			else
-				System.out.println(filePath.getFileName() + " is not an XML file");
+				;//System.out.println(filePath.getFileName() + " is not an XML file");
 		});
-		xmls.forEach(File -> System.out.println(File.getName()));
+		//xmls.forEach(File -> System.out.println(File.getName()));
 		for (int x = 0; x < xmls.size(); x++) {
 			Document document = builder.parse(xmls.get(x));
 			NodeList nodeList = document.getDocumentElement().getChildNodes();
@@ -72,48 +72,48 @@ public class xmlLoader implements Runnable{
 					}
 				}
 				if (node.getNodeName() == "SPELL") {
-					SpellEntity testSpell = new SpellEntity(entity);
-					Main.gameState.spells.put(testSpell.getName(), testSpell);
+					SpellEntity readSpell = new SpellEntity(entity);
+					Main.gameState.spells.put(readSpell.getName(), readSpell);
 				}
 				else if (node.getNodeName() == "FEAT") {
-					FeatEntity testFeat = new FeatEntity(entity);
-					Main.gameState.feats.put(testFeat.getName(), testFeat);
+					FeatEntity readFeat = new FeatEntity(entity);
+					Main.gameState.feats.put(readFeat.getName(), readFeat);
 				}
 				else if(node.getNodeName() == "SKILL"){
-					SkillEntity testSkill = new SkillEntity(entity);
-					Main.gameState.skills.put(testSkill.getName(), testSkill);
+					SkillEntity readSkill = new SkillEntity(entity);
+					Main.gameState.skills.put(readSkill.getName(), readSkill);
 				}
 				else if(node.getNodeName() == "ITEM"){
-					ItemEntity testItem = new ItemEntity(entity);
-					Main.gameState.items.put(testItem.getName(), testItem);
+					ItemEntity readItem = new ItemEntity(entity);
+					Main.gameState.items.put(readItem.getName(), readItem);
 				}
 				else if(node.getNodeName() == "RACE"){
-					RaceEntity testRace = new RaceEntity(entity);
-					Main.gameState.races.put(testRace.getName(), testRace);
+					RaceEntity readRace = new RaceEntity(entity);
+					Main.gameState.races.put(readRace.getName(), readRace);
 				}
 				else if(node.getNodeName() == "CLASS"){
-					ClassEntity testClass = new ClassEntity(entity);
-					Main.gameState.classes.put(testClass.getName(), testClass);
+					ClassEntity readClass = new ClassEntity(entity);
+					Main.gameState.classes.put(readClass.getName(), readClass);
 				}
 				else if(node.getNodeName() == "DEITY"){
-					DeityEntity testDeity = new DeityEntity(entity);
-					Main.gameState.deities.put(testDeity.getName(), testDeity);
+					DeityEntity readDeity = new DeityEntity(entity);
+					Main.gameState.deities.put(readDeity.getName(), readDeity);
 				}
 				else if(node.getNodeName() == "TRAP"){
-					TrapEntity testTrap = new TrapEntity(entity);
-					Main.gameState.traps.put(testTrap.getName(), testTrap);
+					TrapEntity readTrap = new TrapEntity(entity);
+					Main.gameState.traps.put(readTrap.getName(), readTrap);
 				}
 				else if(node.getNodeName() == "MONSTER"){
-					MonsterEntity testMonster = new MonsterEntity(entity);
-					Main.gameState.monsters.put(testMonster.getName(), testMonster);
+					MonsterEntity readMonster = new MonsterEntity(entity);
+					Main.gameState.monsters.put(readMonster.getName(), readMonster);
 				}
 				else if(node.getNodeName() == "WEAPON"){
-					WeaponEntity testWeapon = new WeaponEntity(entity);
-					Main.gameState.weapons.put(testWeapon.getName(), testWeapon);
+					WeaponEntity readWeapon = new WeaponEntity(entity);
+					Main.gameState.weapons.put(readWeapon.getName(), readWeapon);
 				}
 				else if(node.getNodeName() == "ARMOR"){
-					WeaponEntity testArmor = new WeaponEntity(entity);
-					Main.gameState.armor.put(testArmor.getName(), testArmor);
+					WeaponEntity readArmor = new WeaponEntity(entity);
+					Main.gameState.armor.put(readArmor.getName(), readArmor);
 				}
 			}
 		}
@@ -138,12 +138,12 @@ public class xmlLoader implements Runnable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Ending " + threadName );
+		//System.out.println("Ending " + threadName );
 	}
 
 	public void start()
 	{
-		System.out.println("Starting " + threadName );
+		//System.out.println("Starting " + threadName );
 		if (xmlLoadThread == null)
 		{
 			xmlLoadThread = new Thread (this, threadName);

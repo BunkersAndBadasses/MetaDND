@@ -69,7 +69,7 @@ public class GameState {
 	
 	
 	public GameState(){
-		xmlLoader xmls = new xmlLoader("xmlTestThread");
+		xmlLoader xmls = new xmlLoader("xmlLoadThread");
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
 		skills = new LinkedHashMap<String, DNDEntity>();

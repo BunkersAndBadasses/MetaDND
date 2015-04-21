@@ -3,6 +3,8 @@ package entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import core.Main;
+
 public class ItemEntity extends DNDEntity{
 
 	double weight;
@@ -37,7 +39,23 @@ public class ItemEntity extends DNDEntity{
 
 	@Override
 	public void search(String searchString, Thread runningThread) throws InterruptedException {
-		// TODO Auto-generated method stub
+		if(this.name != null && this.name.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			//System.out.println("Lock released.");
+			return;
+		}
+		
+		if(this.description != null && this.description.toLowerCase().contains(searchString)){
+			Main.gameState.searchResultsLock.acquire();
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResultsLock.release();
+			//System.out.println("Lock released.");
+			return;
+		}
 		
 	}
 

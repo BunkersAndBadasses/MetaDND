@@ -14,11 +14,11 @@ public class SearchThread implements Runnable{
 	
 	SearchThread(String name){
 		threadName = name;
-		System.out.println("Creating " +  threadName );
+		//System.out.println("Creating " +  threadName );
 	}
 	
 	public void start(LinkedHashMap<String, DNDEntity> input, String searchString) {
-			System.out.println("Starting " + threadName );
+			//System.out.println("Starting " + threadName );
 			if (SearchThread == null)
 			{
 				this.input = input;
@@ -37,7 +37,7 @@ public class SearchThread implements Runnable{
 				System.out.println(this.threadName + " failed!");
 			}			
 		}
-		System.out.println("Ending " + threadName );
+		//System.out.println("Ending " + threadName );
 	}
 
 	public Thread getSearchThread() {

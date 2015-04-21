@@ -142,53 +142,53 @@ public class MonsterEntity extends DNDEntity {
 			throws InterruptedException {
 		if(this.name != null && this.name.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.description != null && this.description.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		if(this.alignment != null && this.alignment.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		if(this.environment != null && this.environment.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		if(this.organization != null && this.organization.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		if(this.skills != null){
 			for(int i = 0; i < this.skills.length; i++){
 				if(this.skills[i].contains(searchString)){
 					Main.gameState.searchResultsLock.acquire();
-					System.out.println("Lock aquired, adding " + this.name + " to results list.");
+					//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 					Main.gameState.searchResults.put(this.name, this);
 					Main.gameState.searchResultsLock.release();
-					System.out.println("Lock released.");
+					//System.out.println("Lock released.");
 					return;
 				}
 			}
@@ -197,10 +197,10 @@ public class MonsterEntity extends DNDEntity {
 			for(int i = 0; i < this.feats.length; i++){
 				if(this.feats[i].contains(searchString)){
 					Main.gameState.searchResultsLock.acquire();
-					System.out.println("Lock aquired, adding " + this.name + " to results list.");
+					//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 					Main.gameState.searchResults.put(this.name, this);
 					Main.gameState.searchResultsLock.release();
-					System.out.println("Lock released.");
+					//System.out.println("Lock released.");
 					return;
 				}
 			}

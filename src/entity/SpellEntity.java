@@ -89,64 +89,64 @@ public class SpellEntity extends DNDEntity{
 		
 		if(this.name != null && this.name.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.description != null && this.description.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.effect != null && this.effect.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.components != null && this.components.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.school != null && this.school.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.focus != null && this.focus.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.materialComponent != null && this.materialComponent.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}	
 		

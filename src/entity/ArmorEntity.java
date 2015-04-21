@@ -131,19 +131,19 @@ public class ArmorEntity extends DNDEntity {
 			throws InterruptedException {
 		if(this.name != null && this.name.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.description != null && this.description.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 
