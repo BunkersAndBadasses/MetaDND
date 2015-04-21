@@ -577,26 +577,78 @@ public class Wiz6 {
 				} else 
 					return false;
 			} else if (reqs[i].contains("Character level")) {
-
+				int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+				if (character.getLevel() >= value)
+					return true;
+				else 
+					return false;
 			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
 
 			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
 
 			} else if (reqs[i].contains("with selected weapon")) {
 				// TODO fix this after addding charFeats
-				if (reqs[i].contains("Weapon Focus")) {
-
-				} else if (reqs[i].contains("Greater Weapon Focus")) {
-
-				} else if (reqs[i].contains("Weapon Specialization")) {
-
-				} 
+				String featName = reqs[i].substring(0, reqs[i].indexOf("with") - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
+//				if (reqs[i].contains("Weapon Focus")) {
+//
+//				} else if (reqs[i].contains("Greater Weapon Focus")) {
+//
+//				} else if (reqs[i].contains("Weapon Specialization")) {
+//
+//				} 
 			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
 
 			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
-
+				// TODO fix this after addding charFeats
+				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
 			} else if (reqs[i].equalsIgnoreCase("Spell Focus (Conjuration)")) {
-
+				// TODO fix this after addding charFeats
+				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
 			} else {
 				// assume the prerequisite is another feat
 				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(reqs[i]);
