@@ -70,9 +70,9 @@
 		<NAME>
 			ARMOR PROFICIENCY (MEDIUM) [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Armor Proficiency (Light)
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			See Armor Proficiency (Light).
 		</BENEFIT>
@@ -95,9 +95,9 @@
 		<NAME>
 			AUGMENT SUMMONING [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Spell Focus (Conjuration)
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			Each creature you conjure with any summon spell gains a +4 enhancement bonus to Strength and Constitution for the duration of the spell that summoned it.
 		</BENEFIT>
@@ -128,9 +128,9 @@
 		<NAME>
 			BREW POTION [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 3
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create a potion of any 3rd-level or lower spell that you know and that targets one or more creatures. Brewing a potion takes one day. When you create a potion, you set the caster level, which must be sufficient to cast the spell in question and no higher than your own level. The base price of a potion is its spell level x its caster level x 50 gp. To brew a potion, you must spend 1/25 of this base price in XP and use up raw materials costing one half this base price.
 		</BENEFIT>
@@ -166,9 +166,9 @@
 		<NAME>
 			COMBAT EXPERTISE [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Int 13
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			When you use the attack action or the full attack action in melee, you can take a penalty of as much as -5 on your attack roll and add the same number (+5 or less) as a dodge bonus to your Armor Class. This number may not exceed your base attack bonus. The changes to attack rolls and Armor Class last until your next action.
 		</BENEFIT>
@@ -205,9 +205,9 @@
 		<NAME>
 			CRAFT MAGIC ARMS AND ARMOR [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 5
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create any magic weapon, armor, or shield whose prerequisites you meet. Enhancing a weapon, suit of armor, or shield takes one day for each 1,000 gp in the price of its magical features. To enhance a weapon, suit of armor, or shield, you must spend 1/25 of its features' total price in XP and use up raw materials costing one-half of this total price.
 		</BENEFIT>
@@ -221,9 +221,9 @@
 		<NAME>
 			CRAFT ROD [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 9
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create any rod whose prerequisites you meet. Crafting a rod takes one day for each 1,000 gp in its base price. To craft a rod, you must spend 1/25 of its base price in XP and use up raw materials costing one-half of its base price.
 		</BENEFIT>
@@ -235,9 +235,9 @@
 		<NAME>
 			CRAFT STAFF [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 12
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create any staff whose prerequisites you meet.
 		</BENEFIT>
@@ -251,9 +251,9 @@
 		<NAME>
 			CRAFT WAND [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 5
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create a wand of any 4th-level or lower spell that you know. Crafting a wand takes one day for each 1,000 gp in its base price. The base price of a wand is its caster level x the spell level x 750 gp. To craft a wand, you must spend 1/25 of this base price in XP and use up raw materials costing one-half of this base price. A newly created wand has 50 charges.
 		</BENEFIT>
@@ -265,9 +265,9 @@
 		<NAME>
 			CRAFT WONDROUS ITEM [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 3
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create any wondrous item whose prerequisites you meet. Enchanting a wondrous item takes one day for each 1,000 gp in its price. To enchant a wondrous item, you must spend 1/25 of the item's price in XP and use up raw materials costing half of this price.
 		</BENEFIT>
@@ -317,9 +317,9 @@
 		<NAME>
 			DIEHARD [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Endurance
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			When reduced to between -1 and -9 hit points, you automatically become stable. You don't have to roll d% to see if you lose 1 hit point each round.
 		</BENEFIT>
@@ -344,9 +344,9 @@
 		<NAME>
 			DODGE [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Dex 13
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			During your action, you designate an opponent and receive a +1 dodge bonus to Armor Class against attacks from that opponent. You can select a new opponent on any action.
 		</BENEFIT>
@@ -405,9 +405,9 @@
 		<NAME>
 			EXOTIC WEAPON PROFICIENCY [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			base attack bonus +1 (plus Str 13 for bastard sword or dwarven waraxe)
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You make attack rolls with the weapon normally.
 		</BENEFIT>
@@ -436,9 +436,9 @@
 		<NAME>
 			EXTRA TURNING [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Ability to turn or rebuke creatures
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			Each time you take this feat, you can use your ability to turn or rebuke creatures four more times per day than normal.
 		</BENEFIT>
@@ -456,9 +456,9 @@
 		<NAME>
 			FAR SHOT [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Point Blank Shot
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			When you use a projectile weapon, such as a bow, its range increment increases by one-half (multiply by 1-1/2). When you use a thrown weapon, its range increment is doubled.
 		</BENEFIT>
@@ -470,9 +470,9 @@
 		<NAME>
 			FORGE RING [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 12
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create any ring whose prerequisites you meet. Crafting a ring takes one day for each 1,000 gp in its base price. To craft a ring, you must spend 1/25 of its base price in XP and use up raw materials costing one-half of its base price.
 		</BENEFIT>
@@ -522,9 +522,9 @@
 		<NAME>
 			GREATER SPELL PENETRATION [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Spell Penetration
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance. This bonus stacks with the one from Spell Penetration.
 		</BENEFIT>
@@ -625,9 +625,9 @@
 		<NAME>
 			IMPROVED CRITICAL [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Proficiency with selected weapon, base attack bonus +8
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			When using the weapon you selected, your threat range is doubled.
 		</BENEFIT>
@@ -812,9 +812,9 @@
 		<NAME>
 			IMPROVED SHIELD BASH [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Shield Proficiency
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			When you perform a shield bash, you may still apply the shield's shield bonus to your AC.
 		</BENEFIT>
@@ -872,9 +872,9 @@
 		<NAME>
 			IMPROVED TURNING [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Ability to turn or rebuke creatures
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You turn or rebuke creatures as if you were one level higher than you are in the class that grants you the ability.
 		</BENEFIT>
@@ -939,9 +939,9 @@
 		<NAME>
 			LEADERSHIP [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Character level 6
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<DESCRIPTION>
 			Benefits: Having this feat enables the character to attract loyal companions and devoted followers, subordinates who assist her. See the table below for what sort of cohort and how many followers the character can recruit.
 
@@ -1163,9 +1163,9 @@
 		<NAME>
 			MOUNTED COMBAT [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Ride 1 rank
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			Once per round when your mount is hit in combat, you may attempt a Ride check (as a reaction) to negate the hit. The hit is negated if your Ride check result is greater than the opponent's attack roll. (Essentially, the Ride check result becomes the mount's Armor Class if it's higher than the mount's regular AC.)
 		</BENEFIT>
@@ -1226,9 +1226,9 @@
 		<NAME>
 			POWER ATTACK [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Str 13
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			On your action, before making attack rolls for a round, you may choose to subtract a number from all melee attack rolls and add the same number to all melee damage rolls. This number may not exceed your base attack bonus. The penalty on attacks and bonus on damage apply until your next turn.
 		</BENEFIT>
@@ -1243,9 +1243,9 @@
 		<NAME>
 			PRECISE SHOT [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Point Blank Shot
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can shoot or throw ranged weapons at an opponent engaged in melee without taking the standard -4 penalty on your attack roll.
 		</BENEFIT>
@@ -1257,9 +1257,9 @@
 		<NAME>
 			QUICK DRAW [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Base attack bonus +1
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon (see the Sleight of Hand skill) as a move action.
 		</BENEFIT>
@@ -1288,9 +1288,9 @@
 		<NAME>
 			RAPID RELOAD [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Weapon Proficiency (crossbow type chosen)
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			The time required for you to reload your chosen type of crossbow is reduced to a free action (for a hand or light crossbow) or a move action (for a heavy crossbow). Reloading a crossbow still provokes an attack of opportunity.
 		</BENEFIT>
@@ -1355,9 +1355,9 @@
 		<NAME>
 			SCRIBE SCROLL [ITEM CREATION]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Caster level 1
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can create a scroll of any spell that you know. Scribing a scroll takes one day for each 1,000 gp in its base price. The base price of a scroll is its spell level x its caster level x 25 gp. To scribe a scroll, you must spend 1/25 of this base price in XP and use up raw materials costing one-half of this base price.
 		</BENEFIT>
@@ -1475,9 +1475,9 @@
 		<NAME>
 			SPELL MASTERY [SPECIAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Wizard level 1
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			Each time you take this feat, choose a number of spells equal to your Intelligence modifier that you already know. From that point on, you can prepare these spells without referring to a spellbook.
 		</BENEFIT>
@@ -1575,9 +1575,9 @@
 		<NAME>
 			TOWER SHIELD PROFICIENCY [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Shield Proficiency
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			You can use a tower shield and suffer only the standard penalties.
 		</BENEFIT>
@@ -1704,9 +1704,9 @@
 		<NAME>
 			TWO-WEAPON FIGHTING [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Dex 15
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			Your penalties on attack rolls for fighting with two weapons are reduced. The penalty for your primary hand lessens by 2 and the one for your off hand lessens by 6.
 		</BENEFIT>
@@ -1727,9 +1727,9 @@
 		<NAME>
 			WEAPON FINESSE [GENERAL]
 		</NAME>
-		<PREREQUISITE>
+		<PREREQUISITES>
 			Base attack bonus +1
-		</PREREQUISITE>
+		</PREREQUISITES>
 		<BENEFIT>
 			With a light weapon, rapier, whip, or spiked chain made for a creature of your size category, you may use your Dexterity modifier instead of your Strength modifier on attack rolls. If you carry a shield, its armor check penalty applies to your attack rolls.
 		</BENEFIT>

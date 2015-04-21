@@ -113,7 +113,7 @@ public class Wiz6 {
 		
 		// search label
 		Label searchLabel = new Label(wiz6, SWT.NONE);
-		searchLabel.setLocation(240, 60);
+		searchLabel.setLocation(230, 60);
 		searchLabel.setText("Double click on a feat to see details");
 		searchLabel.pack();
 		
@@ -478,121 +478,101 @@ public class Wiz6 {
 			// TODO
 		}
 		for (int i = 0; i < reqs.length; i++) {
-			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str")) {
+			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.STRENGTH] >= value)
-					return true;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex")) {
+				if (character.getAbilityScores()[GameState.STRENGTH] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.DEXTERITY] >= value)
-					return true;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con")) {
+				if (character.getAbilityScores()[GameState.DEXTERITY] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.CONSTITUTION] >= value)
-					return true;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int")) {
+				if (character.getAbilityScores()[GameState.CONSTITUTION] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.INTELLIGENCE] >= value)
-					return true;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis")) {
+				if (character.getAbilityScores()[GameState.INTELLIGENCE] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.WISDOM] >= value)
-					return true;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha")) {
+				if (character.getAbilityScores()[GameState.WISDOM] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha ")) {
 				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.CHARISMA] >= value)
-					return true;
+				if (character.getAbilityScores()[GameState.CHARISMA] < value)
+					return false;
 			} else if (reqs[i].contains("base attack bonus")) {
-//				if (reqs[i].contains("plus Str 13")) {
-//					// TODO here bastard sword/dwarven waraxe
-//				}
+				//				if (reqs[i].contains("plus Str 13")) {
+				//					// TODO here bastard sword/dwarven waraxe
+				//				}
 			} else if (reqs[i].contains("Barbarian level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Barbarian")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Bard level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Bard")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Cleric level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Cleric")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Druid level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Druid")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Fighter level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Fighter")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Monk level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Monk")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Paladin level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Paladin")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Ranger level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Ranger")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Sorcerer level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Sorcerer")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Wizard level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Wizard")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
@@ -602,17 +582,13 @@ public class Wiz6 {
 						|| character.getCharClass().getName().equalsIgnoreCase("Monk")
 						|| character.getCharClass().getName().equalsIgnoreCase("Rogue"))){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() >= value)
-						return true;
-					else 
+					if (character.getLevel() < value)
 						return false;
 				} else 
 					return false;
 			} else if (reqs[i].contains("Character level")) {
 				int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-				if (character.getLevel() >= value)
-					return true;
-				else 
+				if (character.getLevel() < value)
 					return false;
 			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
 
@@ -636,13 +612,13 @@ public class Wiz6 {
 					if (!found)
 						return false;
 				}
-//				if (reqs[i].contains("Weapon Focus")) {
-//
-//				} else if (reqs[i].contains("Greater Weapon Focus")) {
-//
-//				} else if (reqs[i].contains("Weapon Specialization")) {
-//
-//				} 
+				//				if (reqs[i].contains("Weapon Focus")) {
+				//
+				//				} else if (reqs[i].contains("Greater Weapon Focus")) {
+				//
+				//				} else if (reqs[i].contains("Weapon Specialization")) {
+				//
+				//				} 
 			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
 
 			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
