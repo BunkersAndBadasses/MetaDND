@@ -105,12 +105,12 @@ public class DieWindow {
 
 		ArrayList<Button> incButtons = new ArrayList<Button>();
 		ArrayList<Button> decButtons = new ArrayList<Button>();
-//		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
-//				"d12  ", "d20  ", "d100"};
+		//		final String [] dieNames = {"d4    ", "d6    ", "d8    ", "d10  ",
+		//				"d12  ", "d20  ", "d100"};
 		final String [] dieNames = {"d4", "d6", "d8", "d10",
 				"d12", "d20", "d100"};
 		final int [] dieNameNumbers = {4, 6, 8, 10, 12, 20, 100};
-		
+
 		//DIE TEXT AND INC/DEC BUTTONS
 		Label[] dieLabels = new Label[7]; 
 		//GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
@@ -167,7 +167,7 @@ public class DieWindow {
 			});
 			decButtons.add(dec);
 		}
-		
+
 		// Custom Die text
 		final Label custom = new Label(dieWin, SWT.NONE);
 		Font font2 = new Font(display, new FontData("Arial", 24,
@@ -184,13 +184,13 @@ public class DieWindow {
 		dieCountBox.setText("0");
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		dieCountBox.setLayoutData(gridData);
-		
+
 		//Custom die box
 		dieBox = new Text(dieWin, SWT.BORDER);
 		dieBox.setText("0");
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		dieBox.setLayoutData(gridData);
-		
+
 		// Mod text
 		final Label mod = new Label(dieWin, SWT.NONE);
 		mod.setFont(font2);
@@ -233,8 +233,9 @@ public class DieWindow {
 		Button roll = new Button(dieWin, SWT.PUSH);
 		roll.setText("Roll");
 		roll.setFont(font3);
-		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalIndent = 5;
+		gridData.verticalSpan = 2;
 		roll.setLayoutData(gridData);
 		roll.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -245,47 +246,47 @@ public class DieWindow {
 				boolean dieRolled = false;
 
 				try{
-					
+
 					invalidOperation.setVisible(false);
 					modInt = Integer.parseInt(modText.getText());
 					custDie = Integer.parseInt(dieBox.getText());
 					custDieCount = Integer.parseInt(dieCountBox.getText());
-					
+
 					if(modInt <= -100 || modInt >= 100){
 						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie < 0 || custDie > 1000 || custDie == 1){
 						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDieCount < 0 || custDieCount > 20){
 						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie != 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Custom #: select die count");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie == 0 && custDieCount != 0){
 						invalidOperation.setText("Invalid Custom Die: select a die");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					for(int i = 0; i < 7; i++){
 						if(numDie[i] != 0)
 							dieRolled = true;
@@ -294,17 +295,17 @@ public class DieWindow {
 					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 				}catch(Exception error){
 					modText.setText("0");
 					dieBox.setText("0");
 					dieCountBox.setText("0");
 					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
-					
+
 					return;
 				}
 
@@ -314,7 +315,7 @@ public class DieWindow {
 					//System.out.println(rollTotal);
 				}
 				rollTotal += modInt;
-				
+
 				if(custDie != 0 && custDieCount != 0){
 					rollTotal += DnDie.roll(custDie, custDieCount);
 				}
@@ -340,47 +341,47 @@ public class DieWindow {
 				boolean dieRolled = false;
 
 				try{
-					
+
 					invalidOperation.setVisible(false);
 					modInt = Integer.parseInt(modText.getText());
 					custDie = Integer.parseInt(dieBox.getText());
 					custDieCount = Integer.parseInt(dieCountBox.getText());
-					
+
 					if(modInt <= -100 || modInt >= 100){
 						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie < 0 || custDie > 1000 || custDie == 1){
 						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDieCount < 0 || custDieCount > 20){
 						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie != 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Custom #: select die count");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					if(custDie == 0 && custDieCount != 0){
 						invalidOperation.setText("Invalid Custom Die: select a die");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 					for(int i = 0; i < 7; i++){
 						if(numDie[i] != 0)
 							dieRolled = true;
@@ -389,17 +390,17 @@ public class DieWindow {
 					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
 						invalidOperation.setVisible(true);
-						
+
 						return;
 					}
-					
+
 				}catch(Exception error){
 					modText.setText("0");
 					dieBox.setText("0");
 					dieCountBox.setText("0");
 					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
-					
+
 					return;
 				}
 
@@ -417,7 +418,7 @@ public class DieWindow {
 					notUsed = false;
 					roll.add(new Roll(custDie, custDieCount));
 				}
-				
+
 				// if a die was added, or a mod was there
 				if(modInt != 0){
 					roll.add(new Roll(0, 0, modInt));
@@ -493,21 +494,21 @@ public class DieWindow {
 						}		
 
 						try{
-						DnDie.saveFavDie(nameBox.getText(), rollFinal);
-						
-						if(favList.indexOf(nameBox.getText()) == -1)
-							favList.add(nameBox.getText());
+							DnDie.saveFavDie(nameBox.getText(), rollFinal);
+
+							if(favList.indexOf(nameBox.getText()) == -1)
+								favList.add(nameBox.getText());
 						}catch(Exception e){
 							badSaveFinal.setText("Invalid Save: start with a letter");
 							badSaveFinal.setVisible(true);
-							
+
 							return;
 						}
-						
+
 						saveName.dispose();
 					}
 				});
-				
+
 				saveName.pack();
 
 
@@ -517,6 +518,28 @@ public class DieWindow {
 						display.sleep();
 					}
 				}
+			}
+		});
+
+		//TODO
+		// Clear BUTTON
+		Button clear = new Button(dieWin, SWT.PUSH);
+		clear.setText("Clear");
+		clear.setFont(font3);
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		clear.setLayoutData(gridData);
+		clear.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				int clearNum = 0;
+				for(int i = 0; i < dieLabels.length; i ++){
+					numDie[i] = clearNum;
+					dieLabels[i].setText(numDie[i] + dieNames[i]);
+				}
+				modText.setText("0");
+				dieBox.setText("0");
+				dieCountBox.setText("0");
+				dieWin.layout();
 			}
 		});
 
@@ -534,15 +557,15 @@ public class DieWindow {
 			//Loads the current favRolls into the list
 			Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
 					"User Data" + "//favRolls")).forEach(filePath ->{
-				if(filePath.getFileName().toString().contains(".xml")){
-					String fileName = filePath.getFileName().toString();
-					fileName = (String) fileName.subSequence(0, fileName.length() - 4);
-					favList.add(fileName);
-				}
-				else{
-					//System.out.println(filePath.getFileName() + " is not an XML file");
-				}
-			});
+						if(filePath.getFileName().toString().contains(".xml")){
+							String fileName = filePath.getFileName().toString();
+							fileName = (String) fileName.subSequence(0, fileName.length() - 4);
+							favList.add(fileName);
+						}
+						else{
+							//System.out.println(filePath.getFileName() + " is not an XML file");
+						}
+					});
 		} catch (IOException e) {
 
 
@@ -559,11 +582,11 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 
 				invalidOperation.setVisible(false);
-				
+
 				if(favList.getSelectionIndex() == 0){
 					invalidOperation.setText("Invalid Load: must select a file.");
 					invalidOperation.setVisible(true);
-					
+
 					return;
 				}
 
@@ -679,7 +702,7 @@ public class DieWindow {
 
 			}
 		});
-		
+
 		Button delete = new Button(dieWin, SWT.PUSH);
 		delete.setText("Delete");
 		delete.setFont(font3);
@@ -688,15 +711,15 @@ public class DieWindow {
 		delete.setLayoutData(gridData);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				
+
 				String deleteMe = favList.getItem(favList.getSelectionIndex());
-				
+
 				invalidOperation.setVisible(false);
-				
+
 				if(favList.getSelectionIndex() == 0){
 					invalidOperation.setText("Invalid Delete: must select a file.");
 					invalidOperation.setVisible(true);
-					
+
 					return;
 				}
 
@@ -733,7 +756,7 @@ public class DieWindow {
 						deleteFile.dispose();
 					}
 				});
-				
+
 				deleteFile.pack();
 
 				deleteFile.open();
@@ -743,7 +766,7 @@ public class DieWindow {
 					}
 				}
 			}
-			
+
 		});
 
 		// this appears when there is an invalid operation attempt
@@ -755,10 +778,10 @@ public class DieWindow {
 		gridData.horizontalSpan = 3;
 		gridData.verticalSpan = 2;
 		invalidOperation.setLayoutData(gridData);
-		
+
 		dieWin.pack();
 		return;
-		
+
 	}
 
 	public static void main(String[] args) {

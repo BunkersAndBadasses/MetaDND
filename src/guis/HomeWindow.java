@@ -284,6 +284,17 @@ public class HomeWindow {
 				deleteCharacter(tokens[0]);
 			}
 		});
+		
+		Button playerBack = new Button(characterComp, SWT.PUSH);
+		playerBack.setText("Back");
+		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		playerBack.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+				navigateToHomeScreen();
+				
+			}
+		});
 
 		// Call the seach panel composite
 		playerScreenReferencePanel = new referencePanel(playerScreen);
@@ -635,8 +646,6 @@ public class HomeWindow {
 			new Label(dungeonScreenComp, SWT.NONE);  
 			new Label(dungeonScreenComp, SWT.NONE); 
 			new Label(dungeonScreenComp, SWT.NONE);  
-			new Label(dungeonScreenComp, SWT.NONE); 
-			
 			
 	
 			// load dungeon
@@ -659,6 +668,17 @@ public class HomeWindow {
 					mainWindowLayout.topControl = dungeonViewer;
 					mainWindow.layout();
 	
+				}
+			});
+			
+			Button dungeonBack = new Button(dungeonScreenComp, SWT.PUSH);
+			dungeonBack.setText("Back");
+			dungeonScreenCompGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+			dungeonBack.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					
+					navigateToHomeScreen();
+					
 				}
 			});
 			
