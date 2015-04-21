@@ -51,7 +51,7 @@ public class DieWindow {
 	//private static Label badLoadText;
 	//private static Label badDeleteText;
 	private static Label badSaveFinal;
-	private static Combo favList;
+	public static Combo favList;
 	private final int WIDTH = 230;
 	private final int HEIGHT = 500;
 	private int[] numDie = {0, 0, 0, 0, 0, 0, 0};
@@ -530,7 +530,10 @@ public class DieWindow {
 		favList.select(0);
 
 		try {
-			Files.walk(Paths.get("./favRolls")).forEach(filePath ->{
+			//TODO change this for current character
+			//Loads the current favRolls into the list
+			Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
+					"User Data" + "//favRolls")).forEach(filePath ->{
 				if(filePath.getFileName().toString().contains(".xml")){
 					String fileName = filePath.getFileName().toString();
 					fileName = (String) fileName.subSequence(0, fileName.length() - 4);
