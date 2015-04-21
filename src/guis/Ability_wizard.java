@@ -140,7 +140,7 @@ public class Ability_wizard {
 		save.setLayoutData(gd);
 		//save.pack();
 		shell.layout();
-		//shell.pack();
+		shell.pack();
 //		final Text wizpage1text = new Text(wizpage1, SWT.BORDER);
 //		wizpage1text.setBounds(50, 50, 150, 50);
 //		wizpage1text.setText("Ability_NONAME");
