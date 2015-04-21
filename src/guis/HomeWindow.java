@@ -239,26 +239,6 @@ public class HomeWindow {
 		charList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				//TODO populate the Character sheet 
-
-			}
-
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-
-		charLayout.topControl = charList;
-		view.layout();
-
-		//TODO Do we want a button, or do we want to double click charaacter?
-		Button loadChar = new Button(characterComp, SWT.PUSH);
-		loadChar.setText("Load Character");
-		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
-		loadChar.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (charList.getSelectionIndex() < 0) {
-					return;
-				}
 				String name = charList.getItem(charList.getSelectionIndex());
 				String path = filepaths.get(name);
 				String[] arg = {path};
@@ -269,7 +249,14 @@ public class HomeWindow {
 				// image file linked in their xml
 				CharacterMain.main(arg);
 			}
+
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
 		});
+
+		charLayout.topControl = charList;
+		view.layout();
 
 		Button addChar = new Button(characterComp, SWT.PUSH);
 		addChar.setText("Add Character");

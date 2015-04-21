@@ -204,6 +204,19 @@ public class MenuBar {
                 //TODO
             }
         });
+        
+        //Home Screen
+        MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunHomeItem.setText("&Home Screen");
+        
+        dunHomeItem.addSelectionListener(new SelectionAdapter()
+        {
+        public void widgetSelected(SelectionEvent e)
+        {
+        	new HomeWindow(shell.getDisplay());
+        	//parent.navigateToHomeScreen();
+        }});
+        
         shell.setMenuBar(menuBar);
 	}
 }
