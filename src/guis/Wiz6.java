@@ -11,6 +11,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
@@ -25,6 +27,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+import core.GameState;
 import core.character;
 import core.Main;
 import entity.ClassEntity;
@@ -108,6 +111,12 @@ public class Wiz6 {
 		numFeatsLabel.setText(Integer.toString(numFeats));
 		numFeatsLabel.pack();
 		
+		// search label
+		Label searchLabel = new Label(wiz6, SWT.NONE);
+		searchLabel.setLocation(230, 60);
+		searchLabel.setText("Double click on a feat to see details");
+		searchLabel.pack();
+		
 		// grid layout for both available and selected feat lists
 		FillLayout featLayout = new FillLayout();
 		
@@ -139,6 +148,18 @@ public class Wiz6 {
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 		}
+		featsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = featsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String featName = featsList.getItem(featsList.getSelectionIndex());
+				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		featsList.pack();
 		featScreenScroll.setMinHeight(featsList.getBounds().height);
 	    	
@@ -146,6 +167,18 @@ public class Wiz6 {
 		charFeatsList = new List(charFeatScreen, SWT.NONE);
 		for (int i = 0; i < charFeats.size(); i++)
 			charFeatsList.add(charFeats.get(i).getName());
+		charFeatsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = charFeatsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String featName = charFeatsList.getItem(index);
+				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		charFeatsList.pack();
 		
 		// error message
@@ -445,64 +478,185 @@ public class Wiz6 {
 			// TODO
 		}
 		for (int i = 0; i < reqs.length; i++) {
-			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str")) {
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex")) {
-
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con")) {
-
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int")) {
-
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis")) {
-
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha")) {
-
+			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.STRENGTH] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.DEXTERITY] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.CONSTITUTION] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.INTELLIGENCE] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.WISDOM] < value)
+					return false;
+			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha ")) {
+				int value = Integer.parseInt(reqs[i].substring(4));
+				if (character.getAbilityScores()[GameState.CHARISMA] < value)
+					return false;
 			} else if (reqs[i].contains("base attack bonus")) {
-				if (reqs[i].contains("plus Str 13")) {
-					// TODO here bastard sword/dwarven waraxe
-				}
+				//				if (reqs[i].contains("plus Str 13")) {
+				//					// TODO here bastard sword/dwarven waraxe
+				//				}
 			} else if (reqs[i].contains("Barbarian level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Barbarian")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Bard level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Bard")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Cleric level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Cleric")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Druid level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Druid")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Fighter level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Fighter")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Monk level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Monk")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Paladin level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Paladin")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Ranger level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Ranger")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Sorcerer level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Sorcerer")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Wizard level")) {
-
+				if (character.getCharClass().getName().equalsIgnoreCase("Wizard")){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Caster level")) {
-
+				if (!(character.getCharClass().getName().equalsIgnoreCase("Barbarian")
+						|| character.getCharClass().getName().equalsIgnoreCase("Fighter")
+						|| character.getCharClass().getName().equalsIgnoreCase("Monk")
+						|| character.getCharClass().getName().equalsIgnoreCase("Rogue"))){
+					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+					if (character.getLevel() < value)
+						return false;
+				} else 
+					return false;
 			} else if (reqs[i].contains("Character level")) {
-
+				int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
+				if (character.getLevel() < value)
+					return false;
 			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
 
 			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
 
 			} else if (reqs[i].contains("with selected weapon")) {
 				// TODO fix this after addding charFeats
-				if (reqs[i].contains("Weapon Focus")) {
-
-				} else if (reqs[i].contains("Greater Weapon Focus")) {
-
-				} else if (reqs[i].contains("Weapon Specialization")) {
-
-				} 
+				String featName = reqs[i].substring(0, reqs[i].indexOf("with") - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
+				//				if (reqs[i].contains("Weapon Focus")) {
+				//
+				//				} else if (reqs[i].contains("Greater Weapon Focus")) {
+				//
+				//				} else if (reqs[i].contains("Weapon Specialization")) {
+				//
+				//				} 
 			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
 
 			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
-
+				// TODO fix this after addding charFeats
+				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
 			} else if (reqs[i].equalsIgnoreCase("Spell Focus (Conjuration)")) {
-
+				// TODO fix this after addding charFeats
+				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
+				// assume the prerequisite is another feat
+				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
+				// if that feat is a valid feat, check it
+				if (reqFeat != null) {
+					// check if user has already added the required feat
+					boolean found = false;
+					for (int j = 0; j < charFeats.size() && !found; j++) {
+						if (charFeats.get(j).getName().equals(reqFeat.getName())) {
+							// the required feat has already been added
+							found = true;
+						}
+					}
+					if (!found)
+						return false;
+				}
 			} else {
 				// assume the prerequisite is another feat
 				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(reqs[i]);

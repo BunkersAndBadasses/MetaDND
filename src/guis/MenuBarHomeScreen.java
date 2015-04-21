@@ -208,7 +208,7 @@ public class MenuBarHomeScreen {
                 parent.navigateToDungeonScreen();
             }
         });
-        //Character Sheet
+        //Player screen
         MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
         dunChaItem.setText("&Characters");
         
@@ -216,6 +216,7 @@ public class MenuBarHomeScreen {
         dunChaItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+            	HomeWindow.loadCharacters();
                 parent.navigateToPlayerScreen();
             }
         });

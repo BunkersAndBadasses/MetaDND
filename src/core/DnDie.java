@@ -3,6 +3,7 @@ package core;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,6 +17,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
 import core.Roll;
+import entity.ClassEntity;
+import entity.RaceEntity;
+import guis.DieWindow;
 /**
  * XML saving from 
  * http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
@@ -28,8 +32,8 @@ import core.Roll;
 public class DnDie {
 
 	static RNG rng = new RNG();
-	
-	
+
+
 	/** Rolls the number of a given die (ie rolls 5 20s)
 	 * 
 	 * @param die
@@ -46,7 +50,7 @@ public class DnDie {
 
 		return number;
 	}
-	
+
 	/** roll the die, and add in the modifier
 	 * 
 	 * @param die
@@ -61,7 +65,7 @@ public class DnDie {
 		for(int i = 0; i < dieCount; i ++){
 			number += rng.GetRandomInteger(1, die);
 		}
-		
+
 		return number;
 	}
 
@@ -71,11 +75,11 @@ public class DnDie {
 	 * @return an integer that represent the final result.
 	 */
 	public static int rollFavDie(String fileName){
-		
+
 		ArrayList<Roll> loaded = new ArrayList<Roll>(10);
 		loaded = loadFavDie(fileName);
 		int rolls = 0;
-		
+
 		for(int i = 0; i < loaded.size(); i++){
 			if(loaded.get(i).getModifier() != 0)
 				rolls += roll(loaded.get(i).getDieSize(), 
@@ -143,9 +147,10 @@ public class DnDie {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			
-	
-			File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//favRolls");
+
+
+			File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
+					"User Data" + "//favRolls");
 			CHARDIR.mkdir();
 			StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
 
@@ -186,7 +191,7 @@ public class DnDie {
 			doc.getDocumentElement().normalize();
 
 			System.out.println("Favorite_Die: " + doc.getDocumentElement().getNodeName());
-			
+
 			NodeList nList = doc.getElementsByTagName("Die");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -226,6 +231,24 @@ public class DnDie {
 
 		return roll;
 	}
+
+	public static void populateDieList(){
+		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//favRolls");
+		File[] files = new File(CHARDIR.getPath()).listFiles();
+
+		if(files != null){
+
+			
+			for(int i = 0; i < files.length; i++){
+				
+				DieWindow.favList.add(files[i].getName());
+				
+			}
+		}
+	}
+
+
+
 
 	/** delete a favorite die from the xml
 	 * 
