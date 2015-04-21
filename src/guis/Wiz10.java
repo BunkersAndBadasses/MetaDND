@@ -571,18 +571,14 @@ public class Wiz10 {
             try{
                 File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
                 CHARACTER.mkdir();
-                File CHARDIR = new File(CHARACTER.getPath() + "//" + charName);
+                File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
                 CHARDIR.mkdir();
                 StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
 
 
                 transformer.transform(source, result);
             }catch(Exception e){
-                File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
-                CHARDIR.mkdir();
-                StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
-
-                transformer.transform(source, result);
+                
             }
             // Output to console for testing
             // StreamResult result = new StreamResult(System.out);

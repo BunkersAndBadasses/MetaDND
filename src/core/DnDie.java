@@ -2,6 +2,9 @@ package core;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -233,17 +236,41 @@ public class DnDie {
 	}
 
 	public static void populateDieList(){
-		File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//favRolls");
-		File[] files = new File(CHARDIR.getPath()).listFiles();
-
-		if(files != null){
-
-			
-			for(int i = 0; i < files.length; i++){
-				
-				DieWindow.favList.add(files[i].getName());
-				
+		try {
+			//Loads the current favRolls into the list
+			if(Main.gameState.currentlyLoadedCharacter == null){
+				Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//favRolls")).forEach(filePath ->{
+							if(filePath.getFileName().toString().contains(".xml")){
+								String fileName = filePath.getFileName().toString();
+								fileName = (String) fileName.subSequence(0, fileName.length() - 4);
+								DieWindow.favList.add(fileName);
+							}
+							else{
+								//System.out.println(filePath.getFileName() + " is not an XML file");
+							}
+						});
 			}
+			else{
+				//TODO
+				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
+				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
+				Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//DND" + charFileName + "//favRolls")).forEach(filePath ->{
+							if(filePath.getFileName().toString().contains(".xml")){
+								String fileName = filePath.getFileName().toString();
+								fileName = (String) fileName.subSequence(0, fileName.length() - 4);
+								DieWindow.favList.add(fileName);
+							}
+							else{
+								//System.out.println(filePath.getFileName() + " is not an XML file");
+							}
+						});
+			}
+
+		} catch (IOException e) {
+
+
 		}
 	}
 

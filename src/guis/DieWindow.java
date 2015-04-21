@@ -552,24 +552,7 @@ public class DieWindow {
 		favList.setLayoutData(gridData);
 		favList.select(0);
 
-		try {
-			//TODO change this for current character
-			//Loads the current favRolls into the list
-			Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
-					"User Data" + "//favRolls")).forEach(filePath ->{
-						if(filePath.getFileName().toString().contains(".xml")){
-							String fileName = filePath.getFileName().toString();
-							fileName = (String) fileName.subSequence(0, fileName.length() - 4);
-							favList.add(fileName);
-						}
-						else{
-							//System.out.println(filePath.getFileName() + " is not an XML file");
-						}
-					});
-		} catch (IOException e) {
-
-
-		}
+		DnDie.populateDieList();
 
 		// The button that loads the selected file name into the die window.
 		Button load = new Button(dieWin, SWT.PUSH);
