@@ -25,6 +25,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			30ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			20ft.
+		</SPEED20FT>
+		<WEIGHT>
+			10lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			
 		</DESCRIPTION>
@@ -54,6 +63,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			30ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			20ft.
+		</SPEED20FT>
+		<WEIGHT>
+			15lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			
 		</DESCRIPTION>
@@ -83,6 +101,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			30ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			20ft.
+		</SPEED20FT>
+		<WEIGHT>
+			20lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			
 		</DESCRIPTION>
@@ -112,6 +139,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			30ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			20ft.
+		</SPEED20FT>
+		<WEIGHT>
+			25lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			A chain shirt comes with a steel cap.
 		</DESCRIPTION>
@@ -141,6 +177,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			25lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			
 		</DESCRIPTION>
@@ -170,6 +215,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			30lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			The suit includes gauntlets.
 		</DESCRIPTION>
@@ -179,19 +233,19 @@
 			Chainmail
 		</NAME>
 		<COST>
-			150
+			150gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+5
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+5
+			+2
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+2
+			-5
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-5
+			30%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -199,8 +253,17 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			40lb.
+		</WEIGHT>
 		<DESCRIPTION>
-			
+			The suit includes gauntlets.
 		</DESCRIPTION>
 	</ARMOR>
 	<ARMOR>
@@ -208,19 +271,19 @@
 			Breastplate
 		</NAME>
 		<COST>
-			200
+			200gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+5
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+5
+			+3
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+3
+			-4
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-4
+			25%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -228,8 +291,17 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			30lb.
+		</WEIGHT>
 		<DESCRIPTION>
-			It comes with a helmet and greaves. 
+			It comes with a helmet and greaves.
 		</DESCRIPTION>
 	</ARMOR>
 	<ARMOR>
@@ -237,19 +309,19 @@
 			Splint mail
 		</NAME>
 		<COST>
-			200
+			200gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+6
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+6
+			+0
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+0
+			-7
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-7
+			40%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -257,6 +329,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			45lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			The suit includes gauntlets.
 		</DESCRIPTION>
@@ -266,19 +347,19 @@
 			Banded mail
 		</NAME>
 		<COST>
-			250
+			250gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+6
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+6
+			+1
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+1
+			-6
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-6
+			35%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -286,6 +367,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			35lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			The suit includes gauntlets.
 		</DESCRIPTION>
@@ -295,19 +385,19 @@
 			Half-plate
 		</NAME>
 		<COST>
-			600
+			600gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+7
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+7
+			+0
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+0
+			-7
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-7
+			40%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -315,6 +405,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			50lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			The suit includes gauntlets.
 		</DESCRIPTION>
@@ -324,19 +423,19 @@
 			Full plate
 		</NAME>
 		<COST>
-			1,500
+			1,500gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+8
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+8
+			+1
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+1
+			-6
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-6
+			35%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -344,6 +443,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			20ft.
+		</SPEED30FT>
+		<SPEED20FT>
+			15ft.
+		</SPEED20FT>
+		<WEIGHT>
+			50lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			The suit includes gauntlets, heavy leather boots, a visored helmet, and a thick layer of padding that is worn underneath the armor. Each suit of full plate must be individually fitted to its owner by a master armorsmith, although a captured suit can be resized to fit a new owner at a cost of 200 to 800 (2d4x100) gold pieces.
 		</DESCRIPTION>
@@ -353,19 +461,19 @@
 			Buckler
 		</NAME>
 		<COST>
-			15
+			15gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+1
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+1
+			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			-1
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-1
+			5%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -373,6 +481,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			5lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			This small metal shield is worn strapped to your forearm. You can use a bow or crossbow without penalty while carrying it. You can also use your shield arm to wield a weapon (whether you are using an off-hand weapon or using your off hand to help wield a two-handed weapon), but you take a -1 penalty on attack rolls while doing so. This penalty stacks with those that may apply for fighting with your off hand and for fighting with two weapons. In any case, if you use a weapon in your off hand, you don't get the buckler's AC bonus for the rest of the round.You can't bash someone with a buckler.
 		</DESCRIPTION>
@@ -382,19 +499,19 @@
 			Shield, Light Wooden
 		</NAME>
 		<COST>
-			3
+			3gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+1
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+1
+			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			-1
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-1
+			5%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -402,6 +519,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			5lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			You strap a shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand, although you cannot use weapons with it.Shield Bash Attacks: You can bash an opponent with a light shield, using it as an off-hand weapon. See Table: Weapons for the damage dealt by a shield bash. Used this way, a light shield is a martial bludgeoning weapon. For the purpose of penalties on attack rolls, treat a light shield as a light weapon. If you use your shield as a weapon, you lose its AC bonus until your next action (usually until the next round). An enhancement bonus on a shield does not improve the effectiveness of a shield bash made with it, but the shield can be made into a magic weapon in its own right.
 		</DESCRIPTION>
@@ -411,19 +537,19 @@
 			Shield, Light Steel
 		</NAME>
 		<COST>
-			9
+			9gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+1
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+1
+			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			-1
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-1
+			5%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -431,6 +557,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			6lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			You strap a shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand, although you cannot use weapons with it.Shield Bash Attacks: You can bash an opponent with a light shield, using it as an off-hand weapon. See Table: Weapons for the damage dealt by a shield bash. Used this way, a light shield is a martial bludgeoning weapon. For the purpose of penalties on attack rolls, treat a light shield as a light weapon. If you use your shield as a weapon, you lose its AC bonus until your next action (usually until the next round). An enhancement bonus on a shield does not improve the effectiveness of a shield bash made with it, but the shield can be made into a magic weapon in its own right.
 		</DESCRIPTION>
@@ -440,19 +575,19 @@
 			Shield, Heavy Wooden
 		</NAME>
 		<COST>
-			7
+			7gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+2
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+2
+			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			-2
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-2
+			15%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -460,6 +595,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			10lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			You strap a shield to your forearm and grip it with your hand. A heavy shield is so heavy that you can't use your shield hand for anything else.Shield Bash Attacks: You can bash an opponent with a heavy shield, using it as an off-hand weapon. See Table: Weapons for the damage dealt by a shield bash. Used this way, a heavy shield is a martial bludgeoning weapon. For the purpose of penalties on attack rolls, treat a heavy shield as a one-handed weapon. If you use your shield as a weapon, you lose its AC bonus until your next action (usually until the next round). An enhancement bonus on a shield does not improve the effectiveness of a shield bash made with it, but the shield can be made into a magic weapon in its own right.
 		</DESCRIPTION>
@@ -469,19 +613,19 @@
 			Shield, Heavy Steel
 		</NAME>
 		<COST>
-			20
+			20gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+2
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+2
+			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			-2
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-2
+			15%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -489,6 +633,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			15lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			You strap a shield to your forearm and grip it with your hand. A heavy shield is so heavy that you can't use your shield hand for anything else.
 		</DESCRIPTION>
@@ -498,19 +651,19 @@
 			Shield, Tower
 		</NAME>
 		<COST>
-			30
+			30gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			+43
 		</ARMORBONUS>
 		<MAXDEXBONUS>
-			+43
+			+2
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			+2
+			-10
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			-10
+			50%
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -518,6 +671,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			45lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			This massive wooden shield is nearly as tall as you are. In most situations, it provides the indicated shield bonus to your AC. However, you can instead use it as total cover, though you must give up your attacks to do so. The shield does not, however, provide cover against targeted spells; a spellcaster can cast a spell on you by targeting the shield you are holding. You cannot bash with a tower shield, nor can you use your shield hand for anything else.When employing a tower shield in combat, you take a -2 penalty on attack rolls because of the shield's encumbrance.
 		</DESCRIPTION>
@@ -527,10 +689,10 @@
 			Armor spikes
 		</NAME>
 		<COST>
-			+50
+			+50gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			-
 		</ARMORBONUS>
 		<MAXDEXBONUS>
 			-
@@ -547,6 +709,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			10lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			You can have spikes added to your armor, which allow you to deal extra piercing damage (see Table: Weapons) on a successful grapple attack. The spikes count as a martial weapon. If you are not proficient with them, you take a -4 penalty on grapple checks when you try to use them. You can also make a regular melee attack (or off-hand attack) with the spikes, and they count as a light weapon in this case. (You can't also make an attack with armor spikes if you have already made an attack with another off-hand weapon, and vice versa.)An enhancement bonus to a suit of armor does not improve the spikes' effectiveness, but the spikes can be made into magic weapons in their own right.
 		</DESCRIPTION>
@@ -556,19 +727,19 @@
 			Gauntlet, locked
 		</NAME>
 		<COST>
-			8
+			8gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			-
 		</ARMORBONUS>
 		<MAXDEXBONUS>
 			-
 		</MAXDEXBONUS>
 		<ARMORCHECKPENALTY>
-			-
+			Special
 		</ARMORCHECKPENALTY>
 		<ARCANESPELLFAILURECHANCE>
-			Special
+			4
 		</ARCANESPELLFAILURECHANCE>
 		<ISMAGIC>
 			False
@@ -576,6 +747,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			5lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			This armored gauntlet has small chains and braces that allow the wearer to attach a weapon to the gauntlet so that it cannot be dropped easily. It provides a +10 bonus on any roll made to keep from being disarmed in combat. Removing a weapon from a locked gauntlet or attaching a weapon to a locked gauntlet is a full-round action that provokes attacks of opportunity.The price given is for a single locked gauntlet. The weight given applies only if you're wearing a breastplate, light armor, or no armor. Otherwise, the locked gauntlet replaces a gauntlet you already have as part of the armor.While the gauntlet is locked, you can't use the hand wearing it for casting spells or employing skills. (You can still cast spells with somatic components, provided that your other hand is free.)Like a normal gauntlet, a locked gauntlet lets you deal lethal damage rather than nonlethal damage with an unarmed strike.
 		</DESCRIPTION>
@@ -585,10 +765,10 @@
 			Shield spikes
 		</NAME>
 		<COST>
-			+10
+			+10gp
 		</COST>
 		<ARMORBONUS>
-			gp
+			-
 		</ARMORBONUS>
 		<MAXDEXBONUS>
 			-
@@ -605,6 +785,15 @@
 		<MAGICPROPERTIES>
 			None
 		</MAGICPROPERTIES>
+		<SPEED30FT>
+			-
+		</SPEED30FT>
+		<SPEED20FT>
+			-
+		</SPEED20FT>
+		<WEIGHT>
+			5lb.
+		</WEIGHT>
 		<DESCRIPTION>
 			When added to your shield, these spikes turn it into a martial piercing weapon that increases the damage dealt by a shield bash as if the shield were designed for a creature one size category larger than you. You can't put spikes on a buckler or a tower shield. Otherwise, attacking with a spiked shield is like making a shield bash attack (see above).An enhancement bonus on a spiked shield does not improve the effectiveness of a shield bash made with it, but a spiked shield can be made into a magic weapon in its own right.
 		</DESCRIPTION>

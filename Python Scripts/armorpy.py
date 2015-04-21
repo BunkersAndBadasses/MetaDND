@@ -18,7 +18,7 @@ if __name__ == '__main__':
     for line in m.readlines():
         if line[0] == '^':
             name = line[1:line.index(':')].lower()
-            armorDict[name] = []
+            armorDict[name] = line[line.index(':') + 2:]
         else:
             armorDict[name].append(line)
 
@@ -29,6 +29,7 @@ if __name__ == '__main__':
     for line in i.readlines():
         j = 0;
         s = line.split(' ')
+        print(s)
         writeline(o, '\t<ARMOR>')
         writeline(o, '\t\t<NAME>')
         o.write('\t\t\t' + s[j])
@@ -66,6 +67,18 @@ if __name__ == '__main__':
         writeline(o, '\t\t<MAGICPROPERTIES>')
         writeline(o, '\t\t\tNone')
         writeline(o, '\t\t</MAGICPROPERTIES>')
+        writeline(o, '\t\t<SPEED30FT>')
+        writeline(o, '\t\t\t' + s[j])
+        j += 1
+        writeline(o, '\t\t</SPEED30FT>')
+        writeline(o, '\t\t<SPEED20FT>')
+        writeline(o, '\t\t\t' + s[j])
+        j += 1
+        writeline(o, '\t\t</SPEED20FT>')
+        writeline(o, '\t\t<WEIGHT>')
+        writeline(o, '\t\t\t' + s[j].strip())
+        j += 1
+        writeline(o, '\t\t</WEIGHT>')
         writeline(o, '\t\t<DESCRIPTION>')
         description = ''
         try:
@@ -74,7 +87,7 @@ if __name__ == '__main__':
                 description += item
         except KeyError:
             print(name.lower())
-        writeline(o, '\t\t\t' + description )
+        writeline(o, '\t\t\t' + description.strip() )
         writeline(o, '\t\t</DESCRIPTION>')
         writeline(o, '\t</ARMOR>')
 
