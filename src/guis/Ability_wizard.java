@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -29,10 +28,6 @@ public class Ability_wizard {
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
-	private static final int WIDTH = 600;
-    private static final int HEIGHT = 400;//copy from character wizard, see for change
-	private static ArrayList<Composite> wizPages;
-	private static int wizpagenum;
 	public static AbilityEntity newability;
 	static String abilityname;
 	static String abilityscript;
@@ -43,8 +38,7 @@ public class Ability_wizard {
 		shell.setText("Create New Ability");
 		int width = display.getMonitors()[0].getBounds().width;
 		shell.setSize(width / 3, width * 2 / 9);
-		wizpagenum = 0;
-		wizPages = new ArrayList<Composite>();
+		new ArrayList<Composite>();
 		createPageContent();
 		run();
 	}
