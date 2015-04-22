@@ -77,20 +77,20 @@ public class ItemEntity extends DNDEntity{
 
 	@Override
 	public String saveCustomContent() {
-		String output = "<ITEM>\n";
-		output += "<NAME>\n";
-		output += this.name + "\n";
-		output += "</NAME>\n";
-		output += "<WEIGHT>\n";
-		output += this.weight + " lb.\n";
-		output += "</WEIGHT>\n";
-		output += "<VALUE>\n";
-		output += this.value + "gp.\n";
-		output += "</VALUE>\n";
-		output += "<DESCRIPTION>\n";
-		output += this.description + "\n";
-		output += "</DESCRIPTION>\n";
-		output += "</ITEM>\n";
+		String output = this.oneTab + "<ITEM>\n";
+		output += this.twoTabs + "<NAME>\n";
+		output += this.threeTabs + this.name + "\n";
+		output += this.twoTabs + "</NAME>\n";
+		output += this.twoTabs + "<WEIGHT>\n";
+		output += this.threeTabs + this.weight + " lb.\n";
+		output += this.twoTabs + "</WEIGHT>\n";
+		output += this.twoTabs + "<VALUE>\n";
+		output += this.threeTabs + this.value + "\n";
+		output += this.twoTabs + "</VALUE>\n";
+		output += this.twoTabs + "<DESCRIPTION>\n";
+		output += this.threeTabs + this.description + "\n";
+		output += this.twoTabs + "</DESCRIPTION>\n";
+		output += this.oneTab + "</ITEM>\n";
 		return output;
 	}
 }

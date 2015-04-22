@@ -41,6 +41,10 @@ public abstract class DNDEntity {
 		DEITY
 	}
 	
+	public String oneTab = "\t";
+	public String twoTabs = "\t\t";
+	public String threeTabs = "\t\t\t";
+	
 	type TYPE; //Enumerated type, must have to determine what type of entity this is
 	String name;
 	String description;

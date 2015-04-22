@@ -159,39 +159,39 @@ public class FeatEntity extends DNDEntity{
 
 	@Override
 	public String saveCustomContent() {
-		String output = "<FEAT>\n";
-		output += "<NAME>\n";
-		output += this.name + " [" + this.type + "]" + "\n";
-		output += "</NAME>\n";
-		output += "<BENEFIT>\n";
-		output += this.benefit + "\n";
-		output += "</BENEFIT>\n";
+		String output = this.oneTab + "<FEAT>\n";
+		output += this.twoTabs + "<NAME>\n";
+		output += this.threeTabs + this.name + " [" + this.type + "]" + "\n";
+		output += this.twoTabs + "</NAME>\n";
+		output += this.twoTabs + "<BENEFIT>\n";
+		output += this.threeTabs + this.benefit + "\n";
+		output += this.twoTabs + "</BENEFIT>\n";
 		if(this.prerequisites != null){
-			output += "<PREREQUISITES>\n";
+			output += this.twoTabs + "<PREREQUISITES>\n";
 			for(int i = 0; i < this.prerequisites.length - 1; i++)
 				output += this.prerequisites[i] + ", ";
-			output += this.prerequisites[this.prerequisites.length - 1];
-			output += "\n</PREREQUISITES>\n";
+			output += this.threeTabs + this.prerequisites[this.prerequisites.length - 1] + "\n";
+			output += this.twoTabs + "</PREREQUISITES>\n";
 		}
 		if(this.special != null){
-			output += "<SPECIAL>\n";
-			output += this.special + "\n";
-			output += "</SPECIAL>\n";
+			output += this.twoTabs + "<SPECIAL>\n";
+			output += this.threeTabs + this.special + "\n";
+			output += this.twoTabs + "</SPECIAL>\n";
 		}
 		if(this.normal != null){
-			output += "<NORMAL>\n";
-			output += this.normal + "\n";
-			output += "</NORMAL>\n";
+			output += this.twoTabs + "<NORMAL>\n";
+			output += this.threeTabs + this.normal + "\n";
+			output += this.twoTabs + "</NORMAL>\n";
 		}
 		if(this.fighterBonus != null){
-			output += "<FIGHTERBONUS>\n";
-			output += this.fighterBonus + "\n";
-			output += "</FIGHTERBONUS>\n";
+			output += this.twoTabs + "<FIGHTERBONUS>\n";
+			output += this.threeTabs + this.fighterBonus + "\n";
+			output += this.twoTabs + "</FIGHTERBONUS>\n";
 		}
-		output += "<DESCRIPTION>\n";
-		output += this.description + "\n";
-		output += "</DESCRIPTION>\n";
-		output += "</FEAT>\n";
+		output += this.twoTabs + "<DESCRIPTION>\n";
+		output += this.threeTabs + this.description + "\n";
+		output += this.twoTabs + "</DESCRIPTION>\n";
+		output += this.oneTab + "</FEAT>\n";
 		return output;
 	}
 

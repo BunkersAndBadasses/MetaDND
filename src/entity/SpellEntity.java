@@ -259,66 +259,66 @@ public class SpellEntity extends DNDEntity{
 	
 	@Override
 	public String saveCustomContent() {
-		String output = "<SPELL>\n";
-		output += "<NAME>\n";
-		output += this.name + "\n";
-		output += "</NAME>\n";
-		output += "<SCHOOL>\n";
-		output += this.school + "\n";
-		output += "</SCHOOL>\n";
-		output += "<LEVEL>\n";
-		output += this.level + "\n";
-		output += "</LEVEL>\n";
-		output += "<COMPONENTS>\n";
-		output += this.components + "\n";
-		output += "</COMPONENTS>\n";
-		output += "<CASTINGTIME>\n";
-		output += this.castingTime + "\n";
-		output += "</CASTINGTIME>\n";
+		String output = this.oneTab + "<SPELL>\n";
+		output += this.twoTabs + "<NAME>\n";
+		output += this.threeTabs + this.name + "\n";
+		output += this.twoTabs + "</NAME>\n";
+		output += this.twoTabs + "<SCHOOL>\n";
+		output += this.threeTabs + this.school + "\n";
+		output += this.twoTabs + "</SCHOOL>\n";
+		output += this.twoTabs + "<LEVEL>\n";
+		output += this.threeTabs + this.level + "\n";
+		output += this.twoTabs + "</LEVEL>\n";
+		output += this.twoTabs + "<COMPONENTS>\n";
+		output += this.threeTabs + this.components + "\n";
+		output += this.twoTabs + "</COMPONENTS>\n";
+		output += this.twoTabs + "<CASTINGTIME>\n";
+		output += this.threeTabs + this.castingTime + "\n";
+		output += this.twoTabs + "</CASTINGTIME>\n";
 		if(this.range != null){
-			output += "<RANGE>\n";
-			output += this.range + "\n";
-			output += "</RANGE>\n";
+			output += this.twoTabs + "<RANGE>\n";
+			output += this.threeTabs + this.range + "\n";
+			output += this.twoTabs + "</RANGE>\n";
 		}
 		if(this.effect != null){
-			output += "<EFFECT>\n";
-			output += this.effect + "\n";
-			output += "</EFFECT>\n";
+			output += this.twoTabs + "<EFFECT>\n";
+			output += this.threeTabs + this.effect + "\n";
+			output += this.twoTabs + "</EFFECT>\n";
 		}
 		if(this.duration != null){
-			output += "<DURATION>\n";
-			output += this.duration + "\n";
-			output += "</DURATION>\n";
+			output += this.twoTabs + "<DURATION>\n";
+			output += this.threeTabs + this.duration + "\n";
+			output += this.twoTabs + "</DURATION>\n";
 		}
 		if(this.savingThrow != null){
-			output += "<SAVINGTHROW>\n";
-			output += this.savingThrow + "\n";
-			output += "</SAVINGTHROW>\n";
+			output += this.twoTabs + "<SAVINGTHROW>\n";
+			output += this.threeTabs + this.savingThrow + "\n";
+			output += this.twoTabs + "</SAVINGTHROW>\n";
 		}
 		if(this.spellResistance == false){
-			output += "<SPELLRESISTANCE>\n";
-			output +=  "No\n";
-			output += "</SPELLRESISTANCE>\n";
+			output += this.twoTabs + "<SPELLRESISTANCE>\n";
+			output += this.threeTabs + "No\n";
+			output += this.twoTabs + "</SPELLRESISTANCE>\n";
 		}
 		if(this.materialComponent != null){
-			output += "<MATERIALCOMPONENT>\n";
-			output +=  this.materialComponent;
-			output += "</MATERIALCOMPONENT>\n";
+			output += this.twoTabs + "<MATERIALCOMPONENT>\n";
+			output += this.threeTabs + this.materialComponent;
+			output += this.twoTabs + "</MATERIALCOMPONENT>\n";
 		}
 		if(this.focus != null){
-			output += "<FOCUS>\n";
-			output +=  this.focus;
-			output += "</FOCUS>\n";
+			output += this.twoTabs + "<FOCUS>\n";
+			output += this.threeTabs + this.focus;
+			output += this.twoTabs + "</FOCUS>\n";
 		}
 		if(this.damage != null){
-			output += "<DAMAGE>\n";
-			output +=  this.materialComponent;
-			output += "</DAMAGEALTERNATE>\n";
+			output += this.twoTabs + "<DAMAGE>\n";
+			output += this.threeTabs + this.materialComponent;
+			output += this.twoTabs + "</DAMAGE>\n";
 		}
-		output += "<DESCRIPTION>\n";
-		output += this.description + "\n";
-		output += "</DESCRIPTION>\n";
-		output += "</SPELL>\n";
+		output += this.twoTabs + "<DESCRIPTION>\n";
+		output += this.threeTabs + this.description + "\n";
+		output += this.twoTabs + "</DESCRIPTION>\n";
+		output += this.oneTab + "</SPELL>\n";
 		return output;
 	}
 }
