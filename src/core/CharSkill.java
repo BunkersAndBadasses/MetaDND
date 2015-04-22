@@ -11,8 +11,6 @@ public class CharSkill {
 	private boolean classSkill = false;
 	private boolean acPen;
 	private boolean untrained = false;
-	private boolean halfPoint = false;
-	
 	public CharSkill(SkillEntity s, character c) {
 		skill = s;
 		character = c;
