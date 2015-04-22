@@ -63,7 +63,6 @@ public class Item_wizard {
 		center(shell);
 
         shell.open();
-
         while (!shell.isDisposed()) {
           if (!display.readAndDispatch()) {
             display.sleep();
@@ -212,6 +211,7 @@ public class Item_wizard {
 
 		shell.layout();
 		shell.pack();
+		save.setFocus();
 //		//wizard
 //		final Composite wizPanel = new Composite(shell, SWT.BORDER);
 //		wizPanel.setBounds(0,0,WIDTH, HEIGHT);
