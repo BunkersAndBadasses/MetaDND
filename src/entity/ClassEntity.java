@@ -16,7 +16,7 @@ public class ClassEntity extends DNDEntity {
 	int[] willSave;
 	String special;
 	int[][] spellsPerDay;
-	String spellsKnown;
+	int[][] spellsKnown;
 	String classSkills;
 	String skillPointsFirstLevel;
 	String skillPointsPerLevel;
@@ -95,12 +95,25 @@ public class ClassEntity extends DNDEntity {
 						this.spellsPerDay[i][j] = Integer.parseInt(spellLevelSplit[j]);
 					}
 				}
-				
-				//this.spellsPerDay = value;
 				break;
 			case "SPELLSKNOWN":
-				this.spellsKnown = value; // TODO Replace with proper spell
-											// entity objects
+				//System.out.println("Spells per day: " + this.name);
+				boolean arrayInitialized1 = false;
+				String[] charLevel1 = value.split("\n");
+				for (int i = 0; i < charLevel1.length; i++){
+					charLevel1[i] = charLevel1[i].trim();
+					String[] spellLevelSplit = charLevel1[i].split(", ");
+					if(!arrayInitialized1){
+						this.spellsKnown = new int[charLevel1.length][spellLevelSplit.length];
+						arrayInitialized1 = true;
+					}
+					for(int j = 0; j < spellLevelSplit.length; j++){
+						if(spellLevelSplit[j].equalsIgnoreCase("-")){
+							spellLevelSplit[j] = "0";
+						}
+						this.spellsKnown[i][j] = Integer.parseInt(spellLevelSplit[j]);
+					}
+				}
 				break;
 			case "SKILLPOINTSFIRST":
 				this.skillPointsFirstLevel = value;
@@ -268,11 +281,11 @@ public class ClassEntity extends DNDEntity {
 		this.spellsPerDay = spellsPerDay;
 	}
 
-	public String getSpellsKnown() {
+	public int[][] getSpellsKnown() {
 		return spellsKnown;
 	}
 
-	public void setSpellsKnown(String spellsKnown) {
+	public void setSpellsKnown(int[][] spellsKnown) {
 		this.spellsKnown = spellsKnown;
 	}
 

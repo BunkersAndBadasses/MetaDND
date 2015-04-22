@@ -332,8 +332,6 @@
 			6, 5, 5, 5, 5, 5, 4, 4, 3, 3
 			6, 5, 5, 5, 5, 5, 4, 4, 4, 4
 		</SPELLSPERDAY>
-		<SPELLSKNOWN>
-		</SPELLSKNOWN>
 		<CLASSSKILLS>
 			The druid's class skills (and the key ability for each skill) are Concentration (Con), Craft (Int), Diplomacy (Cha), Handle Animal (Cha), Heal (Wis), Knowledge (nature) (Int), Listen (Wis), Profession (Wis), Ride (Dex), Spellcraft (Int), Spot (Wis), Survival (Wis), and Swim (Str).
 		</CLASSSKILLS>
@@ -1193,8 +1191,6 @@
 			4, 4, 4, 4, 4, 4, 4, 4, 3, 3
 			4, 4, 4, 4, 4, 4, 4, 4, 4, 4
 		</SPELLSPERDAY>
-		<SPELLSKNOWN>
-		</SPELLSKNOWN>
 		<CLASSSKILLS>
 			The wizard's class skills (and the key ability for each skill) are Concentration (Con), Craft (Int), Decipher Script (Int), Knowledge (all skills, taken individually) (Int), Profession (Wis), and Spellcraft (Int). See Chapter 4: Skills for
 			skill descriptions.
