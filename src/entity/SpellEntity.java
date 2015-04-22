@@ -8,7 +8,7 @@ import core.Main;
 public class SpellEntity extends DNDEntity{
 
 	String school;
-	Map<String, Integer> level; //Key is what class can cast, level is what level the spell is for that class, map for multiple classes?
+	//Map<String, Integer> level; //Key is what class can cast, level is what level the spell is for that class, map for multiple classes?
 	String components;
 	String castingTime;
 	String range;
@@ -20,6 +20,7 @@ public class SpellEntity extends DNDEntity{
 	String focus;
 	String damage;
 	String damageAlternate;
+	String level;
 	
 	public SpellEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.SPELL;
@@ -62,7 +63,7 @@ public class SpellEntity extends DNDEntity{
 		    	this.duration = value;
 		    	break;
 		    case "LEVEL":
-		    	//TODO Figure out logic here later, with what we want
+		    	this.level = value;
 		    	break;
 		    case "SPELLRESISTANCE":
 		    	if(value.toUpperCase().contains("NO")){
@@ -160,11 +161,11 @@ public class SpellEntity extends DNDEntity{
 		this.school = school;
 	}
 
-	public Map<String, Integer> getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(Map<String, Integer> level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -254,5 +255,70 @@ public class SpellEntity extends DNDEntity{
 
 	public void setDamageAlternate(String damageAlternate) {
 		this.damageAlternate = damageAlternate;
+	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "<SPELL>\n";
+		output += "<NAME>\n";
+		output += this.name + "\n";
+		output += "</NAME>\n";
+		output += "<SCHOOL>\n";
+		output += this.school + "\n";
+		output += "</SCHOOL>\n";
+		output += "<LEVEL>\n";
+		output += this.level + "\n";
+		output += "</LEVEL>\n";
+		output += "<COMPONENTS>\n";
+		output += this.components + "\n";
+		output += "</COMPONENTS>\n";
+		output += "<CASTINGTIME>\n";
+		output += this.castingTime + "\n";
+		output += "</CASTINGTIME>\n";
+		if(this.range != null){
+			output += "<RANGE>\n";
+			output += this.range + "\n";
+			output += "</RANGE>\n";
+		}
+		if(this.effect != null){
+			output += "<EFFECT>\n";
+			output += this.effect + "\n";
+			output += "</EFFECT>\n";
+		}
+		if(this.duration != null){
+			output += "<DURATION>\n";
+			output += this.duration + "\n";
+			output += "</DURATION>\n";
+		}
+		if(this.savingThrow != null){
+			output += "<SAVINGTHROW>\n";
+			output += this.savingThrow + "\n";
+			output += "</SAVINGTHROW>\n";
+		}
+		if(this.spellResistance == false){
+			output += "<SPELLRESISTANCE>\n";
+			output +=  "No\n";
+			output += "</SPELLRESISTANCE>\n";
+		}
+		if(this.materialComponent != null){
+			output += "<MATERIALCOMPONENT>\n";
+			output +=  this.materialComponent;
+			output += "</MATERIALCOMPONENT>\n";
+		}
+		if(this.focus != null){
+			output += "<FOCUS>\n";
+			output +=  this.focus;
+			output += "</FOCUS>\n";
+		}
+		if(this.damage != null){
+			output += "<DAMAGE>\n";
+			output +=  this.materialComponent;
+			output += "</DAMAGEALTERNATE>\n";
+		}
+		output += "<DESCRIPTION>\n";
+		output += this.description + "\n";
+		output += "</DESCRIPTION>\n";
+		output += "</SPELL>\n";
+		return output;
 	}
 }

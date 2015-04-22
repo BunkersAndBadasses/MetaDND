@@ -176,5 +176,7 @@ public abstract class DNDEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public abstract String saveCustomContent();
 
 }

@@ -74,4 +74,23 @@ public class ItemEntity extends DNDEntity{
 	public void setValue(String value) {
 		this.value = value;
 	}
+
+	@Override
+	public String saveCustomContent() {
+		String output = "<ABILITY>\n";
+		output += "<NAME>\n";
+		output += this.name + "\n";
+		output += "</NAME>\n";
+		output += "<WEIGHT>\n";
+		output += this.weight + "lb.\n";
+		output += "</WEIGHT>\n";
+		output += "<VALUE>\n";
+		output += this.value + "gp.\n";
+		output += "</VALUE>\n";
+		output += "<DESCRIPTION>\n";
+		output += this.description + "\n";
+		output += "</DESCRIPTION>\n";
+		output += "</ABILITY>\n";
+		return output;
+	}
 }

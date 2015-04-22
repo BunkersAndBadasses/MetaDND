@@ -283,5 +283,11 @@ public class RaceEntity extends DNDEntity{
 		this.speed = speed;
 	}
 	
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
+	
 	
 }
