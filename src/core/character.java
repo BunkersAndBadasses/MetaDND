@@ -374,6 +374,28 @@ public class character {
 			s += "Class: <empty>\n";
 		else
 			s += "Class: " + charClass.getName() + "\n";
+		if (clericDomains != null) {
+			s += "Cleric Domains: ";
+			s += clericDomains[0];
+			for (int i = 1; i < clericDomains.length; i++)
+				s += ", " + clericDomains[i];
+			s += "\n";
+		}
+		if (druidAnimalCompanion != null)
+			s += "Druid Animal Companion: " + druidAnimalCompanion + "\n";
+		if (rangerFavoredEnemy != null)
+			s += "Ranger Favored Enemy: " + rangerFavoredEnemy + "\n";
+		if (familiar != null)
+			s += "Familiar: " + familiar + "\n";
+		if (wizardSpecialtySchool != null)
+			s += "Wizard Specialty School: " + wizardSpecialtySchool + "\n";
+		if (wizardProhibitedSchools != null) {
+			s += "Wizard Prohibited School(s): ";
+			s += wizardProhibitedSchools[0];
+			for (int i = 1; i < wizardProhibitedSchools.length; i++)
+				s += ", " + wizardProhibitedSchools[i];
+			s += "\n";
+		}
 		if (charSecClass != null)
 			s += "Second Class: " + charSecClass.getName() + "\n";
 		s += "Alignment: " + alignment + "\n";
@@ -392,6 +414,19 @@ public class character {
 			s += "\t" + GameState.abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
 		s += "HP: " + hp + "\n";
 		s += "Remaining HP: " + dmg + "\n";
+		s += "Armor Class: " + AC + "\n";
+		s += "Touch AC: " + touchAC + "\n";
+		s += "Flat-Footed AC: " + flatFootedAC + "\n";
+		s += "Initiative Modifier: " + initMod + "\n";
+		s += "Saving Throws: \n";
+		s += "\tFortitude: " + savingThrows[0] + "\n";
+		s += "\tReflex: " + savingThrows[1] + "\n";
+		s += "\tWill: " + savingThrows[2] + "\n";
+		s += "Base Attack Bonus: " + baseAttackBonus + "\n";
+		s += "Spell Resistance: " + spellResistance + "\n";
+		s += "Grapple Modifier: " + grappleMod + "\n";
+		s += "Speed(feet): " + speed + "\n";
+		s += "Damage Reduction: " + damageReduction + "\n";		
 		s += "Skills: " + "\n";
 		for (int i = 0; i < skills.size(); i++)
 			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";

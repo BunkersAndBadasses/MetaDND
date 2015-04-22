@@ -26,10 +26,14 @@ import entity.RaceEntity;
  * fix scroll on feats/items pages
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
+ * save cleric domains, animal companion, familiar, specialty school, prohibited schools, favored enemy
  * barbarian illiteracy
+ * set cap on character name length = 200
  * add deity favored weapon
  * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
  * spells!
+ * 
+ * item page????
  * 
  * FINISH BEFORE WEEKEND
  * 

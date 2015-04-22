@@ -197,8 +197,8 @@ public class Wiz7 {
 		
 		// add item button
 		Button addButton = new Button(wiz7, SWT.PUSH);
-		addButton.setText("Add >");
-		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
+		addButton.setText("Add 1 >");
+		addButton.setLocation(WIDTH/2 - 35, HEIGHT/2 - 110);
 		addButton.pack();
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -212,6 +212,8 @@ public class Wiz7 {
 				for(int i = 0; i < charItems.size(); i++) {
 					if (charItems.get(i).getName().equals(selection)) {
 						charItems.get(i).incCount();
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
 						numCharItems.set(i, charItems.get(i).getCount());
 						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
 						return;
@@ -231,10 +233,88 @@ public class Wiz7 {
 			}
 		});
 		
+		// add 5 button
+		Button add5Button = new Button(wiz7, SWT.PUSH);
+		add5Button.setText("Add 5 >");
+		add5Button.setLocation(WIDTH/2 - 35, HEIGHT/2 - 80);
+		add5Button.pack();
+		add5Button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int index = itemsList.getSelectionIndex();
+				// check if an item is selected
+				if (index == -1)
+					return;
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(selection)) {
+						charItems.get(i).incCountBy(5);
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
+						numCharItems.set(i, charItems.get(i).getCount());
+						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						return;
+					}
+				}
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index));
+				charItems.add(c);
+				charItemsList.add("5 x " + selection);
+				numCharItems.add(c.getCount());
+			
+				// refresh char items list
+				charItemsList.pack();
+				charItemScroll.setMinHeight(charItemsList.getBounds().height);
+				charItemScreen.layout();
+				charItemScroll.layout();
+			}
+		});
+		
+		// add 10 button
+		Button add10Button = new Button(wiz7, SWT.PUSH);
+		add10Button.setText("Add 10 >");
+		add10Button.setLocation(WIDTH/2 - 38, HEIGHT/2 - 50);
+		add10Button.pack();
+		add10Button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int index = itemsList.getSelectionIndex();
+				// check if an item is selected
+				if (index == -1)
+					return;
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(selection)) {
+						charItems.get(i).incCountBy(10);
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
+						numCharItems.set(i, charItems.get(i).getCount());
+						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						return;
+					}
+				}
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index));
+				charItems.add(c);
+				charItemsList.add("10 x " + selection);
+				numCharItems.add(c.getCount());
+			
+				// refresh char items list
+				charItemsList.pack();
+				charItemScroll.setMinHeight(charItemsList.getBounds().height);
+				charItemScreen.layout();
+				charItemScroll.layout();
+			}
+		});
+
+
+		
 		// remove item button
 		Button removeButton = new Button(wiz7, SWT.PUSH);
-		removeButton.setText("< Remove");
-		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
+		removeButton.setText("< Remove 1");
+		removeButton.setLocation(WIDTH/2 - 45, HEIGHT/2);
 		removeButton.pack();
 		removeButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -261,6 +341,31 @@ public class Wiz7 {
 				
 			}
 		});
+		
+		// remove all button
+		Button removeAllButton = new Button(wiz7, SWT.PUSH);
+		removeAllButton.setText("< Remove All");
+		removeAllButton.setLocation(WIDTH/2 - 48, HEIGHT/2 + 30);
+		removeAllButton.pack();
+		removeAllButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (charItems.isEmpty())
+					return;
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				charItemsList.remove(index);
+				charItems.remove(index);
+				numCharItems.remove(index);
+
+				charItemScreen.pack();
+				charItemScroll.setMinHeight(charItemsList.getBounds().height);
+				charItemScreen.layout();
+				charItemScroll.layout();
+				
+			}
+		});
+		
 		itemListScreen.pack();
 		charItemScreen.pack();
 		

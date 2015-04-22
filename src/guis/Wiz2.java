@@ -315,6 +315,25 @@ public class Wiz2 {
 				character.setSpeed(character.getCharRace().getSpeed());
 				// TODO add bonus - barbarian +10
 				// TODO save special abilities, ac, saving throws, etc
+				
+				/*
+				 * remaining hp
+				 * ac
+				 * touch ac
+				 * ff ac
+				 * init mod
+				 * saving throws
+				 * base attack bonus
+				 * spell resistance
+				 * grapple mod
+				 * damage reduction
+				 * 
+				 * special abilities
+				 * spells
+				 * prepared spells
+				 * weapons
+				 * armor
+				 */
 
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
