@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import core.Main;
-import entity.AbilityEntity;
 import entity.FeatEntity;
 
 /**
@@ -50,7 +49,7 @@ public class Feat_wizard
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create new Feat");
-		int width = display.getMonitors()[0].getBounds().width;
+		//int width = display.getMonitors()[0].getBounds().width;
 		//shell.setSize(width / 3, width * 2 / 9);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
