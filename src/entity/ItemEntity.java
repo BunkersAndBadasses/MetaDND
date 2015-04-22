@@ -82,7 +82,7 @@ public class ItemEntity extends DNDEntity{
 		output += this.name + "\n";
 		output += "</NAME>\n";
 		output += "<WEIGHT>\n";
-		output += this.weight + "lb.\n";
+		output += this.weight + " lb.\n";
 		output += "</WEIGHT>\n";
 		output += "<VALUE>\n";
 		output += this.value + "gp.\n";

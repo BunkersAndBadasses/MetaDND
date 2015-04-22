@@ -2,8 +2,13 @@ package guis;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -39,6 +44,8 @@ public class Item_wizard {
 	static String ItemScript;
 	static String ItemValue;
 	private static int wizPageNum;
+	private static Device dev;
+	
 	public Item_wizard(Display d)
 	{
 		display = d;
@@ -110,9 +117,17 @@ public class Item_wizard {
 		Text weightInput = new Text(shell, SWT.BORDER);
 		weightInput.setMessage("Weight");
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gd.horizontalSpan = 2;
+		gd.horizontalSpan = 1;
 		weightInput.setLayoutData(gd);
 		weightInput.pack();
+		
+		Label lb = new Label(shell, SWT.NONE);
+		lb.setText("lb.");
+		lb.setFont(new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.NONE )));
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 1;
+		lb.setLayoutData(gd);
+		lb.pack();
 		//Value
 		Text valueInput = new Text(shell, SWT.BORDER);
 		valueInput.setMessage("Value");
@@ -130,6 +145,7 @@ public class Item_wizard {
 		descriptionInput.pack();
 		
 		Label blank = new Label(shell, SWT.NONE);
+		blank.setVisible(false);
 		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 4;
 		blank.setLayoutData(gd);
@@ -146,16 +162,32 @@ public class Item_wizard {
 				{
 					checkfault = true;
 					nameInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					blank.setForeground(display.getSystemColor(SWT.COLOR_RED));
+					blank.setVisible(true);
+					blank.setText("Required fields must have a value.");
 				}
-				if(weightInput.getText().equals(""))
+				if(weightInput.getText().equals("") || !NumberUtils.isNumber(weightInput.getText()))
 				{
 					checkfault = true;
 					weightInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					if(!NumberUtils.isNumber(weightInput.getText())){
+						blank.setForeground(display.getSystemColor(SWT.COLOR_RED));
+						blank.setVisible(true);
+						blank.setText("Weight must be a number.");
+					}
+					else{
+						blank.setForeground(display.getSystemColor(SWT.COLOR_RED));
+						blank.setVisible(true);
+						blank.setText("Required fields must have a value.");
+					}
 				}
 				if(valueInput.getText().equals(""))
 				{
 					checkfault = true;
 					valueInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					blank.setForeground(display.getSystemColor(SWT.COLOR_RED));
+					blank.setVisible(true);
+					blank.setText("Required fields must have a value.");
 				}
 				if(checkfault)
 				{

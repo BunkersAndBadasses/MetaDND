@@ -35,7 +35,7 @@ public class MenuBarHomeScreen {
         saveItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	Main.gameState.saveCustomContent();
+            	//TODO
             	}
         });
         
