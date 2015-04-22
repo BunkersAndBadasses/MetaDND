@@ -334,8 +334,8 @@ public class Wiz2 {
 				// set abilities
 				String[] abilities = character.getCharRace().getSpecialAbilities();
 				for (int i = 0; i < abilities.length; i++)
-					//TODO this is null......
-					character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(abilities[i]));
+					if (!abilities[i].equals(""))
+						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(abilities[i]));
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;

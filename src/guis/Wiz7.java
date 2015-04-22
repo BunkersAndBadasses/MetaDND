@@ -258,7 +258,7 @@ public class Wiz7 {
 					}
 				}
 				// otherwise add it to the list
-				CharItem c = new CharItem(items.get(index));
+				CharItem c = new CharItem(items.get(index), 5);
 				charItems.add(c);
 				charItemsList.add("5 x " + selection);
 				numCharItems.add(c.getCount());
@@ -296,7 +296,7 @@ public class Wiz7 {
 					}
 				}
 				// otherwise add it to the list
-				CharItem c = new CharItem(items.get(index));
+				CharItem c = new CharItem(items.get(index), 10);
 				charItems.add(c);
 				charItemsList.add("10 x " + selection);
 				numCharItems.add(c.getCount());

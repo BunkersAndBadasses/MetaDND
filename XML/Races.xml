@@ -40,9 +40,7 @@
 		</NAME>
 		<DESCRIPTION>
 		</DESCRIPTION>
-		<SPECIALABILITIES>
-			Darkvision, Stonecunning, Weapon Familiarity(Dwarven Waraxe), Weapon Familiarity(Dwarven Urgrosh), Stability
-		</SPECIALABILITIES>
+		<SPECIALABILITIES>Darkvision, Stonecunning, Weapon Familiarity (Dwarven Waraxe), Weapon Familiarity (Dwarven Urgrosh), Stability</SPECIALABILITIES>
 		<ABILITYADJ>
 			0, 0, 2, 0, 0, -2
 		</ABILITYADJ>

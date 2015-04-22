@@ -11,6 +11,11 @@ public class CharItem {
 		count = 1;
 	}
 	
+	public CharItem(ItemEntity i, int c) {
+		item = i;
+		count = c;
+	}
+	
 	public void incCount() {
 		count++;
 	}
