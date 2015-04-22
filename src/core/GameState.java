@@ -3,6 +3,7 @@ package core;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.SortedMap;
@@ -33,6 +34,8 @@ public class GameState {
 	// 2 = dungeonViewer
 	// 3 = playerScreen
 	public static int PAGE_NUMBER = -1;
+	
+	public static ArrayList<String> wizardsOpen = new ArrayList<String>();
 	
 	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml
 	public LinkedHashMap<String, DNDEntity> customContent;
@@ -113,6 +116,10 @@ public class GameState {
     }
 
 		
+	}
+	
+	public static boolean isWizardOpen(String wizard) {
+		return wizardsOpen.contains(wizard);
 	}
 	
 	public boolean search(String searchString){

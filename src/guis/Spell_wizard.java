@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
 import core.Main;
 import entity.SpellEntity;
 
@@ -49,6 +50,9 @@ public class Spell_wizard {
 	static String spellresistance;
 	public Spell_wizard(Display d)
 	{
+		if (GameState.isWizardOpen("Spell")) {
+			return;
+		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create new Spell");
@@ -57,6 +61,7 @@ public class Spell_wizard {
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
+		GameState.wizardsOpen.add("Spell");
 		run();
 	}
 	public void run()
@@ -70,6 +75,7 @@ public class Spell_wizard {
             display.sleep();
           }
         }
+        GameState.wizardsOpen.remove("Spell");
 	}
 	/**
 	 * Set window to be the center.

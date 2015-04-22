@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import core.CharFeat;
 import core.DnDie;
+import core.GameState;
 import core.Main;
 import core.RNG;
 import core.character;
@@ -78,6 +79,9 @@ public class CharacterWizard {
 	public int[] baseAbilityScores = new int[6];
 
 	public CharacterWizard(Display d) {
+		if (GameState.isWizardOpen("Character")) {
+			return;
+		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Character");
@@ -86,7 +90,7 @@ public class CharacterWizard {
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
 		createPageContent();
-
+		GameState.wizardsOpen.add("Character");
 		run();
 	}
 
@@ -100,6 +104,7 @@ public class CharacterWizard {
 				display.sleep();
 			}
 		}
+		GameState.wizardsOpen.remove("Character");
 	}
 
 	public static void center(Shell shell) {

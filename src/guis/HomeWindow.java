@@ -22,14 +22,13 @@ import core.GridMapper;
 import core.Main;
 import core.RNG;
 import core.character;
-import entity.ArmorEntity;
+
 import entity.ClassEntity;
 import entity.DNDEntity;
-import entity.ItemEntity;
 import entity.RaceEntity;
-import entity.TrapEntity;
-import entity.WeaponEntity;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,13 +39,6 @@ import java.util.Iterator;
 import javax.swing.JScrollPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-/*
- * TODO
- * 
- * fix menu bar home screen link - opens a new home window instead of navigating back to home in the same window
- * but if no homewindow is open, open one (only one can be open at a time)
- */
 
 public class HomeWindow {
 	private static String version = "Ver0.8.Alpha";
@@ -79,7 +71,6 @@ public class HomeWindow {
 	private final Composite dungeonGenConfig;
 	private final Composite playerScreen;
 	private referencePanel playerScreenReferencePanel;
-	private referencePanel homeScreenReferencePanel;
 	private referencePanel dungeonScreenReferencePanel;
 
 	
@@ -369,37 +360,22 @@ public class HomeWindow {
 				int densitySelection = densitySlider.getSelection();
 				double density = 1 - ((double)densitySelection/100);
 				
-				// This seems like magic, and it kind of is, but just go with it.
-				// it makes the screen size and dungeon tile size proportional
-				// to the configurations that the user selected.
-				int sizeOfSquare;
-				if (sizeSelection >= 10 && sizeSelection < 20) {
-					sizeOfSquare = 50;
+				int sizeOfSquare = 50;
+				int totalSize = sizeSelection*sizeOfSquare ;
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				while (totalSize + 50> screenSize.getWidth()) {
+					sizeOfSquare -= 5;
+					totalSize = sizeSelection*sizeOfSquare;
 				}
-				else if (sizeSelection >= 20 && sizeSelection < 30) {
-					sizeOfSquare = 40;
-				}
-				else if (sizeSelection >= 30 && sizeSelection < 40) {
-					sizeOfSquare = 30;
-				}
-				else if (sizeSelection >= 40 && sizeSelection < 50) {
-					sizeOfSquare = 30;
-				}
-				else if (sizeSelection >= 50 && sizeSelection < 60) {
-					sizeOfSquare = 20;
-				}
-				else if (sizeSelection >= 60) {
-					sizeOfSquare = 10;
-				}
-				else {
-					sizeOfSquare = 30;
+				while (totalSize + 50>  screenSize.getHeight()) {
+					sizeOfSquare -= 5;
+					totalSize = sizeSelection*sizeOfSquare;
 				}
 				
-				int totalSize = sizeSelection*sizeOfSquare + 100;
-				shell.setSize(totalSize, totalSize);
+				
 
-				//System.out.println(sizeSelection);
-				//System.out.println(density);
+				shell.setSize(totalSize + 50, totalSize + 75);
+
 
 				DungeonGenerator rdg = new DungeonGenerator(sizeSelection, density);
 				rdg.GenerateDungeon();
@@ -636,19 +612,13 @@ public class HomeWindow {
 			});
 			
 			final List dungeonList = new List(dungeonScreenComp, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
-			int counter = 0;
 	
 			// populate the list
 			for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
 				if (s.contains(".svg")) {
 					dungeonList.add(s);
-					counter++;
 				}
 			}
-			for (int i = counter; i < 20; i++) {
-				dungeonList.add("");
-			}
-	
 			// make the list look good.
 			GridData listGD = new GridData();
 			listGD.grabExcessHorizontalSpace = true;
@@ -668,17 +638,12 @@ public class HomeWindow {
 			loadButton.setText("Load Dungeon");
 			loadButton.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
-					String dungeonToLoad = dungeonList.getSelection()[dungeonList.getSelectionIndex()];
-					if (dungeonToLoad.equals("")){
-						return;
-					}
+					String dungeonToLoad = dungeonList.getSelection()[0];
 					String toSet = "file:///";
 					toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
 					svgCanvas.setURI(toSet);
 	
 					new MenuBarDungeon(shell, hw);
-	
-					shell.setMaximized(true);
 					GameState.PAGE_NUMBER = 2;
 					mainWindowLayout.topControl = dungeonViewer;
 					mainWindow.layout();
@@ -715,6 +680,10 @@ public class HomeWindow {
 					int armorNum = Main.gameState.armor.size();
 					int weaponsNum = Main.gameState.weapons.size();
 					int itemNum = Main.gameState.items.size();
+					
+					if (armorNum == 0 || weaponsNum == 0 || itemNum == 0) {
+						return;
+					}
 					
 					int choice = rng.GetRandomInteger(1, 4);
 					
@@ -825,6 +794,9 @@ public class HomeWindow {
 					
 					//TODO Trap generation
 					int trapNum = Main.gameState.traps.size();
+					if (trapNum == 0) {
+						return;
+					}
 					int trap = rng.GetRandomInteger(0, trapNum) - 1;
 					
 					Collection<DNDEntity> trapCol = Main.gameState.traps.values();
@@ -848,6 +820,9 @@ public class HomeWindow {
 					
 					//TODO Monster generation
 					int monsterNum = Main.gameState.monsters.size();
+					if (monsterNum == 0) {
+						return;
+					}
 					int monster = rng.GetRandomInteger(0, monsterNum) - 1;
 					
 					Collection<DNDEntity> monsterCol = Main.gameState.monsters.values();

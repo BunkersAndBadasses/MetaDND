@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
 import core.Main;
 import entity.FeatEntity;
 
@@ -46,6 +47,9 @@ public class Feat_wizard
 	static String featscript;
 	public Feat_wizard(Display d)
 	{
+		if (GameState.isWizardOpen("Feat")) {
+			return;
+		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create new Feat");
@@ -54,6 +58,7 @@ public class Feat_wizard
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
+		GameState.wizardsOpen.add("Feat");
 		run();
 	}
 	public void run()
@@ -67,6 +72,7 @@ public class Feat_wizard
             display.sleep();
           }
         }
+        GameState.wizardsOpen.remove("Feat");
 	}
 	/**
 	 * Set window to be the center.

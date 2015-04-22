@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
 import core.Main;
 import entity.ItemEntity;
 
@@ -48,6 +49,9 @@ public class Item_wizard {
 	
 	public Item_wizard(Display d)
 	{
+		if (GameState.isWizardOpen("Item")) {
+			return;
+		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Item");
@@ -56,6 +60,7 @@ public class Item_wizard {
 		wizPages = new ArrayList<Composite>();
 		wizPageNum = 0;
 		createPageContent();
+		GameState.wizardsOpen.add("Item");
 		run();
 	}
 	public void run()
@@ -68,6 +73,7 @@ public class Item_wizard {
             display.sleep();
           }
         }
+        GameState.wizardsOpen.remove("Item");
 	}
 	/**
 	 * Set window to be the center.

@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
 import core.Main;
 import entity.AbilityEntity;
 /**
@@ -33,6 +34,9 @@ public class Ability_wizard {
 	static String abilityscript;
 	public Ability_wizard(Display d)
 	{
+		if (GameState.isWizardOpen("Ability")) {
+			return;
+		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Ability");
@@ -40,6 +44,7 @@ public class Ability_wizard {
 		shell.setSize(width / 3, width * 2 / 9);
 		new ArrayList<Composite>();
 		createPageContent();
+		GameState.wizardsOpen.add("Ability");
 		run();
 	}
 	public void run()
@@ -53,6 +58,7 @@ public class Ability_wizard {
             display.sleep();
           }
         }
+        GameState.wizardsOpen.remove("Ability");
 	}
 	/**
 	 * Set window to be the center.
