@@ -361,4 +361,10 @@ public class ClassEntity extends DNDEntity {
 		this.exclass = exclass;
 	}
 
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
+
 }

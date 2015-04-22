@@ -94,5 +94,11 @@ public class TrapEntity extends DNDEntity{
 		}
 		
 	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
 
 }

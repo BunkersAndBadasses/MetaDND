@@ -56,5 +56,18 @@ public class AbilityEntity extends DNDEntity{
 		}
 		
 	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "<ABILITY>\n";
+		output += "<NAME>\n";
+		output += this.name + "\n";
+		output += "</NAME>\n";
+		output += "<DESCRIPTION>\n";
+		output += this.description + "\n";
+		output += "</DESCRIPTION>\n";
+		output += "</ABILITY>\n";
+		return output;
+	}
 
 }

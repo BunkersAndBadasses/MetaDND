@@ -191,5 +191,11 @@ public class WeaponEntity extends DNDEntity{
 	public void setValue(String value) {
 		this.value = value;
 	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
 		
 }
