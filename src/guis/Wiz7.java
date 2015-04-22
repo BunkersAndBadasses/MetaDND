@@ -119,7 +119,7 @@ public class Wiz7 {
 		searchLabel.setText("Double click on a item to see details");
 		searchLabel.pack();		
 		
-		// get feats from references
+		// get items from references
 		Collection<DNDEntity> itemsCol =  gs.items.values();
 		Iterator<DNDEntity> itr = itemsCol.iterator();
 		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();

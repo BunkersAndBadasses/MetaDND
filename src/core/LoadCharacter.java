@@ -87,17 +87,44 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i ++) {
                     c.prepSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
                 }
-                
-                c.setAC(Integer.parseInt(getValue("AC", element)));
+                String[] acString = getValue("AC", element).split(" + ");
+                int[] ac = new int[acString.length];
+                for (int i = 0; i < acString.length; i++) {
+                	ac[i] = Integer.parseInt(acString[i]);
+                }
+                c.setAC(ac);
                 c.setTouchAC(Integer.parseInt(getValue("TouchAC", element)));
                 c.setFlatFootedAC(Integer.parseInt(getValue("FlatFootedAC", element)));
-                c.setInitMod(Integer.parseInt(getValue("Init", element)));
-                c.setSavingThrows(Integer.parseInt(getValue("Fortitude", element)),
-                        Integer.parseInt(getValue("Reflex", element)),
-                        Integer.parseInt(getValue("Will", element)));
+                String[] initString = getValue("Init", element).split(" + ");
+                int[] init = new int[initString.length];
+                for (int i = 0; i < initString.length; i++) {
+                	init[i] = Integer.parseInt(initString[i]);
+                }
+                c.setInitMod(init);
+                String[] fortString = getValue("Fortitude", element).split(" + ");
+                int[] fort = new int[fortString.length];
+                for (int i = 0; i < fortString.length; i++) {
+                	fort[i] = Integer.parseInt(fortString[i]);
+                }
+                String[] reflexString = getValue("Reflex", element).split(" + ");
+                int[] reflex = new int[reflexString.length];
+                for (int i = 0; i < reflexString.length; i++) {
+                	reflex[i] = Integer.parseInt(reflexString[i]);
+                }
+                String[] willString = getValue("Will", element).split(" + ");
+                int[] will = new int[willString.length];
+                for (int i = 0; i < willString.length; i++) {
+                	will[i] = Integer.parseInt(willString[i]);
+                }
+                c.setSavingThrows(fort, reflex, will);
                 c.setBaseAttackBonus(Integer.parseInt(getValue("BaseAttack", element)));//
                 c.setSpellResistance(Integer.parseInt(getValue("SpellResistance", element)));
-                c.setGrappleMod(Integer.parseInt(getValue("Grapple", element)));
+                String[] grappleString = getValue("Grapple", element).split(" + ");
+                int[] grapple = new int[grappleString.length];
+                for (int i = 0; i < grappleString.length; i++) {
+                	grapple[i] = Integer.parseInt(grappleString[i]);
+                }
+                c.setGrappleMod(grapple);
                 c.setSpeed(Integer.parseInt(getValue("Speed", element)));
                 c.setDamageReduction(Integer.parseInt(getValue("DamageReduction", element)));
                 
