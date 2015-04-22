@@ -77,7 +77,7 @@ public class ItemEntity extends DNDEntity{
 
 	@Override
 	public String saveCustomContent() {
-		String output = "<ABILITY>\n";
+		String output = "<ITEM>\n";
 		output += "<NAME>\n";
 		output += this.name + "\n";
 		output += "</NAME>\n";
@@ -90,7 +90,7 @@ public class ItemEntity extends DNDEntity{
 		output += "<DESCRIPTION>\n";
 		output += this.description + "\n";
 		output += "</DESCRIPTION>\n";
-		output += "</ABILITY>\n";
+		output += "</ITEM>\n";
 		return output;
 	}
 }
