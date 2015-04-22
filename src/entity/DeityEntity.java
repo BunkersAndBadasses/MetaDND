@@ -97,4 +97,10 @@ public class DeityEntity extends DNDEntity{
 	public void setAlignment(String alignment) {
 		this.alignment = alignment;
 	}
+
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
 }

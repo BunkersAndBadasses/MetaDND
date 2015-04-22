@@ -19,4 +19,10 @@ public class DungeonEntity extends DNDEntity{
 		this.imageFilePath = imageFilePath;
 	}
 
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
+
 }

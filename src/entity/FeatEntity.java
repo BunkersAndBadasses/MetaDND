@@ -90,28 +90,28 @@ public class FeatEntity extends DNDEntity{
 		
 		if(this.benefit != null && this.benefit.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.type != null && this.type.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
 		if(this.fighterBonus != null && this.fighterBonus.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
-			System.out.println("Lock aquired, adding " + this.name + " to results list.");
+			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
 			Main.gameState.searchResults.put(this.name, this);
 			Main.gameState.searchResultsLock.release();
-			System.out.println("Lock released.");
+			//System.out.println("Lock released.");
 			return;
 		}
 		
@@ -155,6 +155,44 @@ public class FeatEntity extends DNDEntity{
 
 	public void setFighterBonus(String fighterBonus) {
 		this.fighterBonus = fighterBonus;
+	}
+
+	@Override
+	public String saveCustomContent() {
+		String output = "<SPELL>\n";
+		output += "<NAME>\n";
+		output += this.name + " [" + this.type + "]" + "\n";
+		output += "</NAME>\n";
+		output += "<BENEFIT>\n";
+		output += this.benefit + "\n";
+		output += "</BENEFIT>\n";
+		if(this.prerequisites != null){
+			output += "<PREREQUISITES>\n";
+			for(int i = 0; i < this.prerequisites.length - 1; i++)
+				output += this.prerequisites[i] + ", ";
+			output += this.prerequisites[this.prerequisites.length - 1];
+			output += "\n</PREREQUISITES>\n";
+		}
+		if(this.special != null){
+			output += "<SPECIAL>\n";
+			output += this.special + "\n";
+			output += "</SPECIAL>\n";
+		}
+		if(this.normal != null){
+			output += "<NORMAL>\n";
+			output += this.normal + "\n";
+			output += "</NORMAL>\n";
+		}
+		if(this.fighterBonus != null){
+			output += "<FIGHTERBONUS>\n";
+			output += this.fighterBonus + "\n";
+			output += "</FIGHTERBONUS>\n";
+		}
+		output += "<DESCRIPTION>\n";
+		output += this.description + "\n";
+		output += "</DESCRIPTION>\n";
+		output += "</SPELL>\n";
+		return output;
 	}
 
 }

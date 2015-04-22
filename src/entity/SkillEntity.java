@@ -160,5 +160,11 @@ public class SkillEntity extends DNDEntity{
 	public void setArmorCheckPenalty(boolean armorCheckPenalty) {
 		this.armorCheckPenalty = armorCheckPenalty;
 	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
 
 }
