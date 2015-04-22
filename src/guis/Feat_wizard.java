@@ -119,7 +119,12 @@ public class Feat_wizard
 		gd.horizontalSpan = 2;
 		nameInput.setLayoutData(gd);
 		nameInput.pack();
-		
+		Text typeInput = new Text(shell, SWT.BORDER);
+		typeInput.setMessage("Type");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		typeInput.setLayoutData(gd);
+		typeInput.pack();
 		Text prereqInput = new Text(shell, SWT.BORDER);
 		prereqInput.setMessage("Prerequisite");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
@@ -163,7 +168,7 @@ public class Feat_wizard
 		FighterInput.pack();
 		//Description
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
-		descriptionInput.setMessage("\nDescription (Optional)");
+		descriptionInput.setMessage("Description (Optional)");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;
@@ -218,7 +223,7 @@ public class Feat_wizard
 					a.put("FIGHTERBONUS", featfighter);
 				}
 				featname = nameInput.getText();
-				a.put("NAME", nameInput.getText());
+				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
 				a.put("PREREQUISITES", prereqInput.getText());
 				a.put("NORMAL", normalInput.getText());
 				a.put("SPECIAL", specialInput.getText());
@@ -227,12 +232,14 @@ public class Feat_wizard
 				newfeat = new FeatEntity(a);
 				Main.gameState.abilities.put(featname, newfeat);
 				Main.gameState.customContent.put(featname, newfeat);
+				shell.close();
 			}
 		}
 		);
 		gd = new GridData(GridData.FILL, GridData.CENTER, false, false);
 		gd.horizontalSpan = 1;
 		save.setLayoutData(gd);
+		save.pack();
 		shell.layout();
 		shell.pack();
 //		//wizard
