@@ -78,7 +78,7 @@ public class ClassEntity extends DNDEntity {
 										// now
 				break;
 			case "SPELLSPERDAY":
-				System.out.println("Spells per day: " + this.name);
+				//System.out.println("Spells per day: " + this.name);
 				boolean arrayInitialized = false;
 				String[] charLevel = value.split("\n");
 				for (int i = 0; i < charLevel.length; i++){
