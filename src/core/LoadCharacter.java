@@ -155,7 +155,7 @@ public class LoadCharacter {
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp));
-                    ci.setCouunt(count);
+                    ci.setCount(count);
                     c.addItem(ci);
                 }
 
