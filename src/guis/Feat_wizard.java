@@ -192,6 +192,11 @@ public class Feat_wizard
 					nameInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 					checkfault = true;
 				}
+				if(typeInput.getText().equals(""))
+				{
+					typeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					checkfault = true;
+				}
 				if(!prereqInput.getText().equals(""))
 				{
 					a.put("PREREQUISITES", prereqInput.getText());
