@@ -171,18 +171,14 @@ public class SaveCharacter {
                 try{
                     File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
                     CHARACTER.mkdir();
-                    File CHARDIR = new File(CHARACTER.getPath() + "//" + charName);
+                    File CHARDIR = new File(CHARACTER.getPath() + "//DND" + charName);
                     CHARDIR.mkdir();
-                    StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
+                    StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
 
 
                     transformer.transform(source, result);
                 }catch(Exception e){
-                    File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
-                    CHARDIR.mkdir();
-                    StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
-
-                    transformer.transform(source, result);
+                    e.printStackTrace();
                 }
            
             }
