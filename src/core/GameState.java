@@ -109,6 +109,7 @@ public class GameState {
 		SearchThread st9 = new SearchThread("Items");
 		SearchThread st10 = new SearchThread("Weapons");
 		SearchThread st11 = new SearchThread("Armor");
+		SearchThread st12 = new SearchThread("Abilities");
 		
 		st1.start(this.spells, searchString);
 		st2.start(this.feats, searchString);
@@ -121,6 +122,7 @@ public class GameState {
 		st9.start(this.items, searchString);
 		st10.start(this.weapons, searchString);
 		st11.start(this.armor, searchString);
+		st12.start(this.abilities, searchString);
 		
 		try {
 			st1.getSearchThread().join();
@@ -134,6 +136,7 @@ public class GameState {
 			st9.getSearchThread().join();
 			st10.getSearchThread().join();
 			st11.getSearchThread().join();
+			st12.getSearchThread().join();
 		} catch (InterruptedException e) {
 			System.out.println("Error joining threads!");
 			return false;

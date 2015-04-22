@@ -115,6 +115,10 @@ public class xmlLoader implements Runnable{
 					WeaponEntity readArmor = new WeaponEntity(entity);
 					Main.gameState.armor.put(readArmor.getName(), readArmor);
 				}
+				else if(node.getNodeName() == "ABILITY"){
+					AbilityEntity readAbility = new AbilityEntity(entity);
+					Main.gameState.abilities.put(readAbility.getName(), readAbility);
+				}
 			}
 		}
 			

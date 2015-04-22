@@ -91,7 +91,7 @@ public class RaceEntity extends DNDEntity{
 		    		this.size = SIZE_COLOSSAL;
 		    	break;
 		    case "SPECIALABILITIES":
-		    	this.specialAbilities = value.split(";");
+		    	this.specialAbilities = value.split(", ");
 		    	break;
 		    case "SPEED":
 		    	this.speed = Integer.parseInt(value.replaceAll("[\\D]", ""));
@@ -137,7 +137,7 @@ public class RaceEntity extends DNDEntity{
 		if(this.name != null && this.name.toLowerCase().contains(searchString)){
 			Main.gameState.searchResultsLock.acquire();
 			//System.out.println("Lock aquired, adding " + this.name + " to results list.");
-			Main.gameState.searchResults.put(this.name, this);
+			Main.gameState.searchResults.put(this.name + "(" + WordUtils.capitalize(this.TYPE.toString().toLowerCase()) + ")", this);
 			Main.gameState.searchResultsLock.release();
 			//System.out.println("Lock released.");
 			return;
