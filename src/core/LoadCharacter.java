@@ -93,8 +93,6 @@ public class LoadCharacter {
                 	ac[i] = Integer.parseInt(acString[i]);
                 }
                 c.setAC(ac);
-                c.setTouchAC(Integer.parseInt(getValue("TouchAC", element)));
-                c.setFlatFootedAC(Integer.parseInt(getValue("FlatFootedAC", element)));
                 String[] initString = getValue("Init", element).split(" + ");
                 int[] init = new int[initString.length];
                 for (int i = 0; i < initString.length; i++) {

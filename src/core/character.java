@@ -50,8 +50,8 @@ public class character {
 	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
 	private int[] AC = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
-	private int touchAC = 0;
-	private int flatFootedAC = 0;
+	private int touchAC = (AC[0] + AC[3] + AC[4] + AC[5]); // same as ac, but without shield or armor bonuses
+	private int flatFootedAC = (AC[0] + AC[1] + AC[2] + AC[4] + AC[5]);		// same as ac, but without dex bonus
 	private int[] initMod = {0, 0};		// dex mod + misc mod
 	private int[] fortSave = {0, 0, 0, 0}; 	// base save + ability mod + magic mod + misc mod
 	private int[] reflexSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
@@ -306,10 +306,8 @@ public class character {
 		return total;
 	}
 	
-	public void setTouchAC(int t) { touchAC = t; }
 	public int getTouchAC() { return touchAC; }
 	
-	public void setFlatFootedAC(int f) { flatFootedAC = f; }
 	public int getFlatFootedAC() { return flatFootedAC; }
 	
 	public void setInitMod(int[] i) { 

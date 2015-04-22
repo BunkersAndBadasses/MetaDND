@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
 import core.Main;
 import core.character;
 import entity.ClassEntity;
@@ -315,7 +316,10 @@ public class Wiz2 {
 				character.setSpeed(character.getCharRace().getSpeed());
 				if (charClass.equalsIgnoreCase("Barbarian"))
 					character.setSpeed(character.getCharRace().getSpeed() + 10);
-				// set initial ac
+				// set initial ac (defaults to 10 + 0 + 0 + 0 + 0 + 0
+				// dex modifier will update in wiz3, armor and shield will update in wiz8
+				character.setACSizeMod(GameState.acAttackSizeMods[character.getSize()]);
+				
 				/*
 				 * 
 				 * ac
