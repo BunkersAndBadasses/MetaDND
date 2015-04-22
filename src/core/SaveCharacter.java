@@ -144,8 +144,9 @@ public class SaveCharacter {
                 appendValue("SP", c.getSP());
                 appendValue("CP", c.getCP());
                 temp = "";
+                // itemname;count
                 for(int i = 0; i < c.getItems().size(); i++){
-                    temp += c.getItems().get(i).getName() + c.getItems().get(i).getCount() + "/";
+                    temp += c.getItems().get(i).getName() + ";" + c.getItems().get(i).getCount() + "/";
                 }
                 appendValue("Items", temp);
                 temp = "";
@@ -153,31 +154,39 @@ public class SaveCharacter {
                     temp += c.getLanguages().get(i) + "/";
                 }
                 appendValue("Languages", temp);
-                
                 temp = "";
+                // weaponname;quantity
                 for(int i = 0; i < c.getWeapons().size(); i++){
-                    temp += c.getWeapons().get(i).getName() + c.getWeapons().get(i).getQuantity() + "/";
+                    temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getQuantity() + "/";
 
                 }
                 appendValue("Weapons", temp); 
                 temp = "";
+                // armorname;quantity
                 for(int i = 0; i < c.getArmor().size(); i++){
-                    temp += c.getArmor().get(i).getName() + c.getArmor().get(i).getQuantity() + "/";
+                    temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getQuantity() + "/";
                 }
                 appendValue("Armors", temp); 
                 temp = "";
+                // skillname:abilitymod+miscmod+rank 
                 for(int i = 0; i < c.getSkills().size(); i++){
-                    temp += c.getSkills().get(i).getSkill().getName() + c.getArmor().get(i).getQuantity() + "/";
+                    temp += c.getSkills().get(i).getSkill().getName() + ":" + c.getSkills().get(i).getAbilityMod() + "+" + c.getSkills().get(i).getMiscMod() + "+" + c.getSkills().get(i).getRank() + "/";
                 }
                 appendValue("Skills", temp);
                 temp = "";
+                // shieldname;quantity
                 for(int i = 0; i < c.getShields().size(); i++){
-                    temp += c.getShields().get(i).getName() +c.getSkills().get(i).getRank() +  "/";
+                    temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getQuantity() +  "/";
                 }
                 appendValue("Shields", temp);
                 temp = "";
+                // featName:special;count
                 for(int i = 0; i < c.getFeats().size(); i++){
-                    temp += c.getFeats().get(i).getName() + c.getShields().get(i).getQuantity() + "/";
+                    temp += c.getFeats().get(i).getFeat().getName();
+                    temp += ":";
+                    if (c.getFeats().get(i).getSpecial() != null)
+                    	temp += c.getFeats().get(i).getSpecial(); 
+                    temp += ";" + c.getFeats().get(i).getCount() + "/";
                 }
                 appendValue("Feats", temp);
                 
@@ -318,8 +327,9 @@ public class SaveCharacter {
                     writeValue("SP", c.getSP());
                     writeValue("CP", c.getCP());
                     temp = "";
+                    // itemname;count
                     for(int i = 0; i < c.getItems().size(); i++){
-                        temp += c.getItems().get(i).getName() + c.getItems().get(i).getCount() + "/";
+                        temp += c.getItems().get(i).getName() + ";" + c.getItems().get(i).getCount() + "/";
                     }
                     writeValue("Items", temp);
                     temp = "";
@@ -327,31 +337,38 @@ public class SaveCharacter {
                         temp += c.getLanguages().get(i) + "/";
                     }
                     writeValue("Languages", temp);
-                    
                     temp = "";
+                    // weaponname;quantity
                     for(int i = 0; i < c.getWeapons().size(); i++){
-                        temp += c.getWeapons().get(i).getName() + c.getWeapons().get(i).getQuantity() + "/";
-
+                        temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getQuantity() + "/";
                     }
                     writeValue("Weapons", temp); 
                     temp = "";
+                    // armorname;quantity
                     for(int i = 0; i < c.getArmor().size(); i++){
-                        temp += c.getArmor().get(i).getName() + c.getArmor().get(i).getQuantity() + "/";
+                        temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getQuantity() + "/";
                     }
                     writeValue("Armors", temp); 
                     temp = "";
+                    // skillname:abilitymod+miscmod+rank 
                     for(int i = 0; i < c.getSkills().size(); i++){
-                        temp += c.getSkills().get(i).getSkill().getName() + c.getArmor().get(i).getQuantity() + "/";
+                        temp += c.getSkills().get(i).getSkill().getName() + ":" + c.getSkills().get(i).getAbilityMod() + "+" + c.getSkills().get(i).getMiscMod() + "+" + c.getSkills().get(i).getRank() + "/";
                     }
                     writeValue("Skills", temp);
                     temp = "";
+                    // shieldname;quantity
                     for(int i = 0; i < c.getShields().size(); i++){
-                        temp += c.getShields().get(i).getName() +c.getSkills().get(i).getRank() +  "/";
+                        temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getQuantity() +  "/";
                     }
                     writeValue("Shields", temp);
                     temp = "";
+                    // featName:special;count
                     for(int i = 0; i < c.getFeats().size(); i++){
-                        temp += c.getFeats().get(i).getName() + c.getShields().get(i).getQuantity() + "/";
+                        temp += c.getFeats().get(i).getFeat().getName();
+                        temp += ":";
+                        if (c.getFeats().get(i).getSpecial() != null)
+                        	temp += c.getFeats().get(i).getSpecial(); 
+                        temp += ";" + c.getFeats().get(i).getCount() + "/";
                     }
                     writeValue("Feats", temp);
                 }
