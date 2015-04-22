@@ -84,13 +84,13 @@ public class Wiz7 {
 		wiz7Label.pack();
 
 		Label goldLabel = new Label(wiz7, SWT.NONE);
-		goldLabel.setText("Starting Gold:");
+		goldLabel.setText("Starting Gold(gp):");
 		goldLabel.setLocation(10, 50);
 		goldLabel.pack();
 		
 		goldText = new Text(wiz7, SWT.BORDER);
 		goldText.setText("0");
-		goldText.setBounds(120, 45, 80, 30);
+		goldText.setBounds(125, 45, 80, 30);
 		goldText.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
 				Text text = (Text) event.widget;
@@ -101,7 +101,7 @@ public class Wiz7 {
 		
 		Button randomGold = new Button(wiz7, SWT.PUSH);
 		randomGold.setText("Random");
-		randomGold.setLocation(210, 45);
+		randomGold.setLocation(215, 45);
 		randomGold.pack();
 		randomGold.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {

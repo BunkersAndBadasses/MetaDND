@@ -627,7 +627,11 @@ public class Wiz4 {
 				String condensed = nameInput.getText().replaceAll("\\s","");
 				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
 				if (condensed.length() == 0) {
-					nameInput.setText("");
+					nameInput.setText("");           
+					nameInput.setBackground(red);
+					error = true;
+				}
+				if (condensed.length() > 200 ) {
 					nameInput.setBackground(red);
 					error = true;
 				}

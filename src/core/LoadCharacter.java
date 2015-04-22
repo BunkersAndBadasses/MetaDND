@@ -176,8 +176,12 @@ public class LoadCharacter {
 
                 temp = getValue("Items", element);
                 tempArr = temp.split(delims);
+                // itemname;count
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    //temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
+                	String itemName = tempArr[i].substring(0, tempArr[i].indexOf(';'));
+                	ItemEntity item = (ItemEntity)Main.gameState.items.get(itemName);
+                	//TODO here
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp));
                     ci.setCount(count);
@@ -189,8 +193,9 @@ public class LoadCharacter {
 
                 temp = getValue("Weapons", element);
                 tempArr = temp.split(delims);
+                // weaponname;quantity
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(temp));
                     we.setQuanitity(count);
@@ -199,8 +204,9 @@ public class LoadCharacter {
 
                 temp = getValue("Armors", element);
                 tempArr = temp.split(delims);
+                // armorname;quantity
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
                     ae.setQuanitity(count);
@@ -209,8 +215,9 @@ public class LoadCharacter {
 
                 temp = getValue("Skills", element);
                 tempArr = temp.split(delims);
+                // skillname:abilitymod+miscmod+rank
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    temp = tempArr[i].replaceAll("[^a-zA-Z:+]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
                     cs.setRank(count);
@@ -218,8 +225,9 @@ public class LoadCharacter {
 
                 temp = getValue("Shields", element);
                 tempArr = temp.split(delims);
+                // shieldname;quantity
                 for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
+                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
                     ae.setQuanitity(count);
@@ -228,9 +236,13 @@ public class LoadCharacter {
 
                 temp = getValue("Feats", element);
                 tempArr = temp.split(delims);
+                // featName:special;count
                 for(int i = 0; i < tempArr.length; i++){
-                    FeatEntity fe = (FeatEntity) (Main.gameState.feats.get(tempArr[i]));
-                    c.addFeat(fe);
+                	String featName = tempArr[i].substring(0, tempArr[i].indexOf(':'));
+                	FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
+                	String special = tempArr[i].substring(tempArr[i].indexOf(':')+1, tempArr[i].indexOf(';'));
+                	int count = Integer.parseInt(tempArr[i].substring(tempArr[i].indexOf(';')+1));
+                	c.addFeat(new CharFeat(feat, special, count));
                 }
 
             }

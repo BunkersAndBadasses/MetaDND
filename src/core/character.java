@@ -35,7 +35,7 @@ public class character {
 	private int sp = 0;//
 	private int cp = 0;//
 	private String imageUrl;//
-	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
+	private ArrayList<CharFeat> feats = new ArrayList<CharFeat>();
 	private ArrayList<AbilityEntity> specialAbilities = new ArrayList<AbilityEntity>();
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
 	private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
@@ -240,9 +240,9 @@ public class character {
     public void setCP(int g) { cp = g; }
     public int getCP() { return cp; }
 	
-	public void addFeat(FeatEntity f) { feats.add(f); }
-	public void delFeat(FeatEntity f) { feats.remove(f); }
-	public ArrayList<FeatEntity> getFeats() { return feats; }
+	public void addFeat(CharFeat f) { feats.add(f); }
+	public void delFeat(CharFeat f) { feats.remove(f); }
+	public ArrayList<CharFeat> getFeats() { return feats; }
 	
 	public void addSpecialAbility(AbilityEntity a) { specialAbilities.add(a); }
 	public void delSpecialAbility(AbilityEntity a) { specialAbilities.remove(a); }
@@ -550,8 +550,14 @@ public class character {
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)
 			s += "<empty>\n";
-		for (int i = 0; i < feats.size(); i++)
-			s += "\t" + feats.get(i).getName() + "\n";
+		for (int i = 0; i < feats.size(); i++) {
+			s += "\t" + feats.get(i).getFeat().getName();
+			if (feats.get(i).getSpecial() != null)
+				s += " (" + feats.get(i).getSpecial() + ")";
+			if (feats.get(i).getCount() > 1)
+				s += " x " + feats.get(i).getCount();
+			s += "\n";
+		}
 		s += "Special Abilities: " + "\n";
 		if (specialAbilities.size() == 0)
 			s += "<empty>\n";
