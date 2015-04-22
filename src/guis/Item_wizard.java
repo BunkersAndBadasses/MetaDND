@@ -109,14 +109,14 @@ public class Item_wizard {
 		//Weight
 		Text weightInput = new Text(shell, SWT.BORDER);
 		weightInput.setMessage("Weight");
-		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 2;
 		weightInput.setLayoutData(gd);
 		weightInput.pack();
 		//Value
 		Text valueInput = new Text(shell, SWT.BORDER);
 		valueInput.setMessage("Value");
-		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 2;
 		valueInput.setLayoutData(gd);
 		valueInput.pack();

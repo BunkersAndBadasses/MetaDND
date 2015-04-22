@@ -194,10 +194,15 @@ public class Spell_wizard {
 		durationInput.setLayoutData(gd);
 		durationInput.pack();
 		//spellresistance
-		Text resistanceInput = new Text(shell, SWT.BORDER);
-		resistanceInput.setMessage("Spell Resistance");
-		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gd.horizontalSpan = 3;
+		Label resistanceLabel = new Label(shell, SWT.NONE);
+		resistanceLabel.setText("Can Spell Be Resisted");
+		gd = new GridData(GridData.CENTER, GridData.FILL, false, false);
+		gd.horizontalSpan = 1;
+		resistanceLabel.setLayoutData(gd);
+		resistanceLabel.pack();
+		Button resistanceInput = new Button(shell, SWT.CHECK);
+		gd = new GridData(GridData.CENTER, GridData.FILL, false, false);
+		gd.horizontalSpan = 1;
 		resistanceInput.setLayoutData(gd);
 		resistanceInput.pack();
 		//level
@@ -227,6 +232,90 @@ public class Spell_wizard {
 		{
 			public void handleEvent(Event event)
 			{
+				Boolean checkfault = false;
+				if(nameInput.getText().equals(""))
+				{
+					checkfault = true;
+					nameInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(componentInput.getText().equals(""))
+				{
+					checkfault = true;
+					componentInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(schoolInput.getText().equals(""))
+				{
+					checkfault = true;
+					schoolInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(rangeInput.getText().equals(""))
+				{
+					checkfault = true;
+					rangeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(effectInput.getText().equals(""))
+				{
+					checkfault = true;
+					effectInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(castimeInput.getText().equals(""))
+				{
+					checkfault = true;
+					castimeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(materialInput.getText().equals(""))
+				{
+					checkfault = true;
+					materialInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(savthrowInput.getText().equals(""))
+				{
+					checkfault = true;
+					savthrowInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(focusInput.getText().equals(""))
+				{
+					checkfault = true;
+					focusInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(durationInput.getText().equals(""))
+				{
+					checkfault = true;
+					durationInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(levelInput.getText().equals(""))
+				{
+					checkfault = true;
+					levelInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(checkfault)
+				{
+					return;
+				}
+				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
+				a.put("NAME", nameInput.getText());
+				a.put("COMPONENTS", componentInput.getText());
+				a.put("SCHOOL", schoolInput.getText());
+				a.put("RANGE", rangeInput.getText());
+				a.put("EFFECT", effectInput.getText());
+				a.put("CASTINGTIME", castimeInput.getText());
+				a.put("MATERIALCOMPONENT", materialInput.getText());
+				a.put("SAVINGTHROW", savthrowInput.getText());
+				a.put("FOCUS", focusInput.getText());
+				a.put("DURATION", durationInput.getText());
+				a.put("LEVEL", levelInput.getText());
+				if(resistanceInput.getSelection())
+				{
+					a.put("SPELLRESISTANCE", "YES");
+				}
+				else
+				{
+					a.put("SPELLRESISTANCE", "NO");
+				}
+				a.put("DESCRIPTION", descriptionInput.getText());
+				newspell = new SpellEntity(a);
+				Main.gameState.abilities.put(newspell.getName(), newspell);
+				Main.gameState.customContent.put(newspell.getName(), newspell);
 				shell.close();
 			}
 		}
