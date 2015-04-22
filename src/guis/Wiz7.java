@@ -11,6 +11,8 @@ import java.util.Random;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
@@ -111,6 +113,11 @@ public class Wiz7 {
 			}
 		});
 		
+		// search label
+		Label searchLabel = new Label(wiz7, SWT.NONE);
+		searchLabel.setLocation(10, 80);
+		searchLabel.setText("Double click on a item to see details");
+		searchLabel.pack();		
 		
 		// get feats from references
 		Collection<DNDEntity> itemsCol =  gs.items.values();
@@ -154,6 +161,18 @@ public class Wiz7 {
 		for (int i = 0; i < items.size(); i++) {
 			itemsList.add(items.get(i).getName());
 		}
+		itemsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = itemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String itemName = itemsList.getItem(index);
+				((ItemEntity)Main.gameState.items.get(itemName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		itemsList.pack();
 		itemScroll.setMinHeight(itemsList.getBounds().height);
 	    
@@ -163,6 +182,17 @@ public class Wiz7 {
 //		
 		// selected items list
 		List charItemsList = new List(charItemScreen, SWT.NONE);
+		charItemsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				charItems.get(index).getItem().toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 		charItemsList.pack();
 		
 		// add item button

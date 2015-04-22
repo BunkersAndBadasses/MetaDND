@@ -153,7 +153,7 @@ public class Wiz6 {
 				int index = featsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				String featName = featsList.getItem(featsList.getSelectionIndex());
+				String featName = featsList.getItem(index);
 				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
 			}
 			@Override
