@@ -186,25 +186,23 @@ public class Feat_wizard
 			public void handleEvent(Event event)
 			{
 				Boolean checkfault = false;
+				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
 				if(nameInput.getText().equals(""))
 				{
 					nameInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 					checkfault = true;
 				}
-				if(prereqInput.getText().equals(""))
+				if(!prereqInput.getText().equals(""))
 				{
-					prereqInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					checkfault = true;
+					a.put("PREREQUISITES", prereqInput.getText());
 				}
-				if(normalInput.getText().equals(""))
+				if(!normalInput.getText().equals(""))
 				{
-					normalInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					checkfault = true;
+					a.put("NORMAL", normalInput.getText());
 				}
-				if(specialInput.getText().equals(""))
+				if(!specialInput.getText().equals(""))
 				{
-					specialInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					checkfault = true;
+					a.put("SPECIAL", specialInput.getText());
 				}
 				if(benefitInput.getText().equals(""))
 				{
@@ -215,7 +213,7 @@ public class Feat_wizard
 				{
 					return;
 				}
-				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
+				
 				if(FighterInput.getSelection())
 				{
 					featfighter = "Yes";
@@ -223,9 +221,6 @@ public class Feat_wizard
 				}
 				featname = nameInput.getText();
 				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
-				a.put("PREREQUISITES", prereqInput.getText());
-				a.put("NORMAL", normalInput.getText());
-				a.put("SPECIAL", specialInput.getText());
 				a.put("BENEFIT", benefitInput.getText());
 				a.put("DESCRIPTION", descriptionInput.getText());
 				newfeat = new FeatEntity(a);
