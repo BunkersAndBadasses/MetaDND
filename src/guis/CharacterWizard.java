@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import core.CharFeat;
 import core.DnDie;
 import core.Main;
 import core.RNG;
@@ -454,11 +455,11 @@ public class CharacterWizard {
 		//Feats
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
-		character.addFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+		character.addFeat(new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]));
 		//Human gain "Feat for select"
 		if(character.getCharRace().getName().equalsIgnoreCase("Human"))
 		{
-			character.addFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+			character.addFeat(new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]));
 		}
 		//Fighter get a "Fighter bonus feat"
 		if(character.getCharClass().getName().equalsIgnoreCase("Fighter"))
@@ -474,19 +475,19 @@ public class CharacterWizard {
 				else
 				{
 					a = false;
-					character.addFeat(b);
+					character.addFeat(new CharFeat(b));
 				}
 			} while(a == true);
 		}
 		//Wizard gain "Scribe Scroll"
 		if(character.getCharClass().getName().equalsIgnoreCase("Wizard"))
 		{
-			character.addFeat((FeatEntity) Main.gameState.feats.get("Scribe Scroll"));
+			character.addFeat(new CharFeat((FeatEntity) Main.gameState.feats.get("Scribe Scroll")));
 		}
 		//Ranger gain "Track"
 		if(character.getCharClass().getName().equalsIgnoreCase("Ranger"))
 		{
-			character.addFeat((FeatEntity) Main.gameState.feats.get("Track"));
+			character.addFeat(new CharFeat((FeatEntity) Main.gameState.feats.get("Track")));
 		}
 		//Special Ability
 		//TODO

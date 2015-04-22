@@ -271,10 +271,13 @@ public class Wiz10 {
 
             //Go through the Feat list
             String featsList = "";
+            // featName:special;count
             for(int i = 0; i < character.getFeats().size(); i++){
-                // Feat
-                featsList += character.getFeats().get(i).getName() + "/";
-
+                featsList += character.getFeats().get(i).getFeat().getName();
+                featsList += ":";
+                if (character.getFeats().get(i).getSpecial() != null)
+                	featsList += character.getFeats().get(i).getSpecial(); 
+                featsList += ";" + character.getFeats().get(i).getCount() + "/";
             }
             Element Feats = doc.createElement("Feats");
             Feats.appendChild(doc.createTextNode(featsList));

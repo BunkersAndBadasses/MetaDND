@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+import core.CharFeat;
 import core.GameState;
 import core.character;
 import core.Main;
@@ -313,7 +314,7 @@ public class Wiz6 {
 				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
-					character.addFeat(charFeats.get(i));
+					character.addFeat(new CharFeat(charFeats.get(i)));
 				
 				// switch to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
