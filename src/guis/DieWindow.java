@@ -433,7 +433,6 @@ public class DieWindow {
 
 				notUsed = true;
 
-				//TODO layout this save window
 				final Shell saveName = new Shell(display);
 				saveName.setText("Save");
 				//saveName.setSize(300, 200);
@@ -521,7 +520,6 @@ public class DieWindow {
 			}
 		});
 
-		//TODO
 		// Clear BUTTON
 		Button clear = new Button(dieWin, SWT.PUSH);
 		clear.setText("Clear");
@@ -706,7 +704,6 @@ public class DieWindow {
 					return;
 				}
 
-				//TODO layout this delete window
 				final Shell deleteFile = new Shell(display);
 				deleteFile.setText("Delete");
 				//deleteFile.setSize(250, 150);
