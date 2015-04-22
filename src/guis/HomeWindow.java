@@ -699,6 +699,7 @@ public class HomeWindow {
 			
 			Composite BUTTONS = new Composite(dungeonScreen, SWT.NONE);
 			GridLayout buttonsLayout = new GridLayout();
+			buttonsLayout.makeColumnsEqualWidth = true;
 			buttonsLayout.verticalSpacing = 15;
 			buttonsLayout.numColumns = 1;
 			BUTTONS.setLayout(buttonsLayout);
