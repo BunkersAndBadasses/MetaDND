@@ -72,19 +72,38 @@ public class SaveCharacter {
                     temp += c.getPrepSpells().get(i).getName() + "/";
                 }
                 appendValue("PreparedSpells", temp);
-                appendValue("AC", c.getAC());
+                temp = Integer.toString(c.getAC()[0]);
+                for (int i = 0; i < c.getAC().length; i++)
+                	temp += " + " + c.getAC()[i];
+                appendValue("AC", temp);
                 appendValue("TouchAC", c.getTouchAC());
                 
                 appendValue("FlatFootedAC", c.getFlatFootedAC());
-                appendValue("Init", c.getInitMod());
-                appendValue("Fortitude", c.getSavingThrows()[0]);
-                appendValue("Reflex", c.getSavingThrows()[1]);
-                appendValue("Will", c.getSavingThrows()[2]);
+                
+                temp = Integer.toString(c.getInitMod()[0]);
+                for (int i = 0; i < c.getInitMod().length; i++)
+                	temp += " + " + c.getInitMod()[i];
+                appendValue("Init", temp);
+                temp = Integer.toString(c.getFortSave()[0]);
+                for (int i = 0; i < c.getFortSave().length; i++)
+                	temp += " + " + c.getFortSave()[i];
+                appendValue("Fortitude",temp);
+                temp = Integer.toString(c.getReflexSave()[0]);
+                for (int i = 0; i < c.getReflexSave().length; i++)
+                	temp += " + " + c.getReflexSave()[i];
+                appendValue("Reflex", temp);
+                temp = Integer.toString(c.getWillSave()[0]);
+                for (int i = 0; i < c.getWillSave().length; i++)
+                	temp += " + " + c.getWillSave()[i];
+                appendValue("Will", temp);
                 
                 appendValue("BaseAttack", c.getBaseAttackBonus());
                 appendValue("SpellResistance", c.getSpellResistance());
                 appendValue("Speed", c.getSpeed());
-                appendValue("Grapple", c.getGrappleMod());
+                temp = Integer.toString(c.getGrappleMod()[0]);
+                for (int i = 0; i < c.getGrappleMod().length; i++)
+                	temp += " + " + c.getGrappleMod()[i];
+                appendValue("Grapple", temp);
                 appendValue("DamageReduction", c.getDamageReduction());
                 
                 appendValue("ClericDomains", c.getName());//
@@ -228,19 +247,37 @@ public class SaveCharacter {
                         temp += c.getPrepSpells().get(i).getName() + "/";
                     }
                     writeValue("PreparedSpells", temp);
-                    writeValue("AC", c.getAC());
+                    temp = Integer.toString(c.getAC()[0]);
+                    for (int i = 0; i < c.getAC().length; i++)
+                    	temp += " + " + c.getAC()[i];
+                    writeValue("AC", temp);
                     writeValue("TouchAC", c.getTouchAC());
                     
                     writeValue("FlatFootedAC", c.getFlatFootedAC());
-                    writeValue("Init", c.getInitMod());
-                    writeValue("Fortitude", c.getSavingThrows()[0]);
-                    writeValue("Reflex", c.getSavingThrows()[1]);
-                    writeValue("Will", c.getSavingThrows()[2]);
+                    temp = Integer.toString(c.getInitMod()[0]);
+                    for (int i = 0; i < c.getInitMod().length; i++)
+                    	temp += " + " + c.getInitMod()[i];
+                    writeValue("Init", temp);
+                    temp = Integer.toString(c.getFortSave()[0]);
+                    for (int i = 0; i < c.getFortSave().length; i++)
+                    	temp += " + " + c.getFortSave()[i];
+                    writeValue("Fortitude", temp);
+                    temp = Integer.toString(c.getReflexSave()[0]);
+                    for (int i = 0; i < c.getReflexSave().length; i++)
+                    	temp += " + " + c.getReflexSave()[i];
+                    writeValue("Reflex", temp);
+                    temp = Integer.toString(c.getWillSave()[0]);
+                    for (int i = 0; i < c.getWillSave().length; i++)
+                    	temp += " + " + c.getWillSave()[i];
+                    writeValue("Will", temp);
                     
                     writeValue("BaseAttack", c.getBaseAttackBonus());
                     writeValue("SpellResistance", c.getSpellResistance());
                     writeValue("Speed", c.getSpeed());
-                    writeValue("Grapple", c.getGrappleMod());
+                    temp = Integer.toString(c.getGrappleMod()[0]);
+                    for (int i = 0; i < c.getGrappleMod().length; i++)
+                    	temp += " + " + c.getGrappleMod()[i];
+                    writeValue("Grapple", temp);
                     writeValue("DamageReduction", c.getDamageReduction());
                     
                     writeValue("ClericDomains", c.getName());//
