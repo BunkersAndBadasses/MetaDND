@@ -56,7 +56,7 @@ public class referencePanel {
 		layout.numColumns = 1;
 		refPanel.setLayout(layout);
 
-		searchBar = new Text(refPanel, SWT.BORDER);
+		searchBar = new Text(refPanel, SWT.BORDER | SWT.SEARCH | SWT.ICON_CANCEL | SWT.ICON_SEARCH);
 		GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
 		searchBar.setMessage("Search");
 		searchBar.setLayoutData(gridData);
