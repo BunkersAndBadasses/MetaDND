@@ -53,15 +53,15 @@ public class character {
 	private int[] acArray = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
-	private int initMod = 0;
+	private int[] initMod = {0, 0};		// dex mod + misc mod
 	private int[] fortSave = {0, 0, 0, 0}; 	// base save + ability mod + magic mod + misc mod
 	private int[] reflexSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
 	private int[] willSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
 	private int[][] savingThrows = {fortSave, reflexSave, willSave};
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
-	private int grappleMod = 0;
-	private int speed = 0;//
+	private int[] grappleMod = {0, 0, 0, 0};	// base attack bonus + str mod + size mod + misc mod
+	private int speed = 0;	// feet
 	private int damageReduction = 0;
 	
 	private String[] clericDomains = null;
@@ -149,6 +149,20 @@ public class character {
 		abilityScores[GameState.INTELLIGENCE] = intel;
 		abilityScores[GameState.WISDOM] = wis;
 		abilityScores[GameState.CHARISMA] = cha;
+		setGrappleStrMod(getAbilityModifiers()[GameState.STRENGTH]);
+		setInitDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setACDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setFortSaveConMod(getAbilityModifiers()[GameState.CONSTITUTION]);
+		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setWillSaveWisMod(getAbilityModifiers()[GameState.WISDOM]);
+	}
+	public void modifyAbilityScores(int[] mods) {
+		if (mods.length != 6)
+			return;
+		for (int i = 0; i < mods.length; i++) 
+			abilityScores[i] += mods[i];
+		setGrappleStrMod(getAbilityModifiers()[GameState.STRENGTH]);
+		setInitDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
 		setACDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
 		setFortSaveConMod(getAbilityModifiers()[GameState.CONSTITUTION]);
 		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
@@ -295,8 +309,16 @@ public class character {
 	public void setFlatFootedAC(int f) { flatFootedAC = f; }
 	public int getFlatFootedAC() { return flatFootedAC; }
 	
-	public void setInitMod(int i) { initMod = i; }
-	public int getInitMod() { return initMod; }
+	public void setInitMod(int[] i) { 
+		if (i.length != 2)
+			return;
+		initMod = i; 
+		}
+	public void setInitDexMod(int a) { initMod[0] = a; }
+	public void setInitMiscMod(int a) { initMod[1] = a; }
+	public int[] getInitMod() { return initMod; }
+	public int getInitDexMod() { return initMod[0]; }
+	public int getInitMiscMod() { return initMod[1]; }
 	
 	// base save + ability mod + magic mod + misc mod
 	public void setSavingThrows(int[] f, int[] r, int[] w) { 
@@ -376,8 +398,20 @@ public class character {
 	public void setSpellResistance(int s) { spellResistance = s; }
 	public int getSpellResistance() { return spellResistance; }
 	
-	public void setGrappleMod(int g) { grappleMod = g; }
-	public int getGrappleMod() { return grappleMod; }
+	public void setGrappleMod(int[] g) {
+		if (g.length != 4)
+			return;
+		grappleMod = g; 
+	}
+	public void setGrappleAttackBonus(int a) { grappleMod[0] = a; }
+	public void setGrappleStrMod(int a) { grappleMod[1] = a; }
+	public void setGrappleSizeMod(int a) { grappleMod[2] = a; }
+	public void setGrappleMiscMod(int a) { grappleMod[3] = a; }
+	public int[] getGrappleMod() { return grappleMod; }
+	public int getGrappleAttackBonus() { return grappleMod[0]; }
+	public int getGrappleStrMod() { return grappleMod[1]; }
+	public int getGrappleSizeMod() { return grappleMod[2]; }
+	public int getGrappleMiscMod() { return grappleMod[3]; }
 	
 	public void setSpeed(int s) { speed = s; }
 	public int getSpeed() { return speed; }
