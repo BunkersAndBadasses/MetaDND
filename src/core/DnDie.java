@@ -151,7 +151,7 @@ public class DnDie {
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 
-
+			if(Main.gameState.currentlyLoadedCharacter == null){
 			File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
 					"User Data" + "//favRolls");
 			CHARDIR.mkdir();
@@ -182,9 +182,19 @@ public class DnDie {
 		ArrayList<Roll> roll = new ArrayList<Roll>(50);
 
 		try {
-
-			File fXmlFile = new File(System.getProperty("user.dir") + "//" + 
-					"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
+			File fXmlFile;
+			
+			if(Main.gameState.currentlyLoadedCharacter == null){
+				fXmlFile = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
+			}else{
+				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
+				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
+				fXmlFile = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//DND" + charFileName + "//favRolls"  +
+						"//" + fileName + ".xml");
+			}
+		
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);

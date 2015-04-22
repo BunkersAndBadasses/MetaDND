@@ -571,7 +571,7 @@ public class Wiz10 {
             try{
                 File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
                 CHARACTER.mkdir();
-                File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//DND" + charName);
+                File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character" + "//DND" + charName);
                 CHARDIR.mkdir();
                 StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
 
