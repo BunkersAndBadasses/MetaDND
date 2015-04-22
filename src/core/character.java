@@ -54,7 +54,10 @@ public class character {
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
 	private int initMod = 0;//
-	private int[] savingThrows = {0,0,0}; // fortitude, reflex, will
+	private int[] fortSave = {0, 0, 0, 0}; // base save, ability mod, magic mod, misc mod
+	private int[] reflexSave = {0, 0, 0, 0};
+	private int[] willSave = {0, 0, 0, 0};
+	private int[][] savingThrows = {fortSave, reflexSave, willSave};
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
 	private int grappleMod = 0;
@@ -146,6 +149,10 @@ public class character {
 		abilityScores[GameState.INTELLIGENCE] = intel;
 		abilityScores[GameState.WISDOM] = wis;
 		abilityScores[GameState.CHARISMA] = cha;
+		setACDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setFortSaveConMod(getAbilityModifiers()[GameState.CONSTITUTION]);
+		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setWillSaveWisMod(getAbilityModifiers()[GameState.WISDOM]);
 	}
 	/**
 	 * 
@@ -335,12 +342,76 @@ public class character {
 	public void setInitMod(int i) { initMod = i; }
 	public int getInitMod() { return initMod; }
 	
-	public void setSavingThrows(int f, int r, int w) { 
-		savingThrows[0] = f;
-		savingThrows[1] = r; 
-		savingThrows[2] = w;
+	public void setSavingThrows(int[] f, int[] r, int[] w) { 
+		setFortSave(f);
+		setReflexSave(r);
+		setWillSave(w);
 	}
-	public int[] getSavingThrows() { return savingThrows; }
+	public void setFortSave(int[] f) { 
+		if (f.length != 4)
+			return;
+		fortSave = f; 
+	}
+	public void setReflexSave(int[] r) { 
+		if (r.length != 4)
+			return;
+		reflexSave = r; 
+	}
+	public void setWillSave(int[] w) { 
+		if (w.length != 4)
+			return;
+		willSave = w; 
+	}
+	public void setFortSaveBaseSave(int a) { fortSave[0] = a; }
+	public void setFortSaveConMod(int a) { fortSave[1] = a; }
+	public void setFortSaveMagicMod(int a) { fortSave[2] = a; }
+	public void setFortSaveMiscMod(int a) { fortSave[3] = a; }
+	public void setReflexSaveBaseSave(int a) { reflexSave[0] = a; }
+	public void setReflexSaveDexMod(int a) { reflexSave[1] = a; }
+	public void setReflexSaveMagicMod(int a) { reflexSave[2] = a; }
+	public void setReflexSaveMiscMod(int a) { reflexSave[3] = a; }
+	public void setWillSaveBaseSave(int a) { willSave[0] = a; }
+	public void setWillSaveWisMod(int a) { willSave[1] = a; }
+	public void setWillSaveMagicMod(int a) { willSave[2] = a; }
+	public void setWillSaveMiscMod(int a) { willSave[3] = a; }
+	public int[][] getSavingThrows() { return savingThrows; }
+	public int[] getFortSave() { return fortSave; }
+	public int[] getReflexSave() { return reflexSave; }
+	public int[] getWillSave() { return willSave; }
+	public int[] getSavingThrowsTotals() {
+		int[] totals = {getFortSaveTotal(), getReflexSaveTotal(), getWillSaveTotal()};
+		return totals;
+	}
+	public int getFortSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += fortSave[i];
+		return total;
+	}
+	public int getReflexSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += reflexSave[i];
+		return total;
+	}
+	public int getWillSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += willSave[i];
+		return total;
+	}
+	public int getFortSaveBaseSave() { return fortSave[0]; }
+	public int  getFortSaveConMod() { return fortSave[1]; }
+	public int getFortSaveMagicMod() { return fortSave[2]; }
+	public int getFortSaveMiscMod() { return fortSave[3]; }
+	public int getReflexSaveBaseSave() { return reflexSave[0]; }
+	public int getReflexSaveDexMod() { return reflexSave[1]; }
+	public int getReflexSaveMagicMod() { return reflexSave[2]; }
+	public int getReflexSaveMiscMod() { return reflexSave[3]; }
+	public int getWillSaveBaseSave() { return willSave[0]; }
+	public int getWillSaveWisMod() { return willSave[1]; }
+	public int getWillSaveMagicMod() { return willSave[2]; }
+	public int getWillSaveMiscMod() { return willSave[3]; }
 	
 	public void setBaseAttackBonus(int b) { baseAttackBonus = b; }
 	public int getBaseAttackBonus() { return baseAttackBonus; }
