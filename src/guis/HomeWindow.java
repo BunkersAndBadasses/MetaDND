@@ -372,16 +372,13 @@ public class HomeWindow {
 					totalSize = sizeSelection*sizeOfSquare;
 				}
 				
-				
-
 				shell.setSize(totalSize + 50, totalSize + 75);
-
 
 				DungeonGenerator rdg = new DungeonGenerator(sizeSelection, density);
 				rdg.GenerateDungeon();
 				rdg.printDungeon(true);
 
-				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", sizeOfSquare); //TODO: make this not hard coded.
+				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", sizeOfSquare); 
 				gm.generateSVG();
 
 				svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "\\generatedDungeon.svg");
@@ -423,6 +420,7 @@ public class HomeWindow {
 	public void navigateToHomeScreen() {
 		new MenuBarHomeScreen(shell, hw);
 		GameState.PAGE_NUMBER = 0;
+		this.shell.setSize(WIDTH, HEIGHT);
 		this.m_mainWindowLayout.topControl = this.homeScreen;
 		this.m_mainWindow.layout();
 	}
@@ -430,6 +428,7 @@ public class HomeWindow {
 	public void navigateToDungeonScreen() {
 		new MenuBarDungeon(shell, hw);
 		GameState.PAGE_NUMBER = 1;
+		this.shell.setSize(WIDTH, HEIGHT);
 		this.m_mainWindowLayout.topControl = this.dungeonScreen;
 		this.m_mainWindow.layout();
 	}
@@ -437,6 +436,7 @@ public class HomeWindow {
 	public void navigateToPlayerScreen() {
 		new MenuBarHomeScreen(shell, hw);
 		GameState.PAGE_NUMBER = 3;
+		this.shell.setSize(WIDTH, HEIGHT);
 		this.m_mainWindowLayout.topControl = this.playerScreen;
 		this.m_mainWindow.layout();
 	}

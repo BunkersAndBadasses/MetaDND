@@ -1,12 +1,17 @@
 fix class special abilities(2d array per level)
 will update saving feats to character as CharFeats (instead of FeatEntitys)
 
-make it so only one instance of char wiz can be open at one time
-^^ ditto for other wizards
+DONE - make it so only one instance of char wiz can be open at one time
+DONE - ^^ ditto for other wizards
 
 upload picture for character?
+	1. be able to save characters
+	2. be able to designate a new image for the character
+	3. be able to see the new image in the charactermain
+	4. copy the file from wherever it was to the local userdata folder.
 
 changed languages from string to string[], character sheet crashes, save crashes? 
+
 loading character closes home window, unable to return
 Change the CharacterMain to a composite, and overlay the charList
 

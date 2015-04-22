@@ -91,7 +91,9 @@ public class DungeonGenerator {
 		
 		//3. choose a wall from which to build
 		//break out of this when dungeon is complete.
+		int counter = 0;
 		do {
+			counter++;
 			int startingWallInd = m_rng.GetRandomInteger(0, m_potentialWalls.size() - 1);
 			AbsoluteWall startingWall = m_potentialWalls.get(startingWallInd);
 	
@@ -198,7 +200,7 @@ public class DungeonGenerator {
 				}
 				
 			}
-		} while (this.m_solidEarthRemaining > m_stoppingCondition);
+		} while (this.m_solidEarthRemaining > m_stoppingCondition && counter < 10000);
 		
 		placeStairs();
 	}
