@@ -319,7 +319,14 @@ public class Wiz2 {
 				// set initial ac (defaults to 10 + 0 + 0 + 0 + 0 + 0
 				// dex modifier will update in wiz3, armor and shield will update in wiz8
 				character.setACSizeMod(GameState.acAttackSizeMods[character.getSize()]);
-				
+				// auto saves touch ac and flat footed ac from ac
+				// init mod will update in wiz3
+				// set saving throws
+				character.setFortSaveBaseSave(character.getCharClass().getFortSave()[character.getLevel()-1]);
+				character.setReflexSaveBaseSave(character.getCharClass().getReflexSave()[character.getLevel()-1]);
+				character.setWillSaveBaseSave(character.getCharClass().getWillSave()[character.getLevel()-1]);
+				// set base attack bonus
+				character.setBaseAttackBonus(character.getCharClass().getBaseAttackBonus()[character.getLevel()-1]);
 				/*
 				 * 
 				 * ac

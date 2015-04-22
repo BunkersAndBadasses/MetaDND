@@ -10,7 +10,8 @@ public class ClassEntity extends DNDEntity {
 	String alignmentRestriction;
 	String[] bonusLanguages;
 	String hitDie;
-	String[] baseAttackBonus;
+	String[] baseAttackBonusString;
+	int [] baseAttackBonus;
 	int[] fortSave;
 	int[] reflexSave;
 	int[] willSave;
@@ -49,7 +50,15 @@ public class ClassEntity extends DNDEntity {
 				this.hitDie = value.substring(0, value.length() - 1);
 				break;
 			case "BASEATTACKBONUS":
-				this.baseAttackBonus = value.split(", ");
+				this.baseAttackBonusString = value.split(", ");
+				baseAttackBonus = new int[baseAttackBonusString.length];
+				for (int i = 0; i < baseAttackBonusString.length; i++) {
+					int index = baseAttackBonusString[i].indexOf('/');
+					if (index == -1)
+						baseAttackBonus[i] = Integer.parseInt(baseAttackBonusString[i]);
+					else
+						baseAttackBonus[i] = Integer.parseInt(baseAttackBonusString[i].substring(0, index));
+				}
 				break;
 			case "FORTSAVE":
 				String[] fortSaveList = value.split(", ");
@@ -233,12 +242,20 @@ public class ClassEntity extends DNDEntity {
 		this.hitDie = hitDie;
 	}
 
-	public String[] getBaseAttackBonus() {
-		return baseAttackBonus;
+	public String[] getBaseAttackBonusString() {
+		return baseAttackBonusString;
 	}
 
-	public void setBaseAttackBonus(String[] baseAttackBonus) {
-		this.baseAttackBonus = baseAttackBonus;
+	public void setBaseAttackBonusString(String[] baseAttackBonus) {
+		this.baseAttackBonusString = baseAttackBonus;
+	}
+	
+	public int[] getBaseAttackBonus() {
+		return baseAttackBonus;
+	}
+	
+	public void setBaseAttackBonus(int[] b) {
+		baseAttackBonus = b;
 	}
 
 	public int[] getFortSave() {
