@@ -23,14 +23,23 @@ import core.DungeonGenerator;
 import core.GameState;
 import core.GridMapper;
 import core.Main;
+import core.RNG;
 import core.character;
+import entity.ArmorEntity;
 import entity.ClassEntity;
+import entity.DNDEntity;
+import entity.ItemEntity;
 import entity.RaceEntity;
+import entity.TrapEntity;
+import entity.WeaponEntity;
 
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -58,6 +67,7 @@ public class HomeWindow {
 	private static final int WIDTH = 900;
 	private static final int HEIGHT = 700;
 	public static boolean cancel = false;
+	public static int monies;
 	private HomeWindow hw;
 	private static HashMap<String, String> filepaths;
 
@@ -149,8 +159,6 @@ public class HomeWindow {
 
 	private void createPageContent() {
 
-
-
 		this.m_mainWindow = mainWindow;
 		this.m_mainWindowLayout = mainWindowLayout;
 
@@ -159,7 +167,7 @@ public class HomeWindow {
 		GridLayout homeScreenLayout = new GridLayout(6, true);
 		homeScreen.setLayout(homeScreenLayout);
 
-		GridLayout dungeonScreenLayout = new GridLayout(4, true);
+		GridLayout dungeonScreenLayout = new GridLayout(5, true);
 		dungeonScreenLayout.marginLeft = 10;
 		dungeonScreen.setLayout(dungeonScreenLayout);
 
@@ -697,10 +705,174 @@ public class HomeWindow {
 				}
 			});
 			
+			Composite BUTTONS = new Composite(dungeonScreen, SWT.NONE);
+			GridLayout buttonsLayout = new GridLayout();
+			buttonsLayout.verticalSpacing = 15;
+			buttonsLayout.numColumns = 1;
+			BUTTONS.setLayout(buttonsLayout);
+			
+			Button Loot = new Button(BUTTONS, SWT.PUSH);
+			Loot.setText("Generate Loot");
+			GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+			Loot.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					RNG rng = new RNG();
+					
+					//TODO Loot generation
+					int armorNum = Main.gameState.armor.size();
+					int weaponsNum = Main.gameState.weapons.size();
+					int itemNum = Main.gameState.items.size();
+					
+					int choice = rng.GetRandomInteger(1, 4);
+					
+					if(choice == 1){//Generate Armor
+						int armor = rng.GetRandomInteger(0, armorNum) - 1;
+						
+						Collection<DNDEntity> armorCol = Main.gameState.armor.values();
+						Iterator<DNDEntity> itr = armorCol.iterator();
+						ArrayList<DNDEntity> armorArray = new ArrayList<DNDEntity>();
+						while (itr.hasNext()) {
+							armorArray.add((DNDEntity) itr.next());
+						}
+
+						armorArray.get(armor).toTooltipWindow();
+					}else if(choice == 2){// Generate Weapons
+						int weapon = rng.GetRandomInteger(0, weaponsNum) - 1;
+						
+						Collection<DNDEntity> weaponCol = Main.gameState.weapons.values();
+						Iterator<DNDEntity> itr = weaponCol.iterator();
+						ArrayList<DNDEntity> weaponArray = new ArrayList<DNDEntity>();
+						while (itr.hasNext()) {
+							weaponArray.add((DNDEntity) itr.next());
+						}
+						
+						weaponArray.get(weapon).toTooltipWindow();
+					}else if(choice == 3){// Generate Item
+						int item = rng.GetRandomInteger(0, itemNum) - 1;
+						
+						Collection<DNDEntity> itemCol = Main.gameState.items.values();
+						Iterator<DNDEntity> itr = itemCol.iterator();
+						ArrayList<DNDEntity> itemArray = new ArrayList<DNDEntity>();
+						while (itr.hasNext()) {
+							itemArray.add((DNDEntity) itr.next());
+						}
+						
+						itemArray.get(item).toTooltipWindow();
+					}else{// Generate Gold
+						monies = rng.GetRandomInteger(1, 500);
+						
+						final Shell lootGold = new Shell(display);
+						lootGold.setText("Loot: Gold");
+						//saveName.setSize(300, 200);
+						center(lootGold);
+						GridLayout layout = new GridLayout();
+						layout.makeColumnsEqualWidth = true;
+						layout.horizontalSpacing = 3;
+						layout.numColumns = 3;
+						lootGold.setLayout(layout);
+						
+						// this appears when there is an empty save
+						Label lootLabel = new Label(lootGold, SWT.NONE);
+						lootLabel.setText("Gold Pieces: " + monies);
+						GridData gridData = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+						gridData.horizontalIndent = 5;
+						gridData.horizontalSpan = 3;
+						lootLabel.setLayoutData(gridData);
+						lootLabel.pack();
+						
+						Button okay = new Button(lootGold, SWT.PUSH);
+						okay.setText("Close");
+						gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+						gridData.horizontalIndent = 5;
+						okay.setLayoutData(gridData);
+						okay.addListener(SWT.Selection, new Listener() {
+							public void handleEvent(Event event) {
+								lootGold.dispose();
+								
+							}
+						});
+						okay.pack();
+						
+						new Label(lootGold, SWT.NONE); 
+						
+						Button reRoll = new Button(lootGold, SWT.PUSH);
+						reRoll.setText("ReRoll");
+						gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+						gridData.horizontalIndent = 5;
+						reRoll.setLayoutData(gridData);
+						reRoll.addListener(SWT.Selection, new Listener() {
+							public void handleEvent(Event event) {
+								monies = rng.GetRandomInteger(1, 500);
+								lootLabel.setText("Gold Pieces: " + monies);
+								lootLabel.pack();
+								//lootGold.pack();
+							}
+						});
+						reRoll.pack();
+						
+						lootGold.pack();
+						
+						lootGold.open();
+						while (!lootGold.isDisposed()) {
+							if (!display.readAndDispatch()) {
+								display.sleep();
+							}
+						}
+					}
+					
+				}
+			});
+			
+			Button Trap = new Button(BUTTONS, SWT.PUSH);
+			Trap.setText("Generate Trap");
+			gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+			Trap.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					RNG rng = new RNG();
+					
+					//TODO Trap generation
+					int trapNum = Main.gameState.traps.size();
+					int trap = rng.GetRandomInteger(0, trapNum) - 1;
+					
+					Collection<DNDEntity> trapCol = Main.gameState.traps.values();
+					Iterator<DNDEntity> itr = trapCol.iterator();
+					ArrayList<DNDEntity> trapArray = new ArrayList<DNDEntity>();
+					while (itr.hasNext()) {
+						trapArray.add((DNDEntity) itr.next());
+					}
+					
+					trapArray.get(trap).toTooltipWindow();
+					
+				}
+			});
+			
+			Button Monster = new Button(BUTTONS, SWT.PUSH);
+			Monster.setText("Generate Monster");
+			gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+			Monster.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					RNG rng = new RNG();
+					
+					//TODO Monster generation
+					int monsterNum = Main.gameState.monsters.size();
+					int monster = rng.GetRandomInteger(0, monsterNum) - 1;
+					
+					Collection<DNDEntity> monsterCol = Main.gameState.monsters.values();
+					Iterator<DNDEntity> itr = monsterCol.iterator();
+					ArrayList<DNDEntity> monsterArray = new ArrayList<DNDEntity>();
+					while (itr.hasNext()) {
+						monsterArray.add((DNDEntity) itr.next());
+					}
+					
+					monsterArray.get(monster).toTooltipWindow();
+					
+				}
+			});
+			
 			// Call the search panel composite
 			dungeonScreenReferencePanel = new referencePanel(dungeonScreen);
 			Composite ds_rp = dungeonScreenReferencePanel.getRefPanel();
-			GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+			gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 			ds_rp.setLayoutData(gridData);
 			
 			dungeonScreen.pack();
