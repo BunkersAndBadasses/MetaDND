@@ -9,6 +9,10 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import core.DnDie;
 import core.Main;
 import core.RNG;
 import core.character;
@@ -26,10 +30,16 @@ import entity.RaceEntity;
  * fix scroll on feats/items pages
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
+ * save cleric domains, animal companion, familiar, specialty school, prohibited schools, favored enemy
  * barbarian illiteracy
+ * set cap on character name length = 200
  * add deity favored weapon
  * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
  * spells!
+ * 
+ * barbarian: rage per day
+ * 
+ * item page????
  * 
  * FINISH BEFORE WEEKEND
  * 
@@ -443,7 +453,7 @@ public class CharacterWizard {
 		}
 		character.setLanguages(langs);
 		//Gold
-		character.setGold(randomgene.GetRandomInteger(50, 200));
+		character.setGP(randomgene.GetRandomInteger(50, 200));
 		//Feats
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
@@ -524,6 +534,7 @@ public class CharacterWizard {
 		Text namebox = new Text(c, SWT.NONE);
 		namebox.setMessage("Enter Name HERE!");
 		namebox.pack();
+		
 		Button saveButton = new Button(c, SWT.PUSH);
 		saveButton.setText("Save");
 		saveButton.addListener(SWT.Selection, new Listener(){
@@ -532,6 +543,51 @@ public class CharacterWizard {
 				if(namebox.getText().equals(""))
 				{
 					namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					return;
+				}
+				else if(namebox.getText().length() > 200 ){
+					//TODO ADD a error message box
+					final Shell saveNameError = new Shell(display);
+					saveNameError.setText("Character Name Error");
+					//saveName.setSize(300, 200);
+					center(saveNameError);
+					GridLayout layout = new GridLayout();
+					layout.makeColumnsEqualWidth = false;
+					layout.horizontalSpacing = 3;
+					layout.numColumns = 3;
+					saveNameError.setLayout(layout);
+					
+					// this appears when there is an empty save
+					Label badSaveFinal = new Label(saveNameError, SWT.NONE);
+					badSaveFinal.setForeground(new Color(dev,255,0,0));
+					badSaveFinal.setText("Invalid Save: Character name is capped at 200 chars.");
+					GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+					gridData.horizontalIndent = 5;
+					badSaveFinal.setLayoutData(gridData);
+					badSaveFinal.pack();
+					
+					Button okay = new Button(saveNameError, SWT.PUSH);
+					okay.setText("Okay");
+					gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+					gridData.horizontalIndent = 5;
+					okay.setLayoutData(gridData);
+					okay.addListener(SWT.Selection, new Listener() {
+						public void handleEvent(Event event) {
+							saveNameError.dispose();
+							
+						}
+					});
+					okay.pack();
+					
+					saveNameError.pack();
+					
+					saveNameError.open();
+					while (!saveNameError.isDisposed()) {
+						if (!display.readAndDispatch()) {
+							display.sleep();
+						}
+					}
+					
 					return;
 				}
 				character.setName(namebox.getText());

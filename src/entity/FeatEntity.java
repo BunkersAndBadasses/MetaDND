@@ -25,7 +25,7 @@ public class FeatEntity extends DNDEntity{
 			switch(field){
 			case "NAME":
 				String temp = new String(value.split("\\[")[0].trim());
-				String typeTemp = value.split("\\[")[1].trim();
+				String typeTemp = value.split("\\[")[1].trim();				
 				typeTemp = typeTemp.substring(0, typeTemp.length() - 1).toLowerCase();
 				this.type = WordUtils.capitalize(typeTemp);
 				temp = WordUtils.capitalize(temp.toLowerCase());

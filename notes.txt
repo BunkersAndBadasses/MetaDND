@@ -22,5 +22,8 @@ random character saving - cannot load? exception when loading items. null checki
 
 manual character entering, character editing?
 
-Random character name should be limited to 30 characters
-^^ also, change to the top of the window, and bigger text box
+//DONE Random character name should be limited to 30 characters
+ Random character name box move to the top of the window, and bigger text box
+
+Trap generation composite
+Item generation composite

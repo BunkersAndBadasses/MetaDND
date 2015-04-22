@@ -65,6 +65,12 @@ public class GameState {
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
 	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+	public final static int[] acAttackSizeMods = {8, 4, 2, 1, 0, -1, -2, -4, -8};
+	public final static int[] grappleSizeMods = {-16, -12, -8, -4, 0, 4, 8, 12, 16};
+	public final static int[] hideSizeMods = {16, 12, 8, 4, 0, -4, -8, -12, -16};
+	public final static double[] carrySizeMod = {0.125, 0.25, 0.5, 0.75, 1, 2, 4, 8, 16};
+	
+	
 	public SortedMap<String, String> languages;
 	
 	
@@ -109,6 +115,7 @@ public class GameState {
 		SearchThread st9 = new SearchThread("Items");
 		SearchThread st10 = new SearchThread("Weapons");
 		SearchThread st11 = new SearchThread("Armor");
+		SearchThread st12 = new SearchThread("Abilities");
 		
 		st1.start(this.spells, searchString);
 		st2.start(this.feats, searchString);
@@ -121,6 +128,7 @@ public class GameState {
 		st9.start(this.items, searchString);
 		st10.start(this.weapons, searchString);
 		st11.start(this.armor, searchString);
+		st12.start(this.abilities, searchString);
 		
 		try {
 			st1.getSearchThread().join();
@@ -134,6 +142,7 @@ public class GameState {
 			st9.getSearchThread().join();
 			st10.getSearchThread().join();
 			st11.getSearchThread().join();
+			st12.getSearchThread().join();
 		} catch (InterruptedException e) {
 			System.out.println("Error joining threads!");
 			return false;

@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import core.Main;
-import entity.AbilityEntity;
 import entity.FeatEntity;
 
 /**
@@ -50,7 +49,7 @@ public class Feat_wizard
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create new Feat");
-		int width = display.getMonitors()[0].getBounds().width;
+		//int width = display.getMonitors()[0].getBounds().width;
 		//shell.setSize(width / 3, width * 2 / 9);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
@@ -104,7 +103,7 @@ public class Feat_wizard
 	private void createPageContent() 
 	{
 		GridLayout gl = new GridLayout(4, true);
-        gl.verticalSpacing = 10;
+        gl.verticalSpacing = 5;
 		shell.setLayout(gl);
 		GridData gd;
 		final Label wiz1Label = new Label(shell, SWT.NONE);
@@ -119,7 +118,12 @@ public class Feat_wizard
 		gd.horizontalSpan = 2;
 		nameInput.setLayoutData(gd);
 		nameInput.pack();
-		
+		Text typeInput = new Text(shell, SWT.BORDER);
+		typeInput.setMessage("Type");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		typeInput.setLayoutData(gd);
+		typeInput.pack();
 		Text prereqInput = new Text(shell, SWT.BORDER);
 		prereqInput.setMessage("Prerequisite");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
@@ -142,8 +146,8 @@ public class Feat_wizard
 		specialInput.pack();
 		
 		//Benefit
-		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER | SWT.SEARCH);
-		benefitInput.setMessage("Benefit");
+		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER);
+		benefitInput.setText("Benefit");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 5;
@@ -162,9 +166,9 @@ public class Feat_wizard
 		FighterInput.setLayoutData(gd);
 		FighterInput.pack();
 		//Description
-		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
-		descriptionInput.setMessage("\nDescription (Optional)");
-		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL|SWT.BORDER);
+		descriptionInput.setText("Description (Optional)");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;
 		descriptionInput.setLayoutData(gd);
@@ -218,7 +222,7 @@ public class Feat_wizard
 					a.put("FIGHTERBONUS", featfighter);
 				}
 				featname = nameInput.getText();
-				a.put("NAME", nameInput.getText());
+				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
 				a.put("PREREQUISITES", prereqInput.getText());
 				a.put("NORMAL", normalInput.getText());
 				a.put("SPECIAL", specialInput.getText());
@@ -227,12 +231,14 @@ public class Feat_wizard
 				newfeat = new FeatEntity(a);
 				Main.gameState.abilities.put(featname, newfeat);
 				Main.gameState.customContent.put(featname, newfeat);
+				shell.close();
 			}
 		}
 		);
 		gd = new GridData(GridData.FILL, GridData.CENTER, false, false);
 		gd.horizontalSpan = 1;
 		save.setLayoutData(gd);
+		save.pack();
 		shell.layout();
 		shell.pack();
 //		//wizard

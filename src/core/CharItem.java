@@ -15,7 +15,11 @@ public class CharItem {
 		count++;
 	}
 	
-	public void setCouunt(int i) {
+	public void incCountBy(int inc) {
+		count += inc;
+	}
+	
+	public void setCount(int i) {
 	    count = i;
 	}
 	

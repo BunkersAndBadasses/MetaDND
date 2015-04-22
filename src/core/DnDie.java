@@ -273,7 +273,6 @@ public class DnDie {
 						});
 			}
 			else{
-				//TODO
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
 				Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 

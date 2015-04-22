@@ -145,7 +145,7 @@ public class LoadCharacter {
                 c.setNotes(getValue("Notes", element));
                 c.setDamageTaken(Integer.parseInt(getValue("DamageTaken", element)));
                 c.setPP(Integer.parseInt(getValue("PP", element)));
-                c.setGold(Integer.parseInt(getValue("GP", element)));
+                c.setGP(Integer.parseInt(getValue("GP", element)));
                 c.setSP(Integer.parseInt(getValue("SP", element)));
                 c.setCP(Integer.parseInt(getValue("CP", element)));
 
@@ -155,7 +155,7 @@ public class LoadCharacter {
                     temp = tempArr[i].replaceAll("[^a-zA-Z]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp));
-                    ci.setCouunt(count);
+                    ci.setCount(count);
                     c.addItem(ci);
                 }
 
