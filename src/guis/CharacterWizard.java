@@ -437,7 +437,7 @@ public class CharacterWizard {
 		character.setAbilityScores(randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), 
 				randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18), randomgene.GetRandomInteger(3, 18));
 		
-		} while(character.checkreroll());
+		} while(checkreroll(character));
 		//HP and remaining HP
 		character.setHitPoints(Integer.parseInt(character.getCharClass().getHitDie().split("d")[1]) + character.getAbilityModifiers()[2]);
 		if(character.getHitPoints() < 3)
@@ -776,4 +776,50 @@ public class CharacterWizard {
 		for (int i = 0; i < wizPages.size(); i++)
 			wizPages.get(i).dispose();
 	}
+	
+	/**
+	 * If the character has his highest ability score to be less or equal to 13
+	 * or if the total ability modifier of the character is less or equal to 0,
+	 * it will do a reroll.
+	 * This method is for the puopose to check that.
+	 * It is used when random generating character.
+	 * @return yes if the character need a reroll, no if not.
+	 */
+	public boolean checkreroll(character character)
+	{
+		//reroll is true if ability modifiers sum <= 0
+		//or the highest die roll is less or equal 13
+		try
+		{
+		int totalmod = 0;
+		int[] mods = character.getAbilityModifiers();
+		for(int i = 0; i < mods.length; i++)
+		{
+			totalmod += mods[i];
+		}
+		if(totalmod <= 0)
+		{
+			return true;
+		}
+		int highest = 0;
+		int[] scores = character.getAbilityScores();
+		for(int j = 0; j < scores.length; j++)
+		{
+			if(scores[j] > highest)
+			{
+				highest = scores[j];
+			}
+		}
+		if(highest <= 13)
+		{
+			return true;
+		}
+		return false;
+		}
+		catch(Exception a)
+		{
+			return false;
+		}
+	}
+
 }

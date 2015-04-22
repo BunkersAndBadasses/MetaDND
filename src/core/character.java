@@ -53,10 +53,10 @@ public class character {
 	private int[] acArray = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
-	private int initMod = 0;//
-	private int[] fortSave = {0, 0, 0, 0}; // base save, ability mod, magic mod, misc mod
-	private int[] reflexSave = {0, 0, 0, 0};
-	private int[] willSave = {0, 0, 0, 0};
+	private int initMod = 0;
+	private int[] fortSave = {0, 0, 0, 0}; 	// base save + ability mod + magic mod + misc mod
+	private int[] reflexSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
+	private int[] willSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
 	private int[][] savingThrows = {fortSave, reflexSave, willSave};
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
@@ -169,50 +169,6 @@ public class character {
 		for (int i = 0; i < abilityScores.length; i++)
 			mods[i] = (abilityScores[i]/2)-5;
 		return mods;
-	}
-	/**
-	 * If the character has his highest ability score to be less or equal to 13
-	 * or if the total ability modifier of the character is less or equal to 0,
-	 * it will do a reroll.
-	 * This method is for the puopose to check that.
-	 * It is used when random generating character.
-	 * @return yes if the character need a reroll, no if not.
-	 */
-	public boolean checkreroll()
-	{
-		//reroll is true if ability modifiers sum <= 0
-		//or the highest die roll is less or equal 13
-		try
-		{
-		int totalmod = 0;
-		int[] mods = getAbilityModifiers();
-		for(int i = 0; i < mods.length; i++)
-		{
-			totalmod += mods[i];
-		}
-		if(totalmod <= 0)
-		{
-			return true;
-		}
-		int highest = 0;
-		int[] scores = getAbilityScores();
-		for(int j = 0; j < scores.length; j++)
-		{
-			if(scores[j] > highest)
-			{
-				highest = scores[j];
-			}
-		}
-		if(highest <= 13)
-		{
-			return true;
-		}
-		return false;
-		}
-		catch(Exception a)
-		{
-			return false;
-		}
 	}
 	
 	public void setImage(String url){ imageUrl = url; }
@@ -342,6 +298,7 @@ public class character {
 	public void setInitMod(int i) { initMod = i; }
 	public int getInitMod() { return initMod; }
 	
+	// base save + ability mod + magic mod + misc mod
 	public void setSavingThrows(int[] f, int[] r, int[] w) { 
 		setFortSave(f);
 		setReflexSave(r);
