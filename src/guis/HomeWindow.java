@@ -533,18 +533,29 @@ public class HomeWindow {
 		// if confirm, delete the folder that the character file is in.
 
 		final Shell deleteChar = new Shell(display);
+		final GridLayout gridLay = new GridLayout();
+		gridLay.makeColumnsEqualWidth = false;
+		gridLay.horizontalSpacing = 3;
+		gridLay.numColumns = 3;
+		deleteChar.setLayout(gridLay);
 		deleteChar.setText("Delete");
 		//deleteFile.setSize(250, 150);
 		center(deleteChar);
 
+		new Label(deleteChar, SWT.NONE); 
+		
 		Label confirm = new Label(deleteChar, SWT.NONE);
-		confirm.setLocation(20,40);
+		GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 3;
+		confirm.setLayoutData(gridData);
 		confirm.setText("Are you sure you want to delete " + name + "?");
-		confirm.pack();
 
 		Button cancel = new Button(deleteChar, SWT.PUSH);
-		cancel.setBounds(10,90,80,30);
 		cancel.setText("Cancel");
+		gridData = new GridData(SWT.RIGHT, SWT.BEGINNING, false, false);
+		gridData.horizontalIndent = 5;
+		cancel.setLayoutData(gridData);
 		cancel.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 
@@ -552,15 +563,19 @@ public class HomeWindow {
 			}
 		});
 
+		new Label(deleteChar, SWT.NONE); 
+		
 		Button deleteFinal = new Button(deleteChar, SWT.PUSH);
-		deleteFinal.setBounds(160,90,80,30);
 		deleteFinal.setText("Delete");
+		gridData = new GridData(SWT.RIGHT, SWT.END, false, false);
+		gridData.horizontalIndent = 5;
+		deleteFinal.setLayoutData(gridData);
 		deleteFinal.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 
 				String charName = name.replaceAll("[^A-Za-z0-9]", "");
 				File charDirectory = new File(System.getProperty("user.dir")
-						+ "//" + "User Data" + "//Character" + "//" + charName);
+						+ "//" + "User Data" + "//Character" + "//DND" + charName);
 				try {
 					FileUtils.deleteDirectory(charDirectory);
 					loadCharacters();
