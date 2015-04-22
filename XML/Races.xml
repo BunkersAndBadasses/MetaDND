@@ -41,10 +41,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Darkvision: Dwarves can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and dwarves can function just fine with no light at all.;
-			Stonecunning: This ability grants a dwarf a +2 racial bonus on Search checks to notice unusual stonework, such as sliding walls, stonework traps, new construction (even when built to match the old), unsafe stone surfaces, shaky stone ceilings, and the like. Something that isn't stone but that is disguised as stone also counts as unusual stonework. A dwarf who merely comes within 10 feet of unusual stonework can make a Search check as if he were actively searching, and a dwarf can use the Search skill to find stonework traps as a rogue can. A dwarf can also intuit depth, sensing his approximate depth underground as naturally as a human can sense which way is up.
-			Weapon Familiarity: Dwarves may treat dwarven waraxes and dwarven urgroshes as martial weapons, rather than exotic weapons.
-			Stability: A dwarf gains a +4 bonus on ability checks made to resist being bull rushed or tripped when standing on the ground (but not when climbing, flying, riding, or otherwise not standing firmly on the ground).
+			Darkvision, Stonecunning, Weapon Familiarity(Dwarven Waraxe), Weapon Familiarity(Dwarven Urgrosh), Stability
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			0, 0, 2, 0, 0, -2
@@ -80,11 +77,10 @@
 			ELF
 		</NAME>
 		<DESCRIPTION>
+			Immunity to magic sleep effects, and a +2 racial saving throw bonus against enchantment spells or effects.
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Immunity to magic sleep effects, and a +2 racial saving throw bonus against enchantment spells or effects.
-			Low-Light Vision: An elf can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.
-			Weapon Proficiency: Elves receive the Martial Weapon Proficiency feats for the longsword, rapier, longbow (including composite longbow), and shortbow (including composite shortbow) as bonus feats.
+			Low-Light Vision, Weapon Proficiency (Longbow), Weapon Proficiency (Shortbow), Weapon Proficiency (Longsword), Weapon Proficiency (Rapier)
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			0, 2, -2, 0, 0, 0
@@ -117,8 +113,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Low-Light Vision: A gnome can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. He retains the ability to distinguish color and detail under these conditions.;
-			Weapon Familiarity: Gnomes may treat gnome hooked hammers as martial weapons rather than exotic weapons.
+			Low-Light Vision, Weapon Familiarity (Gnome Hooked Hammer)
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			-2, 0, 2, 0, 0, 0
@@ -155,10 +150,10 @@
 			HALF-ELF
 		</NAME>
 		<DESCRIPTION>
+			Immunity to sleep spells and similar magical effects, and a +2 racial bonus on saving throws against enchantment spells or effects.
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Immunity to sleep spells and similar magical effects, and a +2 racial bonus on saving throws against enchantment spells or effects.
-			Low-Light Vision: A half-elf can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.
+			Low-Light Vision
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			0, 0, 0, 0, 0, 0
@@ -193,7 +188,7 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Darkvision: Half-orcs (and orcs) can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and half-orcs can function just fine with no light at all.
+			Darkvision
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			2, 0, 0, -2, 0, -2
@@ -229,7 +224,6 @@
 		<DESCRIPTION>
 		</DESCRIPTION>
 		<SPECIALABILITIES>
-			Darkvision: Half-orcs (and orcs) can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and half-orcs can function just fine with no light at all.
 		</SPECIALABILITIES>
 		<ABILITYADJ>
 			-2, 2, 0, 0, 0, 0
@@ -244,8 +238,6 @@
 			Halfling base land speed is 20 feet.
 		</SPEED>
 		<TRAITS>
-			A half-orc's starting Intelligence score is always at least 3. If this adjustment would lower the character's score to 1 or 2, his score is nevertheless 3.;
-			Orc Blood: For all effects related to race, a half-orc is considered an orc.
 		</TRAITS>
 		<SKILLCHECKADJ>
 			+2 racial bonus on Climb, Jump, and Move Silently checks.

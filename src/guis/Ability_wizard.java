@@ -98,7 +98,7 @@ public class Ability_wizard {
 		gd.horizontalSpan = 3;
 		nameInput.setLayoutData(gd);
 		nameInput.pack();
-		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
+		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL |SWT.BORDER);
 		descriptionInput.setText("Description (Optional)");
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 6;

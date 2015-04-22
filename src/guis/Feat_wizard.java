@@ -103,7 +103,7 @@ public class Feat_wizard
 	private void createPageContent() 
 	{
 		GridLayout gl = new GridLayout(4, true);
-        gl.verticalSpacing = 10;
+        gl.verticalSpacing = 5;
 		shell.setLayout(gl);
 		GridData gd;
 		final Label wiz1Label = new Label(shell, SWT.NONE);
@@ -146,8 +146,8 @@ public class Feat_wizard
 		specialInput.pack();
 		
 		//Benefit
-		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER | SWT.SEARCH);
-		benefitInput.setMessage("Benefit");
+		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER);
+		benefitInput.setText("Benefit");
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 5;
@@ -166,9 +166,9 @@ public class Feat_wizard
 		FighterInput.setLayoutData(gd);
 		FighterInput.pack();
 		//Description
-		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
-		descriptionInput.setMessage("Description (Optional)");
-		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL|SWT.BORDER);
+		descriptionInput.setText("Description (Optional)");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;
 		descriptionInput.setLayoutData(gd);
