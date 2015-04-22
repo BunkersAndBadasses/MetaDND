@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ABILITIES>
+	<ABILITY>
+		<NAME>
+			Darkvision
+		</NAME>
+		<DESCRIPTION>
+			 Can see in the dark up to 60 feet. Darkvision is black and white only, but it is otherwise like normal sight, and can function just fine with no light at all.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Stonecutting
+		</NAME>
+		<DESCRIPTION>
+			 This ability grants a +2 racial bonus on Search checks to notice unusual stonework, such as sliding walls, stonework traps, new construction (even when built to match the old), unsafe stone surfaces, shaky stone ceilings, and the like. Something that isn't stone but that is disguised as stone also counts as unusual stonework. Anyone who merely comes within 10 feet of unusual stonework can make a Search check as if he were actively searching, and can use the Search skill to find stonework traps as a rogue can. Can also intuit depth, sensing his approximate depth underground as naturally as a human can sense which way is up.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Low-Light Vision
+		</NAME>
+		<DESCRIPTION>
+			Can see twice as far as a human in starlight, moonlight, torchlight, and similar conditions of poor illumination. She retains the ability to distinguish color and detail under these conditions.
+		</DESCRIPTION>
+	</ABILITY>
+		<ABILITY>
+		<NAME>
+			Stability
+		</NAME>
+		<DESCRIPTION>
+			Gains a +4 bonus on ability checks made to resist being bull rushed or tripped when standing on the ground (but not when climbing, flying, riding, or otherwise not standing firmly on the ground).
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Proficiency (Longsword)
+		</NAME>
+		<DESCRIPTION>
+			Receive the Martial Weapon Proficiency feats for the longsword as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Proficiency (Rapier)
+		</NAME>
+		<DESCRIPTION>
+			Receive the Martial Weapon Proficiency feats for the rapier as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Proficiency (Longbow)
+		</NAME>
+		<DESCRIPTION>
+			Receive the Martial Weapon Proficiency feats for the longbow (including composite longbow) as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Proficiency (Shortbow)
+		</NAME>
+		<DESCRIPTION>
+			Receive the Martial Weapon Proficiency feats for the shortbow (including composite shortbow) as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Familiarity (Dwarven Waraxe)
+		</NAME>
+		<DESCRIPTION>
+			May treat dwarven waraxes as martial weapons, rather than exotic weapons.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Familiarity (Dwarven Urgrosh)
+		</NAME>
+		<DESCRIPTION>
+			May treat dwarven urgroshes as martial weapons, rather than exotic weapons.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Weapon Familiarity (Gnome Hooked Hammer)
+		</NAME>
+		<DESCRIPTION>
+			May treat gnome hooked hammers as martial weapons, rather than exotic weapons.
+		</DESCRIPTION>
+	</ABILITY>
+</ABILITIES>

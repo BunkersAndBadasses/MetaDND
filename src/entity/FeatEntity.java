@@ -159,7 +159,7 @@ public class FeatEntity extends DNDEntity{
 
 	@Override
 	public String saveCustomContent() {
-		String output = "<SPELL>\n";
+		String output = "<FEAT>\n";
 		output += "<NAME>\n";
 		output += this.name + " [" + this.type + "]" + "\n";
 		output += "</NAME>\n";
@@ -191,7 +191,7 @@ public class FeatEntity extends DNDEntity{
 		output += "<DESCRIPTION>\n";
 		output += this.description + "\n";
 		output += "</DESCRIPTION>\n";
-		output += "</SPELL>\n";
+		output += "</FEAT>\n";
 		return output;
 	}
 
