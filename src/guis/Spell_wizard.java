@@ -206,11 +206,26 @@ public class Spell_wizard {
 		resistanceInput.setLayoutData(gd);
 		resistanceInput.pack();
 		//level
-				Text levelInput = new Text(shell, SWT.BORDER);
-				levelInput.setMessage("Level");
-				gd = new GridData(GridData.FILL, GridData.FILL, false, false);
-				levelInput.setLayoutData(gd);
-				levelInput.pack();
+		Text levelInput = new Text(shell, SWT.BORDER);
+		levelInput.setMessage("Level");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		levelInput.setLayoutData(gd);
+		levelInput.pack();
+		//Damage
+		Text damageInput = new Text(shell, SWT.BORDER);
+		damageInput.setMessage("Damage");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 1;
+		damageInput.setLayoutData(gd);
+		damageInput.pack();
+		//DamageAlternative
+		Text damagealterInput = new Text(shell, SWT.BORDER);
+		damagealterInput.setMessage("Damage Alternative");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 2;
+		damagealterInput.setLayoutData(gd);
+		damagealterInput.pack();
+	
 		//description
 		
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
@@ -233,6 +248,7 @@ public class Spell_wizard {
 			public void handleEvent(Event event)
 			{
 				Boolean checkfault = false;
+				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
 				if(nameInput.getText().equals(""))
 				{
 					checkfault = true;
@@ -248,40 +264,42 @@ public class Spell_wizard {
 					checkfault = true;
 					schoolInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 				}
-				if(rangeInput.getText().equals(""))
+				if(!rangeInput.getText().equals(""))
 				{
-					checkfault = true;
-					rangeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("RANGE", rangeInput.getText());
 				}
-				if(effectInput.getText().equals(""))
+				if(!effectInput.getText().equals(""))
 				{
-					checkfault = true;
-					effectInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("EFFECT", effectInput.getText());					
 				}
 				if(castimeInput.getText().equals(""))
 				{
 					checkfault = true;
 					castimeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 				}
-				if(materialInput.getText().equals(""))
+				if(!materialInput.getText().equals(""))
 				{
-					checkfault = true;
-					materialInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("MATERIALCOMPONENT", materialInput.getText());					
 				}
-				if(savthrowInput.getText().equals(""))
+				if(!savthrowInput.getText().equals(""))
 				{
-					checkfault = true;
-					savthrowInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("SAVINGTHROW", savthrowInput.getText());					
 				}
-				if(focusInput.getText().equals(""))
+				if(!focusInput.getText().equals(""))
 				{
-					checkfault = true;
-					focusInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("FOCUS", focusInput.getText());					
 				}
-				if(durationInput.getText().equals(""))
+				if(!durationInput.getText().equals(""))
 				{
-					checkfault = true;
-					durationInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("DURATION", durationInput.getText());
+				}
+				if(!damageInput.getText().equals(""))
+				{
+					a.put("DAMAGE", damageInput.getText());
+				}
+				if(!damagealterInput.getText().equals(""))
+				{
+					a.put("DAMAGEALTERNATE", damagealterInput.getText());
 				}
 				if(levelInput.getText().equals(""))
 				{
@@ -292,17 +310,11 @@ public class Spell_wizard {
 				{
 					return;
 				}
-				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
+				
 				a.put("NAME", nameInput.getText());
 				a.put("COMPONENTS", componentInput.getText());
 				a.put("SCHOOL", schoolInput.getText());
-				a.put("RANGE", rangeInput.getText());
-				a.put("EFFECT", effectInput.getText());
 				a.put("CASTINGTIME", castimeInput.getText());
-				a.put("MATERIALCOMPONENT", materialInput.getText());
-				a.put("SAVINGTHROW", savthrowInput.getText());
-				a.put("FOCUS", focusInput.getText());
-				a.put("DURATION", durationInput.getText());
 				a.put("LEVEL", levelInput.getText());
 				if(resistanceInput.getSelection())
 				{
