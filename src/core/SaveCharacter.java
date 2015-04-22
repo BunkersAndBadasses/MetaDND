@@ -35,9 +35,9 @@ public class SaveCharacter {
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
                 // root elements
-                Document newDoc = docBuilder.newDocument();
-                Element Character = newDoc.createElement("Character");
-                newDoc.appendChild(Character);
+                doc = docBuilder.newDocument();
+                ele = doc.createElement("Character");
+                doc.appendChild(ele);
                 
                 appendValue("Name", c.getName());
                 appendValue("Level", c.getLevel());
@@ -164,7 +164,7 @@ public class SaveCharacter {
                 
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
-                DOMSource source = new DOMSource(newDoc);
+                DOMSource source = new DOMSource(doc);
 
                 //change back to character.getName() is not working correctly
                 String charName = c.getName().replaceAll("[^A-Za-z0-9]", "");
