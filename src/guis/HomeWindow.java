@@ -5,8 +5,6 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.*;
@@ -17,7 +15,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import core.DnDie;
 import core.DungeonConstants;
 import core.DungeonGenerator;
 import core.GameState;
@@ -33,7 +30,6 @@ import entity.RaceEntity;
 import entity.TrapEntity;
 import entity.WeaponEntity;
 
-import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,11 +37,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.filechooser.FileSystemView;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -57,7 +49,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  */
 
 public class HomeWindow {
-
+	private static String version = "Ver0.8.Alpha";
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 	private static Document doc;
@@ -103,7 +95,7 @@ public class HomeWindow {
 		shell = new Shell(d);
 		Image logo = new Image(d, "images/bnb_logo.gif");
 		shell.setImage(logo);
-		shell.setText("Meta D&D");
+		shell.setText("Meta D&D " + version);
 		shell.setSize(WIDTH, HEIGHT);
 		shell.setLayout(new GridLayout(3, false));
 

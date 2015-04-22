@@ -367,8 +367,10 @@ public class Wiz10 {
 
             // AC
             Element AC = doc.createElement("AC");
-            AC.appendChild(doc.createTextNode(Integer.toString(
-                    character.getAC())));
+            String ac = Integer.toString(character.getAC()[0]);
+            for (int i = 0; i < character.getAC().length; i++)
+            	ac += " + " + character.getAC()[i];
+            AC.appendChild(doc.createTextNode(ac));
             Character.appendChild(AC);	
 
             // TouchAC
@@ -385,26 +387,34 @@ public class Wiz10 {
 
             // initMod
             Element initMod = doc.createElement("InitMod");
-            initMod.appendChild(doc.createTextNode(Integer.toString(
-                    character.getInitMod())));
+            String init = Integer.toString(character.getInitMod()[0]);
+            for (int i = 0; i < character.getInitMod().length; i++)
+            	init += " + " + character.getInitMod()[i];
+            initMod.appendChild(doc.createTextNode(init));
             Character.appendChild(initMod);	
 
             // Fortitude Saving throw
             Element fortSave = doc.createElement("FortSave");
-            fortSave.appendChild(doc.createTextNode(Integer.toString(
-                    character.getSavingThrows()[0])));
+            String fort = Integer.toString(character.getFortSave()[0]);
+            for (int i = 0; i < character.getFortSave().length; i++)
+            	fort += " + " + character.getFortSave()[i];
+            fortSave.appendChild(doc.createTextNode(fort));
             Character.appendChild(fortSave);	
 
             // Reflex Saving throw
             Element reflexSave = doc.createElement("ReflexSave");
-            reflexSave.appendChild(doc.createTextNode(Integer.toString(
-                    character.getSavingThrows()[1])));
+            String reflex = Integer.toString(character.getReflexSave()[0]);
+            for (int i = 0; i < character.getReflexSave().length; i++)
+            	reflex += " + " + character.getReflexSave()[i];
+            reflexSave.appendChild(doc.createTextNode(reflex));
             Character.appendChild(reflexSave);	
 
             // Will Saving throw
             Element willSave = doc.createElement("WillSave");
-            willSave.appendChild(doc.createTextNode(Integer.toString(
-                    character.getSavingThrows()[2])));
+            String will = Integer.toString(character.getWillSave()[0]);
+            for (int i = 0; i < character.getWillSave().length; i++)
+            	will += " + " + character.getWillSave()[i];
+            willSave.appendChild(doc.createTextNode(will));
             Character.appendChild(willSave);	
 
             // baseAttackBonus
@@ -421,8 +431,10 @@ public class Wiz10 {
 
             // grappleMod
             Element grappleMod = doc.createElement("GrappleMod");
-            grappleMod.appendChild(doc.createTextNode(Integer.toString(
-                    character.getGrappleMod())));
+            String grapple = Integer.toString(character.getGrappleMod()[0]);
+            for (int i = 0; i < character.getGrappleMod().length; i++)
+            	grapple += " + " + character.getGrappleMod()[i];
+            grappleMod.appendChild(doc.createTextNode(grapple));
             Character.appendChild(grappleMod);	
 
             // Speed

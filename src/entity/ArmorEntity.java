@@ -212,5 +212,11 @@ public class ArmorEntity extends DNDEntity {
 	public int getQuantity() {
 		return quantity;
 	}
+	
+	@Override
+	public String saveCustomContent() {
+		String output = "";
+		return output;
+	}
 
 }

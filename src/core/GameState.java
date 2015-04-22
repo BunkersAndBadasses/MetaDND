@@ -1,8 +1,8 @@
 package core;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.SortedMap;
@@ -97,6 +97,21 @@ public class GameState {
 	}
 	
 	public void saveCustomContent(){
+		FileWriter fw;
+    try {
+        fw = new FileWriter(new File(".//XML/CustomContent.xml"));
+         
+        fw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+        fw.write("<CUSTOM>\n");
+        for (Map.Entry<String, DNDEntity> entry : Main.gameState.customContent.entrySet()){
+        	fw.write(entry.getValue().saveCustomContent());
+		}
+        fw.write("</CUSTOM>\n");
+        fw.close();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+
 		
 	}
 	

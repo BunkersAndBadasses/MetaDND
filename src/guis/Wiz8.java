@@ -16,6 +16,9 @@
  * wizard: club, dagger, crossbow(light and heavy), quarterstaff, no armor, no shields  
  */
 
+/*
+ * TODO save armor/shield bonus to ac
+ */
 
 package guis;
 import java.util.ArrayList;

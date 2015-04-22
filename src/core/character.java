@@ -49,16 +49,18 @@ public class character {
 	private WeaponEntity secWeapon;//
 	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
-	private int AC = 0;
-	private int[] acArray = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
+	private int[] AC = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
-	private int initMod = 0;//
-	private int[] savingThrows = {0,0,0}; // fortitude, reflex, will
+	private int[] initMod = {0, 0};		// dex mod + misc mod
+	private int[] fortSave = {0, 0, 0, 0}; 	// base save + ability mod + magic mod + misc mod
+	private int[] reflexSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
+	private int[] willSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
+	private int[][] savingThrows = {fortSave, reflexSave, willSave};
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
-	private int grappleMod = 0;
-	private int speed = 0;//
+	private int[] grappleMod = {0, 0, 0, 0};	// base attack bonus + str mod + size mod + misc mod
+	private int speed = 0;	// feet
 	private int damageReduction = 0;
 	
 	private String[] clericDomains = null;
@@ -146,6 +148,24 @@ public class character {
 		abilityScores[GameState.INTELLIGENCE] = intel;
 		abilityScores[GameState.WISDOM] = wis;
 		abilityScores[GameState.CHARISMA] = cha;
+		setGrappleStrMod(getAbilityModifiers()[GameState.STRENGTH]);
+		setInitDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setACDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setFortSaveConMod(getAbilityModifiers()[GameState.CONSTITUTION]);
+		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setWillSaveWisMod(getAbilityModifiers()[GameState.WISDOM]);
+	}
+	public void modifyAbilityScores(int[] mods) {
+		if (mods.length != 6)
+			return;
+		for (int i = 0; i < mods.length; i++) 
+			abilityScores[i] += mods[i];
+		setGrappleStrMod(getAbilityModifiers()[GameState.STRENGTH]);
+		setInitDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setACDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setFortSaveConMod(getAbilityModifiers()[GameState.CONSTITUTION]);
+		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
+		setWillSaveWisMod(getAbilityModifiers()[GameState.WISDOM]);
 	}
 	/**
 	 * 
@@ -162,50 +182,6 @@ public class character {
 		for (int i = 0; i < abilityScores.length; i++)
 			mods[i] = (abilityScores[i]/2)-5;
 		return mods;
-	}
-	/**
-	 * If the character has his highest ability score to be less or equal to 13
-	 * or if the total ability modifier of the character is less or equal to 0,
-	 * it will do a reroll.
-	 * This method is for the puopose to check that.
-	 * It is used when random generating character.
-	 * @return yes if the character need a reroll, no if not.
-	 */
-	public boolean checkreroll()
-	{
-		//reroll is true if ability modifiers sum <= 0
-		//or the highest die roll is less or equal 13
-		try
-		{
-		int totalmod = 0;
-		int[] mods = getAbilityModifiers();
-		for(int i = 0; i < mods.length; i++)
-		{
-			totalmod += mods[i];
-		}
-		if(totalmod <= 0)
-		{
-			return true;
-		}
-		int highest = 0;
-		int[] scores = getAbilityScores();
-		for(int j = 0; j < scores.length; j++)
-		{
-			if(scores[j] > highest)
-			{
-				highest = scores[j];
-			}
-		}
-		if(highest <= 13)
-		{
-			return true;
-		}
-		return false;
-		}
-		catch(Exception a)
-		{
-			return false;
-		}
 	}
 	
 	public void setImage(String url){ imageUrl = url; }
@@ -305,26 +281,30 @@ public class character {
 	public String getNotes() { return notes; }
 	
 	//10 + armor bonus + shield bonus + Dexterity modifier + size modifier + misc modifier
-	public void setAC(int ac) { AC = ac; }
-	public void setACArray(int[] ac) { 
+	public void setAC(int[] ac) { 
 		if (ac.length != 5)
 			return;
 		// first number is always 10
-		for (int i = 0; i < acArray.length; i++)
-			acArray[i+1] = ac[i];
+		for (int i = 0; i < AC.length; i++)
+			AC[i+1] = ac[i];
 	}
-	public void setACArmorBonus(int a) { acArray[1] = a; }
-	public void setACShieldBonus(int a) { acArray[2] = a; }
-	public void setACDexMod(int a) { acArray[3] = a; }
-	public void setACSizeMod(int a) { acArray[4] = a; }
-	public void setACMiscMod(int a) { acArray[5] = a; }
-	public int getACArmorBonus() { return acArray[1]; }
-	public int getACShieldBonus() { return acArray[2]; }
-	public int getACDexMod() { return acArray[3]; }
-	public int getACSizeMod() { return acArray[4]; }
-	public int getACMiscMod() { return acArray[5]; }
-	
-	public int getAC() { return AC; }
+	public void setACArmorBonus(int a) { AC[1] = a; }
+	public void setACShieldBonus(int a) { AC[2] = a; }
+	public void setACDexMod(int a) { AC[3] = a; }
+	public void setACSizeMod(int a) { AC[4] = a; }
+	public void setACMiscMod(int a) { AC[5] = a; }
+	public int getACArmorBonus() { return AC[1]; }
+	public int getACShieldBonus() { return AC[2]; }
+	public int getACDexMod() { return AC[3]; }
+	public int getACSizeMod() { return AC[4]; }
+	public int getACMiscMod() { return AC[5]; }
+	public int[] getAC() { return AC; }
+	public int getACTotal() {
+		int total = 0;
+		for (int i = 0; i < AC.length; i++)
+			total += AC[i];
+		return total;
+	}
 	
 	public void setTouchAC(int t) { touchAC = t; }
 	public int getTouchAC() { return touchAC; }
@@ -332,15 +312,94 @@ public class character {
 	public void setFlatFootedAC(int f) { flatFootedAC = f; }
 	public int getFlatFootedAC() { return flatFootedAC; }
 	
-	public void setInitMod(int i) { initMod = i; }
-	public int getInitMod() { return initMod; }
-	
-	public void setSavingThrows(int f, int r, int w) { 
-		savingThrows[0] = f;
-		savingThrows[1] = r; 
-		savingThrows[2] = w;
+	public void setInitMod(int[] i) { 
+		if (i.length != 2)
+			return;
+		initMod = i; 
+		}
+	public void setInitDexMod(int a) { initMod[0] = a; }
+	public void setInitMiscMod(int a) { initMod[1] = a; }
+	public int[] getInitMod() { return initMod; }
+	public int getInitDexMod() { return initMod[0]; }
+	public int getInitMiscMod() { return initMod[1]; }
+	public int getInitModTotal() {
+		int total = 0;
+		for (int i = 0; i < initMod.length; i++)
+			total += initMod[i];
+		return total;
 	}
-	public int[] getSavingThrows() { return savingThrows; }
+	
+	// base save + ability mod + magic mod + misc mod
+	public void setSavingThrows(int[] f, int[] r, int[] w) { 
+		setFortSave(f);
+		setReflexSave(r);
+		setWillSave(w);
+	}
+	public void setFortSave(int[] f) { 
+		if (f.length != 4)
+			return;
+		fortSave = f; 
+	}
+	public void setReflexSave(int[] r) { 
+		if (r.length != 4)
+			return;
+		reflexSave = r; 
+	}
+	public void setWillSave(int[] w) { 
+		if (w.length != 4)
+			return;
+		willSave = w; 
+	}
+	public void setFortSaveBaseSave(int a) { fortSave[0] = a; }
+	public void setFortSaveConMod(int a) { fortSave[1] = a; }
+	public void setFortSaveMagicMod(int a) { fortSave[2] = a; }
+	public void setFortSaveMiscMod(int a) { fortSave[3] = a; }
+	public void setReflexSaveBaseSave(int a) { reflexSave[0] = a; }
+	public void setReflexSaveDexMod(int a) { reflexSave[1] = a; }
+	public void setReflexSaveMagicMod(int a) { reflexSave[2] = a; }
+	public void setReflexSaveMiscMod(int a) { reflexSave[3] = a; }
+	public void setWillSaveBaseSave(int a) { willSave[0] = a; }
+	public void setWillSaveWisMod(int a) { willSave[1] = a; }
+	public void setWillSaveMagicMod(int a) { willSave[2] = a; }
+	public void setWillSaveMiscMod(int a) { willSave[3] = a; }
+	public int[][] getSavingThrows() { return savingThrows; }
+	public int[] getFortSave() { return fortSave; }
+	public int[] getReflexSave() { return reflexSave; }
+	public int[] getWillSave() { return willSave; }
+	public int[] getSavingThrowsTotals() {
+		int[] totals = {getFortSaveTotal(), getReflexSaveTotal(), getWillSaveTotal()};
+		return totals;
+	}
+	public int getFortSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += fortSave[i];
+		return total;
+	}
+	public int getReflexSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += reflexSave[i];
+		return total;
+	}
+	public int getWillSaveTotal() {
+		int total = 0;
+		for (int i = 0; i < 4; i++)
+			total += willSave[i];
+		return total;
+	}
+	public int getFortSaveBaseSave() { return fortSave[0]; }
+	public int  getFortSaveConMod() { return fortSave[1]; }
+	public int getFortSaveMagicMod() { return fortSave[2]; }
+	public int getFortSaveMiscMod() { return fortSave[3]; }
+	public int getReflexSaveBaseSave() { return reflexSave[0]; }
+	public int getReflexSaveDexMod() { return reflexSave[1]; }
+	public int getReflexSaveMagicMod() { return reflexSave[2]; }
+	public int getReflexSaveMiscMod() { return reflexSave[3]; }
+	public int getWillSaveBaseSave() { return willSave[0]; }
+	public int getWillSaveWisMod() { return willSave[1]; }
+	public int getWillSaveMagicMod() { return willSave[2]; }
+	public int getWillSaveMiscMod() { return willSave[3]; }
 	
 	public void setBaseAttackBonus(int b) { baseAttackBonus = b; }
 	public int getBaseAttackBonus() { return baseAttackBonus; }
@@ -348,8 +407,26 @@ public class character {
 	public void setSpellResistance(int s) { spellResistance = s; }
 	public int getSpellResistance() { return spellResistance; }
 	
-	public void setGrappleMod(int g) { grappleMod = g; }
-	public int getGrappleMod() { return grappleMod; }
+	public void setGrappleMod(int[] g) {
+		if (g.length != 4)
+			return;
+		grappleMod = g; 
+	}
+	public void setGrappleAttackBonus(int a) { grappleMod[0] = a; }
+	public void setGrappleStrMod(int a) { grappleMod[1] = a; }
+	public void setGrappleSizeMod(int a) { grappleMod[2] = a; }
+	public void setGrappleMiscMod(int a) { grappleMod[3] = a; }
+	public int[] getGrappleMod() { return grappleMod; }
+	public int getGrappleAttackBonus() { return grappleMod[0]; }
+	public int getGrappleStrMod() { return grappleMod[1]; }
+	public int getGrappleSizeMod() { return grappleMod[2]; }
+	public int getGrappleMiscMod() { return grappleMod[3]; }
+	public int getGrappleModTotal() {
+		int total = 0;
+		for (int i = 0; i < grappleMod.length; i++)
+			total += grappleMod[i];
+		return total;
+	}
 	
 	public void setSpeed(int s) { speed = s; }
 	public int getSpeed() { return speed; }

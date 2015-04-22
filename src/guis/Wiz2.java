@@ -315,7 +315,7 @@ public class Wiz2 {
 				character.setSpeed(character.getCharRace().getSpeed());
 				if (charClass.equalsIgnoreCase("Barbarian"))
 					character.setSpeed(character.getCharRace().getSpeed() + 10);
-				
+				// set initial ac
 				/*
 				 * 
 				 * ac
