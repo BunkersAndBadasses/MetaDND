@@ -49,8 +49,7 @@ public class character {
 	private WeaponEntity secWeapon;//
 	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
-	private int AC = 0;
-	private int[] acArray = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
+	private int[] AC = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
 	private int[] initMod = {0, 0};		// dex mod + misc mod
@@ -282,26 +281,30 @@ public class character {
 	public String getNotes() { return notes; }
 	
 	//10 + armor bonus + shield bonus + Dexterity modifier + size modifier + misc modifier
-	public void setAC(int ac) { AC = ac; }
-	public void setACArray(int[] ac) { 
+	public void setAC(int[] ac) { 
 		if (ac.length != 5)
 			return;
 		// first number is always 10
-		for (int i = 0; i < acArray.length; i++)
-			acArray[i+1] = ac[i];
+		for (int i = 0; i < AC.length; i++)
+			AC[i+1] = ac[i];
 	}
-	public void setACArmorBonus(int a) { acArray[1] = a; }
-	public void setACShieldBonus(int a) { acArray[2] = a; }
-	public void setACDexMod(int a) { acArray[3] = a; }
-	public void setACSizeMod(int a) { acArray[4] = a; }
-	public void setACMiscMod(int a) { acArray[5] = a; }
-	public int getACArmorBonus() { return acArray[1]; }
-	public int getACShieldBonus() { return acArray[2]; }
-	public int getACDexMod() { return acArray[3]; }
-	public int getACSizeMod() { return acArray[4]; }
-	public int getACMiscMod() { return acArray[5]; }
-	
-	public int getAC() { return AC; }
+	public void setACArmorBonus(int a) { AC[1] = a; }
+	public void setACShieldBonus(int a) { AC[2] = a; }
+	public void setACDexMod(int a) { AC[3] = a; }
+	public void setACSizeMod(int a) { AC[4] = a; }
+	public void setACMiscMod(int a) { AC[5] = a; }
+	public int getACArmorBonus() { return AC[1]; }
+	public int getACShieldBonus() { return AC[2]; }
+	public int getACDexMod() { return AC[3]; }
+	public int getACSizeMod() { return AC[4]; }
+	public int getACMiscMod() { return AC[5]; }
+	public int[] getAC() { return AC; }
+	public int getACTotal() {
+		int total = 0;
+		for (int i = 0; i < AC.length; i++)
+			total += AC[i];
+		return total;
+	}
 	
 	public void setTouchAC(int t) { touchAC = t; }
 	public int getTouchAC() { return touchAC; }
@@ -319,6 +322,12 @@ public class character {
 	public int[] getInitMod() { return initMod; }
 	public int getInitDexMod() { return initMod[0]; }
 	public int getInitMiscMod() { return initMod[1]; }
+	public int getInitModTotal() {
+		int total = 0;
+		for (int i = 0; i < initMod.length; i++)
+			total += initMod[i];
+		return total;
+	}
 	
 	// base save + ability mod + magic mod + misc mod
 	public void setSavingThrows(int[] f, int[] r, int[] w) { 
@@ -412,6 +421,12 @@ public class character {
 	public int getGrappleStrMod() { return grappleMod[1]; }
 	public int getGrappleSizeMod() { return grappleMod[2]; }
 	public int getGrappleMiscMod() { return grappleMod[3]; }
+	public int getGrappleModTotal() {
+		int total = 0;
+		for (int i = 0; i < grappleMod.length; i++)
+			total += grappleMod[i];
+		return total;
+	}
 	
 	public void setSpeed(int s) { speed = s; }
 	public int getSpeed() { return speed; }
