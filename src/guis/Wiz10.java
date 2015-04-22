@@ -573,7 +573,7 @@ public class Wiz10 {
                 CHARACTER.mkdir();
                 File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character" + "//DND" + charName);
                 CHARDIR.mkdir();
-                StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + charName + ".xml");
+                StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
 
 
                 transformer.transform(source, result);

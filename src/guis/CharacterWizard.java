@@ -27,7 +27,7 @@ import entity.RaceEntity;
  * TODO: 
  * 
  * launch wizards (add custom)
- * add char list update to random character generation
+ * fix scroll on feats/items pages
  * monk - add wis to ac
  * save ac, saving throws, initiative, etc
  * barbarian illiteracy
@@ -40,7 +40,6 @@ import entity.RaceEntity;
  * iteration 2 -  weekend!: 
  * 
  * change skill list - numbers in line, headers
- * searching
  * back button
  * starting at level > 1
  * adding custom skills
