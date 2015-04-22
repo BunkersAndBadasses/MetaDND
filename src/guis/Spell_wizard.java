@@ -1,10 +1,13 @@
 package guis;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -13,6 +16,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import core.Main;
+import entity.FeatEntity;
+import entity.SpellEntity;
 
 /**
  * The class that handle Spell wizard interface, input and export.
@@ -27,6 +34,7 @@ public class Spell_wizard {
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private static int wizpagenum;
+	public static SpellEntity newspell;
 	static String spellname;
 	static String spellcomp;
 	static String spellschool;
@@ -44,8 +52,9 @@ public class Spell_wizard {
 	{
 		display = d;
 		shell = new Shell(d);
-		shell.setText("Create new Spell"); //Try Create new xxx?
-		shell.setSize(WIDTH,HEIGHT);
+		shell.setText("Create new Spell");
+		//int width = display.getMonitors()[0].getBounds().width;
+		//shell.setSize(width / 3, width * 2 / 3);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
@@ -105,6 +114,130 @@ public class Spell_wizard {
 	 */
 	private void createPageContent() 
 	{
+		GridLayout gl = new GridLayout(4, true);
+        gl.verticalSpacing = 10;
+		
+		GridData gd;
+		final Label wiz1Label = new Label(shell, SWT.NONE);
+		wiz1Label.setText("Enter Fields");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 4;
+		wiz1Label.setLayoutData(gd);
+		wiz1Label.pack();
+		Text nameInput = new Text(shell, SWT.BORDER);
+		nameInput.setMessage("Name");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		nameInput.setLayoutData(gd);
+		nameInput.pack();
+		//Component
+		Text componentInput = new Text(shell, SWT.BORDER);
+		componentInput.setMessage("Component");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 2;
+		componentInput.setLayoutData(gd);
+		componentInput.pack();
+		//school
+		Text schoolInput = new Text(shell, SWT.BORDER);
+		schoolInput.setMessage("School");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		schoolInput.setLayoutData(gd);
+		schoolInput.pack();
+		//range
+		Text rangeInput = new Text(shell, SWT.BORDER);
+		rangeInput.setMessage("Range");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 2;
+		rangeInput.setLayoutData(gd);
+		rangeInput.pack();
+		//Effect
+		Text effectInput = new Text(shell, SWT.BORDER);
+		effectInput.setMessage("Effect");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 4;
+		effectInput.setLayoutData(gd);
+		effectInput.pack();
+		//castingtime
+		Text castimeInput = new Text(shell, SWT.BORDER);
+		castimeInput.setMessage("Casting Time");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		castimeInput.setLayoutData(gd);
+		castimeInput.pack();
+		//materialcomponent
+		Text materialInput = new Text(shell, SWT.BORDER);
+		materialInput.setMessage("Material Component");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 2;
+		materialInput.setLayoutData(gd);
+		materialInput.pack();
+		//Savingthrow
+		Text savthrowInput = new Text(shell, SWT.BORDER);
+		savthrowInput.setMessage("Saving Throw");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		savthrowInput.setLayoutData(gd);
+		savthrowInput.pack();
+		//Focus
+		Text focusInput = new Text(shell, SWT.BORDER);
+		focusInput.setMessage("Focus");
+		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		gd.horizontalSpan = 2;
+		focusInput.setLayoutData(gd);
+		focusInput.pack();
+		//Duration
+		Text durationInput = new Text(shell, SWT.BORDER);
+		durationInput.setMessage("Duration");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 2;
+		durationInput.setLayoutData(gd);
+		durationInput.pack();
+		//spellresistance
+		Text resistanceInput = new Text(shell, SWT.BORDER);
+		resistanceInput.setMessage("Spell Resistance");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 3;
+		resistanceInput.setLayoutData(gd);
+		resistanceInput.pack();
+		//level
+				Text levelInput = new Text(shell, SWT.BORDER);
+				levelInput.setMessage("Level");
+				gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+				levelInput.setLayoutData(gd);
+				levelInput.pack();
+		//description
+		
+		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
+		descriptionInput.setText("Description (Optional)");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 4;
+		gd.verticalSpan = 15;
+		descriptionInput.setLayoutData(gd);
+		descriptionInput.pack();
+		Label blank = new Label(shell, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
+		gd.horizontalSpan = 4;
+		blank.setLayoutData(gd);
+		blank.pack();
+		Button save = new Button(shell, SWT.PUSH);
+
+		save.setText("Save");
+		save.addListener(SWT.Selection, new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				shell.close();
+			}
+		}
+		);
+		gd = new GridData(GridData.FILL, GridData.CENTER, false, false);
+		gd.horizontalSpan = 1;
+		save.setLayoutData(gd);
+		save.pack();
+		shell.setLayout(gl);
+		shell.layout();
+		shell.pack();
 //		//wizard
 //				final Composite wizPanel = new Composite(shell, SWT.BORDER);
 //				wizPanel.setBounds(0,0,WIDTH, HEIGHT);

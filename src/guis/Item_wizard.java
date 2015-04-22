@@ -44,8 +44,8 @@ public class Item_wizard {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Item");
-		int width = display.getMonitors()[0].getBounds().width;
-		shell.setSize(width / 3, width * 2 / 9);
+		//int width = display.getMonitors()[0].getBounds().width;
+		//shell.setSize(width / 3, width * 2 / 9);
 		wizPages = new ArrayList<Composite>();
 		wizPageNum = 0;
 		createPageContent();
@@ -121,9 +121,9 @@ public class Item_wizard {
 		valueInput.setLayoutData(gd);
 		valueInput.pack();
 		//Description
-		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
-		descriptionInput.setMessage("Description (Optional)");
-		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
+		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
+		descriptionInput.setText("Description (Optional)");
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;
 		descriptionInput.setLayoutData(gd);
@@ -177,8 +177,9 @@ public class Item_wizard {
 		gd.horizontalSpan = 1;
 		save.setLayoutData(gd);
 		save.pack();
-		//shell.pack();
+
 		shell.layout();
+		shell.pack();
 //		//wizard
 //		final Composite wizPanel = new Composite(shell, SWT.BORDER);
 //		wizPanel.setBounds(0,0,WIDTH, HEIGHT);
