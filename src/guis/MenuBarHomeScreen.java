@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
+import core.Main;
+
 
 public class MenuBarHomeScreen {
 	
@@ -33,8 +35,7 @@ public class MenuBarHomeScreen {
         saveItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO:
-            	
+            	Main.gameState.saveCustomContent();
             	}
         });
         
