@@ -258,6 +258,7 @@ public class DnDie {
 	public static void populateDieList(){
 		DieWindow.favList.removeAll();
 		DieWindow.favList.add("Favorite Die Roll");
+		DieWindow.favList.select(0);
 		try {
 			//Loads the current favRolls into the list
 			if(Main.gameState.currentlyLoadedCharacter == null){
