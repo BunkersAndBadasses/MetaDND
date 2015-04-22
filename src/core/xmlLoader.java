@@ -74,50 +74,74 @@ public class xmlLoader implements Runnable{
 				if (node.getNodeName() == "SPELL") {
 					SpellEntity readSpell = new SpellEntity(entity);
 					Main.gameState.spells.put(readSpell.getName(), readSpell);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readSpell.getName(), readSpell);
 				}
 				else if (node.getNodeName() == "FEAT") {
 					FeatEntity readFeat = new FeatEntity(entity);
 					Main.gameState.feats.put(readFeat.getName(), readFeat);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readFeat.getName(), readFeat);
 				}
 				else if(node.getNodeName() == "SKILL"){
 					SkillEntity readSkill = new SkillEntity(entity);
 					Main.gameState.skills.put(readSkill.getName(), readSkill);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readSkill.getName(), readSkill);
 				}
 				else if(node.getNodeName() == "ITEM"){
 					ItemEntity readItem = new ItemEntity(entity);
 					Main.gameState.items.put(readItem.getName(), readItem);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readItem.getName(), readItem);
 				}
 				else if(node.getNodeName() == "RACE"){
 					RaceEntity readRace = new RaceEntity(entity);
 					Main.gameState.races.put(readRace.getName(), readRace);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readRace.getName(), readRace);
 				}
 				else if(node.getNodeName() == "CLASS"){
 					ClassEntity readClass = new ClassEntity(entity);
 					Main.gameState.classes.put(readClass.getName(), readClass);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readClass.getName(), readClass);
 				}
 				else if(node.getNodeName() == "DEITY"){
 					DeityEntity readDeity = new DeityEntity(entity);
 					Main.gameState.deities.put(readDeity.getName(), readDeity);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readDeity.getName(), readDeity);
 				}
 				else if(node.getNodeName() == "TRAP"){
 					TrapEntity readTrap = new TrapEntity(entity);
 					Main.gameState.traps.put(readTrap.getName(), readTrap);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readTrap.getName(), readTrap);
 				}
 				else if(node.getNodeName() == "MONSTER"){
 					MonsterEntity readMonster = new MonsterEntity(entity);
 					Main.gameState.monsters.put(readMonster.getName(), readMonster);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readMonster.getName(), readMonster);
 				}
 				else if(node.getNodeName() == "WEAPON"){
 					WeaponEntity readWeapon = new WeaponEntity(entity);
 					Main.gameState.weapons.put(readWeapon.getName(), readWeapon);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readWeapon.getName(), readWeapon);
 				}
 				else if(node.getNodeName() == "ARMOR"){
 					WeaponEntity readArmor = new WeaponEntity(entity);
 					Main.gameState.armor.put(readArmor.getName(), readArmor);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readArmor.getName(), readArmor);
 				}
 				else if(node.getNodeName() == "ABILITY"){
 					AbilityEntity readAbility = new AbilityEntity(entity);
 					Main.gameState.abilities.put(readAbility.getName(), readAbility);
+					if(node.getParentNode().getNodeName() == "CUSTOM")
+						Main.gameState.customContent.put(readAbility.getName(), readAbility);
 				}
 			}
 		}
