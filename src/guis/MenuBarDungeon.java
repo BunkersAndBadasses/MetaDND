@@ -206,7 +206,18 @@ public class MenuBarDungeon {
         		new CharacterWizard(shell.getDisplay());
             }
         });
+        //Player screen
+        MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunChaItem.setText("&Characters");
         
+
+        dunChaItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	HomeWindow.loadCharacters();
+                parent.navigateToPlayerScreen();
+            }
+        });
         //Dungeon Generator
         MenuItem dunGenItem = new MenuItem(toolsMenu, SWT.PUSH);
         dunGenItem.setText("&Dungeons");
