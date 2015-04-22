@@ -399,7 +399,10 @@ public class character {
 	public int getWillSaveMagicMod() { return willSave[2]; }
 	public int getWillSaveMiscMod() { return willSave[3]; }
 	
-	public void setBaseAttackBonus(int b) { baseAttackBonus = b; }
+	public void setBaseAttackBonus(int b) {
+		baseAttackBonus = b; 
+		setGrappleAttackBonus(baseAttackBonus);
+	}
 	public int getBaseAttackBonus() { return baseAttackBonus; }
 	
 	public void setSpellResistance(int s) { spellResistance = s; }

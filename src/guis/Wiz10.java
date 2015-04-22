@@ -428,7 +428,7 @@ public class Wiz10 {
             spellResistance.appendChild(doc.createTextNode(Integer.toString(
                     character.getSpellResistance())));
             Character.appendChild(spellResistance);	
-
+ 
             // grappleMod
             Element grappleMod = doc.createElement("GrappleMod");
             String grapple = Integer.toString(character.getGrappleMod()[0]);

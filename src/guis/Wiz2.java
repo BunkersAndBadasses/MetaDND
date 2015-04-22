@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import core.GameState;
 import core.Main;
 import core.character;
+import entity.AbilityEntity;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.RaceEntity;
@@ -326,26 +327,15 @@ public class Wiz2 {
 				character.setReflexSaveBaseSave(character.getCharClass().getReflexSave()[character.getLevel()-1]);
 				character.setWillSaveBaseSave(character.getCharClass().getWillSave()[character.getLevel()-1]);
 				// set base attack bonus
-				character.setBaseAttackBonus(character.getCharClass().getBaseAttackBonus()[character.getLevel()-1]);
-				/*
-				 * 
-				 * ac
-				 * touch ac
-				 * ff ac
-				 * init mod
-				 * saving throws
-				 * base attack bonus
-				 * spell resistance
-				 * grapple mod
-				 * damage reduction
-				 * 
-				 * special abilities
-				 * spells
-				 * prepared spells
-				 * weapons
-				 * armor
-				 */
-
+				character.setBaseAttackBonus((character.getCharClass().getBaseAttackBonus())[character.getLevel()-1]);
+				// set grapple mod
+				// size mod updates with setbaseattackbonus, str mod updates in wiz3
+				character.setGrappleSizeMod(GameState.grappleSizeMods[character.getSize()]);
+				// set abilities
+				String[] abilities = character.getCharRace().getSpecialAbilities();
+				for (int i = 0; i < abilities.length; i++)
+					//TODO this is null......
+					character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(abilities[i]));
 				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
