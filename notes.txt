@@ -1,6 +1,4 @@
 fix class special abilities(2d array per level)
-ability entity?
-
 will update saving feats to character as CharFeats (instead of FeatEntitys)
 
 make it so only one instance of char wiz can be open at one time
@@ -19,3 +17,5 @@ random character saving - cannot load? exception when loading items. null checki
 manual character entering, character editing?
 
  Random character name box move to the top of the window, and bigger text box
+
+ Loaded Custom Content needed to be load to the custom content list.

@@ -513,93 +513,95 @@ public class CharacterWizard {
 		Composite c = new Composite(sc, SWT.NONE);
 		sc.setContent(c);
 		c.setSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));	
+		 Button cancelButton = new Button(c, SWT.PUSH);
+			cancelButton.setText("Cancel");
+			cancelButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					newshell.close();
+				}
+				
+			});
+			
+			cancelButton.pack();
+			Text namebox = new Text(c, SWT.NONE);
+			namebox.setMessage("Enter Name HERE!");
+			namebox.pack();
+			
+			Button saveButton = new Button(c, SWT.PUSH);
+			saveButton.setText("Save");
+			saveButton.addListener(SWT.Selection, new Listener(){
+				public void handleEvent(Event event)
+				{
+					if(namebox.getText().equals(""))
+					{
+						namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
+						return;
+					}
+					else if(namebox.getText().length() > 200 ){
+						//TODO ADD a error message box
+						final Shell saveNameError = new Shell(display);
+						saveNameError.setText("Character Name Error");
+						//saveName.setSize(300, 200);
+						center(saveNameError);
+						GridLayout layout = new GridLayout();
+						layout.makeColumnsEqualWidth = false;
+						layout.horizontalSpacing = 3;
+						layout.numColumns = 3;
+						saveNameError.setLayout(layout);
+						
+						// this appears when there is an empty save
+						Label badSaveFinal = new Label(saveNameError, SWT.NONE);
+						badSaveFinal.setForeground(new Color(dev,255,0,0));
+						badSaveFinal.setText("Invalid Save: Character name is capped at 200 chars.");
+						GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+						gridData.horizontalIndent = 5;
+						badSaveFinal.setLayoutData(gridData);
+						badSaveFinal.pack();
+						
+						Button okay = new Button(saveNameError, SWT.PUSH);
+						okay.setText("Okay");
+						gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+						gridData.horizontalIndent = 5;
+						okay.setLayoutData(gridData);
+						okay.addListener(SWT.Selection, new Listener() {
+							public void handleEvent(Event event) {
+								saveNameError.dispose();
+								
+							}
+						});
+						okay.pack();
+						
+						saveNameError.pack();
+						
+						saveNameError.open();
+						while (!saveNameError.isDisposed()) {
+							if (!display.readAndDispatch()) {
+								display.sleep();
+							}
+						}
+						
+						return;
+					}
+					character.setName(namebox.getText());
+					Wiz10.saveCharacter(character);
+					newshell.close();
+					shell.dispose();
+				}
+			});
+			saveButton.pack();
 		GridLayout layout = new GridLayout(1, false);
 		c.setLayout(layout);
 		Label a = new Label(c, SWT.LEFT);
 		a.setText(character.toString());
 		a.pack();
 		
-	    center(newshell);
+	    
 		
-	    Button cancelButton = new Button(c, SWT.PUSH);
-		cancelButton.setText("Cancel");
-		cancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				newshell.close();
-			}
-			
-		});
-		
-		cancelButton.pack();
-		Text namebox = new Text(c, SWT.NONE);
-		namebox.setMessage("Enter Name HERE!");
-		namebox.pack();
-		
-		Button saveButton = new Button(c, SWT.PUSH);
-		saveButton.setText("Save");
-		saveButton.addListener(SWT.Selection, new Listener(){
-			public void handleEvent(Event event)
-			{
-				if(namebox.getText().equals(""))
-				{
-					namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					return;
-				}
-				else if(namebox.getText().length() > 200 ){
-					//TODO ADD a error message box
-					final Shell saveNameError = new Shell(display);
-					saveNameError.setText("Character Name Error");
-					//saveName.setSize(300, 200);
-					center(saveNameError);
-					GridLayout layout = new GridLayout();
-					layout.makeColumnsEqualWidth = false;
-					layout.horizontalSpacing = 3;
-					layout.numColumns = 3;
-					saveNameError.setLayout(layout);
-					
-					// this appears when there is an empty save
-					Label badSaveFinal = new Label(saveNameError, SWT.NONE);
-					badSaveFinal.setForeground(new Color(dev,255,0,0));
-					badSaveFinal.setText("Invalid Save: Character name is capped at 200 chars.");
-					GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
-					gridData.horizontalIndent = 5;
-					badSaveFinal.setLayoutData(gridData);
-					badSaveFinal.pack();
-					
-					Button okay = new Button(saveNameError, SWT.PUSH);
-					okay.setText("Okay");
-					gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
-					gridData.horizontalIndent = 5;
-					okay.setLayoutData(gridData);
-					okay.addListener(SWT.Selection, new Listener() {
-						public void handleEvent(Event event) {
-							saveNameError.dispose();
-							
-						}
-					});
-					okay.pack();
-					
-					saveNameError.pack();
-					
-					saveNameError.open();
-					while (!saveNameError.isDisposed()) {
-						if (!display.readAndDispatch()) {
-							display.sleep();
-						}
-					}
-					
-					return;
-				}
-				character.setName(namebox.getText());
-				Wiz10.saveCharacter(character);
-				newshell.close();
-				shell.dispose();
-			}
-		});
-		saveButton.pack();
+	   
 		c.pack();
 		sc.setMinHeight(c.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 		newshell.pack();
+		center(newshell);
 		newshell.open();
 		newshell.addListener (SWT.Resize,  new Listener () {
 	        public void handleEvent (Event e) {
