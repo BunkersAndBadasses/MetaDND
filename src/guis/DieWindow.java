@@ -767,10 +767,10 @@ public class DieWindow {
 
 	}
 
-	public static void main(String[] args) {
-		Display display = new Display();
-		DieWindow dw = new DieWindow(display);
-		display.dispose();
-	}
+//	public static void main(String[] args) {
+//		Display display = new Display();
+//		DieWindow dw = new DieWindow(display);
+//		display.dispose();
+//	}
 
 }

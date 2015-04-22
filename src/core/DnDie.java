@@ -151,12 +151,21 @@ public class DnDie {
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 
-			if(Main.gameState.currentlyLoadedCharacter == null){
-			File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
-					"User Data" + "//favRolls");
-			CHARDIR.mkdir();
-			StreamResult result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+			StreamResult result;
 
+			if(Main.gameState.currentlyLoadedCharacter == null){
+				File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//favRolls");
+				CHARDIR.mkdir();
+				result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+			}else{
+				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
+				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
+				File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls");
+				CHARDIR.mkdir();
+				result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+			}
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
 
@@ -183,7 +192,7 @@ public class DnDie {
 
 		try {
 			File fXmlFile;
-			
+
 			if(Main.gameState.currentlyLoadedCharacter == null){
 				fXmlFile = new File(System.getProperty("user.dir") + "//" + 
 						"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
@@ -191,10 +200,10 @@ public class DnDie {
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
 				fXmlFile = new File(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//DND" + charFileName + "//favRolls"  +
+						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls"  +
 						"//" + fileName + ".xml");
 			}
-		
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -245,7 +254,9 @@ public class DnDie {
 		return roll;
 	}
 
+	//populates the Favorite die rolls list
 	public static void populateDieList(){
+		DieWindow.favList.removeAll();
 		try {
 			//Loads the current favRolls into the list
 			if(Main.gameState.currentlyLoadedCharacter == null){
