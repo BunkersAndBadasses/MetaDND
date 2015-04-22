@@ -266,7 +266,7 @@ public class Wiz10 {
             // Gold
             Element Gold = doc.createElement("GP");
             Gold.appendChild(doc.createTextNode(
-                    Integer.toString(character.getgold())));
+                    Integer.toString(character.getGP())));
             Character.appendChild(Gold);
 
             //Go through the Feat list

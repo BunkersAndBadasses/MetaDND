@@ -382,7 +382,7 @@ public class Wiz7 {
 					goldText.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
-				character.setGold(gold);
+				character.setGP(gold);
 				
 				for (int i = 0; i < charItems.size(); i++) {
 					character.addItem(charItems.get(i));

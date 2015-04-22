@@ -50,6 +50,7 @@ public class character {
 	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
 	private int AC = 0;
+	private int[] acArray = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = 0;
 	private int flatFootedAC = 0;
 	private int initMod = 0;//
@@ -238,11 +239,24 @@ public class character {
 	public ArrayList<String> getLanguages(){ return languages; }
 	public void addLanguage(String l) { languages.add(l); }
 	
+	public void setGold(int[] gold) {
+		if (gold.length != 4)
+			return;
+		pp = gold[0];
+		gp = gold[1];
+		sp = gold[2];
+		cp = gold[3];
+	}
+	public int[] getGold() {
+		int[] tmp = {pp, gp, sp, cp};
+		return tmp;
+	}
+	
 	public void setPP(int g) { pp = g; }
 	public int getPP() { return pp; }
 	
-	public void setGold(int g) { gp = g; }
-    public int getgold() { return gp; }
+	public void setGP(int g) { gp = g; }
+    public int getGP() { return gp; }
     
     public void setSP(int g) { sp = g; }
     public int getSP() { return sp; }
@@ -289,8 +303,27 @@ public class character {
 	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
 	public String getNotes() { return notes; }
-		
+	
+	//10 + armor bonus + shield bonus + Dexterity modifier + size modifier + misc modifier
 	public void setAC(int ac) { AC = ac; }
+	public void setACArray(int[] ac) { 
+		if (ac.length != 5)
+			return;
+		// first number is always 10
+		for (int i = 0; i < acArray.length; i++)
+			acArray[i+1] = ac[i];
+	}
+	public void setACArmorBonus(int a) { acArray[1] = a; }
+	public void setACShieldBonus(int a) { acArray[2] = a; }
+	public void setACDexMod(int a) { acArray[3] = a; }
+	public void setACSizeMod(int a) { acArray[4] = a; }
+	public void setACMiscMod(int a) { acArray[5] = a; }
+	public int getACArmorBonus() { return acArray[1]; }
+	public int getACShieldBonus() { return acArray[2]; }
+	public int getACDexMod() { return acArray[3]; }
+	public int getACSizeMod() { return acArray[4]; }
+	public int getACMiscMod() { return acArray[5]; }
+	
 	public int getAC() { return AC; }
 	
 	public void setTouchAC(int t) { touchAC = t; }
@@ -413,7 +446,7 @@ public class character {
 		for (int i = 0; i < abilityScores.length; i++)
 			s += "\t" + GameState.abilityScoreTypes[i] + ": " + abilityScores[i] + "\n";
 		s += "HP: " + hp + "\n";
-		s += "Remaining HP: " + dmg + "\n";
+		s += "Remaining HP: " + (hp - dmg) + "\n";
 		s += "Armor Class: " + AC + "\n";
 		s += "Touch AC: " + touchAC + "\n";
 		s += "Flat-Footed AC: " + flatFootedAC + "\n";

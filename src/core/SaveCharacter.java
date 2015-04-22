@@ -121,7 +121,7 @@ public class SaveCharacter {
                 appendValue("DamageTaken", c.getDamageTaken());
                 appendValue("PP", c.getPP());
                 
-                appendValue("GP", c.getgold());
+                appendValue("GP", c.getGP());
                 appendValue("SP", c.getSP());
                 appendValue("CP", c.getCP());
                 temp = "";
@@ -277,7 +277,7 @@ public class SaveCharacter {
                     writeValue("DamageTaken", c.getDamageTaken());
                     writeValue("PP", c.getPP());
                     
-                    writeValue("GP", c.getgold());
+                    writeValue("GP", c.getGP());
                     writeValue("SP", c.getSP());
                     writeValue("CP", c.getCP());
                     temp = "";

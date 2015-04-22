@@ -65,6 +65,12 @@ public class GameState {
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
 	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+	public final static int[] acSizeMods = {8, 4, 2, 1, 0, -1, -2, -4, -8};
+	public final static int[] grappleSizeMods = {-16, -12, -8, -4, 0, 4, 8, 12, 16};
+	public final static int[] hideSizeMods = {16, 12, 8, 4, 0, -4, -8, -12, -16};
+	public final static double[] carrySizeMod = {0.125, 0.25, 0.5, 0.75, 1, 2, 4, 8, 16};
+	
+	
 	public SortedMap<String, String> languages;
 	
 	

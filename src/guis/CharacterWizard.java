@@ -37,6 +37,8 @@ import entity.RaceEntity;
  * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
  * spells!
  * 
+ * barbarian: rage per day
+ * 
  * item page????
  * 
  * FINISH BEFORE WEEKEND
@@ -451,7 +453,7 @@ public class CharacterWizard {
 		}
 		character.setLanguages(langs);
 		//Gold
-		character.setGold(randomgene.GetRandomInteger(50, 200));
+		character.setGP(randomgene.GetRandomInteger(50, 200));
 		//Feats
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
