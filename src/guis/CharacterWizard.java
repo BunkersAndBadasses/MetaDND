@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 
 import core.CharFeat;
 import core.DnDie;
-import core.GameState;
 import core.Main;
 import core.RNG;
 import core.character;
@@ -79,9 +78,6 @@ public class CharacterWizard {
 	public int[] baseAbilityScores = new int[6];
 
 	public CharacterWizard(Display d) {
-		if (GameState.isWizardOpen("Character")) {
-			return;
-		}
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Character");
@@ -90,7 +86,7 @@ public class CharacterWizard {
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
 		createPageContent();
-		GameState.wizardsOpen.add("Character");
+
 		run();
 	}
 
@@ -104,7 +100,6 @@ public class CharacterWizard {
 				display.sleep();
 			}
 		}
-		GameState.wizardsOpen.remove("Character");
 	}
 
 	public static void center(Shell shell) {
@@ -489,6 +484,10 @@ public class CharacterWizard {
 		{
 			character.addFeat(new CharFeat((FeatEntity) Main.gameState.feats.get("Scribe Scroll")));
 		}
+		// TODO add other bonus feats: 
+		// monk: improved unarmed strike
+		// weapon/armor/shield proficiency
+		// can call checkPrerequisite in wiz 6
 		//Ranger gain "Track"
 		if(character.getCharClass().getName().equalsIgnoreCase("Ranger"))
 		{
