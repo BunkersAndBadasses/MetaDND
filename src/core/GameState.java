@@ -13,8 +13,8 @@ import java.util.concurrent.Semaphore;
 import entity.*;
 
 public class GameState {
-	//Everything you need to access globally, store it here 
-	
+	// Everything you need to access globally, store it here
+
 	public LinkedHashMap<String, DNDEntity> races;
 	public LinkedHashMap<String, DNDEntity> classes;
 	public LinkedHashMap<String, DNDEntity> spells;
@@ -27,37 +27,38 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
 	public LinkedHashMap<String, DNDEntity> deities;
-	public static final File USERDATAFOLDER = new File(System.getProperty("user.dir") + "//" + "User Data");	
-	
+	public static final File USERDATAFOLDER = new File(
+			System.getProperty("user.dir") + "//" + "User Data");
+
 	// 0 = homeScreen
 	// 1 = dungeonScreen
 	// 2 = dungeonViewer
 	// 3 = playerScreen
 	public static int PAGE_NUMBER = -1;
-	
+
 	public static ArrayList<String> wizardsOpen = new ArrayList<String>();
-	
-	//When building custom content add it to this HashMap. Everything here will be saved to disk to a CustomContent.xml
+
+	// When building custom content add it to this HashMap. Everything here will
+	// be saved to disk to a CustomContent.xml
 	public LinkedHashMap<String, DNDEntity> customContent;
-	
+
 	public character currentlyLoadedCharacter;
 	public String currCharFilePath;
 	public boolean playerMode;
-	
+
 	public SortedMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
 
-	
-	
-	//////////////// CONSTANTS /////////////////
+	// ////////////// CONSTANTS /////////////////
 	public final static int STRENGTH = 0;
 	public final static int DEXTERITY = 1;
 	public final static int CONSTITUTION = 2;
 	public final static int INTELLIGENCE = 3;
 	public final static int WISDOM = 4;
 	public final static int CHARISMA = 5;
-	public final static String[] abilityScoreTypes = {"STR", "DEX", "CON", "INT", "WIS", "CHA"};
-	
+	public final static String[] abilityScoreTypes = { "STR", "DEX", "CON",
+			"INT", "WIS", "CHA" };
+
 	private final static int SIZE_FINE = 0;
 	private final static int SIZE_DIMINUTIVE = 1;
 	private final static int SIZE_TINY = 2;
@@ -67,17 +68,20 @@ public class GameState {
 	private final static int SIZE_HUGE = 6;
 	private final static int SIZE_GARGANTUAN = 7;
 	private final static int SIZE_COLOSSAL = 8;
-	public final static String[] sizeStrings = {"Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
-	public final static int[] acAttackSizeMods = {8, 4, 2, 1, 0, -1, -2, -4, -8};
-	public final static int[] grappleSizeMods = {-16, -12, -8, -4, 0, 4, 8, 12, 16};
-	public final static int[] hideSizeMods = {16, 12, 8, 4, 0, -4, -8, -12, -16};
-	public final static double[] carrySizeMod = {0.125, 0.25, 0.5, 0.75, 1, 2, 4, 8, 16};
-	
-	
+	public final static String[] sizeStrings = { "Fine", "Diminutive", "Tiny",
+			"Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal" };
+	public final static int[] acAttackSizeMods = { 8, 4, 2, 1, 0, -1, -2, -4,
+			-8 };
+	public final static int[] grappleSizeMods = { -16, -12, -8, -4, 0, 4, 8,
+			12, 16 };
+	public final static int[] hideSizeMods = { 16, 12, 8, 4, 0, -4, -8, -12,
+			-16 };
+	public final static double[] carrySizeMod = { 0.125, 0.25, 0.5, 0.75, 1, 2,
+			4, 8, 16 };
+
 	public SortedMap<String, String> languages;
-	
-	
-	public GameState(){
+
+	public GameState() {
 		xmlLoader xmls = new xmlLoader("xmlLoadThread");
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
@@ -98,34 +102,33 @@ public class GameState {
 		xmls.start();
 		USERDATAFOLDER.mkdir();
 	}
-	
-	public void saveCustomContent(){
-		FileWriter fw;
-    try {
-        fw = new FileWriter(new File(".//XML/CustomContent.xml"));
-         
-        fw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-        fw.write("<CUSTOM>\n");
-        for (Map.Entry<String, DNDEntity> entry : Main.gameState.customContent.entrySet()){
-        	fw.write(entry.getValue().saveCustomContent());
-		}
-        fw.write("</CUSTOM>\n");
-        fw.close();
-    } catch (IOException ex) {
-        ex.printStackTrace();
-    }
 
-		
+	public void saveCustomContent() {
+		FileWriter fw;
+		try {
+			fw = new FileWriter(new File(".//XML/CustomContent.xml"));
+
+			fw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+			fw.write("<CUSTOM>\n");
+			for (Map.Entry<String, DNDEntity> entry : Main.gameState.customContent.entrySet()) {
+				fw.write(entry.getValue().saveCustomContent());
+			}
+			fw.write("</CUSTOM>\n");
+			fw.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
 	}
-	
+
 	public static boolean isWizardOpen(String wizard) {
 		return wizardsOpen.contains(wizard);
 	}
-	
-	public boolean search(String searchString){
-		
+
+	public boolean search(String searchString) {
+
 		this.searchResults.clear();
-		
+
 		SearchThread st1 = new SearchThread("Spells");
 		SearchThread st2 = new SearchThread("Feats");
 		SearchThread st3 = new SearchThread("Skills");
@@ -138,7 +141,7 @@ public class GameState {
 		SearchThread st10 = new SearchThread("Weapons");
 		SearchThread st11 = new SearchThread("Armor");
 		SearchThread st12 = new SearchThread("Abilities");
-		
+
 		st1.start(this.spells, searchString);
 		st2.start(this.feats, searchString);
 		st3.start(this.skills, searchString);
@@ -151,7 +154,7 @@ public class GameState {
 		st10.start(this.weapons, searchString);
 		st11.start(this.armor, searchString);
 		st12.start(this.abilities, searchString);
-		
+
 		try {
 			st1.getSearchThread().join();
 			st2.getSearchThread().join();
@@ -169,7 +172,7 @@ public class GameState {
 			System.out.println("Error joining threads!");
 			return false;
 		}
-		//System.out.println("All threads joined. Ending search!");
+		// System.out.println("All threads joined. Ending search!");
 		return true;
 	}
 
