@@ -796,7 +796,7 @@ public class HomeWindow {
 					if (trapNum == 0) {
 						return;
 					}
-					int trap = rng.GetRandomInteger(0, trapNum) - 1;
+					int trap = rng.GetRandomInteger(0, trapNum - 1);
 					
 					Collection<DNDEntity> trapCol = Main.gameState.traps.values();
 					Iterator<DNDEntity> itr = trapCol.iterator();
@@ -822,7 +822,7 @@ public class HomeWindow {
 					if (monsterNum == 0) {
 						return;
 					}
-					int monster = rng.GetRandomInteger(0, monsterNum) - 1;
+					int monster = rng.GetRandomInteger(0, monsterNum - 1);
 					
 					Collection<DNDEntity> monsterCol = Main.gameState.monsters.values();
 					Iterator<DNDEntity> itr = monsterCol.iterator();
