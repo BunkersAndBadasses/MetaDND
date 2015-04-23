@@ -269,18 +269,34 @@ public class Spell_wizard {
 					checkfault = true;
 					schoolInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 				}
-				if(!rangeInput.getText().equals(""))
-				{
-					a.put("RANGE", rangeInput.getText());
-				}
-				if(!effectInput.getText().equals(""))
-				{
-					a.put("EFFECT", effectInput.getText());					
-				}
+				
 				if(castimeInput.getText().equals(""))
 				{
 					checkfault = true;
 					castimeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				
+				if(levelInput.getText().equals(""))
+				{
+					checkfault = true;
+					levelInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				}
+				if(checkfault)
+				{
+					return;
+				}
+				a.put("NAME", nameInput.getText());
+				a.put("COMPONENTS", componentInput.getText());
+				a.put("SCHOOL", schoolInput.getText());
+				a.put("CASTINGTIME", castimeInput.getText());
+				a.put("LEVEL", levelInput.getText());
+				if(resistanceInput.getSelection())
+				{
+					a.put("SPELLRESISTANCE", "YES");
+				}
+				else
+				{
+					a.put("SPELLRESISTANCE", "NO");
 				}
 				if(!materialInput.getText().equals(""))
 				{
@@ -306,28 +322,13 @@ public class Spell_wizard {
 				{
 					a.put("DAMAGEALTERNATE", damagealterInput.getText());
 				}
-				if(levelInput.getText().equals(""))
+				if(!rangeInput.getText().equals(""))
 				{
-					checkfault = true;
-					levelInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					a.put("RANGE", rangeInput.getText());
 				}
-				if(checkfault)
+				if(!effectInput.getText().equals(""))
 				{
-					return;
-				}
-				
-				a.put("NAME", nameInput.getText());
-				a.put("COMPONENTS", componentInput.getText());
-				a.put("SCHOOL", schoolInput.getText());
-				a.put("CASTINGTIME", castimeInput.getText());
-				a.put("LEVEL", levelInput.getText());
-				if(resistanceInput.getSelection())
-				{
-					a.put("SPELLRESISTANCE", "YES");
-				}
-				else
-				{
-					a.put("SPELLRESISTANCE", "NO");
+					a.put("EFFECT", effectInput.getText());					
 				}
 				a.put("DESCRIPTION", descriptionInput.getText());
 				newspell = new SpellEntity(a);
