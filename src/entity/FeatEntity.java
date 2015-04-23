@@ -17,7 +17,7 @@ public class FeatEntity extends DNDEntity{
 	String type;
 	boolean multiple = false;	// boolean for if a character is allowed to have multiple of that feat
 	boolean stack = false;		// boolean for if the feats effects stack (default false, true if multiple, false if there are applications)
-	String applications; // weapon, skill, school of magic, or selection of spells
+	String applications; 		// weapons, skills, schools of magic, selection of spells (or other)
 
 	public FeatEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.FEAT;
@@ -167,7 +167,32 @@ public class FeatEntity extends DNDEntity{
 	public void setFighterBonus(String fighterBonus) {
 		this.fighterBonus = fighterBonus;
 	}
+	
+	public boolean canHaveMultiple() {
+		return multiple;
+	}
 
+	public void setMultiple(boolean multiple) {
+		this.multiple = multiple;
+	}
+
+	public boolean canStack() {
+		return stack;
+	}
+
+	public void setStack(boolean stack) {
+		this.stack = stack;
+	}
+
+	public String getApplications() {
+		return applications;
+	}
+
+	public void setApplications(String applications) {
+		this.applications = applications;
+	}
+	
+// TODO add multiple, stack, applications?
 	@Override
 	public String saveCustomContent() {
 		String output = this.oneTab + "<FEAT>\n";

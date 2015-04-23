@@ -214,24 +214,46 @@ public class Wiz6 {
 					errorMsg.setVisible(true);
 					return;
 				}
+				CharFeat feat = new CharFeat(feats.get(index));
+				// launches popup to select feat special
+//				if (feat.getFeat().getApplications() != null) {
+//					if (!selectFeatSpecial(feat))
+//						return;
+//				}
 				// check if that feat was already added
-				FeatEntity feat = (FeatEntity) Main.gameState.feats.get(featsList.getItem(index));
 				for(int i = 0; i < charFeats.size(); i++) {
-					if (charFeats.get(i).getFeat().getName().equals(featsList.getItem(index))) {
-						// check if that feat can be added multiple times TODO
-						//TODO skill focus, spell focus, can be added multiple times
-						// spell mastery, toughness
-						// otherwise, error
-						errorMsg.setText("Feat already added");
-						errorMsg.pack();
-						errorMsg.setVisible(true);
-						error = true;
+					if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
+						// feat found - check if that feat can be added multiple times
+						if (!feat.getFeat().canHaveMultiple()) {
+							// feat cannot be added multiple times
+							errorMsg.setText("Feat already added");
+							errorMsg.pack();
+							errorMsg.setVisible(true);
+							error = true;
+						}
+						else {
+							// feat can be added multiple times
+							if (charFeats.get(i).getFeat().canStack()) {
+								// feat benefits can stack - increment count of feat
+								charFeats.get(i).incCount();
+							}
+							else {
+								// feat benefits cannot stack - check if the exact same feat is added
+								if (charFeats.get(i).getSpecial().equals(feat.getSpecial())) {
+									errorMsg.setText("Feat already added");
+									errorMsg.pack();
+									errorMsg.setVisible(true);
+									error = true;
+								}
+							}
+						}
 					}
 				}
+
 				// if something went wrong, do not perform the add
 				if (error)
 					return;
-				//TODO pop-up for extra info (i.e. spell focus = school, weapon focus = weapon)
+				// pop-up for extra info (i.e. weapons, schools of magic, skills, spells);
 				if (!checkPrerequisites(charFeats, feat, character)) {
 					errorMsg.setText("Feat requirements not met");
 					errorMsg.pack();
@@ -243,8 +265,11 @@ public class Wiz6 {
 				// otherwise, add the feat
 				// check if feat applies to a specific weapon/spell etc TODO
 				// pop-up if it does
-				charFeatsList.add(featsList.getItem(index));
-				charFeats.add(new CharFeat(feats.get(index)));
+				if (feat.getSpecial() == null)
+					charFeatsList.add(feat.getFeat().getName());
+				else
+					charFeatsList.add(feat.getFeat().getName() + " (" + feat.getSpecial() + ")");
+				charFeats.add(feat);
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
 				numFeatsLabel.setBackground(null);
@@ -358,8 +383,14 @@ public class Wiz6 {
 		// add automatic feats (like armor/weapon proficiency)
 		String[] autoFeats = charClass.getBonusFeats();
 		for (int i = 0; i < autoFeats.length; i ++) {
-			charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
-			charFeatsList.add(charFeats.get(0).getFeat().getName());
+			if (autoFeats[i].indexOf('[') != -1) {
+				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
+				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]), special));
+				charFeatsList.add(charFeats.get(0).getFeat().getName() + " (" + charFeats.get(0).getSpecial() + ")");
+			} else {
+				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+				charFeatsList.add(charFeats.get(0).getFeat().getName());
+			}
 		}
 		numBonusFeats = autoFeats.length;
 		
@@ -444,7 +475,7 @@ public class Wiz6 {
 		}
 	}
 	
-	public static boolean checkPrerequisites(ArrayList<CharFeat> charFeats, FeatEntity feat, character character) {
+	public static boolean checkPrerequisites(ArrayList<CharFeat> charFeats, CharFeat feat, character character) {
 		/*
 		 * prerequisite possibilities: 
 		 * 
@@ -473,10 +504,10 @@ public class Wiz6 {
 		 * 		Wizard level x
 		 * 	Spell Focus (selected school of magic)
 		 */
-		if (feat.getPrerequisites() == null) 
+		if (feat.getFeat().getPrerequisites() == null) 
 			return true;
-		String[] reqs = feat.getPrerequisites();
-		if (feat.getName().equalsIgnoreCase("Improved Familiar")) {
+		String[] reqs = feat.getFeat().getPrerequisites();
+		if (feat.getFeat().getName().equalsIgnoreCase("Improved Familiar")) {
 			// TODO
 		}
 		for (int i = 0; i < reqs.length; i++) {
@@ -505,9 +536,9 @@ public class Wiz6 {
 				if (character.getAbilityScores()[GameState.CHARISMA] < value)
 					return false;
 			} else if (reqs[i].contains("base attack bonus")) {
-				//				if (reqs[i].contains("plus Str 13")) {
-				//					// TODO here bastard sword/dwarven waraxe
-				//				}
+				int value = Integer.parseInt(reqs[i].replaceAll("[^0-9]", ""));
+				if (character.getBaseAttackBonus() < value) 
+					return false;
 			} else if (reqs[i].contains("Barbarian level")) {
 				if (character.getCharClass().getName().equalsIgnoreCase("Barbarian")){
 					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
@@ -597,18 +628,22 @@ public class Wiz6 {
 			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
 
 			} else if (reqs[i].contains("with selected weapon")) {
-				// TODO fix this after addding charFeats
+				// TODO fix this after adding charFeats
 				String featName = reqs[i].substring(0, reqs[i].indexOf("with") - 1);
-				// assume the prerequisite is another feat
+				// make sure the character has that feat
 				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
 				// if that feat is a valid feat, check it
+				ArrayList<CharFeat> foundFeats = new ArrayList<CharFeat>();
 				if (reqFeat != null) {
 					// check if user has already added the required feat
 					boolean found = false;
 					for (int j = 0; j < charFeats.size() && !found; j++) {
+						// find feat
 						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
-							// the required feat has already been added
-							found = true;
+							// check special
+							if (charFeats.get(j).getSpecial().equals(reqFeat.getSpecial()) || reqFeat.getSpecial().equals("all"))
+								// the required feat has already been added
+								found = true;
 						}
 					}
 					if (!found)
@@ -679,6 +714,11 @@ public class Wiz6 {
 			}
 		}
 		return true;
+	}
+	private boolean selectFeatSpecial(CharFeat feat) {
+		boolean valid = false;
+		
+		return valid;
 	}
 
 	private void createNextPage() {
