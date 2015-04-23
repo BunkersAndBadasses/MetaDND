@@ -881,6 +881,7 @@ public class Spell_wizard {
 	 * @param wizPanel
 	 * @param wizLayout
 	 */
+	@SuppressWarnings("unused")
 	private void CreateVerificationPage(final Composite wizPanel,
 			final StackLayout wizLayout) {
 		if(wizPages.size() > wizpagenum + 1)
