@@ -1,30 +1,17 @@
 package guis;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import core.DnDie;
@@ -52,12 +39,7 @@ public class DieWindow {
 	//private static Label badDeleteText;
 	private static Label badSaveFinal;
 	public static Combo favList;
-	private final int WIDTH = 230;
-	private final int HEIGHT = 500;
 	private int[] numDie = {0, 0, 0, 0, 0, 0, 0};
-	private static String modString = "0";
-
-
 	public DieWindow(Display d) {
 		display = d;
 		shell = new Shell(d);
@@ -473,7 +455,6 @@ public class DieWindow {
 					public void handleEvent(Event event) {
 
 						badSaveFinal.setVisible(false);
-						boolean found = false;
 						Pattern p1 = Pattern.compile(".*\\W+.*");
 
 						if(nameBox.getText().equalsIgnoreCase("")){
