@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
+import core.Main;
+
 
 public class MenuBar {
 	
@@ -104,7 +106,7 @@ public class MenuBar {
             @Override
             public void widgetSelected(SelectionEvent e) {
             	shell.getDisplay().dispose();
-                System.exit(0);
+                Main.exitProgram();
             }
         });
         

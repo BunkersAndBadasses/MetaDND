@@ -22,6 +22,10 @@ public class Main {
 		homeWindow = new HomeWindow(display);
 		
 		display.dispose();
+		Main.exitProgram();
+	}
+	
+	public static void exitProgram(){
 		Main.gameState.saveCustomContent();
 		System.out.println("Exiting");
 		System.exit(0);
