@@ -72,8 +72,9 @@ public class HomeWindow {
 	private final Composite playerScreen;
 	private referencePanel playerScreenReferencePanel;
 	private referencePanel dungeonScreenReferencePanel;
+	private final Composite dungeonScreenComp;
+	private final List dungeonList;
 
-	
 	private final JSVGCanvas svgCanvas = new JSVGCanvas();
 	private boolean dungeonScreenPopulated = false;
 
@@ -107,6 +108,29 @@ public class HomeWindow {
 		dungeonGenConfig = new Composite(mainWindow, SWT.NONE);
 		playerScreen = new Composite(mainWindow, SWT.NONE);
 
+		// this is to make the load list of dungeons dynamic.
+		///////////////DUNGEON SCREEN STUFF//////////////////
+		dungeonScreenComp = new Composite(dungeonScreen, SWT.NONE);
+		
+		Label dungeonLabel = new Label(dungeonScreenComp, SWT.NONE);
+		dungeonLabel.setText("Dungeons:");
+		Font dungeonFont = Main.boldFont;
+		dungeonLabel.setFont(dungeonFont);
+		
+		// generate new dungeon
+		Button generateButton = new Button(dungeonScreenComp, SWT.PUSH);
+		generateButton.setText("Generate New Dungeon");
+		generateButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				new MenuBarDungeon(shell, hw);
+				mainWindowLayout.topControl = dungeonGenConfig;
+				mainWindow.layout();
+			}
+		});
+		
+		dungeonList = new List(dungeonScreenComp, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		///////////////DUNGEON SCREEN STUFF//////////////////
+		
 		createPageContent();
 		
 		new MenuBarHomeScreen(shell, this); //Add menu bar to windows like this
@@ -408,7 +432,6 @@ public class HomeWindow {
 
 		dungeonMastersButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				populateDungeonScreen();
 				navigateToDungeonScreen();
 			}
 		});
@@ -427,6 +450,7 @@ public class HomeWindow {
 
 	public void navigateToDungeonScreen() {
 		new MenuBarDungeon(shell, hw);
+		populateDungeonScreen();
 		GameState.PAGE_NUMBER = 1;
 		this.shell.setSize(WIDTH, HEIGHT);
 		this.m_mainWindowLayout.topControl = this.dungeonScreen;
@@ -583,7 +607,6 @@ public class HomeWindow {
 	public void populateDungeonScreen() {
 		if (!dungeonScreenPopulated) {
 			
-			Composite dungeonScreenComp = new Composite(dungeonScreen, SWT.NONE);
 			GridData dungeonScreenCompGD = new GridData(SWT.FILL, SWT.FILL, true, true);
 			dungeonScreenCompGD.horizontalSpan = 3;
 			dungeonScreenComp.setLayoutData(dungeonScreenCompGD);
@@ -591,42 +614,18 @@ public class HomeWindow {
 			GridLayout dungeonScreenCompLayout = new GridLayout(1, false);
 			dungeonScreenComp.setLayout(dungeonScreenCompLayout);
 			
-			Label dungeonLabel = new Label(dungeonScreenComp, SWT.NONE);
-			dungeonLabel.setText("Dungeons:");
-			Font dungeonFont = Main.boldFont;
-			dungeonLabel.setFont(dungeonFont);
-
 			// placeholder labels take up columns 2 and 3 in the grid.
 			new Label(dungeonScreenComp, SWT.NONE);  
 			new Label(dungeonScreenComp, SWT.NONE); 
 
-			// generate new dungeon
-			Button generateButton = new Button(dungeonScreenComp, SWT.PUSH);
-			generateButton.setText("Generate New");
-			generateButton.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event event) {
-					new MenuBarDungeon(shell, hw);
-					mainWindowLayout.topControl = dungeonGenConfig;
-					mainWindow.layout();
-				}
-			});
 			
-			final List dungeonList = new List(dungeonScreenComp, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
-	
-			// populate the list
-			for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
-				if (s.contains(".svg")) {
-					dungeonList.add(s);
-				}
-			}
-			// make the list look good.
 			GridData listGD = new GridData();
 			listGD.grabExcessHorizontalSpace = true;
 			listGD.grabExcessVerticalSpace = true;
 			listGD.widthHint = 400;
 			listGD.heightHint = 500;
 			dungeonList.setLayoutData(listGD);
-	
+			
 			// placeholder labels to make it look gooder
 			new Label(dungeonScreenComp, SWT.NONE);  
 			new Label(dungeonScreenComp, SWT.NONE); 
@@ -846,6 +845,16 @@ public class HomeWindow {
 			dungeonScreen.pack();
 			dungeonScreenPopulated = true;
 		}
+		
+		dungeonList.removeAll();
+		// populate the list
+		for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
+			if (s.contains(".svg")) {
+				dungeonList.add(s);
+			}
+		}
+		// make the list look good.
+		
 		
 	}
 	
