@@ -15,6 +15,9 @@ public class FeatEntity extends DNDEntity{
 	String benefit;
 	String fighterBonus;
 	String type;
+	boolean multiple = false;	// boolean for if a character is allowed to have multiple of that feat
+	boolean stack = false;		// boolean for if the feats effects stack (default false, true if multiple, false if there are applications)
+	String applications; // weapon, skill, school of magic, or selection of spells
 
 	public FeatEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.FEAT;
@@ -49,7 +52,15 @@ public class FeatEntity extends DNDEntity{
 				break;
 			case "DESCRIPTION":
 				this.description = value;
-				break;	
+				break;
+			case "MULTIPLE":
+				this.multiple = true;
+				this.stack = true;
+				break;
+			case "APPLICATIONS":
+				this.applications = value;
+				this.stack = false;
+				break;
 			default:
 				break;
 			}

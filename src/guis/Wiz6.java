@@ -471,6 +471,7 @@ public class Wiz6 {
 		 * 		wild shape ability
 		 * 		Weapon Proficiency (crossbow type chosen)
 		 * 		Wizard level x
+		 * 	Spell Focus (selected school of magic)
 		 */
 		if (feat.getPrerequisites() == null) 
 			return true;
@@ -640,7 +641,7 @@ public class Wiz6 {
 					if (!found)
 						return false;
 				}
-			} else if (reqs[i].equalsIgnoreCase("Spell Focus (Conjuration)")) {
+			} else if (reqs[i].contains("Spell Focus (")) {
 				// TODO fix this after addding charFeats
 				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
 				// assume the prerequisite is another feat
