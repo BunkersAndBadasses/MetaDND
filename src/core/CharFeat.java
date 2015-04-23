@@ -12,7 +12,7 @@ public class CharFeat {
 		setFeat(feat);
 	}
 	
-	public CharFeat(FeatEntity feat, int ccount) {
+	public CharFeat(FeatEntity feat, int count) {
 		setFeat(feat);
 		setCount(count);
 	}

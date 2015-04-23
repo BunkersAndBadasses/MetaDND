@@ -240,9 +240,12 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                 	String featName = tempArr[i].substring(0, tempArr[i].indexOf(':'));
                 	FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
-                	String special = tempArr[i].substring(tempArr[i].indexOf(':')+1, tempArr[i].indexOf(';'));
                 	int count = Integer.parseInt(tempArr[i].substring(tempArr[i].indexOf(';')+1));
-                	c.addFeat(new CharFeat(feat, special, count));
+                	if (tempArr[i].indexOf(':')!= -1) {
+                		String special = tempArr[i].substring(tempArr[i].indexOf(':')+1, tempArr[i].indexOf(';'));
+                		c.addFeat(new CharFeat(feat, special, count));
+                	} else
+                		c.addFeat(new CharFeat(feat, count));
                 }
 
             }
