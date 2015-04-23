@@ -28,3 +28,5 @@ The dungeon generator now freezes the application on Macs
 
 null pointer when loading character from list - change logic in charmain from loading from xml to 
 	launching load character.
+	
+Move class abilities to ability entites for consistency with race abilities.
