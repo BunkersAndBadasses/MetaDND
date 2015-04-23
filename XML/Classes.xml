@@ -145,7 +145,7 @@
 			6 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-			Armor Proficiency (Light), Simple Weapon Proficiency [all], Shield Proficiency
+			Martial Weapon Proficiency [Longsword], Martial Weapon Proficiency [Rapier], Martial Weapon Proficiency [Sap], Martial Weapon Proficiency [Sword, Short], Martial Weapon Proficiency [Shortbow], Exotic Weapon Proficiency [Whip], Armor Proficiency (Light), Simple Weapon Proficiency [all], Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the bard.
@@ -342,7 +342,7 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-			Armor Proficiency (Light), Armor Proficiency (Medium), Shield Proficiency
+			Simple Weapon Proficiency [Club], Simple Weapon Proficiency [Daggar], Simple Weapon Proficiency [Dart], Simple Weapon Proficiency [Quarterstaff], Simple Weapon Proficiency [Sickle], Simple Weapon Proficiency [Shortspear], Simple Weapon Proficiency [Sling], Simple Weapon Proficiency [Spear], Martial Weapon Proficiency [Scimitar], Armor Proficiency (Light), Armor Proficiency (Medium), Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the druid.
@@ -594,7 +594,7 @@
 			4 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-			Improved Unarmed Strike
+			Simple Weapon Proficiency [Club], Simple Weapon Proficiency [Crossbow, Light], Simple Weapon Proficiency [Crossbow, Heavy], Simple Weapon Proficiency [Dagger], Simple Weapon Proficiency [Javelin], Simple Weapon Proficiency [Quarterstaff], Simple Weapon Proficiency [Sling], Martial Weapon Proficiency [Handaxe], Exotic Weapon Proficiency [Kama], Exotic Weapon Proficiency [Nunchaku], Exotic Weapon Proficiency [Sai], Exotic Weapon Proficiency [Shuriken], Exotic Weapon Proficiency [Siangham], Improved Unarmed Strike
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the monk.
@@ -983,7 +983,7 @@
 			8 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-			Armor Proficiency (Light), Simple Weapon Proficiency [all]
+			Simple Weapon Proficiency [all], Martial Weapon Proficiency [Rapier], Martial Weapon Proficiency [Sap], Martial Weapon Proficiency [Shortbow], Martial Weapon Proficiency [Sword, Short], Exotic Weapon Proficiency [Crossbow, Hand], Armor Proficiency (Light)
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the rogue.
@@ -1202,7 +1202,7 @@
 			2 + Int modifier.
 		</SKILLPOINTS>
 		<BONUSFEATS>
-			Scribe Scroll
+			Simple Weapon Proficiency [Club], Simple Weapon Proficiency [Dagger], Simple Weapon Proficiency [Crossbow, Light], Simple Weapon Proficiency [Crossbow, Heavy], Simple Weapon Proficiency [Quarterstaff], Scribe Scroll
 		</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the wizard.

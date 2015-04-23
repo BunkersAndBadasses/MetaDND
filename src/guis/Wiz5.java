@@ -32,9 +32,9 @@ import org.eclipse.swt.widgets.Listener;
 import entity.*;
 import core.character;
 /* TODO
- * fix + - buttons
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
+ * fix speak language
  * add extra cleric class skills
  * add class bonuses (i.e. druid nature sense)
  */

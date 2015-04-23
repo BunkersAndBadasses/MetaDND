@@ -220,6 +220,20 @@ public class Wiz6 {
 //					if (!selectFeatSpecial(feat))
 //						return;
 //				}
+				// check if replacing simple weapon proficiency for select weapons to all
+				if (feat.getFeat().getName().equals("Simple Weapon Proficiency")) {
+					int size = charFeats.size();
+					for (int i = 0; i < size; i++) {
+						if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
+							if (!(charFeats.get(i).getSpecial().equalsIgnoreCase("all"))) {
+								System.out.println("Removing " + charFeats.get(i).getFeat().getName() + " [" + charFeats.get(i).getSpecial() + "]");//TODO
+								charFeats.remove(i);
+								charFeatsList.remove(i);
+								numBonusFeats--;
+							}
+						}
+					}
+				}
 				// check if that feat was already added
 				for(int i = 0; i < charFeats.size(); i++) {
 					if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
@@ -268,7 +282,7 @@ public class Wiz6 {
 				if (feat.getSpecial() == null)
 					charFeatsList.add(feat.getFeat().getName());
 				else
-					charFeatsList.add(feat.getFeat().getName() + " (" + feat.getSpecial() + ")");
+					charFeatsList.add(feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
 				charFeats.add(feat);
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
@@ -385,8 +399,9 @@ public class Wiz6 {
 		for (int i = 0; i < autoFeats.length; i ++) {
 			if (autoFeats[i].indexOf('[') != -1) {
 				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]), special));
-				charFeatsList.add(charFeats.get(0).getFeat().getName() + " (" + charFeats.get(0).getSpecial() + ")");
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
+				charFeatsList.add(charFeats.get(0).getFeat().getName() + " [" + charFeats.get(0).getSpecial() + "]");
 			} else {
 				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
 				charFeatsList.add(charFeats.get(0).getFeat().getName());

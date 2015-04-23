@@ -463,7 +463,8 @@ public class CharacterWizard {
 		for (int i = 0; i < autoFeats.length; i ++) {
 			if (autoFeats[i].indexOf('[') != -1) {
 				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]), special));
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
 			} else {
 				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
 			}

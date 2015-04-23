@@ -553,7 +553,7 @@ public class character {
 		for (int i = 0; i < feats.size(); i++) {
 			s += "\t" + feats.get(i).getFeat().getName();
 			if (feats.get(i).getSpecial() != null)
-				s += " (" + feats.get(i).getSpecial() + ")";
+				s += " [" + feats.get(i).getSpecial() + "]";
 			if (feats.get(i).getCount() > 1)
 				s += " x " + feats.get(i).getCount();
 			s += "\n";
