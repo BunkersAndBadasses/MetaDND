@@ -61,7 +61,7 @@ public class HomeWindow {
 	private Composite view;
 	private static List charList;
 	// the stack layout allows us to navigate from one view to another.
-	private final Composite mainWindow;
+	private Composite mainWindow;
 
 	private StackLayout mainWindowLayout = new StackLayout();
 
@@ -69,7 +69,8 @@ public class HomeWindow {
 	private final Composite dungeonScreen;
 	private final Composite dungeonViewer;
 	private final Composite dungeonGenConfig;
-	private final Composite playerScreen;
+	Composite characterComp;
+	private Composite playerScreen;
 	private referencePanel playerScreenReferencePanel;
 	private referencePanel dungeonScreenReferencePanel;
 	private final Composite dungeonScreenComp;
@@ -224,10 +225,15 @@ public class HomeWindow {
 
 		///////////////////PLAYER SCREEN//////////////////////////
 
-		Composite characterComp = new Composite(playerScreen, SWT.NONE);
+		Composite characterPanel = new Composite(playerScreen, SWT.NONE);
+		characterComp = new Composite(characterPanel, SWT.NONE);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 3;
 		characterComp.setLayoutData(gridData);
+		charLayout = new StackLayout();
+		characterPanel.setLayout(charLayout);
+		
+		charLayout.topControl = characterComp;
 
 		GridLayout characterCompLayout = new GridLayout(1, false);
 		characterComp.setLayout(characterCompLayout);
@@ -242,9 +248,8 @@ public class HomeWindow {
 
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		view = new Composite(characterComp, SWT.NONE);
-		charLayout = new StackLayout();
 		view.setLayoutData(gridData);
-		view.setLayout(charLayout);
+		//view.setLayout(charLayout);
 
 		//TODO change this to stack layout? 
 		// How are we gonna open the character sheet?
@@ -257,10 +262,30 @@ public class HomeWindow {
 				String name = charList.getItem(charList.getSelectionIndex());
 				String path = filepaths.get(name);
 				String[] arg = {path};
-				shell.close();
+				
+				characterComp.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				
+//				//playerScreen.dispose();
+				CharacterMain test = new CharacterMain(arg[0], shell);
+				charLayout.topControl = test.getMainWindow();
+//				//characterComp.dispose();
+//				characterComp = test.getMainWindow();
+//				characterComp.layout();
+//				//mainWindow.setBackground(display.getSystemColor(SWT.COLOR_RED));
+				
+				//mainWindow.setBackground(display.getSystemColor(SWT.COLOR_GREEN));
+				//mainWindow.layout();
+				shell.layout();
+				
+
+				//mainWindowLayout.topControl = test.getMainComp();
+				//characterComp = test.getMainComp();
+
+				//mainWindowLayout.topControl = test.getMainComp();
+				//shell.close();
 
 				
-				CharacterMain.main(arg);
+				//CharacterMain.main(arg);
 			}
 
 			@Override
@@ -268,7 +293,7 @@ public class HomeWindow {
 			public void widgetSelected(SelectionEvent e) {}
 		});
 
-		charLayout.topControl = charList;
+		//charLayout.topControl = charList;
 		view.layout();
 
 		Button addChar = new Button(characterComp, SWT.PUSH);

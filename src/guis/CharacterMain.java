@@ -88,21 +88,21 @@ public class CharacterMain {
     private static File stocks;
     private static StackLayout mainWindowLayout;
     private static Display display;
-    private static Shell shell;
+ //   private static Shell shell;
     private static Composite mainWindow;
     private static Composite mainComp;
-    private static GridLayout charLayout;
+	private static GridLayout charLayout;
     private static String bonus;
     private static String exp;
 
 
-    public static void main(String[] args) {
-        String pathName = args[0];
+    public CharacterMain(String args, Shell shell) {
+        String pathName = args;
         getPlayerInfo(pathName);
 
         // TODO Auto-generated method stub
-        display = Display.getCurrent();
-        shell = new Shell(display);
+        //display = Display.getCurrent();
+        //shell = new Shell(display);
         shell.setLayout(new GridLayout(1, false));
         new MenuBar(shell); //Add menu bar to windows like this
         mainWindow = new Composite(shell, SWT.NONE);
@@ -620,18 +620,23 @@ public class CharacterMain {
 
 
 
-        shell.open(); // Open the Window and process the clicks
-        while (!shell.isDisposed()) {
-            if (display.readAndDispatch()) {
-                display.sleep();
-            }
-        }
+        //shell.open(); // Open the Window and process the clicks
+//        while (!shell.isDisposed()) {
+//            if (display.readAndDispatch()) {
+//                display.sleep();
+//            }
+//        }
 
 
     }
 
 
-    private static void getPlayerInfo(String pathName) {
+    public Composite getMainWindow() {
+		return mainWindow;
+	}
+
+
+	private static void getPlayerInfo(String pathName) {
         // TODO Auto-generated method stub
         filename = pathName;
         try {
@@ -738,5 +743,9 @@ public class CharacterMain {
 
         return true;
     }
+    public Composite getMainComp() {
+		return mainComp;
+	}
+
 
 }
