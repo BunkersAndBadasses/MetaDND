@@ -234,7 +234,7 @@ public class CharacterWizard {
 		manualWizardLayout.horizontalSpacing = 3;
 		manualWizardLayout.numColumns = 1;
 		
-		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL);
+		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL | SWT.BORDER);
 		manualWizard.setLayout(manualWizardLayout);
 		manualWizard.setBounds(0, 0, WIDTH, HEIGHT);
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
@@ -244,6 +244,7 @@ public class CharacterWizard {
 		manPage.setLayoutData(manData);
 		manPage.layout();
 		manualWizard.layout();
+		homePanel.layout();
 //		
 //		// Call the seach panel composite
 //		playerScreenReferencePanel = new referencePanel(playerScreen);
