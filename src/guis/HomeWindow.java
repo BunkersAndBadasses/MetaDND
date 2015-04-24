@@ -256,10 +256,7 @@ public class HomeWindow {
 				//TODO populate the Character sheet 
 				String name = charList.getItem(charList.getSelectionIndex());
 				String path = filepaths.get(name);
-				String[] args = {path};
-				
-				characterComp.setBackground(display.getSystemColor(SWT.COLOR_RED));
-				
+				String[] args = {path};			
 				CharacterMain test = new CharacterMain(args, characterPanel);
 				charLayout.topControl = test.getMainWindow();
 				characterPanel.layout();
@@ -465,6 +462,8 @@ public class HomeWindow {
 		GameState.PAGE_NUMBER = 3;
 		this.shell.setSize(WIDTH, HEIGHT);
 		this.m_mainWindowLayout.topControl = this.playerScreen;
+		charLayout.topControl = characterComp;
+		characterPanel.layout();
 		this.m_mainWindow.layout();
 	}
 
