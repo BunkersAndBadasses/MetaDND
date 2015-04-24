@@ -228,7 +228,7 @@ public class CharacterWizard {
 
 		// ///////////////// MANUAL PANEL SETUP ///////////////////////////
 
-		final Composite manualWizard = new Composite(homePanel, SWT.BORDER);
+		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL);
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
 		new ManualCharacter(manualWizard);
 //		
