@@ -259,9 +259,7 @@ public class HomeWindow {
 				String[] arg = {path};
 				shell.close();
 
-				//TODO 
-				//this crashes the program due to characters not having an 
-				// image file linked in their xml
+				
 				CharacterMain.main(arg);
 			}
 
