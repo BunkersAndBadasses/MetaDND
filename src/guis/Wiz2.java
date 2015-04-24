@@ -788,10 +788,9 @@ public class Wiz2 {
 
 			// list of specialty schools
 			CCombo ssList = new CCombo(classExtrasShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			String[] schools = {"Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"};
 			ssList.add("<none>");
-			for (int i = 0; i < schools.length; i++){
-				ssList.add(schools[i]);
+			for (int i = 0; i < GameState.schoolsOfMagic.length; i++){
+				ssList.add(GameState.schoolsOfMagic[i]);
 			}
 			GridData gd6 = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 			gd6.horizontalSpan = 2;
@@ -832,10 +831,10 @@ public class Wiz2 {
 						psList2.setEnabled(false);
 						return;
 					}
-					for (int i = 0; i < schools.length; i++) {
-						if (!(ssList.getItem(ssList.getSelectionIndex()).equals(schools[i])))
-							if (!(schools[i]).equals("Divination")) {
-								psList1.add(schools[i]);
+					for (int i = 0; i < GameState.schoolsOfMagic.length; i++) {
+						if (!(ssList.getItem(ssList.getSelectionIndex()).equals(GameState.schoolsOfMagic[i])))
+							if (!(GameState.schoolsOfMagic[i]).equals("Divination")) {
+								psList1.add(GameState.schoolsOfMagic[i]);
 							}
 					}
 					psList1.pack();

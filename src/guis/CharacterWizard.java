@@ -464,9 +464,15 @@ public class CharacterWizard {
 			if (autoFeats[i].indexOf('[') != -1) {
 				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
 				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
-				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
+				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special);
+				character.addFeat(feat);
+				System.out.println("adding " + feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
 			} else {
-				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]));
+				character.addFeat(feat);
+				System.out.println("feat to add: " + autoFeats[i]);
+				System.out.println("feat: " + feat.getFeat());
+				System.out.println("adding " + feat.getFeat().getName());
 			}
 		}
 		//Special Ability

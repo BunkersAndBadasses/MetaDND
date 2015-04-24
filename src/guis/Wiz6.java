@@ -34,6 +34,8 @@ import core.Main;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
+import entity.SkillEntity;
+import entity.WeaponEntity;
 
 public class Wiz6 {
 
@@ -58,6 +60,11 @@ public class Wiz6 {
 	private ArrayList<CharFeat> charFeats = new ArrayList<CharFeat>();
 	List charFeatsList;
 	
+	final ScrolledComposite charFeatScreenScroll;
+	final Composite charFeatScreen;
+	
+	private boolean specialValid = false;
+	
 	private Label numFeatsLabel;
 
 	public Wiz6(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
@@ -78,6 +85,9 @@ public class Wiz6 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
+		
+		charFeatScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
+		charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
 		
 		// get feats from references 
 		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
@@ -134,12 +144,11 @@ public class Wiz6 {
 				
 		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
 		// create scrollable list of selected feats
-		final ScrolledComposite charFeatScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
+
 		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charFeatScreenScroll.setExpandHorizontal(true);
 	    charFeatScreenScroll.setExpandVertical(true);
 	    charFeatScreenScroll.setMinWidth(WIDTH);
-		final Composite charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
 		charFeatScreenScroll.setContent(charFeatScreen);
 		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		charFeatScreen.setLayout(featLayout);
@@ -216,24 +225,26 @@ public class Wiz6 {
 				}
 				CharFeat feat = new CharFeat(feats.get(index));
 				// launches popup to select feat special
-//				if (feat.getFeat().getApplications() != null) {
-//					if (!selectFeatSpecial(feat))
-//						return;
-//				}
+				if (feat.getFeat().getApplications() != null) {
+					if (!selectFeatSpecial(feat))
+						return;
+				}
 				// check if replacing simple weapon proficiency for select weapons to all
 				if (feat.getFeat().getName().equals("Simple Weapon Proficiency")) {
-					int size = charFeats.size();
-					for (int i = 0; i < size; i++) {
+					int i = 0;
+					while (i < charFeats.size()) {
 						if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
 							if (!(charFeats.get(i).getSpecial().equalsIgnoreCase("all"))) {
-								System.out.println("Removing " + charFeats.get(i).getFeat().getName() + " [" + charFeats.get(i).getSpecial() + "]");//TODO
 								charFeats.remove(i);
-								charFeatsList.remove(i);
+								updateCharFeatsList();
 								numBonusFeats--;
-							}
-						}
+							} else i++;
+						} else i++;
 					}
+					feat.setSpecial("all");
 				}
+				for (int i = 0; i<charFeats.size(); i++)
+					System.out.print(charFeats.get(i));
 				// check if that feat was already added
 				for(int i = 0; i < charFeats.size(); i++) {
 					if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
@@ -279,19 +290,12 @@ public class Wiz6 {
 				// otherwise, add the feat
 				// check if feat applies to a specific weapon/spell etc TODO
 				// pop-up if it does
-				if (feat.getSpecial() == null)
-					charFeatsList.add(feat.getFeat().getName());
-				else
-					charFeatsList.add(feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
 				charFeats.add(feat);
+				updateCharFeatsList();
 				numFeats--;
 				numFeatsLabel.setText(Integer.toString(numFeats));
 				numFeatsLabel.setBackground(null);
 				numFeatsLabel.pack();
-				charFeatsList.pack();
-				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
-				charFeatScreen.layout();
-				charFeatScreenScroll.layout();
 			}
 		});
 		
@@ -326,16 +330,12 @@ public class Wiz6 {
 					return;
 				}
 				// if nothing goes wrong, remove the feat
-				charFeatsList.remove(index);
 				charFeats.remove(index);
+				updateCharFeatsList();
 				numFeats++;
 				numFeatsLabel.setText(Integer.toString(numFeats));
 				numFeatsLabel.setBackground(null);
 				numFeatsLabel.pack();
-				charFeatsList.pack();
-				charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
-				charFeatScreen.layout();
-				charFeatScreenScroll.layout();
 			}
 		});
 		
@@ -400,12 +400,11 @@ public class Wiz6 {
 			if (autoFeats[i].indexOf('[') != -1) {
 				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
 				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
-				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
-				charFeatsList.add(charFeats.get(0).getFeat().getName() + " [" + charFeats.get(0).getSpecial() + "]");
+				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
 			} else {
 				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
-				charFeatsList.add(charFeats.get(0).getFeat().getName());
 			}
+			updateCharFeatsList();
 		}
 		numBonusFeats = autoFeats.length;
 		
@@ -451,7 +450,7 @@ public class Wiz6 {
 		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 		featsGD.horizontalSpan = 2;
 		bonusFeatCombo.setLayoutData(featsGD);
-		bonusFeatCombo.addListener(SWT.MouseUp, new Listener() {
+		bonusFeatCombo.addListener(SWT.MouseDown, new Listener() {
 			public void handleEvent(Event event) {
 				bonusFeatCombo.setBackground(new Color(dev, 255, 255, 255));
 			}
@@ -471,7 +470,7 @@ public class Wiz6 {
 					return;
 				}
 				charFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
-				charFeatsList.add(charFeats.get(0).getFeat().getName());
+				updateCharFeatsList();
 				bonusFeatShell.dispose();
 			}
 		});
@@ -731,9 +730,128 @@ public class Wiz6 {
 		return true;
 	}
 	private boolean selectFeatSpecial(CharFeat feat) {
-		boolean valid = false;
-		
-		return valid;
+		// create shell
+				Display display = wiz6.getDisplay();
+				final Shell featSpecialShell = new Shell(display);
+				featSpecialShell.setText("Apply Feat");
+				GridLayout gridLayout = new GridLayout(2, true);
+				featSpecialShell.setLayout(gridLayout);
+				featSpecialShell.addListener(SWT.Close, new Listener() {
+			        public void handleEvent(Event event) {
+			            specialValid = false;
+			        }
+			    });
+				
+				String[] specials = feat.getFeat().getApplications();
+
+				// label - select a feat special
+				Label selectFeatSpecial = new Label(featSpecialShell, SWT.WRAP);
+				selectFeatSpecial.setText("Apply Feat:");
+				GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				selectGD.horizontalSpan = 2;
+				selectFeatSpecial.setLayoutData(selectGD);
+				selectFeatSpecial.pack();
+				
+				// drop down menu containing feat special options
+				CCombo specialsCombo = new CCombo(featSpecialShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+				for (int i = 0; i < specials.length; i++) {
+					switch (specials[i]) {
+					case ("weapons"): {
+						Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
+						Iterator<DNDEntity> itr = weaponsCol.iterator();
+						ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+						while (itr.hasNext()) {
+							weapons.add((WeaponEntity) itr.next());
+						}
+						for (int j = 0; j < weapons.size(); j++) {
+							specialsCombo.add(weapons.get(j).getName());
+						}
+						break;
+					}
+					case ("schools of magic"):
+						for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
+							specialsCombo.add(GameState.schoolsOfMagic[j]);
+						}
+						break;
+					case ("skills"): {
+						Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
+						Iterator<DNDEntity> itr = skillsCol.iterator();
+						ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+						while (itr.hasNext()) {
+							skills.add((SkillEntity) itr.next());
+						}						
+						for (int j = 0; j < skills.size(); j++) {
+							specialsCombo.add(skills.get(i).getName());
+						}
+						break;
+					}
+					case ("selection of spells"): {
+						// TODO change this
+						feat.setSpecial("selection of spells");
+						return true;
+					}
+					default:
+						specialsCombo.add(specials[i]);
+					}
+				}
+				GridData specialssGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				specialssGD.horizontalSpan = 2;
+				specialsCombo.setLayoutData(specialssGD);
+				specialsCombo.addListener(SWT.MouseDown, new Listener() {
+					public void handleEvent(Event event) {
+						specialsCombo.setBackground(null);
+					}
+				});
+				specialsCombo.pack();
+				
+				// done button
+				Button done = new Button(featSpecialShell, SWT.PUSH);
+				done.setText("Done");
+				GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+				doneGD.horizontalSpan = 2;
+				done.setLayoutData(doneGD);
+				done.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						if (specialsCombo.getSelectionIndex() == -1) {
+							specialsCombo.setBackground(new Color(dev, 255, 100, 100));
+							return;
+						}
+						feat.setSpecial(specialsCombo.getItem(specialsCombo.getSelectionIndex()));
+						featSpecialShell.dispose();
+						specialValid = true;
+					}
+				});
+				done.pack();
+
+				// open shell
+				featSpecialShell.pack();
+				CharacterWizard.center(featSpecialShell);
+				featSpecialShell.open();
+				
+				// check if disposed
+				while (!featSpecialShell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+		return specialValid;
+	}
+	
+	private void updateCharFeatsList() {
+		charFeatsList.removeAll();
+		for (int i = 0; i<charFeats.size(); i++){
+			CharFeat curr = charFeats.get(i);
+			String temp = curr.getFeat().getName();
+			if (curr.getSpecial() != null)
+				temp += " [" + curr.getSpecial() + "]";
+			if (curr.getCount() > 1)
+				temp += ": " + curr.getCount();
+			charFeatsList.add(temp);
+		}
+		charFeatsList.pack();
+		charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
+		charFeatScreen.layout();
+		charFeatScreenScroll.layout();
 	}
 
 	private void createNextPage() {

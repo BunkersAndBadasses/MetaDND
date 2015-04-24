@@ -55,4 +55,13 @@ public class CharFeat {
 	public void setSpecial(String special) {
 		this.special = special;
 	}
+	
+	public String toString() {
+		String s = feat.getName();
+		if (special != null)
+			s += " [" + special + "]";
+		if (count > 1)
+			s += ": " + count;
+		return s;
+	}
 }
