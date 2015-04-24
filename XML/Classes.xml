@@ -37,9 +37,7 @@
 		<SKILLPOINTS>
 			4 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Armor Proficiency (Light), Armor Proficiency (Medium), Simple Weapon Proficiency [all], Martial Weapon Proficiency [all], Shield Proficiency
-		</BONUSFEATS>
+		<BONUSFEATS>Armor Proficiency (Light) | Armor Proficiency (Medium) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the barbarian.
 			Weapon and Armor Proficiency: A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields (except tower shields).
@@ -144,9 +142,13 @@
 		<SKILLPOINTS>
 			6 + Int modifier.
 		</SKILLPOINTS>
+<<<<<<< HEAD
 		<BONUSFEATS>
 			Martial Weapon Proficiency [Longsword], Martial Weapon Proficiency [Rapier], Martial Weapon Proficiency [Sap], Martial Weapon Proficiency [Sword, Short], Martial Weapon Proficiency [Shortbow], Exotic Weapon Proficiency [Whip], Armor Proficiency (Light), Simple Weapon Proficiency [all], Shield Proficiency
 		</BONUSFEATS>
+=======
+		<BONUSFEATS>Armor Proficiency (Light) | Simple Weapon Proficiency [All] | Shield Proficiency</BONUSFEATS>
+>>>>>>> stash
 		<CLASSABILITIES>
 			All of the following are class features of the bard.
 			Weapon and Armor Proficiency: A bard is proficient with all simple weapons, plus the longsword, rapier, sap, short sword, shortbow, and whip. Bards are proficient with light armor and shields (except tower shields). A bard can cast bard spells while wearing light armor without incurring the normal arcane spell failure chance. However, like any other arcane spellcaster, a bard wearing medium or heavy armor or using a shield incurs a chance of arcane spell failure if the spell in question has a somatic component (most do). A multiclass bard still incurs the normal arcane spell failure chance for arcane spells received from other classes.
@@ -253,9 +255,7 @@
 		<SKILLPOINTS>
 			2 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency [all], Shield Proficiency
-		</BONUSFEATS>
+		<BONUSFEATS>Armor Proficiency (Light) | Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Shield Proficiency</BONUSFEATS>
 		<CLASSABILITIES>
 			Weapon and Armor Proficiency: Clerics are proficient with all simple weapons, with all types of armor (light, medium, and heavy), and with shields (except tower shields).
 			A cleric who chooses the War domain receives the Weapon Focus feat related to his deity's weapon as a bonus feat. He also receives the appropriate Martial Weapon Proficiency feat as a bonus feat, if the weapon falls into that category.
@@ -341,9 +341,13 @@
 		<SKILLPOINTS>
 			4 + Int modifier.
 		</SKILLPOINTS>
+<<<<<<< HEAD
 		<BONUSFEATS>
 			Simple Weapon Proficiency [Club], Simple Weapon Proficiency [Dagger], Simple Weapon Proficiency [Dart], Simple Weapon Proficiency [Quarterstaff], Simple Weapon Proficiency [Sickle], Simple Weapon Proficiency [Shortspear], Simple Weapon Proficiency [Sling], Simple Weapon Proficiency [Spear], Martial Weapon Proficiency [Scimitar], Armor Proficiency (Light), Armor Proficiency (Medium), Shield Proficiency
 		</BONUSFEATS>
+=======
+		<BONUSFEATS>Armor Proficiency (Light) | Armor Proficiency (Medium) | Shield Proficiency</BONUSFEATS>
+>>>>>>> stash
 		<CLASSABILITIES>
 			All of the following are class features of the druid.
 			Weapon and Armor Proficiency: Druids are proficient with the following weapons: club, dagger, dart, quarterstaff, scimitar, sickle, shortspear, sling, and spear. They are also proficient with all natural attacks (claw, bite, and so forth) of any form they assume with wild shape (see below).
@@ -544,9 +548,7 @@
 		<SKILLPOINTS>
 			2 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency [all], Martial Weapon Proficiency [all], Shield Proficiency, Tower Shield Proficiency
-		</BONUSFEATS>
+		<BONUSFEATS>Armor Proficiency (Light), Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency | Tower Shield Proficiency</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the fighter.
 			Weapon and Armor Proficiency: A fighter is proficient with all simple and martial weapons and with all armor (heavy, medium, and light) and shields (including tower shields).
@@ -721,9 +723,7 @@
 		<SKILLPOINTS>
 			2 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Armor Proficiency (Light), Armor Proficiency (Medium), Armor Proficiency (Heavy), Simple Weapon Proficiency [all], Martial Weapon Proficiency [all], Shield Proficiency
-		</BONUSFEATS>
+		<BONUSFEATS>Armor Proficiency (Light) | Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the paladin.
 			Weapon and Armor Proficiency: Paladins are proficient with all simple and martial weapons, with all types of armor (heavy, medium, and light), and with shields (except tower shields).
@@ -868,9 +868,7 @@
 		<SKILLPOINTS>
 			6 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Track, Armor Proficiency (Light), Simple Weapon Proficiency [all], Martial Weapon Proficiency [all], Shield Proficiency
-		</BONUSFEATS>
+		<BONUSFEATS>Track | Armor Proficiency (Light) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the ranger.
 			Weapon and Armor Proficiency: A ranger is proficient with all simple and martial weapons, and with light armor and shields (except tower shields).
@@ -982,9 +980,13 @@
 		<SKILLPOINTS>
 			8 + Int modifier.
 		</SKILLPOINTS>
+<<<<<<< HEAD
 		<BONUSFEATS>
 			Simple Weapon Proficiency [all], Martial Weapon Proficiency [Rapier], Martial Weapon Proficiency [Sap], Martial Weapon Proficiency [Shortbow], Martial Weapon Proficiency [Sword, Short], Exotic Weapon Proficiency [Crossbow, Hand], Armor Proficiency (Light)
 		</BONUSFEATS>
+=======
+		<BONUSFEATS>Armor Proficiency (Light) | Simple Weapon Proficiency [All]</BONUSFEATS>
+>>>>>>> stash
 		<CLASSABILITIES>
 			All of the following are class features of the rogue.
 			Weapon and Armor Proficiency: Rogues are proficient with all simple weapons, plus the hand crossbow, rapier, sap, shortbow, and short sword. Rogues are proficient with light armor, but not with shields.
@@ -1099,9 +1101,7 @@
 		<SKILLPOINTS>
 			2 + Int modifier.
 		</SKILLPOINTS>
-		<BONUSFEATS>
-			Simple Weapon Proficiency [all]
-		</BONUSFEATS>
+		<BONUSFEATS>Simple Weapon Proficiency [All]</BONUSFEATS>
 		<CLASSABILITIES>
 			All of the following are class features of the sorcerer.
 			Weapon and Armor Proficiency: Sorcerers are proficient with all simple weapons. They are not proficient with any type of armor or shield. Armor of any type interferes with a sorcerer's gestures, which can cause his spells with somatic components to fail.
