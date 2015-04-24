@@ -228,19 +228,15 @@ public class CharacterWizard {
 
 		// ///////////////// MANUAL PANEL SETUP ///////////////////////////
 
-		final Composite manualPanel = new Composite(homePanel, SWT.BORDER);
+		final Composite manualWizard = new Composite(homePanel, SWT.BORDER);
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
-		final StackLayout manualLayout = new StackLayout();
-		manualPanel.setLayout(manualLayout);
-		final Composite manualPage1 = new Composite(manualPanel, SWT.NONE);
-		manualPage1.setSize(manualPanel.getSize());
-		manualLayout.topControl = manualPage1;
-		manualPanel.layout();
-		Label csManual = new Label(manualPage1, SWT.BOLD);
-		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
-		csManual.setText("Coming Soon!");
-		csManual.pack();
-		createCancelButton(manualPage1, home, homePanel, homeLayout);
+		new ManualCharacter(manualWizard);
+//		
+//		Label csManual = new Label(manualWizard, SWT.BOLD);
+//		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
+//		csManual.setText("Coming Soon!");
+//		csManual.pack();
+		createCancelButton(manualWizard, home, homePanel, homeLayout);
 
 
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
@@ -276,7 +272,7 @@ public class CharacterWizard {
 		});
 		manualButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				homeLayout.topControl = manualPanel;
+				homeLayout.topControl = manualWizard;
 				homePanel.layout();
 			}
 		});
@@ -453,7 +449,51 @@ public class CharacterWizard {
 		//Feats
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
-		character.addFeat(new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]));
+		CharFeat randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+		System.out.println("Random feat is " + randomToAdd.getFeat().getName());
+		System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+		boolean done = false;
+		do {
+			if(Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character)){
+				for(int i = 0; i < character.getFeats().size(); i++) {
+					if (character.getFeats().get(i).getFeat().getName().equals(randomToAdd.getFeat().getName())) {
+						// feat found - check if that feat can be added multiple times
+						if (!randomToAdd.getFeat().canHaveMultiple()) {
+							// feat cannot be added multiple times
+							System.out.println("Feat already added");
+
+						}
+						else {
+							// feat can be added multiple times
+							if (character.getFeats().get(i).getFeat().canStack()) {
+								// feat benefits can stack - increment count of feat
+								character.getFeats().get(i).incCount();
+								done = true;
+								break;
+							}
+							else {
+								// feat benefits cannot stack - check if the exact same feat is added
+								if (character.getFeats().get(i).getSpecial().equals(randomToAdd.getSpecial())) {
+									System.out.println("Feat already added");
+								}
+							}
+						}
+					}
+				}
+				if(done)
+					break;
+				character.addFeat(randomToAdd);
+				System.out.println("Feat added");
+				done = true;
+			}
+			else{ 
+					randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
+					System.out.println("New random feat is " + randomToAdd.getFeat().getName());
+					System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+			}
+		}while(!done);
+		System.out.println("------------------------------------");
+			
 		//Bonus feat
 		
 		// add automatic feats (like armor/weapon proficiency)
@@ -464,13 +504,13 @@ public class CharacterWizard {
 				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
 				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special);
 				character.addFeat(feat);
-				System.out.println("adding " + feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
+				//System.out.println("adding " + feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
 			} else {
 				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]));
 				character.addFeat(feat);
-				System.out.println("feat to add: " + autoFeats[i]);
-				System.out.println("feat: " + feat.getFeat());
-				System.out.println("adding " + feat.getFeat().getName());
+				//System.out.println("feat to add: " + autoFeats[i]);
+				//System.out.println("feat: " + feat.getFeat());
+				//System.out.println("adding " + feat.getFeat().getName());
 			}
 		}
 		//Special Ability
