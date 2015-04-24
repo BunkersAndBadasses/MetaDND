@@ -131,7 +131,7 @@ public class ClassEntity extends DNDEntity {
 				this.skillPointsPerLevel = value;
 				break;
 			case "BONUSFEATS": // TODO replace with proper feat enitity objects
-				this.bonusFeats = value.split(" | "); // TODO NOT WORKING
+				this.bonusFeats = value.split(" \\| "); // TODO NOT WORKING
 				break;
 			case "CLASSABILITIES":
 				this.classAbilities = value;

@@ -235,14 +235,14 @@ public class Wiz6 {
 					int i = 0;
 					while (i < charFeats.size()) {
 						if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
-							if (!(charFeats.get(i).getSpecial().equalsIgnoreCase("all"))) {
+							if (!(charFeats.get(i).getSpecial().equalsIgnoreCase("All"))) {
 								charFeats.remove(i);
 								updateCharFeatsList();
 								numBonusFeats--;
 							} else i++;
 						} else i++;
 					}
-					feat.setSpecial("all");
+					feat.setSpecial("All");
 				}
 				for (int i = 0; i<charFeats.size(); i++)
 					System.out.print(charFeats.get(i));
@@ -684,7 +684,7 @@ public class Wiz6 {
 						// find feat
 						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
 							// check special
-							if (charFeats.get(j).getSpecial().equals(reqFeat.getSpecial()) || reqFeat.getSpecial().equals("all"))
+							if (charFeats.get(j).getSpecial().equals(reqFeat.getSpecial()) || reqFeat.getSpecial().equals("All"))
 								// the required feat has already been added
 								found = true;
 						}
