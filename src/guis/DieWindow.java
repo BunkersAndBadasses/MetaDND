@@ -33,6 +33,7 @@ public class DieWindow {
 	private static Text total;
 	private static Device dev;
 	public static boolean delete_activated;
+	public static boolean save_activated;
 	private static Label invalidOperation;
 	//private static Label badInputText;
 	//private static Label badSaveText;
@@ -49,6 +50,7 @@ public class DieWindow {
 		dieWin = new Composite(shell, SWT.NONE);
 		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
 		delete_activated = false;
+		save_activated = false;
 		createPageContent();
 		shell.pack();
 		run();
@@ -317,12 +319,16 @@ public class DieWindow {
 		save.setLayoutData(gridData);
 		save.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				if(save_activated)
+				{
+					return;
+				}
 				int modInt = 0;
 				boolean notUsed = true;
 				int custDie = 0;
 				int custDieCount = 0;
 				boolean dieRolled = false;
-
+				save_activated = true;
 				try{
 
 					invalidOperation.setVisible(false);
@@ -333,35 +339,35 @@ public class DieWindow {
 					if(modInt <= -100 || modInt >= 100){
 						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie < 0 || custDie > 1000 || custDie == 1){
 						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDieCount < 0 || custDieCount > 20){
 						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie != 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Custom #: select die count");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie == 0 && custDieCount != 0){
 						invalidOperation.setText("Invalid Custom Die: select a die");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
@@ -373,7 +379,7 @@ public class DieWindow {
 					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
@@ -383,7 +389,7 @@ public class DieWindow {
 					dieCountBox.setText("0");
 					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
-
+					save_activated = false;
 					return;
 				}
 
@@ -409,6 +415,7 @@ public class DieWindow {
 				}else if(notUsed){
 					invalidOperation.setText("Invalid Save: at least 1 die or mod.");
 					invalidOperation.setVisible(true);
+					save_activated = false;
 					return;
 				}
 
@@ -444,7 +451,7 @@ public class DieWindow {
 				cancel.setText("Cancel");
 				cancel.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						save_activated = false;
 						saveName.dispose();
 					}
 				});
@@ -454,7 +461,7 @@ public class DieWindow {
 				saveFinal.setText("Save");
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						save_activated = false;
 						badSaveFinal.setVisible(false);
 						Pattern p1 = Pattern.compile(".*\\W+.*");
 
