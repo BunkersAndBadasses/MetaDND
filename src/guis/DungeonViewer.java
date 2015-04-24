@@ -33,7 +33,7 @@ public class DungeonViewer {
 	private HomeWindow m_hw;
 	
 	
-	public DungeonViewer(HomeWindow hw, int sizeSelection, double density) {
+	public DungeonViewer(HomeWindow hw, int sizeSelection, double density, int squareSize) {
 		
 		this.m_hw = hw;
 		
@@ -58,16 +58,12 @@ public class DungeonViewer {
 		m_embeddedView.setLayoutData(gridData);
 		m_embeddedView.setLayout(gridLayout);
 		
-		
-		// this is the size at which the generator works best
-		int sizeOfSquare = 30;
-		
 
 		DungeonGenerator rdg = new DungeonGenerator(sizeSelection, density);
 		rdg.GenerateDungeon();
 		rdg.printDungeon(true);
 
-		GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.bnb", sizeOfSquare); 
+		GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.bnb", squareSize); 
 		gm.generateSVG();
 
 		String toSet = "file:///";

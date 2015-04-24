@@ -166,7 +166,7 @@ public class HomeWindow {
 		GridLayout playerScreenLayout = new GridLayout(4, true);
 		playerScreen.setLayout(playerScreenLayout);
 
-		GridLayout dungeonGenConfigLayout = new GridLayout(2, true);
+		GridLayout dungeonGenConfigLayout = new GridLayout(3, true);
 		dungeonGenConfig.setLayout(dungeonGenConfigLayout);
 
 		///////////////////HOME SCREEN//////////////////////////
@@ -314,26 +314,48 @@ public class HomeWindow {
 
 
 		///////////////////DUNGEON GENCONFIG////////////////////////// 
-		Label sizeLabel = new Label(dungeonGenConfig, SWT.NONE);
+		new Label(dungeonGenConfig, SWT.NONE);
+		Composite sliderComposite = new Composite(dungeonGenConfig, SWT.CENTER);
+		GridLayout sliderCompositeLayout = new GridLayout(2, true);
+		GridData sliderCompositeGridData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		sliderComposite.setLayoutData(sliderCompositeGridData);
+		sliderComposite.setLayout(sliderCompositeLayout);
+		
+		Label sizeLabel = new Label(sliderComposite, SWT.NONE);
 		sizeLabel.setText("Size of Dungeon:");
-		Label densityLabel = new Label(dungeonGenConfig, SWT.NONE);
-		densityLabel.setText("Density of Passable Terrain:");
-
-		final Scale sizeSlider = new Scale(dungeonGenConfig, SWT.NULL);
+		
+		final Scale sizeSlider = new Scale(sliderComposite, SWT.NULL);
 		sizeSlider.setIncrement(1);
 		sizeSlider.setMaximum(DungeonConstants.MAX_DUNGEON_SIZE);
 		sizeSlider.setMinimum(DungeonConstants.MIN_DUNGEON_SIZE);
 		sizeSlider.setSelection(30);
-		sizeSlider.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
-
-		final Scale densitySlider = new Scale(dungeonGenConfig, SWT.NULL);
+		sizeSlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		Label densityLabel = new Label(sliderComposite, SWT.NONE);
+		densityLabel.setText("Density of Passable Terrain:");
+		
+		final Scale densitySlider = new Scale(sliderComposite, SWT.NULL);
 		densitySlider.setIncrement(1);
 		densitySlider.setMaximum(50);
 		densitySlider.setMinimum(10);
 		densitySlider.setSelection(20);
+		densitySlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		Label squareSizeLabel = new Label(sliderComposite, SWT.NONE);
+		squareSizeLabel.setText("Size of Dungeon Tile:");
+
+		final Scale squareSizeSlider = new Scale(sliderComposite, SWT.NULL);
+		squareSizeSlider.setIncrement(5);
+		squareSizeSlider.setMaximum(50);
+		squareSizeSlider.setMinimum(10);
+		squareSizeSlider.setSelection(30);
+		squareSizeSlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		sliderComposite.pack();
+		
 		dungeonGenConfig.pack();
 
-		Button cancelButton = new Button(dungeonGenConfig, SWT.NONE);
+		Button cancelButton = new Button(sliderComposite, SWT.NONE);
 		cancelButton.setText("Cancel");
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -344,14 +366,15 @@ public class HomeWindow {
 		});
 
 		// confirm generation configuration
-		Button confirmButton = new Button(dungeonGenConfig, SWT.NONE);
+		Button confirmButton = new Button(sliderComposite, SWT.NONE);
 		confirmButton.setText("Confirm");
 		confirmButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int sizeSelection = sizeSlider.getSelection();
 				int densitySelection = densitySlider.getSelection();
 				double density = 1 - ((double)densitySelection/100);
-				new DungeonViewer(hw, sizeSelection, density);
+				int squareSize = squareSizeSlider.getSelection();
+				new DungeonViewer(hw, sizeSelection, density, squareSize);
 			}
 		});
 
