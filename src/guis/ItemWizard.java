@@ -49,7 +49,7 @@ public class ItemWizard {
 	
 	public ItemWizard(Display d)
 	{
-		if (GameState.isWizardOpen("Item")) {
+		if (GameState.isWindowOpen("Item")) {
 			return;
 		}
 		display = d;
@@ -60,7 +60,7 @@ public class ItemWizard {
 		wizPages = new ArrayList<Composite>();
 		wizPageNum = 0;
 		createPageContent();
-		GameState.wizardsOpen.add("Item");
+		GameState.windowsOpen.add("Item");
 		run();
 	}
 	public void run()
@@ -73,7 +73,7 @@ public class ItemWizard {
             display.sleep();
           }
         }
-        GameState.wizardsOpen.remove("Item");
+        GameState.windowsOpen.remove("Item");
 	}
 	/**
 	 * Set window to be the center.

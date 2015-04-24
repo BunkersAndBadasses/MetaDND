@@ -10,6 +10,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 
+import core.GameState.PAGE;
 import entity.*;
 
 public class GameState {
@@ -30,13 +31,7 @@ public class GameState {
 	public static final File USERDATAFOLDER = new File(
 			System.getProperty("user.dir") + "//" + "User Data");
 
-	// 0 = homeScreen
-	// 1 = dungeonScreen
-	// 2 = dungeonViewer
-	// 3 = playerScreen
-	public static int PAGE_NUMBER = -1;
-
-	public static ArrayList<String> wizardsOpen = new ArrayList<String>();
+	public static ArrayList<String> windowsOpen = new ArrayList<String>();
 
 	// When building custom content add it to this HashMap. Everything here will
 	// be saved to disk to a CustomContent.xml
@@ -49,6 +44,17 @@ public class GameState {
 	public SortedMap<String, DNDEntity> searchResults;
 	public Semaphore searchResultsLock;
 
+	public static enum PAGE {
+		HomeScreen, 
+		DungeonMasterScreen, 
+		PlayerScreen, 
+		DungeonGenerationConfigScreen,
+		DungeonViewerScreen,
+		CharacterSheetScreen
+	}
+	
+	public static PAGE currentPage;
+	
 	// ////////////// CONSTANTS /////////////////
 	public final static int STRENGTH = 0;
 	public final static int DEXTERITY = 1;
@@ -59,6 +65,9 @@ public class GameState {
 	public final static String[] abilityScoreTypes = { "STR", "DEX", "CON",
 			"INT", "WIS", "CHA" };
 
+	public final static int DEFAULT_WIDTH = 900;
+	public final static int DEFAULT_HEIGHT = 700;
+	
 	private final static int SIZE_FINE = 0;
 	private final static int SIZE_DIMINUTIVE = 1;
 	private final static int SIZE_TINY = 2;
@@ -123,8 +132,8 @@ public class GameState {
 
 	}
 
-	public static boolean isWizardOpen(String wizard) {
-		return wizardsOpen.contains(wizard);
+	public static boolean isWindowOpen(String wizard) {
+		return windowsOpen.contains(wizard);
 	}
 
 	public boolean search(String searchString) {

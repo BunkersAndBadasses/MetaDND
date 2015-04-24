@@ -66,7 +66,7 @@ public class MenuBarDungeon {
 				}
 				boolean success = toBeRenamed.renameTo(newFile);
 			    if (!success) {
-			        System.out.println("fail");
+			        System.out.println("Failure to rename File: " + newFile.toString());
 			    }
 				
             }
@@ -127,6 +127,46 @@ public class MenuBarDungeon {
         //Tools Menu
         Menu toolsMenu = new Menu(shell, SWT.DROP_DOWN);
         cascadeToolsMenu.setMenu(toolsMenu);
+        
+        // Home screen
+        MenuItem homeScreen = new MenuItem(toolsMenu, SWT.PUSH);
+        homeScreen.setText("&Home Screen");
+        
+        homeScreen.addSelectionListener(new SelectionAdapter()
+        {
+        public void widgetSelected(SelectionEvent e)
+        {
+        	
+        	parent.navigateToHomeScreen();
+        }});
+        
+      //Player screen
+        MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunChaItem.setText("&Players Screen");
+        
+
+        dunChaItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	HomeWindow.loadCharacters();
+                parent.navigateToPlayerScreen();
+            }
+        });
+        
+        //Dungeon Master screen
+        MenuItem dunGenItem = new MenuItem(toolsMenu, SWT.PUSH);
+        dunGenItem.setText("&Dungeon Masters");
+        
+
+        dunGenItem.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                parent.navigateToDungeonMasterScreen();
+            }
+        });
+        
+        
+        
         
       //Die Roller
         MenuItem dieRollerItem = new MenuItem(toolsMenu, SWT.PUSH);
@@ -207,39 +247,7 @@ public class MenuBarDungeon {
         		new CharacterWizard(shell.getDisplay());
             }
         });
-        //Player screen
-        MenuItem dunChaItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunChaItem.setText("&Characters");
         
-
-        dunChaItem.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-            	HomeWindow.loadCharacters();
-                parent.navigateToPlayerScreen();
-            }
-        });
-        //Dungeon Generator
-        MenuItem dunGenItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunGenItem.setText("&Dungeons");
-        
-
-        dunGenItem.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                parent.navigateToDungeonScreen();
-            }
-        });
-        MenuItem dunHomeItem = new MenuItem(toolsMenu, SWT.PUSH);
-        dunHomeItem.setText("&Home Screen");
-        
-        dunHomeItem.addSelectionListener(new SelectionAdapter()
-        {
-        public void widgetSelected(SelectionEvent e)
-        {
-        	
-        	parent.navigateToHomeScreen();
-        }});
         shell.setMenuBar(menuBar);
 	}
 }

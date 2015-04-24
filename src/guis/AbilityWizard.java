@@ -34,7 +34,7 @@ public class AbilityWizard {
 	static String abilityscript;
 	public AbilityWizard(Display d)
 	{
-		if (GameState.isWizardOpen("Ability")) {
+		if (GameState.isWindowOpen("Ability")) {
 			return;
 		}
 		display = d;
@@ -44,7 +44,7 @@ public class AbilityWizard {
 		shell.setSize(width / 3, width * 2 / 9);
 		new ArrayList<Composite>();
 		createPageContent();
-		GameState.wizardsOpen.add("Ability");
+		GameState.windowsOpen.add("Ability");
 		run();
 	}
 	public void run()
@@ -58,7 +58,7 @@ public class AbilityWizard {
             display.sleep();
           }
         }
-        GameState.wizardsOpen.remove("Ability");
+        GameState.windowsOpen.remove("Ability");
 	}
 	/**
 	 * Set window to be the center.

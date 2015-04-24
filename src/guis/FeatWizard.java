@@ -33,8 +33,6 @@ public class FeatWizard
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
-	private static final int WIDTH = 600;
-	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static ArrayList<Composite> wizPages;
 	private static int wizpagenum;
 	public static FeatEntity newfeat;
@@ -47,7 +45,7 @@ public class FeatWizard
 	static String featscript;
 	public FeatWizard(Display d)
 	{
-		if (GameState.isWizardOpen("Feat")) {
+		if (GameState.isWindowOpen("Feat")) {
 			return;
 		}
 		display = d;
@@ -58,7 +56,7 @@ public class FeatWizard
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
-		GameState.wizardsOpen.add("Feat");
+		GameState.windowsOpen.add("Feat");
 		run();
 	}
 	public void run()
@@ -72,7 +70,7 @@ public class FeatWizard
             display.sleep();
           }
         }
-        GameState.wizardsOpen.remove("Feat");
+        GameState.windowsOpen.remove("Feat");
 	}
 	/**
 	 * Set window to be the center.
@@ -251,13 +249,13 @@ public class FeatWizard
 		shell.pack();
 //		//wizard
 //				final Composite wizPanel = new Composite(shell, SWT.BORDER);
-//				wizPanel.setBounds(0,0,WIDTH, HEIGHT);
+//				wizPanel.setBounds(0,0,GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 //				final StackLayout wizLayout = new StackLayout();
 //				wizPanel.setLayout(wizLayout);
 //				
 //				//Page1 -- Name
 //				final Composite wizpage1 = new Composite(wizPanel, SWT.NONE);
-//				wizpage1.setBounds(0,0,WIDTH,HEIGHT);
+//				wizpage1.setBounds(0,0,GameState.DEFAULT_WIDTH,GameState.DEFAULT_HEIGHT);
 //				
 //				final Label wiz1Label = new Label(wizpage1, SWT.NONE);
 //				wiz1Label.setText("Enter Name (required)");
@@ -541,7 +539,7 @@ public class FeatWizard
 //		createBackButton(verific, wizPanel, wizLayout);
 //		createCancelButton(verific, wizPanel, wizLayout);
 //		confirm.setText("Confirm");
-//		confirm.setBounds(WIDTH-117, HEIGHT - 90, 100, 50);
+//		confirm.setBounds(GameState.DEFAULT_WIDTH-117, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 //		confirm.addListener(SWT.Selection, new Listener()
 //		{
 //			public void handleEvent(Event event)
@@ -556,7 +554,7 @@ public class FeatWizard
 	public static Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
-		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
+		nextButton.setBounds(GameState.DEFAULT_WIDTH - 117, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		return nextButton;
 	}
 
@@ -574,7 +572,7 @@ public class FeatWizard
 			final StackLayout layout) {
 		Button backButton = new Button(c, SWT.PUSH);
 		backButton.setText("Back");
-		backButton.setBounds(WIDTH - 220, HEIGHT - 90, 100, 50);
+		backButton.setBounds(GameState.DEFAULT_WIDTH - 220, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		backButton.addListener(SWT.Selection, new Listener() {
 
 			public void handleEvent(Event event) {
@@ -602,7 +600,7 @@ public class FeatWizard
 			final Composite panel, final StackLayout layout) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
-		cancelButton.setBounds(10, HEIGHT - 90, 100, 50);
+		cancelButton.setBounds(10, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				cancel = false;

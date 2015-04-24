@@ -104,7 +104,6 @@ public class CharacterMain {
         display = Display.getCurrent();
         shell = new Shell(display);
         shell.setLayout(new GridLayout(1, false));
-        new MenuBar(shell); //Add menu bar to windows like this
         mainWindow = new Composite(shell, SWT.NONE);
         mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
         mainWindowLayout = new StackLayout();

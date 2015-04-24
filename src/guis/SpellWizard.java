@@ -50,7 +50,7 @@ public class SpellWizard {
 	static String spellresistance;
 	public SpellWizard(Display d)
 	{
-		if (GameState.isWizardOpen("Spell")) {
+		if (GameState.isWindowOpen("Spell")) {
 			return;
 		}
 		display = d;
@@ -61,7 +61,7 @@ public class SpellWizard {
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
 		createPageContent();
-		GameState.wizardsOpen.add("Spell");
+		GameState.windowsOpen.add("Spell");
 		run();
 	}
 	public void run()
@@ -75,7 +75,7 @@ public class SpellWizard {
             display.sleep();
           }
         }
-        GameState.wizardsOpen.remove("Spell");
+        GameState.windowsOpen.remove("Spell");
 	}
 	/**
 	 * Set window to be the center.

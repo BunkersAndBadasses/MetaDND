@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import core.CharFeat;
 import core.DnDie;
+import core.GameState;
 import core.Main;
 import core.RNG;
 import core.character;
@@ -58,8 +59,6 @@ public class CharacterWizard {
 	private StackLayout wizLayout;
 	private ManualCharacter manChar;
 	private static RNG randomgene;
-	private static final int WIDTH = 700;
-	private static final int HEIGHT = 500;
 	public int wizPageNum = -1;
 	public boolean cancel = false;
 	public boolean[] wizPageCreated = { false, false, false, false,
@@ -80,7 +79,7 @@ public class CharacterWizard {
 		display = d;
 		shell = new Shell(d);
 		shell.setText("Create New Character");
-		shell.setSize(WIDTH, HEIGHT);
+		shell.setSize(GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
@@ -129,7 +128,7 @@ public class CharacterWizard {
 		//////////////////// HOME PANEL SETUP ////////////////////////////
 
 		final Composite homePanel = new Composite(shell, SWT.NONE);
-		homePanel.setBounds(0, 0, WIDTH, HEIGHT);
+		homePanel.setBounds(0, 0, GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 		final StackLayout homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
 
@@ -221,7 +220,7 @@ public class CharacterWizard {
 		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
 
 		wizPanel = new Composite(homePanel, SWT.BORDER);
-		wizPanel.setBounds(0, 0, WIDTH, HEIGHT);
+		wizPanel.setBounds(0, 0, GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 		wizPanel.setBackground(new Color(dev, 255, 0, 0));
 		wizLayout = new StackLayout();
 		wizPanel.setLayout(wizLayout);
@@ -236,8 +235,8 @@ public class CharacterWizard {
 		
 		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL | SWT.BORDER);
 		manualWizard.setLayout(manualWizardLayout);
-		manualWizard.setBounds(0, 0, WIDTH, HEIGHT);
-		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
+		manualWizard.setBounds(0, 0, GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
+		wizPanel.setBounds(0, 0, GameState.DEFAULT_WIDTH, (int) (GameState.DEFAULT_HEIGHT * (.75)));
 		GridData manData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		manChar = new ManualCharacter(manualWizard);
 		Composite manPage = manChar.getManualCharacter();
@@ -253,7 +252,7 @@ public class CharacterWizard {
 //		ps_rp.setLayoutData(gridData);
 		
 //		Label csManual = new Label(manualWizard, SWT.BOLD);
-//		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
+//		csManual.setLocation(GameState.DEFAULT_WIDTH/2-50, GameState.DEFAULT_HEIGHT/2);
 //		csManual.setText("Coming Soon!");
 //		csManual.pack();
 		createCancelButton(manualWizard, home, homePanel, homeLayout);
@@ -270,7 +269,7 @@ public class CharacterWizard {
 		//randomLayout.topControl = randomPage1;
 		//randomPanel.layout();
 		//Label csRandom = new Label(randomPage1, SWT.BOLD);
-		//csRandom.setLocation(WIDTH/2-50, HEIGHT/2);
+		//csRandom.setLocation(GameState.DEFAULT_WIDTH/2-50, GameState.DEFAULT_HEIGHT/2);
 		//csRandom.setText("Coming Soon!");
 		//csRandom.pack();
 		//createCancelButton(randomPage1, home, homePanel, homeLayout);
@@ -282,7 +281,7 @@ public class CharacterWizard {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
 				instantiateWizPages();
-				Wiz1 wiz1 = new Wiz1(cw, dev, WIDTH, HEIGHT, wizPanel, home,
+				Wiz1 wiz1 = new Wiz1(cw, dev, GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT, wizPanel, home,
 						homePanel, wizLayout, homeLayout, wizPages);
 				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);
@@ -547,9 +546,9 @@ public class CharacterWizard {
 		//Armor is <empty>
 		//Notes will be <empty>
 		Shell newshell = new Shell(display);
-		newshell.setSize(WIDTH, HEIGHT);
+		newshell.setSize(GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 		ScrolledComposite sc = new ScrolledComposite(newshell, SWT.V_SCROLL);
-		sc.setBounds(0, 0, WIDTH - 20, HEIGHT - 50);
+		sc.setBounds(0, 0, GameState.DEFAULT_WIDTH - 20, GameState.DEFAULT_HEIGHT - 50);
 		sc.setExpandHorizontal(true);
 		sc.setExpandVertical(true);
 		
@@ -667,7 +666,7 @@ public class CharacterWizard {
 	public Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
-		nextButton.setBounds(WIDTH - 117, HEIGHT - 90, 100, 50);
+		nextButton.setBounds(GameState.DEFAULT_WIDTH - 117, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		return nextButton;
 	}
 
@@ -684,7 +683,7 @@ public class CharacterWizard {
 			final StackLayout layout) {
 		Button backButton = new Button(c, SWT.PUSH);
 		backButton.setText("Back");
-		backButton.setBounds(WIDTH - 220, HEIGHT - 90, 100, 50);
+		backButton.setBounds(GameState.DEFAULT_WIDTH - 220, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		backButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (wizPageNum > 0)
@@ -710,7 +709,7 @@ public class CharacterWizard {
 			final Composite panel, final StackLayout layout) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
-		cancelButton.setBounds(10, HEIGHT - 90, 100, 50);
+		cancelButton.setBounds(10, GameState.DEFAULT_HEIGHT - 90, 100, 50);
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				cancel = false;

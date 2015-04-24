@@ -89,8 +89,6 @@ public class SpellGUI {
         filename = args[0];
         getInfo();
 
-        new MenuBar(shell); //Add menu bar to windows like this
-
         FormLayout layout = new FormLayout();
         shell.setLayout(layout);
 
