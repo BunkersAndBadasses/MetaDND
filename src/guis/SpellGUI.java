@@ -82,11 +82,11 @@ public class SpellGUI {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String args) {
         // TODO Auto-generated method stub
         Display display = Display.getCurrent();
         Shell shell = new Shell(display);
-        filename = args[0];
+        filename = args;
         getInfo();
 
         new MenuBar(shell); //Add menu bar to windows like this
