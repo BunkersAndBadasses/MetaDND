@@ -640,6 +640,10 @@ public class HomeWindow {
 			loadButton.setText("Load Dungeon");
 			loadButton.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
+					if (dungeonList.getSelectionIndex() < 0) {
+						return;
+					}
+					
 					String dungeonToLoad = dungeonList.getSelection()[0];
 					String toSet = "file:///";
 					toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
