@@ -765,7 +765,7 @@ public class Wiz6 {
 			        }
 			    });
 				
-				String[] specials = feat.getFeat().getApplications();
+//				String[] specialsA = feat.getFeat().getApplications();
 
 				// label - select a feat special
 				Label selectFeatSpecial = new Label(featSpecialShell, SWT.WRAP);
@@ -777,49 +777,59 @@ public class Wiz6 {
 				
 				// drop down menu containing feat special options
 				CCombo specialsCombo = new CCombo(featSpecialShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-				for (int i = 0; i < specials.length; i++) {
-					switch (specials[i]) {
-					case ("weapons"): {
-						Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
-						Iterator<DNDEntity> itr = weaponsCol.iterator();
-						ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-						while (itr.hasNext()) {
-							weapons.add((WeaponEntity) itr.next());
-						}
-						for (int j = 0; j < weapons.size(); j++) {
-							specialsCombo.add(weapons.get(j).getName());
-						}
-						break;
-					}
-					case ("schools of magic"):
-						for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
-							specialsCombo.add(GameState.schoolsOfMagic[j]);
-						}
-						break;
-					case ("skills"): {
-						Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
-						Iterator<DNDEntity> itr = skillsCol.iterator();
-						ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
-						while (itr.hasNext()) {
-							skills.add((SkillEntity) itr.next());
-						}						
-						for (int j = 0; j < skills.size(); j++) {
-							specialsCombo.add(skills.get(i).getName());
-						}
-						break;
-					}
-					case ("selection of spells"): {
-						// TODO change this
-						feat.setSpecial("selection of spells");
-						return true;
-					}
-					default:
-						specialsCombo.add(specials[i]);
-					}
+//				for (int i = 0; i < specialsA.length; i++) {
+//					switch (specialsA[i]) {
+//					case ("weapons"): {
+//						Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
+//						Iterator<DNDEntity> itr = weaponsCol.iterator();
+//						ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+//						while (itr.hasNext()) {
+//							weapons.add((WeaponEntity) itr.next());
+//						}
+//						for (int j = 0; j < weapons.size(); j++) {
+//							specialsCombo.add(weapons.get(j).getName());
+//						}
+//						break;
+//					}
+//					case ("schools of magic"):
+//						for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
+//							specialsCombo.add(GameState.schoolsOfMagic[j]);
+//						}
+//						break;
+//					case ("skills"): {
+//						Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
+//						Iterator<DNDEntity> itr = skillsCol.iterator();
+//						ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+//						while (itr.hasNext()) {
+//							skills.add((SkillEntity) itr.next());
+//						}						
+//						for (int j = 0; j < skills.size(); j++) {
+//							specialsCombo.add(skills.get(i).getName());
+//						}
+//						break;
+//					}
+//					case ("selection of spells"): {
+//						// TODO change this
+//						feat.setSpecial("selection of spells");
+//						return true;
+//					}
+//					default:
+//						specialsCombo.add(specialsA[i]);
+//					}
+//				}
+				ArrayList<String> specials = getSpecials(feat.getFeat());
+				if (specials == null)
+					return true;
+				if (specials.size() == 1) {
+					feat.setSpecial(specials.get(0));
+					return true;
 				}
-				GridData specialssGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-				specialssGD.horizontalSpan = 2;
-				specialsCombo.setLayoutData(specialssGD);
+				for (int i = 0; i < specials.size(); i++) {
+					specialsCombo.add(specials.get(i));
+				}
+				GridData specialsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				specialsGD.horizontalSpan = 2;
+				specialsCombo.setLayoutData(specialsGD);
 				specialsCombo.addListener(SWT.MouseDown, new Listener() {
 					public void handleEvent(Event event) {
 						specialsCombo.setBackground(null);
@@ -858,6 +868,52 @@ public class Wiz6 {
 					}
 				}
 		return specialValid;
+	}
+	
+	public static ArrayList<String> getSpecials(FeatEntity feat) {
+		String[] specialsArray = feat.getApplications();
+		if (specialsArray == null)
+			return null;
+		ArrayList<String> specials = new ArrayList<String>();
+		for (int i = 0; i < specialsArray.length; i++) {
+			switch (specialsArray[i]) {
+			case ("weapons"): {
+				Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
+				Iterator<DNDEntity> itr = weaponsCol.iterator();
+				ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+				while (itr.hasNext()) {
+					weapons.add((WeaponEntity) itr.next());
+				}
+				for (int j = 0; j < weapons.size(); j++) {
+					specials.add(weapons.get(j).getName());
+				}
+				break;
+			}
+			case ("schools of magic"):
+				for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
+					specials.add(GameState.schoolsOfMagic[j]);
+				}
+				break;
+			case ("skills"): {
+				Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
+				Iterator<DNDEntity> itr = skillsCol.iterator();
+				ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+				while (itr.hasNext()) {
+					skills.add((SkillEntity) itr.next());
+				}						
+				for (int j = 0; j < skills.size(); j++) {
+					specials.add(skills.get(i).getName());
+				}
+				break;
+			}
+			case ("selection of spells"): {
+				specials.add("selection of spells");
+			}
+			default:
+				specials.add(specialsArray[i]);
+			}
+		}
+		return specials;
 	}
 	
 	private void updateCharFeatsList() {
