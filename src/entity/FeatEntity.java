@@ -29,6 +29,9 @@ public class FeatEntity extends DNDEntity{
 			case "NAME":
 				this.name = WordUtils.capitalize(value.toLowerCase());
 		    	break;
+			case "TYPE":
+				this.type = value;
+				break;
 			case "PREREQUISITES":
 				this.prerequisites = value.split(", ");
 				break;

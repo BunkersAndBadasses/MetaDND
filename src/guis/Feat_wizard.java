@@ -212,7 +212,8 @@ public class Feat_wizard
 				{
 					return;
 				}
-				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
+				a.put("NAME", nameInput.getText());
+				a.put("TYPE", typeInput.getText());
 				a.put("BENEFIT", benefitInput.getText());
 				if(!prereqInput.getText().equals(""))
 				{
