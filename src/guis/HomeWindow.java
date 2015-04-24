@@ -260,6 +260,7 @@ public class HomeWindow {
 				CharacterMain test = new CharacterMain(args, characterPanel);
 				charLayout.topControl = test.getMainWindow();
 				characterPanel.layout();
+				shell.setBounds((int)(display.getBounds().width * .05), (int)(display.getBounds().height * .05), (int)(display.getBounds().width * .9), (int)(display.getBounds().height * .8));
 			}
 
 			@Override

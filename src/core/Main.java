@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		gameState = new GameState();
-			
+		
 		Display display = new Display();
 		boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
 		//new Startscreen(display);
