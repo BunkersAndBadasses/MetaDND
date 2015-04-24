@@ -79,6 +79,8 @@ public class GameState {
 	public final static double[] carrySizeMod = { 0.125, 0.25, 0.5, 0.75, 1, 2,
 			4, 8, 16 };
 
+	public static String[] schoolsOfMagic = {"Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"};
+	
 	public SortedMap<String, String> languages;
 
 	public GameState() {

@@ -27,7 +27,7 @@ public class GridMapper {
 		}
 		
 		try {
-			this.writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.svg", "UTF-8");
+			this.writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "//generatedDungeon.svg", "UTF-8");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {

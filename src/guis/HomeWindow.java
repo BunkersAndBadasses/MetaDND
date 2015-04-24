@@ -259,9 +259,7 @@ public class HomeWindow {
 				String[] arg = {path};
 				shell.close();
 
-				//TODO 
-				//this crashes the program due to characters not having an 
-				// image file linked in their xml
+				
 				CharacterMain.main(arg);
 			}
 
@@ -402,10 +400,13 @@ public class HomeWindow {
 				rdg.GenerateDungeon();
 				rdg.printDungeon(true);
 
-				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", sizeOfSquare); 
+				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.bnb", sizeOfSquare); 
 				gm.generateSVG();
 
-				svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "\\generatedDungeon.svg");
+				String toSet = "file:///";
+				toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.svg";
+				svgCanvas.setURI(toSet);
+				//svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.svg");
 
 				GameState.PAGE_NUMBER = 2;
 				new MenuBarDungeon(shell, hw);
@@ -637,6 +638,10 @@ public class HomeWindow {
 			loadButton.setText("Load Dungeon");
 			loadButton.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
+					if (dungeonList.getSelectionIndex() < 0) {
+						return;
+					}
+					
 					String dungeonToLoad = dungeonList.getSelection()[0];
 					String toSet = "file:///";
 					toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//" + dungeonToLoad;
@@ -687,7 +692,7 @@ public class HomeWindow {
 					int choice = rng.GetRandomInteger(1, 4);
 					
 					if(choice == 1){//Generate Armor
-						int armor = rng.GetRandomInteger(0, armorNum - 1);
+						int armor = rng.GetRandomInteger(0, armorNum) - 1;
 						
 						Collection<DNDEntity> armorCol = Main.gameState.armor.values();
 						Iterator<DNDEntity> itr = armorCol.iterator();
@@ -698,7 +703,7 @@ public class HomeWindow {
 
 						armorArray.get(armor).toTooltipWindow();
 					}else if(choice == 2){// Generate Weapons
-						int weapon = rng.GetRandomInteger(0, weaponsNum - 1);
+						int weapon = rng.GetRandomInteger(0, weaponsNum) - 1;
 						
 						Collection<DNDEntity> weaponCol = Main.gameState.weapons.values();
 						Iterator<DNDEntity> itr = weaponCol.iterator();
@@ -709,7 +714,7 @@ public class HomeWindow {
 						
 						weaponArray.get(weapon).toTooltipWindow();
 					}else if(choice == 3){// Generate Item
-						int item = rng.GetRandomInteger(0, itemNum - 1);
+						int item = rng.GetRandomInteger(0, itemNum) - 1;
 						
 						Collection<DNDEntity> itemCol = Main.gameState.items.values();
 						Iterator<DNDEntity> itr = itemCol.iterator();
@@ -796,7 +801,7 @@ public class HomeWindow {
 					if (trapNum == 0) {
 						return;
 					}
-					int trap = rng.GetRandomInteger(0, trapNum - 1);
+					int trap = rng.GetRandomInteger(0, trapNum) - 1;
 					
 					Collection<DNDEntity> trapCol = Main.gameState.traps.values();
 					Iterator<DNDEntity> itr = trapCol.iterator();
@@ -822,7 +827,7 @@ public class HomeWindow {
 					if (monsterNum == 0) {
 						return;
 					}
-					int monster = rng.GetRandomInteger(0, monsterNum - 1);
+					int monster = rng.GetRandomInteger(0, monsterNum) - 1;
 					
 					Collection<DNDEntity> monsterCol = Main.gameState.monsters.values();
 					Iterator<DNDEntity> itr = monsterCol.iterator();

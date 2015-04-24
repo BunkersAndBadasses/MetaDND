@@ -492,7 +492,7 @@ public class DungeonGenerator {
 		PrintWriter writer;
 		if (writeToFile) {
 			try {
-				writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", "UTF-8");
+				writer = new PrintWriter(DungeonConstants.SAVEDDUNGEONSDIR + "//generatedDungeon.bnb", "UTF-8");
 				writer.println(toPrint);
 				writer.close();
 			} catch (FileNotFoundException e) {

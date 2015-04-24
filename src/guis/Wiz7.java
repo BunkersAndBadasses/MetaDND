@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 import entity.*;
+import core.CharFeat;
 import core.CharItem;
 import core.GameState;
 import core.Main;
@@ -53,6 +54,10 @@ public class Wiz7 {
 	private ArrayList<CharItem> charItems;
 	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
+	
+	private List charItemsList;
+	final ScrolledComposite charItemScroll;
+	final Composite charItemScreen;
 
 	public Wiz7(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
@@ -74,7 +79,9 @@ public class Wiz7 {
 		this.wizPagesSize = wizPages.size();
 		charRace = cw.getCharacter().getCharRace().getName();
 		charClass = cw.getCharacter().getCharClass().getName();
-
+		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
+		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
+		
 		createPageContent();
 	}
 
@@ -124,7 +131,6 @@ public class Wiz7 {
 		Iterator<DNDEntity> itr = itemsCol.iterator();
 		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
 		charItems = new ArrayList<CharItem>();
-		ArrayList<Integer> numCharItems = new ArrayList<Integer>();
 		while (itr.hasNext()) {
 			items.add((ItemEntity) itr.next());
 		}
@@ -146,12 +152,10 @@ public class Wiz7 {
 		// TODO scroll not working....
 		
 		// create scrollable list of selected items
-		final ScrolledComposite charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
 		charItemScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charItemScroll.setExpandHorizontal(true);
 	    charItemScroll.setExpandVertical(true);
 	    charItemScroll.setMinWidth(WIDTH);
-		final Composite charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		charItemScroll.setContent(charItemScreen);
 		charItemScreen.setSize(charItemScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		charItemScreen.setLayout(itemLayout);
@@ -181,7 +185,7 @@ public class Wiz7 {
 //		numCharItemsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 //		
 		// selected items list
-		List charItemsList = new List(charItemScreen, SWT.NONE);
+		charItemsList = new List(charItemScreen, SWT.NONE);
 		charItemsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = charItemsList.getSelectionIndex();
@@ -214,8 +218,7 @@ public class Wiz7 {
 						charItems.get(i).incCount();
 						if (charItems.get(i).getCount() > 100)
 							charItems.get(i).setCount(100);
-						numCharItems.set(i, charItems.get(i).getCount());
-						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
 						return;
 					}
 				}
@@ -223,7 +226,6 @@ public class Wiz7 {
 				CharItem c = new CharItem(items.get(index));
 				charItems.add(c);
 				charItemsList.add("1 x " + selection);
-				numCharItems.add(c.getCount());
 			
 				// refresh char items list
 				charItemsList.pack();
@@ -252,8 +254,7 @@ public class Wiz7 {
 						charItems.get(i).incCountBy(5);
 						if (charItems.get(i).getCount() > 100)
 							charItems.get(i).setCount(100);
-						numCharItems.set(i, charItems.get(i).getCount());
-						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
 						return;
 					}
 				}
@@ -261,7 +262,6 @@ public class Wiz7 {
 				CharItem c = new CharItem(items.get(index), 5);
 				charItems.add(c);
 				charItemsList.add("5 x " + selection);
-				numCharItems.add(c.getCount());
 			
 				// refresh char items list
 				charItemsList.pack();
@@ -290,8 +290,7 @@ public class Wiz7 {
 						charItems.get(i).incCountBy(10);
 						if (charItems.get(i).getCount() > 100)
 							charItems.get(i).setCount(100);
-						numCharItems.set(i, charItems.get(i).getCount());
-						charItemsList.setItem(i, Integer.toString(numCharItems.get(i)) + " x " + charItems.get(i).getName());
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
 						return;
 					}
 				}
@@ -299,7 +298,6 @@ public class Wiz7 {
 				CharItem c = new CharItem(items.get(index), 10);
 				charItems.add(c);
 				charItemsList.add("10 x " + selection);
-				numCharItems.add(c.getCount());
 			
 				// refresh char items list
 				charItemsList.pack();
@@ -324,13 +322,11 @@ public class Wiz7 {
 				if (index == -1)
 					return;
 				if (charItems.get(index).decCount()) {
-					numCharItems.set(index, charItems.get(index).getCount());
-					charItemsList.setItem(index, Integer.toString(numCharItems.get(index)) + " x " + charItems.get(index).getName());
+					charItemsList.setItem(index, Integer.toString(charItems.get(index).getCount()) + " x " + charItems.get(index).getName());
 				}
 				else {
 					charItemsList.remove(index);
 					charItems.remove(index);
-					numCharItems.remove(index);
 				}
 
 
@@ -356,7 +352,6 @@ public class Wiz7 {
 					return;
 				charItemsList.remove(index);
 				charItems.remove(index);
-				numCharItems.remove(index);
 
 				charItemScreen.pack();
 				charItemScroll.setMinHeight(charItemsList.getBounds().height);
@@ -413,5 +408,17 @@ public class Wiz7 {
 				homePanel, layout, homeLayout, wizPages));
 	}
 
+	private void updateCharItemList() {
+		charItemsList.removeAll();
+		for (int i = 0; i<charItems.size(); i++){
+			CharItem curr = charItems.get(i);
+			charItemsList.add(curr.getCount() + " x " + curr.getItem().getName());
+		}
+		charItemsList.pack();
+		charItemScroll.setMinHeight(charItemsList.getBounds().height);
+		charItemScreen.layout();
+		charItemScroll.layout();
+	}
+	
 	public Composite getWiz7() { return wiz7; }
 }

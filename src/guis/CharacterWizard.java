@@ -28,16 +28,14 @@ import entity.RaceEntity;
  * TODO: 
  * 
  * launch wizards (add custom)
- * fix scroll on feats/items pages
+ * fix scroll on items pages
  * monk - add wis to ac
  * barbarian illiteracy
- * add deity favored weapon
- * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
+ * speak language skill
+ * 
  * spells!
  * 
  * barbarian: rage per day
- * 
- * item page????
  * 
  * FINISH BEFORE WEEKEND
  * 
@@ -463,9 +461,16 @@ public class CharacterWizard {
 		for (int i = 0; i < autoFeats.length; i ++) {
 			if (autoFeats[i].indexOf('[') != -1) {
 				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]), special));
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special);
+				character.addFeat(feat);
+				System.out.println("adding " + feat.getFeat().getName() + " [" + feat.getSpecial() + "]");
 			} else {
-				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+				CharFeat feat = new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i]));
+				character.addFeat(feat);
+				System.out.println("feat to add: " + autoFeats[i]);
+				System.out.println("feat: " + feat.getFeat());
+				System.out.println("adding " + feat.getFeat().getName());
 			}
 		}
 		//Special Ability

@@ -17,7 +17,7 @@ public class FeatEntity extends DNDEntity{
 	String type;
 	boolean multiple = false;	// boolean for if a character is allowed to have multiple of that feat
 	boolean stack = false;		// boolean for if the feats effects stack (default false, true if multiple, false if there are applications)
-	String applications; 		// weapons, skills, schools of magic, selection of spells (or other)
+	String[] applications; 		// weapons, skills, schools of magic, selection of spells (or other)
 
 	public FeatEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.FEAT;
@@ -27,14 +27,12 @@ public class FeatEntity extends DNDEntity{
 			String value = entry.getValue();
 			switch(field){
 			case "NAME":
-				String temp = new String(value.split("\\[")[0].trim());
-				String typeTemp = value.split("\\[")[1].trim();				
-				typeTemp = typeTemp.substring(0, typeTemp.length() - 1).toLowerCase();
-				this.type = WordUtils.capitalize(typeTemp);
-				temp = WordUtils.capitalize(temp.toLowerCase());
-				temp = WordUtils.capitalize(temp, '(', '[');
-		    	this.name = temp;
+				String tempName = WordUtils.capitalize(value.toLowerCase());
+				this.name = WordUtils.capitalize(tempName, '(');
 		    	break;
+			case "TYPE":
+				this.type = value;
+				break;
 			case "PREREQUISITES":
 				this.prerequisites = value.split(", ");
 				break;
@@ -58,7 +56,7 @@ public class FeatEntity extends DNDEntity{
 				this.stack = true;
 				break;
 			case "APPLICATIONS":
-				this.applications = value;
+				this.applications = value.split(", ");
 				this.stack = false;
 				break;
 			default:
@@ -184,11 +182,11 @@ public class FeatEntity extends DNDEntity{
 		this.stack = stack;
 	}
 
-	public String getApplications() {
+	public String[] getApplications() {
 		return applications;
 	}
 
-	public void setApplications(String applications) {
+	public void setApplications(String[] applications) {
 		this.applications = applications;
 	}
 	
