@@ -1,12 +1,10 @@
 package guis;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -16,14 +14,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -31,9 +22,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Slider;
-import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -88,23 +76,20 @@ public class CharacterMain {
     private static File stocks;
     private static StackLayout mainWindowLayout;
     private static Display display;
-    private static Shell shell;
     private static Composite mainWindow;
     private static Composite mainComp;
-    private static GridLayout charLayout;
+	private static GridLayout charLayout;
     private static String bonus;
     private static String exp;
 
 
-    public static void main(String[] args) {
+    public CharacterMain(String[] args, Composite panel) {
         String pathName = args[0];
         getPlayerInfo(pathName);
 
         // TODO Auto-generated method stub
-        display = Display.getCurrent();
-        shell = new Shell(display);
-        shell.setLayout(new GridLayout(1, false));
-        mainWindow = new Composite(shell, SWT.NONE);
+
+        mainWindow = new Composite(panel, SWT.NONE);
         mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
         mainWindowLayout = new StackLayout();
         mainWindow.setLayout(mainWindowLayout);
@@ -114,7 +99,7 @@ public class CharacterMain {
         mainComp.setLayout(charLayout);
         
 
-        shell.setImage(new Image(display, "images/bnb_logo.gif"));
+        //panel.setImage(new Image(display, "images/bnb_logo.gif"));
 
         GridData imageGD = new GridData();
         imageGD.verticalSpan = 8;
@@ -487,7 +472,7 @@ public class CharacterMain {
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                SpellGUI.main(args);
+                SpellGUI.main(args[0]);
             }
         }); 
 
@@ -619,18 +604,23 @@ public class CharacterMain {
 
 
 
-        shell.open(); // Open the Window and process the clicks
-        while (!shell.isDisposed()) {
-            if (display.readAndDispatch()) {
-                display.sleep();
-            }
-        }
+        //shell.open(); // Open the Window and process the clicks
+//        while (!shell.isDisposed()) {
+//            if (display.readAndDispatch()) {
+//                display.sleep();
+//            }
+//        }
 
 
     }
 
 
-    private static void getPlayerInfo(String pathName) {
+    public Composite getMainWindow() {
+		return mainWindow;
+	}
+
+
+	private static void getPlayerInfo(String pathName) {
         // TODO Auto-generated method stub
         filename = pathName;
         try {
@@ -737,5 +727,9 @@ public class CharacterMain {
 
         return true;
     }
+    public Composite getMainComp() {
+		return mainComp;
+	}
+
 
 }

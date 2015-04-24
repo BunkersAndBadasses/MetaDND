@@ -47,17 +47,18 @@ public class HomeWindow {
 	private StackLayout m_mainWindowLayout;
 	private StackLayout charLayout;
 	private Composite m_mainWindow;
-	private Composite view;
 	private static List charList;
 	// the stack layout allows us to navigate from one view to another.
-	private final Composite mainWindow;
+	private Composite mainWindow;
 
 	private StackLayout mainWindowLayout = new StackLayout();
 
 	private final Composite homeScreen;
 	private final Composite dungeonMasterScreen;
 	private final Composite dungeonGenConfig;
-	private final Composite playerScreen;
+	private Composite characterPanel;
+	private Composite characterComp;
+	private Composite playerScreen;
 	private referencePanel playerScreenReferencePanel;
 	private referencePanel dungeonMasterScreenReferencePanel;
 	private final Composite dungeonMasterScreenComp;
@@ -208,17 +209,21 @@ public class HomeWindow {
 		///////////////////HOME SCREEN//////////////////////////
 
 		///////////////////PLAYER SCREEN//////////////////////////
-
-		Composite characterComp = new Composite(playerScreen, SWT.NONE);
+		
+		characterPanel = new Composite(playerScreen, SWT.NONE);
+		characterComp = new Composite(characterPanel, SWT.NONE);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 3;
-		characterComp.setLayoutData(gridData);
+		characterPanel.setLayoutData(gridData);
+		charLayout = new StackLayout();
+		characterPanel.setLayout(charLayout);
+		
+		charLayout.topControl = characterComp;
 
-		GridLayout characterCompLayout = new GridLayout(1, false);
+		GridLayout characterCompLayout = new GridLayout(1, true);
 		characterComp.setLayout(characterCompLayout);
-		GridData chargridData = new GridData(SWT.FILL, SWT.FILL, false, false);
-
-
+		
+		GridData chargridData = new GridData(SWT.FILL, SWT.BEGINNING, true , false);
 		Label playerLabel = new Label(characterComp, SWT.NONE);
 		playerLabel.setText("Characters:");
 		Font playerFont = Main.boldFont;
@@ -226,26 +231,21 @@ public class HomeWindow {
 		playerLabel.setLayoutData(chargridData);
 
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		view = new Composite(characterComp, SWT.NONE);
-		charLayout = new StackLayout();
-		view.setLayoutData(gridData);
-		view.setLayout(charLayout);
 
-		//TODO change this to stack layout? 
-		// How are we gonna open the character sheet?
-		charList = new List(view, SWT.V_SCROLL);
+		charList = new List(characterComp, SWT.V_SCROLL);
 		chargridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		chargridData.verticalSpan = 4;
 		charList.setLayoutData(chargridData);
 		charList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				//TODO populate the Character sheet 
 				String name = charList.getItem(charList.getSelectionIndex());
 				String path = filepaths.get(name);
-				String[] arg = {path};
-				shell.close();
-
-				
-				CharacterMain.main(arg);
+				String[] args = {path};			
+				CharacterMain test = new CharacterMain(args, characterPanel);
+				charLayout.topControl = test.getMainWindow();
+				characterPanel.layout();
+				shell.setBounds((int)(display.getBounds().width * .05), (int)(display.getBounds().height * .05), (int)(display.getBounds().width * .9), (int)(display.getBounds().height * .8));
 			}
 
 			@Override
@@ -253,9 +253,7 @@ public class HomeWindow {
 			public void widgetSelected(SelectionEvent e) {}
 		});
 
-		charLayout.topControl = charList;
-		view.layout();
-
+		
 		Button addChar = new Button(characterComp, SWT.PUSH);
 		addChar.setText("Add Character");
 		chargridData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
@@ -300,7 +298,9 @@ public class HomeWindow {
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		ps_rp.setLayoutData(gridData);
 
-
+		// set screens
+		characterComp.layout();
+		characterPanel.layout();
 		playerScreen.layout();
 
 
@@ -426,6 +426,8 @@ public class HomeWindow {
 		GameState.currentPage = GameState.PAGE.PlayerScreen;
 		this.shell.setSize(GameState.DEFAULT_WIDTH, GameState.DEFAULT_HEIGHT);
 		this.m_mainWindowLayout.topControl = this.playerScreen;
+		charLayout.topControl = characterComp;
+		characterPanel.layout();
 		this.m_mainWindow.layout();
 	}
 

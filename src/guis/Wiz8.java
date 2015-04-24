@@ -27,10 +27,13 @@ import java.util.ArrayList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
@@ -52,6 +55,13 @@ public class Wiz8{
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
+	
+	private List charWeaponsList;
+	private List charArmorList;
+	private List charShieldsList;
+	private List weaponsList;
+	private List armorList;
+	private List shieldsList;
 
 	public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
@@ -79,7 +89,136 @@ public class Wiz8{
 		Label wiz8Label = new Label(wiz8, SWT.NONE);
 		wiz8Label.setText("Choose Weapons and Armor");
 		wiz8Label.pack();
-
+		
+		GridLayout gl = new GridLayout(6, true);
+		
+		Composite inner = new Composite(wiz8, SWT.NONE);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+		
+		GridData gd;
+		
+		
+		// initialize layout
+		Label weaponsLabel = new Label(inner, SWT.NONE);
+		weaponsLabel.setText("Weapons");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weaponsLabel.setLayoutData(gd);
+		weaponsLabel.pack();
+		
+		Label armorLabel = new Label(inner, SWT.NONE);
+		armorLabel.setText("Armor");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		armorLabel.setLayoutData(gd);
+		armorLabel.pack();
+		
+		Label shieldsLabel = new Label(inner, SWT.NONE);
+		shieldsLabel.setText("Shield");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		shieldsLabel.setLayoutData(gd);
+		shieldsLabel.pack();
+		
+		charWeaponsList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd.horizontalSpan = 2;
+		charWeaponsList.setLayoutData(gd);
+		charWeaponsList.pack();
+		
+		charArmorList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd.horizontalSpan = 2;
+		charArmorList.setLayoutData(gd);
+		charArmorList.pack();
+		
+		charShieldsList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd.horizontalSpan = 2;
+		charShieldsList.setLayoutData(gd);
+		charShieldsList.pack();
+		
+		Button addWeapon = new Button(inner, SWT.PUSH);
+		addWeapon.setText("Add");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		addWeapon.setLayoutData(gd);
+		addWeapon.pack();
+		
+		Button removeWeapon = new Button(inner, SWT.PUSH);
+		removeWeapon.setText("Remove");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		removeWeapon.setLayoutData(gd);
+		removeWeapon.pack();
+		
+		Button addArmor = new Button(inner, SWT.PUSH);
+		addArmor.setText("Add");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		addArmor.setLayoutData(gd);
+		addArmor.pack();
+		
+		Button removeArmor = new Button(inner, SWT.PUSH);
+		removeArmor.setText("Remove");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		removeArmor.setLayoutData(gd);
+		removeArmor.pack();
+		
+		Button addShield = new Button(inner, SWT.PUSH);
+		addShield.setText("Add");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		addShield.setLayoutData(gd);
+		addShield.pack();
+		
+		Button removeShield = new Button(inner, SWT.PUSH);
+		removeShield.setText("Remove");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		removeShield.setLayoutData(gd);
+		removeShield.pack();
+		
+		Label weaponsListLabel = new Label(inner, SWT.NONE);
+		weaponsListLabel.setText("Weapons List");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weaponsListLabel.setLayoutData(gd);
+		weaponsListLabel.pack();
+		
+		Label armorListLabel = new Label(inner, SWT.NONE);
+		armorListLabel.setText("Armor List");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		armorListLabel.setLayoutData(gd);
+		armorListLabel.pack();
+		
+		Label shieldsListLabel = new Label(inner, SWT.NONE);
+		shieldsListLabel.setText("Shield List");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		shieldsListLabel.setLayoutData(gd);
+		shieldsListLabel.pack();
+		
+		weaponsList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		weaponsList.setLayoutData(gd);
+		weaponsList.pack();
+		
+		armorList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		armorList.setLayoutData(gd);
+		armorList.pack();
+		
+		shieldsList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		shieldsList.setLayoutData(gd);
+		shieldsList.pack();
+		
+		inner.layout();
+		// create content
+		
+		
+		// next button
 		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -91,8 +230,11 @@ public class Wiz8{
 				panel.layout();
 			}
 		});
-
+		
+		// back button
 		//Button wiz8BackButton = cw.createBackButton(wiz8, panel, layout);
+		
+		// cancel button
 		Button wiz8CancelButton = cw.createCancelButton(wiz8, home, homePanel, homeLayout);
 		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
