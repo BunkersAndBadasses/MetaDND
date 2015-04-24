@@ -148,7 +148,7 @@ public class MenuBarDungeon {
         notepadItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new Notepad();
             }
         });
 

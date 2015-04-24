@@ -25,6 +25,7 @@ DONE - Random character name box move to the top of the window
 Move buttons in random character and bigger text box
 
 The dungeon generator now freezes the application on Macs
+	Can i get some more description of this?
 
 null pointer when loading character from list - change logic in charmain from loading from xml to 
 	launching load character.
