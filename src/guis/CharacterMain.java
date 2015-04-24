@@ -12,10 +12,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -23,6 +25,7 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -35,6 +38,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import core.Main;
 
 
 public class CharacterMain {
@@ -81,6 +86,14 @@ public class CharacterMain {
     private static String delims = "[/]+";
     private static String pp, gp, sp, cp;
     private static File stocks;
+    private static StackLayout mainWindowLayout;
+    private static Display display;
+    private static Shell shell;
+    private static Composite mainWindow;
+    private static Composite mainComp;
+    private static GridLayout charLayout;
+    private static String bonus;
+    private static String exp;
 
 
     public static void main(String[] args) {
@@ -88,334 +101,312 @@ public class CharacterMain {
         getPlayerInfo(pathName);
 
         // TODO Auto-generated method stub
-        Display display = Display.getCurrent();
-        Shell shell = new Shell(display);
+        display = Display.getCurrent();
+        shell = new Shell(display);
+        shell.setLayout(new GridLayout(1, false));
+        new MenuBar(shell); //Add menu bar to windows like this
+        mainWindow = new Composite(shell, SWT.NONE);
+        mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
+        mainWindowLayout = new StackLayout();
+        mainWindow.setLayout(mainWindowLayout);
+        mainComp = new Composite(mainWindow, SWT.NONE);
+        charLayout = new GridLayout(5, true);
+        charLayout.makeColumnsEqualWidth = true;
+        mainComp.setLayout(charLayout);
+        
+
         shell.setImage(new Image(display, "images/bnb_logo.gif"));
 
-
-
-
-        new MenuBar(shell); //Add menu bar to windows like this
-
-        FormLayout layout = new FormLayout();
-        shell.setLayout(layout);
-
-        Label label = new Label(shell, SWT.NONE);
+        GridData imageGD = new GridData();
+        imageGD.verticalSpan = 8;
+        imageGD.grabExcessHorizontalSpace = true;
+        imageGD.grabExcessVerticalSpace = false;
+        imageGD.heightHint = 188;
+        imageGD.horizontalAlignment = SWT.CENTER;
+        imageGD.widthHint = 155;
+        Label img = new Label(mainComp, SWT.CENTER);
         if (imagePath.equals(" ")) {
             imagePath = "images/SetWidth150-blank-profile.jpg";
         }
-        Image image = new Image(display, imagePath);
-        label.setImage(image);
+        Image image = new Image(Display.getCurrent(), imagePath);
+        img.setImage(image);
+        img.setLayoutData(imageGD);
+        img.pack();
 
-        FormData imageData = new FormData(150,188);
+        GridData statGD = new GridData();
+        statGD.horizontalAlignment = SWT.CENTER;
+        statGD.grabExcessHorizontalSpace = true;
+        statGD.widthHint = 160;
+        statGD.heightHint = 17;
+        bonus = "";
+        if (strVal >= 10) {
+            bonus +="+";
+        }
+        Label strLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        strLabel.setText("STR: " + strVal + " (" + bonus + (strVal/2 - 5) + ")");
+        strLabel.setLayoutData(statGD);
 
-        imageData.left = new FormAttachment(10);
-        imageData.top = new FormAttachment(10);
-        label.setLayoutData(imageData);
+        bonus = "";
+        if (dexVal >= 10) {
+            bonus +="+";
+        }
+        Label dexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        dexLabel.setText("DEX: " + dexVal + " (" + bonus + (dexVal/2 - 5) + ")");
+        dexLabel.setLayoutData(statGD);
 
-        Label nameLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        nameLabel.setText(charName);
-        GC gc = new GC(nameLabel);
-        Point length = gc.textExtent("Name: " + charName);
-        FormData nameData = new FormData(/*length.x*/ 150,17);
-        nameData.left = new FormAttachment(label, 0, SWT.LEFT);
-        nameData.top = new FormAttachment(label, 10, SWT.BOTTOM);
-        nameLabel.setLayoutData(nameData);
-
-        Label initLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        initLabel.setText("Initiative: " + initVal);
-        FormData initData = new FormData(150,17);
-        initData.left = new FormAttachment(nameLabel, 0, SWT.LEFT);
-        initData.top = new FormAttachment(nameLabel, 10, SWT.BOTTOM);
-        initLabel.setLayoutData(initData);
-        // TODO
-
-        Label strLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        strLabel.setText("STR: " + strVal);
-        FormData strData = new FormData(120,17);
-        strData.left = new FormAttachment(label, 10, SWT.RIGHT);
-        strData.top = new FormAttachment(label, 0, SWT.TOP);
-        strLabel.setLayoutData(strData);
-
-        Label dexLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        dexLabel.setText("DEX: " + dexVal);
-        FormData dexData = new FormData(120,17);
-        dexData.left = new FormAttachment(strLabel, 0, SWT.LEFT);
-        dexData.top = new FormAttachment(strLabel, 10, SWT.BOTTOM);
-        dexLabel.setLayoutData(dexData);
-
-        Label conLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        conLabel.setText("CON: " + conVal);
-        FormData conData = new FormData(120,17);
-        conData.left = new FormAttachment(dexLabel, 0, SWT.LEFT);
-        conData.top = new FormAttachment(dexLabel, 10, SWT.BOTTOM);
-        conLabel.setLayoutData(conData);
-
-        Label intLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        intLabel.setText("INT: " + intVal);
-        FormData intData = new FormData(120,17);
-        intData.left = new FormAttachment(strLabel, 10, SWT.RIGHT);
-        intData.top = new FormAttachment(strLabel, 0, SWT.TOP);
-        intLabel.setLayoutData(intData);
-
-        Label wisLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        wisLabel.setText("WIS: " + wisVal);
-        FormData wisData = new FormData(120,17);
-        wisData.left = new FormAttachment(intLabel, 0, SWT.LEFT);
-        wisData.top = new FormAttachment(intLabel, 10, SWT.BOTTOM);
-        wisLabel.setLayoutData(wisData);
-
-        Label chaLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        chaLabel.setText("CHA: " + chaVal);
-        FormData chaData = new FormData(120,17);
-        chaData.left = new FormAttachment(wisLabel, 0, SWT.LEFT);
-        chaData.top = new FormAttachment(wisLabel, 10, SWT.BOTTOM);
-        chaLabel.setLayoutData(chaData);
-
-
-        Label classLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label classLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         classLabel.setText("Class: " + charClass);
-        FormData classData = new FormData(120,17);
-        classData.left = new FormAttachment(intLabel, 10, SWT.RIGHT);
-        classData.top = new FormAttachment(intLabel, 0, SWT.TOP);
-        classLabel.setLayoutData(classData);
+        classLabel.setLayoutData(statGD);
 
-        Label classSecLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        classSecLabel.setText("Class: " + charSecClass);
-        FormData classSecData = new FormData(120,17);
-        classSecData.left = new FormAttachment(classLabel, 0, SWT.LEFT);
-        classSecData.top = new FormAttachment(classLabel, 10, SWT.BOTTOM);
-        classSecLabel.setLayoutData(classSecData);
-
-        Label levelLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        levelLabel.setText("Level: " + charLevel + ", " + charSecLevel);
-        FormData levelData = new FormData(120,17);
-        levelData.left = new FormAttachment(classSecLabel, 0, SWT.LEFT);
-        levelData.top = new FormAttachment(classSecLabel, 10, SWT.BOTTOM);
-        levelLabel.setLayoutData(levelData);
-
-        Label hpLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label hpLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         hpLabel.setText("HP: " + hpVal);
-        FormData hpData = new FormData(120,17);
-        hpData.left = new FormAttachment(classLabel, 10, SWT.RIGHT);
-        hpData.top = new FormAttachment(classLabel, 0, SWT.TOP);
-        hpLabel.setLayoutData(hpData);
+        hpLabel.setLayoutData(statGD);
+        hpLabel.pack();
 
-        Label dmgLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        bonus = "";
+        if (conVal >= 10) {
+            bonus +="+";
+        }
+        Label conLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        conLabel.setText("CON: " + conVal + " (" + bonus + (conVal/2 - 5) + ")");
+        conLabel.setLayoutData(statGD);
+
+        bonus = "";
+        if (intVal >= 10) {
+            bonus +="+";
+        }
+        Label intLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        intLabel.setText("INT: " + intVal + " (" + bonus + (intVal/2 - 5) + ")");
+        intLabel.setLayoutData(statGD);
+
+        Label secClassLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        secClassLabel.setText("Sec Class: " + charSecClass);
+        secClassLabel.setLayoutData(statGD);
+
+        //Composite for damage
+        Composite dmgComp = new Composite(mainComp, SWT.NONE);
+        GridLayout dmgGrid = new GridLayout(2, true);
+        dmgComp.setLayout(dmgGrid);
+
+        GridData damageGD = new GridData();
+        damageGD.horizontalAlignment = SWT.CENTER;
+        damageGD.grabExcessHorizontalSpace = true;
+        damageGD.widthHint = 120;
+        damageGD.heightHint = 17;
+
+        Label dmgLabel = new Label(dmgComp, SWT.BORDER | SWT.CENTER);
         dmgLabel.setText("Damage: ");
-        FormData dmgData = new FormData(75,17);
-        dmgData.left = new FormAttachment(hpLabel, 0, SWT.LEFT);
-        dmgData.top = new FormAttachment(hpLabel, 10, SWT.BOTTOM);
-        dmgLabel.setLayoutData(dmgData);
+        dmgLabel.setLayoutData(damageGD);
 
-        StyledText dmgText = new StyledText(shell, SWT.BORDER | SWT.CENTER);
+        GridData dmgGD = new GridData();
+        dmgGD.horizontalAlignment = SWT.CENTER;
+        //dmgGD.grabExcessHorizontalSpace = true;
+        dmgGD.widthHint = 20;
+        dmgGD.heightHint = 17;
+
+        StyledText dmgText = new StyledText(dmgComp, SWT.BORDER | SWT.CENTER);
         dmgText.setText(""+ dmgTaken);
-        FormData dmgTextData = new FormData(27,14);
-        dmgTextData.left = new FormAttachment(dmgLabel, 5, SWT.RIGHT);
-        dmgTextData.top = new FormAttachment(dmgLabel, 0, SWT.TOP);
-        dmgText.setLayoutData(dmgTextData);
+        dmgText.setLayoutData(dmgGD);
 
-        Label speedLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        GridData dmgGD2 = new GridData();
+        dmgGD2.horizontalAlignment = SWT.CENTER;
+        dmgGD2.grabExcessHorizontalSpace = true;
+        dmgGD2.widthHint = 120;
+
+        dmgComp.setLayoutData(dmgGD2);
+        dmgComp.pack();
+
+        bonus = "";
+        if (wisVal >= 10) {
+            bonus +="+";
+        }
+        Label wisLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        wisLabel.setText("WIS: " + wisVal + " (" + bonus + (wisVal/2 - 5) + ")");
+        wisLabel.setLayoutData(statGD);
+
+        bonus = "";
+        if (chaVal >= 10) {
+            bonus +="+";
+        }
+        Label chaLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        chaLabel.setText("CHA: " + chaVal + " (" + bonus + (chaVal/2 - 5) + ")");
+        chaLabel.setLayoutData(statGD);
+
+        Label levelLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        levelLabel.setText("Level: " + charLevel + ", " + charSecLevel);
+        levelLabel.setLayoutData(statGD);
+
+        Label speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         speedLabel.setText("Speed: " + speedVal);
-        FormData speedData = new FormData(120,17);
-        speedData.left = new FormAttachment(dmgLabel, 0, SWT.LEFT);
-        speedData.top = new FormAttachment(dmgLabel, 10, SWT.BOTTOM);
-        speedLabel.setLayoutData(speedData);
+        speedLabel.setLayoutData(statGD);
 
-        Label armorLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        armorLabel.setText("Armor: " + armorName);
-        FormData armorData = new FormData(120,17);
-        armorData.left = new FormAttachment(label, 10, SWT.RIGHT);
-        armorData.top = new FormAttachment(label, 100, SWT.TOP);
-        armorLabel.setLayoutData(armorData);
+        Label a = new Label(mainComp, SWT.NONE);
+        a.setLayoutData(statGD);
+        a = new Label(mainComp, SWT.NONE);
+        a.setLayoutData(statGD);
+        a = new Label(mainComp, SWT.NONE);
+        a.setLayoutData(statGD);
+        a = new Label(mainComp, SWT.NONE);
+        a.setLayoutData(statGD);
 
-        Label acLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        // Armor, shields, and saving throws
+        Label armorLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        armorLabel.setText(armorName);
+        armorLabel.setLayoutData(statGD);
+
+        Label acLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         acLabel.setText("AC: " + acVal);
-        FormData acData = new FormData(120,17);
-        acData.left = new FormAttachment(armorLabel, 10, SWT.RIGHT);
-        acData.top = new FormAttachment(armorLabel, 0, SWT.TOP);
-        acLabel.setLayoutData(acData);
+        acLabel.setLayoutData(statGD);
 
-        Label ffLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label ffLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         ffLabel.setText("Flat Footed: " + ffVal);
-        FormData ffData = new FormData(120,17);
-        ffData.left = new FormAttachment(acLabel, 10, SWT.RIGHT);
-        ffData.top = new FormAttachment(acLabel, 0, SWT.TOP);
-        ffLabel.setLayoutData(ffData);
+        ffLabel.setLayoutData(statGD);
 
-        Label touchLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label touchLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         touchLabel.setText("Touch AC: " + touchVal);
-        FormData touchData = new FormData(120,17);
-        touchData.left = new FormAttachment(ffLabel, 10, SWT.RIGHT);
-        touchData.top = new FormAttachment(ffLabel, 0, SWT.TOP);
-        touchLabel.setLayoutData(touchData);
+        touchLabel.setLayoutData(statGD);
 
-        Label shieldLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        shieldLabel.setText("Shield: " + shieldName);
-        FormData shieldData = new FormData(120,17);
-        shieldData.left = new FormAttachment(armorLabel, 0, SWT.LEFT);
-        shieldData.top = new FormAttachment(armorLabel, 10, SWT.BOTTOM);
-        shieldLabel.setLayoutData(shieldData);
+        Label shieldLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        shieldLabel.setText(shieldName);
+        shieldLabel.setLayoutData(statGD);
 
-        Label reflexLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label reflexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         reflexLabel.setText("Reflex: " + refVal);
-        FormData reflexData = new FormData(120,17);
-        reflexData.left = new FormAttachment(shieldLabel, 10, SWT.RIGHT);
-        reflexData.top = new FormAttachment(shieldLabel, 0, SWT.TOP);
-        reflexLabel.setLayoutData(reflexData);
+        reflexLabel.setLayoutData(statGD);
 
-        Label fortLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label fortLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         fortLabel.setText("Fortitude: " + fortVal);
-        FormData fortData = new FormData(120,17);
-        fortData.left = new FormAttachment(reflexLabel, 10, SWT.RIGHT);
-        fortData.top = new FormAttachment(reflexLabel, 0, SWT.TOP);
-        fortLabel.setLayoutData(fortData);
+        fortLabel.setLayoutData(statGD);
 
-        Label willLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label willLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         willLabel.setText("Will: " + willVal);
-        FormData willData = new FormData(120,17);
-        willData.left = new FormAttachment(fortLabel, 10, SWT.RIGHT);
-        willData.top = new FormAttachment(fortLabel, 0, SWT.TOP);
-        willLabel.setLayoutData(willData);
+        willLabel.setLayoutData(statGD);
 
-        // Weapons box row
-        Label priLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+
+
+        /////////////// Weapons box row //////////////
+        Composite weap1Comp = new Composite(mainComp, SWT.NONE);
+        GridLayout weap1Grid = new GridLayout(6, true);
+        weap1Comp.setLayout(weap1Grid);
+        GridData weapCompGD = new GridData();
+        weapCompGD.horizontalSpan = 4;
+        weapCompGD.verticalSpan = 2;
+        weapCompGD.horizontalAlignment = SWT.CENTER;
+        weapCompGD.grabExcessHorizontalSpace = true;
+        weap1Comp.setLayoutData(weapCompGD );
+        
+        GridData weapGD = new GridData();
+        weapGD.horizontalAlignment = SWT.CENTER;
+        weapGD.grabExcessHorizontalSpace = true;
+        weapGD.widthHint = 200;
+        weapGD.heightHint = 17;
+        
+        Label priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priLabel.setText(priWeapon);
-        FormData priData = new FormData(100,17);
-        priData.left = new FormAttachment(shieldLabel, 0, SWT.LEFT);
-        priData.top = new FormAttachment(shieldLabel, 21, SWT.BOTTOM);
-        priLabel.setLayoutData(priData);
+        priLabel.setLayoutData(weapGD);
 
-        Label priBonusLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priBonusLabel.setText("Bonus: ");
-        FormData priBonusData = new FormData(70,17);
-        priBonusData.left = new FormAttachment(priLabel, 10, SWT.RIGHT);
-        priBonusData.top = new FormAttachment(priLabel, 0, SWT.TOP);
-        priBonusLabel.setLayoutData(priBonusData);
+        priBonusLabel.setLayoutData(weapGD);
 
-        Label priDamageLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priDamageLabel.setText("Damage: ");
-        FormData priDamageData = new FormData(70,17);
-        priDamageData.left = new FormAttachment(priBonusLabel, 10, SWT.RIGHT);
-        priDamageData.top = new FormAttachment(priBonusLabel, 0, SWT.TOP);
-        priDamageLabel.setLayoutData(priDamageData);
+        priDamageLabel.setLayoutData(weapGD);
 
-        Label priRangeLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priRangeLabel.setText("Range: ");
-        FormData priRangeData = new FormData(70,17);
-        priRangeData.left = new FormAttachment(priDamageLabel, 10, SWT.RIGHT);
-        priRangeData.top = new FormAttachment(priDamageLabel, 0, SWT.TOP);
-        priRangeLabel.setLayoutData(priRangeData);
+        priRangeLabel.setLayoutData(weapGD);
 
-        Label priCriticalLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        priCriticalLabel.setText("Ctrit: ");
-        FormData priCriticalData = new FormData(70,17);
-        priCriticalData.left = new FormAttachment(priRangeLabel, 10, SWT.RIGHT);
-        priCriticalData.top = new FormAttachment(priRangeLabel, 0, SWT.TOP);
-        priCriticalLabel.setLayoutData(priCriticalData);
+        Label priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
+        priCriticalLabel.setText("Crit: ");
+        priCriticalLabel.setLayoutData(weapGD);
 
-        Label priTypeLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priTypeLabel.setText("Type: ");
-        FormData priTypeData = new FormData(70,17);
-        priTypeData.left = new FormAttachment(priCriticalLabel, 10, SWT.RIGHT);
-        priTypeData.top = new FormAttachment(priCriticalLabel, 0, SWT.TOP);
-        priTypeLabel.setLayoutData(priTypeData);
+        priTypeLabel.setLayoutData(weapGD);
 
-        //Secondary weapon box
-        Label secLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        /////////////Secondary weapon box /////////
+        Label secLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secLabel.setText(secWeapon);
-        FormData secData = new FormData(100,17);
-        secData.left = new FormAttachment(priLabel, 0, SWT.LEFT);
-        secData.top = new FormAttachment(priLabel, 10, SWT.BOTTOM);
-        secLabel.setLayoutData(secData);
+        secLabel.setLayoutData(weapGD);
 
-        Label secBonusLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secBonusLabel.setText("Bonus: ");
-        FormData secBonusData = new FormData(70,17);
-        secBonusData.left = new FormAttachment(secLabel, 10, SWT.RIGHT);
-        secBonusData.top = new FormAttachment(secLabel, 0, SWT.TOP);
-        secBonusLabel.setLayoutData(secBonusData);
+        secBonusLabel.setLayoutData(weapGD);
 
-        Label secDamageLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secDamageLabel.setText("Damage: ");
-        FormData secDamageData = new FormData(70,17);
-        secDamageData.left = new FormAttachment(secBonusLabel, 10, SWT.RIGHT);
-        secDamageData.top = new FormAttachment(secBonusLabel, 0, SWT.TOP);
-        secDamageLabel.setLayoutData(secDamageData);
+        secDamageLabel.setLayoutData(weapGD);
 
-        Label secRangeLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secRangeLabel.setText("Range: ");
-        FormData secRangeData = new FormData(70,17);
-        secRangeData.left = new FormAttachment(secDamageLabel, 10, SWT.RIGHT);
-        secRangeData.top = new FormAttachment(secDamageLabel, 0, SWT.TOP);
-        secRangeLabel.setLayoutData(secRangeData);
+        secRangeLabel.setLayoutData(weapGD);
 
-        Label secCriticalLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secCriticalLabel.setText("Crit: ");
-        FormData secCriticalData = new FormData(70,17);
-        secCriticalData.left = new FormAttachment(secRangeLabel, 10, SWT.RIGHT);
-        secCriticalData.top = new FormAttachment(secRangeLabel, 0, SWT.TOP);
-        secCriticalLabel.setLayoutData(secCriticalData);
+        secCriticalLabel.setLayoutData(weapGD);
 
-        Label secTypeLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        Label secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secTypeLabel.setText("Type: ");
-        FormData secTypeData = new FormData(70,17);
-        secTypeData.left = new FormAttachment(secCriticalLabel, 10, SWT.RIGHT);
-        secTypeData.top = new FormAttachment(secCriticalLabel, 0, SWT.TOP);
-        secTypeLabel.setLayoutData(secTypeData);
-
-        //Selection combos for armor etc
-        Combo priCombo = new Combo(shell, SWT.CENTER);
+        secTypeLabel.setLayoutData(weapGD);
+        weap1Comp.pack();
+        
+        
+        Label nameLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        nameLabel.setText(charName);
+        nameLabel.setLayoutData(statGD);
+        
+        
+        
+        Combo priCombo = new Combo(mainComp, SWT.CENTER);
         priCombo.setItems(weapons);
         priCombo.add("Primary", 0);
         priCombo.add("None", 1);
         priCombo.select(0);
-        FormData priComboData = new FormData(75,5);
-        priComboData.left = new FormAttachment(secLabel, 0, SWT.LEFT);
-        priComboData.top = new FormAttachment(secLabel, 10, SWT.BOTTOM);
-        priCombo.setLayoutData(priComboData);
-
-        Combo secCombo = new Combo(shell, SWT.CENTER);
+        priCombo.setLayoutData(statGD);
+        
+        Combo secCombo = new Combo(mainComp, SWT.CENTER);
         secCombo.setItems(weapons);
         secCombo.add("Secondary", 0);
         secCombo.add("None", 1);
         secCombo.select(0);
-        FormData secComboData = new FormData(75,5);
-        secComboData.left = new FormAttachment(priCombo, 10, SWT.RIGHT);
-        secComboData.top = new FormAttachment(priCombo, 0, SWT.TOP);
-        secCombo.setLayoutData(secComboData);
+        secCombo.setLayoutData(statGD);
 
-        Combo armorCombo = new Combo(shell, SWT.CENTER);
+        Combo armorCombo = new Combo(mainComp, SWT.CENTER);
         armorCombo.setItems(armors);
         armorCombo.add("Armor", 0);
         armorCombo.add("None", 1);
         armorCombo.select(0);
-        FormData armorComboData = new FormData(75,5);
-        armorComboData.left = new FormAttachment(secCombo, 10, SWT.RIGHT);
-        armorComboData.top = new FormAttachment(secCombo, 0, SWT.TOP);
-        armorCombo.setLayoutData(armorComboData);
+        armorCombo.setLayoutData(statGD);
 
-        Combo shieldCombo = new Combo(shell, SWT.CENTER);
+        Combo shieldCombo = new Combo(mainComp, SWT.CENTER);
         shieldCombo.setItems(shields);
         shieldCombo.add("Shield", 0);
         shieldCombo.add("None", 1);
         shieldCombo.select(0);
-        FormData shieldComboData = new FormData(75,5);
-        shieldComboData.left = new FormAttachment(armorCombo, 10, SWT.RIGHT);
-        shieldComboData.top = new FormAttachment(armorCombo, 0, SWT.TOP);
-        shieldCombo.setLayoutData(shieldComboData);
-
-        Button change = new Button(shell, SWT.PUSH);
+        shieldCombo.setLayoutData(statGD);
+        
+        Label initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        initLabel.setText("Initiative: " + initVal);
+        initLabel.setLayoutData(statGD);
+        
+        
+        GridData buttonGD = new GridData();
+        buttonGD.horizontalAlignment = SWT.CENTER;
+        buttonGD.grabExcessHorizontalSpace = true;
+        buttonGD.widthHint = 160;
+        
+        new Label(mainComp, SWT.NONE);
+        new Label(mainComp, SWT.NONE);
+        new Label(mainComp, SWT.NONE);
+        
+        Button change = new Button(mainComp, SWT.PUSH);
         change.setText("Change");
-        FormData changeData = new FormData(64,24);
-        changeData.left = new FormAttachment(shieldCombo, 10, SWT.RIGHT);
-        changeData.top = new FormAttachment(shieldCombo, 0, SWT.TOP);
-        change.setLayoutData(changeData);
+        change.setLayoutData(buttonGD);
 
         change.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO reset table
                 if (shieldCombo.getSelectionIndex() == 0) {
 
                 } else if (shieldCombo.getSelectionIndex() == 1) {
@@ -454,65 +445,46 @@ public class CharacterMain {
                 }
                 priLabel.setText(priWeapon);
                 secLabel.setText(secWeapon);
-                armorLabel.setText("Armor: " + armorName);
-                shieldLabel.setText("Shield: " + shieldName);
+                armorLabel.setText(armorName);
+                shieldLabel.setText(shieldName);
             }
         }); 
-
-
-        Combo skillCombo = new Combo(shell, SWT.CENTER);
+        
+        Combo skillCombo = new Combo(mainComp, SWT.CENTER);
         skillCombo.setItems(skills);
         skillCombo.add("Skills", 0);
         skillCombo.select(0);
-        FormData skillComboData = new FormData(99,5);
-        skillComboData.left = new FormAttachment(initLabel, 0, SWT.LEFT);
-        skillComboData.top = new FormAttachment(initLabel, 20, SWT.BOTTOM);
-        skillCombo.setLayoutData(skillComboData);
+        skillCombo.setLayoutData(statGD);
 
-        Combo spellCombo = new Combo(shell, SWT.CENTER);
+        Combo spellCombo = new Combo(mainComp, SWT.CENTER);
         spellCombo.setItems(spells);
         spellCombo.add("Spells", 0);
         spellCombo.select(0);
-        FormData spellComboData = new FormData(100,5);
-        spellComboData.left = new FormAttachment(skillCombo, 10, SWT.RIGHT);
-        spellComboData.top = new FormAttachment(skillCombo, 0, SWT.TOP);
-        spellCombo.setLayoutData(spellComboData);
+        spellCombo.setLayoutData(statGD);
 
-        Combo featCombo = new Combo(shell, SWT.CENTER);
+        Combo featCombo = new Combo(mainComp, SWT.CENTER);
         featCombo.setItems(feats);
         featCombo.add("Feats", 0);
         featCombo.select(0);
-        FormData featComboData = new FormData(99,5);
-        featComboData.left = new FormAttachment(spellCombo, 10, SWT.RIGHT);
-        featComboData.top = new FormAttachment(spellCombo, 0, SWT.TOP);
-        featCombo.setLayoutData(featComboData);
+        featCombo.setLayoutData(statGD);
 
-        Combo languageCombo = new Combo(shell, SWT.CENTER);
+        Combo languageCombo = new Combo(mainComp, SWT.CENTER);
         languageCombo.setItems(languages);
         languageCombo.add("Languages", 0);
         languageCombo.select(0);
-        FormData languageComboData = new FormData(100,5);
-        languageComboData.left = new FormAttachment(featCombo, 10, SWT.RIGHT);
-        languageComboData.top = new FormAttachment(featCombo, 0, SWT.TOP);
-        languageCombo.setLayoutData(languageComboData);
+        languageCombo.setLayoutData(statGD);
 
-        Combo inventoryCombo = new Combo(shell, SWT.CENTER);
+        Combo inventoryCombo = new Combo(mainComp, SWT.CENTER);
         inventoryCombo.setItems(items);
         inventoryCombo.add("Inventory", 0);;
         inventoryCombo.select(0);
-        FormData inventoryComboData = new FormData(99,5);
-        inventoryComboData.left = new FormAttachment(languageCombo, 10, SWT.RIGHT);
-        inventoryComboData.top = new FormAttachment(languageCombo, 0, SWT.TOP);
-        inventoryCombo.setLayoutData(inventoryComboData);
-
-
-
-        Button spellButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+        inventoryCombo.setLayoutData(statGD);
+        
+        new Label(mainComp, SWT.NONE);
+        
+        Button spellButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         spellButt.setText("Spell Manager");
-        FormData spellButtData = new FormData(127,24);
-        spellButtData.left = new FormAttachment(spellCombo, 0, SWT.LEFT);
-        spellButtData.top = new FormAttachment(spellCombo, 10, SWT.BOTTOM);
-        spellButt.setLayoutData(spellButtData);
+        spellButt.setLayoutData(buttonGD);
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -520,25 +492,21 @@ public class CharacterMain {
             }
         }); 
 
-        Button featButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+        Button featButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         featButt.setText("Feat Wizard");
-        FormData featButtData = new FormData(127,24);
-        featButtData.left = new FormAttachment(featCombo, 0, SWT.LEFT);
-        featButtData.top = new FormAttachment(featCombo, 10, SWT.BOTTOM);
-        featButt.setLayoutData(featButtData);
+        featButt.setLayoutData(buttonGD);
         featButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 //TODO
             }
         }); 
+        
+        new Label(mainComp, SWT.NONE);
 
-        Button inventoryButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+        Button inventoryButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         inventoryButt.setText("Item Wizard");
-        FormData inventoryButtData = new FormData(127,24);
-        inventoryButtData.left = new FormAttachment(inventoryCombo, 0, SWT.LEFT);
-        inventoryButtData.top = new FormAttachment(inventoryCombo, 10, SWT.BOTTOM);
-        inventoryButt.setLayoutData(inventoryButtData);
+        inventoryButt.setLayoutData(buttonGD);
 
         inventoryButt.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -546,79 +514,83 @@ public class CharacterMain {
                 // TODO reset table
             }
         }); 
-
-        //Notes
-        StyledText notesText = new StyledText(shell, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+        
+        StyledText notesText = new StyledText(mainComp, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
         notesText.setText(notes);
-        FormData notesData = new FormData(650,100);
-        notesData.left = new FormAttachment(skillCombo, 0, SWT.LEFT);
-        notesData.top = new FormAttachment(skillCombo, 50, SWT.BOTTOM);
-        notesText.setLayoutData(notesData);
+        GridData notesGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+        notesGD.horizontalSpan = 5;
+        notesText.setLayoutData(notesGD);
+        
+      //Composite for damage
+        Composite currencyComp = new Composite(mainComp, SWT.NONE);
+        GridLayout currencyGrid = new GridLayout(10, true);
+        currencyComp.setLayout(currencyGrid);
 
-        //Money Tracker
-        Label ppLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
+        GridData currencyGD = new GridData();
+        currencyGD.horizontalAlignment = SWT.CENTER;
+        currencyGD.grabExcessHorizontalSpace = true;
+        currencyGD.widthHint = 140;
+        currencyGD.heightHint = 17;
+
+        GridData amountGD = new GridData();
+        amountGD.horizontalAlignment = SWT.CENTER;
+        amountGD.widthHint = 40;
+        amountGD.heightHint = 17;
+        
+      //Money Tracker
+        Label ppLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
         ppLabel.setText("PP");
-        FormData ppData = new FormData(30,17);
-        ppData.left = new FormAttachment(notesText, 0, SWT.LEFT);
-        ppData.top = new FormAttachment(notesText, 10, SWT.BOTTOM);
-        ppLabel.setLayoutData(ppData);
-        
-        StyledText ppText = new StyledText(shell, SWT.BORDER );
-        ppText.setText(pp);
-        FormData ppInputData = new FormData(30,14);
-        ppInputData.left = new FormAttachment(ppLabel, 10, SWT.RIGHT);
-        ppInputData.top = new FormAttachment(ppLabel, 0, SWT.TOP);
-        ppText.setLayoutData(ppInputData);
-        
-        Label gpLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        gpLabel.setText("GP");
-        FormData gpData = new FormData(30,17);
-        gpData.left = new FormAttachment(ppText, 10, SWT.RIGHT);
-        gpData.top = new FormAttachment(ppText, 0, SWT.TOP);
-        gpLabel.setLayoutData(gpData);
-        
-        StyledText gpText = new StyledText(shell, SWT.BORDER);
-        gpText.setText(gp);
-        FormData gpInputData = new FormData(30,14);
-        gpInputData.left = new FormAttachment(gpLabel, 10, SWT.RIGHT);
-        gpInputData.top = new FormAttachment(gpLabel, 0, SWT.TOP);
-        gpText.setLayoutData(gpInputData);
-        
-        Label spLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        spLabel.setText("SP");
-        FormData spData = new FormData(30,17);
-        spData.left = new FormAttachment(gpText, 10, SWT.RIGHT);
-        spData.top = new FormAttachment(gpText, 0, SWT.TOP);
-        spLabel.setLayoutData(spData);
-        
-        StyledText spText = new StyledText(shell, SWT.BORDER);
-        spText.setText(sp);
-        FormData spInputData = new FormData(30,14);
-        spInputData.left = new FormAttachment(spLabel, 10, SWT.RIGHT);
-        spInputData.top = new FormAttachment(spLabel, 0, SWT.TOP);
-        spText.setLayoutData(spInputData);
-        
-        Label cpLabel = new Label(shell, SWT.BORDER | SWT.CENTER);
-        cpLabel.setText("CP");
-        FormData cpData = new FormData(30,17);
-        cpData.left = new FormAttachment(spText, 10, SWT.RIGHT);
-        cpData.top = new FormAttachment(spText, 0, SWT.TOP);
-        cpLabel.setLayoutData(cpData);
-        
-        StyledText cpText = new StyledText(shell, SWT.BORDER);
-        cpText.setText(cp);
-        FormData cpInputData = new FormData(30,14);
-        cpInputData.left = new FormAttachment(cpLabel, 10, SWT.RIGHT);
-        cpInputData.top = new FormAttachment(cpLabel, 0, SWT.TOP);
-        cpText.setLayoutData(cpInputData);
+        ppLabel.setLayoutData(currencyGD);
 
-        //Save All Information
-        Button saveAllButt = new Button(shell, SWT.CENTER | SWT.PUSH);
+        StyledText ppText = new StyledText(currencyComp, SWT.BORDER );
+        ppText.setText(pp);
+        ppText.setLayoutData(amountGD);
+
+        Label gpLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
+        gpLabel.setText("GP");
+        gpLabel.setLayoutData(currencyGD);
+
+        StyledText gpText = new StyledText(currencyComp, SWT.BORDER);
+        gpText.setText(gp);
+        gpText.setLayoutData(amountGD);
+
+        Label spLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
+        spLabel.setText("SP");
+        spLabel.setLayoutData(currencyGD);
+
+        StyledText spText = new StyledText(currencyComp, SWT.BORDER);
+        spText.setText(sp);
+        spText.setLayoutData(amountGD);
+
+        Label cpLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
+        cpLabel.setText("CP");
+        cpLabel.setLayoutData(currencyGD);
+
+        StyledText cpText = new StyledText(currencyComp, SWT.BORDER);
+        cpText.setText(cp);
+        cpText.setLayoutData(amountGD);
+        
+        Label expLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
+        expLabel.setText("EXP");
+        expLabel.setLayoutData(currencyGD);
+
+        StyledText expText = new StyledText(currencyComp, SWT.BORDER);
+        expText.setText(exp);
+        expText.setLayoutData(amountGD);
+
+        GridData currencyCompGD = new GridData();
+        currencyCompGD.horizontalAlignment = SWT.CENTER;
+        currencyCompGD.grabExcessHorizontalSpace = true;
+        //currencyCompGD.widthHint = 120;
+        currencyCompGD.horizontalSpan = 4;
+
+        currencyComp.setLayoutData(currencyCompGD);
+        currencyComp.pack();
+        
+      //Save All Information
+        Button saveAllButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         saveAllButt.setText("Save All");
-        FormData saveAllData = new FormData(127,24);
-        saveAllData.right = new FormAttachment(notesText, 0, SWT.RIGHT);
-        saveAllData.top = new FormAttachment(notesText, 10, SWT.BOTTOM);
-        saveAllButt.setLayoutData(saveAllData);
+        saveAllButt.setLayoutData(buttonGD);
         saveAllButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -634,18 +606,17 @@ public class CharacterMain {
                 writeValue("GP", gpText.getText(), element);
                 writeValue("SP", spText.getText(), element);
                 writeValue("CP", cpText.getText(), element);
+                writeValue("XP", expText.getText(), element);
             }
         });
         
-        
-        
-        referencePanel rp = new referencePanel(shell);
-        Composite refPanel = rp.getRefPanel();
-        FormData refPanelData = new FormData(200,485);
-        refPanelData.left = new FormAttachment(hpLabel, 10, SWT.RIGHT);
-        refPanelData.top = new FormAttachment(hpLabel, -5, SWT.TOP);
-        refPanel.setLayoutData(refPanelData);
+        //new Label(mainComp, SWT.NONE);
+        mainComp.layout();
 
+        //new MenuBar(shell); //Add menu bar to windows like this
+        mainComp.pack();
+        mainWindowLayout.topControl = mainComp;
+        //mainWindow.layout();
 
 
 
@@ -701,6 +672,7 @@ public class CharacterMain {
                 gp = getValue("GP", element);
                 sp = getValue("SP", element);
                 cp = getValue("CP", element);
+                exp = getValue("XP", element);
 
                 String raw = getValue("Items", element);
                 items = raw.split(delims);
@@ -722,7 +694,7 @@ public class CharacterMain {
 
                 raw = getValue("Shields", element);
                 shields = raw.split(delims);
-                
+
                 raw = getValue("Feats", element);
                 feats = raw.split(delims);
 
@@ -738,7 +710,14 @@ public class CharacterMain {
     private static String getValue(String tag, Element element) {
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
+        String str;
+        try {
+            str = node.getNodeValue();
+        } catch (NullPointerException n) {
+            str = "0"; // TODO looky here
+        }
+
+        return str;
     }
 
     private static boolean writeValue(String tag, String value, Element element){
