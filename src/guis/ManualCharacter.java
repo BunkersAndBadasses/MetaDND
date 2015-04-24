@@ -31,6 +31,8 @@ public class ManualCharacter {
 		scrolled = scrolledPage;
 		createPageContent();
 	}
+	
+	public Composite getManualCharacter(){ return manual; }
 
 	private void createPageContent() {
 		

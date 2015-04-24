@@ -56,6 +56,7 @@ public class CharacterWizard {
 	private Display display;
 	private Shell shell;
 	private StackLayout wizLayout;
+	private ManualCharacter manChar;
 	private static RNG randomgene;
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
@@ -228,15 +229,34 @@ public class CharacterWizard {
 
 		// ///////////////// MANUAL PANEL SETUP ///////////////////////////
 
+		GridLayout manualWizardLayout = new GridLayout();
+		manualWizardLayout.makeColumnsEqualWidth = false;
+		manualWizardLayout.horizontalSpacing = 3;
+		manualWizardLayout.numColumns = 1;
+		
 		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL);
+		manualWizard.setLayout(manualWizardLayout);
+		manualWizard.setBounds(0, 0, WIDTH, HEIGHT);
 		wizPanel.setBounds(0, 0, WIDTH, (int) (HEIGHT * (.75)));
-		new ManualCharacter(manualWizard);
+		GridData manData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		manChar = new ManualCharacter(manualWizard);
+		Composite manPage = manChar.getManualCharacter();
+		manPage.setLayoutData(manData);
+		manPage.layout();
+		manualWizard.layout();
 //		
+//		// Call the seach panel composite
+//		playerScreenReferencePanel = new referencePanel(playerScreen);
+//		Composite ps_rp = playerScreenReferencePanel.getRefPanel();
+//		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+//		ps_rp.setLayoutData(gridData);
+		
 //		Label csManual = new Label(manualWizard, SWT.BOLD);
 //		csManual.setLocation(WIDTH/2-50, HEIGHT/2);
 //		csManual.setText("Coming Soon!");
 //		csManual.pack();
 		createCancelButton(manualWizard, home, homePanel, homeLayout);
+		
 
 
 		// ////////////////// RANDOM PANEL SETUP //////////////////////////
