@@ -156,8 +156,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			BREW POTION [ITEM CREATION]
+			BREW POTION
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 3
 		</PREREQUISITES>
@@ -245,8 +248,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			CRAFT MAGIC ARMS AND ARMOR [ITEM CREATION]
+			CRAFT MAGIC ARMS AND ARMOR
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 5
 		</PREREQUISITES>
@@ -261,8 +267,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			CRAFT ROD [ITEM CREATION]
+			CRAFT ROD
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 9
 		</PREREQUISITES>
@@ -275,8 +284,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			CRAFT STAFF [ITEM CREATION]
+			CRAFT STAFF
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 12
 		</PREREQUISITES>
@@ -291,8 +303,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			CRAFT WAND [ITEM CREATION]
+			CRAFT WAND
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 5
 		</PREREQUISITES>
@@ -305,8 +320,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			CRAFT WONDROUS ITEM [ITEM CREATION]
+			CRAFT WONDROUS ITEM
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 3
 		</PREREQUISITES>
@@ -559,8 +577,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			FORGE RING [ITEM CREATION]
+			FORGE RING
 		</NAME>
+		<TYPE>
+			Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 12
 		</PREREQUISITES>
@@ -1621,8 +1642,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			SCRIBE SCROLL [ITEM CREATION]
+			SCRIBE SCROLL
 		</NAME>
+		<TYPE>
+			 Item Creation
+		</TYPE>
 		<PREREQUISITES>
 			Caster level 1
 		</PREREQUISITES>
@@ -1775,8 +1799,11 @@
 	</FEAT>
 	<FEAT>
 		<NAME>
-			SPELL MASTERY [SPECIAL]
+			SPELL MASTERY
 		</NAME>
+		<TYPE>
+			Special
+		</TYPE>
 		<PREREQUISITES>
 			Wizard level 1
 		</PREREQUISITES>
