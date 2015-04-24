@@ -28,16 +28,15 @@ import entity.RaceEntity;
  * TODO: 
  * 
  * launch wizards (add custom)
- * fix scroll on feats/items pages
+ * fix scroll on items pages
  * monk - add wis to ac
  * barbarian illiteracy
+ * speak language skill
  * add deity favored weapon
- * add charFeat to save feats (adds description for feats that are applied to a single weapon/skill/spell)
+ * 
  * spells!
  * 
  * barbarian: rage per day
- * 
- * item page????
  * 
  * FINISH BEFORE WEEKEND
  * 

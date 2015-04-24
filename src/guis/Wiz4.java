@@ -2,6 +2,8 @@
  * ADD DESCRIPTION
  */
 
+//TODO alignment checking different
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -668,7 +670,7 @@ public class Wiz4 {
 
 				DeityEntity deitySelect;
 				if (deityListInput.getSelectionIndex() >= 1)
-					deitySelect = deities.get(deityListInput.getSelectionIndex());
+					deitySelect = deities.get(deityListInput.getSelectionIndex()-1);
 				else
 					deitySelect = null;
 
@@ -782,7 +784,7 @@ public class Wiz4 {
 				return true;
 			if (a1.equals("<empty>") || a2.equals("<empty>"))
 				return true;
-			String[] deityAlignment = deity.getAlignment().split("\\s");
+			String[] deityAlignment = deity.getAlignment().split(" ");
 			char d1 = Character.toLowerCase(deityAlignment[0].charAt(0));
 			char d2 = Character.toLowerCase(deityAlignment[1].charAt(0));
 			// if alignment is true neutral, set d1 and d2 to n (neutral)
@@ -997,6 +999,10 @@ public class Wiz4 {
 				}
 				if (error) 
 					return;
+				String d1 = domains1.getText();
+				String d2 = domains2.getText();
+				String[] domains = {d1, d2};
+				character.setClericDomains(domains);
 				finished = true;
 				clericShell.dispose();
 			}

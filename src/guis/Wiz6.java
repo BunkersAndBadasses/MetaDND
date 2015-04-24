@@ -33,6 +33,7 @@ import core.character;
 import core.Main;
 import entity.ClassEntity;
 import entity.DNDEntity;
+import entity.DeityEntity;
 import entity.FeatEntity;
 import entity.SkillEntity;
 import entity.WeaponEntity;
@@ -404,9 +405,37 @@ public class Wiz6 {
 			} else {
 				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
 			}
-			updateCharFeatsList();
 		}
-		numBonusFeats = autoFeats.length;
+		if (charClass.getName().equalsIgnoreCase("Cleric")) {
+			String[] domains = character.getClericDomains();
+			if (domains != null) {
+				boolean war = false;
+				for (int i = 0; i < domains.length; i++) {
+					if (domains[i].equalsIgnoreCase("War")) 
+						war = true;
+				}
+				if (war) {
+					String deityName = character.getDeity();
+					DeityEntity deity = (DeityEntity)Main.gameState.deities.get(deityName);
+					if (deity != null) {
+						String weaponName = deity.getFavoredweapon();
+						WeaponEntity weapon = (WeaponEntity)Main.gameState.weapons.get(weaponName);
+						if (weapon != null) {
+							String type = weapon.getType();
+							if (!type.equalsIgnoreCase("Simple")) {
+								FeatEntity weaponFeat = (FeatEntity)Main.gameState.feats.get(type + " Weapon Proficiency");
+								CharFeat weaponCharFeat = new CharFeat(weaponFeat, weaponName);
+								charFeats.add(weaponCharFeat);
+							}
+							CharFeat weaponFocus = new CharFeat((FeatEntity)Main.gameState.feats.get("Weapon Focus"), weaponName);
+							charFeats.add(weaponFocus);
+						}
+					}
+				}
+			}
+		}
+		updateCharFeatsList();
+		numBonusFeats = charFeats.size();
 		
 		// compile list of bonus feats (from which the user can choose one)
 		if (charClass.getName().toLowerCase().equals("fighter")){

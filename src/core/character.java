@@ -436,8 +436,9 @@ public class character {
 	public int getDamageReduction() { return damageReduction; }
 	
 	public void setClericDomains(String[] d) {
-		clericDomains[0] = d[0];
-		clericDomains[1] = d[1];
+		clericDomains = new String[d.length];
+		for (int i = 0; i < d.length; i++)
+			clericDomains[i] = d[i];
 	}
 	public String[] getClericDomains() { return clericDomains; }
 	
