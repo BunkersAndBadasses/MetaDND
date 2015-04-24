@@ -32,7 +32,7 @@ import entity.ItemEntity;
  * @author Innocentius Shellingford
  *
  */
-public class Item_wizard {
+public class ItemWizard {
 	private static Shell shell;
 	private static Display display;
 	private static final int WIDTH = 600;
@@ -47,7 +47,7 @@ public class Item_wizard {
 	private static int wizPageNum;
 	private static Device dev;
 	
-	public Item_wizard(Display d)
+	public ItemWizard(Display d)
 	{
 		if (GameState.isWizardOpen("Item")) {
 			return;

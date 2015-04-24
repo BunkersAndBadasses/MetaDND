@@ -25,14 +25,14 @@ import entity.AbilityEntity;
  * @author Innocentius
  *
  */
-public class Ability_wizard {
+public class AbilityWizard {
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
 	public static AbilityEntity newability;
 	static String abilityname;
 	static String abilityscript;
-	public Ability_wizard(Display d)
+	public AbilityWizard(Display d)
 	{
 		if (GameState.isWizardOpen("Ability")) {
 			return;
