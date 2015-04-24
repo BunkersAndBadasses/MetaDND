@@ -72,7 +72,7 @@ public class Wiz7 {
 		this.layout = layout;
 		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(8);
+		this.nextPage = wizPages.get(7);
 		this.wizPagesSize = wizPages.size();
 		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
 		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
@@ -92,7 +92,7 @@ public class Wiz7 {
 		
 		goldText = new Text(wiz7, SWT.BORDER);
 		goldText.setText("0");
-		goldText.setBounds(125, 45, 80, 30);
+		goldText.setBounds(135, 45, 80, 30);
 		goldText.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
 				Text text = (Text) event.widget;
@@ -103,7 +103,7 @@ public class Wiz7 {
 		
 		Button randomGold = new Button(wiz7, SWT.PUSH);
 		randomGold.setText("Random");
-		randomGold.setLocation(215, 45);
+		randomGold.setLocation(225, 45);
 		randomGold.pack();
 		randomGold.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -357,7 +357,7 @@ public class Wiz7 {
 				}
 				
 				if (cw.wizPageNum < wizPagesSize - 1)
-					cw.wizPageNum+=2;
+					cw.wizPageNum++;
 				if (!cw.wizPageCreated[8])
 					createNextPage();
 				layout.topControl = nextPage;
@@ -376,8 +376,8 @@ public class Wiz7 {
 	}
 
 	private void createNextPage() {
-		cw.wizPageCreated[8] = true;
-		cw.wizs.add(new Wiz9(cw, dev, WIDTH, HEIGHT, panel, home,
+		cw.wizPageCreated[7] = true;
+		cw.wizs.add(new Wiz8(cw, dev, WIDTH, HEIGHT, panel, home,
 				homePanel, layout, homeLayout, wizPages));
 	}
 

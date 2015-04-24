@@ -902,7 +902,7 @@ public class Wiz6 {
 					skills.add((SkillEntity) itr.next());
 				}						
 				for (int j = 0; j < skills.size(); j++) {
-					specials.add(skills.get(i).getName());
+					specials.add(skills.get(j).getName());
 				}
 				break;
 			}
