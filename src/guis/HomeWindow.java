@@ -22,7 +22,6 @@ import core.GridMapper;
 import core.Main;
 import core.RNG;
 import core.character;
-
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.RaceEntity;
@@ -41,7 +40,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HomeWindow {
-	private static String version = "Ver0.8.Alpha";
+	public final static String version = "Ver0.8.Alpha";
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 	private static Document doc;
@@ -690,7 +689,7 @@ public class HomeWindow {
 					int choice = rng.GetRandomInteger(1, 4);
 					
 					if(choice == 1){//Generate Armor
-						int armor = rng.GetRandomInteger(0, armorNum) - 1;
+						int armor = rng.GetRandomInteger(0, armorNum - 1);
 						
 						Collection<DNDEntity> armorCol = Main.gameState.armor.values();
 						Iterator<DNDEntity> itr = armorCol.iterator();
@@ -701,7 +700,7 @@ public class HomeWindow {
 
 						armorArray.get(armor).toTooltipWindow();
 					}else if(choice == 2){// Generate Weapons
-						int weapon = rng.GetRandomInteger(0, weaponsNum) - 1;
+						int weapon = rng.GetRandomInteger(0, weaponsNum - 1);
 						
 						Collection<DNDEntity> weaponCol = Main.gameState.weapons.values();
 						Iterator<DNDEntity> itr = weaponCol.iterator();
@@ -712,7 +711,7 @@ public class HomeWindow {
 						
 						weaponArray.get(weapon).toTooltipWindow();
 					}else if(choice == 3){// Generate Item
-						int item = rng.GetRandomInteger(0, itemNum) - 1;
+						int item = rng.GetRandomInteger(0, itemNum - 1);
 						
 						Collection<DNDEntity> itemCol = Main.gameState.items.values();
 						Iterator<DNDEntity> itr = itemCol.iterator();
@@ -799,7 +798,7 @@ public class HomeWindow {
 					if (trapNum == 0) {
 						return;
 					}
-					int trap = rng.GetRandomInteger(0, trapNum) - 1;
+					int trap = rng.GetRandomInteger(0, trapNum - 1);
 					
 					Collection<DNDEntity> trapCol = Main.gameState.traps.values();
 					Iterator<DNDEntity> itr = trapCol.iterator();
@@ -825,7 +824,7 @@ public class HomeWindow {
 					if (monsterNum == 0) {
 						return;
 					}
-					int monster = rng.GetRandomInteger(0, monsterNum) - 1;
+					int monster = rng.GetRandomInteger(0, monsterNum - 1);
 					
 					Collection<DNDEntity> monsterCol = Main.gameState.monsters.values();
 					Iterator<DNDEntity> itr = monsterCol.iterator();

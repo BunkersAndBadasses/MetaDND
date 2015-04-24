@@ -8,7 +8,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.*;
 
 public class Main {
-	
 	public static GameState gameState;
 	public static HomeWindow homeWindow;
 	public static Font boldFont; 
@@ -22,6 +21,10 @@ public class Main {
 		homeWindow = new HomeWindow(display);
 		
 		display.dispose();
+		Main.exitProgram();
+	}
+	
+	public static void exitProgram(){
 		Main.gameState.saveCustomContent();
 		System.out.println("Exiting");
 		System.exit(0);

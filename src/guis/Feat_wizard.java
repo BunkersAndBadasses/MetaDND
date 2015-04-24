@@ -203,6 +203,17 @@ public class Feat_wizard
 					typeInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
 					checkfault = true;
 				}
+				if(benefitInput.getText().equals(""))
+				{
+					benefitInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
+					checkfault = true;
+				}
+				if(checkfault)
+				{
+					return;
+				}
+				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
+				a.put("BENEFIT", benefitInput.getText());
 				if(!prereqInput.getText().equals(""))
 				{
 					a.put("PREREQUISITES", prereqInput.getText());
@@ -215,15 +226,7 @@ public class Feat_wizard
 				{
 					a.put("SPECIAL", specialInput.getText());
 				}
-				if(benefitInput.getText().equals(""))
-				{
-					benefitInput.setBackground(display.getSystemColor(SWT.COLOR_RED));
-					checkfault = true;
-				}
-				if(checkfault)
-				{
-					return;
-				}
+				
 				
 				if(FighterInput.getSelection())
 				{
@@ -231,8 +234,6 @@ public class Feat_wizard
 					a.put("FIGHTERBONUS", featfighter);
 				}
 				featname = nameInput.getText();
-				a.put("NAME", nameInput.getText() + "["+typeInput.getText()+"]");
-				a.put("BENEFIT", benefitInput.getText());
 				a.put("DESCRIPTION", descriptionInput.getText());
 				newfeat = new FeatEntity(a);
 				Main.gameState.abilities.put(featname, newfeat);

@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.FileDialog;
 
 import core.DungeonConstants;
+import core.Main;
 
 
 public class MenuBarDungeon {
@@ -118,7 +119,7 @@ public class MenuBarDungeon {
             @Override
             public void widgetSelected(SelectionEvent e) {
             	shell.getDisplay().dispose();
-                System.exit(0);
+                Main.exitProgram();
             }
         });
         

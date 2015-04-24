@@ -108,7 +108,7 @@ public class MenuBarHomeScreen {
             @Override
             public void widgetSelected(SelectionEvent e) {
             	shell.getDisplay().dispose();
-                System.exit(0);
+                Main.exitProgram();
             }
         });
         
@@ -137,7 +137,7 @@ public class MenuBarHomeScreen {
         notepadItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	//TODO
+            	new Notepad();
             }
         });
         

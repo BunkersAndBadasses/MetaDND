@@ -1,30 +1,17 @@
 package guis;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import core.DnDie;
@@ -45,6 +32,8 @@ public class DieWindow {
 	private static Text nameBox;
 	private static Text total;
 	private static Device dev;
+	public static boolean delete_activated;
+	public static boolean save_activated;
 	private static Label invalidOperation;
 	//private static Label badInputText;
 	//private static Label badSaveText;
@@ -52,12 +41,7 @@ public class DieWindow {
 	//private static Label badDeleteText;
 	private static Label badSaveFinal;
 	public static Combo favList;
-	private final int WIDTH = 230;
-	private final int HEIGHT = 500;
 	private int[] numDie = {0, 0, 0, 0, 0, 0, 0};
-	private static String modString = "0";
-
-
 	public DieWindow(Display d) {
 		display = d;
 		shell = new Shell(d);
@@ -65,7 +49,8 @@ public class DieWindow {
 		//shell.setSize(WIDTH, HEIGHT);
 		dieWin = new Composite(shell, SWT.NONE);
 		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
-
+		delete_activated = false;
+		save_activated = false;
 		createPageContent();
 		shell.pack();
 		run();
@@ -334,12 +319,16 @@ public class DieWindow {
 		save.setLayoutData(gridData);
 		save.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				if(save_activated)
+				{
+					return;
+				}
 				int modInt = 0;
 				boolean notUsed = true;
 				int custDie = 0;
 				int custDieCount = 0;
 				boolean dieRolled = false;
-
+				save_activated = true;
 				try{
 
 					invalidOperation.setVisible(false);
@@ -350,35 +339,35 @@ public class DieWindow {
 					if(modInt <= -100 || modInt >= 100){
 						invalidOperation.setText("Invalid modifier: -100 < mod < 100");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie < 0 || custDie > 1000 || custDie == 1){
 						invalidOperation.setText("Invalid Custom Die: 1 < Die <1000");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDieCount < 0 || custDieCount > 20){
 						invalidOperation.setText("Invalid Custom Cnt: 0< count< 21");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie != 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Custom #: select die count");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
 					if(custDie == 0 && custDieCount != 0){
 						invalidOperation.setText("Invalid Custom Die: select a die");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
@@ -390,7 +379,7 @@ public class DieWindow {
 					if(!dieRolled && modInt == 0 && custDie == 0 && custDieCount == 0){
 						invalidOperation.setText("Invalid Roll: must roll at least 1 die.");
 						invalidOperation.setVisible(true);
-
+						save_activated = false;
 						return;
 					}
 
@@ -400,7 +389,7 @@ public class DieWindow {
 					dieCountBox.setText("0");
 					invalidOperation.setText("Invalid Textbox Input: numbers only");
 					invalidOperation.setVisible(true);
-
+					save_activated = false;
 					return;
 				}
 
@@ -426,6 +415,7 @@ public class DieWindow {
 				}else if(notUsed){
 					invalidOperation.setText("Invalid Save: at least 1 die or mod.");
 					invalidOperation.setVisible(true);
+					save_activated = false;
 					return;
 				}
 
@@ -461,7 +451,7 @@ public class DieWindow {
 				cancel.setText("Cancel");
 				cancel.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						save_activated = false;
 						saveName.dispose();
 					}
 				});
@@ -471,9 +461,8 @@ public class DieWindow {
 				saveFinal.setText("Save");
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						save_activated = false;
 						badSaveFinal.setVisible(false);
-						boolean found = false;
 						Pattern p1 = Pattern.compile(".*\\W+.*");
 
 						if(nameBox.getText().equalsIgnoreCase("")){
@@ -692,18 +681,21 @@ public class DieWindow {
 		delete.setLayoutData(gridData);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-
+				if(delete_activated)
+				{
+					return;
+				}
 				String deleteMe = favList.getItem(favList.getSelectionIndex());
 
 				invalidOperation.setVisible(false);
-
+				delete_activated = true;
 				if(favList.getSelectionIndex() == 0){
 					invalidOperation.setText("Invalid Delete: must select a file.");
 					invalidOperation.setVisible(true);
-
+					delete_activated = false;
 					return;
 				}
-
+				
 				final Shell deleteFile = new Shell(display);
 				deleteFile.setText("Delete");
 				//deleteFile.setSize(250, 150);
@@ -719,7 +711,7 @@ public class DieWindow {
 				cancel.setText("Cancel");
 				cancel.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						delete_activated = false;
 						deleteFile.dispose();
 					}
 				});
@@ -729,7 +721,7 @@ public class DieWindow {
 				saveFinal.setText("Delete");
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						delete_activated = false;
 						DnDie.deleteFavDie(deleteMe);
 						favList.remove(deleteMe);
 						favList.select(0);
@@ -738,7 +730,6 @@ public class DieWindow {
 				});
 
 				deleteFile.pack();
-
 				deleteFile.open();
 				while (!deleteFile.isDisposed()) {
 					if (!display.readAndDispatch()) {

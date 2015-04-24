@@ -191,7 +191,14 @@ public class WeaponEntity extends DNDEntity{
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+	public String getWeight()
+	{
+		return weight;
+	}
+	public void setWeight(String a)
+	{
+		this.weight = a;
+	}
 	@Override
 	public String saveCustomContent() {
 		String output = "";

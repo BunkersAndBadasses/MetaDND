@@ -456,42 +456,18 @@ public class CharacterWizard {
 		Collection<DNDEntity> featcol = Main.gameState.feats.values();
 		//Random 1 feat
 		character.addFeat(new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]));
-		//Human gain "Feat for select"
-		if(character.getCharRace().getName().equalsIgnoreCase("Human"))
-		{
-			character.addFeat(new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]));
-		}
-		//Fighter get a "Fighter bonus feat"
-		if(character.getCharClass().getName().equalsIgnoreCase("Fighter"))
-		{
-			boolean a = false;
-			do
-			{
-				FeatEntity b = (FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)];
-				if(b.getFighterBonus() == null)
-				{
-					a = true;
-				}
-				else
-				{
-					a = false;
-					character.addFeat(new CharFeat(b));
-				}
-			} while(a == true);
-		}
-		//Wizard gain "Scribe Scroll"
-		if(character.getCharClass().getName().equalsIgnoreCase("Wizard"))
-		{
-			character.addFeat(new CharFeat((FeatEntity) Main.gameState.feats.get("Scribe Scroll")));
-		}
-		// TODO add other bonus feats: 
-		// monk: improved unarmed strike
-		// weapon/armor/shield proficiency
-		// can call checkPrerequisite in wiz 6
-		//Ranger gain "Track"
-		if(character.getCharClass().getName().equalsIgnoreCase("Ranger"))
-		{
-			character.addFeat(new CharFeat((FeatEntity) Main.gameState.feats.get("Track")));
+		//Bonus feat
+		
+		// add automatic feats (like armor/weapon proficiency)
+		String[] autoFeats = character.getCharClass().getBonusFeats();
+		for (int i = 0; i < autoFeats.length; i ++) {
+			if (autoFeats[i].indexOf('[') != -1) {
+				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
+			} else {
+				character.addFeat(new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+			}
 		}
 		//Special Ability
 		//TODO

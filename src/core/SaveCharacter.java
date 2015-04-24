@@ -183,9 +183,8 @@ public class SaveCharacter {
                 // featName:special;count
                 for(int i = 0; i < c.getFeats().size(); i++){
                     temp += c.getFeats().get(i).getFeat().getName();
-                    temp += ":";
                     if (c.getFeats().get(i).getSpecial() != null)
-                    	temp += c.getFeats().get(i).getSpecial(); 
+                    	temp += ":" + c.getFeats().get(i).getSpecial(); 
                     temp += ";" + c.getFeats().get(i).getCount() + "/";
                 }
                 appendValue("Feats", temp);
@@ -365,9 +364,8 @@ public class SaveCharacter {
                     // featName:special;count
                     for(int i = 0; i < c.getFeats().size(); i++){
                         temp += c.getFeats().get(i).getFeat().getName();
-                        temp += ":";
                         if (c.getFeats().get(i).getSpecial() != null)
-                        	temp += c.getFeats().get(i).getSpecial(); 
+                        	temp += ":" + c.getFeats().get(i).getSpecial(); 
                         temp += ";" + c.getFeats().get(i).getCount() + "/";
                     }
                     writeValue("Feats", temp);

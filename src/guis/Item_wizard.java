@@ -200,9 +200,9 @@ public class Item_wizard {
 				}
 				LinkedHashMap<String, String> a = new LinkedHashMap<String, String>();
 				a.put("NAME", nameInput.getText());
-				a.put("DESCRIPTION", descriptionInput.getText());
 				a.put("WEIGHT", weightInput.getText());
 				a.put("VALUE", valueInput.getText());
+				a.put("DESCRIPTION", descriptionInput.getText());
 				newitem = new ItemEntity(a);
 				Main.gameState.abilities.put(nameInput.getText(), newitem);
 				Main.gameState.customContent.put(nameInput.getText(), newitem);

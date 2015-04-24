@@ -18,6 +18,7 @@
 
 /*
  * TODO save armor/shield bonus to ac
+ * TODO here: add specific weapon proficiencies to xml
  */
 
 package guis;

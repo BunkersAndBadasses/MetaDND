@@ -97,7 +97,14 @@ public class DeityEntity extends DNDEntity{
 	public void setAlignment(String alignment) {
 		this.alignment = alignment;
 	}
-
+	public void setFavoredweapon(String weapon)
+	{
+		this.favoredWeapon = weapon;
+	}
+	public String getFavoredweapon()
+	{
+		return favoredWeapon;
+	}
 	@Override
 	public String saveCustomContent() {
 		String output = "";
