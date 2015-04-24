@@ -21,12 +21,16 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import core.DungeonConstants;
+import core.GameState;
 import core.Main;
 
 
@@ -81,9 +85,14 @@ public class CharacterMain {
 	private static GridLayout charLayout;
     private static String bonus;
     private static String exp;
+    private Shell m_shell;
+    private Image m_characterImage;
 
 
-    public CharacterMain(String[] args, Composite panel) {
+    public CharacterMain(String[] args, Composite panel, Shell shell) {
+    	
+    	m_shell = shell;
+    	
         String pathName = args[0];
         getPlayerInfo(pathName);
 
@@ -102,7 +111,7 @@ public class CharacterMain {
         //panel.setImage(new Image(display, "images/bnb_logo.gif"));
 
         GridData imageGD = new GridData();
-        imageGD.verticalSpan = 8;
+        imageGD.verticalSpan = 7;
         imageGD.grabExcessHorizontalSpace = true;
         imageGD.grabExcessVerticalSpace = false;
         imageGD.heightHint = 188;
@@ -112,8 +121,8 @@ public class CharacterMain {
         if (imagePath.equals(" ")) {
             imagePath = "images/SetWidth150-blank-profile.jpg";
         }
-        Image image = new Image(Display.getCurrent(), imagePath);
-        img.setImage(image);
+        m_characterImage = new Image(Display.getCurrent(), imagePath);
+        img.setImage(m_characterImage);
         img.setLayoutData(imageGD);
         img.pack();
 
@@ -335,6 +344,34 @@ public class CharacterMain {
         secTypeLabel.setLayoutData(weapGD);
         weap1Comp.pack();
         
+        
+        Button uploadButton = new Button(mainComp, SWT.PUSH);
+        uploadButton.setText("Upload Image");
+
+        GridData uploadGD = new GridData();
+        uploadGD.horizontalAlignment = SWT.CENTER;
+        uploadGD.grabExcessHorizontalSpace = true;
+        uploadButton.setLayoutData(uploadGD);
+        uploadButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            	FileDialog dialog = new FileDialog(m_shell, SWT.OPEN);
+            	dialog.setText("Open");
+            	dialog.setFilterPath(GameState.IMAGESFOLDER.toString());
+                String[] filterExt = { "*.png;*.jpg;*.gif"};
+                dialog.setFilterExtensions(filterExt);
+                String selected = dialog.open();
+                if (selected == null || selected.equals("")) {
+                	return;
+                }
+                m_characterImage = new Image(Display.getCurrent(), selected);
+				img.setImage(m_characterImage);
+				
+				File imageFile = new File(selected);
+				File copiedImageFile = new File(GameState.IMAGESFOLDER.toString());
+				
+            }
+        }); 
         
         Label nameLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         nameLabel.setText(charName);

@@ -239,10 +239,16 @@ public class HomeWindow {
 		charList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				//TODO populate the Character sheet 
-				String name = charList.getItem(charList.getSelectionIndex());
-				String path = filepaths.get(name);
+				
+				int charInd = charList.getSelectionIndex();
+				System.out.println(charList.getSize().x);
+				if (charInd < 0 || charInd > charList.getSize().x) {
+					return;
+				}
+				String charToLoad = charList.getSelection()[0];
+				String path = filepaths.get(charToLoad);
 				String[] args = {path};			
-				CharacterMain test = new CharacterMain(args, characterPanel);
+				CharacterMain test = new CharacterMain(args, characterPanel, shell);
 				charLayout.topControl = test.getMainWindow();
 				characterPanel.layout();
 				shell.setBounds((int)(display.getBounds().width * .05), (int)(display.getBounds().height * .05), (int)(display.getBounds().width * .9), (int)(display.getBounds().height * .8));
@@ -306,7 +312,7 @@ public class HomeWindow {
 
 		///////////////////PLAYER SCREEN//////////////////////////
 
-		///////////////////DUNGEON SCREEN//////////////////////////
+		///////////////////DUNGEON MASTERS SCREEN//////////////////////////
 
 		populateDungeonMasterScreen();
 
@@ -585,19 +591,16 @@ public class HomeWindow {
 			new Label(dungeonMasterScreenComp, SWT.NONE); 
 
 			
-			GridData listGD = new GridData();
-			listGD.grabExcessHorizontalSpace = true;
-			listGD.grabExcessVerticalSpace = true;
+			GridData listGD = new GridData(SWT.FILL, SWT.FILL, true, true);
 			listGD.widthHint = 400;
 			listGD.heightHint = 500;
 			dungeonList.setLayoutData(listGD);
 			
-			// placeholder labels to make it look gooder
-			new Label(dungeonMasterScreenComp, SWT.NONE);  
-			new Label(dungeonMasterScreenComp, SWT.NONE); 
-			new Label(dungeonMasterScreenComp, SWT.NONE);  
-			
 	
+		
+			
+			
+			
 			// load dungeon
 			Button loadButton = new Button(dungeonMasterScreenComp, SWT.PUSH);
 			loadButton.setText("Load Dungeon");
@@ -813,6 +816,7 @@ public class HomeWindow {
 		}
 		
 		dungeonList.removeAll();
+		
 		// populate the list
 		for (String s: DungeonConstants.SAVEDDUNGEONSDIR.list()) {
 			if (s.contains(".svg")) {

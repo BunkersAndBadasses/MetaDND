@@ -28,8 +28,8 @@ public class GameState {
 	public LinkedHashMap<String, DNDEntity> monsters;
 	public LinkedHashMap<String, DNDEntity> traps;
 	public LinkedHashMap<String, DNDEntity> deities;
-	public static final File USERDATAFOLDER = new File(
-			System.getProperty("user.dir") + "//" + "User Data");
+	public static File USERDATAFOLDER; 
+	public static File IMAGESFOLDER;
 
 	public static ArrayList<String> windowsOpen = new ArrayList<String>();
 
@@ -93,6 +93,10 @@ public class GameState {
 	public SortedMap<String, String> languages;
 
 	public GameState() {
+		
+		USERDATAFOLDER = new File(System.getProperty("user.dir") + "//User Data");
+		IMAGESFOLDER = new File(System.getProperty("user.dir") + "//..//Images");
+		
 		xmlLoader xmls = new xmlLoader("xmlLoadThread");
 		spells = new LinkedHashMap<String, DNDEntity>();
 		feats = new LinkedHashMap<String, DNDEntity>();
