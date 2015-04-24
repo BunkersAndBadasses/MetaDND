@@ -402,10 +402,13 @@ public class HomeWindow {
 				rdg.GenerateDungeon();
 				rdg.printDungeon(true);
 
-				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR + "\\generatedDungeon.bnb", sizeOfSquare); 
+				GridMapper gm = new GridMapper(DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.bnb", sizeOfSquare); 
 				gm.generateSVG();
 
-				svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "\\generatedDungeon.svg");
+				String toSet = "file:///";
+				toSet += DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.svg";
+				svgCanvas.setURI(toSet);
+				//svgCanvas.setURI("file:///" + DungeonConstants.SAVEDDUNGEONSDIR.toString() + "//generatedDungeon.svg");
 
 				GameState.PAGE_NUMBER = 2;
 				new MenuBarDungeon(shell, hw);
