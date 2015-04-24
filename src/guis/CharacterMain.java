@@ -96,16 +96,16 @@ public class CharacterMain {
     private static String exp;
 
 
-    public CharacterMain(String args, Shell shell) {
-        String pathName = args;
+    public CharacterMain(String[] args, Composite panel) {
+        String pathName = args[0];
         getPlayerInfo(pathName);
 
         // TODO Auto-generated method stub
         //display = Display.getCurrent();
         //shell = new Shell(display);
-        shell.setLayout(new GridLayout(1, false));
-        new MenuBar(shell); //Add menu bar to windows like this
-        mainWindow = new Composite(shell, SWT.NONE);
+        //shell.setLayout(new GridLayout(1, false));
+        //new MenuBar(shell); //Add menu bar to windows like this
+        mainWindow = new Composite(panel, SWT.NONE);
         mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
         mainWindowLayout = new StackLayout();
         mainWindow.setLayout(mainWindowLayout);
@@ -115,7 +115,7 @@ public class CharacterMain {
         mainComp.setLayout(charLayout);
         
 
-        shell.setImage(new Image(display, "images/bnb_logo.gif"));
+        //panel.setImage(new Image(display, "images/bnb_logo.gif"));
 
         GridData imageGD = new GridData();
         imageGD.verticalSpan = 8;
@@ -488,7 +488,7 @@ public class CharacterMain {
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                SpellGUI.main(args);
+                SpellGUI.main(args[0]);
             }
         }); 
 
