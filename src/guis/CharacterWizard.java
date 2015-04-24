@@ -32,7 +32,6 @@ import entity.RaceEntity;
  * monk - add wis to ac
  * barbarian illiteracy
  * speak language skill
- * add deity favored weapon
  * 
  * spells!
  * 

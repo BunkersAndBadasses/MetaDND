@@ -868,7 +868,7 @@ public class Wiz6 {
 	
 	private void updateCharFeatsList() {
 		charFeatsList.removeAll();
-		for (int i = 0; i<charFeats.size(); i++){
+		for (int i = 0; i < charFeats.size(); i++){
 			CharFeat curr = charFeats.get(i);
 			String temp = curr.getFeat().getName();
 			if (curr.getSpecial() != null)
