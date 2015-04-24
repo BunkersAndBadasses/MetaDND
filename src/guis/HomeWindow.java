@@ -22,7 +22,6 @@ import core.GridMapper;
 import core.Main;
 import core.RNG;
 import core.character;
-
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.RaceEntity;
@@ -41,7 +40,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HomeWindow {
-	private static String version = "Ver0.8.Alpha";
+	public final static String version = "Ver0.8.Alpha";
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 	private static Document doc;

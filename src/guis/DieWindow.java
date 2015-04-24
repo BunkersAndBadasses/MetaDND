@@ -32,6 +32,7 @@ public class DieWindow {
 	private static Text nameBox;
 	private static Text total;
 	private static Device dev;
+	public static boolean delete_activated;
 	private static Label invalidOperation;
 	//private static Label badInputText;
 	//private static Label badSaveText;
@@ -47,7 +48,7 @@ public class DieWindow {
 		//shell.setSize(WIDTH, HEIGHT);
 		dieWin = new Composite(shell, SWT.NONE);
 		//dieWin.setBounds(0, 0, WIDTH, HEIGHT);
-
+		delete_activated = false;
 		createPageContent();
 		shell.pack();
 		run();
@@ -673,18 +674,21 @@ public class DieWindow {
 		delete.setLayoutData(gridData);
 		delete.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-
+				if(delete_activated)
+				{
+					return;
+				}
 				String deleteMe = favList.getItem(favList.getSelectionIndex());
 
 				invalidOperation.setVisible(false);
-
+				delete_activated = true;
 				if(favList.getSelectionIndex() == 0){
 					invalidOperation.setText("Invalid Delete: must select a file.");
 					invalidOperation.setVisible(true);
-
+					delete_activated = false;
 					return;
 				}
-
+				
 				final Shell deleteFile = new Shell(display);
 				deleteFile.setText("Delete");
 				//deleteFile.setSize(250, 150);
@@ -700,7 +704,7 @@ public class DieWindow {
 				cancel.setText("Cancel");
 				cancel.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						delete_activated = false;
 						deleteFile.dispose();
 					}
 				});
@@ -710,7 +714,7 @@ public class DieWindow {
 				saveFinal.setText("Delete");
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-
+						delete_activated = false;
 						DnDie.deleteFavDie(deleteMe);
 						favList.remove(deleteMe);
 						favList.select(0);
@@ -719,7 +723,6 @@ public class DieWindow {
 				});
 
 				deleteFile.pack();
-
 				deleteFile.open();
 				while (!deleteFile.isDisposed()) {
 					if (!display.readAndDispatch()) {
