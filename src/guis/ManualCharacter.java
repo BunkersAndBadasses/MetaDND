@@ -10,6 +10,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -36,7 +37,48 @@ public class ManualCharacter {
 		layout.numColumns = 3;
 		manual.setLayout(layout);
 		
+		GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		Button saveChar = new Button(manual, SWT.PUSH);
+		saveChar.setText("Save");
+		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		saveChar.setLayoutData(gridData);
+		saveChar.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+				
+			}
+		});
+		saveChar.pack();
+		
+		Button cancel = new Button(manual, SWT.PUSH);
+		cancel.setText("Cancel");
+		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		cancel.setLayoutData(gridData);
+		cancel.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				
+				
+			}
+		});
+		cancel.pack();
+		
+		manual.setMinHeight(saveChar.getLocation().y + saveChar.getSize().y);
+		manual.layout();
 	}
 	
 }
