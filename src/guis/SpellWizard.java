@@ -26,7 +26,7 @@ import entity.SpellEntity;
  * @author Innocentius Shellingford
  *
  */
-public class Spell_wizard {
+public class SpellWizard {
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
@@ -48,7 +48,7 @@ public class Spell_wizard {
 	static String spellduration;
 	static String spelllevel;
 	static String spellresistance;
-	public Spell_wizard(Display d)
+	public SpellWizard(Display d)
 	{
 		if (GameState.isWizardOpen("Spell")) {
 			return;

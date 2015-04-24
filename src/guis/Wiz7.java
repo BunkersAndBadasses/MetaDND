@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 import entity.*;
-import core.CharFeat;
 import core.CharItem;
 import core.GameState;
 import core.Main;
@@ -49,8 +48,6 @@ public class Wiz7 {
 	private int wizPagesSize;
 	
 	private Text goldText;
-	private String charRace;
-	private String charClass;
 	private ArrayList<CharItem> charItems;
 	private final Random rng = new Random();
 	private GameState gs = Main.gameState;
@@ -77,8 +74,6 @@ public class Wiz7 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(8);
 		this.wizPagesSize = wizPages.size();
-		charRace = cw.getCharacter().getCharRace().getName();
-		charClass = cw.getCharacter().getCharClass().getName();
 		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
 		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		
@@ -148,8 +143,6 @@ public class Wiz7 {
 		itemScroll.setContent(itemListScreen);
 		itemListScreen.setSize(itemListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		itemListScreen.setLayout(itemLayout);
-		
-		// TODO scroll not working....
 		
 		// create scrollable list of selected items
 		charItemScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
@@ -228,10 +221,7 @@ public class Wiz7 {
 				charItemsList.add("1 x " + selection);
 			
 				// refresh char items list
-				charItemsList.pack();
-				charItemScroll.setMinHeight(charItemsList.getBounds().height);
-				charItemScreen.layout();
-				charItemScroll.layout();
+				updateCharItemsList();
 			}
 		});
 		
@@ -264,10 +254,7 @@ public class Wiz7 {
 				charItemsList.add("5 x " + selection);
 			
 				// refresh char items list
-				charItemsList.pack();
-				charItemScroll.setMinHeight(charItemsList.getBounds().height);
-				charItemScreen.layout();
-				charItemScroll.layout();
+				updateCharItemsList();
 			}
 		});
 		
@@ -300,10 +287,7 @@ public class Wiz7 {
 				charItemsList.add("10 x " + selection);
 			
 				// refresh char items list
-				charItemsList.pack();
-				charItemScroll.setMinHeight(charItemsList.getBounds().height);
-				charItemScreen.layout();
-				charItemScroll.layout();
+				updateCharItemsList();
 			}
 		});
 
@@ -328,13 +312,7 @@ public class Wiz7 {
 					charItemsList.remove(index);
 					charItems.remove(index);
 				}
-
-
-				charItemScreen.pack();
-				charItemScroll.setMinHeight(charItemsList.getBounds().height);
-				charItemScreen.layout();
-				charItemScroll.layout();
-				
+				updateCharItemsList();
 			}
 		});
 		
@@ -352,12 +330,7 @@ public class Wiz7 {
 					return;
 				charItemsList.remove(index);
 				charItems.remove(index);
-
-				charItemScreen.pack();
-				charItemScroll.setMinHeight(charItemsList.getBounds().height);
-				charItemScreen.layout();
-				charItemScroll.layout();
-				
+				updateCharItemsList();
 			}
 		});
 		
@@ -408,7 +381,7 @@ public class Wiz7 {
 				homePanel, layout, homeLayout, wizPages));
 	}
 
-	private void updateCharItemList() {
+	private void updateCharItemsList() {
 		charItemsList.removeAll();
 		for (int i = 0; i<charItems.size(); i++){
 			CharItem curr = charItems.get(i);

@@ -28,7 +28,7 @@ import entity.FeatEntity;
  * @author Innocentius Shellingford
  *
  */
-public class Feat_wizard 
+public class FeatWizard 
 {
 	private static Shell shell;
 	private static Display display;
@@ -45,7 +45,7 @@ public class Feat_wizard
 	static String featbenefit;
 	static String featfighter;
 	static String featscript;
-	public Feat_wizard(Display d)
+	public FeatWizard(Display d)
 	{
 		if (GameState.isWizardOpen("Feat")) {
 			return;

@@ -143,9 +143,7 @@ public class Wiz6 {
 		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		featListScreen.setLayout(featLayout);
 				
-		// TODO scroll not working, okay because for now, only 1-2 feats can be added anyways
 		// create scrollable list of selected feats
-
 		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
 	    charFeatScreenScroll.setExpandHorizontal(true);
 	    charFeatScreenScroll.setExpandVertical(true);
@@ -289,8 +287,6 @@ public class Wiz6 {
 
 
 				// otherwise, add the feat
-				// check if feat applies to a specific weapon/spell etc TODO
-				// pop-up if it does
 				charFeats.add(feat);
 				updateCharFeatsList();
 				numFeats--;
@@ -671,12 +667,10 @@ public class Wiz6 {
 			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
 
 			} else if (reqs[i].contains("with selected weapon")) {
-				// TODO fix this after adding charFeats
 				String featName = reqs[i].substring(0, reqs[i].indexOf("with") - 1);
 				// make sure the character has that feat
 				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
 				// if that feat is a valid feat, check it
-				ArrayList<CharFeat> foundFeats = new ArrayList<CharFeat>();
 				if (reqFeat != null) {
 					// check if user has already added the required feat
 					boolean found = false;

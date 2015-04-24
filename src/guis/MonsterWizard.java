@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public class Monster_wizard {
+public class MonsterWizard {
 	private static Shell shell;
 	private static Display display;
 	public static boolean cancel = false;
@@ -22,7 +22,7 @@ public class Monster_wizard {
 	private static final int HEIGHT = 400;//copy from character wizard, see for change
 	private static int wizpagenum;
 	private static ArrayList<Composite> wizPages;
-	public Monster_wizard(Display d)
+	public MonsterWizard(Display d)
 	{
 		
 		display = d;
