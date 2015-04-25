@@ -181,10 +181,10 @@ public class LoadCharacter {
                     //temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                 	String itemName = tempArr[i].substring(0, tempArr[i].indexOf(';'));
                 	ItemEntity item = (ItemEntity)Main.gameState.items.get(itemName);
-                	//TODO here
+                	//TODO here 
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp));
-                    ci.setCount(count);
+                    // TODO ^^ cannot do this, some items have digits in their names, use indexOf(';') instead
+                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp), count);
                     c.addItem(ci);
                 }
 
@@ -198,8 +198,8 @@ public class LoadCharacter {
                     temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(temp));
-                    we.setQuanitity(count);
-                    c.addWeapon(we);
+                    CharItem ci = new CharItem(we, count);
+                    c.addWeapon(ci);
                 }
 
                 temp = getValue("Armors", element);
@@ -208,9 +208,9 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
-                    ae.setQuanitity(count);
-                    c.addArmor(ae);
+                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp)); // some in armor list are weapons
+                    CharItem ci = new CharItem(ae,count);
+                    c.addArmor(ci);
                 }
 
                 temp = getValue("Skills", element);
@@ -221,6 +221,7 @@ public class LoadCharacter {
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
                     CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
                     cs.setRank(count);
+                    // TODO this needs to change. ability mod and misc mod need to be saved to char skill
                 }
 
                 temp = getValue("Shields", element);
@@ -229,9 +230,9 @@ public class LoadCharacter {
                 for(int i = 0; i < tempArr.length; i++){
                     temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
                     int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ArmorEntity ae = (ArmorEntity) (Main.gameState.armor.get(temp));
-                    ae.setQuanitity(count);
-                    c.addShield(ae);
+                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp));  // some in armor list are weapons
+                    CharItem ci = new CharItem(ae, count);
+                    c.addShield(ci);
                 }
 
                 temp = getValue("Feats", element);

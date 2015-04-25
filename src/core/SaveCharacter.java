@@ -157,14 +157,14 @@ public class SaveCharacter {
                 temp = "";
                 // weaponname;quantity
                 for(int i = 0; i < c.getWeapons().size(); i++){
-                    temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getQuantity() + "/";
+                    temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getCount() + "/";
 
                 }
                 appendValue("Weapons", temp); 
                 temp = "";
                 // armorname;quantity
                 for(int i = 0; i < c.getArmor().size(); i++){
-                    temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getQuantity() + "/";
+                    temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getCount() + "/";
                 }
                 appendValue("Armors", temp); 
                 temp = "";
@@ -176,7 +176,7 @@ public class SaveCharacter {
                 temp = "";
                 // shieldname;quantity
                 for(int i = 0; i < c.getShields().size(); i++){
-                    temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getQuantity() +  "/";
+                    temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getCount() +  "/";
                 }
                 appendValue("Shields", temp);
                 temp = "";
@@ -339,13 +339,13 @@ public class SaveCharacter {
                     temp = "";
                     // weaponname;quantity
                     for(int i = 0; i < c.getWeapons().size(); i++){
-                        temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getQuantity() + "/";
+                        temp += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getCount() + "/";
                     }
                     writeValue("Weapons", temp); 
                     temp = "";
                     // armorname;quantity
                     for(int i = 0; i < c.getArmor().size(); i++){
-                        temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getQuantity() + "/";
+                        temp += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getCount() + "/";
                     }
                     writeValue("Armors", temp); 
                     temp = "";
@@ -357,7 +357,7 @@ public class SaveCharacter {
                     temp = "";
                     // shieldname;quantity
                     for(int i = 0; i < c.getShields().size(); i++){
-                        temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getQuantity() +  "/";
+                        temp += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getCount() +  "/";
                     }
                     writeValue("Shields", temp);
                     temp = "";
