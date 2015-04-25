@@ -12903,29 +12903,19 @@
 		
 			The difficulty of the save depends on how well you know the subject and what sort of physical connection (if any) you have to that creature.
 		
-			Knowledge	Will Save Modifier
+			Knowledge									Will Save Modifier
 		
-			None1	+10
-		
+			None										+10
 			Secondhand (you have heard of the subject)	+5
+			Firsthand (you have met the subject)		+0
+			Familiar (you know the subject well)		–5
 		
-			Firsthand (you have met the subject)	+0
-		
-			Familiar (you know the subject well)	–5
-		
-			1 You must have some sort of connection to a creature you have no knowledge of.
-		</DESCRIPTION>
-	</SPELL>
-	<SPELL>
-		<NAME>
-			Connection	Will Save Modifier
-		</NAME>
-		<SCHOOL>
-			Likeness or picture	–2
-		</SCHOOL>
-		<DESCRIPTION>
-			Possession or garment	–4
-		
+			
+
+			Connection									Will Save Modifier
+
+			Likeness or picture							–2
+			Possession or garment						–4
 			Body part, lock of hair, bit of nail, etc.	–10
 		
 			Dispel evil cast on the subject while you are casting the spell dispels the nightmare and causes you to be stunned for 10 minutes per caster level of the dispel evil.
