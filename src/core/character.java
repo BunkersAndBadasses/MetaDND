@@ -1,6 +1,8 @@
 package core;
 import java.util.ArrayList;
 
+import org.eclipse.swt.SWT;
+
 import entity.*;
 
 public class character {	
@@ -44,8 +46,8 @@ public class character {
 	private ArrayList<CharItem> armor = new ArrayList<CharItem>();
 	private ArrayList<CharItem> shields = new ArrayList<CharItem>();
 	private String notes = "<empty>";
-	private ArmorEntity currArmor;//
-	private ArmorEntity currShield;//
+	private ItemEntity currArmor;//
+	private ItemEntity currShield;//
 	private WeaponEntity priWeapon;//
 	private WeaponEntity secWeapon;//
 	
@@ -79,6 +81,7 @@ public class character {
 	public void setName(String n) { name = n; }
 	
 	public void setLevel(int l) { level = l; }
+	public void incLevel() { level++; }
 	public int getLevel() { return level; }
 	
 	public void setSecLevel(int l) { secLevel = l; }
@@ -187,17 +190,17 @@ public class character {
 	public void setImage(String url){ imageUrl = url; }
 	public String getImage() { return imageUrl; }
 	
-	public void setPrimary(WeaponEntity pri){ priWeapon = pri; }
-    public WeaponEntity getPrimary() { return priWeapon; }
+	public void setPrimaryWeapon(WeaponEntity pri){ priWeapon = pri; }
+    public WeaponEntity getPrimaryWeapon() { return priWeapon; }
     
-    public void setSecondary(WeaponEntity sec){ secWeapon= sec; }
-    public WeaponEntity getSecondary() { return secWeapon; }
+    public void setSecondaryWeapon(WeaponEntity sec){ secWeapon= sec; }
+    public WeaponEntity getSecondaryWeapon() { return secWeapon; }
     
-    public void setShield(ArmorEntity shi){ currShield = shi; }
-    public ArmorEntity getShield() { return currShield; }
+    public void setCurrShield(ItemEntity shi){ currShield = shi; }
+    public ItemEntity getCurrShield() { return currShield; }
     
-    public void setCurrArmor(ArmorEntity arm){ currArmor = arm; }
-    public ArmorEntity getCurrArmor() { return currArmor; }
+    public void setCurrArmor(ItemEntity arm){ currArmor = arm; }
+    public ItemEntity getCurrArmor() { return currArmor; }
 	
 	public void setHitPoints(int hp) { this.hp = hp; resetDamage(); }
 	public int getHitPoints() { return hp; }
@@ -205,7 +208,7 @@ public class character {
 	public void setDamageTaken(int rhp) { dmg = rhp; }
 	public int getDamageTaken(){ return dmg; }
 
-	public void changeDamage(int adj) { dmg += adj; }
+	public void adjDamage(int adj) { dmg += adj; }
 	public void resetDamage() { dmg = 0; }
 	
 	public void setSkills(ArrayList<CharSkill> s) { skills = s; }
@@ -550,7 +553,7 @@ public class character {
 		s += "Gold: " + gp + "\n";
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < feats.size(); i++) {
 			s += "\t" + feats.get(i).getFeat().getName();
 			if (feats.get(i).getSpecial() != null)
@@ -561,39 +564,59 @@ public class character {
 		}
 		s += "Special Abilities: " + "\n";
 		if (specialAbilities.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < specialAbilities.size(); i++)
 			s += "\t" + specialAbilities.get(i).getName() + "\n";
 		s += "Spells: " + "\n";
 		if (spells.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < spells.size(); i++)
 			s += "\t" + spells.get(i).getName() + "\n";
 		s += "Prepared Spells: " + "\n";
 		if (prepSpells.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < prepSpells.size(); i++)
 			s += "\t" + prepSpells.get(i).getName() + "\n";
 		s += "Items: " + "\n";
 		if (items.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < items.size(); i++)
 			s += "\t" + items.get(i).getCount() + " x " + items.get(i).getItem().getName() + "\n";
 		s += "Weapons: " + "\n";
 		if (weapons.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < weapons.size(); i++)
 			s += "\t" + weapons.get(i).getCount() + " x " + weapons.get(i).getItem().getName() + "\n";
+		s += "Primary Weapon: ";
+		if (priWeapon == null)
+			s += "<empty>\n";
+		else 
+			s += priWeapon.getName() + "\n";
+		s += "Secondary Weapon: ";
+		if (secWeapon == null)
+			s += "<empty>\n";
+		else 
+			s += secWeapon.getName() + "\n";
 		s += "Armor: " + "\n";
 		if (armor.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < armor.size(); i++)
 			s += "\t" + armor.get(i).getCount() + " x " + armor.get(i).getItem().getName() + "\n";
+		s += "Current Armor: ";
+		if (currArmor == null)
+			s += "<empty>\n";
+		else 
+			s += currArmor.getName() + "\n";
 		s += "Shields: " + "\n";
 		if (shields.size() == 0)
-			s += "<empty>\n";
+			s += "\t<empty>\n";
 		for (int i = 0; i < shields.size(); i++)
 			s += "\t" + shields.get(i).getCount() + " x " + shields.get(i).getItem().getName() + "\n";
+		s += "Current Shield: ";
+		if (currShield == null)
+			s += "<empty>\n";
+		else 
+			s += currShield.getName() + "\n";
 		s += "Notes: " + notes + "\n";
 		return s; 
 	}

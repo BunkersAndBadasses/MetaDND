@@ -159,14 +159,14 @@ public class LoadCharacter {
                 c.setSpeed(Integer.parseInt(getValue("Speed", element)));
 
                 temp = getValue("PrimaryWeapon", element);
-                c.setPrimary((WeaponEntity) Main.gameState.weapons.get(temp));
+                c.setPrimaryWeapon((WeaponEntity) Main.gameState.weapons.get(temp));
                 temp =  getValue("SecondaryWeapon", element);
-                c.setSecondary((WeaponEntity) Main.gameState.weapons.get(temp));
+                c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(temp));
 
                 temp = getValue("Armor", element);
                 c.setCurrArmor((ArmorEntity) Main.gameState.armor.get(temp));
                 temp  = getValue("Shield", element);
-                c.setShield((ArmorEntity) Main.gameState.armor.get(temp));
+                c.setCurrShield((ArmorEntity) Main.gameState.armor.get(temp));
                 c.setNotes(getValue("Notes", element));
                 c.setDamageTaken(Integer.parseInt(getValue("DamageTaken", element)));
                 c.setPP(Integer.parseInt(getValue("PP", element)));

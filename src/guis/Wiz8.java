@@ -18,7 +18,6 @@
 
 /*
  * TODO save armor/shield bonus to ac
- * TODO here: add specific weapon proficiencies to xml
  */
 
 package guis;
@@ -34,11 +33,14 @@ import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 
 import entity.*;
 import core.CharItem;
@@ -61,6 +63,8 @@ public class Wiz8{
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
+	
+	private boolean good = false;
 	
 	private List charWeaponsList;
 	private List charArmorList;
@@ -386,17 +390,16 @@ public class Wiz8{
 				updateCharShieldsList();
 			}
 		 });
-		
-		
-		
-		
-		
-		
+		 
 		
 		// next button
 		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// launch pop-up (if user clicks cancel, do not continue)
+				if (!setPrimary())
+					return;
+				
 				// save weapons
 				character.setWeapons(charWeapons);
 				// save armor
@@ -413,8 +416,10 @@ public class Wiz8{
 			}
 		});
 		
+		
 		// back button
 		//Button wiz8BackButton = cw.createBackButton(wiz8, panel, layout);
+		
 		
 		// cancel button
 		Button wiz8CancelButton = cw.createCancelButton(wiz8, home, homePanel, homeLayout);
@@ -424,6 +429,213 @@ public class Wiz8{
 					cw.reset();
 			}
 		});
+	}
+
+	private boolean setPrimary() {
+		// pop up window in which the user chooses their primary weapon, armor, and shield
+		good = false;
+		// create shell
+		Display display = wiz8.getDisplay();
+		final Shell primaryShell = new Shell(display);
+		primaryShell.setText("Set Primary");
+		GridLayout gridLayout = new GridLayout(2, true);
+		primaryShell.setLayout(gridLayout);
+		primaryShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				good = false;
+			}
+		});
+
+		GridData gd;
+		
+		if (charWeapons.size() == 0 && charArmor.size() == 0 && charShields.size() == 0)
+			return true;
+
+		if (charWeapons.size() > 0) {
+
+			Label primaryWeapon = new Label(primaryShell, SWT.NONE);
+			primaryWeapon.setText("Select Primary Weapon");
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryWeapon.setLayoutData(gd);
+			primaryWeapon.pack();
+
+			Combo primaryWeaponList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			for (int i = 0; i < charWeapons.size(); i++ ) {
+				primaryWeaponList.add(charWeapons.get(i).getName());
+			}
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryWeaponList.setLayoutData(gd);
+			primaryWeaponList.pack();
+
+			primaryWeaponList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					int index = primaryWeaponList.getSelectionIndex();
+					String weapon = primaryWeaponList.getItem(index);
+					if (index == -1)
+						return;
+					WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(weapon);
+					character.setPrimaryWeapon(temp);
+				}
+			});
+			
+			if (charWeapons.size() == 1) {
+				primaryWeaponList.select(0);
+			}
+			
+			if (charWeapons.size() > 1) {
+				
+				Label secondaryWeapon = new Label(primaryShell, SWT.NONE);
+				secondaryWeapon.setText("Select Secondary Weapon");
+				gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				gd.horizontalSpan = 2;
+				secondaryWeapon.setLayoutData(gd);
+				secondaryWeapon.pack();
+
+				Combo secondaryWeaponList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+				gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+				gd.horizontalSpan = 2;
+				secondaryWeaponList.setLayoutData(gd);
+				secondaryWeaponList.setEnabled(false);
+				
+				secondaryWeaponList.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event e) {
+						int index = secondaryWeaponList.getSelectionIndex();
+						String weapon = secondaryWeaponList.getItem(index);
+						if (index == -1)
+							return;
+						WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(weapon);
+						character.setSecondaryWeapon(temp);
+					}
+				});
+				
+				primaryWeaponList.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event e) {
+						int index = primaryWeaponList.getSelectionIndex();
+						secondaryWeaponList.removeAll();
+						for (int i = 0; i < charWeapons.size(); i++ ) {
+							if (!charWeapons.get(i).getName().equals(primaryWeaponList.getItem(index)))
+								secondaryWeaponList.add(charWeapons.get(i).getName());
+						}
+						if (secondaryWeaponList.getItemCount() == 1)
+							secondaryWeaponList.select(0);
+						secondaryWeaponList.setEnabled(true);
+						secondaryWeaponList.pack();
+						primaryShell.layout();
+					}
+				});
+				
+			}
+		}
+		
+		if (charArmor.size() > 0) {
+			Label primaryArmor = new Label(primaryShell, SWT.NONE);
+			primaryArmor.setText("Select Primary Armor");
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryArmor.setLayoutData(gd);
+			primaryArmor.pack();
+
+			Combo primaryArmorList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			for (int i = 0; i < charArmor.size(); i++ ) {
+				primaryArmorList.add(charArmor.get(i).getName());
+			}
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryArmorList.setLayoutData(gd);
+			primaryArmorList.pack();
+
+			primaryArmorList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					int index = primaryArmorList.getSelectionIndex();
+					String armor = primaryArmorList.getItem(index);
+					if (index == -1)
+						return;
+					ItemEntity temp = (ItemEntity) Main.gameState.armor.get(armor);
+					character.setCurrArmor(temp);
+				}
+			});
+			
+			if (charArmor.size() == 1) {
+				primaryArmorList.select(0);
+			}
+		}
+		
+		if (charShields.size() > 0) {
+			Label primaryShield = new Label(primaryShell, SWT.NONE);
+			primaryShield.setText("Select Primary Shield");
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryShield.setLayoutData(gd);
+			primaryShield.pack();
+
+			Combo primaryShieldList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+			for (int i = 0; i < charShields.size(); i++ ) {
+				primaryShieldList.add(charShields.get(i).getName());
+			}
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+			gd.horizontalSpan = 2;
+			primaryShieldList.setLayoutData(gd);
+			primaryShieldList.pack();
+
+			primaryShieldList.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					int index = primaryShieldList.getSelectionIndex();
+					String shield = primaryShieldList.getItem(index);
+					if (index == -1)
+						return;
+					ItemEntity temp = (ItemEntity) Main.gameState.armor.get(shield);
+					character.setCurrShield(temp);
+				}
+			});
+			
+			if (charShields.size() == 1) {
+				primaryShieldList.select(0);
+			}
+		}
+		
+
+		// cancel button
+		Button cancel = new Button(primaryShell, SWT.PUSH);
+		cancel.setText("Cancel");
+		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
+		cancel.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				good = false;
+				primaryShell.dispose();
+			}
+		});
+		cancel.pack();
+
+		
+		// done button
+		Button done = new Button(primaryShell, SWT.PUSH);
+		done.setText("Done");
+		done.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				// all primary items saved when selected
+				good = true;
+				primaryShell.dispose();
+			}
+		});
+		done.pack();
+		
+		// open shell
+		primaryShell.pack();
+		primaryShell.layout();
+		CharacterWizard.center(primaryShell);
+		primaryShell.open();
+
+		// check if disposed
+		while (!primaryShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}		
+
+		return good;
 	}
 	
 	private void updateCharWeaponsList() {

@@ -13,8 +13,8 @@ public class LevelUpButton {
 	private Button button;
 	private character character;
 	
-	public LevelUpButton(Composite page, character c) {
-		character = c;
+	public LevelUpButton(Composite page, character character) {
+		this.character = character;
 		button = new Button(page, SWT.PUSH);
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -34,9 +34,19 @@ public class LevelUpButton {
 		
 		// otherwise, perform the level up
 		
-		character.setLevel(level+1);
+		character.incLevel();
 		
 		// TODO do all the other shit too
+		
+		// general:
+		// bonus feat every third level
+		// max class ranks
+		// inc ability score
+		
+		
+		
+		
+		
 	}
 	
 	/**

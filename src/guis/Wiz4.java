@@ -748,8 +748,7 @@ public class Wiz4 {
 		alignmentShell.setLayout(gridLayout);
 		alignmentShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				event.doit = false;
-				return;
+				finished = false;
 			}
 		});
 

@@ -131,11 +131,11 @@ public class SaveCharacter {
                 appendValue("CHA", c.getAbilityModifiers()[5]);
                 appendValue("HP", c.getHitPoints());
                 appendValue("Speed", c.getSpeed());
-                appendValue("PrimaryWeapon", c.getPrimary().getName());
-                appendValue("SecondaryWeapon", c.getSecondary().getName());
+                appendValue("PrimaryWeapon", c.getPrimaryWeapon().getName());
+                appendValue("SecondaryWeapon", c.getSecondaryWeapon().getName());
                 
                 appendValue("Armor", c.getCurrArmor().getName());
-                appendValue("Shield", c.getShield().getName());
+                appendValue("Shield", c.getCurrShield().getName());
                 appendValue("Notes", c.getNotes());
                 appendValue("DamageTaken", c.getDamageTaken());
                 appendValue("PP", c.getPP());
@@ -313,11 +313,11 @@ public class SaveCharacter {
                     writeValue("CHA", c.getAbilityModifiers()[5]);
                     writeValue("HP", c.getHitPoints());
                     writeValue("Speed", c.getSpeed());
-                    writeValue("PrimaryWeapon", c.getPrimary().getName());
-                    writeValue("SecondaryWeapon", c.getSecondary().getName());
+                    writeValue("PrimaryWeapon", c.getPrimaryWeapon().getName());
+                    writeValue("SecondaryWeapon", c.getSecondaryWeapon().getName());
                     
                     writeValue("Armor", c.getCurrArmor().getName());
-                    writeValue("Shield", c.getShield().getName());
+                    writeValue("Shield", c.getCurrShield().getName());
                     writeValue("Notes", c.getNotes());
                     writeValue("DamageTaken", c.getDamageTaken());
                     writeValue("PP", c.getPP());
