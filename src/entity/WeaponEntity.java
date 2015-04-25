@@ -19,7 +19,6 @@ public class WeaponEntity extends ItemEntity{
 	private boolean isMagic;
 	private int magicBonus; // if isMagic == false, leave null
 	private String magicProperties; // if isMagic == false, leave null
-	private int quantity;
 	private String value;
 	private double weight;
 	
@@ -180,14 +179,6 @@ public class WeaponEntity extends ItemEntity{
 	}
 	public void setMagicProperties(String magicProperties) {
 		this.magicProperties = magicProperties;
-	}
-	
-	public void setQuanitity(int i ) {
-	    quantity = i;
-	}
-	
-	public int getQuantity() {
-	    return quantity;
 	}
 
 	public String getValue() {

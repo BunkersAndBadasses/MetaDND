@@ -17,7 +17,6 @@ public class ArmorEntity extends ItemEntity {
 	private int spellFailureChance;
 	private int magicBonus; // if isMagic == false, leave null
 	private String magicProperties; // if isMagic == false, leave null
-	private int quantity;
 	private String speed30;
 	private String speed20;
 	private double weight;
@@ -128,9 +127,6 @@ public class ArmorEntity extends ItemEntity {
 		this.weight = weight;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 
 	@Override
 	public void search(String searchString, Thread runningThread)
@@ -209,14 +205,6 @@ public class ArmorEntity extends ItemEntity {
 
 	public void setMagicProperties(String magicProperties) {
 		this.magicProperties = magicProperties;
-	}
-
-	public void setQuanitity(int count) {
-		quantity = count;
-	}
-
-	public int getQuantity() {
-		return quantity;
 	}
 	
 	@Override
