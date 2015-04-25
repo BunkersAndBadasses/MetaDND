@@ -25,9 +25,9 @@ public class character {
 	private String hair = "<empty>"; 
 	private String skin = "<empty>"; 
 	private String description = "<empty>"; 
-	private int[] abilityScores = {0,0,0,0,0,0};	// STR, DEX, CON, INT, WIS, CHA
-	private int hp = 0; // hitpoints
-	private int dmg = 0;//
+	private int[] abilityScores = {0,0,0,0,0,0};							// STR, DEX, CON, INT, WIS, CHA
+	private int hp = 0; 													// hitpoints
+	private int dmg = 0;
 	private ArrayList<CharSkill> skills = new ArrayList<CharSkill>();
 	private ArrayList<String> languages = new ArrayList<String>();
 	private int gp = 0;
@@ -49,17 +49,17 @@ public class character {
 	private WeaponEntity priWeapon;//
 	private WeaponEntity secWeapon;//
 	
-	private int[] AC = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
-	private int touchAC = (AC[0] + AC[3] + AC[4] + AC[5]); // same as ac, but without shield or armor bonuses
+	private int[] AC = {10, 0, 0, 0, 0, 0};									//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
+	private int touchAC = (AC[0] + AC[3] + AC[4] + AC[5]); 					// same as ac, but without shield or armor bonuses
 	private int flatFootedAC = (AC[0] + AC[1] + AC[2] + AC[4] + AC[5]);		// same as ac, but without dex bonus
-	private int[] initMod = {0, 0};		// dex mod + misc mod
-	private int[] fortSave = {0, 0, 0, 0}; 	// base save + ability mod + magic mod + misc mod
-	private int[] reflexSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
-	private int[] willSave = {0, 0, 0, 0};  	// base save + ability mod + magic mod + misc mod
+	private int[] initMod = {0, 0};											// dex mod + misc mod
+	private int[] fortSave = {0, 0, 0, 0}; 									// base save + ability mod + magic mod + misc mod
+	private int[] reflexSave = {0, 0, 0, 0};  								// base save + ability mod + magic mod + misc mod
+	private int[] willSave = {0, 0, 0, 0};  								// base save + ability mod + magic mod + misc mod
 	private int[][] savingThrows = {fortSave, reflexSave, willSave};
 	private int baseAttackBonus = 0;
 	private int spellResistance = 0;
-	private int[] grappleMod = {0, 0, 0, 0};	// base attack bonus + str mod + size mod + misc mod
+	private int[] grappleMod = {0, 0, 0, 0};								// base attack bonus + str mod + size mod + misc mod
 	private int speed = 0;	// feet
 	private int damageReduction = 0;
 	
@@ -578,17 +578,21 @@ public class character {
 		if (items.size() == 0)
 			s += "<empty>\n";
 		for (int i = 0; i < items.size(); i++)
-			s += "\t" + items.get(i).getItem().getName() + ": " + items.get(i).getCount() + "\n";
+			s += "\t" + items.get(i).getCount() + " x " + items.get(i).getItem().getName() + "\n";
 		s += "Weapons: " + "\n";
 		if (weapons.size() == 0)
 			s += "<empty>\n";
 		for (int i = 0; i < weapons.size(); i++)
-			s += "\t" + weapons.get(i).getName() + "\n";
+			s += "\t" + weapons.get(i).getCount() + " x " + weapons.get(i).getItem().getName() + "\n";
 		s += "Armor: " + "\n";
 		if (armor.size() == 0)
 			s += "<empty>\n";
 		for (int i = 0; i < armor.size(); i++)
-			s += "\t" + armor.get(i).getName() + "\n";
+			s += "\t" + armor.get(i).getCount() + " x " + armor.get(i).getItem().getName() + "\n";
+		if (shields.size() == 0)
+			s += "<empty>\n";
+		for (int i = 0; i < shields.size(); i++)
+			s += "\t" + shields.get(i).getCount() + " x " + shields.get(i).getItem().getName() + "\n";
 		s += "Notes: " + notes + "\n";
 		return s; 
 	}
