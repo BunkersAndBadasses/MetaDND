@@ -2,6 +2,12 @@
  * CHOOSE FEATS
  */
 
+/*TODO
+ * martial weapon not prompting for weapon selection
+ * auto feats added twice to character?
+ * null pointer issue
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -242,8 +248,6 @@ public class Wiz6 {
 					}
 					feat.setSpecial("All");
 				}
-				for (int i = 0; i<charFeats.size(); i++)
-					System.out.print(charFeats.get(i));
 				// check if that feat was already added
 				for(int i = 0; i < charFeats.size(); i++) {
 					if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import core.Main;
 
-public class ArmorEntity extends DNDEntity {
+public class ArmorEntity extends ItemEntity {
 
 	private int armorBonus;
 	private int maxDexBonus;
@@ -20,9 +20,10 @@ public class ArmorEntity extends DNDEntity {
 	private int quantity;
 	private String speed30;
 	private String speed20;
-	private String weight;
+	private double weight;
 
 	public ArmorEntity(LinkedHashMap<String, String> input) {
+		super(input);
 		this.TYPE = DNDEntity.type.ARMOR;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()) {
@@ -78,7 +79,9 @@ public class ArmorEntity extends DNDEntity {
 					this.speed20 = value;
 					break;
 			    case "WEIGHT":
-			    	this.weight = value;
+			    	String temp;
+			    	temp = value.split(" ")[0];
+			    	this.weight = Double.parseDouble(temp);
 			    	break;
 			    case "DESCRIPTION":
 			    	this.description = value;
@@ -114,11 +117,11 @@ public class ArmorEntity extends DNDEntity {
 		this.speed20 = speed20;
 	}
 
-	public String getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

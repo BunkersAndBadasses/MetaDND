@@ -23,6 +23,8 @@
 
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -37,6 +39,8 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
+import core.CharItem;
+import core.Main;
 import core.character;
 
 public class Wiz8{
@@ -62,6 +66,11 @@ public class Wiz8{
 	private List weaponsList;
 	private List armorList;
 	private List shieldsList;
+	
+	private ArrayList<CharItem> charWeapons = new ArrayList<CharItem>();
+	private ArrayList<CharItem> charArmor = new ArrayList<CharItem>();
+	private ArrayList<CharItem> charShields = new ArrayList<CharItem>();
+
 
 	public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
@@ -215,7 +224,95 @@ public class Wiz8{
 		shieldsList.pack();
 		
 		inner.layout();
-		// create content
+		
+		
+		// get content
+		
+		// get weapons from references
+		Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
+		Iterator<DNDEntity> weaponItr = weaponsCol.iterator();
+		ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
+		while (weaponItr.hasNext()) {
+			weapons.add((WeaponEntity) weaponItr.next());
+		}
+		
+		// get armor/shields from references
+		Collection<DNDEntity> armorCol =  Main.gameState.armor.values();
+		Iterator<DNDEntity> armorItr = armorCol.iterator();
+		ArrayList<DNDEntity> armor = new ArrayList<DNDEntity>(); // can be armor or weapons?
+		while (armorItr.hasNext()) {
+			armor.add(armorItr.next());
+		}
+		
+		// add weapons to list
+		for (int i = 0; i < weapons.size(); i++) {
+			weaponsList.add(weapons.get(i).getName());
+		}
+		
+		// add armor/shields to list
+		for (int i = 0; i < armor.size(); i++) {
+			if (armor.get(i).getName().contains("Shield"))
+				shieldsList.add(armor.get(i).getName());
+			else
+				armorList.add(armor.get(i).getName());
+		}
+		
+		
+		// add/remove button listeners
+		
+		 addWeapon.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = weaponsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		 removeWeapon.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = charWeaponsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		 addArmor.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = armorList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		 removeArmor.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = charArmorList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		 addShield.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = shieldsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		 removeShield.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) { 
+				int index = charShieldsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				
+			}
+		 });
+		
+		
+		
+		
+		
 		
 		
 		// next button

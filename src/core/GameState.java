@@ -67,6 +67,8 @@ public class GameState {
 
 	public final static int DEFAULT_WIDTH = 900;
 	public final static int DEFAULT_HEIGHT = 700;
+	public final static int CHARWIZ_WIDTH = 700;
+	public final static int CHARWIZ_HEIGHT = 500;
 	
 	private final static int SIZE_FINE = 0;
 	private final static int SIZE_DIMINUTIVE = 1;

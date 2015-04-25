@@ -7,7 +7,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import core.Main;
 
-public class WeaponEntity extends DNDEntity{
+public class WeaponEntity extends ItemEntity{
 
 	private String damageSmall; // i.e. [2,6,3] for damage of 2 d6 + 3
 	private String damageMedium;
@@ -21,9 +21,10 @@ public class WeaponEntity extends DNDEntity{
 	private String magicProperties; // if isMagic == false, leave null
 	private int quantity;
 	private String value;
-	private String weight;
+	private double weight;
 	
 	public WeaponEntity(LinkedHashMap<String, String> input) {
+		super(input);
 		this.TYPE = DNDEntity.type.WEAPON;
 		passedData = input;
 		for (Map.Entry<String, String> entry : input.entrySet()){
@@ -64,7 +65,9 @@ public class WeaponEntity extends DNDEntity{
 		    	this.range = value;
 		    	break;
 		    case "WEIGHT":
-		    	this.weight = value;
+		    	String temp;
+		    	temp = value.split(" ")[0];
+		    	this.weight = Double.parseDouble(temp);
 		    	break;
 		    case "DAMAGETYPE":
 		    	this.damageType = value;
@@ -191,11 +194,11 @@ public class WeaponEntity extends DNDEntity{
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public String getWeight()
+	public double getWeight()
 	{
 		return weight;
 	}
-	public void setWeight(String a)
+	public void setWeight(double a)
 	{
 		this.weight = a;
 	}
