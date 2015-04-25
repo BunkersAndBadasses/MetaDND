@@ -80,8 +80,11 @@ public class ArmorEntity extends ItemEntity {
 					break;
 			    case "WEIGHT":
 			    	String temp;
-			    	temp = value.split(" ")[0];
-			    	this.weight = Double.parseDouble(temp);
+			    	temp = value.replaceAll("[^\\d]+", "");
+			    	if (temp.length() == 0)
+			    		this.weight = 0;
+			    	else
+			    		this.weight = Double.parseDouble(temp);
 			    	break;
 			    case "DESCRIPTION":
 			    	this.description = value;

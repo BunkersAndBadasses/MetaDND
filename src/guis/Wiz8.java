@@ -28,6 +28,8 @@ import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -131,20 +133,23 @@ public class Wiz8{
 		shieldsLabel.pack();
 		
 		charWeaponsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
+		gd.verticalSpan = 2;
 		charWeaponsList.setLayoutData(gd);
 		charWeaponsList.pack();
 		
 		charArmorList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
+		gd.verticalSpan = 2;
 		charArmorList.setLayoutData(gd);
 		charArmorList.pack();
 		
 		charShieldsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
+		gd.verticalSpan = 2;
 		charShieldsList.setLayoutData(gd);
 		charShieldsList.pack();
 		
@@ -258,6 +263,48 @@ public class Wiz8{
 		}
 		
 		
+		// double click listeners to launch tool tip window
+		
+		weaponsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = weaponsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String itemName = weaponsList.getItem(index);
+				((ItemEntity)Main.gameState.weapons.get(itemName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
+		
+		armorList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = armorList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String itemName = armorList.getItem(index);
+				((ItemEntity)Main.gameState.armor.get(itemName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
+		
+		shieldsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = shieldsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String itemName = shieldsList.getItem(index);
+				((ItemEntity)Main.gameState.armor.get(itemName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
+		
+		
 		// add/remove button listeners
 		
 		 addWeapon.addListener(SWT.Selection, new Listener() {
@@ -265,7 +312,17 @@ public class Wiz8{
 				int index = weaponsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				// check if it's already added
+				for (int i = 0; i < charWeapons.size(); i++) {
+					if (charWeapons.get(i).getName().equalsIgnoreCase(weaponsList.getItem(index))) {
+						charWeapons.get(i).incCount();
+						updateCharWeaponsList();
+						return;
+					}
+				}
+				ItemEntity add = (WeaponEntity) Main.gameState.weapons.get(weaponsList.getItem(index));
+				charWeapons.add(new CharItem(add));
+				updateCharWeaponsList();
 			}
 		 });
 		 removeWeapon.addListener(SWT.Selection, new Listener() {
@@ -273,7 +330,8 @@ public class Wiz8{
 				int index = charWeaponsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				charWeapons.remove(index);
+				updateCharWeaponsList();
 			}
 		 });
 		 addArmor.addListener(SWT.Selection, new Listener() {
@@ -281,7 +339,16 @@ public class Wiz8{
 				int index = armorList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				for (int i = 0; i < charArmor.size(); i++) {
+					if (charArmor.get(i).getName().equalsIgnoreCase(armorList.getItem(index))) {
+						charArmor.get(i).incCount();
+						updateCharArmorList();
+						return;
+					}
+				}
+				ItemEntity add = (ItemEntity) Main.gameState.armor.get(armorList.getItem(index));
+				charArmor.add(new CharItem(add));
+				updateCharArmorList();
 			}
 		 });
 		 removeArmor.addListener(SWT.Selection, new Listener() {
@@ -289,7 +356,8 @@ public class Wiz8{
 				int index = charArmorList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				charArmor.remove(index);
+				updateCharArmorList();				
 			}
 		 });
 		 addShield.addListener(SWT.Selection, new Listener() {
@@ -297,7 +365,16 @@ public class Wiz8{
 				int index = shieldsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				for (int i = 0; i < charShields.size(); i++) {
+					if (charShields.get(i).getName().equalsIgnoreCase(shieldsList.getItem(index))) {
+						charShields.get(i).incCount();
+						updateCharShieldsList();
+						return;
+					}
+				}
+				ItemEntity add = (ItemEntity) Main.gameState.armor.get(shieldsList.getItem(index));
+				charShields.add(new CharItem(add));
+				updateCharShieldsList();
 			}
 		 });
 		 removeShield.addListener(SWT.Selection, new Listener() {
@@ -305,7 +382,8 @@ public class Wiz8{
 				int index = charShieldsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				
+				charShields.remove(index);
+				updateCharShieldsList();
 			}
 		 });
 		
@@ -339,6 +417,30 @@ public class Wiz8{
 					cw.reset();
 			}
 		});
+	}
+	
+	private void updateCharWeaponsList() {
+		charWeaponsList.removeAll();
+		for (int i = 0; i < charWeapons.size(); i++){
+			CharItem curr = charWeapons.get(i);
+			charWeaponsList.add(curr.getCount() + " x " + curr.getItem().getName());
+		}
+	}
+	
+	private void updateCharArmorList() {
+		charArmorList.removeAll();
+		for (int i = 0; i < charArmor.size(); i++){
+			CharItem curr = charArmor.get(i);
+			charArmorList.add(curr.getCount() + " x " + curr.getItem().getName());
+		}
+	}
+	
+	private void updateCharShieldsList() {
+		charShieldsList.removeAll();
+		for (int i = 0; i < charShields.size(); i++){
+			CharItem curr = charShields.get(i);
+			charShieldsList.add(curr.getCount() + " x " + curr.getItem().getName());
+		}
 	}
 
 	private void createNextPage() {
