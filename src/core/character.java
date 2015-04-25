@@ -589,6 +589,7 @@ public class character {
 			s += "<empty>\n";
 		for (int i = 0; i < armor.size(); i++)
 			s += "\t" + armor.get(i).getCount() + " x " + armor.get(i).getItem().getName() + "\n";
+		s += "Shields: " + "\n";
 		if (shields.size() == 0)
 			s += "<empty>\n";
 		for (int i = 0; i < shields.size(); i++)
