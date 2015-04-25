@@ -397,6 +397,13 @@ public class Wiz8{
 		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// save weapons
+				character.setWeapons(charWeapons);
+				// save armor
+				character.setArmor(charArmor);
+				// save shields
+				character.setShields(charShields);
+				
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[8])

@@ -40,14 +40,14 @@ public class character {
 	private ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
 	private ArrayList<SpellEntity> prepSpells = new ArrayList<SpellEntity>();
 	private ArrayList<CharItem> items = new ArrayList<CharItem>();
-	private ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-	private ArrayList<ArmorEntity> armor = new ArrayList<ArmorEntity>();
+	private ArrayList<CharItem> weapons = new ArrayList<CharItem>();
+	private ArrayList<CharItem> armor = new ArrayList<CharItem>();
+	private ArrayList<CharItem> shields = new ArrayList<CharItem>();
 	private String notes = "<empty>";
 	private ArmorEntity currArmor;//
 	private ArmorEntity currShield;//
 	private WeaponEntity priWeapon;//
 	private WeaponEntity secWeapon;//
-	private ArrayList<ArmorEntity> shields = new ArrayList<ArmorEntity>();//
 	
 	private int[] AC = {10, 0, 0, 0, 0, 0};		//10 + armor bonus + shield bonus + Dex modifier + size modifier + misc modifier
 	private int touchAC = (AC[0] + AC[3] + AC[4] + AC[5]); // same as ac, but without shield or armor bonuses
@@ -261,20 +261,20 @@ public class character {
 	public void setItems(ArrayList<CharItem> i) { items = i; }
 	public ArrayList<CharItem> getItems() { return items; }	
 	
-	public void addWeapon(WeaponEntity w) { weapons.add(w); }
-	public void delWeapon(WeaponEntity w) { weapons.remove(w); }
-	public void setWeapons(ArrayList<WeaponEntity> w) { weapons = w; }
-	public ArrayList<WeaponEntity> getWeapons() { return weapons; }
+	public void addWeapon(CharItem w) { weapons.add(w); }
+	public void delWeapon(CharItem w) { weapons.remove(w); }
+	public void setWeapons(ArrayList<CharItem> w) { weapons = w; }
+	public ArrayList<CharItem> getWeapons() { return weapons; }
 	
-	public void addArmor(ArmorEntity a) { armor.add(a); }
-	public void delArmor(ArmorEntity a) { armor.remove(a); }
-	public void setArmor(ArrayList<ArmorEntity> a) { armor = a; }
-	public ArrayList<ArmorEntity> getArmor() { return armor; }
+	public void addArmor(CharItem a) { armor.add(a); }
+	public void delArmor(CharItem a) { armor.remove(a); }
+	public void setArmor(ArrayList<CharItem> a) { armor = a; }
+	public ArrayList<CharItem> getArmor() { return armor; }
 	
-	public void addShield(ArmorEntity a) { shields.add(a); }
-    public void delShield(ArmorEntity a) { shields.remove(a); }
-    public void setShield(ArrayList<ArmorEntity> a) { shields = a; }
-    public ArrayList<ArmorEntity> getShields() { return shields; }
+	public void addShield(CharItem a) { shields.add(a); }
+    public void delShield(CharItem a) { shields.remove(a); }
+    public void setShields(ArrayList<CharItem> a) { shields = a; }
+    public ArrayList<CharItem> getShields() { return shields; }
 	
 	
 	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
