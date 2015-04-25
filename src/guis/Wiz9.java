@@ -22,17 +22,23 @@
 
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
+import core.Main;
 import core.character;
 
 public class Wiz9{
@@ -52,6 +58,8 @@ public class Wiz9{
 	private Composite nextPage;
 	private int wizPagesSize;
 
+	private boolean skip = false;
+	
 	public Wiz9(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
 			final StackLayout layout, final StackLayout homeLayout, 
@@ -76,12 +84,50 @@ public class Wiz9{
 	
 	private void createPageContent() {
 		Label wiz9Label = new Label(wiz9, SWT.NONE);
-		wiz9Label.setText("Select Known Spells - Almost Done, Coming Soon!"); //TODO
+		wiz9Label.setText("Select Known Spells");
 		wiz9Label.pack();
-
+		
+		
+		// initialize layout
+		
+		GridLayout gl = new GridLayout(7, true);
+		
+		Composite inner = new Composite(wiz9, SWT.NONE);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+		
+		GridData gd;
+		
+		Label numSpellsLeft = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 7;
+		numSpellsLeft.setLayoutData(gd);
+		
+		List spellsList = new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		spellsList.setLayoutData(gd);
+		
+		Button addButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.END, false, true);
+		addButton.setLayoutData(gd);
+		
+		List charSpellsList =  new List(inner, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		charSpellsList.setLayoutData(gd);
+		
+		Button removeButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.BEGINNING, false, true);
+		removeButton.setLayoutData(gd);
+		
 		Button wiz9NextButton = cw.createNextButton(wiz9);
 		wiz9NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// save known spells
+				// if wizard - save entire list of spells? or not?
 				
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
@@ -91,7 +137,20 @@ public class Wiz9{
 				panel.layout();
 			}
 		});
-
+		wiz9NextButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (skip) {
+					if (cw.wizPageNum < wizPagesSize - 1)
+						cw.wizPageNum++;
+					if (!cw.wizPageCreated[9])
+						createNextPage();
+					layout.topControl = nextPage;
+					panel.layout();
+				}
+			}
+		});
+		
+		
 		//Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
 		Button wiz9CancelButton = cw.createCancelButton(wiz9, home, homePanel, homeLayout);
 		wiz9CancelButton.addListener(SWT.Selection, new Listener() {
@@ -100,6 +159,38 @@ public class Wiz9{
 					cw.reset();
 			}
 		});
+		
+		
+		// create content
+		
+		// if character does not have known spells (non-casters, wizard), skip to next page
+		if (character.getCharClass().getSpellsKnown() == null) {
+			skip = true;
+			wiz9NextButton.setSelection(true);
+			return;
+		}
+		else {
+			
+			int[][] temp = character.getCharClass().getSpellsKnown();
+			int[] numSpells;
+			if (character.getLevel() >= temp.length)
+				numSpells = temp[temp.length-1];
+			else
+				numSpells = temp[character.getLevel()-1];
+			
+			// get spells from references
+			Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
+			Iterator<DNDEntity> spellItr = spellsCol.iterator();
+			ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+			while (spellItr.hasNext()) {
+				spells.add((SpellEntity) spellItr.next());
+			}
+			
+			
+			
+		}
+		
+		inner.layout();
 	}
 	
 	private void createNextPage() {

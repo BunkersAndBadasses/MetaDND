@@ -6,6 +6,9 @@
  * martial weapon not prompting for weapon selection
  * auto feats added twice to character?
  * null pointer issue
+ * add race bonus feats
+ * martial/exotic - show only those weapons, not all
+ * if weapon familiarity, add to martial list
  */
 
 package guis;
@@ -781,46 +784,7 @@ public class Wiz6 {
 				
 				// drop down menu containing feat special options
 				CCombo specialsCombo = new CCombo(featSpecialShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-//				for (int i = 0; i < specialsA.length; i++) {
-//					switch (specialsA[i]) {
-//					case ("weapons"): {
-//						Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
-//						Iterator<DNDEntity> itr = weaponsCol.iterator();
-//						ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-//						while (itr.hasNext()) {
-//							weapons.add((WeaponEntity) itr.next());
-//						}
-//						for (int j = 0; j < weapons.size(); j++) {
-//							specialsCombo.add(weapons.get(j).getName());
-//						}
-//						break;
-//					}
-//					case ("schools of magic"):
-//						for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
-//							specialsCombo.add(GameState.schoolsOfMagic[j]);
-//						}
-//						break;
-//					case ("skills"): {
-//						Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
-//						Iterator<DNDEntity> itr = skillsCol.iterator();
-//						ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
-//						while (itr.hasNext()) {
-//							skills.add((SkillEntity) itr.next());
-//						}						
-//						for (int j = 0; j < skills.size(); j++) {
-//							specialsCombo.add(skills.get(i).getName());
-//						}
-//						break;
-//					}
-//					case ("selection of spells"): {
-//						// TODO change this
-//						feat.setSpecial("selection of spells");
-//						return true;
-//					}
-//					default:
-//						specialsCombo.add(specialsA[i]);
-//					}
-//				}
+
 				ArrayList<String> specials = getSpecials(feat.getFeat());
 				if (specials == null)
 					return true;

@@ -17,7 +17,7 @@
  */
 
 /*
- * TODO save armor/shield bonus to ac
+ * TODO only show weapons/armor/shields the character is proficient with
  */
 
 package guis;
@@ -105,6 +105,9 @@ public class Wiz8{
 		wiz8Label.setText("Choose Weapons and Armor");
 		wiz8Label.pack();
 		
+		
+		// initialize layout
+		
 		GridLayout gl = new GridLayout(6, true);
 		
 		Composite inner = new Composite(wiz8, SWT.NONE);
@@ -113,8 +116,6 @@ public class Wiz8{
 		
 		GridData gd;
 		
-		
-		// initialize layout
 		Label weaponsLabel = new Label(inner, SWT.NONE);
 		weaponsLabel.setText("Weapons");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);

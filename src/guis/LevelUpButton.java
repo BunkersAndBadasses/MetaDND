@@ -39,9 +39,13 @@ public class LevelUpButton {
 		// TODO do all the other shit too
 		
 		// general:
-		// bonus feat every third level
-		// max class ranks
-		// inc ability score
+		// bonus feat every third level (level%3 = 0)
+		// max class skill ranks : level + 3
+		// inc ability score every 4th level (level%4 = 0)
+		// skill points # + int mod
+		// hitpoints (roll hit die + con mod), add at least 1
+		// class abilities?
+		
 		
 		
 		
@@ -57,8 +61,6 @@ public class LevelUpButton {
 	private int getReqExp(int level) {
 		if (level < 2)
 			return 0;
-		else if (level == 2) 
-			return 1000;
 		else
 			return (level-1)*1000 + getReqExp(level-1);
 	}

@@ -8,7 +8,7 @@
 			Conjuration (Creation) [Acid]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -52,7 +52,7 @@
 			Conjuration (Creation) [Acid]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6, Water 7
+			Sorcerer/Wizard 6, Water 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -92,7 +92,7 @@
 			Conjuration (Creation) [Acid]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 0
+			Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -130,7 +130,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Good 2, Luck 2
+			Cleric 2, Good 2, Luck 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -162,7 +162,7 @@
 			Transmutation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Air 4, Clr 4, Drd 4
+			Air 4, Cleric 4, Druid 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -203,7 +203,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Rgr 1, Sor/Wiz 1
+			Bard 1, Ranger 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -248,7 +248,7 @@
 			Transmutation [see text]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -287,7 +287,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -329,7 +329,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -368,7 +368,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Rgr 4, Sor/Wiz 5
+			Druid 5, Ranger 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -413,7 +413,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Drd 2, Rgr 1
+			Bard 2, Druid 2, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -452,7 +452,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Animal 7, Drd 8
+			Animal 7, Druid 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -487,7 +487,7 @@
 			Enchantment (Compulsion) [Mind-Affecting, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Drd 2
+			Bard 2, Druid 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -521,7 +521,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Death 3, Sor/Wiz 4
+			Cleric 3, Death 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -566,7 +566,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Chaos 6, Clr 6
+			Bard 6, Chaos 6, Cleric 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -607,7 +607,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 7, Plant 7
+			Druid 7, Plant 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -648,7 +648,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -695,7 +695,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Animal 6, Clr 6, Drd 6
+			Animal 6, Cleric 6, Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -734,7 +734,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Magic 6, Protection 6, Sor/Wiz 6
+			Cleric 8, Magic 6, Protection 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -781,7 +781,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Drd 9, Sor/Wiz 8
+			Druid 9, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -824,7 +824,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Drd 4
+			Druid 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -859,7 +859,7 @@
 			Divination (Scrying)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -901,7 +901,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -939,7 +939,7 @@
 			Universal
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 0
+			Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -980,7 +980,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1012,7 +1012,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like arcane sight, except that you automatically know which spells or magical effects are active upon any individual or object you see.
@@ -1030,7 +1030,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Sor/Wiz 9, Travel 9
+			Cleric 9, Sorcerer/Wizard 9, Travel 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -1073,7 +1073,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 5
+			Cleric 5, Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F, DF, XP
@@ -1128,7 +1128,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -1173,7 +1173,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 5
+			Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF, XP
@@ -1215,7 +1215,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Sor/Wiz 5
+			Druid 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1251,7 +1251,7 @@
 			Enchantment (Compulsion) [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -1288,7 +1288,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Sor/Wiz 7
+			Cleric 6, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -1329,7 +1329,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Rgr 2, Plant 2
+			Druid 2, Ranger 2, Plant 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -1363,7 +1363,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Drd 2, Rgr 2, Sor/Wiz 2
+			Cleric 2, Druid 2, Ranger 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -1397,7 +1397,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 6, Sor/Wiz 6
+			Cleric 6, Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -1416,7 +1416,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Sor/Wiz 4
+			Cleric 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1460,7 +1460,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -1520,7 +1520,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -1567,7 +1567,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Good 6, War 6
+			Cleric 6, Good 6, War 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1609,7 +1609,7 @@
 			Evocation [Evil, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Evil 7
+			Cleric 7, Evil 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -1670,7 +1670,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Pal 1
+			Cleric 1, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -1707,7 +1707,7 @@
 			Transmutation [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Pal 1
+			Cleric 1, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -1742,7 +1742,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Pal 1
+			Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1776,7 +1776,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Drd 4, Sor/Wiz 5
+			Druid 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -1813,7 +1813,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 3, Sor/Wiz 2
+			Bard 2, Cleric 3, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -1845,7 +1845,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1893,7 +1893,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2,Sor/Wiz 2
+			Bard 2,Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -1929,7 +1929,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 5, Luck 5, Pal 4, Sor/Wiz 5
+			Bard 4, Cleric 5, Luck 5, Paladin 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -1968,7 +1968,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Drd 2, Pal 2, Sor/Wiz 2, Strength 2
+			Cleric 2, Druid 2, Paladin 2, Sorcerer/Wizard 2, Strength 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -2002,7 +2002,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 6, Sor/Wiz 6
+			Cleric 6, Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -2021,7 +2021,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Fire 1, Sor/Wiz 1
+			Fire 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2059,7 +2059,7 @@
 			Evocation [Electricity]
 		</SCHOOL>
 		<LEVEL>
-			Drd 3
+			Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2106,7 +2106,7 @@
 			Evocation [Electricity]
 		</SCHOOL>
 		<LEVEL>
-			Drd 5
+			Druid 5
 		</LEVEL>
 		<RANGE>
 			Long (400 ft. + 40 ft./level)
@@ -2129,7 +2129,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Animal 1, Drd 1, Rgr 1
+			Animal 1, Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2166,7 +2166,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Law 2
+			Bard 2, Cleric 2, Law 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -2203,7 +2203,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Drd 2, Rgr 2, Sor/Wiz 2
+			Bard 2, Druid 2, Ranger 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -2238,7 +2238,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Drd 6, Sor/Wiz 6
+			Bard 6, Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -2257,7 +2257,7 @@
 			Necromancy [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 1, Death 1, Sor/Wiz 1
+			Bard 1, Cleric 1, Death 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2291,7 +2291,7 @@
 			Evocation [Electricity]
 		</SCHOOL>
 		<LEVEL>
-			Air 6, Sor/Wiz 6
+			Air 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -2336,7 +2336,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 7
+			Druid 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -2416,7 +2416,7 @@
 			Enchantment (Charm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<DESCRIPTION>
 			One animal
@@ -2432,7 +2432,7 @@
 			Enchantment (Charm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 4
+			Bard 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<DESCRIPTION>
 			One living creature
@@ -2452,7 +2452,7 @@
 			Enchantment (Charm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 8
+			Bard 6, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -2475,7 +2475,7 @@
 			Enchantment (Charm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2509,7 +2509,7 @@
 			Transmutation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2
+			Druid 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -2570,7 +2570,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2610,7 +2610,7 @@
 			Necromancy [Death]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -2650,7 +2650,7 @@
 			Divination (Scrying)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Knowledge 3, Sor/Wiz 3
+			Bard 3, Knowledge 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -2687,7 +2687,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8, Strength 8
+			Sorcerer/Wizard 8, Strength 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -2715,7 +2715,7 @@
 			Abjuration [Chaotic]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 8, Clr 8
+			Chaos 8, Cleric 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -2761,7 +2761,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -2810,7 +2810,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -2853,7 +2853,7 @@
 			Illusion (Pattern) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -2901,7 +2901,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -2945,7 +2945,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5
+			Cleric 5
 		</LEVEL>
 		<DESCRIPTION>
 			One creature/level, no two of which can be more than 30 ft. apart
@@ -2965,7 +2965,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 4, Plant 4, Rgr 3
+			Druid 4, Plant 4, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -3002,7 +3002,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -3043,7 +3043,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 5
+			Cleric 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF, XP
@@ -3077,7 +3077,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Animal 5, Drd 5, Rgr 4
+			Animal 5, Druid 5, Ranger 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3105,7 +3105,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 1, Sor/Wiz 1
+			Bard 1, Cleric 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -3137,7 +3137,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5, Water 6
+			Sorcerer/Wizard 5, Water 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -3177,7 +3177,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 4, Trickery 4
+			Bard 3, Sorcerer/Wizard 4, Trickery 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -3230,7 +3230,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1
+			Bard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -3253,7 +3253,7 @@
 			Evocation [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -3297,7 +3297,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -3360,7 +3360,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Destruction 3, Drd 3, Sor/Wiz 4
+			Cleric 3, Destruction 3, Druid 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3410,7 +3410,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -3448,7 +3448,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Sor/Wiz 2
+			Cleric 3, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -3488,7 +3488,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 8, Plant 8
+			Druid 8, Plant 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -3522,7 +3522,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -3559,7 +3559,7 @@
 			Transmutation [Water]
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Drd 4, Sor/Wiz 6, Water 4
+			Cleric 4, Druid 4, Sorcerer/Wizard 6, Water 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -3599,7 +3599,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Air 7, Clr 7, Drd 7, Sor/Wiz 7
+			Air 7, Cleric 7, Druid 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3649,7 +3649,7 @@
 			Transmutation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Air 5, Drd 5
+			Air 5, Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3703,7 +3703,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3738,7 +3738,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Death 8, Sor/Wiz 8
+			Cleric 8, Death 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like create undead,shadows, wraiths, spectres, and devourers. The type or types of undead you can create is based on your caster level, as shown on the table below.
@@ -3762,7 +3762,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Death 6, Evil 6, Sor/Wiz 6
+			Cleric 6, Death 6, Evil 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -3811,7 +3811,7 @@
 			Conjuration (Creation) [Water]
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0, Pal 1
+			Cleric 0, Druid 0, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3848,7 +3848,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Drd 7
+			Druid 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -3885,7 +3885,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 4
+			Bard 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -3922,7 +3922,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9, Strength 9
+			Sorcerer/Wizard 9, Strength 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F/DF
@@ -3954,7 +3954,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 4, Drd 5, Healing 4
+			Bard 4, Cleric 4, Druid 5, Healing 4
 		</LEVEL>
 		<DAMAGE>
 				4d8+[CASTERLEVEL] MAX:20
@@ -3971,7 +3971,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Drd 9, Healing 8
+			Cleric 8, Druid 9, Healing 8
 		</LEVEL>
 		<DAMAGE>
 				4d8+[CASTERLEVEL] MAX:40
@@ -3988,7 +3988,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 1, Drd 1, Healing 1, Pal 1, Rgr 2
+			Bard 1, Cleric 1, Druid 1, Healing 1, Paladin 1, Ranger 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4025,7 +4025,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Clr 5, Drd 6, Healing 5
+			Bard 5, Cleric 5, Druid 6, Healing 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4062,7 +4062,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0
+			Cleric 0, Druid 0
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures only 1 point of damage.
@@ -4076,7 +4076,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Drd 3, Healing 2, Pal 3, Rgr 3
+			Bard 2, Cleric 2, Druid 3, Healing 2, Paladin 3, Ranger 3
 		</LEVEL>
 		<DAMAGE>
 				2d8+[CASTERLEVEL] MAX:10
@@ -4093,7 +4093,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6, Drd 7
+			Bard 6, Cleric 6, Druid 7
 		</LEVEL>
 		<DAMAGE>
 				2d8[CASTERLEVEL] MAX:30
@@ -4110,7 +4110,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 3, Drd 4, Pal 4, Rgr 4, Healing 3
+			Bard 3, Cleric 3, Druid 4, Paladin 4, Ranger 4, Healing 3
 		</LEVEL>
 		<DAMAGE>
 				3d8+[CASTERLEVEL] MAX:15
@@ -4127,7 +4127,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Drd 8
+			Cleric 7, Druid 8
 		</LEVEL>
 		<DAMAGE>
 				3d8+[CASTERLEVEL] MAX:35
@@ -4144,7 +4144,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -4179,7 +4179,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4216,7 +4216,7 @@
 			Evocation [Darkness]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Sor/Wiz 2
+			Bard 2, Cleric 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, M/DF
@@ -4256,7 +4256,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Rgr 3, Sor/Wiz 2
+			Ranger 3, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -4293,7 +4293,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 3, Drd 3, Pal 3, Sor/Wiz 3
+			Bard 3, Cleric 3, Druid 3, Paladin 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4331,7 +4331,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -4366,7 +4366,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<RANGE>
 			Medium (100 ft. + 10 ft./level)
@@ -4385,7 +4385,7 @@
 			Necromancy [Death, Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Death 2
+			Cleric 2, Death 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4417,7 +4417,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Death 4, Drd 5, Pal 4
+			Cleric 4, Death 4, Druid 5, Paladin 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -4453,7 +4453,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4490,7 +4490,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -4507,7 +4507,7 @@
 			Evocation [Darkness]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<DURATION>
 			One day/level (D)
@@ -4528,7 +4528,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Drd 2, Pal 2, Rgr 1
+			Bard 2, Cleric 2, Druid 2, Paladin 2, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -4560,7 +4560,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<DURATION>
 			5 rounds or less; see text
@@ -4582,7 +4582,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<SAVINGTHROW>
 			Will partial
@@ -4607,7 +4607,7 @@
 			Evocation [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Evil 2
+			Cleric 2, Evil 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -4650,7 +4650,7 @@
 			Necromancy [Death]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Death 7
+			Cleric 7, Death 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -4688,7 +4688,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4742,7 +4742,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like detect evil, except that it detects the auras of chaotic creatures, clerics of chaotic deities, chaotic spells, and chaotic magic items, and you are vulnerable to an overwhelming chaotic aura if you are lawful.
@@ -4756,7 +4756,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -4834,7 +4834,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like detect evil, except that it detects the auras of good creatures, clerics or paladins of good deities, good spells, and good magic items, and you are vulnerable to an overwhelming good aura if you are evil. Healing potions, antidotes, and similar beneficial items are not good.
@@ -4848,7 +4848,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like detect evil, except that it detects the auras of lawful creatures, clerics of lawful deities, lawful spells, and lawful magic items, and you are vulnerable to an overwhelming lawful aura if you are chaotic.
@@ -4862,7 +4862,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Clr 0, Drd 0, Sor/Wiz 0
+			Bard 0, Cleric 0, Druid 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4932,7 +4932,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0, Pal 1, Rgr 1, Sor/Wiz 0
+			Cleric 0, Druid 0, Paladin 1, Ranger 1, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -4966,7 +4966,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -5006,7 +5006,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Knowledge 1, Sor/Wiz 1
+			Bard 1, Knowledge 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5047,7 +5047,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5094,7 +5094,7 @@
 			Divination [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Knowledge 2, Sor/Wiz 2
+			Bard 2, Knowledge 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -5139,7 +5139,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Pal 1, Sor/Wiz 1
+			Cleric 1, Paladin 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -5206,7 +5206,7 @@
 			Evocation [Lawful, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Law 7
+			Cleric 7, Law 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -5265,7 +5265,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4, Travel 4
+			Bard 4, Sorcerer/Wizard 4, Travel 4
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -5301,7 +5301,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Sor/Wiz 4
+			Cleric 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5338,7 +5338,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Sor/Wiz 8
+			Cleric 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5375,7 +5375,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Rgr 3
+			Druid 3, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5419,7 +5419,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Pal 3
+			Cleric 4, Paladin 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5453,7 +5453,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Knowledge 8, Sor/Wiz 8
+			Cleric 8, Knowledge 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5487,7 +5487,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1, Trickery 1
+			Bard 1, Sorcerer/Wizard 1, Trickery 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5519,7 +5519,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Destruction 7, Sor/Wiz 6
+			Destruction 7, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -5568,7 +5568,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Sor/Wiz 5
+			Cleric 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5600,7 +5600,7 @@
 			Abjuration [Lawful]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Law 5, Pal 4
+			Cleric 5, Law 5, Paladin 4
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like dispel evil, except that you are surrounded by constant, blue, lawful energy, and the spell affects chaotic creatures and spells rather than evil ones.
@@ -5614,7 +5614,7 @@
 			Abjuration [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Good 5, Pal 4
+			Cleric 5, Good 5, Paladin 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5655,7 +5655,7 @@
 			Abjuration [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Evil 5
+			Cleric 5, Evil 5
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like dispel evil, except that you are surrounded by dark, wavering, unholy energy, and the spell affects good creatures and spells rather than evil ones.
@@ -5669,7 +5669,7 @@
 			Abjuration [Chaotic]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 5, Clr 5
+			Chaos 5, Cleric 5
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like dispel evil, except that you are surrounded by flickering, yellow, chaotic energy, and the spell affects lawful creatures and spells rather than evil ones.
@@ -5683,7 +5683,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 3, Drd 4, Magic 3, Pal 3, Sor/Wiz 3
+			Bard 3, Cleric 3, Druid 4, Magic 3, Paladin 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5745,7 +5745,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Clr 6, Drd 6, Sor/Wiz 6
+			Bard 5, Cleric 6, Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like dispel magic, except that the maximum caster level on your dispel check is +20 instead of +10.
@@ -5761,7 +5761,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, M
@@ -5796,7 +5796,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 0
+			Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5834,7 +5834,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 5
+			Cleric 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5866,7 +5866,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Knowledge 4
+			Cleric 4, Knowledge 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -5897,7 +5897,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Pal 1
+			Cleric 1, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5923,7 +5923,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, War 4
+			Cleric 4, War 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -5949,7 +5949,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Animal 3, Drd 3
+			Animal 3, Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -5983,7 +5983,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<DESCRIPTION>
 			One creature
@@ -5999,7 +5999,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 5
+			Bard 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6045,7 +6045,7 @@
 			Necromancy [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -6077,7 +6077,7 @@
 			Illusion (Phantasm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6117,7 +6117,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Pal 2, Sor/Wiz 2
+			Bard 2, Cleric 2, Paladin 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -6138,7 +6138,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DESCRIPTION>
-			The transmuted creature becomes more poised, articulate, and personally forceful. The spell grants a +4 enhancement bonus to Charisma, adding the usual benefits to Charisma-based skill checks and other uses of the Charisma modifier. Sorcerers and bards (and other spellcasters who rely on Charisma) affected by this spell do not gain any additional bonus spells for the increased Charisma, but the save DCs for spells they cast while under this spell's effect do increase.
+			The transmuted creature becomes more poised, articulate, and personally forceful. The spell grants a +4 enhancement bonus to Charisma, adding the usual benefits to Charisma-based skill checks and other uses of the Charisma modifier. Sorcerercerers and bards (and other spellcasters who rely on Charisma) affected by this spell do not gain any additional bonus spells for the increased Charisma, but the save DCs for spells they cast while under this spell's effect do increase.
 		
 			A few feathers or a pinch of droppings from an eagle.
 		</DESCRIPTION>
@@ -6151,7 +6151,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6, Sor/Wiz 6
+			Bard 6, Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -6170,7 +6170,7 @@
 			Evocation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Destruction 8, Drd 8, Earth 7
+			Cleric 8, Destruction 8, Druid 8, Earth 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -6223,7 +6223,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Air 9, Drd 9, Earth 9, Fire 9, Water 9
+			Air 9, Druid 9, Earth 9, Fire 9, Water 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6264,7 +6264,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Drd 1, Pal 1, Rgr 1, Sor/Wiz 1, Sun 1
+			Cleric 1, Druid 1, Paladin 1, Ranger 1, Sorcerer/Wizard 1, Sun 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6298,7 +6298,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Sor/Wiz 9
+			Cleric 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<SAVINGTHROW>
 			Fortitude partial; see text for enervation
@@ -6319,7 +6319,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6362,7 +6362,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1, Strength 1
+			Sorcerer/Wizard 1, Strength 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6409,7 +6409,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<DESCRIPTION>
 			One humanoid creature/level, no two of which can be more than 30 ft. apart
@@ -6425,7 +6425,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Plant 1, Rgr 1
+			Druid 1, Plant 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -6462,7 +6462,7 @@
 			Enchantment (Charm) [Language Dependent, Mind-Affecting, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2
+			Bard 2, Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6502,7 +6502,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Luck 1
+			Cleric 1, Luck 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6528,7 +6528,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6562,7 +6562,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Sor/Wiz 7
+			Cleric 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6596,7 +6596,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Sor/Wiz 9
+			Cleric 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<RANGE>
 			Touch; see text
@@ -6621,7 +6621,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6647,7 +6647,7 @@
 			Abjuration [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6689,7 +6689,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -6739,7 +6739,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6778,7 +6778,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Drd 1
+			Druid 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -6813,7 +6813,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6842,7 +6842,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5, Trickery 5
+			Bard 5, Sorcerer/Wizard 5, Trickery 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6879,7 +6879,7 @@
 			Necromancy [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 4
+			Bard 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6917,7 +6917,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -6957,7 +6957,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -6992,7 +6992,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6, Drd 6, Knowledge 6, Travel 6
+			Bard 6, Cleric 6, Druid 6, Knowledge 6, Travel 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -7031,7 +7031,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -7059,7 +7059,7 @@
 			Necromancy [Death]
 		</SCHOOL>
 		<LEVEL>
-			Drd 8, Sor/Wiz 7
+			Druid 8, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -7096,7 +7096,7 @@
 			Conjuration (Creation) [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 6, Fire 6, Sun 6
+			Druid 6, Fire 6, Sun 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7143,7 +7143,7 @@
 			Evocation [Fire or Cold]
 		</SCHOOL>
 		<LEVEL>
-			Fire 5, Sor/Wiz 4, Sun 4
+			Fire 5, Sorcerer/Wizard 4, Sun 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -7182,7 +7182,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Drd 7, Fire 7
+			Cleric 8, Druid 7, Fire 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -7220,7 +7220,7 @@
 			Abjuration [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sor/Wiz 4
+			Druid 2, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7270,7 +7270,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7315,7 +7315,7 @@
 			Transmutation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7353,7 +7353,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2
+			Druid 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -7393,7 +7393,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 4, Sun 5, War 5
+			Cleric 5, Druid 4, Sun 5, War 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -7431,7 +7431,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sor/Wiz 2
+			Druid 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -7473,7 +7473,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Drd 0, Sor/Wiz 0
+			Bard 0, Druid 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -7508,7 +7508,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7545,7 +7545,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3, Travel 3
+			Sorcerer/Wizard 3, Travel 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -7581,7 +7581,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7619,7 +7619,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sor/Wiz 2, Water 2
+			Druid 2, Sorcerer/Wizard 2, Water 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -7658,7 +7658,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 6
+			Cleric 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -7716,7 +7716,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -7759,7 +7759,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -7781,7 +7781,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Drd 9, Knowledge 9, Sor/Wiz 9
+			Druid 9, Knowledge 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -7817,7 +7817,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -7838,7 +7838,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DESCRIPTION>
-			The transmuted creature becomes smarter. The spell grants a +4 enhancement bonus to Intelligence, adding the usual benefits to Intelligence-based skill checks and other uses of the Intelligence modifier. Wizards (and other spellcasters who rely on Intelligence) affected by this spell do not gain any additional bonus spells for the increased Intelligence, but the save DCs for spells they cast while under this spell's effect do increase. This spell doesn't grant extra skill points.
+			The transmuted creature becomes smarter. The spell grants a +4 enhancement bonus to Intelligence, adding the usual benefits to Intelligence-based skill checks and other uses of the Intelligence modifier. Wizardards (and other spellcasters who rely on Intelligence) affected by this spell do not gain any additional bonus spells for the increased Intelligence, but the save DCs for spells they cast while under this spell's effect do increase. This spell doesn't grant extra skill points.
 		
 			A few hairs, or a pinch of dung, from a fox.
 		</DESCRIPTION>
@@ -7851,7 +7851,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -7870,7 +7870,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -7902,7 +7902,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 4, Drd 4, Luck 4, Rgr 4
+			Bard 4, Cleric 4, Druid 4, Luck 4, Ranger 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -7939,7 +7939,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -7987,7 +7987,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Air 3, Brd 3, Sor/Wiz 3
+			Air 3, Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			S, M/DF
@@ -8023,7 +8023,7 @@
 			Conjuration (Creation or Calling)
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Sor/Wiz 9
+			Cleric 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, XP; see text
@@ -8082,7 +8082,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6, Sor/Wiz 6
+			Bard 6, Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<CASTINGTIME>
 			10 minutes
@@ -8114,7 +8114,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 4
+			Bard 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -8153,7 +8153,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Sor/Wiz 3
+			Cleric 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -8189,7 +8189,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8233,7 +8233,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8270,7 +8270,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Drd 4
+			Cleric 4, Druid 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -8316,7 +8316,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3
+			Bard 3
 		</LEVEL>
 		<COMPONENTS>
 			S
@@ -8344,7 +8344,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8384,7 +8384,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like lesser globe of invulnerability, except that it also excludes 4th-level spells and spell-like effects.
@@ -8398,7 +8398,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8440,7 +8440,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8495,7 +8495,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 6
+			Cleric 6
 		</LEVEL>
 		<DAMAGE>
 				[CASTERLEVEL / 2]d8 MAX:10
@@ -8515,7 +8515,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1
+			Druid 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -8547,7 +8547,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3
+			Bard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -8584,7 +8584,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7, Strength 7
+			Sorcerer/Wizard 7, Strength 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -8611,7 +8611,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8648,7 +8648,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -8719,7 +8719,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0
+			Cleric 0, Druid 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -8751,7 +8751,7 @@
 			Evocation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sor/Wiz 2
+			Druid 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -8804,7 +8804,7 @@
 			Evocation [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 5
+			Cleric 5, Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -8854,7 +8854,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8892,7 +8892,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -8930,7 +8930,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Destruction 6
+			Cleric 6, Destruction 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -8964,7 +8964,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -9007,7 +9007,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 7, Healing 6
+			Cleric 6, Druid 7, Healing 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9043,7 +9043,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Healing 9
+			Cleric 9, Healing 9
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -9062,7 +9062,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Pal 3
+			Paladin 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9094,7 +9094,7 @@
 			Transmutation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sun 2
+			Druid 2, Sun 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -9152,7 +9152,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -9215,7 +9215,7 @@
 			Conjuration [Creation]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6
+			Bard 6, Cleric 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -9252,7 +9252,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 3
+			Bard 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9284,7 +9284,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 6
+			Bard 5, Sorcerer/Wizard 6
 		</LEVEL>
 		<DURATION>
 			1 min./level
@@ -9301,7 +9301,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			S, DF
@@ -9336,7 +9336,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -9371,7 +9371,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 2
+			Bard 1, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -9408,7 +9408,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Animal 2, Drd 2, Rgr 2
+			Animal 2, Druid 2, Ranger 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9427,7 +9427,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Law 6, Sor/Wiz 5
+			Bard 4, Law 6, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -9448,7 +9448,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<DESCRIPTION>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -9464,7 +9464,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Sor/Wiz 3
+			Bard 2, Cleric 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -9500,7 +9500,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<DESCRIPTION>
 			One or more humanoid creatures, no two of which can be more than 30 ft. apart
@@ -9516,7 +9516,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<DESCRIPTION>
 			V
@@ -9553,7 +9553,7 @@
 			Abjuration [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Good 8
+			Cleric 8, Good 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -9641,7 +9641,7 @@
 			Evocation [Good]
 		</SCHOOL>
 		<LEVEL>
-			Pal 4
+			Paladin 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9679,7 +9679,7 @@
 			Evocation [Good, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Good 7
+			Cleric 7, Good 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -9738,7 +9738,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8, Water 8
+			Sorcerer/Wizard 8, Water 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -9775,10 +9775,10 @@
 			Illusion (Pattern) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
-			V (Brd only), S, M; see text
+			V (Bard only), S, M; see text
 		</COMPONENTS>
 		<CASTINGTIME>
 			1 standard action
@@ -9815,7 +9815,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -9853,7 +9853,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Drd 4, Sor/Wiz 4, Water 5
+			Druid 4, Sorcerer/Wizard 4, Water 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -9890,7 +9890,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Magic 2, Sor/Wiz 1
+			Bard 1, Magic 2, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -9926,7 +9926,7 @@
 			Illusion (Phantasm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -9968,7 +9968,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10003,7 +10003,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Magic 4
+			Cleric 4, Magic 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -10052,7 +10052,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Destruction 9
+			Cleric 9, Destruction 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10088,7 +10088,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10120,7 +10120,7 @@
 			Conjuration (Creation) [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Fire 8, Sor/Wiz 8
+			Fire 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10159,7 +10159,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Destruction 4
+			Cleric 4, Destruction 4
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like inflict light wounds, except that you deal 4d8 points of damage +1 point per caster level (maximum +20).
@@ -10173,7 +10173,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 8
+			Cleric 8
 		</LEVEL>
 		<DAMAGE>
 			4d8+[CASTERLEVEL] MAX: 40
@@ -10190,7 +10190,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Destruction 1
+			Cleric 1, Destruction 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10227,7 +10227,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Destruction 5
+			Cleric 5, Destruction 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10261,7 +10261,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 0
+			Cleric 0
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -10278,7 +10278,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like inflict light wounds, except that you deal 2d8 points of damage +1 point per caster level (maximum +10).
@@ -10292,7 +10292,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 6
+			Cleric 6
 		</LEVEL>
 		<DAMAGE>
 			2d8+[CASTERLEVEL] MAX: 30
@@ -10309,7 +10309,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like inflict light wounds, except that you deal 3d8 points of damage +1 point per caster level (maximum +15).
@@ -10323,7 +10323,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 7
+			Cleric 7
 		</LEVEL>
 		<DAMAGE>
 			3d8+[CASTERLEVEL] MAX: 35
@@ -10340,7 +10340,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10374,7 +10374,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 5
+			Cleric 5, Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -10409,7 +10409,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -10455,7 +10455,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -10503,7 +10503,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2, Trickery 2
+			Bard 2, Sorcerer/Wizard 2, Trickery 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -10546,7 +10546,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10569,7 +10569,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -10594,7 +10594,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10622,7 +10622,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -10643,7 +10643,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Earth 8, Sor/Wiz 8
+			Earth 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -10679,7 +10679,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -10719,7 +10719,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 8
+			Bard 6, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -10751,7 +10751,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1, Sor/Wiz 1
+			Druid 1, Ranger 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -10786,7 +10786,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10820,7 +10820,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -10855,7 +10855,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Drd 0
+			Bard 0, Druid 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -10881,7 +10881,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Knowledge 7, Sor/Wiz 6
+			Bard 4, Knowledge 7, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -10915,7 +10915,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -10952,7 +10952,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Clr 0, Drd 0, Sor/Wiz 0
+			Bard 0, Cleric 0, Druid 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, M/DF
@@ -10988,7 +10988,7 @@
 			Evocation [Electricity]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11031,7 +11031,7 @@
 			Universal
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, XP
@@ -11082,7 +11082,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -11118,7 +11118,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11147,7 +11147,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 3, Sor/Wiz 2, Travel 2
+			Bard 2, Cleric 3, Sorcerer/Wizard 2, Travel 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -11186,7 +11186,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1, Travel 1
+			Druid 1, Ranger 1, Travel 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11215,7 +11215,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0
+			Bard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -11250,7 +11250,7 @@
 			Conjuration (Creation) [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -11287,7 +11287,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -11319,7 +11319,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Magic 9, Sor/Wiz 9
+			Magic 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -11357,7 +11357,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11401,7 +11401,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Wiz 6
+			Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -11429,7 +11429,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -11471,7 +11471,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11512,7 +11512,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -11561,7 +11561,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Magic 1, Sor/Wiz 1
+			Bard 1, Magic 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -11607,7 +11607,7 @@
 			Abjuration [Lawful]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Law 3, Pal 3, Sor/Wiz 3
+			Cleric 3, Law 3, Paladin 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like magic circle against evil, except that it is similar to protection from chaos instead of protection from evil, and it can imprison a nonlawful called creature.
@@ -11621,7 +11621,7 @@
 			Abjuration [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Good 3, Pal 3, Sor/Wiz 3
+			Cleric 3, Good 3, Paladin 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -11668,7 +11668,7 @@
 			Abjuration [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Evil 3, Sor/Wiz 3
+			Cleric 3, Evil 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like magic circle against evil, except that it is similar to protection from good instead of protection from evil, and it can imprison a nonevil called creature.
@@ -11682,7 +11682,7 @@
 			Abjuration [Chaotic]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 3, Clr 3, Sor/Wiz 3
+			Chaos 3, Cleric 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like magic circle against evil, except that it is similar to protection from law instead of protection from evil, and it can imprison a nonchaotic called creature.
@@ -11696,7 +11696,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -11730,7 +11730,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Rgr 3
+			Druid 3, Ranger 3
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -11754,7 +11754,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -11805,7 +11805,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -11844,7 +11844,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 2
+			Bard 1, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -11885,7 +11885,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Drd 1, Earth 1
+			Cleric 1, Druid 1, Earth 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -11923,7 +11923,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Strength 3, War 3
+			Cleric 3, Strength 3, War 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -11957,7 +11957,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Pal 1, Sor/Wiz 1, War 1
+			Cleric 1, Paladin 1, Sorcerer/Wizard 1, War 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -11991,7 +11991,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Pal 3, Sor/Wiz 3
+			Cleric 4, Paladin 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -12027,7 +12027,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<CASTINGTIME>
 			10 minutes
@@ -12064,7 +12064,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<DURATION>
 			Concentration + 3 rounds
@@ -12083,7 +12083,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<CASTINGTIME>
 			1 standard action
@@ -12105,7 +12105,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Pal 4
+			Cleric 5, Paladin 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -12141,7 +12141,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12175,7 +12175,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Drd 3
+			Cleric 3, Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -12207,7 +12207,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Clr 0, Drd 0, Sor/Wiz 0
+			Bard 0, Cleric 0, Druid 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12244,7 +12244,7 @@
 			Transmutation [Language-Dependent]
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -12284,7 +12284,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12323,7 +12323,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Protection 8, Sor/Wiz 8
+			Protection 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12355,7 +12355,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12394,7 +12394,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -12434,7 +12434,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<DURATION>
 			Concentration +2 rounds
@@ -12451,7 +12451,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Luck 9
+			Cleric 9, Luck 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, XP; see text
@@ -12512,7 +12512,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12538,7 +12538,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12572,7 +12572,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12604,7 +12604,7 @@
 			Illusion (Figment, Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Luck 6, Sor/Wiz 6, Trickery 6
+			Bard 5, Luck 6, Sorcerer/Wizard 6, Trickery 6
 		</LEVEL>
 		<COMPONENTS>
 			S
@@ -12641,7 +12641,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Wiz 4
+			Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -12679,7 +12679,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4
+			Bard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12723,7 +12723,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Luck 8, Sor/Wiz 8
+			Luck 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12751,7 +12751,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -12789,7 +12789,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 6, Sor/Wiz 6
+			Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -12835,7 +12835,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 4, Drd 3, Pal 4, Rgr 3
+			Bard 4, Cleric 4, Druid 3, Paladin 4, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -12876,7 +12876,7 @@
 			Illusion (Phantasm) [Mind-Affecting, Evil]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -12947,7 +12947,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Rgr 4, Sor/Wiz 3, Trickery 3
+			Ranger 4, Sorcerer/Wizard 3, Trickery 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -12984,7 +12984,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 3, Sor/Wiz 2
+			Bard 1, Cleric 3, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -13021,7 +13021,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Air 1, Clr 1, Drd 1, Sor/Wiz 1, Water 1
+			Air 1, Cleric 1, Druid 1, Sorcerer/Wizard 1, Water 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13060,7 +13060,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -13140,7 +13140,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13163,7 +13163,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Drd 2, Pal 2, Rgr 2, Sor/Wiz 2
+			Cleric 2, Druid 2, Paladin 2, Ranger 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -13197,7 +13197,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 6, Sor/Wiz 6
+			Cleric 6, Druid 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Close (25 ft. + 5 ft./2 levels)
@@ -13216,7 +13216,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -13254,7 +13254,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -13289,7 +13289,7 @@
 			Universal
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, XP
@@ -13424,7 +13424,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<EFFECT>
 			Figment that cannot extend beyond a 20-ft. cube + one 10-ft. cube/level (S)
@@ -13447,7 +13447,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<DURATION>
 			1 min./level (D)
@@ -13467,7 +13467,7 @@
 			Illusion (Phantasm) [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13501,7 +13501,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13548,7 +13548,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -13585,7 +13585,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7, Travel 8
+			Sorcerer/Wizard 7, Travel 8
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -13626,7 +13626,7 @@
 			Conjuration (Calling) [see text for lesser planar ally]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6
+			Cleric 6
 		</LEVEL>
 		<EFFECT>
 			One or two called elementals or outsiders, totaling no more than 12 HD, which cannot be more than 30 ft. apart when they appear
@@ -13645,7 +13645,7 @@
 			Conjuration (Calling) [see text for lesser planar ally]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8
+			Cleric 8
 		</LEVEL>
 		<EFFECT>
 			Up to three called elementals or outsiders, totaling no more than 18 HD, no two of which can be more than 30 ft. apart when they appear.
@@ -13664,7 +13664,7 @@
 			Conjuration (Calling) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Clr 4
+			Cleric 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF, XP
@@ -13713,7 +13713,7 @@
 			Conjuration (Calling) [see text for lesser planar binding]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13732,7 +13732,7 @@
 			Conjuration (Calling) [see text for lesser planar binding]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13751,7 +13751,7 @@
 			Conjuration (Calling) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -13793,7 +13793,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Sor/Wiz 7
+			Cleric 5, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -13833,7 +13833,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Plant 3, Rgr 3
+			Druid 3, Plant 3, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -13877,7 +13877,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Drd 3
+			Cleric 4, Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -13912,7 +13912,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -13953,7 +13953,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -13994,7 +13994,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8, Trickery 8
+			Sorcerer/Wizard 8, Trickery 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -14073,7 +14073,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7, War 7
+			Sorcerer/Wizard 7, War 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -14113,7 +14113,7 @@
 			Enchantment (Compulsion) [Death, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9, War 9
+			Sorcerer/Wizard 9, War 9
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -14145,7 +14145,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8, War 8
+			Sorcerer/Wizard 8, War 8
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -14185,7 +14185,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Pal 3
+			Cleric 3, Paladin 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -14220,7 +14220,7 @@
 			Universal
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Sor/Wiz 0
+			Bard 0, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14255,7 +14255,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Protection 9, Sor/Wiz 9, Sun 9
+			Protection 9, Sorcerer/Wizard 9, Sun 9
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -14288,7 +14288,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14341,7 +14341,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14416,7 +14416,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Fire 2
+			Druid 1, Fire 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14455,7 +14455,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<EFFECT>
 			Visual figment that cannot extend beyond a 20-ft. cube + one 10-ft. cube/level (S)
@@ -14480,7 +14480,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 7
+			Bard 6, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -14526,7 +14526,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -14561,7 +14561,7 @@
 			Abjuration [Lawful]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Law 1, Pal 1, Sor/Wiz 1
+			Cleric 1, Law 1, Paladin 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks from chaotic creatures, and chaotic summoned creatures cannot touch the subject.
@@ -14575,7 +14575,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Drd 3, Luck 3, Protection 3, Rgr 2, Sor/Wiz 3
+			Cleric 3, Druid 3, Luck 3, Protection 3, Ranger 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -14609,7 +14609,7 @@
 			Abjuration [Good]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Good 1, Pal 1, Sor/Wiz 1
+			Cleric 1, Good 1, Paladin 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -14649,7 +14649,7 @@
 			Abjuration [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Evil 1, Sor/Wiz 1
+			Cleric 1, Evil 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks from good creatures, and good summoned creatures cannot touch the subject.
@@ -14663,7 +14663,7 @@
 			Abjuration [Chaotic]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 1, Clr 1, Sor/Wiz 1
+			Chaos 1, Cleric 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like protection from evil, except that the deflection and resistance bonuses apply to attacks from lawful creatures, and lawful summoned creatures cannot touch the subject.
@@ -14677,7 +14677,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Magic 8, Sor/Wiz 8
+			Magic 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F
@@ -14715,7 +14715,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -14763,7 +14763,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like prying eyes, except that the eyes can see all things as they actually are, just as if they had true seeing with a range of 120 feet. Thus, they can navigate darkened areas at full normal speed. Also, a greater prying eye's maximum Spot modifier is +25 instead of +15.
@@ -14777,7 +14777,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0
+			Cleric 0, Druid 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14814,7 +14814,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -14856,7 +14856,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 3
+			Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -14895,7 +14895,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 3
+			Bard 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -14930,10 +14930,10 @@
 			Illusion (Pattern) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
-			V (Brd only), S, M, F; see text
+			V (Bard only), S, M, F; see text
 		</COMPONENTS>
 		<CASTINGTIME>
 			1 standard action
@@ -14977,7 +14977,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 5
+			Cleric 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -15018,7 +15018,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15053,7 +15053,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -15097,7 +15097,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 0
+			Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15135,7 +15135,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Clr 0, Drd 0, Pal 1, Rgr 1, Sor/Wiz 0
+			Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -15166,7 +15166,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Rgr 3
+			Druid 2, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15201,7 +15201,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -15248,7 +15248,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<DESCRIPTION>
 			One humanoid creature/level, no two of which can be more than 30 ft. apart
@@ -15264,7 +15264,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Sor/Wiz 9
+			Cleric 7, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -15301,7 +15301,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Drd 9, Healing 7
+			Cleric 7, Druid 9, Healing 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -15335,7 +15335,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 4
+			Druid 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, DF
@@ -15416,7 +15416,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Pal 3
+			Cleric 3, Paladin 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15450,7 +15450,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 3, Pal 3, Sor/Wiz 4
+			Bard 3, Cleric 3, Paladin 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15484,7 +15484,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Drd 3, Rgr 3
+			Cleric 3, Druid 3, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15518,7 +15518,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 1
+			Bard 1, Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15555,7 +15555,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Pal 2
+			Cleric 2, Paladin 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15592,7 +15592,7 @@
 			Abjuration [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 8
+			Druid 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15631,7 +15631,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 4, Drd 4, Rgr 3
+			Bard 4, Cleric 4, Druid 4, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -15668,7 +15668,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 6, Plant 6
+			Druid 6, Plant 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15707,7 +15707,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Protection 7, Sor/Wiz 6
+			Cleric 7, Protection 7, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -15746,7 +15746,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -15786,7 +15786,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 0, Clr 0, Drd 0, Pal 1, Sor/Wiz 0
+			Bard 0, Cleric 0, Druid 0, Paladin 1, Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -15822,7 +15822,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Drd 2, Fire 3, Pal 2, Rgr 1, Sor/Wiz 2
+			Cleric 2, Druid 2, Fire 3, Paladin 2, Ranger 1, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -15858,7 +15858,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Pal 4
+			Cleric 4, Paladin 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -15882,7 +15882,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 7
+			Cleric 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, XP
@@ -15906,7 +15906,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Drd 2, Pal 1
+			Cleric 2, Druid 2, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -15938,7 +15938,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 7
+			Cleric 7
 		</LEVEL>
 		<CASTINGTIME>
 			10 minutes
@@ -15964,7 +15964,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 8, Sor/Wiz 7
+			Druid 8, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -16003,7 +16003,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Strength 5
+			Cleric 5, Strength 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -16035,7 +16035,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16077,7 +16077,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 4
+			Druid 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -16123,7 +16123,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 1, Protection 1
+			Cleric 1, Protection 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -16155,7 +16155,7 @@
 			Necromancy [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16193,7 +16193,7 @@
 			Illusion (Pattern) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16239,7 +16239,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16279,7 +16279,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8, Trickery 7
+			Sorcerer/Wizard 8, Trickery 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16318,7 +16318,7 @@
 			Divination (Scrying)
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 5, Drd 4, Sor/Wiz 4
+			Bard 3, Cleric 5, Druid 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF, F
@@ -16369,7 +16369,7 @@
 		
 			The eye of a hawk, an eagle, or a roc, plus nitric acid, copper, and zinc.
 		
-			Wizard, Sorcerer,A mirror of finely wrought and highly polished silver costing not less than 1,000 gp. The mirror must be at least 2 feet by 4 feet.
+			Wizardard, Sorcerercerer,A mirror of finely wrought and highly polished silver costing not less than 1,000 gp. The mirror must be at least 2 feet by 4 feet.
 		
 			A holy water font costing not less than 100 gp.
 		
@@ -16384,7 +16384,7 @@
 			Divination (Scrying)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 7, Drd 7, Sor/Wiz 7
+			Bard 6, Cleric 7, Druid 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16407,7 +16407,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3
+			Bard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16446,7 +16446,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Sun 3
+			Cleric 3, Sun 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16481,7 +16481,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -16525,7 +16525,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16565,7 +16565,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, F; see text
@@ -16612,7 +16612,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 2
+			Bard 3, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16645,7 +16645,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16682,7 +16682,7 @@
 			Evocation
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Sor/Wiz 5
+			Cleric 4, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -16718,7 +16718,7 @@
 			Conjuration (Creation) [Force]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16763,7 +16763,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -16803,7 +16803,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like shadow conjuration, except that it mimics sorcerer and wizard conjuration spells of 8th level or lower. The illusory conjurations created deal four-fifths (80%) damage to nonbelievers, and nondamaging effects are 80% likely to work against nonbelievers.
@@ -16817,7 +16817,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16866,7 +16866,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like shadow conjuration, except that it can duplicate any sorcerer or wizard conjuration (summoning) or conjuration (creation) spell of 6th level or lower. The illusory conjurations created deal three-fifths (60%) damage to nonbelievers, and nondamaging effects are 60% likely to work against nonbelievers.
@@ -16880,7 +16880,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 5
+			Bard 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16921,7 +16921,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like shadow evocation, except that it enables you to create partially real, illusory versions of sorcerer or wizard evocation spells of 7th level or lower. If recognized as a greater shadow evocation, a damaging spell deals only three-fifths (60%) damage.
@@ -16935,7 +16935,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 6
+			Bard 5, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -16980,7 +16980,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Drd 9, Plant 9
+			Druid 9, Plant 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17017,7 +17017,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Animal 9, Drd 9, Sor/Wiz 9
+			Animal 9, Druid 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17050,7 +17050,7 @@
 			Evocation [Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Chaos 2, Clr 2, Destruction 2, Sor/Wiz 2
+			Bard 2, Chaos 2, Cleric 2, Destruction 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -17094,7 +17094,7 @@
 			Abjuration [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17120,7 +17120,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 1
+			Cleric 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -17155,7 +17155,7 @@
 			Abjuration [Lawful]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Law 8
+			Cleric 8, Law 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17201,7 +17201,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Pal 2, Protection 2
+			Cleric 2, Paladin 2, Protection 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17238,7 +17238,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 1
+			Druid 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -17270,7 +17270,7 @@
 			Evocation [Electricity]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17305,7 +17305,7 @@
 			Evocation [Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Sor/Wiz 4
+			Bard 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -17345,7 +17345,7 @@
 			Evocation [Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 8
+			Bard 6, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17376,7 +17376,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17413,7 +17413,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2
+			Bard 2, Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17448,7 +17448,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17486,7 +17486,7 @@
 			Illusion (Shadow)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, XP
@@ -17529,7 +17529,7 @@
 			Necromancy [Death]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Death 5
+			Cleric 5, Death 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17561,7 +17561,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -17605,7 +17605,7 @@
 			Conjuration (Creation) [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Sor/Wiz 3
+			Druid 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -17644,7 +17644,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -17684,7 +17684,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Rgr 2, Drd 3
+			Ranger 2, Druid 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -17723,7 +17723,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Earth 2
+			Druid 2, Earth 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -17768,7 +17768,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -17798,7 +17798,7 @@
 			Enchantment (Compulsion) [Mind-Affecting, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5
+			Bard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17835,7 +17835,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 9, Sor/Wiz 9
+			Cleric 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -17870,7 +17870,7 @@
 			Evocation [Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2
+			Bard 2, Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -17909,7 +17909,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Drd 1, Rgr 1
+			Bard 3, Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -17935,7 +17935,7 @@
 			Necromancy [Language-Dependent]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3
+			Cleric 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -17975,7 +17975,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Drd 3, Rgr 2
+			Bard 4, Druid 3, Ranger 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -18003,7 +18003,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -18040,7 +18040,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 4, Protection 4, Strength 4
+			Cleric 4, Protection 4, Strength 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18076,7 +18076,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 8
+			Cleric 8
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like spell immunity, except the immunity applies to spells of 8th level or lower.
@@ -18092,7 +18092,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Magic 5, Protection 5
+			Cleric 5, Magic 5, Protection 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18124,7 +18124,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -18159,7 +18159,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Luck 7, Magic 7, Sor/Wiz 7
+			Luck 7, Magic 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -18205,7 +18205,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Sor/Wiz 2
+			Druid 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -18240,7 +18240,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Rgr 2
+			Druid 3, Ranger 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18283,7 +18283,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 4, Earth 4
+			Druid 4, Earth 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18328,7 +18328,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, War 2
+			Cleric 2, War 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18379,7 +18379,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -18418,7 +18418,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 2
+			Cleric 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -18450,7 +18450,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -18490,7 +18490,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Drd 3, Earth 3, Sor/Wiz 4
+			Cleric 3, Druid 3, Earth 3, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -18527,7 +18527,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Earth 6, Sor/Wiz 4, Strength 6
+			Druid 5, Earth 6, Sorcerer/Wizard 4, Strength 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -18562,7 +18562,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -18590,7 +18590,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -18630,7 +18630,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Drd 9, Clr 9
+			Druid 9, Cleric 9
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -18680,7 +18680,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 3
+			Bard 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, M
@@ -18719,7 +18719,7 @@
 			Enchantment (Compulsion) [Language-Dependent, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Sor/Wiz 6
+			Bard 5, Sorcerer/Wizard 6
 		</LEVEL>
 		<RANGE>
 			Medium (100 ft. + 10 ft./level)
@@ -18738,7 +18738,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Brd 0
+			Bard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -18773,7 +18773,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 1, Sor/Wiz 1
+			Bard 1, Cleric 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F/DF
@@ -18816,7 +18816,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 2, Sor/Wiz 2
+			Bard 2, Cleric 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<EFFECT>
 			One or more summoned creatures, no two of which can be more than 30 ft. apart
@@ -18833,7 +18833,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Clr 3, Sor/Wiz 3
+			Bard 3, Cleric 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<EFFECT>
 			One or more summoned creatures, no two of which can be more than 30 ft. apart
@@ -18850,7 +18850,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Brd 4, Clr 4, Sor/Wiz 4
+			Bard 4, Cleric 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<EFFECT>
 			One or more summoned creatures, no two of which can be more than 30 ft. apart
@@ -18867,7 +18867,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Brd 5, Clr 5, Sor/Wiz 5
+			Bard 5, Cleric 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<EFFECT>
 			One or more summoned creatures, no two of which can be more than 30 ft. apart
@@ -18884,7 +18884,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Clr 6, Sor/Wiz 6
+			Bard 6, Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<EFFECT>
 			One or more summoned creatures, no two of which can be more than 30 ft. apart
@@ -18901,7 +18901,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Sor/Wiz 7
+			Cleric 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like summon monster I, except that you can summon one creature from the 7th-level list, 1d3 creatures of the same kind from the 6th-level list, or 1d4+1 creatures of the same kind from a lower-level list.
@@ -18915,7 +18915,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Sor/Wiz 8
+			Cleric 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like summon monster I, except that you can summon one creature from the 8th-level list, 1d3 creatures of the same kind from the 7th-level list, or 1d4+1 creatures of the same kind from a lower-level list.
@@ -18929,7 +18929,7 @@
 			Conjuration (Summoning) [see text for summon monster I]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 9, Clr 9, Evil 9, Good 9, Law 9, Sor/Wiz 9
+			Chaos 9, Cleric 9, Evil 9, Good 9, Law 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like summon monster I, except that you can summon one creature from the 9th-level list, 1d3 creatures of the same kind from the 8th-level list, or 1d4+1 creatures of the same kind from a lower-level list.
@@ -19212,7 +19212,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Drd 1, Rgr 1
+			Druid 1, Ranger 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -19251,7 +19251,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Rgr 2
+			Druid 2, Ranger 2
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19268,7 +19268,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Drd 3, Rgr 3
+			Druid 3, Ranger 3
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19283,7 +19283,7 @@
 			Conjuration (Summoning) [see text]
 		</DESCRIPTION>
 		<LEVEL>
-			Animal 4, Drd 4, Rgr 4
+			Animal 4, Druid 4, Ranger 4
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19302,7 +19302,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Drd 5
+			Druid 5
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19321,7 +19321,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19340,7 +19340,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Drd 7
+			Druid 7
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19359,7 +19359,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Animal 8, Drd 8
+			Animal 8, Druid 8
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19378,7 +19378,7 @@
 			Conjuration (Summoning) [see text]
 		</SCHOOL>
 		<LEVEL>
-			Drd 9
+			Druid 9
 		</LEVEL>
 		<EFFECT>
 			One or more creatures, no two of which can be more than 30 ft. apart
@@ -19604,7 +19604,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Drd 2, Sor/Wiz 2
+			Bard 2, Druid 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -19641,7 +19641,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Drd 7, Sun 7
+			Druid 7, Sun 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -19679,7 +19679,7 @@
 			Evocation [Light]
 		</SCHOOL>
 		<LEVEL>
-			Drd 8, Sor/Wiz 8, Sun 8
+			Druid 8, Sorcerer/Wizard 8, Sun 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -19722,7 +19722,7 @@
 			Necromancy [Death]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Sor/Wiz 8
+			Cleric 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -19780,7 +19780,7 @@
 			Necromancy [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Sor/Wiz 6
+			Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -19802,7 +19802,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Sor/Wiz 8
+			Cleric 8, Sorcerer/Wizard 8
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -19826,7 +19826,7 @@
 			Necromancy [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Sor/Wiz 5
+			Cleric 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like symbol of death, except that each creature within the radius of a symbol of pain instead suffers wracking pains that impose a –4 penalty on attack rolls, skill checks, and ability checks. These effects last for 1 hour after the creature moves farther than 60 feet from the symbol.
@@ -19847,7 +19847,7 @@
 			Enchantment (Charm) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Sor/Wiz 6
+			Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -19871,7 +19871,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Sor/Wiz 5
+			Cleric 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -19895,7 +19895,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Sor/Wiz 7
+			Cleric 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<SAVINGTHROW>
 			Will negates
@@ -19917,7 +19917,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 7, Sor/Wiz 7
+			Cleric 7, Sorcerer/Wizard 7
 		</LEVEL>
 		<DAMAGE>
 			3d6
@@ -19941,7 +19941,7 @@
 			Evocation [Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Brd 6
+			Bard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -19981,7 +19981,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Drd 9, Sor/Wiz 8
+			Druid 9, Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20023,7 +20023,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -20069,7 +20069,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20113,7 +20113,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20155,7 +20155,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5, Travel 5
+			Sorcerer/Wizard 5, Travel 5
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -20217,7 +20217,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<RANGE>
 			Touch
@@ -20245,7 +20245,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7, Travel 7
+			Sorcerer/Wizard 7, Travel 7
 		</LEVEL>
 		<DESCRIPTION>
 			This spell functions like teleport, except that there is no range limit and there is no chance you arrive off target. In addition, you need not have seen the destination, but in that case you must have at least a reliable description of the place to which you are teleporting. If you attempt to teleport with insufficient information (or with misleading information), you disappear and simply reappear in your original location. Interplanar travel is not possible.
@@ -20259,7 +20259,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, M
@@ -20303,7 +20303,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20338,7 +20338,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9, Trickery 9
+			Sorcerer/Wizard 9, Trickery 9
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -20368,7 +20368,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Brd 3, Sor/Wiz 3
+			Bard 3, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20410,7 +20410,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Clr 4, Sor/Wiz 3
+			Bard 2, Cleric 4, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, M/DF
@@ -20446,7 +20446,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 0
+			Sorcerer/Wizard 0
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20485,7 +20485,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -20519,7 +20519,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20552,7 +20552,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 7
+			Druid 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -20589,7 +20589,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Sor/Wiz 5
+			Druid 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -20630,7 +20630,7 @@
 			Transmutation [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Sor/Wiz 5
+			Druid 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -20673,7 +20673,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Drd 6
+			Druid 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -20711,7 +20711,7 @@
 			Conjuration (Summoning)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 8
+			Sorcerer/Wizard 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, (F); see text
@@ -20755,7 +20755,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2, Rgr 3
+			Druid 2, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -20783,7 +20783,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Rgr 4
+			Druid 5, Ranger 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -20825,7 +20825,7 @@
 			Conjuration (Healing)
 		</SCHOOL>
 		<LEVEL>
-			Clr 9
+			Cleric 9
 		</LEVEL>
 		<CASTINGTIME>
 			10 minutes
@@ -20851,7 +20851,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 7, Knowledge 5, Sor/Wiz 6
+			Cleric 5, Druid 7, Knowledge 5, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -20888,7 +20888,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 1
+			Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, F
@@ -20917,7 +20917,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Sor/Wiz 6
+			Cleric 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -20943,7 +20943,7 @@
 			Abjuration
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Clr 2, Pal 2
+			Bard 1, Cleric 2, Paladin 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -20975,7 +20975,7 @@
 			Evocation [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 5
+			Cleric 5, Druid 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21027,7 +21027,7 @@
 			Abjuration [Evil]
 		</SCHOOL>
 		<LEVEL>
-			Clr 8, Evil 8
+			Cleric 8, Evil 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, F
@@ -21120,7 +21120,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21160,7 +21160,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 3
+			Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21195,7 +21195,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 6, Sor/Wiz 6
+			Bard 6, Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21232,7 +21232,7 @@
 			Illusion (Figment)
 		</SCHOOL>
 		<LEVEL>
-			Brd 1, Sor/Wiz 1
+			Bard 1, Sorcerer/Wizard 1
 		</LEVEL>
 		<COMPONENTS>
 			V, F
@@ -21270,7 +21270,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 0, Drd 0, Pal 1
+			Cleric 0, Druid 0, Paladin 1
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -21302,7 +21302,7 @@
 			Divination
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M, XP
@@ -21324,7 +21324,7 @@
 			Necromancy [Death, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Death 9, Sor/Wiz 9
+			Death 9, Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -21359,7 +21359,7 @@
 			Evocation [Fire]
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Fire 4, Sor/Wiz 4
+			Druid 5, Fire 4, Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -21403,7 +21403,7 @@
 			Evocation [Force]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21445,7 +21445,7 @@
 			Evocation [Cold]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 4
+			Sorcerer/Wizard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21491,7 +21491,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 6
+			Sorcerer/Wizard 6
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21535,7 +21535,7 @@
 			Conjuration (Creation) [Earth]
 		</SCHOOL>
 		<LEVEL>
-			Clr 5, Drd 6, Earth 5, Sor/Wiz 5
+			Cleric 5, Druid 6, Earth 5, Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -21578,7 +21578,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Drd 5, Plant 5
+			Druid 5, Plant 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21623,7 +21623,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2
+			Druid 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21666,7 +21666,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Drd 3, Sor/Wiz 3, Water 3
+			Cleric 3, Druid 3, Sorcerer/Wizard 3, Water 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -21702,7 +21702,7 @@
 			Transmutation [Water]
 		</SCHOOL>
 		<LEVEL>
-			Clr 3, Rgr 3
+			Cleric 3, Ranger 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -21739,7 +21739,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 7
+			Sorcerer/Wizard 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21774,7 +21774,7 @@
 			Necromancy
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 5
+			Sorcerer/Wizard 5
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21809,7 +21809,7 @@
 			Conjuration (Creation)
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 2
+			Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M
@@ -21855,7 +21855,7 @@
 			Illusion (Phantasm) [Fear, Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<DESCRIPTION>
 			Any number of creatures, no two of which can be more than 30 ft. apart
@@ -21873,7 +21873,7 @@
 			Evocation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Air 8, Drd 8
+			Air 8, Druid 8
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -21910,7 +21910,7 @@
 			Transmutation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Brd 2, Sor/Wiz 2
+			Bard 2, Sorcerer/Wizard 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -21949,7 +21949,7 @@
 			Transmutation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 7
+			Cleric 6, Druid 7
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -21987,7 +21987,7 @@
 			Evocation [Air]
 		</SCHOOL>
 		<LEVEL>
-			Air 2, Clr 3, Drd 3, Rgr 2, Sor/Wiz 3
+			Air 2, Cleric 3, Druid 3, Ranger 2, Sorcerer/Wizard 3
 		</LEVEL>
 		<COMPONENTS>
 			V, S, M/DF
@@ -22026,7 +22026,7 @@
 			Universal
 		</SCHOOL>
 		<LEVEL>
-			Sor/Wiz 9
+			Sorcerer/Wizard 9
 		</LEVEL>
 		<COMPONENTS>
 			V, XP
@@ -22099,7 +22099,7 @@
 			Transmutation
 		</SCHOOL>
 		<LEVEL>
-			Drd 2
+			Druid 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
@@ -22134,7 +22134,7 @@
 			Evocation [Chaotic, Sonic]
 		</SCHOOL>
 		<LEVEL>
-			Chaos 7, Clr 7
+			Chaos 7, Cleric 7
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -22193,7 +22193,7 @@
 			Conjuration (Teleportation)
 		</SCHOOL>
 		<LEVEL>
-			Clr 6, Drd 8
+			Cleric 6, Druid 8
 		</LEVEL>
 		<COMPONENTS>
 			V
@@ -22227,7 +22227,7 @@
 			Illusion (Glamer)
 		</SCHOOL>
 		<LEVEL>
-			Brd 4
+			Bard 4
 		</LEVEL>
 		<COMPONENTS>
 			V, S
@@ -22253,7 +22253,7 @@
 			Enchantment (Compulsion) [Mind-Affecting]
 		</SCHOOL>
 		<LEVEL>
-			Clr 2, Pal 2
+			Cleric 2, Paladin 2
 		</LEVEL>
 		<COMPONENTS>
 			V, S, DF
