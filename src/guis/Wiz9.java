@@ -57,8 +57,8 @@ public class Wiz9{
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-
-	private boolean skip = false;
+	
+	private ArrayList<SpellEntity> charSpells = new ArrayList<SpellEntity>();
 	
 	public Wiz9(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
@@ -137,18 +137,6 @@ public class Wiz9{
 				panel.layout();
 			}
 		});
-		wiz9NextButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (skip) {
-					if (cw.wizPageNum < wizPagesSize - 1)
-						cw.wizPageNum++;
-					if (!cw.wizPageCreated[9])
-						createNextPage();
-					layout.topControl = nextPage;
-					panel.layout();
-				}
-			}
-		});
 		
 		
 		//Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
@@ -164,9 +152,14 @@ public class Wiz9{
 		// create content
 		
 		// if character does not have known spells (non-casters, wizard), skip to next page
+		// TODO not working
 		if (character.getCharClass().getSpellsKnown() == null) {
-			skip = true;
-			wiz9NextButton.setSelection(true);
+			if (cw.wizPageNum < wizPagesSize - 1)
+				cw.wizPageNum++;
+			if (!cw.wizPageCreated[9])
+				createNextPage();
+			layout.topControl = nextPage;
+			panel.layout();
 			return;
 		}
 		else {
@@ -186,6 +179,10 @@ public class Wiz9{
 				spells.add((SpellEntity) spellItr.next());
 			}
 			
+			// add spells to list
+			for (int i = 0; i < spells.size(); i++) {
+				
+			}
 			
 			
 		}

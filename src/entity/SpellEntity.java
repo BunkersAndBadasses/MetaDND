@@ -20,7 +20,7 @@ public class SpellEntity extends DNDEntity{
 	String focus;
 	String damage;
 	String damageAlternate;
-	String level;
+	String[] level;
 	
 	public SpellEntity(LinkedHashMap<String, String> input){
 		this.TYPE = DNDEntity.type.SPELL;
@@ -63,7 +63,7 @@ public class SpellEntity extends DNDEntity{
 		    	this.duration = value;
 		    	break;
 		    case "LEVEL":
-		    	this.level = value;
+		    	this.level = value.split(", ");
 		    	break;
 		    case "SPELLRESISTANCE":
 		    	if(value.toUpperCase().contains("NO")){
@@ -161,11 +161,11 @@ public class SpellEntity extends DNDEntity{
 		this.school = school;
 	}
 
-	public String getLevel() {
+	public String[] getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(String[] level) {
 		this.level = level;
 	}
 
