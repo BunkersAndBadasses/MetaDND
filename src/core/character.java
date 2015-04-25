@@ -1,8 +1,6 @@
 package core;
 import java.util.ArrayList;
 
-import org.eclipse.swt.SWT;
-
 import entity.*;
 
 public class character {	
@@ -280,7 +278,7 @@ public class character {
     public ArrayList<CharItem> getShields() { return shields; }
 	
 	
-	public void setNotes(String n) { notes = n; } // TODO add to/edit? delete?
+	public void setNotes(String n) { notes = n; }
 	public String getNotes() { return notes; }
 	
 	//10 + armor bonus + shield bonus + Dexterity modifier + size modifier + misc modifier

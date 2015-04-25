@@ -407,6 +407,31 @@ public class Wiz8{
 				// save shields
 				character.setShields(charShields);
 				
+				// add armor bonus to ac
+				ArmorEntity temp = null;
+				try {
+					temp = (ArmorEntity)character.getCurrArmor();
+				} catch (Exception e) {
+					character.setACArmorBonus(0);
+				}
+				if (temp == null)
+					character.setACArmorBonus(0);
+				else
+					character.setACArmorBonus(temp.getArmorBonus());
+				
+				// add shield bonus to ac
+				temp = null;
+				try {
+					temp = (ArmorEntity)character.getCurrShield();
+				} catch (Exception e) {
+					character.setACShieldBonus(0);
+				}
+				if (temp == null)
+					character.setACShieldBonus(0);
+				else
+					character.setACShieldBonus(temp.getArmorBonus());
+				
+				// switch to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[8])
