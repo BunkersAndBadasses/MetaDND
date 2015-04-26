@@ -35,6 +35,10 @@ import entity.RaceEntity;
  *  
  * barbarian: rage per day
  * 
+ * fix pop-up force not close
+ * pop-up open checking
+ * languages - make so they can't add a language they already know
+ * 
  * FINISH BEFORE WEEKEND
  * 
  * iteration 2 -  weekend!: 

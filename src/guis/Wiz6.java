@@ -9,6 +9,7 @@
  * add race bonus feats
  * martial/exotic - show only those weapons, not all
  * if weapon familiarity, add to martial list
+ * prerequisite checking on pop-up
  */
 
 package guis;
@@ -357,7 +358,7 @@ public class Wiz6 {
 				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
-					character.addFeat(new CharFeat(charFeats.get(i).getFeat() ));
+					character.addFeat(charFeats.get(i));
 				
 				// switch to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
