@@ -18,6 +18,7 @@
 
 /*
  * TODO only show weapons/armor/shields the character is proficient with
+ * add clickable searching
  */
 
 package guis;
@@ -45,6 +46,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import entity.*;
 import core.CharItem;
+import core.GameState;
 import core.Main;
 import core.character;
 
@@ -78,6 +80,9 @@ public class Wiz8{
 	private List charSpellsList;
 	private Label numSpellsLeft;
 	private int[] numSpells;
+	private int[] origNumSpells;
+	private int bonusSpells = 0;
+	private int wizHighestLevel;
 	private final Shell spellShell;
 	
 	private ArrayList<CharItem> charWeapons = new ArrayList<CharItem>();
@@ -671,12 +676,12 @@ public class Wiz8{
 				display.sleep();
 			}
 		}
-		
+
 		return primaryGood;
 	}
 
 	private boolean selectSpells() {
-		
+
 		/*
 		 * barbarian - no spells, non lawful
 		 * bard - cha, arcane(bard spell list), non lawful
@@ -695,16 +700,47 @@ public class Wiz8{
 		 * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
 		 */
 
-		// check if character can select spells
+
 
 		// check if character is a spell caster
 		if (!character.getCharClass().isCaster())
 			return true;
-		
-		// check if character can select spells TODO
-		
-		// check if character can learn spells at their level TODO
 
+		// get spells from references
+		Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
+		Iterator<DNDEntity> spellItr = spellsCol.iterator();
+		ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+		while (spellItr.hasNext()) {
+			spells.add((SpellEntity) spellItr.next());
+		}
+
+		// check if character can select spells
+		if (character.getCharClass().getSpellsKnown() == null) {
+			if (character.getCharClass().getName().equalsIgnoreCase("Wizard")) {
+				// add all 0 level wizard spells that aren't in their prohibited schools
+				for (int i = 0; i < spells.size(); i++) {
+					if (getLevel(spells.get(i)) == 0){
+						if (checkIfProhibited(spells.get(i))) {
+							character.addSpell(spells.get(i));
+						}
+					}
+				}
+			} else {
+				// add that character's spell list to their known spells
+				for (int i = 0; i < spells.size(); i++) {
+					try { //TODO fix
+					for (int j = 0; j < spells.get(i).getLevel().length; j++) {
+						if (getLevel(spells.get(i)) != -1) {
+							character.addSpell(spells.get(i));
+						}
+					}
+					} catch (Exception e) {
+						System.out.println("failed at spell "+spells.get(i).getName());
+					}
+				}
+				return true;
+			}
+		}
 
 		// initialize layout
 
@@ -772,12 +808,44 @@ public class Wiz8{
 
 		// num spells left label
 		int[][] temp = character.getCharClass().getSpellsKnown();
-		if (character.getLevel() >= temp.length)
+		// get num spells the character can know based on their level
+		if (temp == null) {
+			
+			int level = character.getLevel();
+			int[] wizSPD;
+			if (level-1 >= character.getCharClass().getSpellsPerDay().length) {
+				wizSPD = character.getCharClass().getSpellsPerDay()[character.getCharClass().getSpellsPerDay().length-1];
+			} else 
+				wizSPD = character.getCharClass().getSpellsPerDay()[character.getLevel() - 1];
+			wizHighestLevel = 0;
+			for (int i = 0; i < wizSPD.length; i++) {
+				if (wizSPD.length >= 0)
+					wizHighestLevel = i;
+			}
+			bonusSpells = 2*(level-1);
+			int[] wizSpells = new int[wizSPD.length];
+			for (int i = 0; i < wizSpells.length; i++) {
+				if (i == 1)
+					wizSpells[i] = 3+character.getAbilityModifiers()[GameState.INTELLIGENCE];
+				else if (wizSPD[i] == -1)
+					wizSpells[i] = -1;
+				else
+					wizSpells[i] = 0;
+			}
+			numSpells = wizSpells;
+		}
+		else if (character.getLevel() - 1 >= temp.length)
 			numSpells = temp[temp.length-1];
 		else
-			numSpells = temp[character.getLevel()-1];
-		if (numSpells[0] == -1);
-		//TODO - character cannot add spells yet: switch page!
+			numSpells = temp[character.getLevel() - 1];
+		// character cannot yet add spells at their level
+		if (numSpells[0] == -1) {
+			return true;
+		}
+		
+		origNumSpells = new int[numSpells.length];
+		for (int i = 0; i < origNumSpells.length; i++)
+			origNumSpells[i] = numSpells[i];
 		updateNumSpellsLeft();
 		
 		// details label
@@ -788,23 +856,45 @@ public class Wiz8{
 		errorLabel.setForeground(new Color(dev, 255, 0, 0));
 		errorLabel.setVisible(false);
 
-		// get spells from references
-		Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
-		Iterator<DNDEntity> spellItr = spellsCol.iterator();
-		ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
-		while (spellItr.hasNext()) {
-			spells.add((SpellEntity) spellItr.next());
-		}
-
 		// add spells to list
 		for (int i = 0; i < spells.size(); i++) {
 			int level = getLevel(spells.get(i));
 			if (level > -1) {
 				// only add spells they can learn
-				if (numSpells[level] >= 0)
+				if (numSpells[level] > 0 && checkIfProhibited(spells.get(i)))
 					spellsList.add(spells.get(i).getName() + ": lvl. " + level);
+				if (bonusSpells != 0) {
+					if (level <= wizHighestLevel && checkIfProhibited(spells.get(i))) {
+						spellsList.add(spells.get(i).getName() + ": lvl. " + level);
+					}
+				}
 			}
 		}
+		spellsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = spellsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String spellName = spellsList.getItem(index).substring(0, spellsList.getItem(index).indexOf(':'));
+				Main.gameState.spells.get(spellName).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
+		
+		charSpellsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = charSpellsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				String spellName = charSpellsList.getItem(index).substring(0, charSpellsList.getItem(index).indexOf(':'));
+				Main.gameState.spells.get(spellName).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
 
 		// create buttons
 
@@ -823,8 +913,8 @@ public class Wiz8{
 					return;
 				}
 
-				String temp = spellsList.getItem(index);
-				String spellName = temp.substring(0, temp.indexOf(':'));
+				String spell = spellsList.getItem(index);
+				String spellName = spell.substring(0, spell.indexOf(':'));
 
 				// check if already added
 				for (int i = 0; i < charSpells.size(); i++) {
@@ -838,11 +928,16 @@ public class Wiz8{
 				}
 
 				// check level
-				int spellLevel = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+				int spellLevel = Integer.parseInt(spell.replaceAll("[^\\d]", ""));
 				if (numSpells[spellLevel] > 0) {
 					charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
 					updateCharSpellsList();
 					numSpells[spellLevel]--;
+					updateNumSpellsLeft();
+				} else if (bonusSpells > 0) {
+					charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
+					updateCharSpellsList();
+					bonusSpells--;
 					updateNumSpellsLeft();
 				} else {
 					errorLabel.setText("You cannot add a spell of that level");
@@ -870,7 +965,10 @@ public class Wiz8{
 				}
 				String temp = charSpellsList.getItem(index);
 				int level = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
-				numSpells[level]++;
+				if (numSpells[level] == origNumSpells[level]) {
+					bonusSpells++;
+				} else
+					numSpells[level]++;
 				charSpells.remove(index);
 				updateCharSpellsList();
 				updateNumSpellsLeft();
@@ -899,7 +997,9 @@ public class Wiz8{
 				}
 				
 				// if they have chosen all known spells, save and close
-				character.setSpells(charSpells);
+				for (int i = 0; i < charSpells.size(); i++) {
+					character.addSpell(charSpells.get(i));
+				}
 				
 				spellsGood = true;
 				spellShell.dispose();
@@ -938,6 +1038,9 @@ public class Wiz8{
 				result += "\n" + i + " level spells: " + numSpells[i];
 			}
 		}
+		if (bonusSpells != 0) {
+			result += "\nBonus Spells: " + bonusSpells;
+		}
 		numSpellsLeft.setText(result);
 		numSpellsLeft.pack();
 		spellShell.layout();
@@ -946,7 +1049,7 @@ public class Wiz8{
 	private int getLevel(SpellEntity spell) {
 		String[] levelArr = spell.getLevel();
 		boolean found = false;
-		if (levelArr != null) { // TODO take this if out once spells xml is fixed
+		if (levelArr != null) { // take this if out once spells xml is fixed
 			for (int j = 0; j < levelArr.length && !found; j++) {
 				if (levelArr[j].contains(character.getCharClass().getName())) {
 					return Integer.parseInt(levelArr[j].replaceAll("[^\\d]", ""));
@@ -954,6 +1057,22 @@ public class Wiz8{
 			}
 		}
 		return -1;
+	}
+	
+	/**
+	 * returns true if spell is allowed(not prohibited) and false if prohibited
+	 * @param spell
+	 * @return
+	 */
+	private boolean checkIfProhibited(SpellEntity spell) {
+		if (character.getWizardProhibitedSchools() == null)
+			return true;
+		for (int k = 0; k < character.getWizardProhibitedSchools().length; k++) {
+			if (spell.getSchool().toLowerCase().contains(character.getWizardProhibitedSchools()[k].toLowerCase())) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	private void updateCharWeaponsList() {

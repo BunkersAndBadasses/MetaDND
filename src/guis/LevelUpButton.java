@@ -47,6 +47,9 @@ public class LevelUpButton {
 		// class abilities?
 		
 		
+		// wizard: bonus feat every 5th level
+		// 		+2 spells of any level they can cast
+		
 		
 		
 		

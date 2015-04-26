@@ -100,7 +100,7 @@ public class ClassEntity extends DNDEntity {
 					}
 					for(int j = 0; j < spellLevelSplit.length; j++){
 						if(spellLevelSplit[j].equalsIgnoreCase("-")){
-							spellLevelSplit[j] = "0";
+							spellLevelSplit[j] = "-1";
 						}
 						this.spellsPerDay[i][j] = Integer.parseInt(spellLevelSplit[j]);
 					}
