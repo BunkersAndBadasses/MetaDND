@@ -14007,40 +14007,30 @@
 		<DESCRIPTION>
 			This spell functions like polymorph, except that it changes one object or creature into another. The duration of the spell depends on how radical a change is made from the original state to its enchanted state. The duration is determined by using the following guidelines.
 		
-			Increase to Duration Factor1
+			Increase to Duration Factor
 		
 			Same kingdom (animal, vegetable, mineral)	+5
-		
 			Same class (mammals, fungi, metals, etc.)	+2
-		
 			Same size	+2
-		
 			Related (twig is to tree, wolf fur is to wolf, etc.)	+2
-		
 			Same or lower Intelligence	+2
+
+
+			Duration Factor		Duration	Example
+
+			0					20 minutes	Pebble to human
+
+			2					1 hour		Marionette to human
 		
-			1 Add all that apply. Look up the total on the next table.
-		</DESCRIPTION>
-	</SPELL>
-	<SPELL>
-		<NAME>
-			Duration Factor	Duration	Example
-		</NAME>
-		<SCHOOL>
-			0	20 minutes	Pebble to human
-		</SCHOOL>
-		<DESCRIPTION>
-			2	1 hour	Marionette to human
+			4					3 hours		Human to marionette
 		
-			4	3 hours	Human to marionette
+			5					12 hours	Lizard to manticore
 		
-			5	12 hours	Lizard to manticore
+			6					2 days		Sheep to wool coat
 		
-			6	2 days	Sheep to wool coat
+			7					1 week		Shrew to manticore
 		
-			7	1 week	Shrew to manticore
-		
-			9+	Permanent	Manticore to shrew
+			9+					Permanent	Manticore to shrew
 		
 			Unlike polymorph, polymorph any object does grant the creature the Intelligence score of its new form. If the original form didn't have a Wisdom or Charisma score, it gains those scores as appropriate for the new form.
 		
