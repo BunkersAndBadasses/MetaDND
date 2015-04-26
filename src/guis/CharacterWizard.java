@@ -29,13 +29,10 @@ import entity.RaceEntity;
  * TODO: 
  * 
  * launch wizards (add custom)
- * fix scroll on items pages
  * monk - add wis to ac
  * barbarian illiteracy
  * speak language skill
- * 
- * spells!
- * 
+ *  
  * barbarian: rage per day
  * 
  * FINISH BEFORE WEEKEND
@@ -625,7 +622,7 @@ public class CharacterWizard {
 						return;
 					}
 					character.setName(namebox.getText());
-					Wiz10.saveCharacter(character);
+					Wiz9.saveCharacter(character);
 					newshell.close();
 					shell.dispose();
 				}
@@ -800,8 +797,6 @@ public class CharacterWizard {
 		wizPages.add(wiz8);
 		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
 		wizPages.add(wiz9);
-		final Composite wiz10 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz10);
 	}
 	
 	public CharacterWizard getThis() { return cw; }

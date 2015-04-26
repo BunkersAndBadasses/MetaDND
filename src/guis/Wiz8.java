@@ -29,6 +29,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -64,7 +65,8 @@ public class Wiz8{
 	private Composite nextPage;
 	private int wizPagesSize;
 	
-	private boolean good = false;
+	private boolean primaryGood = false;
+	private boolean spellsGood = false;
 	
 	private List charWeaponsList;
 	private List charArmorList;
@@ -73,9 +75,15 @@ public class Wiz8{
 	private List armorList;
 	private List shieldsList;
 	
+	private List charSpellsList;
+	private Label numSpellsLeft;
+	private int[] numSpells;
+	private final Shell spellShell;
+	
 	private ArrayList<CharItem> charWeapons = new ArrayList<CharItem>();
 	private ArrayList<CharItem> charArmor = new ArrayList<CharItem>();
 	private ArrayList<CharItem> charShields = new ArrayList<CharItem>();
+	private ArrayList<SpellEntity> charSpells = new ArrayList<SpellEntity>();
 
 
 	public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
@@ -96,6 +104,7 @@ public class Wiz8{
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(8);
 		this.wizPagesSize = wizPages.size();
+		spellShell = new Shell(wiz8.getDisplay());
 
 		createPageContent();
 	}
@@ -400,6 +409,8 @@ public class Wiz8{
 				// launch pop-up (if user clicks cancel, do not continue)
 				if (!setPrimary())
 					return;
+				if (!selectSpells())
+					return;
 				
 				// save weapons
 				character.setWeapons(charWeapons);
@@ -459,7 +470,7 @@ public class Wiz8{
 
 	private boolean setPrimary() {
 		// pop up window in which the user chooses their primary weapon, armor, and shield
-		good = false;
+		primaryGood = false;
 		// create shell
 		Display display = wiz8.getDisplay();
 		final Shell primaryShell = new Shell(display);
@@ -468,7 +479,7 @@ public class Wiz8{
 		primaryShell.setLayout(gridLayout);
 		primaryShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				good = false;
+				primaryGood = false;
 			}
 		});
 
@@ -628,7 +639,7 @@ public class Wiz8{
 		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
 		cancel.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
-				good = false;
+				primaryGood = false;
 				primaryShell.dispose();
 			}
 		});
@@ -642,7 +653,7 @@ public class Wiz8{
 		done.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				// all primary items saved when selected
-				good = true;
+				primaryGood = true;
 				primaryShell.dispose();
 			}
 		});
@@ -659,9 +670,290 @@ public class Wiz8{
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
-		}		
+		}
+		
+		return primaryGood;
+	}
 
-		return good;
+	private boolean selectSpells() {
+		
+		/*
+		 * barbarian - no spells, non lawful
+		 * bard - cha, arcane(bard spell list), non lawful
+		 * cleric - wis, divine(cleric spell list), alignment must match domain, alignment must be within 1 step of deities, st cuthbert only LN or LG, 
+		 * 		choose god/domain (choose two from god's domains list, or choose no deity and select any two), 
+		 * 		domain adds class skills!
+		 * druid - wis, divine(druid spell list), can't use spells that are opposite his/her own alignment, 
+		 * 		animal companion 35, must have neutral?
+		 * fighter - no spells
+		 * monk - lawful, no spells, 
+		 * paladin - wis, divine, lawful good!, spells at 4th level, mount(5th level)
+		 * ranger - divine, 5th level, favored enemy
+		 * rogue - no spells
+		 * sorcerer - cha, arcane, familiar
+		 * wizard - int, arcane, familiar, school specialization(optional), must choose 2 two schools to give up(not divination), if divination, give up 1
+		 * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
+		 */
+
+		// check if character can select spells
+
+		// check if character is a spell caster
+		if (!character.getCharClass().isCaster())
+			return true;
+		
+		// check if character can select spells TODO
+		
+		// check if character can learn spells at their level TODO
+
+
+		// initialize layout
+
+		spellShell.setText("Select Known Spells");
+		GridLayout gl = new GridLayout(7, true);
+		spellShell.setLayout(gl);
+		spellShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				primaryGood = false;
+			}
+		});
+
+		GridData gd;
+
+		numSpellsLeft = new Label(spellShell, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		numSpellsLeft.setLayoutData(gd);
+		
+		Label detailsLabel = new Label(spellShell, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		detailsLabel.setLayoutData(gd);
+		
+		Label errorLabel = new Label(spellShell, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		errorLabel.setLayoutData(gd);		
+
+		List spellsList = new List(spellShell, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		spellsList.setLayoutData(gd);
+
+		Button addButton = new Button(spellShell, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.END, false, true);
+		addButton.setLayoutData(gd);
+
+		charSpellsList =  new List(spellShell, SWT.V_SCROLL);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		charSpellsList.setLayoutData(gd);
+
+		Button removeButton = new Button(spellShell, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.BEGINNING, false, true);
+		removeButton.setLayoutData(gd);
+
+		Button cancelButton = new Button(spellShell, SWT.PUSH);
+		gd = new GridData(SWT.LEFT, SWT.END, true, false);
+		gd.horizontalSpan = 3;
+		cancelButton.setLayoutData(gd);
+		
+		// placeholder
+		new Label(spellShell, SWT.NONE).setLayoutData(new GridData());
+		
+		Button doneButton = new Button(spellShell, SWT.PUSH);
+		gd = new GridData(SWT.RIGHT, SWT.END, true, false);
+		gd.horizontalSpan = 3;
+		doneButton.setLayoutData(gd);
+		
+		
+		// create content
+
+		// num spells left label
+		int[][] temp = character.getCharClass().getSpellsKnown();
+		if (character.getLevel() >= temp.length)
+			numSpells = temp[temp.length-1];
+		else
+			numSpells = temp[character.getLevel()-1];
+		if (numSpells[0] == -1);
+		//TODO - character cannot add spells yet: switch page!
+		updateNumSpellsLeft();
+		
+		// details label
+		detailsLabel.setText("Double click on a spell to see details");
+		detailsLabel.pack();
+		
+		// error label - set text when called
+		errorLabel.setForeground(new Color(dev, 255, 0, 0));
+		errorLabel.setVisible(false);
+
+		// get spells from references
+		Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
+		Iterator<DNDEntity> spellItr = spellsCol.iterator();
+		ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+		while (spellItr.hasNext()) {
+			spells.add((SpellEntity) spellItr.next());
+		}
+
+		// add spells to list
+		for (int i = 0; i < spells.size(); i++) {
+			int level = getLevel(spells.get(i));
+			if (level > -1) {
+				// only add spells they can learn
+				if (numSpells[level] >= 0)
+					spellsList.add(spells.get(i).getName() + ": lvl. " + level);
+			}
+		}
+
+		// create buttons
+
+		// add button
+		addButton.setText("Add");
+		addButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				numSpellsLeft.setBackground(null);
+				errorLabel.setVisible(false);
+				int index = spellsList.getSelectionIndex();
+				if (index == -1) {
+					errorLabel.setText("You must select a spell to add");
+					errorLabel.pack();
+					spellShell.layout();
+					errorLabel.setVisible(true);
+					return;
+				}
+
+				String temp = spellsList.getItem(index);
+				String spellName = temp.substring(0, temp.indexOf(':'));
+
+				// check if already added
+				for (int i = 0; i < charSpells.size(); i++) {
+					if (charSpells.get(i).getName().equalsIgnoreCase(spellName)) {
+						errorLabel.setText("Spell already added");
+						errorLabel.pack();
+						spellShell.layout();
+						errorLabel.setVisible(true);
+						return;
+					}
+				}
+
+				// check level
+				int spellLevel = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+				if (numSpells[spellLevel] > 0) {
+					charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
+					updateCharSpellsList();
+					numSpells[spellLevel]--;
+					updateNumSpellsLeft();
+				} else {
+					errorLabel.setText("You cannot add a spell of that level");
+					errorLabel.pack();
+					spellShell.layout();
+					errorLabel.setVisible(true);
+				}
+
+			}
+		});
+
+		// remove button
+		removeButton.setText("Remove");
+		removeButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				numSpellsLeft.setBackground(null);
+				errorLabel.setVisible(false);
+				int index = charSpellsList.getSelectionIndex();
+				if (index == -1) {
+					errorLabel.setText("You must select a spell to remove");
+					errorLabel.pack();
+					spellShell.layout();
+					errorLabel.setVisible(true);
+					return;
+				}
+				String temp = charSpellsList.getItem(index);
+				int level = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+				numSpells[level]++;
+				charSpells.remove(index);
+				updateCharSpellsList();
+				updateNumSpellsLeft();
+			}
+		});	
+		
+		// cancel button
+		cancelButton.setText("Cancel");
+		cancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				spellsGood = false;
+				spellShell.dispose();
+			}
+		});
+		
+		// done button
+		doneButton.setText("Done");
+		doneButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				// check if they have any spells left
+				for (int i = 0; i < numSpells.length; i++) {
+					if (numSpells[i] > 0){
+						numSpellsLeft.setBackground(new Color(dev, 255, 100, 100));
+						return;
+					}
+				}
+				
+				// if they have chosen all known spells, save and close
+				character.setSpells(charSpells);
+				
+				spellsGood = true;
+				spellShell.dispose();
+			}
+		});
+
+		spellShell.layout();
+		
+		// open shell
+				spellShell.pack();
+				spellShell.layout();
+				CharacterWizard.center(spellShell);
+				spellShell.open();
+
+				// check if disposed
+				while (!spellShell.isDisposed()) {
+					if (!wiz8.getDisplay().readAndDispatch()) {
+						wiz8.getDisplay().sleep();
+					}
+				}
+
+		return spellsGood;
+	}
+
+	private void updateCharSpellsList() {
+		charSpellsList.removeAll();
+		for (int i = 0; i < charSpells.size(); i++){
+			charSpellsList.add(charSpells.get(i).getName() + ": lvl. " + getLevel(charSpells.get(i)));
+		}
+	}
+
+	private void updateNumSpellsLeft() {
+		String result = "0 level spells: " + numSpells[0];
+		for (int i = 1; i < numSpells.length; i++) {
+			if (numSpells[i] >= 0) {
+				result += "\n" + i + " level spells: " + numSpells[i];
+			}
+		}
+		numSpellsLeft.setText(result);
+		numSpellsLeft.pack();
+		spellShell.layout();
+	}
+
+	private int getLevel(SpellEntity spell) {
+		String[] levelArr = spell.getLevel();
+		boolean found = false;
+		if (levelArr != null) { // TODO take this if out once spells xml is fixed
+			for (int j = 0; j < levelArr.length && !found; j++) {
+				if (levelArr[j].contains(character.getCharClass().getName())) {
+					return Integer.parseInt(levelArr[j].replaceAll("[^\\d]", ""));
+				}
+			}
+		}
+		return -1;
 	}
 	
 	private void updateCharWeaponsList() {
