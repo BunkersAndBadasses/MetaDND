@@ -1544,7 +1544,7 @@
 			No
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				1d6+4
+			1d6+4
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell conjures a field of rubbery black tentacles, each 10 feet long. These waving members seem to spring forth from the earth, floor, or whatever surface is underfoot—including water. They grasp and entwine around creatures that enter the area, holding them fast and crushing them with great strength.
@@ -1591,7 +1591,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL]d6 MAX:15
+			[CASTERLEVEL]d6 MAX:15
 		</DAMAGE>
 		<DESCRIPTION>
 			An immobile, vertical curtain of whirling blades shaped of pure force springs into existence. Any creature passing through the wall takes 1d6 points of damage per caster level (maximum 15d6), with a Reflex save for half damage.
@@ -1635,14 +1635,11 @@
 		<DESCRIPTION>
 			Any nonevil creature within the area of a blasphemy spell suffers the following ill effects.
 		
-			HD	Effect
+			HD						Effect
 		
 			Equal to caster level	Dazed
-		
 			Up to caster level –1	Weakened, dazed
-		
 			Up to caster level –5	Paralyzed, weakened, dazed
-		
 			Up to caster level –10	Killed, paralyzed, weakened, dazed
 		
 			The effects are cumulative and concurrent.
@@ -1797,7 +1794,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL]d6 MAX:15
+			[CASTERLEVEL]d6 MAX:15
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell withers a single plant of any size. An affected plant creature takes 1d6 points of damage per level (maximum 15d6) and may attempt a Fortitude saving throw for half damage. A plant that isn't a creature doesn't receive a save and immediately withers and dies.
@@ -2045,7 +2042,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL]d4 MAX:5
+			[CASTERLEVEL]d4 MAX:5
 		</DAMAGE>
 		<DESCRIPTION>
 			A cone of searing flame shoots from your fingertips. Any creature in the area of the flames takes 1d4 points of fire damage per caster level (maximum 5d4). Flammable materials burn if the flames touch them. A character can extinguish burning items as a full-round action.
@@ -2083,10 +2080,10 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				3d6
+			3d6
 		</DAMAGE>
 		<DAMAGEALTERNATE>
-				3d10
+			3d10
 		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Immediately upon completion of the spell, and once per round thereafter, you may call down a 5-foot-wide, 30-foot-long, vertical bolt of lightning that deals 3d6 points of electricity damage. The bolt of lightning flashes down in a vertical stroke at whatever target point you choose within the spell's range (measured from your position at the time). Any creature in the target square or in the path of the bolt is affected.
@@ -2112,10 +2109,10 @@
 			Long (400 ft. + 40 ft./level)
 		</RANGE>
 		<DAMAGE>
-				5d6
+			5d6
 		</DAMAGE>
 		<DAMAGEALTERNATE>
-				5d10
+			5d10
 		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			This spell functions like call lightning, except that each bolt deals 5d6 points of electricity damage (or 5d10 if created outdoors in a stormy area), and you may call a maximum of 15 bolts.
@@ -2315,7 +2312,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL]d6 MAX:20
+			[CASTERLEVEL]d6 MAX:20
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell creates an electrical discharge that begins as a single stroke commencing from your fingertips. Unlike lightning bolt, chain lightning strikes one object or creature initially, then arcs to other targets.
@@ -2395,10 +2392,10 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL / 2]d8 MAX:5
+			[CASTERLEVEL / 2]d8 MAX:5
 		</DAMAGE>
 		<DAMAGEALTERNATE>
-				[CASTERLEVEL]d6 MAX:10
+			[CASTERLEVEL]d6 MAX:10
 		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			You unleash chaotic power to smite your enemies. The power takes the form of a multicolored explosion of leaping, ricocheting energy. Only lawful and neutral (not chaotic) creatures are harmed by the spell.
@@ -2533,10 +2530,10 @@
 			Yes (object)
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				1d4
+			1d4
 		</DAMAGE>
 		<DAMAGEALTERNATE>
-				2d4
+			2d4
 		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			Chill metal makes metal extremely cold. Unattended, nonmagical metal gets no saving throw. Magical metal is allowed a saving throw against the spell. An item in a creature's possession uses the creature's saving throw bonus unless its own is higher.
@@ -2547,15 +2544,11 @@
 		
 			Round	Metal Temperature	Damage
 		
-			1	Cold	None
-		
-			2	Icy	1d4 points
-		
-			3–5	Freezing	2d4 points
-		
-			6	Icy	1d4 points
-		
-			7	Cold	None
+			1		Cold				None
+			2		Icy					1d4 points
+			3–5		Freezing			2d4 points
+			6		Icy					1d4 points
+			7		Cold				None
 		
 			Any heat intense enough to damage the creature negates cold damage from the spell (and vice versa) on a point-for-point basis. Underwater, chill metal deals no damage, but ice immediately forms around the affected metal, making it more buoyant.
 		
@@ -2594,7 +2587,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				1d6
+			1d6
 		</DAMAGE>
 		<DESCRIPTION>
 			A touch from your hand, which glows with blue energy, disrupts the life force of living creatures. Each touch channels negative energy that deals 1d6 points of damage. The touched creature also takes 1 point of Strength damage unless it makes a successful Fortitude saving throw. You can use this melee touch attack up to one time per level.
@@ -2693,7 +2686,7 @@
 			V, S, F/DF
 		</COMPONENTS>
 		<DAMAGE>
-				1d8+11
+			1d8+11
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like interposing hand, except that the hand can interpose itself, push, or strike one opponent that you select. The floating hand can move as far as 60 feet and can attack in the same round. Since this hand is directed by you, its ability to notice or attack invisible or concealed creatures is no better than yours.
@@ -3161,7 +3154,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL]d6 MAX:15
+			[CASTERLEVEL]d6 MAX:15
 		</DAMAGE>
 		<DESCRIPTION>
 			Cone of cold creates an area of extreme cold, originating at your hand and extending outward in a cone. It drains heat, dealing 1d6 points of cold damage per caster level (maximum 15d6).
@@ -3205,16 +3198,12 @@
 		
 			Roll on the following table at the beginning of each subject's turn each round to see what the subject does in that round.
 		
-			d%	Behavior
+			d%		Behavior
 		
 			01–10	Attack caster with melee or ranged weapons (or close with caster if attack is not possible).
-		
 			11–20	Act normally.
-		
 			21–50	Do nothing but babble incoherently.
-		
 			51–70	Flee away from caster at top possible speed.
-		
 			71–100	Attack nearest creature (for this purpose, a familiar counts as part of the subject's self).
 		
 			A confused character who can't carry out the indicated action does nothing but babble incoherently. Attackers are not at any special advantage when attacking a confused character. Any confused character who is attacked automatically attacks its attackers on its next turn, as long as it is still confused when its turn comes. Note that a confused character will not make attacks of opportunity against any creature that it is not already devoted to attacking (either because of its most recent action or because it has just been attacked).
@@ -3322,23 +3311,16 @@
 		
 			On rare occasions, this divination may be blocked by an act of certain deities or forces.
 		
-			Plane Contacted	Avoid Int/Cha Decrease	True Answer	Don't Know	Lie	Random Answer
+			Plane Contacted					Avoid Int/Cha Decrease	True Answer	Don't Know	Lie		Random Answer
 		
-			Elemental Plane	DC 7/1 week	01–34	35–62	63–83	84–100
-		
-			(appropriate)	(DC 7/1 week)	(01–68)	(69–75)	(76–98)	(99–100)
-		
-			Positive/Negative Energy Plane	DC 8/1 week	01–39	40–65	66–86	87–100
-		
-			Astral Plane	DC 9/1 week	01–44	45–67	68–88	89–100
-		
-			Outer Plane, demideity	DC 10/2 weeks	01–49	50–70	71–91	92–100
-		
-			Outer Plane, lesser deity	DC 12/3 weeks	01–60	61–75	76–95	96–100
-		
-			Outer Plane, intermediate deity	DC 14/4 weeks	01–73	74–81	82–98	99–100
-		
-			Outer Plane, greater deity	DC 16/5 weeks	01–88	89–90	91–99	100
+			Elemental Plane					DC 7/1 week				01–34		35–62		63–83	84–100
+			(appropriate)					(DC 7/1 week)			(01–68)		(69–75)		(76–98)	(99–100)
+			Positive/Negative Energy Plane	DC 8/1 week				01–39		40–65		66–86	87–100
+			Astral Plane					DC 9/1 week				01–44		45–67		68–88	89–100
+			Outer Plane, demideity			DC 10/2 weeks			01–49		50–70		71–91	92–100
+			Outer Plane, lesser deity		DC 12/3 weeks			01–60		61–75		76–95	96–100
+			Outer Plane, intermediate deity	DC 14/4 weeks			01–73		74–81		82–98	99–100
+			Outer Plane, greater deity		DC 16/5 weeks			01–88		89–90		91–99	100
 		
 			Avoid Int/You must succeed on an Intelligence check against this DC to avoid a decrease in Intelligence and Charisma. If the check fails, your Intelligence and Charisma scores each fall to 8 for the stated duration, and you become unable to cast arcane spells. If you lose Intelligence and Charisma, the effect strikes as soon as the first question is asked, and no answer is received. (The entries in parentheses are for questions that pertain to the appropriate Elemental Plane.)
 		
@@ -3383,21 +3365,15 @@
 		<DESCRIPTION>
 			The subject contracts a disease selected from the table below, which strikes immediately (no incubation period). The DC noted is for the subsequent saves (use contagion's normal save DC for the initial saving throw).
 		
-			Disease	DC	Damage
+			Disease				DC		Damage
 		
-			Blinding sickness	16	1d4 Str1
-		
-			Cackle fever	16	1d6 Wis
-		
-			Filth fever	12	1d3 Dex and 1d3 Con
-		
-			Mindfire	12	1d4 Int
-		
-			Red ache	15	1d6 Str
-		
-			Shakes	13	1d8 Dex
-		
-			Slimy doom	14	1d4 Con
+			Blinding sickness	16		1d4 Str(1)
+			Cackle fever		16		1d6 Wis
+			Filth fever			12		1d3 Dex and 1d3 Con
+			Mindfire			12		1d4 Int
+			Red ache			15		1d6 Str
+			Shakes				13		1d8 Dex
+			Slimy doom			14		1d4 Con
 		
 			1 Each time a victim takes 2 or more points of Strength damage from blinding sickness, he or she must make another Fortitude save (using the disease's save DC) or be permanently blinded.
 		</DESCRIPTION>
@@ -3746,11 +3722,8 @@
 			Caster Level	Undead Created
 		
 			15th or lower	Shadow
-		
-			16th–17th	Wraith
-		
-			18th–19th	Spectre
-		
+			16th–17th		Wraith
+			18th–19th		Spectre
 			20th or higher	Devourer
 		</DESCRIPTION>
 	</SPELL>
@@ -3788,11 +3761,8 @@
 			Caster Level	Undead Created
 		
 			11th or lower	Ghoul
-		
-			12th–14th	Ghast
-		
-			15th–17th	Mummy
-		
+			12th–14th		Ghast
+			15th–17th		Mummy
 			18th or higher	Mohrg
 		
 			You may create less powerful undead than your level would allow if you choose. Created undead are not automatically under the control of their animator. If you are capable of commanding undead, you may attempt to command the undead creature as it forms.
@@ -3957,7 +3927,7 @@
 			Bard 4, Cleric 4, Druid 5, Healing 4
 		</LEVEL>
 		<DAMAGE>
-				4d8+[CASTERLEVEL] MAX:20
+			4d8+[CASTERLEVEL] MAX:20
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 4d8 points of damage +1 point per caster level (maximum +20).
@@ -3974,7 +3944,7 @@
 			Cleric 8, Druid 9, Healing 8
 		</LEVEL>
 		<DAMAGE>
-				4d8+[CASTERLEVEL] MAX:40
+			4d8+[CASTERLEVEL] MAX:40
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 4d8 points of damage +1 point per caster level (maximum +40).
@@ -4009,7 +3979,7 @@
 			Yes (harmless); see text
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				1d8+[CASTERLEVEL] MAX:5
+			1d8+[CASTERLEVEL] MAX:5
 		</DAMAGE>
 		<DESCRIPTION>
 			When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage +1 point per caster level (maximum +5).
@@ -4046,7 +4016,7 @@
 			Yes (harmless) or Yes; see text
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				1d8+[CASTERLEVEL] MAX:25
+			1d8+[CASTERLEVEL] MAX:25
 		</DAMAGE>
 		<DESCRIPTION>
 			You channel positive energy to cure 1d8 points of damage +1 point per caster level (maximum +25) in each selected creature.
@@ -4079,7 +4049,7 @@
 			Bard 2, Cleric 2, Druid 3, Healing 2, Paladin 3, Ranger 3
 		</LEVEL>
 		<DAMAGE>
-				2d8+[CASTERLEVEL] MAX:10
+			2d8+[CASTERLEVEL] MAX:10
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 2d8 points of damage +1 point per caster level (maximum +10).
@@ -4096,7 +4066,7 @@
 			Bard 6, Cleric 6, Druid 7
 		</LEVEL>
 		<DAMAGE>
-				2d8[CASTERLEVEL] MAX:30
+			2d8[CASTERLEVEL] MAX:30
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 2d8 points of damage +1 point per caster level (maximum +30).
@@ -4113,7 +4083,7 @@
 			Bard 3, Cleric 3, Druid 4, Paladin 4, Ranger 4, Healing 3
 		</LEVEL>
 		<DAMAGE>
-				3d8+[CASTERLEVEL] MAX:15
+			3d8+[CASTERLEVEL] MAX:15
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like cure light wounds, except that it cures 3d8 points of damage +1 point per caster level (maximum +15).
@@ -4130,7 +4100,7 @@
 			Cleric 7, Druid 8
 		</LEVEL>
 		<DAMAGE>
-				3d8+[CASTERLEVEL] MAX:35
+			3d8+[CASTERLEVEL] MAX:35
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like mass cure light wounds, except that it cures 3d8 points of damage +1 point per caster level (maximum +35).
@@ -4566,7 +4536,7 @@
 			5 rounds or less; see text
 		</DURATION>
 		<DAMAGE>
-				[CASTERLEVEL]d6 MAX:20
+			[CASTERLEVEL]d6 MAX:20
 		</DAMAGE>
 		<DESCRIPTION>
 			This spell functions like fireball, except that it is more powerful and can detonate up to 5 rounds after the spell is cast. The burst of flame deals 1d6 points of fire damage per caster level (maximum 20d6).
@@ -4794,32 +4764,26 @@
 		
 				———————— Aura Power ————————
 		
-			Creature/Object	Faint	Moderate	Strong	Overwhelming
+			Creature/Object								Faint			Moderate	Strong		Overwhelming
 		
-			Evil creature1 (HD)	10 or lower	11–25	26–50	51 or higher
-		
-			Undead (HD)	2 or lower	3–8	9–20	21 or higher
-		
-			Evil outsider (HD)	1 or lower	2–4	5–10	11 or higher
-		
-			Cleric of an evil deity 2 (class levels)	1	2–4	5–10	11 or higher
-		
-			Evil magic item or spell (caster level)	2nd or lower	3rd–8th	9th–20th	21st or higher
+			Evil creature(1) (HD)						10 or lower		11–25		26–50		51 or higher
+			Undead (HD)									2 or lower		3–8			9–20		21 or higher
+			Evil outsider (HD)							1 or lower		2–4			5–10		11 or higher
+			Cleric of an evil deity(2) (class levels)	1				2–4			5–10		11 or higher
+			Evil magic item or spell (caster level)		2nd or lower	3rd–8th		9th–20th	21st or higher
 		
 			1 Except for undead and outsiders, which have their own entries on the table.
 		
 			2 Some characters who are not clerics may radiate an aura of equivalent power. The class description will indicate whether this applies.
 		
-			An evil aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a creature or magic item). If detect evil is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).		
+			An evil aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a creature or magic item). If detect evil is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).
+
 			Original Strength	Duration of Lingering Aura
 		
-			Faint	1d6 rounds
-		
-			Moderate 	1d6 minutes
-		
-			Strong	1d6x10 minutes
-		
-			Overwhelming	1d6 days
+			Faint				1d6 rounds
+			Moderate 			1d6 minutes
+			Strong				1d6x10 minutes
+			Overwhelming		1d6 days
 		
 			Animals, traps, poisons, and other potential perils are not evil, and as such this spell does not detect them.
 		
@@ -4899,23 +4863,20 @@
 			An aura's power depends on a spell's functioning spell level or an item's caster level. If an aura falls into more than one category, detect magic indicates the stronger of the two.
 		
 			 	————————— Aura Power —————————
+
+			Spell or Object					Faint			Moderate	Strong		Overwhelming
 		
-			Spell or Object	Faint	Moderate	Strong	Overwhelming
+			Functioning spell (spell level)	3rd or lower	4th–6th		7th–9th		10th+ (deity-level)
+			Magic item (caster level)		5th or lower	6th–11th	12th–20th	21st+ (artifact)
 		
-			Functioning spell (spell level)	3rd or lower	4th–6th	7th–9th	10th+ (deity-level)
-		
-			Magic item (caster level)	5th or lower	6th–11th	12th–20th	21st+ (artifact)
-		
-			A magical aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a magic item). If detect magic is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).		
+			A magical aura lingers after its original source dissipates (in the case of a spell) or is destroyed (in the case of a magic item). If detect magic is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).
+
 			Original Strength	Duration of Lingering Aura
 		
-			Faint	1d6 rounds
-		
-			Moderate	1d6 minutes
-		
-			Strong	1d6x10 minutes
-		
-			Overwhelming	1d6 days
+			Faint				1d6 rounds
+			Moderate			1d6 minutes
+			Strong				1d6x10 minutes
+			Overwhelming		1d6 days
 		
 			Outsiders and elementals are not magical in themselves, but if they are summoned, the conjuration spell registers.
 		
@@ -5172,26 +5133,21 @@
 			The strength and location of each undead aura. If an aura is outside your line of sight, then you discern its direction but not its exact location.
 		
 			The strength of an undead aura is determined by the HD of the undead creature,		
-			HD	Strength
+			HD				Strength
 		
-			1 or lower	Faint
-		
-			2–4	Moderate
-		
-			5–10	Strong
-		
+			1 or lower		Faint
+			2–4				Moderate
+			5–10			Strong
 			11 or higher	Overwhelming
 		
-			An undead aura lingers after its original source is destroyed. If detect undead is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).		
+			An undead aura lingers after its original source is destroyed. If detect undead is cast and directed at such a location, the spell indicates an aura strength of dim (even weaker than a faint aura).	
+
 			Original Strength	Duration of Lingering Aura
 		
-			Faint	1d6 rounds
-		
-			Moderate	1d6 minutes
-		
-			Strong	1d6x10 minutes
-		
-			Overwhelming	1d6 days
+			Faint				1d6 rounds
+			Moderate			1d6 minutes
+			Strong				1d6x10 minutes
+			Overwhelming		1d6 days
 		
 			Each round, you can turn to detect undead in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.
 		
@@ -5232,14 +5188,11 @@
 		<DESCRIPTION>
 			Any nonlawful creature within the area of a dictum spell suffers the following ill effects.
 		
-			HD	Effect
+			HD						Effect
 		
 			Equal to caster level	Deafened
-		
 			Up to caster level –1	Slowed, deafened
-		
 			Up to caster level –5	Paralyzed, slowed, deafened
-		
 			Up to caster level –10	Killed, paralyzed, slowed, deafened
 		
 			The effects are cumulative and concurrent. No saving throw is allowed against these effects.
@@ -6712,13 +6665,11 @@
 		<DESCRIPTION>
 			Each round, you may target a single living creature, striking it with waves of evil power. Depending on the target's HD, this attack has as many as three effects.
 		
-			HD	Effect
+			HD				Effect
 		
-			10 or more	Sickened
-		
-			5–9	Panicked, sickened
-		
-			4 or less	Comatose, panicked, sickened
+			10 or more		Sickened
+			5–9				Panicked, sickened
+			4 or less		Comatose, panicked, sickened
 		
 			The effects are cumulative and concurrent.
 		
@@ -8298,13 +8249,9 @@
 			Caster Level	Vermin Size
 		
 			9th or lower	Medium
-		
-			10th–13th	Large
-		
-			14th–17th	Huge
-		
-			18th–19th	Gargantuan
-		
+			10th–13th		Large
+			14th–17th		Huge
+			18th–19th		Gargantuan
 			20th or higher	Colossal
 		</DESCRIPTION>
 	</SPELL>
@@ -9129,15 +9076,11 @@
 		
 			Round	Metal Temperature	Damage
 		
-			1	Warm	None
-		
-			2	Hot	1d4 points
-		
-			3–5	Searing	2d4 points
-		
-			6	Hot	1d4 points
-		
-			7	Warm	None
+			1		Warm				None
+			2		Hot					1d4 points
+			3–5		Searing				2d4 points
+			6		Hot					1d4 points
+			7		Warm				None
 		
 			Any cold intense enough to damage the creature negates fire damage from the spell (and vice versa) on a point-for-point basis. If cast underwater, heat metal deals half damage and boils the surrounding water.
 		
@@ -9180,21 +9123,15 @@
 		
 			When the spell is cast, the hand appears in front of you. You then specify a person (or any creature) by physical description, which can include race, gender, and appearance but not ambiguous factors such as level, alignment, or class. When the description is complete, the hand streaks off in search of a subject that fits the description. The amount of time it takes to find the subject depends on how far away she is.
 		
-			Distance	Time to Locate
+			Distance			Time to Locate
 		
-			100 ft. or less	1 round
-		
-			1,000 ft.	1 minute
-		
-			1 mile	10 minutes
-		
-			2 miles	1 hour
-		
-			3 miles	2 hours
-		
-			4 miles	3 hours
-		
-			5 miles	4 hours
+			100 ft. or less		1 round
+			1,000 ft.			1 minute
+			1 mile				10 minutes
+			2 miles				1 hour
+			3 miles				2 hours
+			4 miles				3 hours
+			5 miles				4 hours
 		
 			Once the hand locates the subject, it beckons the creature to follow it. If the subject does so, the hand points in your direction, indicating the most direct feasible route. The hand hovers 10 feet in front of the subject, moving before it at a speed of as much as 240 feet per round. Once the hand leads the subject back to you, it disappears.
 		
@@ -9623,7 +9560,7 @@
 			Yes
 		</SPELLRESISTANCE>
 		<DAMAGE>
-				[CASTERLEVEL / 2]d8 MAX:5
+			[CASTERLEVEL / 2]d8 MAX:5
 		</DAMAGE>
 		<DESCRIPTION>
 			You draw down holy power to smite your enemies. Only evil and neutral creatures are harmed by the spell; good creatures are unaffected.
@@ -10029,13 +9966,11 @@
 		<DESCRIPTION>
 			You transfer some of your currently prepared spells, and the ability to cast them, to another creature. Only a creature with an Intelligence score of at least 5 and a Wisdom score of at least 9 can receive this bestowal. Only cleric spells from the schools of abjuration, divination, and conjuration (healing) can be transferred. The number and level of spells that the subject can be granted depends on its Hit Dice; even multiple castings of imbue with spell ability can't exceed this limit.
 		
-			HD of Recipient	Spells Imbued
-		
-			2 or lower	One 1st-level spell
-		
-			3–4	One or two 1st-level spells
-		
-			5 or higher	One or two 1st-level spells and one 2nd-level spell
+			HD of Recipient		Spells Imbued
+	
+			2 or lower			One 1st-level spell
+			3–4					One or two 1st-level spells
+			5 or higher			One or two 1st-level spells and one 2nd-level spell
 		
 			The transferred spell's variable characteristics (range, duration, area, and the like) function according to your level, not the level of the recipient.
 		
@@ -12043,15 +11978,11 @@
 		
 			Hardness and Rarity Examples	Duration
 		
-			Vegetable matter	2 hr./level
-		
-			Stone, crystal, base metals	1 hr./level
-		
-			Precious metals	20 min./level
-		
-			Gems	10 min./level
-		
-			Rare metal1	1 round/level
+			Vegetable matter				2 hr./level
+			Stone, crystal, base metals		1 hr./level
+			Precious metals					20 min./level
+			Gems							10 min./level
+			Rare metal(1)					1 round/level
 		
 			1 Includes adamantine, alchemical silver, and mithral. You can't use major creation to create a cold iron item.
 		</DESCRIPTION>
@@ -13309,97 +13240,61 @@
 		
 			You can make the following spells permanent in regard to yourself.
 		
-			Spell	Minimum Caster Level	XP Cost
+			Spell					Minimum Caster Level	XP Cost
 		
-			Arcane sight	11th	1,500 XP
-		
-			Comprehend languages	9th	500 XP
-		
-			Darkvision	10th	1,000 XP
-		
-			Detect magic	9th	500 XP
-		
-			Read magic	9th	500 XP
-		
-			See invisibility	10th	1,000 XP
-		
-			Tongues	11th	1,500 XP
+			Arcane sight			11th					1,500 XP
+			Comprehend languages	9th						500 XP
+			Darkvision				10th					1,000 XP
+			Detect magic			9th						500 XP
+			Read magic				9th						500 XP
+			See invisibility		10th					1,000 XP
+			Tongues					11th					1,500 XP
 		
 			You cast the desired spell and then follow it with the permanency spell. You cannot cast these spells on other creatures. This application of permanency can be dispelled only by a caster of higher level than you were when you cast the spell.
 		
 			In addition to personal use, permanency can be used to make the following spells permanent on yourself, another creature, or an object (as appropriate).
 		
-			Spell	Minimum Caster Level	XP Cost
+			Spell				Minimum Caster Level	XP Cost
 		
-			Enlarge person	9th	500 XP
-		
-			Magic fang	9th	500 XP
-		
-			Magic fang, greater	11th	1,500 XP
-		
-			Reduce person	9th	500 XP
-		
-			Resistance	9th	500 XP
-		
-			Telepathic bond1	13th	2,500 XP
+			Enlarge person		9th						500 XP
+			Magic fang			9th						500 XP
+			Magic fang, greater	11th					1,500 XP
+			Reduce person		9th						500 XP
+			Resistance			9th						500 XP
+			Telepathic bond(1)	13th					2,500 XP
 		
 			1 Only bonds two creatures per casting of permanency.
 		
 			Additionally, the following spells can be cast upon objects or areas only and rendered permanent.
 		
-			Spell	Minimum Caster Level	XP Cost
+			Spell					Minimum Caster Level	XP Cost
 		
-			Alarm	9th	500 XP
-		
-			Animate objects	14th	3,000 XP
-		
-			Dancing lights	9th	500 XP
-		
-			Ghost sound	9th	500 XP
-		
-			Gust of wind	11th	1,500 XP
-		
-			Invisibility	10th	1,000 XP
-		
-			Mage's private sanctum	13th	2,500 XP
-		
-			Magic mouth	10th	1,000 XP
-		
-			Phase door	15th	3,500 XP
-		
-			Prismatic sphere	17th	4,500 XP
-		
-			Prismatic wall	16th	4,000 XP
-		
-			Shrink item	11th	1,500 XP
-		
-			Solid fog	12th	2,000 XP
-		
-			Stinking cloud	11th	1,500 XP
-		
-			Symbol of death	16th	4,000 XP
-		
-			Symbol of fear	14th	3,000 XP
-		
-			Symbol of insanity	16th	4,000 XP
-		
-			Symbol of pain	13th	2,500 XP
-		
-			Symbol of persuasion	14th	3,000 XP
-		
-			Symbol of sleep	16th	4,000 XP
-		
-			Symbol of stunning	15th	3,500 XP
-		
-			Symbol of weakness	15th	3,500 XP
-		
-			Teleportation circle	17th	4,500 XP
-		
-			Wall of fire	12th	2,000 XP
-		
-			Wall of force	13th	2,500 XP
-		
-			Web	10th	1,000 XP
+			Alarm					9th						500 XP
+			Animate objects			14th					3,000 XP
+			Dancing lights			9th						500 XP
+			Ghost sound				9th						500 XP
+			Gust of wind			11th					1,500 XP
+			Invisibility			10th					1,000 XP
+			Mage's private sanctum	13th					2,500 XP
+			Magic mouth				10th					1,000 XP
+			Phase door				15th					3,500 XP
+			Prismatic sphere		17th					4,500 XP
+			Prismatic wall			16th					4,000 XP
+			Shrink item				11th					1,500 XP
+			Solid fog				12th					2,000 XP
+			Stinking cloud			11th					1,500 XP
+			Symbol of death			16th					4,000 XP
+			Symbol of fear			14th					3,000 XP
+			Symbol of insanity		16th					4,000 XP
+			Symbol of pain			13th					2,500 XP
+			Symbol of persuasion	14th					3,000 XP
+			Symbol of sleep			16th					4,000 XP
+			Symbol of stunning		15th					3,500 XP
+			Symbol of weakness		15th					3,500 XP
+			Teleportation circle	17th					4,500 XP
+			Wall of fire			12th					2,000 XP
+			Wall of force			13th					2,500 XP
+			Web						10th					1,000 XP
 		
 			Spells cast on other creatures, objects, or locations (not on you) are vulnerable to dispel magic as normal.
 		
@@ -14019,17 +13914,11 @@
 			Duration Factor		Duration	Example
 
 			0					20 minutes	Pebble to human
-
 			2					1 hour		Marionette to human
-		
 			4					3 hours		Human to marionette
-		
 			5					12 hours	Lizard to manticore
-		
 			6					2 days		Sheep to wool coat
-		
 			7					1 week		Shrew to manticore
-		
 			9+					Permanent	Manticore to shrew
 		
 			Unlike polymorph, polymorph any object does grant the creature the Intelligence score of its new form. If the original form didn't have a Wisdom or Charisma score, it gains those scores as appropriate for the new form.
@@ -14076,13 +13965,11 @@
 		<DESCRIPTION>
 			You utter a single word of power that causes one creature of your choice to become blinded, whether the creature can hear the word or not. The duration of the spell depends on the target's current hit point total. Any creature that currently has 201 or more hit points is unaffected by power word blind.
 		
-			Hit Points	Duration
+			Hit Points		Duration
 		
-			50 or less	Permanent
-		
-			51–100	1d4+1 minutes
-		
-			101–200	1d4+1 rounds
+			50 or less		Permanent
+			51–100			1d4+1 minutes
+			101–200			1d4+1 rounds
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -14151,10 +14038,8 @@
 			Hit Points	Duration
 		
 			50 or less	4d4 rounds
-		
-			51–100	2d4 rounds
-		
-			101–150	1d4 rounds
+			51–100		2d4 rounds
+			101–150		1d4 rounds
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -14294,23 +14179,16 @@
 		<DESCRIPTION>
 			This spell causes seven shimmering, intertwined, multicolored beams of light to spray from your hand. Each beam has a different power. Creatures in the area of the spell with 8 HD or less are automatically blinded for 2d4 rounds. Every creature in the area is randomly struck by one or more beams, which have additional effects.
 		
-			1d8	Color of Beam	Effect
+			1d8	Color of Beam		Effect
 		
-			1	Red	20 points fire damage (Reflex half)
-		
-			2	Orange	40 points acid damage (Reflex half)
-		
-			3	Yellow	80 points electricity damage (Reflex half)
-		
-			4	Green	Poison (Kills; Fortitude partial, take 1d6 points of Con damage instead)
-		
-			5	Blue	Turned to stone (Fortitude negates)
-		
-			6	Indigo	Insane, as insanity spell (Will negates)
-		
-			7	Violet	Sent to another plane (Will negates)
-		
-			8	Struck by two rays; roll twice more, ignoring any "8" results.
+			1	Red					20 points fire damage (Reflex half)
+			2	Orange				40 points acid damage (Reflex half)
+			3	Yellow				80 points electricity damage (Reflex half)
+			4	Green				Poison (Kills; Fortitude partial, take 1d6 points of Con damage instead)
+			5	Blue				Turned to stone (Fortitude negates)
+			6	Indigo				Insane, as insanity spell (Will negates)
+			7	Violet				Sent to another plane (Will negates)
+			8	Struck by two rays 	Roll twice more, ignoring any "8" results.
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -14355,37 +14233,23 @@
 		
 			Prismatic wall can be made permanent with a permanency spell.
 		
-			Color	Order	Effect of Color	Negated By
+			Color	Order	Effect of Color	and Negated By
 		
-			Red	1st	Stops nonmagical ranged weapons.
+			Red		1st		Stops nonmagical ranged weapons. Deals 20 points of fire damage (Reflex half).	Cone of cold
 		
-			Deals 20 points of fire damage (Reflex half).	Cone of cold
+			Orange	2nd		Stops magical ranged weapons. Deals 40 points of acid damage (Reflex half).	Gust of wind
 		
-			Orange	2nd	Stops magical ranged weapons.
+			Yellow	3rd		Stops poisons, gases, and petrification.Deals 80 points of electricity damage (Reflex half).	Disintegrate
 		
-			Deals 40 points of acid damage (Reflex half).	Gust of wind
+			Green	4th		Stops breath weapons. Poison (Kills; Fortitude partial for 1d6 points of Con damage instead).	Passwall
 		
-			Yellow	3rd	Stops poisons, gases, and petrification.
+			Blue	5th		Stops divination and mental attacks. Turned to stone (Fortitude negates).	Magic missile
 		
-			Deals 80 points of electricity damage (Reflex half).	Disintegrate
+			Indigo	6th		Stops all spells. Will save or become insane (as insanity spell).	Daylight
 		
-			Green	4th	Stops breath weapons.
+			Violet	7th	Energy field destroys all objects and effects.(1)Creatures sent to another plane (Will negates).	Dispel magic
 		
-			Poison (Kills; Fortitude partial for 1d6 points of Con damage instead).	Passwall
-		
-			Blue	5th	Stops divination and mental attacks.
-		
-			Turned to stone (Fortitude negates).	Magic missile
-		
-			Indigo	6th	Stops all spells.
-		
-			Will save or become insane (as insanity spell).	Daylight
-		
-			Violet	7th	Energy field destroys all objects and effects.1
-		
-			Creatures sent to another plane (Will negates).	Dispel magic
-		
-			1 The violet effect makes the special effects of the other six colors redundant, but these six effects are included here because certain magic items can create prismatic effects one color at a time, and spell resistance might render some colors ineffective (see above).
+			(1) The violet effect makes the special effects of the other six colors redundant, but these six effects are included here because certain magic items can create prismatic effects one color at a time, and spell resistance might render some colors ineffective (see above).
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -15348,37 +15212,23 @@
 		
 			A creature that has been turned into an undead creature or killed by a death effect can't be returned to life by this spell.  Constructs, elementals, outsiders, and undead creatures can't be reincarnated. The spell cannot bring back a creature who has died of old age.
 		
-			d%	Incarnation	Str	Dex	Con
+			d%		Incarnation		Str	Dex	Con
 		
-			01	Bugbear	+4	+2	+2
-		
-			02–13	Dwarf	+0	+0	+2
-		
-			14–25	Elf	+0	+2	–2
-		
-			26	Gnoll	+4	+0	+2
-		
-			27–38	Gnome	–2	+0	+2
-		
-			39–42	Goblin	–2	+2	+0
-		
-			43–52	Half-elf	+0	+0	+0
-		
-			53–62	Half-orc	+2	+0	+0
-		
-			63–74	Halfling	–2	+2	+0
-		
-			75–89	Human	+0	+0	+0
-		
-			90–93	Kobold	–4	+2	–2
-		
-			94	Lizardfolk	+2	+0	+2
-		
-			95–98	Orc	+4	+0	+0
-		
-			99	Troglodyte	+0	–2	+4
-		
-			100	Other	?	?	?
+			01		Bugbear			+4	+2	+2
+			02–13	Dwarf			+0	+0	+2
+			14–25	Elf				+0	+2	–2
+			26		Gnoll			+4	+0	+2
+			27–38	Gnome			–2	+0	+2
+			39–42	Goblin			–2	+2	+0
+			43–52	Half-elf		+0	+0	+0
+			53–62	Half-orc		+2	+0	+0
+			63–74	Halfling		–2	+2	+0
+			75–89	Human			+0	+0	+0
+			90–93	Kobold			–4	+2	–2
+			94		Lizardfolk		+2	+0	+2
+			95–98	Orc				+4	+0	+0
+			99		Troglodyte		+0	–2	+4
+			100		Other			?	?	?
 		
 			The reincarnated creature gains all abilities associated with its new form, including forms of movement and speeds, natural armor, natural attacks, extraordinary abilities, and the like, but it doesn't automatically speak the language of the new form. 
 		
@@ -16321,17 +16171,14 @@
 		<DESCRIPTION>
 			You can see and hear some creature, which may be at any distance. If the subject succeeds on a Will save, the scrying attempt simply fails. The difficulty of the save depends on how well you know the subject and what sort of physical connection (if any) you have to that creature. Furthermore, if the subject is on another plane, it gets a +5 bonus on its Will save.
 		
-			Knowledge	Will Save Modifier
+			Knowledge									Will Save Modifier
 		
-			None1	+10
-		
+			None(1)										+10
 			Secondhand (you have heard of the subject)	+5
+			Firsthand (you have met the subject)		+0
+			Familiar (you know the subject well)		–5
 		
-			Firsthand (you have met the subject)	+0
-		
-			Familiar (you know the subject well)	–5
-		
-			1 You must have some sort of connection to a creature you have no knowledge of.
+			(1) You must have some sort of connection to a creature you have no knowledge of.
 		
 			Connection	Will Save Modifier
 		
@@ -16346,15 +16193,17 @@
 			As with all divination (scrying) spells, the sensor has your full visual acuity, including any magical effects. In addition, the following spells have a 5%detect chaos, detect evil, detect good, detect law, detect magic, and message.
 		
 			If the save succeeds, you can't attempt to scry on that subject again for at least 24 hours.
-		
-			The eye of a hawk, an eagle, or a roc, plus nitric acid, copper, and zinc.
-		
-			Wizardard, Sorcerercerer,A mirror of finely wrought and highly polished silver costing not less than 1,000 gp. The mirror must be at least 2 feet by 4 feet.
-		
-			A holy water font costing not less than 100 gp.
-		
-			A natural pool of water. 
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			The eye of a hawk, an eagle, or a roc, plus nitric acid, copper, and zinc.
+		</MATERIALCOMPONENT>
+		<FOCUS>
+			Wizard, Sorcerer: A mirror of finely wrought and highly polished silver costing not less than 1,000 gp. The mirror must be at least 2 feet by 4 feet.
+		
+			Clearic: A holy water font costing not less than 100 gp.
+		
+			Druid: A natural pool of water. 
+		</FOCUS>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -17344,9 +17193,10 @@
 		</DAMAGEALTERNATE>
 		<DESCRIPTION>
 			This spell functions like shout, except that the cone deals 10d6 points of sonic damage (or 1d6 points of sonic damage per caster level, maximum 20d6, against exposed brittle or crystalline objects or crystalline creatures). It also causes creatures to be stunned for 1 round and deafened for 4d6 rounds. A creature in the area of the cone can negate the stunning and halve both the damage and the duration of the deafness with a successful Fortitude save. A creature holding vulnerable objects can attempt a Reflex save to negate the damage to those objects.
-		
-			A small metal or ivory horn.
 		</DESCRIPTION>
+		<FOCUS>
+			A small metal or ivory horn.
+		</FOCUS>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -18164,18 +18014,16 @@
 		
 			Roll randomly to determine the result.
 		
-			d%	Effect
+			d%		Effect
 		
 			01–70	Spell drains away without effect.
-		
 			71–80	Spell affects both of you equally at full effect.
-		
 			81–97	Both turning effects are rendered nonfunctional for 1d4 minutes.
-		
 			98–100	Both of you go through a rift into another plane.
-		
-			A small silver mirror.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			A small silver mirror.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -18776,6 +18624,9 @@
 		<SPELLRESISTANCE>
 			No
 		</SPELLRESISTANCE>
+		<FOCUS>
+			A tiny bag and a small (not necessarily lit) candle.
+		</FOCUS>
 		<DESCRIPTION>
 			This spell summons an extraplanar creature (typically an outsider, elemental, or magical beast native to another plane). It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions.
 		
@@ -18784,8 +18635,157 @@
 			A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them.
 		
 			When you use a summoning spell to summon an air, chaotic, earth, evil, fire, good, lawful, or water creature, it is a spell of that type.
+
+			1st Level	
+
+			Celestial dog								LG
+			Celestial owl								LG
+			Celestial giant fire beetle					NG
+			Celestial porpoise*							NG
+			Celestial badger							CG
+			Celestial monkey							CG
+			Fiendish dire rat							LE
+			Fiendish raven								LE
+			Fiendish monstrous centipede, Medium		NE
+			Fiendish monstrous scorpion, Small			NE
+			Fiendish hawk								CE
+			Fiendish monstrous spider, Small			CE
+			Fiendish octopus*							CE
+			Fiendish snake, Small viper					CE
+
+			2nd Level	
 		
-			A tiny bag and a small (not necessarily lit) candle.
+			Celestial giant bee							LG
+			Celestial giant bombardier beetle			NG
+			Celestial riding dog						NG
+			Celestial eagle								CG
+			Lemure (devil)								LE
+			Fiendish squid*								LE
+			Fiendish wolf								LE
+			Fiendish monstrous centipede, Large			NE
+			Fiendish monstrous scorpion, Medium			NE
+			Fiendish shark, Medium*						NE
+			Fiendish monstrous spider, Medium			CE
+			Fiendish snake, Medium viper				CE
+		
+			3rd Level	
+		
+			Celestial black bear						LG
+			Celestial bison								NG
+			Celestial dire badger						CG
+			Celestial hippogriff						CG
+			Elemental, Small (any)						N
+			Fiendish ape								LE
+			Fiendish dire weasel						LE
+			Hell hound									LE
+			Fiendish snake, constrictor 				LE	
+			Fiendish boar								NE
+			Fiendish dire bat							NE
+			Fiendish monstrous centipede, Huge			NE
+			Fiendish crocodile							CE
+			Dretch (demon)								CE
+			Fiendish snake, Large viper					CE
+			Fiendish wolverine							CE
+		
+			4th Level	
+		
+			Archon, lantern								LG
+			Celestial giant owl							LG
+			Celestial giant eagle						CG
+			Celestial lion								CG
+			Mephit (any)								N
+			Fiendish dire wolf							LE
+			Fiendish giant wasp							LE
+			Fiendish giant praying mantis				NE
+			Fiendish shark, Large*						NE
+			Yeth hound									NE
+			Fiendish monstrous spider, Large			CE
+			Fiendish snake, Huge viper					CE
+			Howler										CE
+		
+			5th Level	
+		
+			Archon, hound								LG
+			Celestial brown bear						LG
+			Celestial giant stag beetle					NG
+			Celestial sea cat*							NG
+			Celestial griffon							CG
+			Elemental, Medium (any)						N
+			Achaierai									LE
+			Devil, bearded								LE
+			Fiendish deinonychus						LE
+			Fiendish dire ape							LE
+			Fiendish dire boar							NE
+			Fiendish shark, Huge						NE
+			Fiendish monstrous scorpion, Large			NE
+			Shadow mastiff								NE
+			Fiendish dire wolverine						CE
+			Fiendish giant crocodile					CE
+			Fiendish tiger								CE
+		
+			6th Level	
+		
+			Celestial polar bear						LG
+			Celestial orca whale*						NG
+			Bralani (eladrin)							CG
+			Celestial dire lion							CG
+			Elemental, Large (any)						N
+			Janni (genie)								N
+			Chaos beast									CN
+			Devil, chain								LE
+			Xill										LE
+			Fiendish monstrous centipede, Gargantuan	NE
+			Fiendish rhinoceros							NE
+			Fiendish elasmosaurus*						CE
+			Fiendish monstrous spider, Huge				CE
+			Fiendish snake, giant constrictor			CE
+
+			7th Level	
+		
+			Celestial elephant							LG
+			Avoral (guardinal)							NG
+			Celestial baleen whale*						NG
+			Djinni (genie)								CG
+			Elemental, Huge (any)						N
+			Invisible stalker							N
+			Devil, bone									LE
+			Fiendish megaraptor							LE
+			Fiendish monstrous scorpion, Huge			NE
+			Babau (demon)								CE
+			Fiendish giant octopus*						CE
+			Fiendish girallon							CE
+		
+			8th Level	
+		
+			Celestial dire bear							LG
+			Celestial cachalot whale*					NG
+			Celestial triceratops						NG
+			Lillend										CG
+			Elemental, greater (any)					N
+			Fiendish giant squid*						LE
+			Hellcat										LE
+			Fiendish monstrous centipede, Colossal		NE
+			Fiendish dire tiger							CE
+			Fiendish monstrous spider, Gargantuan		CE
+			Fiendish tyrannosaurus						CE
+			Vrock (demon)								CE
+		
+			9th Level	
+		
+			Couatl	LG
+			Leonal (guardinal)							NG
+			Celestial roc								CG
+			Elemental, elder (any)						N
+			Devil, barbed								LE
+			Fiendish dire shark*						NE
+			Fiendish monstrous scorpion, Gargantuan		NE
+			Night hag									NE
+			Bebilith (demon)							CE
+			Fiendish monstrous spider, Colossal			CE
+			Hezrou (demon)								CE
+		
+			(*) May be summoned only into an aquatic or watery environment.
+		
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -18917,275 +18917,6 @@
 	</SPELL>
 	<SPELL>
 		<NAME>
-			Summon Monster	
-		</NAME>
-		<SCHOOL>
-			1st Level	
-		</SCHOOL>
-		<DESCRIPTION>
-			Celestial dog	LG
-		
-			Celestial owl	LG
-		
-			Celestial giant fire beetle	NG
-		
-			Celestial porpoise1	NG
-		
-			Celestial badger	CG
-		
-			Celestial monkey	CG
-		
-			Fiendish dire rat	LE
-		
-			Fiendish raven	LE
-		
-			Fiendish monstrous centipede, Medium	NE
-		
-			Fiendish monstrous scorpion, Small	NE
-		
-			Fiendish hawk	CE
-		
-			Fiendish monstrous spider, Small	CE
-		
-			Fiendish octopus1	CE
-		
-			Fiendish snake, Small viper	CE
-		
-			2nd Level	
-		
-			Celestial giant bee	LG
-		
-			Celestial giant bombardier beetle	NG
-		
-			Celestial riding dog	NG
-		
-			Celestial eagle	CG
-		
-			Lemure (devil)	LE
-		
-			Fiendish squid1	LE
-		
-			Fiendish wolf	LE
-		
-			Fiendish monstrous centipede, Large	NE
-		
-			Fiendish monstrous scorpion, Medium	NE
-		
-			Fiendish shark, Medium1	NE
-		
-			Fiendish monstrous spider, Medium	CE
-		
-			Fiendish snake, Medium viper	CE
-		
-			3rd Level	
-		
-			Celestial black bear	LG
-		
-			Celestial bison	NG
-		
-			Celestial dire badger	CG
-		
-			Celestial hippogriff	CG
-		
-			Elemental, Small (any)	N
-		
-			Fiendish ape	LE
-		
-			Fiendish dire weasel	LE
-		
-			Hell hound	LE
-		
-			Fiendish snake, constrictor LE	
-		
-			Fiendish boar	NE
-		
-			Fiendish dire bat	NE
-		
-			Fiendish monstrous centipede, Huge	NE
-		
-			Fiendish crocodile	CE
-		
-			Dretch (demon)	CE
-		
-			Fiendish snake, Large viper	CE
-		
-			Fiendish wolverine	CE
-		
-			4th Level	
-		
-			Archon, lantern	LG
-		
-			Celestial giant owl	LG
-		
-			Celestial giant eagle	CG
-		
-			Celestial lion	CG
-		
-			Mephit (any)	N
-		
-			Fiendish dire wolf	LE
-		
-			Fiendish giant wasp	LE
-		
-			Fiendish giant praying mantis	NE
-		
-			Fiendish shark, Large1	NE
-		
-			Yeth hound	NE
-		
-			Fiendish monstrous spider, Large	CE
-		
-			Fiendish snake, Huge viper	CE
-		
-			Howler	CE
-		
-			5th Level	
-		
-			Archon, hound	LG
-		
-			Celestial brown bear	LG
-		
-			Celestial giant stag beetle	NG
-		
-			Celestial sea cat1	NG
-		
-			Celestial griffon	CG
-		
-			Elemental, Medium (any)	N
-		
-			Achaierai	LE
-		
-			Devil, bearded	LE
-		
-			Fiendish deinonychus	LE
-		
-			Fiendish dire ape	LE
-		
-			Fiendish dire boar	NE
-		
-			Fiendish shark, Huge	NE
-		
-			Fiendish monstrous scorpion, Large	NE
-		
-			Shadow mastiff	NE
-		
-			Fiendish dire wolverine	CE
-		
-			Fiendish giant crocodile	CE
-		
-			Fiendish tiger	CE
-		
-			6th Level	
-		
-			Celestial polar bear	LG
-		
-			Celestial orca whale1	NG
-		
-			Bralani (eladrin)	CG
-		
-			Celestial dire lion	CG
-		
-			Elemental, Large (any)	N
-		
-			Janni (genie)	N
-		
-			Chaos beast	CN
-		
-			Devil, chain	LE
-		
-			Xill	LE
-		
-			Fiendish monstrous centipede, Gargantuan	NE
-		
-			Fiendish rhinoceros	NE
-		
-			Fiendish elasmosaurus1	CE
-		
-			Fiendish monstrous spider, Huge	CE
-		
-			Fiendish snake, giant constrictor	CE
-		
-			7th Level	
-		
-			Celestial elephant	LG
-		
-			Avoral (guardinal)	NG
-		
-			Celestial baleen whale1	NG
-		
-			Djinni (genie)	CG
-		
-			Elemental, Huge (any)	N
-		
-			Invisible stalker	N
-		
-			Devil, bone	LE
-		
-			Fiendish megaraptor	LE
-		
-			Fiendish monstrous scorpion, Huge	NE
-		
-			Babau (demon)	CE
-		
-			Fiendish giant octopus1	CE
-		
-			Fiendish girallon	CE
-		
-			8th Level	
-		
-			Celestial dire bear	LG
-		
-			Celestial cachalot whale1	NG
-		
-			Celestial triceratops	NG
-		
-			Lillend	CG
-		
-			Elemental, greater (any)	N
-		
-			Fiendish giant squid1	LE
-		
-			Hellcat	LE
-		
-			Fiendish monstrous centipede, Colossal	NE
-		
-			Fiendish dire tiger	CE
-		
-			Fiendish monstrous spider, Gargantuan	CE
-		
-			Fiendish tyrannosaurus	CE
-		
-			Vrock (demon)	CE
-		
-			9th Level	
-		
-			Couatl	LG
-		
-			Leonal (guardinal)	NG
-		
-			Celestial roc	CG
-		
-			Elemental, elder (any)	N
-		
-			Devil, barbed	LE
-		
-			Fiendish dire shark1	NE
-		
-			Fiendish monstrous scorpion, Gargantuan	NE
-		
-			Night hag	NE
-		
-			Bebilith (demon)	CE
-		
-			Fiendish monstrous spider, Colossal	CE
-		
-			Hezrou (demon)	CE
-		
-			1 May be summoned only into an aquatic or watery environment.
-		</DESCRIPTION>
-	</SPELL>
-	<SPELL>
-		<NAME>
 			Summon Nature's Ally I
 		</NAME>
 		<SCHOOL>
@@ -19221,6 +18952,128 @@
 			A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them.
 		
 			The spell conjures one of the creatures from the 1st-level list on the accompanying Summon Nature's Ally table. You choose which kind of creature to summon, and you can change that choice each time you cast the spell. All the creatures on the table are neutral unless otherwise noted.
+
+			1st Level
+
+			Dire rat
+			Eagle (animal)
+			Monkey (animal)
+			Octopus(1) (animal)
+			Owl (animal)
+			Porpoise(1) (animal)
+			Snake, Small viper (animal)
+			Wolf (animal)
+		
+			2nd Level
+		
+			Bear, black (animal)
+			Crocodile (animal)
+			Dire badger
+			Dire bat
+			Elemental, Small (any)
+			Hippogriff
+			Shark, Medium(1) (animal)
+			Snake, Medium viper (animal)
+			Squid(1) (animal)
+			Wolverine (animal)
+		
+			3rd Level
+		
+			Ape (animal)
+			Dire weasel
+			Dire wolf
+			Eagle, giant [NG]
+			Lion
+			Owl, giant [NG]
+			Satyr [CN; without pipes]
+			Shark, Large(1) (animal)
+			Snake, constrictor (animal)
+			Snake, Large viper (animal)
+			Thoqqua
+		
+			4th Level
+		
+			Arrowhawk, juvenile
+			Bear, brown (animal)
+			Crocodile, giant (animal)
+			Deinonychus (dinosaur)
+			Dire ape
+			Dire boar
+			Dire wolverine
+			Elemental, Medium (any)
+			Salamander, flamebrother [NE]
+			Sea cat(1)
+			Shark, Huge(1) (animal)
+			Snake, Huge viper (animal)
+			Tiger (animal)
+			Tojanida, juvenile(1)
+			Unicorn [CG]
+			Xorn, minor
+		
+			5th Level
+		
+			Arrowhawk, adult
+			Bear, polar (animal)
+			Dire lion
+			Elasmosaurus(1) (dinosaur)
+			Elemental, Large (any)
+			Griffon
+			Janni (genie)
+			Rhinoceros (animal)
+			Satyr [CN; with pipes]
+			Snake, giant constrictor (animal)
+			Nixie (sprite)
+			Tojanida, adult(1)
+			Whale, orca(1) (animal)
+		
+			6th Level
+		
+			Dire bear
+			Elemental, Huge (any)
+			Elephant (animal)
+			Girallon
+			Megaraptor (dinosaur)
+			Octopus, giant(1) (animal)
+			Pixie* (sprite) [NG; no special arrows]
+			Salamander, average [NE]
+			Whale, baleen(1)
+			Xorn, average
+		
+			*Can't cast irresistible dance
+		
+			7th Level
+		
+			Arrowhawk, elder
+			Dire tiger
+			Elemental, greater (any)
+			Djinni (genie) [NG]
+			Invisible stalker
+			Pixie* (sprite) [NG; with sleep arrows]
+			Squid, giant(1) (animal)
+			Triceratops (dinosaur)
+			Tyrannosaurus (dinosaur)
+			Whale, cachalot(1) (animal)
+			Xorn, elder
+		
+			*Can't cast irresistible dance
+		
+			8th Level
+		
+			Dire shark(1)
+			Roc
+			Salamander, noble [NE]
+			Tojanida, elder
+		
+			9th Level
+		
+			Elemental, elder
+			Grig [NG; with fiddle] (sprite)
+			Pixie* (sprite) [NG; with sleep and memory loss arrows]
+			Unicorn, celestial charger
+		
+			*Can cast irresistible dance
+		
+			(1) May be summoned only into an aquatic or watery environment.
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -19257,11 +19110,15 @@
 			This spell functions like summon nature's ally I, except that you can summon one 3rd-level creature, 1d3 2nd-level creatures of the same kind, or 1d4+1 1st-level creatures of the same kind.
 		
 			When you use a summoning spell to summon an air, chaotic, earth, evil, fire, good, lawful, or water creature, it is a spell of that type. 
-		
-			Summon Nature's Ally IV
-		
-			Conjuration (Summoning) [see text]
 		</DESCRIPTION>
+	</SPELL>
+	<SPELL>
+		<NAME>
+			Summon Nature's Ally IV
+		</NAME>
+		<SCHOOL>
+			Conjuration (Summoning) [see text]
+		</SCHOOL>
 		<LEVEL>
 			Animal 4, Druid 4, Ranger 4
 		</LEVEL>
@@ -19371,213 +19228,6 @@
 	</SPELL>
 	<SPELL>
 		<NAME>
-			Summon Nature's Ally
-		</NAME>
-		<SCHOOL>
-			1st Level
-		</SCHOOL>
-		<DESCRIPTION>
-			Dire rat
-		
-			Eagle (animal)
-		
-			Monkey (animal)
-		
-			Octopus1 (animal)
-		
-			Owl (animal)
-		
-			Porpoise1 (animal)
-		
-			Snake, Small viper (animal)
-		
-			Wolf (animal)
-		
-			2nd Level
-		
-			Bear, black (animal)
-		
-			Crocodile (animal)
-		
-			Dire badger
-		
-			Dire bat
-		
-			Elemental, Small (any)
-		
-			Hippogriff
-		
-			Shark, Medium1 (animal)
-		
-			Snake, Medium viper (animal)
-		
-			Squid1 (animal)
-		
-			Wolverine (animal)
-		
-			3rd Level
-		
-			Ape (animal)
-		
-			Dire weasel
-		
-			Dire wolf
-		
-			Eagle, giant [NG]
-		
-			Lion
-		
-			Owl, giant [NG]
-		
-			Satyr [CN; without pipes]
-		
-			Shark, Large1 (animal)
-		
-			Snake, constrictor (animal)
-		
-			Snake, Large viper (animal)
-		
-			Thoqqua
-		
-			4th Level
-		
-			Arrowhawk, juvenile
-		
-			Bear, brown (animal)
-		
-			Crocodile, giant (animal)
-		
-			Deinonychus (dinosaur)
-		
-			Dire ape
-		
-			Dire boar
-		
-			Dire wolverine
-		
-			Elemental, Medium (any)
-		
-			Salamander, flamebrother [NE]
-		
-			Sea cat1
-		
-			Shark, Huge1 (animal)
-		
-			Snake, Huge viper (animal)
-		
-			Tiger (animal)
-		
-			Tojanida, juvenile1
-		
-			Unicorn [CG]
-		
-			Xorn, minor
-		
-			5th Level
-		
-			Arrowhawk, adult
-		
-			Bear, polar (animal)
-		
-			Dire lion
-		
-			Elasmosaurus1 (dinosaur)
-		
-			Elemental, Large (any)
-		
-			Griffon
-		
-			Janni (genie)
-		
-			Rhinoceros (animal)
-		
-			Satyr [CN; with pipes]
-		
-			Snake, giant constrictor (animal)
-		
-			Nixie (sprite)
-		
-			Tojanida, adult1
-		
-			Whale, orca1 (animal)
-		
-			6th Level
-		
-			Dire bear
-		
-			Elemental, Huge (any)
-		
-			Elephant (animal)
-		
-			Girallon
-		
-			Megaraptor (dinosaur)
-		
-			Octopus, giant1 (animal)
-		
-			Pixie* (sprite) [NG; no special arrows]
-		
-			Salamander, average [NE]
-		
-			Whale, baleen1
-		
-			Xorn, average
-		
-			*Can't cast irresistible dance
-		
-			7th Level
-		
-			Arrowhawk, elder
-		
-			Dire tiger
-		
-			Elemental, greater (any)
-		
-			Djinni (genie) [NG]
-		
-			Invisible stalker
-		
-			Pixie* (sprite) [NG; with sleep arrows]
-		
-			Squid, giant1 (animal)
-		
-			Triceratops (dinosaur)
-		
-			Tyrannosaurus (dinosaur)
-		
-			Whale, cachalot1 (animal)
-		
-			Xorn, elder
-		
-			*Can't cast irresistible dance
-		
-			8th Level
-		
-			Dire shark1
-		
-			Roc
-		
-			Salamander, noble [NE]
-		
-			Tojanida, elder
-		
-			9th Level
-		
-			Elemental, elder
-		
-			Grig [NG; with fiddle] (sprite)
-		
-			Pixie* (sprite) [NG; with sleep and memory loss arrows]
-		
-			Unicorn, celestial charger
-		
-			*Can cast irresistible dance
-		
-			1 May be summoned only into an aquatic or watery environment.
-		</DESCRIPTION>
-	</SPELL>
-	<SPELL>
-		<NAME>
 			Summon Swarm
 		</NAME>
 		<SCHOOL>
@@ -19609,9 +19259,10 @@
 		</SPELLRESISTANCE>
 		<DESCRIPTION>
 			You summon a swarm of bats, rats, or spiders (your choice), which attacks all other creatures within its area. (You may summon the swarm so that it shares the area of other creatures.) If no living creatures are within its area, the swarm attacks or pursues the nearest creature as best it can. The caster has no control over its target or direction of travel.
-		
-			A square of red cloth.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			A square of red cloth.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -19690,9 +19341,10 @@
 			The ultraviolet light generated by the spell deals damage to fungi, mold, oozes, and slimes just as if they were undead creatures.
 		
 			Sunburst dispels any darkness spells of lower than 9th level within its area.
-		
-			A piece of sunstone and a naked flame.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			A piece of sunstone and a naked flame.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -20176,17 +19828,13 @@
 		
 			You and anyone else teleporting with you have gotten "scrambled." You each take 1d10 points of damage, and you reroll on the chart to see where you wind up. For these rerolls, roll 1d20+80. Each time "Mishap" comes up, the characters take more damage and must reroll.
 		
-			Familiarity	On Target	Off Target	Similar Area	Mishap
+			Familiarity						On Target	Off Target	Similar Area	Mishap
 		
-			Very familiar	01–97	98–99	100	—
-		
-			Studied carefully	01–94	95–97	98–99	100
-		
-			Seen casually	01–88	89–94	95–98	99–100
-		
-			Viewed once	01–76	77–88	89–96	97–100
-		
-			False destination (1d20+80)	—	—	81–92	93–100
+			Very familiar					01–97		98–99		100				—
+			Studied carefully				01–94		95–97		98–99			100
+			Seen casually					01–88		89–94		95–98			99–100
+			Viewed once						01–76		77–88		89–96			97–100
+			False destination (1d20+80)		—			—			81–92			93–100
 		</DESCRIPTION>
 	</SPELL>
 	<SPELL>
@@ -20414,9 +20062,10 @@
 			This spell grants the creature touched the ability to speak and understand the language of any intelligent creature, whether it is a racial tongue or a regional dialect. The subject can speak only one language at a time, although it may be able to understand several languages. Tongues does not enable the subject to speak with creatures who don't speak. The subject can make itself understood as far as its voice carries. This spell does not predispose any creature addressed toward the subject in any way.
 		
 			Tongues can be made permanent with a permanency spell.
-		
-			A small clay model of a ziggurat, which shatters when the verbal component is pronounced.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			A small clay model of a ziggurat, which shatters when the verbal component is pronounced.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -20598,9 +20247,10 @@
 			Any creature in the mud is allowed a Reflex save to escape before the area is hardened to stone.
 		
 			Transmute mud to rock counters and dispels transmute rock to mud.
-		
-			Sand, lime, and water.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			Sand, lime, and water.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -20641,9 +20291,10 @@
 			Castles and large stone buildings are generally immune to the effect of the spell, since transmute rock to mud can't affect worked stone and doesn't reach deep enough to undermine such buildings' foundations. However, small buildings or structures often rest upon foundations shallow enough to be damaged or even partially toppled by this spell.
 		
 			The mud remains until a successful dispel magic or transmute mud to rock spell restores its substance—but not necessarily its form. Evaporation turns the mud to normal dirt over a period of days. The exact time depends on exposure to the sun, wind, and normal drainage.
-		
-			Clay and water.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			Clay and water.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -20780,17 +20431,13 @@
 		<DESCRIPTION>
 			You gain the ability to enter trees and move from inside one tree to inside another tree. The first tree you enter and all others you enter must be of the same kind, must be living, and must have girth at least equal to yours. By moving into an oak tree (for example), you instantly know the location of all other oak trees within transport range (see below) and may choose whether you want to pass into one or simply step back out of the tree you moved into. You may choose to pass to any tree of the appropriate kind within the transport range as shown on the following table.
 		
-			Type of Tree	Transport Range
+			Type of Tree		Transport Range
 		
-			Oak, ash, yew	3,000 feet
-		
-			Elm, linden	2,000 feet
-		
-			Other deciduous	1,500 feet
-		
-			Any coniferous	1,000 feet
-		
-			All other trees	500 feet
+			Oak, ash, yew		3,000 feet
+			Elm, linden			2,000 feet
+			Other deciduous		1,500 feet
+			Any coniferous		1,000 feet
+			All other trees		500 feet
 		
 			You may move into a tree up to one time per caster level (passing from one tree to another counts only as moving into one tree). The spell lasts until the duration expires or you exit a tree. Each transport is a full-round action.
 		
@@ -21293,6 +20940,7 @@
 		<DESCRIPTION>
 			This spell functions like legend lore, except that it works more quickly but produces some strain on you. You pose a question about some person, place, or object, then cast the spell. If the person or object is at hand or if you are in the place in question, you receive a vision about it by succeeding on a caster level check (1d20 +1 per caster level; maximum +25) against DC 20. If only detailed information on the person, place, or object is known, the DC is 25, and the information gained is incomplete. If only rumors are known, the DC is 30, and the information gained is vague.
 		
+			XP Cost
 			100 XP.
 		</DESCRIPTION>
 	</SPELL>
@@ -21371,9 +21019,10 @@
 			If you evoke the wall so that it appears where creatures are, each creature takes damage as if passing through the wall. If any 5-foot length of wall takes 20 points of cold damage or more in 1 round, that length goes out. (Do not divide cold damage by 4, as normal for objects.)
 		
 			Wall of fire can be made permanent with a permanency spell. A permanent wall of fire that is extinguished by cold damage becomes inactive for 10 minutes, then reforms at normal strength.
-		
+			</DESCRIPTION>
+		<MATERIALCOMPONENT>
 			A small piece of phosphorus.
-		</DESCRIPTION>
+		</MATERIALCOMPONENT>	
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -21670,9 +21319,10 @@
 			The transmuted creatures can breathe water freely. Divide the duration evenly among all the creatures you touch.
 		
 			The spell does not make creatures unable to breathe air.
-		
-			A short reed or piece of straw.
 		</DESCRIPTION>
+		<MATERIALCOMPONENT>
+			A short reed or piece of straw.
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -21993,10 +21643,11 @@
 		<DESCRIPTION>
 			An invisible vertical curtain of wind appears. It is 2 feet thick and of considerable strength. It is a roaring blast sufficient to blow away any bird smaller than an eagle, or tear papers and similar materials from unsuspecting hands. (A Reflex save allows a creature to maintain its grasp on an object.) Tiny and Small flying creatures cannot pass through the barrier. Loose materials and cloth garments fly upward when caught in a wind wall. Arrows and bolts are deflected upward and miss, while any other normal ranged weapon passing through the wall has a 30% miss chance. (A giant-thrown boulder, a siege engine projectile, and other massive ranged weapons are not affected.) Gases, most gaseous breath weapons, and creatures in gaseous form cannot pass through the wall (although it is no barrier to incorporeal creatures).
 		
-			While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points. 
-		
+			While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points.
+		</DESCRIPTION> 
+		<MATERIALCOMPONENT>
 			A tiny fan and a feather of exotic origin.
-		</DESCRIPTION>
+		</MATERIALCOMPONENT>
 	</SPELL>
 	<SPELL>
 		<NAME>
@@ -22150,14 +21801,11 @@
 		
 			Living creatures die. Undead creatures are destroyed.
 		
-			HD	Effect
+			HD						Effect
 		
 			Equal to caster level	Deafened
-		
 			Up to caster level –1	Stunned, deafened
-		
 			Up to caster level –5	Confused, stunned, deafened
-		
 			Up to caster level –10	Killed, confused, stunned, deafened
 		
 			Furthermore, if you are on your home plane when you cast this spell, nonchaotic extraplanar creatures within the area are instantly banished back to their home planes. Creatures so banished cannot return for at least 24 hours. This effect takes place regardless of whether the creatures hear the word of chaos. The banishment effect allows a Will save (at a –4 penalty) to negate.
