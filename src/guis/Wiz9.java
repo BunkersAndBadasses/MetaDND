@@ -20,6 +20,10 @@
  * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
  */
 
+/*
+ * TODO sort spells by level rather than alphabetically?
+ */
+
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,6 +42,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
 import entity.*;
+import core.CharItem;
 import core.Main;
 import core.character;
 
@@ -57,6 +62,12 @@ public class Wiz9{
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
+	
+	private Composite inner;
+	
+	private List charSpellsList;
+	private Label numSpellsLeft;
+	private int[] numSpells;
 	
 	private ArrayList<SpellEntity> charSpells = new ArrayList<SpellEntity>();
 	
@@ -92,14 +103,14 @@ public class Wiz9{
 		
 		GridLayout gl = new GridLayout(7, true);
 		
-		Composite inner = new Composite(wiz9, SWT.NONE);
+		inner = new Composite(wiz9, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
 		
 		GridData gd;
 		
-		Label numSpellsLeft = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		numSpellsLeft = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 7;
 		numSpellsLeft.setLayoutData(gd);
 		
@@ -113,7 +124,7 @@ public class Wiz9{
 		gd = new GridData(SWT.CENTER, SWT.END, false, true);
 		addButton.setLayoutData(gd);
 		
-		List charSpellsList =  new List(inner, SWT.V_SCROLL);
+		charSpellsList =  new List(inner, SWT.V_SCROLL);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 2;
@@ -154,22 +165,24 @@ public class Wiz9{
 		// if character does not have known spells (non-casters, wizard), skip to next page
 		// TODO not working
 		if (character.getCharClass().getSpellsKnown() == null) {
-			if (cw.wizPageNum < wizPagesSize - 1)
-				cw.wizPageNum++;
-			if (!cw.wizPageCreated[9])
-				createNextPage();
-			layout.topControl = nextPage;
-			panel.layout();
-			return;
-		}
-		else {
+//			if (cw.wizPageNum < wizPagesSize - 1)
+//				cw.wizPageNum++;
+//			if (!cw.wizPageCreated[9])
+//				createNextPage();
+//			layout.topControl = nextPage;
+//			panel.layout();
+//			return;
+//		
+		} else {
 			
 			int[][] temp = character.getCharClass().getSpellsKnown();
-			int[] numSpells;
 			if (character.getLevel() >= temp.length)
 				numSpells = temp[temp.length-1];
 			else
 				numSpells = temp[character.getLevel()-1];
+			if (numSpells[0] == -1);
+				//TODO - character cannot add spells yet: switch page!
+			updateNumSpellsLeft();
 			
 			// get spells from references
 			Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
@@ -181,13 +194,100 @@ public class Wiz9{
 			
 			// add spells to list
 			for (int i = 0; i < spells.size(); i++) {
-				
+				int level = getLevel(spells.get(i));
+				if (level > -1) {
+					// only add spells they can learn
+					if (numSpells[level] >= 0)
+						spellsList.add(spells.get(i).getName() + ": lvl. " + level);
+				}
 			}
 			
+			// create buttons
 			
+			// add button
+			addButton.setText("Add");
+			addButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					int index = spellsList.getSelectionIndex();
+					if (index == -1)
+						return;
+
+					String temp = spellsList.getItem(index);
+					String spellName = temp.substring(0, temp.indexOf(':'));
+					
+					// check if already added
+					for (int i = 0; i < charSpells.size(); i++) {
+						if (charSpells.get(i).getName().equalsIgnoreCase(spellName)) {
+							// TODO add error message
+							return;
+						}
+					}
+					
+					
+					// check level
+					int spellLevel = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+					if (numSpells[spellLevel] > 0) {
+						charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
+						updateCharSpellsList();
+						numSpells[spellLevel]--;
+						updateNumSpellsLeft();
+					} else {
+						// TODO error message
+					}
+						
+				}
+			});
+			
+			// remove button
+			removeButton.setText("Remove");
+			removeButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					int index = charSpellsList.getSelectionIndex();
+					if (index == -1)
+						return;
+					String temp = charSpellsList.getItem(index);
+					int level = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+					numSpells[level]++;
+					charSpells.remove(index);
+					updateCharSpellsList();
+					updateNumSpellsLeft();
+				}
+			});			
 		}
 		
 		inner.layout();
+	}
+	
+	private void updateCharSpellsList() {
+		charSpellsList.removeAll();
+		for (int i = 0; i < charSpells.size(); i++){
+			charSpellsList.add(charSpells.get(i).getName() + ": lvl. " + getLevel(charSpells.get(i)));
+		}
+	}
+	
+	private void updateNumSpellsLeft() {
+		String result = "0 level spells: " + numSpells[0];
+		for (int i = 1; i < numSpells.length; i++) {
+			if (numSpells[i] >= 0) {
+				result += "\n" + i + " level spells: " + numSpells[i];
+			}
+		}
+		numSpellsLeft.setText(result);
+		numSpellsLeft.pack();
+		inner.layout();
+	}
+	
+	private int getLevel(SpellEntity spell) {
+		String[] levelArr = spell.getLevel();
+		boolean found = false;
+		if (levelArr != null) { // TODO take this if out once spells xml is fixed
+			for (int j = 0; j < levelArr.length && !found; j++) {
+				if (levelArr[j].contains(character.getCharClass().getName())) {
+					return Integer.parseInt(levelArr[j].replaceAll("[^\\d]", ""));
+				}
+			}
+		}
+		return -1;
 	}
 	
 	private void createNextPage() {
@@ -197,4 +297,33 @@ public class Wiz9{
 	}
 	
 	public Composite getWiz9() { return wiz9; }
+	
+	class Spell {
+		
+		private SpellEntity spell;
+		private int level;
+
+		public Spell(SpellEntity spell, int level) {
+			this.setSpell(spell);
+			this.level = level;
+		}
+
+		public SpellEntity getSpell() {
+			return spell;
+		}
+
+		public void setSpell(SpellEntity spell) {
+			this.spell = spell;
+		}
+		
+		public int getLevel() {
+			return level;
+		}
+
+		public void setLevel(int level) {
+			this.level = level;
+		}
+		
+	}
 }
+

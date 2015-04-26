@@ -27,6 +27,7 @@ public class ClassEntity extends DNDEntity {
 	String paladinMount;
 	String familiar;
 	String exclass;
+	boolean caster;
 
 	// TODO Needs a lot of additional additions based on other object types,
 	// only baseline is here for functionality
@@ -155,6 +156,7 @@ public class ClassEntity extends DNDEntity {
 				break;
 
 			}
+			caster = (spellsPerDay != null || spellsKnown != null);
 		}
 	}
 
@@ -376,6 +378,14 @@ public class ClassEntity extends DNDEntity {
 
 	public void setExclass(String exclass) {
 		this.exclass = exclass;
+	}
+	
+	public boolean isCaster() { 
+		return caster;
+	}
+	
+	public void setCaster(boolean caster) {
+		this.caster = caster;
 	}
 
 	@Override
