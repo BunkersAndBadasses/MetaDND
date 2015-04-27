@@ -244,13 +244,6 @@ public class CharacterWizard {
 		manualWizard.layout();
 		homePanel.layout();
 		
-		Label charName = new Label(manualWizard, SWT.NONE);
-		charName.setText("Name: ");
-		manData = new GridData(SWT.END, SWT.CENTER, false, false);
-		manData.horizontalIndent = 5;
-		manData.horizontalSpan = 1;
-		charName.setLayoutData(manData);
-		charName.pack();
 //		
 //		// Call the seach panel composite
 //		playerScreenReferencePanel = new referencePanel(playerScreen);
