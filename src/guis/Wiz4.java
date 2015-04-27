@@ -73,6 +73,11 @@ public class Wiz4 {
 	private Text customLang;
 	private int remainingBonusLangs;
 	private int numBonusLangs;
+	
+	private Shell alignmentShell;
+	private Shell clericShell;
+	
+	private boolean popUpOpen = false;
 
 	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
 			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
@@ -656,7 +661,20 @@ public class Wiz4 {
 				}
 				if (error)
 					return;
-
+				
+				//TODO this isnt working
+				if (popUpOpen) {
+					if (!alignmentShell.isDisposed())
+						alignmentShell.forceActive();
+					else if (!clericShell.isDisposed())
+						clericShell.forceActive();
+					else if (!alignmentShell.isDisposed() && !clericShell.isDisposed()) {
+						alignmentShell.dispose();
+						clericShell.forceActive();
+					}	
+					return;
+				}
+				
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() < 1)
 					a1 = "<empty>";
@@ -741,13 +759,14 @@ public class Wiz4 {
 
 		// create shell
 		Display display = wiz4.getDisplay();
-		final Shell alignmentShell = new Shell(display);
+		alignmentShell = new Shell(display);
 		alignmentShell.setText("Check Alignment");
 		GridLayout gridLayout = new GridLayout(2, true);
 		alignmentShell.setLayout(gridLayout);
 		alignmentShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				finished = false;
+				popUpOpen = false;
 			}
 		});
 
@@ -850,6 +869,15 @@ public class Wiz4 {
 			return true;
 		}
 		warning.pack();
+		
+		popUpOpen = true;
+		
+		alignmentShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            goOn = false;
+	            popUpOpen = false;
+	        }
+	    });
 
 		// display user's alignment choice
 		Label userChoice = new Label(alignmentShell, SWT.NONE);
@@ -875,6 +903,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = false;
 				alignmentShell.dispose();
+				popUpOpen = false;
 			}
 		});
 		no.pack();
@@ -887,6 +916,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = true;
 				alignmentShell.dispose();
+				popUpOpen = false;
 			}
 		});
 		yes.pack();
@@ -912,14 +942,13 @@ public class Wiz4 {
 
 		// create shell
 		Display display = wiz4.getDisplay();
-		final Shell clericShell = new Shell(display);
+		clericShell = new Shell(display);
 		clericShell.setText("Set Domains");
 		GridLayout gridLayout = new GridLayout(2, true);
 		clericShell.setLayout(gridLayout);
 		clericShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				event.doit = false;
-				return;
+				finished = false;
 			}
 		});
 		// label - do you want to continue

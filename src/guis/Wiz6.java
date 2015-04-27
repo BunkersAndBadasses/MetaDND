@@ -69,12 +69,17 @@ public class Wiz6 {
 	private ClassEntity charClass;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<CharFeat> charFeats = new ArrayList<CharFeat>();
+	private ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
 	List charFeatsList;
+	
+	private Shell bonusFeatShell;
 	
 	final ScrolledComposite charFeatScreenScroll;
 	final Composite charFeatScreen;
 	
 	private boolean specialValid = false;
+	private boolean bonusDone = false;
+	private boolean popUpOpen = false;
 	
 	private Label numFeatsLabel;
 
@@ -207,8 +212,22 @@ public class Wiz6 {
 		errorMsg.setVisible(false);
 		errorMsg.pack();                                                              
 		
+		// add automatic character feats
+		charClass = character.getCharClass();
+		String[] autoFeats = charClass.getBonusFeats();
+		for (int i = 0; i < autoFeats.length; i ++) {
+			if (autoFeats[i].indexOf('[') != -1) {
+				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
+			} else {
+				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+			}
+		}
+		updateCharFeatsList();
+		numBonusFeats = charFeats.size();
+		
 		// add feat button
-
 		Button addButton = new Button(wiz6, SWT.PUSH);
 		addButton.setText("Add >");
 		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
@@ -356,6 +375,17 @@ public class Wiz6 {
 					return;
 				}
 				
+				// if the pop up is closed
+				if (!createBonusPopUp())
+					return;
+				
+				// cannot continue if there is a pop up open
+				if (popUpOpen) {
+					if (!bonusFeatShell.isDisposed())
+						bonusFeatShell.forceActive();
+					return;
+				}
+				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
 					character.addFeat(charFeats.get(i));
@@ -380,7 +410,7 @@ public class Wiz6 {
 		});
 	}
 	
-	void createBonusPopUp() {
+	private boolean createBonusPopUp() {
 		// get lists of bonus feats
 		
 		/*
@@ -397,19 +427,9 @@ public class Wiz6 {
 		 * wizard: scribe scroll
 		 */
 		
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
+		bonusDone = false;
 		
-		// add automatic feats (like armor/weapon proficiency)
-		String[] autoFeats = charClass.getBonusFeats();
-		for (int i = 0; i < autoFeats.length; i ++) {
-			if (autoFeats[i].indexOf('[') != -1) {
-				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
-				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
-			} else {
-				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
-			}
-		}
+		
 		if (charClass.getName().equalsIgnoreCase("Cleric")) {
 			String[] domains = character.getClericDomains();
 			if (domains != null) {
@@ -453,18 +473,20 @@ public class Wiz6 {
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
 		} else
-			return;
+			return true;
+
+		popUpOpen = true;
 		
 		// create shell
 		Display display = wiz6.getDisplay();
-		final Shell bonusFeatShell = new Shell(display);
+		bonusFeatShell = new Shell(display);
 		bonusFeatShell.setText("Select Bonus Feat");
 		GridLayout gridLayout = new GridLayout(2, true);
 		bonusFeatShell.setLayout(gridLayout);
 		bonusFeatShell.addListener(SWT.Close, new Listener() {
 	        public void handleEvent(Event event) {
-	            event.doit = false;
-	        	return;
+	            bonusDone = false;
+	            popUpOpen = false;
 	        }
 	    });
 
@@ -504,6 +526,8 @@ public class Wiz6 {
 				}
 				charFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
 				updateCharFeatsList();
+				bonusDone = true;
+				popUpOpen = false;
 				bonusFeatShell.dispose();
 			}
 		});
@@ -520,6 +544,8 @@ public class Wiz6 {
 				display.sleep();
 			}
 		}
+		
+		return bonusDone;
 	}
 	
 	public static boolean checkPrerequisites(ArrayList<CharFeat> charFeats, CharFeat feat, character character) {

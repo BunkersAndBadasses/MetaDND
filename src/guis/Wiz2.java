@@ -56,6 +56,9 @@ public class Wiz2 {
 	private Combo classDropDown;
 	private Combo secClassDropDown;
 	private boolean finished;
+	private boolean popUpOpen = false;
+	
+	private Shell classExtrasShell;
 	
 	public Wiz2(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			Composite panel, Composite home, Composite homePanel, 
@@ -287,6 +290,13 @@ public class Wiz2 {
 				// user cannot move on with an error
 				if (error) return;
 
+				// user cannot move on if there is a pop up open
+				if (popUpOpen) {
+					if (!classExtrasShell.isDisposed())
+						classExtrasShell.forceActive();
+					return;		
+				}
+				
 				// if all goes well, save race/class
 				boolean done = true;
 				String charClass = classes.get(classDropDown.getSelectionIndex()).getName();
@@ -407,17 +417,18 @@ public class Wiz2 {
 		// wizard - specialty school, familiar
 
 		finished = false;
+		popUpOpen = true;
 		
 		// create shell
 		Display display = wiz2.getDisplay();
-		final Shell classExtrasShell = new Shell(display);
+		classExtrasShell = new Shell(display);
 		classExtrasShell.setText("Class Extras");
 		GridLayout gridLayout = new GridLayout(2, true);
 		classExtrasShell.setLayout(gridLayout);
 		classExtrasShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				event.doit = false;
-				return;
+				finished = false;
+				popUpOpen = false;
 			}
 		});
 
@@ -481,6 +492,7 @@ public class Wiz2 {
 				public void handleEvent(Event e) {
 					classExtrasShell.dispose();
 					finished = false;
+					popUpOpen = false;
 				}
 			});
 			
@@ -498,6 +510,7 @@ public class Wiz2 {
 						character.setDruidAnimalCompanion(customInput.getText());
 					classExtrasShell.dispose();
 					finished = true;
+					popUpOpen = false;
 				}
 			});
 			break;
@@ -609,6 +622,7 @@ public class Wiz2 {
 				public void handleEvent(Event e) {
 					classExtrasShell.dispose();
 					finished = false;
+					popUpOpen = false;
 				}
 			});
 			
@@ -640,6 +654,7 @@ public class Wiz2 {
 					if (!error) {
 						classExtrasShell.dispose();
 						finished = true;
+						popUpOpen = false;
 					}
 				}
 			});
@@ -705,6 +720,7 @@ public class Wiz2 {
 				public void handleEvent(Event e) {
 					classExtrasShell.dispose();
 					finished = false;
+					popUpOpen = false;
 				}
 			});
 			
@@ -723,6 +739,7 @@ public class Wiz2 {
 					}
 					classExtrasShell.dispose();
 					finished = true;
+					popUpOpen = false;
 				}
 			});
 			break;
@@ -899,6 +916,7 @@ public class Wiz2 {
 				public void handleEvent(Event e) {
 					classExtrasShell.dispose();
 					finished = false;
+					popUpOpen = false;
 				}
 			});
 			
@@ -943,6 +961,7 @@ public class Wiz2 {
 					if (!error) {
 						classExtrasShell.dispose();
 						finished = true;
+						popUpOpen = false;
 					}
 				}
 			});
