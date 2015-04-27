@@ -1,0 +1,471 @@
+BLACK DRAGON
+Dragon (Water)
+Environment: Warm marshes
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Rating: Wyrmling 3; Very young 4; Young 5; Juvenile 7; Young adult 9; Adult 11; Mature adult 14; Old 16; Very old 18; Ancient 19; Wyrm 20; Great wyrm 22
+Treasure: Triple standard
+Alignment: Always chaotic evil
+Advancement: Wyrmling 5-6 HD; Very young 8-9 HD; Young 11-12 HD; Juvenile 14-15 HD; Young adult 17-18 HD; Adult 20-21 HD; Mature adult 23-24 HD; Old 26-27 HD; Very old 29-30 HD; Ancient 32-33 HD; Wyrm 35-36 HD; Great wyrm 38+ HD
+Level Adjustment: Wyrmling +3; Very young +3; Young +3; Juvenile +4
+
+TABLES
+Wyrmling Tiny 4d12+4 (30) 11 10 13 8 11 8 +4/-4 +6 +5 +4 +4 2d4 (13) -
+Very young Small 7d12+7 (52) 13 10 13 8 11 8 +7/+4 +9 +6 +5 +5 4d4 (14) -
+Young Medium 10d12+20 (85) 15 10 15 10 11 10 +10/+12 +12 +9 +7 +7 6d4 (17) -
+Juvenile Medium 13d12+26 (110) 17 10 15 10 11 10 +13/+16 +16 +10 +8 +8 8d4 (18) -
+Young adult Large 16d12+48 (152) 19 10 17 12 13 12 +16/+24 +19 +13 +10 +11 10d4 (21) 19
+Adult Large 19d12+76 (199) 23 10 19 12 13 12 +19/+29 +24 +15 +11 +12 12d4 (23) 20
+Mature adult Huge 22d12+110 (253) 27 10 21 14 15 14 +22/+38 +28 +18 +13 +15 14d4 (26) 23
+Old Huge 25d12+125 (287) 29 10 21 14 15 14 +25/+42 +32 +19 +14 +16 16d4 (27) 24
+Very old Huge 28d12+168 (350) 31 10 23 16 17 16 +28/+46 +36 +22 +16 +19 18d4 (30) 27
+Ancient Huge 31d12+186 (387) 33 10 23 16 17 16 +31/+50 +40 +23 +17 +20 20d4 (31) 28
+Wyrm Gargantuan 34d12+238 (459) 35 10 25 18 19 18 +34/+58 +42 +26 +19 +23 22d4 (34) 31
+Great wyrm Gargantuan 37d12+296 (536) 37 10 27 20 21 20 +37/+62 +46 +28 +20 +25 24d4 (36) 33
+
+ABILITIES
+Wyrmling 60ft. fly 100ft. (average) swim 60ft. +0 15 (+2 size+3 natural) touch 12 flat-footed 15 Immunity to acid water breathing - -
+Very young 60ft. fly 100ft. (average) swim 60ft. +0 17 (+1 size+6 natural) touch 11 flat-footed 17  - -
+Young 60ft. fly 150ft. (poor) swim 60ft. +0 19 (+9 natural) touch 10 flat-footed 19   - -
+Juvenile 60ft. fly 150ft. (poor) swim 60ft. +0 22 (+12 natural) touch 10 flat-footed 22 Darkness - -
+Young adult 60ft. fly 150ft. (poor) swim 60ft. +0 24 (-1 size+15 natural) touch 9 flat-footed 24 DR 5/magic 1st 17
+Adult 60ft. fly 150ft. (poor) swim 60ft. +0 27 (-1 size+18 natural) touch 9 flat-footed 27 Corrupt water 3rd 18
+Mature adult 60ft. fly 150ft. (poor) swim 60ft. +0 29 (-2 size+21 natural) touch 8 flat-footed 29 DR 10/magic 5th 21
+Old 60ft. fly 150ft. (poor) swim 60ft. +0 32 (-2 size+24 natural) touch 8 flat-footed 32 Plant growth 7th 22
+Very old 60ft. fly 150ft. (poor) swim 60ft. +0 35 (-2 size+27 natural) touch 8 flat-footed 35 DR 15/magic 9th 23
+Ancient 60ft. fly 150ft. (poor) swim 60ft. +0 38 (-2 size+30 natural) touch 8 flat-footed 38 Insect plague 11th 25
+Wyrm 60ft. fly 200ft. (clumsy) swim 60ft. +0 39 (-4 size+33 natural) touch 6 flat-footed 39 DR 20/magic 13th 26
+Great wyrm 60ft. fly 200ft. (clumsy) swim 60ft. +0 42 (-4 size+36 natural) touch 6 flat-footed 42 Charm reptiles 15th 28
+COMBAT
+Black dragons prefer to ambush their targets using their surroundings as cover. When fighting in heavily forested swamps and marshes they try to stay in the water or on the ground; trees and leafy canopies limit their aerial maneuverability. When outmatched a black dragon attempts to fly out of sight so as not to leave tracks and hide in a deep pond or bog.
+Breath Weapon (Su): A black dragon has one type of breath weapon a line of acid.
+Water Breathing (Ex): A black dragon can breathe underwater indefinitely and can freely use its breath weapon spells and other abilities while submerged.
+Corrupt Water (Sp): Once per day an adult or older black dragon can stagnate 10 cubic feet of water making it become still foul and unable to support animal life. The ability spoils liquids containing water. Magic items (such as potions) and items in a creature's possession must succeed on a Will save (DC equal to that of the dragon's frightful presence) or become fouled. This ability is the equivalent of a 1st-level spell. Its range is equal to that of the dragon's frightful presence.
+Charm Reptiles (Sp): A Great wyrm black dragon can use this ability three times per day. It works as a mass charm spell that affects only reptilian animals. The dragon can communicate with any charmed reptiles as though casting a speak with animals spell. This ability is the equivalent of a 1st-level spell.
+Other Spell-Like Abilities: 3/day-darkness (Juvenile or older; radius 10 feet per age category) insect plague (Ancient or older); 1/day-plant growth (old or older).
+Skills: Hide Move Silently and Swim are considered class skills for black dragons.
+
+BLUE DRAGON
+Dragon (Earth)
+Environment: Temperate deserts
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 3; Very young 4; Young 6; Juvenile 8; Young adult 11; Adult 14; Mature adult 16; Old 18; Very old 19; Ancient 21; Wyrm 23; Great wyrm 25
+Treasure: Triple standard
+Alignment: Always lawful evil
+Advancement: Wyrmling 7-8 HD; Very young 10-11 HD; Young 13-14 HD; Juvenile 16-17 HD; Young adult 19-20 HD; Adult 22-23 HD; Mature adult 25-26 HD; Old 28-29 HD; Very old 31-32 HD; Ancient 34-35 HD; Wyrm 37-38 HD; Great wyrm 40+ HD
+Level Adjustment: Wyrmling +4; Very young +4; Young +5
+
+TABLES
+Wyrmling Small 6d12+6 (45) 13 10 13 10 11 10 +6/+3 +8 +6 +5 +5 2d8 (14) -
+Very young Medium 9d12+18 (76) 15 10 15 10 11 10 +9/+11 +11 +8 +6 +6 4d8 (16) -
+Young Medium 12d12+24 (102) 17 10 15 12 13 12 +12/+15 +15 +10 +8 +9 6d8 (18) -
+Juvenile Large 15d12+45 (142) 19 10 17 14 15 14 +15/+23 +18 +12 +9 +11 8d8 (20) -
+Young adult Large 18d12+72 (189) 23 10 19 14 15 14 +18/+28 +23 +15 +11 +13 10d8 (23) 21
+Adult Huge 21d12+105 (241) 27 10 21 16 17 16 +21/+37 +27 +17 +12 +15 12d8 (25) 23
+Mature adult Huge 24d12+120 (276) 29 10 21 16 17 16 +24/+41 +31 +19 +14 +17 14d8 (27) 25
+Old Huge 27d12+162 (337) 31 10 23 18 19 18 +27/+45 +35 +21 +15 +19 16d8 (29) 27
+Very old Huge 30d12+180 (375) 33 10 23 18 19 18 +30/+49 +39 +23 +17 +21 18d8 (31) 29
+Ancient Gargantuan 33d12+231 (445) 35 10 25 20 21 20 +33/+57 +41 +25 +18 +23 20d8 (33) 31
+Wyrm Gargantuan 36d12+288 (522) 37 10 27 20 21 20 +36/+61 +45 +28 +20 +25 22d8 (36) 33
+Great wyrm Gargantuan 39d12+312 (565) 39 10 27 22 23 22 +39/+65 +49 +29 +21 +27 24d8 (37) 35
+
+ABILITIES
+Wyrmling 40ft. burrow 20ft. fly 100ft. (average) +0 16 (+1 size +5 natural) touch 11 flat-footed 16 Immunity to electricity create/destroy water - -
+Very young 40ft. burrow 20ft. fly 150ft. (poor) +0 18 (+8 natural) touch 10 flat-footed 18  - -
+Young 40ft. burrow 20ft. fly 150ft. (poor) +0 21 (+11 natural) touch 10 flat-footed 21  - -
+Juvenile 40ft. burrow 20ft. fly 150ft. (poor) +0 23 (-1 size +14 natural) touch 9 flat-footed 23 Sound imitation 1st -
+Young adult 40ft. burrow 20ft. fly 150ft. (poor) +0 26 (-1 size +17 natural) touch 9 flat-footed 26 DR 5/magic 3rd 19
+Adult 40ft. burrow 20ft. fly 150ft. (poor) +0 28 (-2 size +20 natural) touch 8 flat-footed 28 Ventriloquism 5th 21
+Mature adult 40ft. burrow 20ft. fly 150ft. (poor) +0 31 (-2 size +23 natural) touch 8 flat-footed 31 DR 10/magic 7th 22
+Old 40ft. burrow 20ft. fly 150ft. (poor) +0 34 (-2 size +26 natural) touch 8 flat-footed 34 Hallucinatory terrain 9th 24
+Very old 40ft. burrow 20ft. fly 150ft. (poor) +0 37 (-2 size +29 natural) touch 8 flat-footed 37 DR 15/magic 11th 25
+Ancient 40ft. burrow 20ft. fly 200ft. (clumsy) +0 38 (-4 size +32 natural) touch 6 flat-footed 38 Veil 13th 27
+Wyrm 40ft. burrow 20ft. fly 200ft. (clumsy) +0 41 (-4 size +35 natural) touch 6 flat-footed 41 DR 20/magic 15th 29
+Great wyrm 40ft. burrow 20ft. fly 200ft. (clumsy) +0 44 (-4 size +38 natural) touch 6 flat-footed 44 Mirage arcana 17th 31
+COMBAT
+*Can also cast cleric spells and those from the Air Evil and Law domains as arcane spells.
+A blue dragon's scales vary in color from an iridescent azure to a deep indigo polished to a glossy finish by blowing desert sands. The size of its scales increases little as the dragon ages although they do become thicker and harder. Its hide tends to hum and crackle faintly with built-up static electricity. These effects intensify when the dragon is angry or about to attack giving off an odor of ozone and sand. Their vibrant color makes blue dragons easy to spot in barren desert surroundings. However they often burrow into the sand so only part of their heads are exposed.
+Blue dragons love to soar in the hot desert air usually flying in the daytime when temperatures are highest. Some nearly match the color of the desert sky and use this coloration to their advantage.
+Blue dragons lair in vast underground caverns where they also store their treasure. Although they collect anything that looks valuable they are most fond of gems-especially sapphires.
+
+Typically blue dragons attack from above or burrow beneath the sands until opponents come within 100 feet. Older dragons use their special abilities such as hallucinatory terrain in concert with these tactics to mask the land and improve their chances to surprise the target. Blue dragons run from a fight only if they are severely damaged since they view retreat as cowardly.
+Breath Weapon (Su): A blue dragon has one type of breath weapon a line of lightning.
+Create/Destroy Water (Sp): A blue dragon of any age can use this ability three times per day. It works like the create water spell except that the dragon can decide to destroy water instead of creating it which automatically spoils unattended liquids containing water. Magic items (such as potions) and items in a creature's possession must succeed on a Will save (DC equal to that of the dragon's frightful presence) or be ruined. This ability is the equivalent of a 1st-level spell.
+Sound Imitation (Ex): A Juvenile or older blue dragon can mimic any voice or sound it has heard anytime it likes. Listeners must succeed on a Will save (DC equal to that of the dragon's frightful presence) to detect the ruse.
+Other Spell-Like Abilities: 3/day-ventriloquism (adult or older); 1/day-hallucinatory terrain (old or older) veil (Ancient or older) mirage arcana (Great wyrm).
+Skills: Bluff Hide and Spellcraft are considered class skills for blue dragons.
+
+GREEN DRAGON
+Dragon (Air)
+Environment: Temperate forests
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 3; Very young 4; Young 5; Juvenile 8; Young adult 11; Adult 13; Mature adult 16; Old 18; Very old 19; Ancient 21; Wyrm 22; Great wyrm 24
+Treasure: Triple standard
+Alignment: Always lawful evil
+Advancement: Wyrmling 6-7 HD; Very young 9-10 HD; Young 12-13 HD; Juvenile 15-16 HD; Young adult 18-19 HD; Adult 21-22 HD; Mature adult 24-25 HD; Old 27-28 HD; Very old 30-31 HD; Ancient 33-34 HD; Wyrm 36-37 HD; Great wyrm 39+ HD
+Level Adjustment: Wyrmling +5; Very young +5; Young +5; Juvenile +6
+
+TABLES
+Wyrmling Small 5d12+5 (37) 13 10 13 10 11 10 +5/+2 +7 +5 +4 +4 2d6 (13) -
+Very young Medium 8d12+16 (68) 15 10 15 10 11 10 +8/+10 +10 +8 +6 +6 4d6 (16) -
+Young Medium 11d12+22 (93) 17 10 15 12 13 12 +11/+14 +14 +9 +7 +8 6d6 (17) -
+Juvenile Large 14d12+42 (133) 19 10 17 14 15 14 +14/+22 +17 +12 +9 +11 8d6 (20) -
+Young adult Large 17d12+68 (178) 23 10 19 14 15 14 +17/+27 +22 +14 +10 +12 10d6 (22) 20
+Adult Huge 20d12+100 (230) 27 10 21 16 17 16 +20/+36 +26 +17 +12 +15 12d6 (25) 23
+Mature adult Huge 23d12+115 (264) 29 10 21 16 17 16 +23/+40 +30 +18 +13 +16 14d6 (26) 24
+Old Huge 26d12+156 (325) 31 10 23 18 19 18 +26/+44 +34 +21 +15 +19 16d6 (29) 27
+Very old Huge 29d12+174 (362) 33 10 23 18 19 18 +29/+48 +38 +22 +16 +20 18d6 (30) 28
+Ancient Gargantuan 32d12+224 (432) 35 10 25 20 21 20 +32/+56 +40 +25 +18 +23 20d6 (33) 31
+Wyrm Gargantuan 35d12+280 (507) 37 10 27 20 21 20 +35/+60 +44 +27 +19 +24 22d6 (35) 32
+Great wyrm Gargantuan 38d12+304 (551) 39 10 27 22 23 22 +38/+64 +48 +29 +21 +27 24d6 (37) 35
+
+ABILITIES
+Wyrmling 40ft. fly 100ft. (average) swim 40ft. +0 15 (+1 size +4 natural) touch 11 flat-footed 15 Immunity to acid water breathing - -
+Very young 40ft. fly 150ft. (poor) swim 40ft. +0 17 (+7 natural) touch 10 flat-footed 17  - -
+Young 40ft. fly 150ft. (poor) swim 40ft. +0 20 (+10 natural) touch 10 flat-footed 20  - -
+Juvenile 40ft. fly 150ft. (poor) swim 40ft. +0 22 (-1 size +13 natural) touch 9 flat-footed 22 1st - 
+Young adult 40ft. fly 150ft. (poor) swim 40ft. +0 25 (-1 size +16 natural) touch 9 flat-footed 25 DR 5/magic 3rd 19
+Adult 40ft. fly 150ft. (poor) swim 40ft. +0 27 (-2 size +19 natural) touch 8 flat-footed 27 Suggestion 5th 21
+Mature adult 40ft. fly 150ft. (poor) swim 40ft. +0 30 (-2 size +22 natural) touch 8 flat-footed 30 DR 10/magic 7th 22
+Old 40ft. fly 150ft. (poor) swim 40ft. +0 33 (-2 size +25 natural) touch 8 flat-footed 33 Plant growth 9th 24
+Very old 40ft. fly 150ft. (poor) swim 40ft. +0 36 (-2 size +28 natural) touch 8 flat-footed 36 DR 15/magic 11th 25
+Ancient 40ft. fly 200ft. (clumsy) swim 40ft. +0 37 (-4 size +31 natural) touch 6 flat-footed 37 Dominate person 13th 27
+Wyrm 40ft. fly 200ft. (clumsy) swim 40ft. +0 40 (-4 size +34 natural) touch 6 flat-footed 40 DR 20/magic 15th 28
+Great wyrm 40ft. fly 200ft. (clumsy) swim 40ft. +0 43 (-4 size +37 natural) touch 6 flat-footed 43 Command plants 17th 30
+COMBAT
+A wyrmling green dragon's scales are thin very small and a deep shade of green that appears nearly black. As the dragon ages the scales grow larger and lighter turning shades of forest emerald and olive green which helps it blend in with its wooded surroundings.
+Green dragons initiate fights with little or no provocation picking on creatures of any size. If the target is intriguing or seems formidable the dragon stalks the creature to determine the best time to strike and the most appropriate tactics to use. If the target appears weak the dragon makes its presence known quickly-it enjoys
+evoking terror. Sometimes the dragon elects to control a humanoid creature through intimidation and suggestion. Green dragons especially like to question adventurers to learn more about their society and abilities what is going on in the countryside and if there is treasure nearby.
+Breath Weapon (Su): A green dragon has one type of breath weapon a cone of corrosive (acid) gas.
+Water Breathing (Ex): A green dragon can breathe underwater indefinitely and can freely use its breath weapon spells and other abilities while submerged.
+Spell-Like Abilities: 3/day-suggestion (adult or older) dominate person (Ancient or older); 1/day- plant growth (old or older) command plants (Great wyrm).
+Skills: Bluff Hide and Move Silently are considered class skills for green dragons.
+
+RED DRAGON
+Dragon (Fire)
+Environment: Warm mountains
+Organization: Wyrmling, Very young, Young, Juvenile, and Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 4; Very young 5; Young 7; Juvenile 10; Young adult 13; Adult 15; Mature adult 18; old 20; Very old 21; Ancient 23; wyrm 24; Great wyrm 26
+Treasure: Triple standard
+Alignment: Always chaotic evil
+Advancement: Wyrmling 8-9 HD; Very young 11-12 HD; Young 14-15 HD; Juvenile 17-18 HD; Young adult 20-21 HD; Adult 23-24 HD; Mature adult 26-27 HD; Old 29-30 HD; Very old 32-33 HD; Ancient 35-36 HD; Wyrm 38-39 HD; Great wyrm 41+ HD
+Level Adjustment: Wyrmling +4; Very young +5; Young +6
+
+TABLES
+Wyrmling Medium 7d12+14 (59) 17 10 15 10 11 10 +7/+10 +10 +7 +5 +5 2d10 (15) -
+Very young Large 10d12+30 (95) 21 10 17 12 13 12 +10/+19 +14 +10 +7 +8 4d10 (18) -
+Young Large 13d12+39 (123) 25 10 17 12 13 12 +13/+24 +19 +11 +8 +9 6d10 (19) -
+Juvenile Large 16d12+64 (168) 29 10 19 14 15 14 +16/+29 +24 +14 +10 +12 8d10 (22) -
+Young adult Huge 19d12+95 (218) 31 10 21 14 15 14 +19/+37 +27 +16 +11 +13 10d10 (24) 21
+Adult Huge 22d12+110 (253) 33 10 21 16 19 16 +22/+41 +31 +18 +13 +17 12d10 (26) 24
+Mature adult Huge 25d12+150 (312) 33 10 23 18 19 18 +25/+44 +34 +20 +14 +18 14d10 (28) 26
+Old Gargantuan 28d12+196 (378) 35 10 25 20 21 20 +28/+52 +36 +23 +16 +21 16d10 (31) 29
+Very old Gargantuan 31d12+248 (449) 37 10 27 22 23 22 +31/+56 +40 +25 +17 +23 18d10 (33) 31
+Ancient Gargantuan 34d12+306 (527) 39 10 29 24 25 24 +34/+60 +44 +28 +19 +26 20d10 (36) 34
+Wyrm Gargantuan 37d12+370 (610) 41 10 31 24 25 24 +37/+64 +48 +30 +20 +27 22d10 (38) 35
+Great wyrm Colossal 40d12+400 (660) 45 10 31 26 27 26 +40/+73 +49 +32 +22 +30 24d10 (40) 38
+
+ABILITIES
+Wyrmling 40ft. fly 150ft. (poor) +0 16 (+6 natural) touch 10 flat-footed 16 Immunity to fire vulnerability to cold - -
+Very young 40ft. fly 150ft. (poor) +0 18 (-1 size +9 natural) touch 9 flat-footed 18  - -
+Young 40ft. fly 150ft. (poor) +0 21 (-1 size +12 natural) touch 9 flat-footed 21  1st -
+Juvenile 40ft. fly 150ft. (poor) +0 24 (-1 size +15 natural) touch 9 flat-footed 24 Locate object 3rd -
+Young adult 40ft. fly 150ft. (poor) +0 26 (-2 size +18 natural) touch 8 flat-footed 26 DR 5/magic 5th 19
+Adult 40ft. fly 150ft. (poor) +0 29 (-2 size +21 natural) touch 8 flat-footed 29  7th 21
+Mature adult 40ft. fly 150ft. (poor) +0 32 (-2 size +24 natural) touch 8 flat-footed 32 DR 10/magic 9th 23
+Old 40ft. fly 200ft. (clumsy) +0 33 (-4 size +27 natural) touch 6 flat-footed 33 Suggestion 11th 24
+Very old 40ft. fly 200ft. (clumsy) +0 36 (-4 size +30 natural) touch 6 flat-footed 36 DR 15/magic 13th 26
+Ancient 40ft. fly 200ft. (clumsy) +0 39 (-4 size +33 natural) touch 6 flat-footed 39 Find the path 15th 28
+Wyrm 40ft. fly 200ft. (clumsy) +0 42 (-4 size +36 natural) touch 6 flat-footed 42 DR 20/magic 17th 30
+Great wyrm 40ft. fly 200ft. (clumsy) +0 41 (-8 size +39 natural) touch 2 flat-footed 41 Discern location 19th 32
+COMBAT
+*Can also cast cleric spells and those from the Chaos Evil and Fire domains as arcane spells.
+The small scales of a wyrmling red dragon are a bright glossy scarlet making the dragon easily spotted by predators and hunters so it stays underground and does not venture outside until it is more able to take care of itself. Toward the end of young age the scales turn a deeper red and the glossy texture is replaced by a smooth dull finish. As the dragon grows older the scales become large thick and as strong as metal. The neck frill and wings are an ash blue or purple-gray toward the edges becoming darker with age. The pupils of a red dragon fade as it ages; the oldest red dragons have eyes that resemble molten lava orbs.
+Because red dragons are so confident they seldom pause to appraise an adversary. On spotting a target they make a snap decision whether to attack using one of many strategies worked out ahead of time. A red dragon lands to attack small weak creatures with its claws and bite rather than obliterating them with its breath weapon so as not to destroy any treasure they might be carrying.
+Breath Weapon (Su): A red dragon has one type of breath weapon a cone of fire.
+Locate Object (Sp): A Juvenile or older red dragon can use this ability as the spell of the same name once per day per age category.
+Other Spell-Like Abilities: 3/day-suggestion (old or older); 1/day-find the path (Ancient or older) discern location (Great wyrm).
+Skills: Appraise Bluff and Jump are considered class skills for red dragons.
+
+WHITE DRAGON
+Dragon (Cold)
+Environment: Cold mountains
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 2; Very young 3; Young 4; Juvenile 6; Young adult 8; Adult 10; Mature adult 12; Old 15; Very old 17; Ancient 18; Wyrm 19; Great wyrm 21
+Treasure: Triple standard
+Alignment: Always chaotic evil
+Advancement: Wyrmling 4-5 HD; Very young 7-8 HD; Young 10-11 HD; Juvenile 13-14 HD; Young adult 16-17 HD; Adult 19-20 HD; Mature adult 22-23 HD; Old 25-26 HD; Very old 28-29 HD; Ancient 31-32 HD; Wyrm 34-35 HD; Great wyrm 37+ HD 
+Level Adjustment: Wyrmling +2; Very young +3; Young +3; Juvenile +5
+
+TABLES
+Wyrmling Tiny 3d12+3 (22) 11 10 13 6 11 6 +3/-5 +5 +4 +3 +3 1d6 (12) -
+Very young Small 6d12+6 (45) 13 10 13 6 11 6 +6/+3 +8 +6 +5 +5 2d6 (14) -
+Young Medium 9d12+18 (76) 15 10 15 6 11 6 +9/+11 +11 +8 +6 +6 3d6 (16) -
+Juvenile Medium 12d12+24 (102) 17 10 15 8 11 8 +12/+15 +15 +10 +8 +8 4d6 (18) -
+Young adult Large 15d12+45 (142) 19 10 17 8 11 10 +15/+23 +18 +12 +9 +9 5d6 (20) 17
+Adult Large 18d12+72 (189) 23 10 19 10 11 12 +18/+28 +23 +15 +11 +11 6d6 (23) 20
+Mature adult Huge 21d12+105 (241) 27 10 21 12 13 12 +21/+37 +27 +17 +12 +13 7d6 (25) 21
+Old Huge 24d12+120 (276) 29 10 21 12 13 12 +24/+41 +31 +19 +14 +15 8d6 (27) 23
+Very old Huge 27d12+162 (337) 31 10 23 14 15 14 +27/+45 +35 +21 +15 +17 9d6 (29) 25
+Ancient Huge 30d12+180 (375) 33 10 23 14 15 14 +30/+49 +39 +23 +17 +19 10d6 (31) 27
+Wyrm Gargantuan 33d12+231 (445) 35 10 25 14 15 16 +33/+57 +41 +25 +18 +20 11d6 (33) 29
+Great wyrm Gargantuan 36d12+288 (522) 37 10 27 18 19 18 +36/+61 +45 +28 +20 +24 12d6 (36) 32
+
+ABILITIES
+Wyrmling 60ft. burrow 30ft. fly 150ft. (average) swim 60ft. +0 14 (+2 size +2 natural) touch 12 flat-footed 14 Icewalking immunity to cold vulnerability to fire - -
+Very young 60ft. burrow 30ft. fly 150ft. (average) swim 60ft. +0 16 (+1 size +5 natural) touch 11 flat-footed 16   - -
+Young 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 18 (+8 natural) touch 10 flat-footed 18   - -
+Juvenile 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 21 (+11 natural) touch 10 flat-footed 21 Fog cloud - -
+Young adult 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 23 (-1 size +14 natural) touch 9 flat-footed 23 DR 5/magic - 16
+Adult 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 26 (-1 size +17 natural) touch 9 flat-footed 26 Gust of wind 1st 18
+Mature adult 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 28 (-2 size +20 natural) touch 8 flat-footed 28 DR 10/magic 3rd 20
+Old 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 31 (-2 size +23 natural) touch 8 flat-footed 31 Freezing fog 5th 21
+Very old 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 34 (-2 size +26 natural) touch 8 flat-footed 34 DR 15/magic 7th 23
+Ancient 60ft. burrow 30ft. fly 200ft. (poor) swim 60ft. +0 37 (-2 size +29 natural) touch 8 flat-footed 37 Wall of ice 9th 24
+Wyrm 60ft. burrow 30ft. fly 250ft. (clumsy) swim 60ft. +0 38 (-4 size +32 natural) touch 6 flat-footed 38 DR 20/magic 11th 25
+Great wyrm 60ft. burrow 30ft. fly 250ft. (clumsy) swim 60ft. +0 41 (-4 size +35 natural) touch 6 flat-footed 41 Control weather 13th 27
+COMBAT
+The scales of a wyrmling white dragon glisten like mirrors. As the dragon ages the sheen disappears and by Very old age scales of pale blue and light gray are mixed in with the white.
+White dragons prefer sudden assaults swooping down from aloft or bursting from beneath water snow or ice. They loose their breath weapon then try to knock out a single opponent with a follow-up attack.
+Breath Weapon (Su): A white dragon has one type of breath weapon a cone of cold.
+Icewalking (Ex): This ability works like the spider climb spell but the surfaces the dragon climbs must be icy. It is always in effect.
+Freezing Fog (Sp): An old or older white dragon can use this ability three times per day. It is similar to a solid fog spell but also causes a rime of slippery ice to form on any surface the fog touches creating the effect of a grease spell. The dragon is immune to the grease effect because of its icewalking ability. This ability is the equivalent of a 5th-level spell.
+Other Spell-Like Abilities: 3/day-fog cloud (Juvenile or older) gust of wind (adult or older) wall of ice (Ancient or older); 1/day-control weather (Great wyrm).
+Skills: Hide Move Silently and Swim are considered class skills for white dragons.
+
+BRASS DRAGON
+Dragon (Fire)
+Environment: Warm deserts
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 3; Very young 4; Young 6; Juvenile 8; Young adult 10; Adult 12; Mature adult 15; Old 17; Very old 19; Ancient 20; Wyrm 21; Great wyrm 23
+Treasure: Triple standard
+Alignment: Always chaotic good
+Advancement: Wyrmling 5-6 HD; Very young 8-9 HD; Young 11-12 HD; Juvenile 14-15 HD; Young adult 17-18 HD; adult 20-21 HD; Mature adult 23-24 HD; Old 26-27 HD; Very old 29-30 HD; Ancient 32-33 HD; Wyrm 35-36 HD; Great wyrm 38+ HD
+Level Adjustment: Wyrmling +2; Very young +3; Young +4; Juvenile +4
+
+TABLES
+Wyrmling Tiny 4d12+4 (30) 11 10 13 10 11 10 +4/-4 +6 +5 +4 +4 1d6 (13) -
+Very young Small 7d12+7 (52) 13 10 13 10 11 10 +7/+4 +9 +6 +5 +5 2d6 (14) -
+Young Medium 10d12+20 (85) 15 10 15 12 13 12 +10/+12 +12 +9 +7 +8 3d6 (17) -
+Juvenile Medium 13d12+26 (110) 17 10 15 12 13 12 +13/+16 +16 +10 +8 +9 4d6 (18) -
+Young adult Large 16d12+48 (152) 19 10 17 14 15 14 +16/+24 +19 +13 +10 +12 5d6 (21) 20
+Adult Large 19d12+76 (199) 23 10 19 14 15 14 +19/+29 +24 +15 +11 +13 6d6 (23) 21
+Mature adult Huge 22d12+110 (253) 27 10 21 16 17 16 +22/+38 +28 +18 +13 +16 7d6 (26) 24
+Old Huge 25d12+125 (287) 29 10 21 16 17 16 +25/+42 +32 +19 +14 +17 8d6 (27) 25
+Very old Huge 28d12+168 (350) 31 10 23 18 19 18 +28/+46 +36 +22 +16 +20 9d6 (30) 28
+Ancient Huge 31d12+186 (387) 33 10 23 18 19 18 +31/+50 +40 +23 +17 +21 10d6 (31) 29
+Wyrm Gargantuan 34d12+238 (459) 35 10 25 20 21 20 +34/+58 +42 +26 +19 +24 11d6 (34) 32
+Great wyrm Gargantuan 37d12+296 (536) 37 10 27 20 21 20 +37/+62 +46 +28 +20 +25 12d6 (36) 33
+
+ABILITIES
+Wyrmling 60ft. burrow 30ft. fly 150ft. (average) +0 15 (+2 size +3 natural) touch 12 flat-footed 15 Immunity to fire speak with animals vulnerability to cold - -
+Very young 60ft. burrow 30ft. fly 150ft. (average) +0 17 (+1 size +6 natural) touch 11 flat-footed 17   - -
+Young 60ft. burrow 30ft. fly 200ft. (poor) +0 19 (+9 natural) touch 10 flat-footed 19  1st -
+Juvenile 60ft. burrow 30ft. fly 200ft. (poor) +0 22 (+12 natural) touch 10 flat-footed 22 Endure elements 3rd -
+Young adult 60ft. burrow 30ft. fly 200ft. (poor) +0 24 (-1 size +15 natural) touch 9 flat-footed 24 DR 5/magic 5th 18
+Adult 60ft. burrow 30ft. fly 200ft. (poor) +0 27 (-1 size +18 natural) touch 9 flat-footed 27 Suggestion 7th 20
+Mature adult 60ft. burrow 30ft. fly 200ft. (poor) +0 29 (-2 size +21 natural) touch 8 flat-footed 29 DR 10/magic 9th 22
+Old 60ft. burrow 30ft. fly 200ft. (poor) +0 32 (-2 size +24 natural) touch 8 flat-footed 32 Control winds 11th 24
+Very old 60ft. burrow 30ft. fly 200ft. (poor) +0 35 (-2 size +27 natural) touch 8 flat-footed 35 DR 15/magic 13th 25
+Ancient 60ft. burrow 30ft. fly 200ft. (poor) +0 38 (-2 size +30 natural) touch 8 flat-footed 38 Control weather 15th 27
+Wyrm 60ft. burrow 30ft. fly 250ft. (clumsy) +0 39 (-4 size +33 natural) touch 6 flat-footed 39 DR 20/magic 17th 28
+Great wyrm 60ft. burrow 30ft. fly 250ft. (clumsy) +0 42 (-4 size +36 natural) touch 6 flat-footed 42 Summon djinni 19th 30
+COMBAT
+*Can also cast cleric spells and those from the Chaos and Knowledge domains as arcane spells.
+At birth a brass dragon's scales are a dull mottled brown. As the dragon gets older the scales become more brassy until they reach a warm burnished appearance. The grand head-plates of a brass dragon are smooth and metallic and it sports bladed chin horns that grow sharper with age. Wings and frills are mottled green toward the edges darkening with age. As the dragon grows older its pupils fade until the eyes resemble molten metal orbs.
+Brass dragons would rather talk than fight. If an intelligent creature tries to leave without engaging in conversation the dragon might force compliance in a fit of pique using suggestion or a dose of sleep gas. A creature put to sleep may wake to find itself pinned or buried to the neck in the sand until the dragon's thirst for small talk is slaked. When faced with real danger younger brass dragons fly out of sight then hide by burrowing into the sand. Older dragons spurn this ploy but still prefer to have the advantage in COMBAT.
+Breath Weapon (Su): A brass dragon has two types of breath weapon a line of fire and a cone of sleep. Creatures within the cone must succeed on a Will save or fall asleep regardless of HD for 1d6 rounds plus 1 round per age category of the dragon.
+Spell-Like Abilities: At will-speak with animals; 3/day-endure elements (Juvenile or older; radius 10ft. x ?dragon's age category); 1/day-suggestion (adult or older) control winds (old or older) control weather (Ancient or older).
+Summon Djinni (Sp): This ability usable by a Great wyrm brass dragon works like a summon monster spell except that it summons one djinni. This ability is the equivalent of a 7th-level spell. 
+Skills: Bluff Gather Information and Survival are considered class skills for brass dragons.
+
+BRONZE DRAGON
+Dragon (Water)
+Environment: Temperate hills
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 3; Very young 5; Young 7; Juvenile 9; Young adult 12; Adult 15; Mature adult 17; Old 19; Very old 20; Ancient 22; Wyrm 23; Great wyrm 25
+Treasure: Triple standard
+Alignment: Always lawful good
+Advancement: Wyrmling 7-8 HD; Very young 10-11 HD; Young 13-14 HD; Juvenile 16-17 HD; Young adult 19-20 HD; Adult 22-23 HD; Mature adult 25-26 HD; Old 28-29 HD; Very old 31-32 HD; Ancient 34-35 HD; Wyrm 37-38 HD; Great wyrm 40+ HD
+Level Adjustment: Wyrmling +4; Very young +4; Young +6
+
+TABLES
+Wyrmling Small 6d12+6 (45) 13 10 13 14 15 14 +6/+3 +8 +6 +5 +7 2d6 (14) -
+Very young Medium 9d12+18 (76) 15 10 15 14 15 14 +9/+11 +11 +8 +6 +8 4d6 (16) -
+Young Medium 12d12+24 (102) 17 10 15 16 17 16 +12/+15 +15 +10 +8 +11 6d6 (18) -
+Juvenile Large 15d12+45 (142) 19 10 17 18 19 18 +15/+23 +18 +12 +9 +13 8d6 (20) -
+Young adult Large 18d12+72 (189) 23 10 19 18 19 18 +18/+28 +23 +15 +11 +15 10d6 (23) 23
+Adult Huge 21d12+105 (241) 27 10 21 20 21 20 +21/+37 +27 +17 +12 +17 12d6 (25) 25
+Mature adult Huge 24d12+120 (276) 29 10 21 20 21 20 +24/+41 +31 +19 +14 +19 14d6 (27) 27
+Old Huge 27d12+162 (337) 31 10 23 22 23 22 +27/+45 +35 +21 +15 +21 16d6 (29) 29
+Very old Huge 30d12+180 (375) 33 10 23 22 23 22 +30/+49 +39 +23 +17 +23 18d6 (31) 31
+Ancient Gargantuan 33d12+231 (445) 35 10 25 24 25 24 +33/+57 +41 +25 +18 +25 20d6 (33) 33
+Wyrm Gargantuan 36d12+288 (522) 37 10 27 26 27 26 +36/+61 +45 +28 +20 +28 22d6 (36) 36
+Great wyrm Gargantuan 39d12+312 (565) 39 10 27 26 27 26 +39/+65 +49 +29 +21 +29 24d6 (37) 37
+
+ABILITIES
+Wyrmling 40ft. fly 100ft. (average) swim 60ft. +0 16 (+1 size +5 natural) touch 11 flat-footed 16 Immunity to electricity water breathing speak with animals - -
+Very young 40ft. fly 150ft. (poor) swim 60ft. +0 18 (+8 natural) touch 10 flat-footed 18  - -
+Young 40ft. fly 150ft. (poor) swim 60ft. +0 21 (+11 natural) touch 10 flat-footed 21 Alternate form 1st -
+Juvenile 40ft. fly 150ft. (poor) swim 60ft. +0 23 (-1 size +14 natural) touch 9 flat-footed 23  3rd -
+Young adult 40ft. fly 150ft. (poor) swim 60ft. +0 26 (-1 size +17 natural) touch 9 flat-footed 26 DR 5/magic 5th 20
+Adult 40ft. fly 150ft. (poor) swim 60ft. +0 28 (-2 size +20 natural) touch 8 flat-footed 28 Create food and water fog cloud 7th 22
+Mature adult 40ft. fly 150ft. (poor) swim 60ft. +0 31 (-2 size +23 natural) touch 8 flat-footed 31 DR 10/magic 9th 23
+Old 40ft. fly 150ft. (poor) swim 60ft. +0 34 (-2 size +26 natural) touch 8 flat-footed 34 Detect thoughts 11th 25
+Very old 40ft. fly 150ft. (poor) swim 60ft. +0 37 (-2 size +29 natural) touch 8 flat-footed 37 DR 15/magic 13th 26
+Ancient 40ft. fly 200ft. (clumsy) swim 60ft. +0 38 (-4 size +32 natural) touch 6 flat-footed 38 Control water 15th 28
+Wyrm 40ft. fly 200ft. (clumsy) swim 60ft. +0 41 (-4 size +35 natural) touch 6 flat-footed 41 DR 20/magic 17th 29
+Great wyrm 40ft. fly 200ft. (clumsy) swim 60ft. +0 44 (-4 size +38 natural) touch 6 flat-footed 44 Control weather 19th 31
+COMBAT
+*Can also cast cleric spells and those from the Animal Law and Water domains as arcane spells.
+A bronze wyrmling's scales are yellow tinged with green showing only a hint of bronze. As the dragon approaches adulthood its color deepens slowly to a darker rich bronze tone. Very old dragons develop a blue-black tint to the edges of their scales. Powerful swimmers they have webbed feet and smooth flat scales. The pupils of its eyes fade as a dragon ages until in the oldest the eyes resemble glowing green orbs.
+Bronze dragons dislike killing animals and would rather bribe them (perhaps with food) or force them away magically. They use detect thoughts to learn intelligent creatures' intentions.
+When attacking they blind their opponents with fog cloud and then charge or if flying snatch them up. Against seafaring opponents they conjure up a storm or use their tails to smash the vessels' hulls. If a dragon is inclined to be lenient ships might be merely becalmed fogbound or broken-masted.
+Breath Weapon (Su): Bronze dragons have two types of breath weapon a line of lightning and a cone of repulsion gas. Creatures within the cone must succeed on a Will save or be compelled to do nothing but move away from the dragon for 1d6 rounds plus 1 round per age category of the dragon. This is a mind-affecting compulsion enchantment effect.
+Water Breathing (Ex): A bronze dragon can breathe underwater indefinitely and can freely use its breath weapon spells and other abilities while submerged.
+Alternate Form (Su): A young or older bronze dragon can assume any animal or humanoid form of Medium size or smaller as a standard action three times per day. This ability functions as a polymorph spell cast on itself at its caster level except that the dragon does not regain hit points for changing form and can only assume the form of an animal or humanoid. The dragon can remain in its animal or humanoid form until it chooses to assume a new one or return to its natural form.
+Spell-Like Abilities: At will-speak with animals; 3/day-create food and water (adult or older) fog cloud (adult or older) detect thoughts (old or older) control water (Ancient or older); 1/day-control weather (Great wyrm).
+Skills: Disguise Swim and Survival are considered class skills for bronze dragons.
+
+COPPER DRAGON
+Dragon (Earth)
+Environment: Warm hills
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 3; Very young 5; young 7; Juvenile 9; Young adult 11; Adult 14; Mature adult 16; Old 19; Very old 20; Ancient 22; Wyrm 23; Great wyrm 25
+Treasure: Triple standard
+Alignment: Always chaotic good
+Advancement: Wyrmling 6-7 HD; Very young 9-10 HD; Young 12-13 HD; Juvenile 15-16 HD; Young adult 18-19 HD; adult 21-22 HD; Mature adult 24-25 HD; Old 27-28 HD; Very old 30-31 HD; Ancient 33-34 HD; Wyrm 36-37 HD; Great wyrm 39+ HD
+Level Adjustment: Wyrmling +2; Very young +3; Young +4; Juvenile +4
+
+TABLES
+Wyrmling Tiny 5d12+5 (37) 11 10 13 12 13 12 +5/-3 +7 +5 +4 +5 2d4 (13) -
+Very young Small 8d12+8 (60) 13 10 13 12 13 12 +8/+5 +10 +7 +6 +7 4d4 (15) -
+Young Medium 11d12+22 (93) 15 10 15 14 15 14 +11/+13 +13 +9 +7 +9 6d4 (17) -
+Juvenile Medium 14d12+28 (119) 17 10 15 14 15 14 +14/+17 +17 +11 +9 +11 8d4 (19) -
+Young adult Large 17d12+51 (161) 19 10 17 16 17 16 +17/+25 +20 +13 +10 +13 10d4 (21) 21
+Adult Large 20d12+80 (210) 23 10 19 16 17 16 +20/+30 +25 +16 +12 +15 12d4 (24) 23
+Mature adult Huge 23d12+115 (264) 27 10 21 18 19 18 +23/+39 +29 +18 +13 +17 14d4 (26) 25
+Old Huge 26d12+130 (299) 29 10 21 18 19 18 +26/+43 +33 +20 +15 +19 16d4 (28) 27
+Very old Huge 29d12+174 (362) 31 10 23 20 21 20 +29/+47 +37 +22 +16 +21 18d4 (30) 29
+Ancient Huge 32d12+192 (400) 33 10 23 20 21 20 +32/+51 +41 +24 +18 +23 20d4 (32) 31
+Wyrm Gargantuan 35d12+245 (472) 35 10 25 22 23 22 +35/+59 +43 +26 +19 +25 22d4 (34) 33
+Great wyrm Gargantuan 38d12+304 (551) 37 10 27 22 23 22 +38/+63 +47 +29 +21 +27 24d4 (37) 35
+
+ABILITIES
+Wyrmling 40ft. fly 100ft. (average) +0 16 (+2 size +4 natural) touch 12 flat-footed 16 Immunity to acid spider climb - -
+Very young 40ft. fly 100ft. (average) +0 18 (+1 size +7 natural) touch 11 flat-footed 18  - -
+Young 40ft. fly 150ft. (poor) +0 20 (+10 natural) touch 10 flat-footed 20  1st -
+Juvenile 40ft. fly 150ft. (poor) +0 23 (+13 natural) touch 10 flat-footed 23  3rd -
+Young adult 40ft. fly 150ft. (poor) +0 25 (-1 size +16 natural) touch 9 flat-footed 25 DR 5/magic 5th 19
+Adult 40ft. fly 150ft. (poor) +0 28 (-1 size +19 natural) touch 9 flat-footed 28 Stone shape 7th 21
+Mature adult 40ft. fly 150ft. (poor) +0 30 (-2 size +22 natural) touch 8 flat-footed 30 DR 10/magic 9th 23
+Old 40ft. fly 150ft. (poor) +0 33 (-2 size +25 natural) touch 8 flat-footed 33 Transmute rock to mud/mud to rock 11th 25
+Very old 40ft. fly 150ft. (poor) +0 36 (-2 size +28 natural) touch 8 flat-footed 36 DR 15/magic 13th 26
+Ancient 40ft. fly 150ft. (poor) +0 39 (-2 size +31 natural) touch 8 flat-footed 39 Wall of stone 15th 28
+Wyrm 40ft. fly 200ft. (clumsy) +0 40 (-4 size +34 natural) touch 6 flat-footed 40 DR 20/magic 17th 29
+Great wyrm 40ft. fly 200ft. (clumsy) +0 43 (-4 size +37 natural) touch 6 flat-footed 43 Move earth 19th 31
+COMBAT
+*Can also cast cleric spells and those from the Chaos Earth and Trickery domains as arcane spells.
+At birth a copper dragon's scales have a ruddy brown color with a metallic tint. As the dragon gets older the scales become finer and more coppery assuming a soft warm gloss by Young adult age. Very old dragons' scales pick up a green tint. A copper dragon's pupils fade with age and the eyes of Great wyrms resemble glowing turquoise orbs.
+A copper dragon appreciates wit and usually doesn't harm creatures that can relate a joke humorous story or riddle the dragon has not heard before. It quickly gets annoyed with anyone who doesn't laugh at its jokes or accept its tricks with good humor. It likes to taunt and annoy opponents into giving up or acting foolishly.
+An angry copper dragon prefers to mire foes using transmute rock to mud. The dragon pushes trapped opponents into the mud or snatches and carries them aloft. A copper dragon tries to draw airborne enemies into narrow stony gorges where it can use its spider climb ability and maneuver them into colliding with the walls.
+Breath Weapon (Su): A copper dragon has two types of breath weapon a line of acid and a cone of slow gas. Creatures within the cone must succeed on a Fortitude save or be slowed for 1d6 rounds plus 1 round per age category of the dragon.
+Spider Climb (Ex): A copper dragon can climb on stone surfaces as though using the spider climb spell.
+Spell-Like Abilities: 2/day-stone shape (adult or older); 1/day-transmute rock to mud or mud to rock (old or older) wall of stone (Ancient or older) move earth (Great wyrm).
+Skills: Bluff Hide and Jump are considered class skills for copper dragons.
+
+GOLD DRAGON
+Dragon (Fire)
+Environment: Warm plains
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient, Wyrm, Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 5; Very young 7; young 9; Juvenile 11; Young adult 14; Adult 16; Mature adult 19; Old 21; Very old 22; Ancient 24; Wyrm 25; Great wyrm 27
+Treasure: Triple standard
+Alignment: Always lawful good
+Advancement: Wyrmling 9-10 HD; Very young 12-13 HD; Young 15-16 HD; Juvenile 18-19 HD; Young adult 21-22 HD; adult 24-25 HD; Mature adult 27-28 HD; Old 30-31 HD; Very old 33-34 HD; Ancient 36-37 HD; Wyrm 39-40 HD; Great wyrm 42+ HD
+Level Adjustment: Wyrmling +4; Very young +5; Young +6
+
+TABLES
+Wyrmling Medium 8d12+16 (68) 17 10 15 14 15 14 +8/+11 +11 +8 +6 +8 2d10 (16) -
+Very young Large 11d12+33 (104) 21 10 17 16 17 16 +11/+20 +15 +10 +7 +10 4d10 (18) -
+Young Large 14d12+42 (133) 25 10 17 16 17 16 +14/+25 +20 +12 +9 +12 6d10 (20) -
+Juvenile Large 17d12+68 (178) 29 10 19 18 19 18 +17/+30 +25 +14 +10 +14 8d10 (22) -
+Young adult Huge 20d12+100 (230) 31 10 21 18 19 18 +20/+38 +28 +17 +12 +16 10d10 (25) 24
+Adult Huge 23d12+115 (264) 33 10 21 20 21 20 +23/+42 +32 +18 +13 +18 12d10 (26) 26
+Mature adult Huge 26d12+156 (325) 35 10 23 20 21 20 +26/+46 +36 +21 +15 +20 14d10 (29) 28
+Old Gargantuan 29d12+203 (391) 39 10 25 24 25 24 +29/+55 +39 +23 +16 +23 16d10 (31) 31
+Very old Gargantuan 32d12+256 (464) 41 10 27 26 27 26 +32/+59 +43 +26 +18 +26 18d10 (34) 34
+Ancient Gargantuan 35d12+315 (542) 43 10 29 28 29 28 +35/+63 +47 +28 +19 +28 20d10 (36) 36
+Wyrm Colossal 38d12+380 (627) 45 10 31 30 31 30 +38/+71 +47 +31 +21 +31 22d10 (39) 39
+Great wyrm Colossal 41d12+451 (717) 47 10 33 32 33 32 +41/+75 +51 +33 +22 +33 24d10 (41) 41
+
+ABILITIES
+Wyrmling 60ft. fly 200ft. (poor) swim 60ft. +0 17 (+7 natural) touch 10 flat-footed 17 Alternate form immunity to fire vulnerability to cold water breathing - -
+Very young 60ft. fly 200ft. (poor) swim 60ft. +0 19 (-1 size +10 natural) touch 9 flat-footed 19  - -
+Young 60ft. fly 200ft. (poor) swim 60ft. +0 22 (-1 size +13 natural) touch 9 flat-footed 22 1st - 
+Juvenile 60ft. fly 200ft. (poor) swim 60ft. +0 25 (-1 size +16 natural) touch 9 flat-footed 25 Bless 3rd -
+Young adult 60ft. fly 200ft. (poor) swim 60ft. +0 27 (-2 size +19 natural) touch 8 flat-footed 27 DR 5/magic 5th 21
+Adult 60ft. fly 200ft. (poor) swim 60ft. +0 30 (-2 size +22 natural) touch 8 flat-footed 30 Luck bonus 7th 23
+Mature adult 60ft. fly 200ft. (poor) swim 60ft. +0 33 (-2 size +25 natural) touch 8 flat-footed 33 DR 10/magic 9th 25
+Old 60ft. fly 250ft. (clumsy) swim 60ft. +0 34 (-4 size +28 natural) touch 6 flat-footed 34 Geas/quest detect gems 11th 27
+Very old 60ft. fly 250ft. (clumsy) swim 60ft. +0 37 (-4 size +31 natural) touch 6 flat-footed 37 DR 15/magic 13th 28
+Ancient 60ft. fly 250ft. (clumsy) swim 60ft. +0 40 (-4 size +34 natural) touch 6 flat-footed 40 Sunburst 15th 30 
+Wyrm 60ft. fly 250ft. (clumsy) swim 60ft. +0 39 (-8 size +37 natural) touch 2 flat-footed 39 DR 20/magic 17th 31
+Great wyrm 60ft. fly 250ft. (clumsy) swim 60ft. +0 42 (-8 size +40 natural) touch 2 flat-footed 42 Foresight 19th 33
+COMBAT
+*Can also cast cleric spells and those from the Law Luck and Good domains as arcane spells.
+On hatching a gold dragon's scales are dark yellow with golden metallic flecks.
+The flecks get larger as the dragon matures until at the adult stage the scales are completely golden. Gold dragons' faces are bewhiskered and sagacious; as they age their pupils fade until the eyes resemble pools of molten gold.
+Gold dragons usually parley before fighting. When conversing with intelligent creatures they use Intimidate and Sense Motive to gain the upper hand. In COMBAT they employ bless and their luck bonus; older dragons use their luck bonus at the start of each day. They make heavy use of spells in COMBAT. Among their favorites are cloudkill delayed blast fireball fire shield globe of invulnerability maze sleep slow and stinking cloud.
+Breath Weapon (Su): A gold dragon has two types of breath weapon a cone of fire and a cone of weakening gas. Creatures within a cone of weakening gas must succeed on a Fortitude save or take 1 point of Strength damage per age category of the dragon.
+Alternate Form (Su): A gold dragon can assume any animal or humanoid form of Medium size or smaller as a standard action three times per day. This ability functions as a polymorph spell cast on itself at its caster level except that the dragon does not regain hit points for changing form and can only assume the form of an animal or humanoid. The dragon can remain in its animal or humanoid form until it chooses to assume a new one or return to its natural form.
+Water Breathing (Ex): A gold dragon can breathe underwater indefinitely and can freely use its breath weapon spells and other abilities while submerged (the cone of fire becomes a cone of superheated steam underwater).
+Luck Bonus (Sp): Once per day an adult or older gold dragon can touch a gem usually one embedded in the dragon's hide and enspell it to bring good luck. As long as the dragon carries the gem it and every good creature in a 10-foot radius per age category of the dragon receives a +1 luck bonus on all saving throws and similar rolls as for a stone of good luck. If the dragon gives an enspelled gem to another creature only that bearer gets the bonus. The effect lasts 1d3 hours plus 3 hours per age category of the dragon but ends if the gem is destroyed. This ability is the equivalent of a 2nd-level spell.
+Detect Gems (Sp): An old or older gold dragon can use this ability three times per day. This is a divination effect similar to a detect magic spell except that it finds only gems. The dragon can scan a 60-degree arc each round: By concentrating for 1 round it knows if there are any gems within the arc; 2 rounds of concentration reveal the exact number of gems; and 3 rounds reveal their exact location type and value. This ability is the equivalent of a 2ndlevel spell.
+Other Spell-Like Abilities: 3/day-bless (Juvenile or older); 1/day-geas/quest (old or older) sunburst (Ancient or older) foresight (Great wyrm).
+Skills: Disguise Heal and Swim are considered class skills for gold dragons.
+
+SILVER DRAGON
+Dragon (Cold)
+Environment: Temperate mountains
+Organization: Wyrmling, Very young, Young, Juvenile, Young adult: solitary or clutch (2-5); Adult, Mature adult, Old, Very old, Ancient wyrm, or Great wyrm: solitary pair or family (1-2 and 2-5 offspring)
+Challenge Ratings: Wyrmling 4; Very young 5; Young 7; Juvenile 10; Young adult 13; Adult 15; Mature adult 18; Old 20; Very old 21; Ancient 23; Wyrm 24; Great wyrm 26
+Treasure: Triple standard
+Alignment: Always lawful good
+Advancement: Wyrmling 8-9 HD; Very young 11-12 HD; Young 14-15 HD; Juvenile 17-18 HD; Young adult 20-21 HD; Adult 23-24 HD; Mature adult 26-27 HD; Old 29-30 HD; Very old 32-33 HD; Ancient 35-36 HD; Wyrm 38-39 HD; Great wyrm 41+ HD
+Level Adjustment: Wyrmling +4; Very young +4; Young +5
+
+TABLES
+Wyrmling Small 7d12+7 (52) 13 10 13 14 15 14 +7/+4 +9 +6 +5 +7 2d8 (14) -
+Very young Medium 10d12+20 (85) 15 10 15 14 15 14 +10/+12 +12 +9 +7 +9 4d8 (17) -
+Young Medium 13d12+26 (110) 17 10 15 16 17 16 +13/+16 +16 +10 +8 +11 6d8 (18) -
+Juvenile Large 16d12+48 (152) 19 10 17 18 19 18 +16/+24 +19 +13 +10 +14 8d8 (21) -
+Young adult Large 19d12+76 (199) 23 10 19 18 19 18 +19/+29 +24 +15 +11 +15 10d8 (23) 23
+Adult Huge 22d12+110 (253) 27 10 21 20 21 20 +22/+38 +28 +18 +13 +18 12d8 (26) 26
+Mature adult Huge 25d12+125 (287) 29 10 21 20 21 20 +25/+42 +32 +19 +14 +19 14d8 (27) 27
+Old Huge 28d12+168 (350) 31 10 23 22 23 22 +28/+46 +36 +22 +16 +22 16d8 (30) 30
+Very old Huge 31d12+186 (387) 33 10 23 24 25 24 +31/+50 +40 +23 +17 +24 18d8 (31) 32
+Ancient Gargantuan 34d12+238 (459) 35 10 25 26 27 26 +34/+58 +42 +26 +19 +27 20d8 (34) 35
+Wyrm Gargantuan 37d12+333 (573) 39 10 29 28 29 28 +37/+63 +47 +29 +20 +29 22d8 (37) 37
+Great wyrm Colossal 40d12+400 (660) 43 10 31 30 31 30 +40/+72 +48 +32 +22 +32 24d8 (40) 40
+
+ABILITIES
+Wyrmling 40ft. fly 100ft. (average) +0 17 (+1 size +6 natural) touch 11 flat-footed 17 Alternate form immunity to acid and cold cloudwalking vulnerability to fire - -
+Very young 40ft. fly 150ft. (poor) +0 19 (+9 natural) touch 10 flat-footed 19  - -
+Young 40ft. fly 150ft. (poor) +0 22 (+12 natural) touch 10 flat-footed 22  1st -
+Juvenile 40ft. fly 150ft. (poor) +0 24 (-1 size +15 natural) touch 9 flat-footed 24 Feather fall 3rd -
+Young adult 40ft. fly 150ft. (poor) +0 27 (-1 size +18 natural) touch 9 flat-footed 27 DR 5/magic 5th 20
+Adult 40ft. fly 150ft. (poor) +0 29 (-2 size +21 natural) touch 8 flat-footed 29 Fog cloud 7th 22
+Mature adult 40ft. fly 150ft. (poor) +0 32 (-2 size +24 natural) touch 8 flat-footed 32 DR 10/magic 9th 24
+Old 40ft. fly 150ft. (poor) +0 35 (-2 size +27 natural) touch 8 flat-footed 35 Control winds 11th 26
+Very old 40ft. fly 150ft. (poor) +0 38 (-2 size +30 natural) touch 8 flat-footed 38 DR 15/magic 13th 27
+Ancient 40ft. fly 200ft. (clumsy) +0 39 (-4 size +33 natural) touch 6 flat-footed 39 Control weather 15th 29
+Wyrm 40ft. fly 200ft. (clumsy) +0 42 (-4 size +36 natural) touch 6 flat-footed 42 DR 20/magic 17th 30
+Great wyrm 40ft. fly 200ft. (clumsy) +0 41 (-8 size +39 natural) touch 2 flat-footed 41 Reverse gravity 19th 32
+COMBAT
+*Can also cast cleric spells and those from the Air Good Law and Sun domains as arcane spells.
+A silver wyrmling's scales are blue-gray with silver highlights. As the dragon approaches adulthood its color gradually brightens until the individual scales are scarcely visible.
+Silver dragons are not violent and avoid COMBAT except when faced with highly evil or aggressive foes. If necessary they use fog cloud or control weather to blind or confuse opponents before attacking. When angry they use reverse gravity to fling enemies helplessly into the air where they can be snatched. Against flying opponents a silver dragon hides in clouds (creating some with control weather on clear days) then jumps to the attack when it has the advantage.
+Breath Weapon (Su): A silver dragon has two types of breath weapon a cone of cold and a cone of paralyzing gas. Creatures within a cone of paralyzing gas must succeed on a Fortitude save or be paralyzed for 1d6 rounds plus 1 round per age category of the dragon.
+Alternate Form (Su): A silver dragon can assume any animal or humanoid form of Medium size or smaller as a standard action three times per day. This ability functions as a polymorph spell cast on itself at its caster level except that the dragon does not regain hit points for changing form and can only assume the form of an anirmal or humanoid. The dragon can remain in its animal or humanoid form until it chooses to assume a new one or return to its natural form.
+Cloudwalking (Su): A silver dragon can tread on clouds or fog as though on solid ground. The ability functions continuously but can be negated or resumed at will.
+Spell-Like Abilities: 3/day-fog cloud (adult or older) control winds (old or older); 2/day-feather fall (Juvenile or older); 1/day- control weather (Ancient or older) reverse gravity (Great wyrm).
+Skills: Bluff Disguise and Jump are considered class skills for silver dragons.
