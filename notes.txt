@@ -24,6 +24,8 @@ null pointer when loading character from list - change logic in charmain from lo
 	
 Move class abilities to ability entites for consistency with race abilities.
 
+Dungeon generator 3 scroll bar thingies need to be resized, or needs to be adjusted.
+
 After dungeon save, or cancel button from generator, should update the dungeon list
 
 Can we limit the dungeon save to be only the dungeon folder? Else how will a saved 
@@ -40,3 +42,4 @@ The remove item buttons in the char wizard need slight size adjustments
 Make it so random generate buttons on DM screen can only populate one window each 
 
 Make the selected character the currentlyLoadedCharacter
+
