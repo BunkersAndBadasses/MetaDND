@@ -73,6 +73,14 @@ public class Wiz4 {
 	private Text customLang;
 	private int remainingBonusLangs;
 	private int numBonusLangs;
+	
+	private Shell alignmentShell;
+ 
+	private Shell clericShell;
+	
+	private boolean popUpOpen = false;
+	private boolean alignOpen = false;
+	private boolean clericOpen = false;
 
 	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
 			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
@@ -113,7 +121,7 @@ public class Wiz4 {
 		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		charClass = cw.getCharacter().getCharClass();
 		charRace = cw.getCharacter().getCharRace();
-
+		
 		createPageContent();
 	}
 
@@ -545,6 +553,11 @@ public class Wiz4 {
 					return;
 				if (customLang.getText().length() == 0)
 					return;
+				// check if language was already added
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(0).equals(customLang.getText()))
+						return;
+				}
 				langInput.add(customLang.getText());
 				remainingBonusLangs--;
 				if (remainingBonusLangs == 1)
@@ -605,7 +618,13 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				if (remainingBonusLangs == 0)
 					return;
-				langInput.add(possibleLangsList.getItem(possibleLangsList.getSelectionIndex()));
+				// see if lang was already added
+				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(0).equals(selection))
+						return;
+				}
+				langInput.add(selection);
 				remainingBonusLangs--;
 				if (remainingBonusLangs == 1)
 					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
@@ -622,8 +641,22 @@ public class Wiz4 {
 		Button wiz4NextButton = cw.createNextButton(wiz4);
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// cannot move on if there is a window open
+				if (alignOpen || clericOpen) {
+					if (alignOpen && clericOpen) {
+						alignmentShell.dispose();
+						alignOpen = false;
+						clericShell.forceActive();
+					} else if (alignOpen) 
+						alignmentShell.forceActive();
+					else if (clericOpen)
+						clericShell.forceActive();
+					return;
+				}
+				
 				// error checking
 				boolean error = false;
+				
 				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
 				String condensed = nameInput.getText().replaceAll("\\s","");
 				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
@@ -654,9 +687,12 @@ public class Wiz4 {
 						error = true;
 					}
 				}
+				
+				// if there is an error, do not move on
 				if (error)
 					return;
-
+				
+				// otherwise, save data
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() < 1)
 					a1 = "<empty>";
@@ -741,13 +777,14 @@ public class Wiz4 {
 
 		// create shell
 		Display display = wiz4.getDisplay();
-		final Shell alignmentShell = new Shell(display);
+		alignmentShell = new Shell(wiz4.getDisplay());
 		alignmentShell.setText("Check Alignment");
 		GridLayout gridLayout = new GridLayout(2, true);
 		alignmentShell.setLayout(gridLayout);
 		alignmentShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				finished = false;
+				alignOpen = false;
 			}
 		});
 
@@ -850,6 +887,15 @@ public class Wiz4 {
 			return true;
 		}
 		warning.pack();
+		
+		alignOpen = true;
+		
+		alignmentShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            goOn = false;
+	            alignOpen = false;
+	        }
+	    });
 
 		// display user's alignment choice
 		Label userChoice = new Label(alignmentShell, SWT.NONE);
@@ -875,6 +921,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = false;
 				alignmentShell.dispose();
+				alignOpen = false;
 			}
 		});
 		no.pack();
@@ -887,6 +934,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = true;
 				alignmentShell.dispose();
+				alignOpen = false;
 			}
 		});
 		yes.pack();
@@ -909,17 +957,19 @@ public class Wiz4 {
 	private boolean clericPopUp(DeityEntity deity) {
 		// choose domain based on deity select
 		finished = false;
-
+		clericOpen = true;
+		
 		// create shell
 		Display display = wiz4.getDisplay();
-		final Shell clericShell = new Shell(display);
+		clericShell = new Shell(wiz4.getDisplay());
+		clericShell = new Shell(display);
 		clericShell.setText("Set Domains");
 		GridLayout gridLayout = new GridLayout(2, true);
 		clericShell.setLayout(gridLayout);
 		clericShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
-				event.doit = false;
-				return;
+				finished = false;
+				clericOpen = false;
 			}
 		});
 		// label - do you want to continue
@@ -930,10 +980,10 @@ public class Wiz4 {
 		domainsLabel.setLayoutData(continueGD);
 		domainsLabel.pack();
 
-		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN);
+		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		domains1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN);
+		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		domains2.setEnabled(false);
 
@@ -976,6 +1026,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				finished = false;
 				clericShell.dispose();
+				clericOpen = false;
 			}
 		});
 		cancel.pack();
@@ -1002,6 +1053,7 @@ public class Wiz4 {
 				String[] domains = {d1, d2};
 				character.setClericDomains(domains);
 				finished = true;
+				clericOpen = false;
 				clericShell.dispose();
 			}
 		});

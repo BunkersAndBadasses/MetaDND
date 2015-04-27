@@ -1,8 +1,4 @@
 fix class special abilities(2d array per level)
-DONE - will update saving feats to character as CharFeats (instead of FeatEntitys)
-
-DONE - make it so only one instance of char wiz can be open at one time
-DONE - ^^ ditto for other wizards
 
 upload picture for character?
 	1. be able to save characters
@@ -21,13 +17,26 @@ DONE, BUT NOT TESTED - connect character to fav die saving
 
 manual character entering, character editing?
 
-DONE - Random character name box move to the top of the window
 Move buttons in random character and bigger text box
-
-The dungeon generator now freezes the application on Macs
-	Can i get some more description of this?
 
 null pointer when loading character from list - change logic in charmain from loading from xml to 
 	launching load character.
 	
 Move class abilities to ability entites for consistency with race abilities.
+
+After dungeon save, or cancel button from generator, should update the dungeon list
+
+Can we limit the dungeon save to be only the dungeon folder? Else how will a saved 
+	dungeon populate the list?
+	
+Character screen layout still needs adjustments
+
+Character Screen buttons don't work, the spell gui button crashed the app
+
+Only Biggus Dickus character loads the character screen, all others crash
+
+The remove item buttons in the char wizard need slight size adjustments
+
+Make it so random generate buttons on DM screen can only populate one window each 
+
+Make the selected character the currentlyLoadedCharacter

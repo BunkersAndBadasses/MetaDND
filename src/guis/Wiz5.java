@@ -308,7 +308,6 @@ public class Wiz5 {
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
-				((Wiz6) cw.wizs.get(5)).createBonusPopUp();
 			}
 		});
 

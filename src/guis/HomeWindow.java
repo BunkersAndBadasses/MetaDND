@@ -252,6 +252,7 @@ public class HomeWindow {
 				charLayout.topControl = test.getMainWindow();
 				characterPanel.layout();
 				shell.setBounds((int)(display.getBounds().width * .05), (int)(display.getBounds().height * .05), (int)(display.getBounds().width * .9), (int)(display.getBounds().height * .8));
+				
 			}
 
 			@Override
@@ -656,7 +657,7 @@ public class HomeWindow {
 					int choice = rng.GetRandomInteger(1, 4);
 					
 					if(choice == 1){//Generate Armor
-						int armor = rng.GetRandomInteger(0, armorNum) - 1;
+						int armor = rng.GetRandomInteger(0, armorNum - 1);
 						
 						Collection<DNDEntity> armorCol = Main.gameState.armor.values();
 						Iterator<DNDEntity> itr = armorCol.iterator();
@@ -667,7 +668,7 @@ public class HomeWindow {
 
 						armorArray.get(armor).toTooltipWindow();
 					}else if(choice == 2){// Generate Weapons
-						int weapon = rng.GetRandomInteger(0, weaponsNum) - 1;
+						int weapon = rng.GetRandomInteger(0, weaponsNum- 1);
 						
 						Collection<DNDEntity> weaponCol = Main.gameState.weapons.values();
 						Iterator<DNDEntity> itr = weaponCol.iterator();
@@ -678,7 +679,7 @@ public class HomeWindow {
 						
 						weaponArray.get(weapon).toTooltipWindow();
 					}else if(choice == 3){// Generate Item
-						int item = rng.GetRandomInteger(0, itemNum) - 1;
+						int item = rng.GetRandomInteger(0, itemNum- 1);
 						
 						Collection<DNDEntity> itemCol = Main.gameState.items.values();
 						Iterator<DNDEntity> itr = itemCol.iterator();

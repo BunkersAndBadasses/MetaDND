@@ -35,8 +35,6 @@ import entity.RaceEntity;
  *  
  * barbarian: rage per day
  * 
- * fix pop-up force not close
- * pop-up open checking
  * languages - make so they can't add a language they already know
  * 
  * FINISH BEFORE WEEKEND
@@ -245,6 +243,14 @@ public class CharacterWizard {
 		manPage.layout();
 		manualWizard.layout();
 		homePanel.layout();
+		
+		Label charName = new Label(manualWizard, SWT.NONE);
+		charName.setText("Name: ");
+		manData = new GridData(SWT.END, SWT.CENTER, false, false);
+		manData.horizontalIndent = 5;
+		manData.horizontalSpan = 1;
+		charName.setLayoutData(manData);
+		charName.pack();
 //		
 //		// Call the seach panel composite
 //		playerScreenReferencePanel = new referencePanel(playerScreen);

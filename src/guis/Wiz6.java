@@ -69,12 +69,19 @@ public class Wiz6 {
 	private ClassEntity charClass;
 	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
 	private ArrayList<CharFeat> charFeats = new ArrayList<CharFeat>();
+	private ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
 	List charFeatsList;
+	
+	private Shell bonusFeatShell;
+	private Shell featSpecialShell;
 	
 	final ScrolledComposite charFeatScreenScroll;
 	final Composite charFeatScreen;
 	
 	private boolean specialValid = false;
+	private boolean bonusDone = false;
+	private boolean bonusOpen = false;
+	private boolean specialOpen = false;
 	
 	private Label numFeatsLabel;
 
@@ -207,8 +214,22 @@ public class Wiz6 {
 		errorMsg.setVisible(false);
 		errorMsg.pack();                                                              
 		
+		// add automatic character feats
+		charClass = character.getCharClass();
+		String[] autoFeats = charClass.getBonusFeats();
+		for (int i = 0; i < autoFeats.length; i ++) {
+			if (autoFeats[i].indexOf('[') != -1) {
+				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
+				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
+				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
+			} else {
+				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
+			}
+		}
+		updateCharFeatsList();
+		numBonusFeats = charFeats.size();
+		
 		// add feat button
-
 		Button addButton = new Button(wiz6, SWT.PUSH);
 		addButton.setText("Add >");
 		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
@@ -350,11 +371,25 @@ public class Wiz6 {
 		Button wiz6NextButton = cw.createNextButton(wiz6);
 		wiz6NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// cannot continue if there is a pop up open
+				if (specialOpen) {
+					featSpecialShell.forceActive();
+					return;
+				}
+				if (bonusOpen) {
+					bonusFeatShell.forceActive();
+					return;
+				}
+				
 				// error checking
 				if (numFeats > 0) {
 					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
+				
+				// if the pop up is closed
+				if (!createBonusPopUp())
+					return;
 				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
@@ -380,7 +415,7 @@ public class Wiz6 {
 		});
 	}
 	
-	void createBonusPopUp() {
+	private boolean createBonusPopUp() {
 		// get lists of bonus feats
 		
 		/*
@@ -397,19 +432,9 @@ public class Wiz6 {
 		 * wizard: scribe scroll
 		 */
 		
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
+		bonusDone = false;
 		
-		// add automatic feats (like armor/weapon proficiency)
-		String[] autoFeats = charClass.getBonusFeats();
-		for (int i = 0; i < autoFeats.length; i ++) {
-			if (autoFeats[i].indexOf('[') != -1) {
-				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
-				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
-			} else {
-				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
-			}
-		}
+		
 		if (charClass.getName().equalsIgnoreCase("Cleric")) {
 			String[] domains = character.getClericDomains();
 			if (domains != null) {
@@ -443,28 +468,28 @@ public class Wiz6 {
 		
 		// compile list of bonus feats (from which the user can choose one)
 		if (charClass.getName().toLowerCase().equals("fighter")){
-			numBonusFeats++;
 			for (int i = 0; i < feats.size(); i++){
 				if (feats.get(i).getFighterBonus() != null)
 					bonusFeats.add(feats.get(i));
 			}
 		} else if (charClass.getName().toLowerCase().equals("monk")){
-			numBonusFeats++;
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
 		} else
-			return;
+			return true;
+
+		bonusOpen = true;
 		
 		// create shell
 		Display display = wiz6.getDisplay();
-		final Shell bonusFeatShell = new Shell(display);
+		bonusFeatShell = new Shell(display);
 		bonusFeatShell.setText("Select Bonus Feat");
 		GridLayout gridLayout = new GridLayout(2, true);
 		bonusFeatShell.setLayout(gridLayout);
 		bonusFeatShell.addListener(SWT.Close, new Listener() {
 	        public void handleEvent(Event event) {
-	            event.doit = false;
-	        	return;
+	            bonusDone = false;
+	            bonusOpen = false;
 	        }
 	    });
 
@@ -502,8 +527,11 @@ public class Wiz6 {
 					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
+				numBonusFeats++;
 				charFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
 				updateCharFeatsList();
+				bonusDone = true;
+				bonusOpen = false;
 				bonusFeatShell.dispose();
 			}
 		});
@@ -520,6 +548,8 @@ public class Wiz6 {
 				display.sleep();
 			}
 		}
+		
+		return bonusDone;
 	}
 	
 	public static boolean checkPrerequisites(ArrayList<CharFeat> charFeats, CharFeat feat, character character) {
@@ -762,14 +792,17 @@ public class Wiz6 {
 	}
 	private boolean selectFeatSpecial(CharFeat feat) {
 		// create shell
+		
+		specialOpen = true;
 				Display display = wiz6.getDisplay();
-				final Shell featSpecialShell = new Shell(display);
+				featSpecialShell = new Shell(display);
 				featSpecialShell.setText("Apply Feat");
 				GridLayout gridLayout = new GridLayout(2, true);
 				featSpecialShell.setLayout(gridLayout);
 				featSpecialShell.addListener(SWT.Close, new Listener() {
 			        public void handleEvent(Event event) {
 			            specialValid = false;
+			            specialOpen = false;
 			        }
 			    });
 				
@@ -821,6 +854,7 @@ public class Wiz6 {
 						feat.setSpecial(specialsCombo.getItem(specialsCombo.getSelectionIndex()));
 						featSpecialShell.dispose();
 						specialValid = true;
+						specialOpen = false;
 					}
 				});
 				done.pack();

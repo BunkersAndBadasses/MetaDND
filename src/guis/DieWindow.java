@@ -25,6 +25,8 @@ public class DieWindow {
 
 	private Display display;
 	private Shell shell;
+	private Shell saveName;
+	private Shell deleteFile;
 	private Composite dieWin;
 	private static Text dieBox;
 	private static Text dieCountBox;
@@ -321,6 +323,7 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 				if(save_activated)
 				{
+					saveName.forceActive();
 					return;
 				}
 				int modInt = 0;
@@ -423,7 +426,7 @@ public class DieWindow {
 
 				notUsed = true;
 
-				final Shell saveName = new Shell(display);
+				saveName = new Shell(display);
 				saveName.setText("Save");
 				//saveName.setSize(300, 200);
 				center(saveName);
@@ -461,7 +464,6 @@ public class DieWindow {
 				saveFinal.setText("Save");
 				saveFinal.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
-						save_activated = false;
 						badSaveFinal.setVisible(false);
 						Pattern p1 = Pattern.compile(".*\\W+.*");
 
@@ -493,6 +495,7 @@ public class DieWindow {
 							return;
 						}
 
+						save_activated = false;
 						saveName.dispose();
 					}
 				});
@@ -683,6 +686,7 @@ public class DieWindow {
 			public void handleEvent(Event event) {
 				if(delete_activated)
 				{
+					deleteFile.forceActive();
 					return;
 				}
 				String deleteMe = favList.getItem(favList.getSelectionIndex());
@@ -696,7 +700,7 @@ public class DieWindow {
 					return;
 				}
 				
-				final Shell deleteFile = new Shell(display);
+				deleteFile = new Shell(display);
 				deleteFile.setText("Delete");
 				//deleteFile.setSize(250, 150);
 				center(deleteFile);
