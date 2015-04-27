@@ -553,6 +553,11 @@ public class Wiz4 {
 					return;
 				if (customLang.getText().length() == 0)
 					return;
+				// check if language was already added
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(0).equals(customLang.getText()))
+						return;
+				}
 				langInput.add(customLang.getText());
 				remainingBonusLangs--;
 				if (remainingBonusLangs == 1)
@@ -613,7 +618,13 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				if (remainingBonusLangs == 0)
 					return;
-				langInput.add(possibleLangsList.getItem(possibleLangsList.getSelectionIndex()));
+				// see if lang was already added
+				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(0).equals(selection))
+						return;
+				}
+				langInput.add(selection);
 				remainingBonusLangs--;
 				if (remainingBonusLangs == 1)
 					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
@@ -630,8 +641,22 @@ public class Wiz4 {
 		Button wiz4NextButton = cw.createNextButton(wiz4);
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// cannot move on if there is a window open
+				if (alignOpen || clericOpen) {
+					if (alignOpen && clericOpen) {
+						alignmentShell.dispose();
+						alignOpen = false;
+						clericShell.forceActive();
+					} else if (alignOpen) 
+						alignmentShell.forceActive();
+					else if (clericOpen)
+						clericShell.forceActive();
+					return;
+				}
+				
 				// error checking
 				boolean error = false;
+				
 				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
 				String condensed = nameInput.getText().replaceAll("\\s","");
 				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
@@ -662,22 +687,12 @@ public class Wiz4 {
 						error = true;
 					}
 				}
+				
+				// if there is an error, do not move on
 				if (error)
 					return;
 				
-				//TODO this isnt working
-				if (alignOpen || clericOpen) {
-					if (alignOpen && clericOpen) {
-						alignmentShell.dispose();
-						alignOpen = false;
-						clericShell.forceActive();
-					} else if (alignOpen) 
-						alignmentShell.forceActive();
-					else if (clericOpen)
-						clericShell.forceActive();
-					return;
-				}
-				
+				// otherwise, save data
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() < 1)
 					a1 = "<empty>";
@@ -965,10 +980,10 @@ public class Wiz4 {
 		domainsLabel.setLayoutData(continueGD);
 		domainsLabel.pack();
 
-		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN);
+		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		domains1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN);
+		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		domains2.setEnabled(false);
 

@@ -73,13 +73,15 @@ public class Wiz6 {
 	List charFeatsList;
 	
 	private Shell bonusFeatShell;
+	private Shell featSpecialShell;
 	
 	final ScrolledComposite charFeatScreenScroll;
 	final Composite charFeatScreen;
 	
 	private boolean specialValid = false;
 	private boolean bonusDone = false;
-	private boolean popUpOpen = false;
+	private boolean bonusOpen = false;
+	private boolean specialOpen = false;
 	
 	private Label numFeatsLabel;
 
@@ -369,6 +371,16 @@ public class Wiz6 {
 		Button wiz6NextButton = cw.createNextButton(wiz6);
 		wiz6NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// cannot continue if there is a pop up open
+				if (specialOpen) {
+					featSpecialShell.forceActive();
+					return;
+				}
+				if (bonusOpen) {
+					bonusFeatShell.forceActive();
+					return;
+				}
+				
 				// error checking
 				if (numFeats > 0) {
 					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
@@ -378,13 +390,6 @@ public class Wiz6 {
 				// if the pop up is closed
 				if (!createBonusPopUp())
 					return;
-				
-				// cannot continue if there is a pop up open
-				if (popUpOpen) {
-					if (!bonusFeatShell.isDisposed())
-						bonusFeatShell.forceActive();
-					return;
-				}
 				
 				// if all is good, save to character
 				for (int i = 0; i < charFeats.size(); i++)
@@ -463,19 +468,17 @@ public class Wiz6 {
 		
 		// compile list of bonus feats (from which the user can choose one)
 		if (charClass.getName().toLowerCase().equals("fighter")){
-			numBonusFeats++;
 			for (int i = 0; i < feats.size(); i++){
 				if (feats.get(i).getFighterBonus() != null)
 					bonusFeats.add(feats.get(i));
 			}
 		} else if (charClass.getName().toLowerCase().equals("monk")){
-			numBonusFeats++;
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
 			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
 		} else
 			return true;
 
-		popUpOpen = true;
+		bonusOpen = true;
 		
 		// create shell
 		Display display = wiz6.getDisplay();
@@ -486,7 +489,7 @@ public class Wiz6 {
 		bonusFeatShell.addListener(SWT.Close, new Listener() {
 	        public void handleEvent(Event event) {
 	            bonusDone = false;
-	            popUpOpen = false;
+	            bonusOpen = false;
 	        }
 	    });
 
@@ -524,10 +527,11 @@ public class Wiz6 {
 					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
+				numBonusFeats++;
 				charFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
 				updateCharFeatsList();
 				bonusDone = true;
-				popUpOpen = false;
+				bonusOpen = false;
 				bonusFeatShell.dispose();
 			}
 		});
@@ -788,14 +792,17 @@ public class Wiz6 {
 	}
 	private boolean selectFeatSpecial(CharFeat feat) {
 		// create shell
+		
+		specialOpen = true;
 				Display display = wiz6.getDisplay();
-				final Shell featSpecialShell = new Shell(display);
+				featSpecialShell = new Shell(display);
 				featSpecialShell.setText("Apply Feat");
 				GridLayout gridLayout = new GridLayout(2, true);
 				featSpecialShell.setLayout(gridLayout);
 				featSpecialShell.addListener(SWT.Close, new Listener() {
 			        public void handleEvent(Event event) {
 			            specialValid = false;
+			            specialOpen = false;
 			        }
 			    });
 				
@@ -847,6 +854,7 @@ public class Wiz6 {
 						feat.setSpecial(specialsCombo.getItem(specialsCombo.getSelectionIndex()));
 						featSpecialShell.dispose();
 						specialValid = true;
+						specialOpen = false;
 					}
 				});
 				done.pack();

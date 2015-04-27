@@ -268,6 +268,12 @@ public class Wiz2 {
 		Button wiz2NextButton = cw.createNextButton(wiz2);
 		wiz2NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// user cannot move on if there is a pop up open
+				if (popUpOpen) {
+					classExtrasShell.forceActive();
+					return;		
+				}
+				
 				badSearch.setVisible(false);
 
 				// error checking
@@ -289,13 +295,6 @@ public class Wiz2 {
 
 				// user cannot move on with an error
 				if (error) return;
-
-				// user cannot move on if there is a pop up open
-				if (popUpOpen) {
-					if (!classExtrasShell.isDisposed())
-						classExtrasShell.forceActive();
-					return;		
-				}
 				
 				// if all goes well, save race/class
 				boolean done = true;

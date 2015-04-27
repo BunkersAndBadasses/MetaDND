@@ -418,6 +418,7 @@ public class Wiz8{
 		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				// cannot move on if a window is open
 				if (primaryOpen || spellOpen) {
 					if (primaryOpen && !spellOpen) {
 						primaryShell.forceActive();
