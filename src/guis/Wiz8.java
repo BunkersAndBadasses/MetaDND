@@ -68,7 +68,8 @@ public class Wiz8{
 	
 	private boolean primaryGood = false;
 	private boolean spellsGood = false;
-	private boolean popUpOpen = false;
+	private boolean primaryOpen = false;
+	private boolean spellOpen = false;
 	
 	private List charWeaponsList;
 	private List charArmorList;
@@ -110,8 +111,7 @@ public class Wiz8{
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(8);
 		this.wizPagesSize = wizPages.size();
-		spellShell = new Shell(wiz8.getDisplay());
-
+		
 		createPageContent();
 	}
 
@@ -418,20 +418,24 @@ public class Wiz8{
 		Button wiz8NextButton = cw.createNextButton(wiz8);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				if (primaryOpen || spellOpen) {
+					if (primaryOpen && !spellOpen) {
+						primaryShell.forceActive();
+					}
+					else if (primaryOpen && spellOpen) {
+						primaryShell.dispose();
+						spellShell.forceActive();
+					}
+					else if (spellOpen)
+						spellShell.forceActive();
+					return;
+				}
+				
 				// launch pop-up (if user clicks cancel, do not continue)
 				if (!setPrimary())
 					return;
 				if (!selectSpells())
-					return;
-				
-				//TODO this isn't working
-				if (popUpOpen) {
-					if (!primaryShell.isDisposed())
-						primaryShell.forceActive();
-					else if (!spellShell.isDisposed())
-						spellShell.forceActive();
-					return;
-				}
+					return;				
 				
 				// save weapons
 				character.setWeapons(charWeapons);
@@ -494,14 +498,14 @@ public class Wiz8{
 		primaryGood = false;
 		// create shell
 		Display display = wiz8.getDisplay();
-		primaryShell = new Shell(display);
+		primaryShell = new Shell(wiz8.getDisplay());
 		primaryShell.setText("Set Primary");
 		GridLayout gridLayout = new GridLayout(2, true);
 		primaryShell.setLayout(gridLayout);
 		primaryShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				primaryGood = false;
-				popUpOpen = false;
+				primaryOpen = false;
 			}
 		});
 
@@ -654,7 +658,7 @@ public class Wiz8{
 			}
 		}
 		
-		popUpOpen = true;
+		primaryOpen = true;
 
 		// cancel button
 		Button cancel = new Button(primaryShell, SWT.PUSH);
@@ -663,7 +667,7 @@ public class Wiz8{
 		cancel.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				primaryGood = false;
-				popUpOpen = false;
+				primaryOpen = false;
 				primaryShell.dispose();
 			}
 		});
@@ -678,7 +682,7 @@ public class Wiz8{
 			public void handleEvent(Event e) {
 				// all primary items saved when selected
 				primaryGood = true;
-				popUpOpen = false;
+				primaryOpen = false;
 				primaryShell.dispose();
 			}
 		});
@@ -761,14 +765,14 @@ public class Wiz8{
 		}
 
 		// initialize layout
-
+		spellShell = new Shell(wiz8.getDisplay());
 		spellShell.setText("Select Known Spells");
 		GridLayout gl = new GridLayout(7, true);
 		spellShell.setLayout(gl);
 		spellShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				primaryGood = false;
-				popUpOpen = false;
+				spellOpen = false;
 			}
 		});
 
@@ -862,7 +866,7 @@ public class Wiz8{
 			return true;
 		}
 		
-		popUpOpen = true;
+		spellOpen = true;
 		
 		origNumSpells = new int[numSpells.length];
 		for (int i = 0; i < origNumSpells.length; i++)
@@ -1002,6 +1006,7 @@ public class Wiz8{
 			public void handleEvent(Event e) {
 				spellsGood = false;
 				spellShell.dispose();
+				spellOpen = false;
 			}
 		});
 		
@@ -1017,9 +1022,6 @@ public class Wiz8{
 					}
 				}
 				
-				if (popUpOpen)
-					return;
-				
 				// if they have chosen all known spells, save and close
 				for (int i = 0; i < charSpells.size(); i++) {
 					character.addSpell(charSpells.get(i));
@@ -1027,6 +1029,7 @@ public class Wiz8{
 				
 				spellsGood = true;
 				spellShell.dispose();
+				spellOpen = false;
 			}
 		});
 

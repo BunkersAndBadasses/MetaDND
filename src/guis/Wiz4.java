@@ -75,9 +75,12 @@ public class Wiz4 {
 	private int numBonusLangs;
 	
 	private Shell alignmentShell;
+ 
 	private Shell clericShell;
 	
 	private boolean popUpOpen = false;
+	private boolean alignOpen = false;
+	private boolean clericOpen = false;
 
 	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
 			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
@@ -118,7 +121,7 @@ public class Wiz4 {
 		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		charClass = cw.getCharacter().getCharClass();
 		charRace = cw.getCharacter().getCharRace();
-
+		
 		createPageContent();
 	}
 
@@ -663,15 +666,15 @@ public class Wiz4 {
 					return;
 				
 				//TODO this isnt working
-				if (popUpOpen) {
-					if (!alignmentShell.isDisposed())
-						alignmentShell.forceActive();
-					else if (!clericShell.isDisposed())
-						clericShell.forceActive();
-					else if (!alignmentShell.isDisposed() && !clericShell.isDisposed()) {
+				if (alignOpen || clericOpen) {
+					if (alignOpen && clericOpen) {
 						alignmentShell.dispose();
+						alignOpen = false;
 						clericShell.forceActive();
-					}	
+					} else if (alignOpen) 
+						alignmentShell.forceActive();
+					else if (clericOpen)
+						clericShell.forceActive();
 					return;
 				}
 				
@@ -759,14 +762,14 @@ public class Wiz4 {
 
 		// create shell
 		Display display = wiz4.getDisplay();
-		alignmentShell = new Shell(display);
+		alignmentShell = new Shell(wiz4.getDisplay());
 		alignmentShell.setText("Check Alignment");
 		GridLayout gridLayout = new GridLayout(2, true);
 		alignmentShell.setLayout(gridLayout);
 		alignmentShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				finished = false;
-				popUpOpen = false;
+				alignOpen = false;
 			}
 		});
 
@@ -870,12 +873,12 @@ public class Wiz4 {
 		}
 		warning.pack();
 		
-		popUpOpen = true;
+		alignOpen = true;
 		
 		alignmentShell.addListener(SWT.Close, new Listener() {
 	        public void handleEvent(Event event) {
 	            goOn = false;
-	            popUpOpen = false;
+	            alignOpen = false;
 	        }
 	    });
 
@@ -903,7 +906,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = false;
 				alignmentShell.dispose();
-				popUpOpen = false;
+				alignOpen = false;
 			}
 		});
 		no.pack();
@@ -916,7 +919,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				goOn = true;
 				alignmentShell.dispose();
-				popUpOpen = false;
+				alignOpen = false;
 			}
 		});
 		yes.pack();
@@ -939,9 +942,11 @@ public class Wiz4 {
 	private boolean clericPopUp(DeityEntity deity) {
 		// choose domain based on deity select
 		finished = false;
-
+		clericOpen = true;
+		
 		// create shell
 		Display display = wiz4.getDisplay();
+		clericShell = new Shell(wiz4.getDisplay());
 		clericShell = new Shell(display);
 		clericShell.setText("Set Domains");
 		GridLayout gridLayout = new GridLayout(2, true);
@@ -949,6 +954,7 @@ public class Wiz4 {
 		clericShell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 				finished = false;
+				clericOpen = false;
 			}
 		});
 		// label - do you want to continue
@@ -1005,6 +1011,7 @@ public class Wiz4 {
 			public void handleEvent(Event e) {
 				finished = false;
 				clericShell.dispose();
+				clericOpen = false;
 			}
 		});
 		cancel.pack();
@@ -1031,6 +1038,7 @@ public class Wiz4 {
 				String[] domains = {d1, d2};
 				character.setClericDomains(domains);
 				finished = true;
+				clericOpen = false;
 				clericShell.dispose();
 			}
 		});
