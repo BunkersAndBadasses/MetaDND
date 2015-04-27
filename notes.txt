@@ -39,6 +39,8 @@ Only Biggus Dickus character loads the character screen, all others crash
 
 The remove item buttons in the char wizard need slight size adjustments
 
+Update the random character generator to include the new character feature stuffs
+
 Make it so random generate buttons on DM screen can only populate one window each 
 
 Make the selected character the currentlyLoadedCharacter
