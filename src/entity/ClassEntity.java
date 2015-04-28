@@ -11,14 +11,14 @@ public class ClassEntity extends DNDEntity {
 	String[] bonusLanguages;
 	String hitDie;
 	String[] baseAttackBonusString;
-	int [] baseAttackBonus;
+	int[] baseAttackBonus;
 	int[] fortSave;
 	int[] reflexSave;
 	int[] willSave;
-	String special;
+	String[][] special;
 	int[][] spellsPerDay;
 	int[][] spellsKnown;
-	String classSkills;
+	String[] classSkills;
 	String skillPointsFirstLevel;
 	String skillPointsPerLevel;
 	String[] bonusFeats;
@@ -83,9 +83,15 @@ public class ClassEntity extends DNDEntity {
 				}
 				break;
 			case "SPECIAL":
-				this.special = value; // Needs refinement in XML for specific
-										// level values, but this will work for
-										// now
+				String[] perLevel = value.split(" \\| ");
+				this.special = new String[perLevel.length][20];
+				for(int i = 0; i < perLevel.length; i++){
+					perLevel[i].replace("|", "");
+					perLevel[i] = perLevel[i].trim();
+					if(perLevel[i].equalsIgnoreCase("|"))
+						perLevel[i] = "";
+					this.special[i] = perLevel[i].split(", ");
+				}
 				break;
 			case "SPELLSPERDAY":
 				//System.out.println("Spells per day: " + this.name);
@@ -138,7 +144,7 @@ public class ClassEntity extends DNDEntity {
 				this.classAbilities = value;
 				break;
 			case "CLASSSKILLS":
-				this.classSkills = value;
+				this.classSkills = value.split("\n");
 				break;
 			case "PALADINMOUNT":
 				this.paladinMount = value;
@@ -196,27 +202,30 @@ public class ClassEntity extends DNDEntity {
 			return;
 		}
 
-		if (this.classSkills != null
-				&& this.classSkills.toLowerCase().contains(searchString)) {
-			Main.gameState.searchResultsLock.acquire();
-			// System.out.println("Lock aquired, adding " + this.name +
-			// " to results list.");
-			Main.gameState.searchResults.put(this.name, this);
-			Main.gameState.searchResultsLock.release();
-			// System.out.println("Lock released.");
+		if (this.classSkills != null){
+			for(int i = 0; i < this.classSkills.length; i++){
+				if(this.classSkills[i].toLowerCase().contains(searchString)){
+					Main.gameState.searchResultsLock.acquire();
+					// System.out.println("Lock aquired, adding " + this.name +
+					// " to results list.");
+					Main.gameState.searchResults.put(this.name, this);
+					Main.gameState.searchResultsLock.release();
+					// System.out.println("Lock released.");
+				}
+			}			
 			return;
 		}
 
-		if (this.special != null
-				&& this.special.toLowerCase().contains(searchString)) {
-			Main.gameState.searchResultsLock.acquire();
-			// System.out.println("Lock aquired, adding " + this.name +
-			// " to results list.");
-			Main.gameState.searchResults.put(this.name, this);
-			Main.gameState.searchResultsLock.release();
-			// System.out.println("Lock released.");
-			return;
-		}
+//		if (this.special != null
+//				&& this.special.toLowerCase().contains(searchString)) {
+//			Main.gameState.searchResultsLock.acquire();
+//			// System.out.println("Lock aquired, adding " + this.name +
+//			// " to results list.");
+//			Main.gameState.searchResults.put(this.name, this);
+//			Main.gameState.searchResultsLock.release();
+//			// System.out.println("Lock released.");
+//			return;
+//		}
 
 	}
 
@@ -284,11 +293,11 @@ public class ClassEntity extends DNDEntity {
 		this.willSave = willSave;
 	}
 
-	public String getSpecial() {
+	public String[][] getSpecial() {
 		return special;
 	}
 
-	public void setSpecial(String special) {
+	public void setSpecial(String[][] special) {
 		this.special = special;
 	}
 
@@ -308,11 +317,11 @@ public class ClassEntity extends DNDEntity {
 		this.spellsKnown = spellsKnown;
 	}
 
-	public String getClassSkills() {
+	public String[] getClassSkills() {
 		return classSkills;
 	}
 
-	public void setClassSkills(String classSkills) {
+	public void setClassSkills(String[] classSkills) {
 		this.classSkills = classSkills;
 	}
 
