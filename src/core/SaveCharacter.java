@@ -1,9 +1,18 @@
 package core;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -20,12 +29,14 @@ public class SaveCharacter {
     private static File stocks;
     private static Document element;
     private static character c = Main.gameState.currentlyLoadedCharacter;
-    private Element ele;
     private String temp;
-    private DocumentBuilderFactory dbFactory;
-    private DocumentBuilder dBuilder;
     String empty; 
     int mt;
+    String fo = "";
+    private DocumentBuilderFactory dbFactory;
+    private DocumentBuilder dBuilder;
+    private File toWrite;
+    private BufferedWriter bw;
 
 
 
@@ -33,13 +44,21 @@ public class SaveCharacter {
         try {
             // New character file
             if (New) {
-                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                fo += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Character>\n";
 
-                // root elements
-                doc = docBuilder.newDocument();
-                ele = doc.createElement("Character");
-                doc.appendChild(ele);
+                String charName = c.getName().replaceAll("[^A-Za-z0-9]", "");
+                try{
+                    File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
+                    CHARACTER.mkdir();
+                    toWrite = new File(CHARACTER.getPath() + "//DND" + charName +".xml");
+                    FileOutputStream fos = new FileOutputStream(toWrite);
+                    
+                    bw = new BufferedWriter(new OutputStreamWriter(fos));
+                    
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                bw.write(fo);
 
                 try {
                     empty  = c.getName();
@@ -257,7 +276,7 @@ public class SaveCharacter {
                 try {
                     empty  = "";
                     for(int i = 0; i < c.getWizardProhibitedSchools().length; i++){
-                        temp += c.getWizardProhibitedSchools()[i]+ "/";
+                        empty += c.getWizardProhibitedSchools()[i]+ "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("WizardProhibitedSchools", empty);
@@ -402,8 +421,8 @@ public class SaveCharacter {
                     }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Shields", empty);
-                
-                
+
+
                 // featName;special;count
                 try {
                     empty  = c.getName();
@@ -414,10 +433,15 @@ public class SaveCharacter {
                         empty += ";" + c.getFeats().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
-                appendValue("Feats", empty);
+                appendValue("Feats", empty); //*/
+                bw.write("</Character>");
+                bw.close();
 
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
+
+                /*TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
                 DOMSource source = new DOMSource(doc);
 
                 //change back to character.getName() is not working correctly
@@ -428,12 +452,10 @@ public class SaveCharacter {
                     File CHARDIR = new File(CHARACTER.getPath() + "//DND" + charName);
                     CHARDIR.mkdir();
                     StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
-
-
                     transformer.transform(source, result);
                 }catch(Exception e){
                     e.printStackTrace();
-                } // TODO end
+                } // TODO end*/
 
             }
             // Not a new Character
@@ -633,9 +655,16 @@ public class SaveCharacter {
     }
 
     private boolean appendValue(String tag, String value) {
-        Element temp = doc.createElement(tag);
+        fo = "<" + tag + ">" + value + "</" + tag + ">\n";
+        try {
+            bw.write(fo);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /*Element temp = doc.createElement(tag);
         temp.appendChild(doc.createTextNode(value));
-        ele.appendChild(temp);
+        ele.appendChild(temp);*/
         return true;
     }
 
