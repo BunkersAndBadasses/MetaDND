@@ -24,6 +24,8 @@ public class SaveCharacter {
     private String temp;
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
+    String empty; 
+    int mt;
     
     
 
@@ -39,25 +41,82 @@ public class SaveCharacter {
                 ele = doc.createElement("Character");
                 doc.appendChild(ele);
                 
-                appendValue("Name", c.getName());
-                appendValue("Level", c.getLevel());
-                appendValue("EXP", c.getExp());
-                appendValue("Race", c.getCharRace().getName());
-                appendValue("Alignment", c.getAlignment());
+                try {
+                    empty  = c.getName();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Name", empty);
                 
-                appendValue("Deity", c.getDeity());
-                appendValue("Size", c.getSize());
-                appendValue("Age", c.getAge());
-                appendValue("Gender", c.getGender());
-                appendValue("Height", c.getHeight());
+                try {
+                    mt  = c.getLevel();
+                } catch (NullPointerException npe) { mt = 0; }
+                appendValue("Level", mt);
                 
-                appendValue("Weight", c.getWeight());
-                appendValue("Eyes", c.getEyes());
-                appendValue("Hair", c.getHair());
-                appendValue("Skin", c.getSkin());
-                appendValue("Description", c.getDescription());
+                try {
+                    mt  = c.getExp();
+                } catch (NullPointerException npe) { mt = 0; }
+                appendValue("EXP", mt);
                 
-                temp = "";
+                try {
+                    empty  = c.getCharRace().getName();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Race", empty);
+                
+                try {
+                    empty  = c.getAlignment();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Alignment", empty);
+                
+                try {
+                    empty  = c.getDeity();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Deity", empty);
+                
+                try {
+                    mt  = c.getSize();
+                } catch (NullPointerException npe) { mt = 0;}
+                appendValue("Size", mt);
+                
+                try {
+                    empty  = c.getAge();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Age", empty);
+                
+                try {
+                    empty  = c.getGender();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Gender", empty);
+                
+                try {
+                    empty  = c.getHeight();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Height", empty);
+                
+                try {
+                    empty  = c.getWeight();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Weight", empty);
+                
+                try {
+                    empty  = c.getEyes();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Eyes", empty);
+                
+                try {
+                    empty  = c.getHair();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Hair", empty);
+                
+                try {
+                    empty  = c.getSkin();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Skin", empty);
+                
+                try {
+                    empty  = c.getDescription();
+                } catch (NullPointerException npe) { empty = " "; }
+                appendValue("Description", empty);
+                
+                temp = ""; // Start TODO
                 for(int i = 0; i < c.getSpells().size(); i++){
                     temp += c.getSpells().get(i).getName() + "/";
                 }
