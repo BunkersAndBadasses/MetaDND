@@ -4,7 +4,7 @@ Meta D&amp;D will allow the user to experience the fun of D&amp;D without the ha
 
 Please make sure you have The newest version of JAVA8.
 
-The required libraries are:
+The required libraries are(packed in this repository):
 
   commons-lang3-3.4.jar
   
@@ -22,12 +22,14 @@ The required libraries are:
 
   Make sure having eclipse:
   
-  Fork the compository into a project
+  Fork the repository into a project
   
   Goto File -> Export -> Java -> Runnable JAR file -> Next
   
   Launch Configuration: Main - MetaDND
   
   Export Destination: Any(we use example: C:\a\MetaDND)
+  
+  
   
   
