@@ -369,9 +369,14 @@ public class CharacterMain {
                 m_characterImage = new Image(Display.getCurrent(), selected);
 				img.setImage(m_characterImage);
 				
+				
 				File imageFile = new File(selected);
+				String imageName = imageFile.getName().replaceAll("\\s", ""); 
 				File copiedImageFile = new File(System.getProperty("user.dir") + "//" + 
 						"User Data" + "//Character" + "//DND" + charName, imageFile.getName());
+				writeValue("Image", System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//DND" + charName + "//" 
+						+ imageName, element);
 				try {
 				    FileUtils.copyFile(imageFile, copiedImageFile);
 				} catch (IOException exception) {

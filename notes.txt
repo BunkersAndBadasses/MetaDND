@@ -1,9 +1,5 @@
 Character screen layout still needs adjustments
 
-Character Screen buttons don't work, the spell gui button crashed the app
-
-Only Biggus Dickus character loads the character screen, all others crash
-
 Make the selected character the currentlyLoadedCharacter
 
 DONE, BUT NOT TESTED - connect character to fav die saving
