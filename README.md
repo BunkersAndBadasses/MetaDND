@@ -51,7 +51,7 @@ Required Libraries:
   
   click FINISH.
   
-  IMPORTANT: Copy the XML folder in the repository into the folder where the JAR is.
+  IMPORTANT: Copy the XML and Image folder in the repository into the folder where the JAR is.
   
   Click on the JAR to run.
   
