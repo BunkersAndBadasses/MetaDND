@@ -235,6 +235,7 @@ public class CharacterWizard {
 		final ScrolledComposite manualWizard = new ScrolledComposite(homePanel, SWT.V_SCROLL | SWT.BORDER);
 		manualWizard.setLayout(manualWizardLayout);
 		manualWizard.setBounds(0, 0, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
+		manualWizard.setAlwaysShowScrollBars(true);
 		wizPanel.setBounds(0, 0, GameState.CHARWIZ_WIDTH, (int) (GameState.CHARWIZ_HEIGHT * (.75)));
 		GridData manData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		manChar = new ManualCharacter(manualWizard);
