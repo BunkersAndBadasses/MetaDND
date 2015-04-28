@@ -440,7 +440,7 @@ public class SaveCharacter {
 
                 // featName;special;count
                 try {
-                    empty  = c.getName();
+                    empty  = "";
                     for(int i = 0; i < c.getFeats().size(); i++){
                         empty += c.getFeats().get(i).getFeat().getName();
                         if (c.getFeats().get(i).getSpecial() != null)
