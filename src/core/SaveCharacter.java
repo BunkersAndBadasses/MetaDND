@@ -50,7 +50,9 @@ public class SaveCharacter {
                 try{
                     File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
                     CHARACTER.mkdir();
-                    toWrite = new File(CHARACTER.getPath() + "//DND" + charName +".xml");
+                    File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character" + "//DND" + charName);
+                    CHARDIR.mkdir();
+                    toWrite = new File(CHARACTER.getPath() + "//DND" + charName + "//DND" + charName +".xml");
                     FileOutputStream fos = new FileOutputStream(toWrite);
                     
                     bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -73,7 +75,7 @@ public class SaveCharacter {
                 try {
                     mt  = c.getExp();
                 } catch (NullPointerException npe) { mt = 0; }
-                appendValue("EXP", mt);
+                appendValue("Exp", mt);
 
                 try {
                     empty  = c.getCharRace().getName();
@@ -255,21 +257,25 @@ public class SaveCharacter {
 
                 try {
                     empty  = c.getDruidAnimalCompanion();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("DruidCompanion", empty);
 
                 try {
                     empty  = c.getRangerFavoredEnemy();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("RangerFavoredEnemy", empty);
 
                 try {
                     empty  = c.getFamiliar();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Familiar", empty);
 
                 try {
                     empty  = c.getWizardSpecialtySchool();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("WizardSpecialty", empty);
 
@@ -283,11 +289,12 @@ public class SaveCharacter {
 
                 try {
                     empty  = c.getImage();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Image", empty);
 
                 try {
-                    empty  = c.getClass().getName();
+                    empty  = c.getCharClass().getName();
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Class", empty);
 
@@ -302,13 +309,20 @@ public class SaveCharacter {
                 appendValue("SecClass", empty);
 
                 try {
-                    appendValue("STR", c.getAbilityModifiers()[0]);
-                    appendValue("DEX", c.getAbilityModifiers()[1]);
-                    appendValue("CON", c.getAbilityModifiers()[2]);
-                    appendValue("INT", c.getAbilityModifiers()[3]);
-                    appendValue("WIS", c.getAbilityModifiers()[4]);
-                    appendValue("CHA", c.getAbilityModifiers()[5]);
-                } catch (NullPointerException npe) {}
+                    appendValue("STR", c.getAbilityScores()[0]);
+                    appendValue("DEX", c.getAbilityScores()[1]);
+                    appendValue("CON", c.getAbilityScores()[2]);
+                    appendValue("INT", c.getAbilityScores()[3]);
+                    appendValue("WIS", c.getAbilityScores()[4]);
+                    appendValue("CHA", c.getAbilityScores()[5]);
+                } catch (NullPointerException npe) {
+                    appendValue("STR", 0);
+                    appendValue("DEX", 0);
+                    appendValue("CON", 0);
+                    appendValue("INT", 0);
+                    appendValue("WIS", 0);
+                    appendValue("CHA", 0);
+                }
 
                 try {
                     mt  = c.getHitPoints();
@@ -410,6 +424,7 @@ public class SaveCharacter {
                                 + c.getSkills().get(i).getMiscMod() + ";" + c.getSkills().get(i).getRank() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getSkills().size() == 0) { empty = " "; }
                 appendValue("Skills", empty);
 
 
@@ -473,7 +488,7 @@ public class SaveCharacter {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     writeValue("Name", c.getName());
                     writeValue("Level", c.getLevel());
-                    writeValue("EXP", c.getExp());
+                    writeValue("Exp", c.getExp());
                     writeValue("Race", c.getCharRace().getName());
                     writeValue("Alignment", c.getAlignment());
 

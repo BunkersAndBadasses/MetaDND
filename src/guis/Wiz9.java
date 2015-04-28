@@ -43,6 +43,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import core.Main;
+import core.SaveCharacter;
 import core.character;
 
 public class Wiz9 {
@@ -107,8 +108,10 @@ public class Wiz9 {
     }
     public static void saveCharacter(character character) {
     	try {
+    	    Main.gameState.currentlyLoadedCharacter = character;
+    	    new SaveCharacter(true);
 
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            /*DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
             // root elements
@@ -599,16 +602,14 @@ public class Wiz9 {
             // StreamResult result = new StreamResult(System.out);
 
             //TODO Refresh the character list when new Character is made
-            // add to random character
+            // add to random character*/
             HomeWindow.loadCharacters();
             System.out.println("File saved!");
 
 
-        } catch (ParserConfigurationException pce) {
+        } catch (Exception pce) {
             pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
-        }
+        } 
     }
 
     public Composite getWiz9() { return wiz9; }
