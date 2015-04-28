@@ -47,11 +47,20 @@ public class SpellGUI {
     private static void getInfo(){
         c = Main.gameState.currentlyLoadedCharacter;
         allSpells.addAll(Main.gameState.spells.keySet());
-        for(int i = 0; i < c.getSpells().size(); i++) {
-            spellsKnown.put(c.getSpells().get(i).getName(), c.getSpells().get(i));  
+        try {
+            for(int i = 0; i < c.getSpells().size(); i++) {
+                spellsKnown.put(c.getSpells().get(i).getName(), c.getSpells().get(i));  
+            }
+        } catch (NullPointerException npe) {
+
         }
-        for(int i = 0; i < c.getPrepSpells().size(); i++) {
-            spellsPrepared.add(c.getPrepSpells().get(i).getName());
+
+        try {
+            for(int i = 0; i < c.getPrepSpells().size(); i++) {
+                spellsPrepared.add(c.getPrepSpells().get(i).getName());
+            } 
+        } catch (NullPointerException npe) {
+
         }
 
     }
@@ -66,7 +75,9 @@ public class SpellGUI {
         shell.setLayout(layout);
 
         final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
-        spellSel.setItems((String[]) spellsKnown.keySet().toArray()); // TODO Load Spells known
+        if (spellsKnown.size() != 0) {
+            spellSel.setItems((String[]) spellsKnown.keySet().toArray()); // TODO Load Spells known
+        }
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);
         spellSelData.left = new FormAttachment(5);
@@ -118,7 +129,9 @@ public class SpellGUI {
         // TODO Prepared Spells
 
         final Combo preparedSel = new Combo(shell, SWT.READ_ONLY);
-        preparedSel.setItems((String[]) spellsPrepared.toArray()); // TODO Load prepared spells
+        if (spellsPrepared.size() != 0) {
+            preparedSel.setItems((String[]) spellsPrepared.toArray()); // TODO Load prepared spells
+        }
         FormData preparedData = new FormData(140,30);
         preparedSel.select(0);
         preparedData.left = new FormAttachment(removeSpell, 0, SWT.LEFT);
@@ -170,7 +183,9 @@ public class SpellGUI {
         // TODO all Spells
 
         final Combo newSpellSel = new Combo(shell, SWT.READ_ONLY);
-        newSpellSel.setItems((String[]) allSpells.toArray()); // TODO Load all spells
+        String[] strArr = new String[allSpells.size()];
+        strArr = allSpells.toArray(strArr);
+        newSpellSel.setItems(strArr); // TODO Load all spells
         FormData allSpellData = new FormData(140,30);
         newSpellSel.select(0);
         allSpellData.left = new FormAttachment(removePrepSpell, 0, SWT.LEFT);
@@ -208,7 +223,11 @@ public class SpellGUI {
         // TODO  Spell materials
 
         final Combo materialSel = new Combo(shell, SWT.READ_ONLY);
-        materialSel.setItems((String[]) materials.toArray()); // TODO Load all spells
+        if (materials.size() != 0) {
+            strArr = new String[materials.size()];
+            strArr = materials.toArray(strArr);
+            materialSel.setItems((String[]) materials.toArray()); // TODO Load all spells
+        }
         FormData materialData = new FormData(140,30);
         materialSel.select(0);
         materialData.left = new FormAttachment(addSpell, 0, SWT.LEFT);
