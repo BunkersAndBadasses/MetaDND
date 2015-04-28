@@ -1,6 +1,7 @@
 package guis;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,6 +10,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.custom.StyledText;
@@ -368,7 +370,12 @@ public class CharacterMain {
 				img.setImage(m_characterImage);
 				
 				File imageFile = new File(selected);
-				File copiedImageFile = new File(GameState.IMAGESFOLDER.toString());
+				File copiedImageFile = new File(GameState.IMAGESFOLDER.toString(), imageFile.getName());
+				try {
+				    FileUtils.copyFile(imageFile, copiedImageFile);
+				} catch (IOException exception) {
+				    exception.printStackTrace();
+				}
 				
             }
         }); 

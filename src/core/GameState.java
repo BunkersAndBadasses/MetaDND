@@ -97,7 +97,7 @@ public class GameState {
 	public GameState() {
 		
 		USERDATAFOLDER = new File(System.getProperty("user.dir") + "//User Data");
-		IMAGESFOLDER = new File(System.getProperty("user.dir") + "//..//Images");
+		IMAGESFOLDER = new File(System.getProperty("user.dir") + "//Images");
 		
 		xmlLoader xmls = new xmlLoader("xmlLoadThread");
 		spells = new LinkedHashMap<String, DNDEntity>();
