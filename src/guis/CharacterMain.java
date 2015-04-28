@@ -519,7 +519,7 @@ public class CharacterMain {
         featButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                //TODO
+                new FeatWizard(shell.getDisplay());
             }
         }); 
         
@@ -532,7 +532,7 @@ public class CharacterMain {
         inventoryButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO reset table
+                new ItemWizard(Display.getCurrent());
             }
         }); 
         
