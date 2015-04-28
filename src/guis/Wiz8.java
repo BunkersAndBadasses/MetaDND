@@ -18,6 +18,7 @@
 
 /*
  * TODO only show weapons/armor/shields the character is proficient with
+ * curr shield not saving? only one?
  */
 
 package guis;
@@ -753,7 +754,7 @@ public class Wiz8{
 			} else {
 				// add that character's spell list to their known spells
 				for (int i = 0; i < spells.size(); i++) {
-					try { //TODO fix
+					try { 
 						if (getLevel(spells.get(i)) != -1) {
 							character.addSpell(spells.get(i));
 						}
