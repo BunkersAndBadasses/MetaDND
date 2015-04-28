@@ -3,10 +3,15 @@ Meta D&amp;D will allow the user to experience the fun of D&amp;D without the ha
 
 # Authors
   Curt Bosse
+  
   Josh Deblon
+  
   Luyue Zhao
+  
   Matt Kean
+  
   Ryan Ranney
+  
   Sarah Szczerbinski
 # Contributors
 
@@ -18,17 +23,13 @@ It is also tested running on Mac and Linux(Ubuntu)
 
 Required Libraries:
 
-  Apache Commons Lang 3.4
-  https://commons.apache.org/proper/commons-lang/
+  [Apache Commons Lang 3.4](https://commons.apache.org/proper/commons-lang/)
   
-  Apache Batik 1.8
-  http://www.apache.org/dyn/closer.cgi/xmlgraphics/batik
+  [Apache Batik 1.8](http://www.apache.org/dyn/closer.cgi/xmlgraphics/batik)
   
-  Xalan Serializer 2.7.2
-  https://xml.apache.org/xalan-j/
+  [Xalan Serializer 2.7.2](https://xml.apache.org/xalan-j/)
   
-  Simple Widget Toolkit 4.4.2
-  http://download.eclipse.org/eclipse/downloads/drops4/R-4.4.2-201502041700/#SWT
+  [Simple Widget Toolkit 4.4.2](http://download.eclipse.org/eclipse/downloads/drops4/R-4.4.2-201502041700/#SWT)
   
 ##To Download a executable(jar or exe) of this application:
 
