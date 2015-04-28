@@ -9,18 +9,13 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import core.CharFeat;
 import core.CharItem;
-import core.DnDie;
 import core.GameState;
 import core.Main;
 import core.RNG;
 import core.character;
 import entity.AbilityEntity;
-import entity.ArmorEntity;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
@@ -554,7 +549,7 @@ public class CharacterWizard {
 			}
 			character.addSpecialAbility(c);
 		}
-		//Spells
+		//Spells is <empty> for now
 		Collection<DNDEntity> spellcol = Main.gameState.spells.values();
 		//wizard get all level 0 spell + (3 + INT modifier) of level 1 spell
 		//Sorcerer get 4 level 0 spell + 2 level 1 spell
@@ -572,7 +567,7 @@ public class CharacterWizard {
 			a.setCount(itemn);
 			character.addItem(a);
 		}
-		//Weapons is <empty>
+		//Weapons
 		Collection<DNDEntity> weaponcol = Main.gameState.weapons.values();
 		for(int i = 0; i < 3; i++)
 		{
@@ -588,7 +583,7 @@ public class CharacterWizard {
 				character.setSecondaryWeapon((WeaponEntity)a);
 			}
 		}
-		//Armor is <empty>
+		//Armor
 		Collection<DNDEntity> armorcol = Main.gameState.armor.values();
 		for(int i = 0; i < 2; i++)
 		{
