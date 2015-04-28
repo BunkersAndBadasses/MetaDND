@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -80,6 +81,8 @@ public abstract class DNDEntity {
 	
 		Display display = Display.getCurrent();
 		Shell shell = new Shell(display);
+		Image logo = new Image(display, "images/bnb_logo.gif");
+		shell.setImage(logo);
 		Monitor monitor = display.getPrimaryMonitor();
 	    Rectangle bounds = monitor.getBounds();
 	    shell.setText(this.name);
