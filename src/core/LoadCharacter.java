@@ -280,7 +280,7 @@ public class LoadCharacter {
 
                 str = getValue("Shield", element);
                 if (!str.equals(" ")) {
-                    c.setCurrShield((ArmorEntity) Main.gameState.armor.get(str));
+                    c.setCurrShield((ItemEntity) Main.gameState.armor.get(str));
                 }
 
 
