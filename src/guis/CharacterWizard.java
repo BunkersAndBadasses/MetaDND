@@ -20,11 +20,13 @@ import core.Main;
 import core.RNG;
 import core.character;
 import entity.AbilityEntity;
+import entity.ArmorEntity;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
 import entity.ItemEntity;
 import entity.RaceEntity;
+import entity.WeaponEntity;
 
 
 
@@ -571,7 +573,52 @@ public class CharacterWizard {
 			character.addItem(a);
 		}
 		//Weapons is <empty>
+		Collection<DNDEntity> weaponcol = Main.gameState.weapons.values();
+		for(int i = 0; i < 3; i++)
+		{
+			ItemEntity a = (ItemEntity) weaponcol.toArray()[randomgene.GetRandomInteger(0, weaponcol.toArray().length - 1)];
+			CharItem b = new CharItem(a); 
+			character.addWeapon(b);
+			if(i == 0)
+			{
+				character.setPrimaryWeapon((WeaponEntity)a);
+			}
+			if(i == 1)
+			{
+				character.setSecondaryWeapon((WeaponEntity)a);
+			}
+		}
 		//Armor is <empty>
+		Collection<DNDEntity> armorcol = Main.gameState.armor.values();
+		for(int i = 0; i < 2; i++)
+		{
+			ItemEntity a = (ItemEntity) armorcol.toArray()[randomgene.GetRandomInteger(0, armorcol.toArray().length - 1)];
+			if(a.getName().contains("Shield"))
+			{
+				i--;
+			}
+			else
+			{
+				CharItem b = new CharItem(a);
+				character.addArmor(b);
+				if(i == 0)
+				{
+					character.setCurrArmor(a);;
+				}
+			}
+		}
+		//Shield
+		Boolean shieldadded = false;
+		do
+		{
+			ItemEntity a = (ItemEntity) armorcol.toArray()[randomgene.GetRandomInteger(0, armorcol.toArray().length - 1)];
+			if(a.getName().contains("Shield"))
+			{
+				shieldadded = true;
+				character.addShield(new CharItem(a));
+				character.setCurrShield(a);
+			}
+		}while(shieldadded == false);
 		//Notes will be <empty>
 		Shell newshell = new Shell(display);
 		newshell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
