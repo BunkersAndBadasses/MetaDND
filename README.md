@@ -2,24 +2,34 @@
 Meta D&amp;D will allow the user to experience the fun of D&amp;D without the hassle of bringing paper character sheets covered in eraser marks and smudges. The application will have a custom/random character generator that has all character specifications without the need of the D&amp;D handbook, handbook references for all important aspects of gameplay, a custom/random dungeon generator, and a multi-dice roller.
 
 # Authors
+  Curt Bosse
   
+  Josh Deblon
+  
+  Luyue Zhao
+  
+  Matt Kean
+  
+  Ryan Ranney
+  
+  Sarah Szczerbinski
 # Contributors
 
 # Compile & Run
 
-Please make sure you have The newest version of JAVA8.
-The application is tested export and running on Windows7, 8, 10.
+Please make sure you have the newest version of Java 8.
+The application is tested export and running on Windows 7, 8, 10.
 It is also tested running on Mac and Linux(Ubuntu)
 
-The required libraries are(packed in this repository):
+Required Libraries:
 
-  commons-lang3-3.4.jar
+  [Apache Commons Lang 3.4](https://commons.apache.org/proper/commons-lang/)
   
-  batik-1.8.jar
+  [Apache Batik 1.8](http://www.apache.org/dyn/closer.cgi/xmlgraphics/batik)
   
-  xalan-2.7.2.jar
+  [Xalan Serializer 2.7.2](https://xml.apache.org/xalan-j/)
   
-  swt-4.4.2.jar
+  [Simple Widget Toolkit 4.4.2](http://download.eclipse.org/eclipse/downloads/drops4/R-4.4.2-201502041700/#SWT)
   
 ##To Download a executable(jar or exe) of this application:
 
@@ -41,7 +51,7 @@ The required libraries are(packed in this repository):
   
   click FINISH.
   
-  IMPORTANT: Copy the XML folder in the repository into the folder where the JAR is.
+  IMPORTANT: Copy the XML and Image folder in the repository into the folder where the JAR is.
   
   Click on the JAR to run.
   
