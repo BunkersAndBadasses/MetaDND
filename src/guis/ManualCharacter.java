@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import core.Main;
@@ -169,7 +170,7 @@ public class ManualCharacter {
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gridData.horizontalSpan = 2;
 		charDeityText.setLayoutData(gridData);
-		
+
 		//Size
 		Label charSize = new Label(manual, SWT.NONE);
 		charSize.setText("Size: ");
@@ -179,7 +180,7 @@ public class ManualCharacter {
 		charSize.setLayoutData(gridData);
 		charSize.pack();
 
-		// class drop down menu
+		// size drop down menu
 		Combo sizeDropDown = new Combo(manual, SWT.DROP_DOWN | SWT.READ_ONLY);
 		for (int i = 0; i < Main.gameState.sizeStrings.length; i++) {
 			sizeDropDown.add(Main.gameState.sizeStrings[i]);
@@ -188,6 +189,125 @@ public class ManualCharacter {
 		gridData.horizontalSpan = 2;
 		sizeDropDown.setLayoutData(gridData);
 
+		//Age
+		Label charAge = new Label(manual, SWT.NONE);
+		charAge.setText("Age: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charAge.setLayoutData(gridData);
+		charAge.pack();
+
+		Text charAgeText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charAgeText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charAgeText.setLayoutData(gridData);
+
+		//Gender
+		Label charGender = new Label(manual, SWT.NONE);
+		charGender.setText("Gender: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charGender.setLayoutData(gridData);
+		charGender.pack();
+
+		Text charGenderText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charGenderText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charGenderText.setLayoutData(gridData);
+
+		//Height
+		Label charHeight = new Label(manual, SWT.NONE);
+		charHeight.setText("Height: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charHeight.setLayoutData(gridData);
+		charHeight.pack();
+
+		Text charHeightText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charHeightText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charHeightText.setLayoutData(gridData);
+
+		//Weight
+		Label charWeight = new Label(manual, SWT.NONE);
+		charWeight.setText("Weight: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charWeight.setLayoutData(gridData);
+		charWeight.pack();
+
+		Text charWeightText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charWeightText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charWeightText.setLayoutData(gridData);
+
+		//Eyes
+		Label charEyes = new Label(manual, SWT.NONE);
+		charEyes.setText("Eyes: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charEyes.setLayoutData(gridData);
+		charEyes.pack();
+
+		Text charEyesText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charEyesText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charEyesText.setLayoutData(gridData);
+
+		//Hair
+		Label charHair = new Label(manual, SWT.NONE);
+		charHair.setText("Hair: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charHair.setLayoutData(gridData);
+		charHair.pack();
+
+		Text charHairText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charHairText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charHairText.setLayoutData(gridData);
+
+		//Skin
+		Label charSkin = new Label(manual, SWT.NONE);
+		charSkin.setText("Skin: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charSkin.setLayoutData(gridData);
+		charSkin.pack();
+
+		Text charSkinText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charSkinText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		charSkinText.setLayoutData(gridData);
+
+		//Description
+		Label charDescription = new Label(manual, SWT.NONE);
+		charDescription.setText("Skin: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 1;
+		charDescription.setLayoutData(gridData);
+		charDescription.pack();
+
+		Text charDescriptionText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charDescriptionText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gridData.horizontalSpan = 2;
+		charDescriptionText.setLayoutData(gridData);
 
 		Button saveChar = new Button(manual, SWT.PUSH);
 		saveChar.setText("Save");
@@ -196,11 +316,24 @@ public class ManualCharacter {
 		saveChar.setLayoutData(gridData);
 		saveChar.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-
-
+				
 			}
+
 		});
 		saveChar.pack();
+
+//		Button cancelChar = new Button(manual, SWT.PUSH);
+//		cancelChar.setText("Save");
+//		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+//		gridData.horizontalIndent = 5;
+//		cancelChar.setLayoutData(gridData);
+//		cancelChar.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				
+//			}
+//
+//		});
+//		cancelChar.pack();
 
 		//TODO set the height for this scrollable composite from the Character Wizard
 		scrolled.setMinHeight(saveChar.getLocation().y + saveChar.getSize().y);

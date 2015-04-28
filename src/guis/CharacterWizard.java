@@ -255,7 +255,7 @@ public class CharacterWizard {
 //		csManual.setLocation(GameState.CHARWIZ_WIDTH/2-50, GameState.CHARWIZ_HEIGHT/2);
 //		csManual.setText("Coming Soon!");
 //		csManual.pack();
-		createCancelButton(manualWizard, home, homePanel, homeLayout);
+		//createCancelButton(manualWizard, home, homePanel, homeLayout);
 		
 
 
