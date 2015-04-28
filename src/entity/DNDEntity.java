@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import core.Main;
 
@@ -105,12 +106,18 @@ public abstract class DNDEntity {
 				titleLabel.setText(entry.getKey());
 			titleLabel.setFont(Main.boldFont);
 			titleLabel.pack();
-			Label textLabel = new Label(c, SWT.LEFT);
-			String windowSize = "(.{" + bounds.width / 16 + "} )";
+			Text textLabel = new Text(c, SWT.WRAP | SWT.READ_ONLY);
+			String windowSize = "(.{" + bounds.width / 18 + "} )";
 			//This guy finds a space every 120 characters and makes a new line, nice text formatting for the tooltip windows
 			String parsedStr = entry.getValue().replaceAll(windowSize, "$1\n");
-			parsedStr = parsedStr.replaceAll("\t", "");
-			textLabel.setText(parsedStr);
+			String finalString = "";
+			String[] split = parsedStr.split("\n");
+			for(int i = 0; i < split.length; i++){
+				finalString += split[i].trim() + "\n";
+			}
+			
+			//parsedStr = parsedStr.replaceAll("\t", "");
+			textLabel.setText(finalString);
 			textLabel.pack();
 		}
 		c.pack();
