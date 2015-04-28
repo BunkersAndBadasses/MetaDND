@@ -698,7 +698,7 @@ public class CharacterMain {
                 gp = getValue("GP", element);
                 sp = getValue("SP", element);
                 cp = getValue("CP", element);
-                exp = getValue("XP", element);
+                exp = getValue("Exp", element);
 
                 String raw = getValue("Items", element);
                 items = raw.split(delims);
