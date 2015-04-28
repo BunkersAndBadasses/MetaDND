@@ -156,7 +156,8 @@ public class SaveCharacter {
                 if (mt != 0) {
                     temp = "";
                     for(int i = 0; i < c.getSpecialAbilities().size(); i++){
-                        temp += c.getSpecialAbilities().get(i).getName() + "/";
+                        temp += c.getSpecialAbilities().get(i).getName() + ";"
+                                + c.getSpecialAbilities().get(i).getDescription() + "/";
                     }
                 }
                 appendValue("SpecialAbilities", temp);
