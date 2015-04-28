@@ -367,8 +367,7 @@ public class HomeWindow {
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				new MenuBar(shell, hw, GameState.PAGE.DungeonMasterScreen);
-				mainWindowLayout.topControl = dungeonMasterScreen;
-				mainWindow.layout();
+				navigateToDungeonMasterScreen();
 			}
 		});
 
