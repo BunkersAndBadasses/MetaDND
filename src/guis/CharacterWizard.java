@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import core.CharFeat;
 import core.CharItem;
 import core.GameState;
@@ -60,6 +61,8 @@ public class CharacterWizard {
 	private static RNG randomgene;
 	public int wizPageNum = -1;
 	public boolean cancel = false;
+	public boolean cancelOpen = false;
+	private Shell areYouSureShell;
 	public boolean[] wizPageCreated = { false, false, false, false,
 		false, false, false, false, false, false };
 	
@@ -783,10 +786,21 @@ public class CharacterWizard {
 		cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
+				if (cancelOpen) {
+					cancelForceActive();
+					return;
+				}
 				cancel = false;
+				cancelOpen = true;
 				
 				// create shell
-				final Shell areYouSureShell = new Shell(display);
+				areYouSureShell = new Shell(display);
+				areYouSureShell.addListener(SWT.Close, new Listener() {
+			        public void handleEvent(Event event) {
+			            cancel = false;
+			            cancelOpen = false;
+			        }
+			    });
 				areYouSureShell.setText("Cancel");
 				GridLayout gridLayout = new GridLayout(2, true);
 				areYouSureShell.setLayout(gridLayout);
@@ -799,18 +813,6 @@ public class CharacterWizard {
 				areYouSure.setLayoutData(gd1);
 				areYouSure.pack();
 				
-				// yes button
-				Button yes = new Button(areYouSureShell, SWT.PUSH);
-				yes.setText("Yes, Cancel");
-				yes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-				yes.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event event) {
-						cancel = true;
-						areYouSureShell.dispose();
-					}
-				});
-				yes.pack();
-
 				// no button
 				Button no = new Button(areYouSureShell, SWT.PUSH);
 				no.setText("No, Don't Cancel");
@@ -818,10 +820,24 @@ public class CharacterWizard {
 				no.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event event) {
 						cancel = false;
+						cancelOpen = false;
 						areYouSureShell.dispose();
 					}
 				});
 				no.pack();
+				
+				// yes button
+				Button yes = new Button(areYouSureShell, SWT.PUSH);
+				yes.setText("Yes, Cancel");
+				yes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+				yes.addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event event) {
+						cancel = true;
+						cancelOpen = false;
+						areYouSureShell.dispose();
+					}
+				});
+				yes.pack();
 
 				// open shell
 				areYouSureShell.pack();
@@ -844,6 +860,10 @@ public class CharacterWizard {
 			}
 		});
 		return cancelButton;
+	}
+	
+	public void cancelForceActive() {
+		areYouSureShell.forceActive();
 	}
 
 	public character getCharacter() {
