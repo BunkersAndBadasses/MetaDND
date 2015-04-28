@@ -13,14 +13,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import core.CharFeat;
+import core.CharItem;
 import core.DnDie;
 import core.GameState;
 import core.Main;
 import core.RNG;
 import core.character;
+import entity.AbilityEntity;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
+import entity.ItemEntity;
 import entity.RaceEntity;
 
 
@@ -534,14 +537,39 @@ public class CharacterWizard {
 			}
 		}
 		//Special Ability
-		//TODO
+		Collection<DNDEntity> abilitycol = Main.gameState.abilities.values();
+		String[] sa = character.getCharRace().getSpecialAbilities();
+		for(String a : sa)
+		{
+			AbilityEntity c = null;
+			for(Object b : abilitycol.toArray())
+			{
+				c = (AbilityEntity)b;
+				if(c.getName().equalsIgnoreCase(a))
+				{
+					break;
+				}
+			}
+			character.addSpecialAbility(c);
+		}
 		//Spells
 		Collection<DNDEntity> spellcol = Main.gameState.spells.values();
 		//wizard get all level 0 spell + (3 + INT modifier) of level 1 spell
 		//Sorcerer get 4 level 0 spell + 2 level 1 spell
-		//TODO
 		//Prepared spells are <empty>
-		//Items is <empty>
+		//Items is randomized
+		Collection<DNDEntity> itemcol = Main.gameState.items.values();
+		//0~7 kind of items
+		//1~10 per item
+		int itemk = randomgene.GetRandomInteger(0, 7);
+		int itemn;
+		for(int i = 0; i < itemk; i++)
+		{
+			itemn = randomgene.GetRandomInteger(1, 10);
+			CharItem a =  new CharItem((ItemEntity) itemcol.toArray()[randomgene.GetRandomInteger(0, itemcol.toArray().length - 1)]);
+			a.setCount(itemn);
+			character.addItem(a);
+		}
 		//Weapons is <empty>
 		//Armor is <empty>
 		//Notes will be <empty>
