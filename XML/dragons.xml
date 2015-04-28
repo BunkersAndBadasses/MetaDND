@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<MONSTERS>
 <MONSTER>
 		<NAME>			Black Dragon, Juvenile		</NAME>		<TYPE>			Dragon (Water)
 		</TYPE>		<HITDICE>			13d12+26 (110)		</HITDICE>		<INITIATIVE>			+0		</INITIATIVE>		<SPEED>			60ft. fly 150ft. (poor) swim 60ft.		</SPEED>		<ARMORCLASS>			22 (+12 natural) touch 10 flat-footed 22 Darkness		</ARMORCLASS>		<GRAPPLE>			+13/+16		</GRAPPLE>		<ATTACK>			1 Bite: 			2 Claws: 1d8			2 Wings: 1d6			1 Tail Slap: 1d4			1 Crush: -			1 Tail Sweep: -		</ATTACK>		<FULLATTACK>		</FULLATTACK>		<REACH>			5 ft./5 ft.)		</REACH>		<SPECIALATTACKS>			Black dragons prefer to ambush their targets using their surroundings as cover. When fighting in heavily forested swamps and marshes they try to stay in the water or on the ground; trees and leafy canopies limit their aerial maneuverability. When outmatched a black dragon attempts to fly out of sight so as not to leave tracks and hide in a deep pond or bog.
