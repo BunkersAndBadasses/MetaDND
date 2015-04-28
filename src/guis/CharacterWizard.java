@@ -331,11 +331,6 @@ public class CharacterWizard {
 		character.setCharRace((RaceEntity) racecol.toArray()[randomgene.GetRandomInteger(0, racecol.size()-1)]);
 		Collection<DNDEntity> classcol = Main.gameState.classes.values();
 		character.setCharClass((ClassEntity) classcol.toArray()[randomgene.GetRandomInteger(0, classcol.size()-1)]);
-		//Alignment
-		String[] Alignments = {"Lawful Good", "Lawful Neutral", "Lawful Evil", 
-				"Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", 
-				"Chaotic Neutral", "Chaotic Evil"};
-		character.setAlignment(Alignments[randomgene.GetRandomInteger(0, Alignments.length - 1)]);
 		//Deity
 		String[] deities = { 
 				"Boccob(N): god of magic", 
@@ -361,6 +356,13 @@ public class CharacterWizard {
 		{
 		character.setDeity(deities[randomgene.GetRandomInteger(0, deities.length - 1)]);
 		}
+		//Alignment
+				String[] Alignments = {"Lawful Good", "Lawful Neutral", "Lawful Evil", 
+						"Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", 
+						"Chaotic Neutral", "Chaotic Evil"};
+				character.setAlignment(Alignments[randomgene.GetRandomInteger(0, Alignments.length - 1)]);
+				//TODO add consistency with deity
+
 		//Size
 		character.setSize(character.getCharRace().getSize());
 		//Age
