@@ -32,7 +32,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HomeWindow {
-	private static String version = "Ver0.8.Alpha";
+	private static String version = "Ver0.9.Beta";
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 	private static Document doc;
@@ -367,8 +367,7 @@ public class HomeWindow {
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				new MenuBar(shell, hw, GameState.PAGE.DungeonMasterScreen);
-				mainWindowLayout.topControl = dungeonMasterScreen;
-				mainWindow.layout();
+				navigateToDungeonMasterScreen();
 			}
 		});
 

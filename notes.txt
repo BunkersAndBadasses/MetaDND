@@ -1,47 +1,27 @@
-fix class special abilities(2d array per level)
-
-upload picture for character?
-	1. be able to save characters
-	2. be able to designate a new image for the character
-	3. be able to see the new image in the charactermain
-	4. copy the file from wherever it was to the local userdata folder.
-
-changed languages from string to string[], character sheet crashes, save crashes? 
-
-loading character closes home window, unable to return
-Change the CharacterMain to a composite, and overlay the charList
-
-random character saving - cannot load? exception when loading items. null checking?
-
-DONE, BUT NOT TESTED - connect character to fav die saving
-
-manual character entering, character editing?
-
-Move buttons in random character and bigger text box
-
-null pointer when loading character from list - change logic in charmain from loading from xml to 
-	launching load character.
-	
-Move class abilities to ability entites for consistency with race abilities.
-
-Dungeon generator 3 scroll bar thingies need to be resized, or needs to be adjusted.
-
-After dungeon save, or cancel button from generator, should update the dungeon list
-
-Can we limit the dungeon save to be only the dungeon folder? Else how will a saved 
-	dungeon populate the list?
-	
 Character screen layout still needs adjustments
 
 Character Screen buttons don't work, the spell gui button crashed the app
 
 Only Biggus Dickus character loads the character screen, all others crash
 
-The remove item buttons in the char wizard need slight size adjustments
+Make the selected character the currentlyLoadedCharacter
 
-Update the random character generator to include the new character feature stuffs
+DONE, BUT NOT TESTED - connect character to fav die saving
+
+fix class special abilities(2d array per level)
+
+upload picture for character?
+	4. copy the file from wherever it was to the local userdata folder.
+
+manual character entering, character editing?
+	
+Move class abilities to ability entites for consistency with race abilities.
+
+Dungeon generator 3 scroll bar thingies need to be resized, or needs to be adjusted.
+
+The remove item buttons in the char wizard need slight size adjustments (layout window)
 
 Make it so random generate buttons on DM screen can only populate one window each 
 
-Make the selected character the currentlyLoadedCharacter
+
 
