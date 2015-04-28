@@ -308,6 +308,46 @@ public class ManualCharacter {
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
 		gridData.horizontalSpan = 2;
 		charDescriptionText.setLayoutData(gridData);
+		
+		//Abilities 
+		Label Abilities = new Label(manual, SWT.NONE);
+		Abilities.setText("Abilities: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 3;
+		Abilities.setLayoutData(gridData);
+		Abilities.pack();
+		
+		//STR
+		Label charSTR = new Label(manual, SWT.NONE);
+		charSTR.setText("STR: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 10;
+		gridData.horizontalSpan = 1;
+		charSTR.setLayoutData(gridData);
+		charSTR.pack();
+
+		Text charSTRText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charSTRText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gridData.horizontalSpan = 2;
+		charSTRText.setLayoutData(gridData);
+		
+		//DEX
+		Label charDEX = new Label(manual, SWT.NONE);
+		charDEX.setText("DEX: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 10;
+		gridData.horizontalSpan = 1;
+		charDEX.setLayoutData(gridData);
+		charDEX.pack();
+
+		Text charDEXText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charDEXText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gridData.horizontalSpan = 2;
+		charDEXText.setLayoutData(gridData);
+
 
 		Button saveChar = new Button(manual, SWT.PUSH);
 		saveChar.setText("Save");
