@@ -17,7 +17,7 @@ public class ManualCharacter {
 	private ScrolledComposite scrolled;
 	
 	public ManualCharacter(ScrolledComposite scrolledPage){
-		manual = new Composite(scrolledPage, SWT.BORDER);
+		manual = new Composite(scrolledPage, SWT.NONE);
 		scrolled = scrolledPage;
 		createPageContent();
 	}
@@ -94,23 +94,11 @@ public class ManualCharacter {
 		});
 		saveChar.pack();
 		
-		Button cancel = new Button(manual, SWT.PUSH);
-		cancel.setText("Cancel");
-		gridData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
-		gridData.horizontalIndent = 5;
-		cancel.setLayoutData(gridData);
-		cancel.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				
-				
-			}
-		});
-		cancel.pack();
-		
 		//TODO set the height for this scrollable composite from the Character Wizard
 		scrolled.setMinHeight(saveChar.getLocation().y + saveChar.getSize().y);
 		scrolled.layout();
 		manual.layout();
+		manual.pack();
 	}
 	
 }
