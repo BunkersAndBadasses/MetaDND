@@ -547,6 +547,8 @@ public class Wiz8{
 			
 			if (charWeapons.size() == 1) {
 				primaryWeaponList.select(0);
+				WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(primaryWeaponList.getItem(0));
+				character.setPrimaryWeapon(temp);
 			}
 			
 			if (charWeapons.size() > 1) {
@@ -624,6 +626,8 @@ public class Wiz8{
 			
 			if (charArmor.size() == 1) {
 				primaryArmorList.select(0);
+				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryArmorList.getItem(0));
+				character.setCurrArmor(temp);
 			}
 		}
 		
@@ -657,6 +661,8 @@ public class Wiz8{
 			
 			if (charShields.size() == 1) {
 				primaryShieldList.select(0);
+				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryShieldList.getItem(0));
+				character.setCurrShield(temp);
 			}
 		}
 		
