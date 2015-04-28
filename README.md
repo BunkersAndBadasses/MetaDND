@@ -6,7 +6,7 @@ Meta D&amp;D will allow the user to experience the fun of D&amp;D without the ha
   
   Josh Deblon
   
-  Luyue Zhao
+  Luyue Zhao (Innocentius)
   
   Matt Kean
   
