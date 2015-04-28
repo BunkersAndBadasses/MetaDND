@@ -3,6 +3,8 @@ Meta D&amp;D will allow the user to experience the fun of D&amp;D without the ha
 # Compile & Run
 
 Please make sure you have The newest version of JAVA8.
+The application is tested export and running on Windows7, 8, 10.
+It is also tested running on Mac and Linux(Ubuntu)
 
 The required libraries are(packed in this repository):
 
@@ -30,6 +32,11 @@ The required libraries are(packed in this repository):
   
   Export Destination: Any(we use example: C:\a\MetaDND)
   
+  Select:"Package required libraries into generated JAR"
   
+  click FINISH.
   
+  IMPORTANT: Copy the XML folder in the repository into the folder where the JAR is.
+  
+  Click on the JAR to run.
   
