@@ -21,7 +21,6 @@ Dungeon generator 3 scroll bar thingies need to be resized, or needs to be adjus
 
 The remove item buttons in the char wizard need slight size adjustments (layout window)
 
-Make it so random generate buttons on DM screen can only populate one window each 
 
 
 

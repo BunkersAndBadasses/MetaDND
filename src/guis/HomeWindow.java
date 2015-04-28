@@ -241,12 +241,12 @@ public class HomeWindow {
 				//TODO populate the Character sheet 
 				
 				int charInd = charList.getSelectionIndex();
-				System.out.println(charList.getSize().x);
 				if (charInd < 0 || charInd > charList.getSize().x) {
 					return;
 				}
 				String charToLoad = charList.getSelection()[0];
 				String path = filepaths.get(charToLoad);
+				System.out.println(path);
 				String[] args = {path};			
 				CharacterMain test = new CharacterMain(args, characterPanel, shell);
 				charLayout.topControl = test.getMainWindow();
@@ -324,19 +324,21 @@ public class HomeWindow {
 		new Label(dungeonGenConfig, SWT.NONE);
 		Composite sliderComposite = new Composite(dungeonGenConfig, SWT.CENTER);
 		GridLayout sliderCompositeLayout = new GridLayout(2, true);
-		GridData sliderCompositeGridData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		GridData sliderCompositeGridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		sliderCompositeGridData.minimumWidth = 300;
 		sliderComposite.setLayoutData(sliderCompositeGridData);
 		sliderComposite.setLayout(sliderCompositeLayout);
 		
 		Label sizeLabel = new Label(sliderComposite, SWT.NONE);
 		sizeLabel.setText("Size of Dungeon:");
 		
-		final Scale sizeSlider = new Scale(sliderComposite, SWT.NULL);
+		final Scale sizeSlider = new Scale(sliderComposite, SWT.NONE);
 		sizeSlider.setIncrement(1);
 		sizeSlider.setMaximum(DungeonConstants.MAX_DUNGEON_SIZE);
 		sizeSlider.setMinimum(DungeonConstants.MIN_DUNGEON_SIZE);
 		sizeSlider.setSelection(30);
-		sizeSlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridData sizeSliderGD = new GridData(SWT.CENTER, SWT.FILL, true, true);
+		sizeSlider.setLayoutData(sizeSliderGD);
 		
 		Label densityLabel = new Label(sliderComposite, SWT.NONE);
 		densityLabel.setText("Density of Passable Terrain:");

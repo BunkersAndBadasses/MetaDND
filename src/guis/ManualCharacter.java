@@ -26,7 +26,6 @@ public class ManualCharacter {
 
 	private Composite manual;
 	private ScrolledComposite scrolled;
-
 	public ManualCharacter(ScrolledComposite scrolledPage){
 		manual = new Composite(scrolledPage, SWT.NONE);
 		scrolled = scrolledPage;
@@ -58,7 +57,7 @@ public class ManualCharacter {
 		layout.numColumns = 3;
 		manual.setLayout(layout);
 
-		GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, false, false);
+		GridData gridData;
 
 		//NAME
 		Label charName = new Label(manual, SWT.NONE);
@@ -296,7 +295,7 @@ public class ManualCharacter {
 
 		//Description
 		Label charDescription = new Label(manual, SWT.NONE);
-		charDescription.setText("Skin: ");
+		charDescription.setText("Description: ");
 		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
 		gridData.horizontalIndent = 5;
 		gridData.horizontalSpan = 1;
@@ -308,6 +307,46 @@ public class ManualCharacter {
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
 		gridData.horizontalSpan = 2;
 		charDescriptionText.setLayoutData(gridData);
+		
+		//Abilities 
+		Label Abilities = new Label(manual, SWT.NONE);
+		Abilities.setText("Abilities: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 5;
+		gridData.horizontalSpan = 3;
+		Abilities.setLayoutData(gridData);
+		Abilities.pack();
+		
+		//STR
+		Label charSTR = new Label(manual, SWT.NONE);
+		charSTR.setText("STR: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 10;
+		gridData.horizontalSpan = 1;
+		charSTR.setLayoutData(gridData);
+		charSTR.pack();
+
+		Text charSTRText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charSTRText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gridData.horizontalSpan = 2;
+		charSTRText.setLayoutData(gridData);
+		
+		//DEX
+		Label charDEX = new Label(manual, SWT.NONE);
+		charDEX.setText("DEX: ");
+		gridData = new GridData(SWT.END, SWT.CENTER, false, false);
+		gridData.horizontalIndent = 10;
+		gridData.horizontalSpan = 1;
+		charDEX.setLayoutData(gridData);
+		charDEX.pack();
+
+		Text charDEXText = new Text(manual, SWT.BORDER | SWT.CENTER);
+		charDEXText.setText("");
+		gridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		gridData.horizontalSpan = 2;
+		charDEXText.setLayoutData(gridData);
+		charDEXText.pack();
 
 		Button saveChar = new Button(manual, SWT.PUSH);
 		saveChar.setText("Save");
@@ -336,10 +375,10 @@ public class ManualCharacter {
 //		cancelChar.pack();
 
 		//TODO set the height for this scrollable composite from the Character Wizard
-		scrolled.setMinHeight(saveChar.getLocation().y + saveChar.getSize().y);
-		scrolled.layout();
 		manual.layout();
 		manual.pack();
+		scrolled.setContent(manual);
+		scrolled.setMinHeight(manual.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 	}
 
 }
