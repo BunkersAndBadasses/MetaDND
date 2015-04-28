@@ -386,6 +386,7 @@ public class SaveCharacter {
                         empty += c.getItems().get(i).getName() + ";" + c.getItems().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getItems().size() == 0) { empty = " "; }
                 appendValue("Items", empty);
 
 
@@ -405,6 +406,7 @@ public class SaveCharacter {
 
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getWeapons().size() == 0) { empty = " "; }
                 appendValue("Weapons", empty); 
 
                 // armorname;quantity
@@ -414,6 +416,7 @@ public class SaveCharacter {
                         empty += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getArmor().size() == 0) { empty = " "; }
                 appendValue("Armors", empty); 
 
                 // skillname;abilitymod;miscmod;rank 
@@ -435,6 +438,7 @@ public class SaveCharacter {
                         empty += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getCount() +  "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getShields().size() == 0) { empty = " "; }
                 appendValue("Shields", empty);
 
 
@@ -448,6 +452,7 @@ public class SaveCharacter {
                         empty += ";" + c.getFeats().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getFeats().size() == 0) { empty = " "; }
                 appendValue("Feats", empty); //*/
                 bw.write("</Character>");
                 bw.close();

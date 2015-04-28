@@ -695,11 +695,11 @@ public class Wiz4 {
 				// otherwise, save data
 				String a1, a2;
 				if (alignmentInput1.getSelectionIndex() < 1)
-					a1 = "<empty>";
+					a1 = " ";
 				else 
 					a1 = alignmentInput1.getText();
 				if (alignmentInput2.getSelectionIndex() < 1)
-					a2 = "<empty>";
+					a2 = " ";
 				else
 					a2 = alignmentInput2.getText();
 
@@ -720,7 +720,7 @@ public class Wiz4 {
 				// if no errors, save to character
 				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
 				character.setName(nameInput.getText());	
-				character.setAlignment(a1 + " " + a2);
+				character.setAlignment(a1 + ";" + a2);
 				if (deityInput.getText().length() != 0)
 					character.setDeity(deityInput.getText());
 				if (heightInput.getText().length() != 0)
