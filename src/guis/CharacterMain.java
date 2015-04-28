@@ -33,7 +33,9 @@ import org.w3c.dom.NodeList;
 
 import core.DungeonConstants;
 import core.GameState;
+import core.LoadCharacter;
 import core.Main;
+import core.character;
 
 
 public class CharacterMain {
@@ -673,6 +675,10 @@ public class CharacterMain {
 	private static void getPlayerInfo(String pathName) {
         // TODO Auto-generated method stub
         filename = pathName;
+        Main.gameState.currentlyLoadedCharacter = new character();
+        new LoadCharacter(pathName, Main.gameState.currentlyLoadedCharacter);
+        character c = Main.gameState.currentlyLoadedCharacter;
+        charName = c.getName();
         try {
 
             stocks = new File(filename);
@@ -688,7 +694,7 @@ public class CharacterMain {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 element = (Element) node;
                 imagePath = getValue("Image", element);
-                charName = getValue("Name", element);
+                //charName = getValue("Name", element);
                 charLevel = Integer.parseInt(getValue("Level", element));
                 charClass = getValue("Class", element);
                 charSecLevel = Integer.parseInt(getValue("SecLevel", element));

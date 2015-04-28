@@ -310,7 +310,7 @@ public class LoadCharacter {
                 temp = getValue("Languages", element);
                 c.setLanguages(new ArrayList<String>(Arrays.asList(temp.split(delims))));
 
-                str = getValue("Weaponms", element);
+                str = getValue("Weapons", element);
                 if (!str.equals(" ")) {
                     tempArr = str.split(delims);
                     // weaponname;quantity
@@ -324,51 +324,65 @@ public class LoadCharacter {
                     }
                 }
 
-                temp = getValue("Armors", element);
-                tempArr = temp.split(delims);
-                // armorname;quantity
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp)); // some in armor list are weapons
-                    CharItem ci = new CharItem(ae,count);
-                    c.addArmor(ci);
+                str = getValue("Armors", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // armorname;quantity
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int count = Integer.parseInt(tempMiniArr[1]); 
+                        ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp)); // some in armor list are weapons
+                        CharItem ci = new CharItem(ae,count);
+                        c.addArmor(ci);
+                    }
                 }
 
-                temp = getValue("Skills", element);
-                tempArr = temp.split(delims);
-                // skillname:abilitymod+miscmod+rank
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z:+]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
-                    cs.setRank(count);
-                    // TODO this needs to change. ability mod and misc mod need to be saved to char skill
+                str = getValue("Skills", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // skillname:abilitymod+miscmod+rank
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int rank = Integer.parseInt(tempMiniArr[3]); 
+                        int miscMod = Integer.parseInt(tempMiniArr[2]);
+                        CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
+                        cs.setRank(rank);
+                        cs.setMiscMod(miscMod);
+                    }
                 }
 
-                temp = getValue("Shields", element);
-                tempArr = temp.split(delims);
-                // shieldname;quantity
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp));  // some in armor list are weapons
-                    CharItem ci = new CharItem(ae, count);
-                    c.addShield(ci);
+                str = getValue("Shields", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // shieldname;quantity
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int count = Integer.parseInt(tempMiniArr[1]); 
+                        ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp));  // some in armor list are weapons
+                        CharItem ci = new CharItem(ae, count);
+                        c.addShield(ci);
+                    }
                 }
 
-                temp = getValue("Feats", element);
-                tempArr = temp.split(delims);
-                // featName:special;count
-                for(int i = 0; i < tempArr.length; i++){
-                    String featName = tempArr[i].substring(0, tempArr[i].indexOf(':'));
-                    FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
-                    int count = Integer.parseInt(tempArr[i].substring(tempArr[i].indexOf(';')+1));
-                    if (tempArr[i].indexOf(':')!= -1) {
-                        String special = tempArr[i].substring(tempArr[i].indexOf(':')+1, tempArr[i].indexOf(';'));
-                        c.addFeat(new CharFeat(feat, special, count));
-                    } else
-                        c.addFeat(new CharFeat(feat, count));
+                str = getValue("Feats", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // featName;special;count
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        int size = tempMiniArr.length;
+                        String featName = tempMiniArr[0];
+                        FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
+                        int count = Integer.parseInt(tempMiniArr[size-1]);
+                        if (size == 3) {
+                            String special = tempMiniArr[1];
+                            c.addFeat(new CharFeat(feat, special, count));
+                        } else
+                            c.addFeat(new CharFeat(feat, count));
+                    }
                 }
 
             }
