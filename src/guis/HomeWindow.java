@@ -324,7 +324,7 @@ public class HomeWindow {
 		new Label(dungeonGenConfig, SWT.NONE);
 		Composite sliderComposite = new Composite(dungeonGenConfig, SWT.CENTER);
 		GridLayout sliderCompositeLayout = new GridLayout(2, true);
-		GridData sliderCompositeGridData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+		GridData sliderCompositeGridData = new GridData(SWT.LEFT, SWT.CENTER, false, true);
 		sliderCompositeGridData.minimumWidth = 300;
 		sliderComposite.setLayoutData(sliderCompositeGridData);
 		sliderComposite.setLayout(sliderCompositeLayout);
@@ -337,8 +337,9 @@ public class HomeWindow {
 		sizeSlider.setMaximum(DungeonConstants.MAX_DUNGEON_SIZE);
 		sizeSlider.setMinimum(DungeonConstants.MIN_DUNGEON_SIZE);
 		sizeSlider.setSelection(30);
-		GridData sizeSliderGD = new GridData(SWT.CENTER, SWT.FILL, true, true);
+		GridData sizeSliderGD = new GridData(SWT.CENTER, SWT.FILL, false, true);
 		sizeSlider.setLayoutData(sizeSliderGD);
+		sizeSlider.pack();
 		
 		Label densityLabel = new Label(sliderComposite, SWT.NONE);
 		densityLabel.setText("Density of Passable Terrain:");
@@ -349,6 +350,7 @@ public class HomeWindow {
 		densitySlider.setMinimum(10);
 		densitySlider.setSelection(20);
 		densitySlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		densitySlider.pack();
 		
 		Label squareSizeLabel = new Label(sliderComposite, SWT.NONE);
 		squareSizeLabel.setText("Size of Dungeon Tile:");
@@ -358,8 +360,7 @@ public class HomeWindow {
 		squareSizeSlider.setMaximum(50);
 		squareSizeSlider.setMinimum(10);
 		squareSizeSlider.setSelection(30);
-		squareSizeSlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
+		squareSizeSlider.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 		sliderComposite.pack();
 		
 		dungeonGenConfig.pack();
