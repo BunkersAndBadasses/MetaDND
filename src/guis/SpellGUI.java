@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,52 +33,25 @@ import org.xml.sax.SAXException;
 
 import core.GameState;
 import core.Main;
+import core.character;
+import entity.SpellEntity;
 
 
 public class SpellGUI {
-    private static String[] spellsKnown;
-    private static String[] spellsPrepared;
-    private static String[] allSpells;
-    private static String[] materials;
-    private static String filename;
-    private static DocumentBuilderFactory dbFactory;
-    private static DocumentBuilder dBuilder;
-    private static Document doc;
-    private static Element element;
-    private static String regex = "[/]+";
-    
-    private static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
-    }
-
-    private static String[] getAllSpells() {
-        allSpells = (String[]) Main.gameState.spells.keySet().toArray();
-        return allSpells;
-    }
+    private static ArrayList<String> allSpells = new ArrayList<String>();
+    private static ArrayList<String> materials = new ArrayList<String>();
+    private static character c;
+    private static ArrayList<String> spellsPrepared = new ArrayList<String>();
+    private static HashMap<String, SpellEntity> spellsKnown = new HashMap<String, SpellEntity>();
 
     private static void getInfo(){
-
-        try{
-            File stocks = new File(filename);
-            dbFactory = DocumentBuilderFactory.newInstance();
-            dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(stocks);
-            doc.getDocumentElement().normalize();
-
-            NodeList nodes = doc.getElementsByTagName("Character");
-
-            Node node = nodes.item(0);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                element = (Element) node;
-                spellsKnown = getValue("SpellsKnown", element).split(regex);
-                spellsPrepared = getValue("SpellsPrepared", element).split(regex);
-                materials = getValue("Materials", element).split(regex);
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        c = Main.gameState.currentlyLoadedCharacter;
+        allSpells.addAll(Main.gameState.spells.keySet());
+        for(int i = 0; i < c.getSpells().size(); i++) {
+            spellsKnown.put(c.getSpells().get(i).getName(), c.getSpells().get(i));  
+        }
+        for(int i = 0; i < c.getPrepSpells().size(); i++) {
+            spellsPrepared.add(c.getPrepSpells().get(i).getName());
         }
 
     }
@@ -86,14 +60,13 @@ public class SpellGUI {
         // TODO Auto-generated method stub
         Display display = Display.getCurrent();
         Shell shell = new Shell(display);
-        filename = args;
         getInfo();
 
         FormLayout layout = new FormLayout();
         shell.setLayout(layout);
 
         final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
-        spellSel.setItems(spellsKnown); // TODO Load Spells known
+        spellSel.setItems((String[]) spellsKnown.keySet().toArray()); // TODO Load Spells known
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);
         spellSelData.left = new FormAttachment(5);
@@ -145,7 +118,7 @@ public class SpellGUI {
         // TODO Prepared Spells
 
         final Combo preparedSel = new Combo(shell, SWT.READ_ONLY);
-        preparedSel.setItems(spellsPrepared); // TODO Load prepared spells
+        preparedSel.setItems((String[]) spellsPrepared.toArray()); // TODO Load prepared spells
         FormData preparedData = new FormData(140,30);
         preparedSel.select(0);
         preparedData.left = new FormAttachment(removeSpell, 0, SWT.LEFT);
@@ -197,7 +170,7 @@ public class SpellGUI {
         // TODO all Spells
 
         final Combo newSpellSel = new Combo(shell, SWT.READ_ONLY);
-        newSpellSel.setItems(allSpells); // TODO Load all spells
+        newSpellSel.setItems((String[]) allSpells.toArray()); // TODO Load all spells
         FormData allSpellData = new FormData(140,30);
         newSpellSel.select(0);
         allSpellData.left = new FormAttachment(removePrepSpell, 0, SWT.LEFT);
@@ -235,7 +208,7 @@ public class SpellGUI {
         // TODO  Spell materials
 
         final Combo materialSel = new Combo(shell, SWT.READ_ONLY);
-        materialSel.setItems(materials); // TODO Load all spells
+        materialSel.setItems((String[]) materials.toArray()); // TODO Load all spells
         FormData materialData = new FormData(140,30);
         materialSel.select(0);
         materialData.left = new FormAttachment(addSpell, 0, SWT.LEFT);
