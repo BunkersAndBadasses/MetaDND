@@ -627,7 +627,7 @@ public class CharacterMain {
                 writeValue("GP", gpText.getText(), element);
                 writeValue("SP", spText.getText(), element);
                 writeValue("CP", cpText.getText(), element);
-                writeValue("XP", expText.getText(), element);
+                writeValue("Exp", expText.getText(), element);
             }
         });
         
