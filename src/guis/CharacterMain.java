@@ -370,7 +370,8 @@ public class CharacterMain {
 				img.setImage(m_characterImage);
 				
 				File imageFile = new File(selected);
-				File copiedImageFile = new File(GameState.IMAGESFOLDER.toString(), imageFile.getName());
+				File copiedImageFile = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//DND" + charName, imageFile.getName());
 				try {
 				    FileUtils.copyFile(imageFile, copiedImageFile);
 				} catch (IOException exception) {
