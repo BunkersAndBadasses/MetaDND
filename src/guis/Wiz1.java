@@ -86,7 +86,7 @@ public class Wiz1 {
 		
 		GridLayout gl = new GridLayout(10, false);
 		
-		Composite inner = new Composite(wiz1, SWT.BORDER);
+		Composite inner = new Composite(wiz1, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
 
