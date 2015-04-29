@@ -33,14 +33,8 @@ import entity.WeaponEntity;
  * monk - add wis to ac
  * barbarian illiteracy
  * speak language skill
- *  
  * barbarian: rage per day
- * 
- * languages - make so they can't add a language they already know
- * 
- * FINISH BEFORE WEEKEND
- * 
- * iteration 2 -  weekend!: 
+ * languages - change remove
  * 
  * change skill list - numbers in line, headers
  * back button

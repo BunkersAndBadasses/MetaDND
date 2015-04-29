@@ -108,42 +108,30 @@ public class Wiz1 {
 		gd.horizontalSpan = 10;
 		wiz1LevelLabel.setLayoutData(gd);
 		
-//		// level text
-//		wiz1LevelText = new Label(inner, SWT.NONE);
-//		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
-//		gd.horizontalSpan = 4;
-//		wiz1LevelText.setLayoutData(gd);
-		
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 		gd.horizontalSpan = 2;
 		new Label(inner, SWT.NONE).setLayoutData(gd);
 
 		// ability scores fields
-		wiz1AS1 = new Text(inner, SWT.BORDER);
+		wiz1AS1 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS1.setLayoutData(gd);
-		//wiz1AS1.setBounds(WIDTH/2 - 175,200,50,30);
-		wiz1AS2 = new Text(inner, SWT.BORDER);
+		wiz1AS2 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS2.setLayoutData(gd);
-		//wiz1AS2.setBounds(WIDTH/2 - 115,200,50,30);
-		wiz1AS3 = new Text(inner, SWT.BORDER);
+		wiz1AS3 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS3.setLayoutData(gd);
-		//wiz1AS3.setBounds(WIDTH/2 - 55,200,50,30);
-		wiz1AS4 = new Text(inner, SWT.BORDER);
+		wiz1AS4 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS4.setLayoutData(gd);
-		//wiz1AS4.setBounds(WIDTH/2 + 5,200,50,30);
-		wiz1AS5 = new Text(inner, SWT.BORDER);
+		wiz1AS5 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS5.setLayoutData(gd);
-		//wiz1AS5.setBounds(WIDTH/2 + 65,200,50,30);
-		wiz1AS6 = new Text(inner, SWT.BORDER);
+		wiz1AS6 = new Text(inner, SWT.BORDER | SWT.CENTER);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		wiz1AS6.setLayoutData(gd);
-		//wiz1AS6.setBounds(WIDTH/2 + 125,200,50,30);
 
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
@@ -172,18 +160,11 @@ public class Wiz1 {
 		// create content
 		
 		// level field
-		// label
 		wiz1LevelLabel.setText("Starting Level: 1");
-		//wiz1LevelLabel.setBounds(WIDTH/2 - 65, 135, 100, 100);
 		wiz1LevelLabel.pack();
-		// text box
-		//wiz1LevelText = new Text(wiz1, SWT.BORDER | SWT.READ_ONLY);
-		//wiz1LevelText.setBounds(WIDTH/2 + 35,130,30,30);
-		//wiz1LevelText.setText("1");
 
 		// roll button
 		wiz1RollButton.setText("Roll");
-		//wiz1RollButton.setBounds(WIDTH/2 - 50, 250, 100, 50);
 		wiz1RollButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				badASInputText.setVisible(false);
@@ -200,13 +181,11 @@ public class Wiz1 {
 
 		// this appears when there is invalid input in level box
 		badLevelInputText.setForeground(new Color(dev,255,0,0));
-		//badLevelInputText.setBounds(WIDTH/2 -131,320,262,30);
 		badLevelInputText.setVisible(false);
 		badLevelInputText.setText("invalid level: must be a positive integer");
 
 		// this appears when there is invalid input in any ability score boxes
 		badASInputText.setForeground(new Color(dev,255,0,0));
-		//badASInputText.setBounds(WIDTH/2 - 200,355,400,30);
 		badASInputText.setVisible(false);
 		badASInputText.setText("invalid ability score: must be a positive integer from 3 to 18");
 
@@ -219,14 +198,13 @@ public class Wiz1 {
 				// error checking for level
 				boolean error = false;
 				int level = 1;
-				try {
-					badLevelInputText.setVisible(false);
-					//level = Integer.parseInt(wiz1LevelText.getText());
-					if (level <= 0 || level > 25) throw new Exception();
-				} catch (Exception e) {
-					badLevelInputText.setVisible(true);
-					error = true;
-				}
+//				try {
+//					badLevelInputText.setVisible(false);
+//					if (level <= 0 || level > 25) throw new Exception();
+//				} catch (Exception e) {
+//					badLevelInputText.setVisible(true);
+//					error = true;
+//				}
 
 				// error checking for ability scores
 				try {
