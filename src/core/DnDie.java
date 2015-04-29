@@ -273,8 +273,9 @@ public class DnDie {
 			else{
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
-				Files.walk(Paths.get(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//DND" + charFileName + "//favRolls")).forEach(filePath ->{
+				String filepath = System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls";
+				Files.walk(Paths.get(filepath)).forEach(filePath ->{
 							if(filePath.getFileName().toString().contains(".xml")){
 								String fileName = filePath.getFileName().toString();
 								fileName = (String) fileName.subSequence(0, fileName.length() - 4);
