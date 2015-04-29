@@ -40,7 +40,7 @@ public class Wiz1 {
 
 	public int[] as = new int[6]; // ability scores array
 	//private Text wiz1LevelText;
-	private Label wiz1LevelText;
+	//private Label wiz1LevelText;
 	private Text wiz1AS1;
 	private Text wiz1AS2;
 	private Text wiz1AS3;
