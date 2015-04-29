@@ -12,6 +12,7 @@ import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -382,18 +383,18 @@ public class Wiz2 {
 		});
 	}
 
-		/**
-		 * creates a 'search' button. does not set location or add listener.
-		 * literally only creates a button with a specific size with the text set 
-		 * to "Search"
-		 * @return
-		 */
-		private Button createSearchButton(Composite c) {
-			Button searchButton = new Button(c, SWT.PUSH);
-			searchButton.setText("Details");
-			searchButton.setSize(80,30);
-			return searchButton;
-		}
+	/**
+	 * creates a 'search' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Search"
+	 * @return
+	 */
+	private Button createSearchButton(Composite c) {
+		Button searchButton = new Button(c, SWT.PUSH);
+		searchButton.setText("Details");
+		searchButton.setSize(80,30);
+		return searchButton;
+	}
 	//
 	//	/**
 	//	 * creates a 'add custom' button. does not set location or add listener.
@@ -421,6 +422,7 @@ public class Wiz2 {
 		// create shell
 		Display display = wiz2.getDisplay();
 		classExtrasShell = new Shell(display);
+		classExtrasShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		classExtrasShell.setText("Class Extras");
 		GridLayout gridLayout = new GridLayout(2, true);
 		classExtrasShell.setLayout(gridLayout);

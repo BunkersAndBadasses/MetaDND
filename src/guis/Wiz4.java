@@ -17,6 +17,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -778,6 +779,7 @@ public class Wiz4 {
 		// create shell
 		Display display = wiz4.getDisplay();
 		alignmentShell = new Shell(wiz4.getDisplay());
+		alignmentShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		alignmentShell.setText("Check Alignment");
 		GridLayout gridLayout = new GridLayout(2, true);
 		alignmentShell.setLayout(gridLayout);
@@ -962,6 +964,7 @@ public class Wiz4 {
 		// create shell
 		Display display = wiz4.getDisplay();
 		clericShell = new Shell(wiz4.getDisplay());
+		clericShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		clericShell = new Shell(display);
 		clericShell.setText("Set Domains");
 		GridLayout gridLayout = new GridLayout(2, true);
