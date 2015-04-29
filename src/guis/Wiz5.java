@@ -71,7 +71,7 @@ public class Wiz5 {
 
 	private Composite inner;
 
-	private Label numSkillPointsLabel;
+	private Label skillPointsLabel;
 	private Label unusedSkillPointsError;
 	private String charClass;
 	private int numSkillPoints;
@@ -117,14 +117,15 @@ public class Wiz5 {
 
 		GridData gd;
 
-		Label skillPointsLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		skillPointsLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
 		skillPointsLabel.setLayoutData(gd);
 
-		numSkillPointsLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		numSkillPointsLabel.setLayoutData(gd);
+//		numSkillPointsLabel = new Label(inner, SWT.NONE);
+//		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+//		gd.horizontalSpan = 2;
+//		numSkillPointsLabel.setLayoutData(gd);
 		
 		Label exampleSkillLabel = new Label(inner, SWT.NONE);
 		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
@@ -186,13 +187,13 @@ public class Wiz5 {
 
 		// "skill points remaining: " label
 		//skillPointsLabel.setLocation(250,30);
-		skillPointsLabel.setText("Skill Points Remaining:");
+		skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
 		skillPointsLabel.pack();
-
-		// number of remaining skill points label
-		//numSkillPointsLabel.setLocation(405, 30);
-		numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
-		numSkillPointsLabel.pack();
+//
+//		// number of remaining skill points label
+//		//numSkillPointsLabel.setLocation(405, 30);
+//		numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+//		numSkillPointsLabel.pack();
 
 		// example skill label
 		//exampleSkillLabel.setLocation(25, 60);
@@ -417,8 +418,8 @@ public class Wiz5 {
 						if (!current.isClassSkill())
 							numSkillPoints--;
 						numSkillPoints--;
-						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
-						numSkillPointsLabel.pack();
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
 						unusedSkillPointsError.setVisible(false);
 					}
 				}
@@ -435,8 +436,8 @@ public class Wiz5 {
 						if (!current.isClassSkill())
 							numSkillPoints++;
 						numSkillPoints++;
-						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
-						numSkillPointsLabel.pack();
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
 						unusedSkillPointsError.setVisible(false);
 					}
 				}
