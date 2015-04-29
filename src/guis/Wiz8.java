@@ -1,1139 +1,610 @@
 /*
- * CHOOSE WEAPONS/ARMOR
+ * DONE! SAVE CHARACTER TO XML
  */
 
 /*
- * barbarian: simple/martial weapon proficiency, light/medium armor, all shields(not towers)
- * bard: simple weapons (plus longsword, rapier, sap, short sword, shortbow, and whip), light armor, light shields
- * cleric: simple weapons, all armors, all shields(not towers), martial weapons if deity's favored weapon is martial, weapon focus for deities favored weapon
- * druid: club, dagger, dart, quarterstaff, scimitar, sickle, shortspear, sling, and spear, all natural attacks, light and medium armor, NO METAL ARMOR, all shields(again no metal)
- * fighter: bonus feat (from list - must meet prerequisite), simple and martial weapons, all armor, all shields
- * monk: club, crossbow(light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shuriken, siangham, sling, no armor or shields
- * paladin: simple and martial weapons, all armor, all shields(not towers)
- * ranger: simple and martial weapons, light armor, light shields(not towers)
- * rogue: simple weapons (plus hand crossbow, rapier, sap, shortbow, short sword), light armor, no shields
- * sorcerer: simple weapons, no armor, no shields
- * wizard: club, dagger, crossbow(light and heavy), quarterstaff, no armor, no shields  
- */
-
-/*
- * TODO only show weapons/armor/shields the character is proficient with
- * curr shield not saving? only one?
+ * TODO: 
+ * 
+ * display character information
+ * 
+ * add: 
+ * 	cleric domain
+ * 	druid animal companion
+ * 	ranger favored enemy
+ *  sorcerer familiar
+ *  wizard familiar, specialty school/prohibited school
+ * 
  */
 
 package guis;
+
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-import entity.*;
-import core.CharItem;
-import core.GameState;
 import core.Main;
+import core.SaveCharacter;
 import core.character;
 
-public class Wiz8{
+public class Wiz8 {
 
-	private Composite wiz8;
-	private CharacterWizard cw;
-	private Device dev;
-	private int WIDTH;
-	private int HEIGHT;
-	private character character;
-	private Composite panel;
-	private StackLayout layout;
-	private ArrayList<Composite> wizPages;
-	private Composite nextPage;
-	private int wizPagesSize;
-	
-	private boolean primaryGood = false;
-	private boolean spellsGood = false;
-	private boolean primaryOpen = false;
-	private boolean spellOpen = false;
-	
-	private List charWeaponsList;
-	private List charArmorList;
-	private List charShieldsList;
-	private List weaponsList;
-	private List armorList;
-	private List shieldsList;
-	
-	private List charSpellsList;
-	private Label numSpellsLeft;
-	private int[] numSpells;
-	private int[] origNumSpells;
-	private int bonusSpells = 0;
-	private int wizHighestLevel;
-	private Shell spellShell;
-	private Shell primaryShell;
-	
-	private ArrayList<CharItem> charWeapons = new ArrayList<CharItem>();
-	private ArrayList<CharItem> charArmor = new ArrayList<CharItem>();
-	private ArrayList<CharItem> charShields = new ArrayList<CharItem>();
-	private ArrayList<SpellEntity> charSpells = new ArrayList<SpellEntity>();
+    private CharacterWizard cw;
+    private Composite wiz8;
+    private int WIDTH;
+    private int HEIGHT;
+    private character character;
 
+    public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
+            final Composite panel, final StackLayout layout, 
+            final ArrayList<Composite> wizPages) {
+        wiz8 = wizPages.get(7);
+        this.cw = cw;
+        this.WIDTH = WIDTH;
+        this.HEIGHT = HEIGHT;
+        this.character = cw.getCharacter();
 
-	public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, final StackLayout layout, 
-			final ArrayList<Composite> wizPages) {
-		wiz8 = wizPages.get(7);
-		this.cw = cw;
-		this.dev = dev;
-		this.WIDTH = WIDTH;
-		this.HEIGHT = HEIGHT;
-		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
-		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(8);
-		this.wizPagesSize = wizPages.size();
-		
-		createPageContent();
-	}
+        createPageContent();
+    }
 
-	private void createPageContent() {
-		Label wiz8Label = new Label(wiz8, SWT.NONE);
-		wiz8Label.setText("Choose Weapons and Armor");
-		wiz8Label.pack();
-		
-		
-		// initialize layout
-		
-		GridLayout gl = new GridLayout(6, true);
-		
-		Composite inner = new Composite(wiz8, SWT.NONE);
-		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
-		inner.setLayout(gl);
-		
-		GridData gd;
-		
-		Label detailsLabel = new Label(inner, SWT.NONE);
-		detailsLabel.setText("Double click on an item to see details");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 6;
-		detailsLabel.setLayoutData(gd);
-		
-		Label weaponsLabel = new Label(inner, SWT.NONE);
-		weaponsLabel.setText("Weapons");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		weaponsLabel.setLayoutData(gd);
-		weaponsLabel.pack();
-		
-		Label armorLabel = new Label(inner, SWT.NONE);
-		armorLabel.setText("Armor");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		armorLabel.setLayoutData(gd);
-		armorLabel.pack();
-		
-		Label shieldsLabel = new Label(inner, SWT.NONE);
-		shieldsLabel.setText("Shield");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		shieldsLabel.setLayoutData(gd);
-		shieldsLabel.pack();
-		
-		charWeaponsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		gd.verticalSpan = 2;
-		charWeaponsList.setLayoutData(gd);
-		charWeaponsList.pack();
-		
-		charArmorList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		gd.verticalSpan = 2;
-		charArmorList.setLayoutData(gd);
-		charArmorList.pack();
-		
-		charShieldsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		gd.verticalSpan = 2;
-		charShieldsList.setLayoutData(gd);
-		charShieldsList.pack();
-		
-		Button addWeapon = new Button(inner, SWT.PUSH);
-		addWeapon.setText("Add");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		addWeapon.setLayoutData(gd);
-		addWeapon.pack();
-		
-		Button removeWeapon = new Button(inner, SWT.PUSH);
-		removeWeapon.setText("Remove");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		removeWeapon.setLayoutData(gd);
-		removeWeapon.pack();
-		
-		Button addArmor = new Button(inner, SWT.PUSH);
-		addArmor.setText("Add");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		addArmor.setLayoutData(gd);
-		addArmor.pack();
-		
-		Button removeArmor = new Button(inner, SWT.PUSH);
-		removeArmor.setText("Remove");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		removeArmor.setLayoutData(gd);
-		removeArmor.pack();
-		
-		Button addShield = new Button(inner, SWT.PUSH);
-		addShield.setText("Add");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		addShield.setLayoutData(gd);
-		addShield.pack();
-		
-		Button removeShield = new Button(inner, SWT.PUSH);
-		removeShield.setText("Remove");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		removeShield.setLayoutData(gd);
-		removeShield.pack();
-		
-		Label weaponsListLabel = new Label(inner, SWT.NONE);
-		weaponsListLabel.setText("Weapons List");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		weaponsListLabel.setLayoutData(gd);
-		weaponsListLabel.pack();
-		
-		Label armorListLabel = new Label(inner, SWT.NONE);
-		armorListLabel.setText("Armor List");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		armorListLabel.setLayoutData(gd);
-		armorListLabel.pack();
-		
-		Label shieldsListLabel = new Label(inner, SWT.NONE);
-		shieldsListLabel.setText("Shield List");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		shieldsListLabel.setLayoutData(gd);
-		shieldsListLabel.pack();
-		
-		weaponsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		weaponsList.setLayoutData(gd);
-		weaponsList.pack();
-		
-		armorList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		armorList.setLayoutData(gd);
-		armorList.pack();
-		
-		shieldsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		shieldsList.setLayoutData(gd);
-		shieldsList.pack();
-		
-		inner.layout();
-		
-		
-		// get content
-		
-		// get weapons from references
-		Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
-		Iterator<DNDEntity> weaponItr = weaponsCol.iterator();
-		ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-		while (weaponItr.hasNext()) {
-			weapons.add((WeaponEntity) weaponItr.next());
-		}
-		
-		// get armor/shields from references
-		Collection<DNDEntity> armorCol =  Main.gameState.armor.values();
-		Iterator<DNDEntity> armorItr = armorCol.iterator();
-		ArrayList<DNDEntity> armor = new ArrayList<DNDEntity>(); // can be armor or weapons?
-		while (armorItr.hasNext()) {
-			armor.add(armorItr.next());
-		}
-		
-		// add weapons to list
-		for (int i = 0; i < weapons.size(); i++) {
-			weaponsList.add(weapons.get(i).getName());
-		}
-		
-		// add armor/shields to list
-		for (int i = 0; i < armor.size(); i++) {
-			if (armor.get(i).getName().contains("Shield"))
-				shieldsList.add(armor.get(i).getName());
-			else
-				armorList.add(armor.get(i).getName());
-		}
-		
-		
-		// double click listeners to launch tool tip window
-		
-		weaponsList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = weaponsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String itemName = weaponsList.getItem(index);
-				((ItemEntity)Main.gameState.weapons.get(itemName)).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-		
-		armorList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = armorList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String itemName = armorList.getItem(index);
-				((ItemEntity)Main.gameState.armor.get(itemName)).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-		
-		shieldsList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = shieldsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String itemName = shieldsList.getItem(index);
-				((ItemEntity)Main.gameState.armor.get(itemName)).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-		
-		
-		// add/remove button listeners
-		
-		 addWeapon.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = weaponsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				// check if it's already added
-				for (int i = 0; i < charWeapons.size(); i++) {
-					if (charWeapons.get(i).getName().equalsIgnoreCase(weaponsList.getItem(index))) {
-						charWeapons.get(i).incCount();
-						updateCharWeaponsList();
-						return;
-					}
-				}
-				ItemEntity add = (WeaponEntity) Main.gameState.weapons.get(weaponsList.getItem(index));
-				charWeapons.add(new CharItem(add));
-				updateCharWeaponsList();
-			}
-		 });
-		 removeWeapon.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = charWeaponsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				charWeapons.remove(index);
-				updateCharWeaponsList();
-			}
-		 });
-		 addArmor.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = armorList.getSelectionIndex();
-				if (index == -1)
-					return;
-				for (int i = 0; i < charArmor.size(); i++) {
-					if (charArmor.get(i).getName().equalsIgnoreCase(armorList.getItem(index))) {
-						charArmor.get(i).incCount();
-						updateCharArmorList();
-						return;
-					}
-				}
-				ItemEntity add = (ItemEntity) Main.gameState.armor.get(armorList.getItem(index));
-				charArmor.add(new CharItem(add));
-				updateCharArmorList();
-			}
-		 });
-		 removeArmor.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = charArmorList.getSelectionIndex();
-				if (index == -1)
-					return;
-				charArmor.remove(index);
-				updateCharArmorList();				
-			}
-		 });
-		 addShield.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = shieldsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				for (int i = 0; i < charShields.size(); i++) {
-					if (charShields.get(i).getName().equalsIgnoreCase(shieldsList.getItem(index))) {
-						charShields.get(i).incCount();
-						updateCharShieldsList();
-						return;
-					}
-				}
-				ItemEntity add = (ItemEntity) Main.gameState.armor.get(shieldsList.getItem(index));
-				charShields.add(new CharItem(add));
-				updateCharShieldsList();
-			}
-		 });
-		 removeShield.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) { 
-				int index = charShieldsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				charShields.remove(index);
-				updateCharShieldsList();
-			}
-		 });
-		 
-		
-		// next button
-		Button wiz8NextButton = cw.createNextButton(wiz8);
-		wiz8NextButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				// cannot move on if a window is open
-				if (primaryOpen || spellOpen) {
-					if (primaryOpen && !spellOpen) {
-						primaryShell.forceActive();
-					}
-					else if (primaryOpen && spellOpen) {
-						primaryShell.dispose();
-						spellShell.forceActive();
-					}
-					else if (spellOpen)
-						spellShell.forceActive();
-					return;
-				}
-				
-				// launch pop-up (if user clicks cancel, do not continue)
-				if (!setPrimary())
-					return;
-				if (!selectSpells())
-					return;				
-				
-				// save weapons
-				character.setWeapons(charWeapons);
-				// save armor
-				character.setArmor(charArmor);
-				// save shields
-				character.setShields(charShields);
-				
-				// add armor bonus to ac
-				ArmorEntity temp = null;
-				try {
-					temp = (ArmorEntity)character.getCurrArmor();
-				} catch (Exception e) {
-					character.setACArmorBonus(0);
-				}
-				if (temp == null)
-					character.setACArmorBonus(0);
-				else
-					character.setACArmorBonus(temp.getArmorBonus());
-				
-				// add shield bonus to ac
-				temp = null;
-				try {
-					temp = (ArmorEntity)character.getCurrShield();
-				} catch (Exception e) {
-					character.setACShieldBonus(0);
-				}
-				if (temp == null)
-					character.setACShieldBonus(0);
-				else
-					character.setACShieldBonus(temp.getArmorBonus());
-				
-				// switch to next page
-				if (cw.wizPageNum < wizPagesSize - 1)
-					cw.wizPageNum++;
-				if (!cw.wizPageCreated[8])
-					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
-			}
-		});
-		
-		
-		// back button
-		//Button wiz8BackButton = cw.createBackButton(wiz8, panel, layout);
-		
-		
-		// cancel button
-		Button wiz8CancelButton = cw.createCancelButton(wiz8);
-		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});
-	}
+    private void createPageContent() {
+        Label wiz9Label = new Label(wiz8, SWT.NONE);
+        wiz9Label.setText("Done!");
+        wiz9Label.pack();
 
-	private boolean setPrimary() {
-		// pop up window in which the user chooses their primary weapon, armor, and shield
-		primaryGood = false;
-		// create shell
-		Display display = wiz8.getDisplay();
-		primaryShell = new Shell(wiz8.getDisplay());
-		primaryShell.setImage(new Image(display, "images/bnb_logo.gif"));
-		primaryShell.setText("Set Primary");
-		GridLayout gridLayout = new GridLayout(2, true);
-		primaryShell.setLayout(gridLayout);
-		primaryShell.addListener(SWT.Close, new Listener() {
-			public void handleEvent(Event event) {
-				primaryGood = false;
-				primaryOpen = false;
-			}
-		});
+        Text charText = new Text(wiz8, SWT.BORDER | SWT.READ_ONLY | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+        charText.setBounds(10, 20, WIDTH - 40, HEIGHT - 110);
+        charText.setText(character.toString());
+        //charText.pack();
 
-		GridData gd;
-		
-		if (charWeapons.size() == 0 && charArmor.size() == 0 && charShields.size() == 0)
-			return true;
+        Button wiz9SaveButton = new Button(wiz8, SWT.PUSH);
+        wiz9SaveButton.setText("Save");
+        wiz9SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
+        wiz9SaveButton.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event event) {
 
-		if (charWeapons.size() > 0) {
+                // save
+            	saveCharacter(character);
+                cw.disposeShell();
+                return;
 
-			Label primaryWeapon = new Label(primaryShell, SWT.NONE);
-			primaryWeapon.setText("Select Primary Weapon");
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryWeapon.setLayoutData(gd);
-			primaryWeapon.pack();
+            }
+        });
 
-			Combo primaryWeaponList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			for (int i = 0; i < charWeapons.size(); i++ ) {
-				primaryWeaponList.add(charWeapons.get(i).getName());
-			}
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryWeaponList.setLayoutData(gd);
-			primaryWeaponList.pack();
+        //Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
+        Button wiz9CancelButton = cw.createCancelButton(wiz8);
+        wiz9CancelButton.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event event) {
+                if (cw.cancel)
+                    cw.reset();
+            }
+        });
+    }
+    public static void saveCharacter(character character) {
+    	try {
+    	    Main.gameState.currentlyLoadedCharacter = character;
+    	    new SaveCharacter(true);
 
-			primaryWeaponList.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event e) {
-					int index = primaryWeaponList.getSelectionIndex();
-					String weapon = primaryWeaponList.getItem(index);
-					if (index == -1)
-						return;
-					WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(weapon);
-					character.setPrimaryWeapon(temp);
-				}
-			});
-			
-			if (charWeapons.size() == 1) {
-				primaryWeaponList.select(0);
-				WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(primaryWeaponList.getItem(0));
-				character.setPrimaryWeapon(temp);
-			}
-			
-			if (charWeapons.size() > 1) {
-				
-				Label secondaryWeapon = new Label(primaryShell, SWT.NONE);
-				secondaryWeapon.setText("Select Secondary Weapon");
-				gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-				gd.horizontalSpan = 2;
-				secondaryWeapon.setLayoutData(gd);
-				secondaryWeapon.pack();
+            /*DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-				Combo secondaryWeaponList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-				gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-				gd.horizontalSpan = 2;
-				secondaryWeaponList.setLayoutData(gd);
-				secondaryWeaponList.setEnabled(false);
-				
-				secondaryWeaponList.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event e) {
-						int index = secondaryWeaponList.getSelectionIndex();
-						String weapon = secondaryWeaponList.getItem(index);
-						if (index == -1)
-							return;
-						WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(weapon);
-						character.setSecondaryWeapon(temp);
-					}
-				});
-				
-				primaryWeaponList.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event e) {
-						int index = primaryWeaponList.getSelectionIndex();
-						secondaryWeaponList.removeAll();
-						for (int i = 0; i < charWeapons.size(); i++ ) {
-							if (!charWeapons.get(i).getName().equals(primaryWeaponList.getItem(index)))
-								secondaryWeaponList.add(charWeapons.get(i).getName());
-						}
-						if (secondaryWeaponList.getItemCount() == 1)
-							secondaryWeaponList.select(0);
-						secondaryWeaponList.setEnabled(true);
-						secondaryWeaponList.pack();
-						primaryShell.layout();
-					}
-				});
-				
-			}
-		}
-		
-		if (charArmor.size() > 0) {
-			Label primaryArmor = new Label(primaryShell, SWT.NONE);
-			primaryArmor.setText("Select Primary Armor");
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryArmor.setLayoutData(gd);
-			primaryArmor.pack();
+            // root elements
+            Document doc = docBuilder.newDocument();
+            Element Character = doc.createElement("Character");
+            doc.appendChild(Character);
 
-			Combo primaryArmorList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			for (int i = 0; i < charArmor.size(); i++ ) {
-				primaryArmorList.add(charArmor.get(i).getName());
-			}
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryArmorList.setLayoutData(gd);
-			primaryArmorList.pack();
+            // Character name
+            Element Name = doc.createElement("Name");
+            Name.appendChild(doc.createTextNode(character.getName()));
+            Character.appendChild(Name);
 
-			primaryArmorList.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event e) {
-					int index = primaryArmorList.getSelectionIndex();
-					String armor = primaryArmorList.getItem(index);
-					if (index == -1)
-						return;
-					ItemEntity temp = (ItemEntity) Main.gameState.armor.get(armor);
-					character.setCurrArmor(temp);
-				}
-			});
-			
-			if (charArmor.size() == 1) {
-				primaryArmorList.select(0);
-				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryArmorList.getItem(0));
-				character.setCurrArmor(temp);
-			}
-		}
-		
-		if (charShields.size() > 0) {
-			Label primaryShield = new Label(primaryShell, SWT.NONE);
-			primaryShield.setText("Select Primary Shield");
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryShield.setLayoutData(gd);
-			primaryShield.pack();
+            // Level
+            Element Level = doc.createElement("Level");
+            Level.appendChild(doc.createTextNode(
+                    Integer.toString(character.getLevel())));
+            Character.appendChild(Level);
 
-			Combo primaryShieldList = new Combo(primaryShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-			for (int i = 0; i < charShields.size(); i++ ) {
-				primaryShieldList.add(charShields.get(i).getName());
-			}
-			gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-			gd.horizontalSpan = 2;
-			primaryShieldList.setLayoutData(gd);
-			primaryShieldList.pack();
+            // Exp
+            Element Exp = doc.createElement("Exp");
+            Exp.appendChild(doc.createTextNode(
+                    Integer.toString(character.getExp())));
+            Character.appendChild(Exp);
 
-			primaryShieldList.addListener(SWT.Selection, new Listener() {
-				public void handleEvent(Event e) {
-					int index = primaryShieldList.getSelectionIndex();
-					String shield = primaryShieldList.getItem(index);
-					if (index == -1)
-						return;
-					ItemEntity temp = (ItemEntity) Main.gameState.armor.get(shield);
-					character.setCurrShield(temp);
-				}
-			});
-			
-			if (charShields.size() == 1) {
-				primaryShieldList.select(0);
-				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryShieldList.getItem(0));
-				character.setCurrShield(temp);
-			}
-		}
-		
-		primaryOpen = true;
+            // Class
+            Element Class = doc.createElement("Class");
+            Class.appendChild(doc.createTextNode(character.getCharClass().getName()));
+            Character.appendChild(Class);
 
-		// cancel button
-		Button cancel = new Button(primaryShell, SWT.PUSH);
-		cancel.setText("Cancel");
-		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
-		cancel.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				primaryGood = false;
-				primaryOpen = false;
-				primaryShell.dispose();
-			}
-		});
-		cancel.pack();
+            if(character.getCharSecClass() != null){
+                // Second Class
+                Element SecClass = doc.createElement("SecClass");
+                SecClass.appendChild(doc.createTextNode(character.getCharSecClass().getName()));
+                Character.appendChild(SecClass);
+            }
 
-		
-		// done button
-		Button done = new Button(primaryShell, SWT.PUSH);
-		done.setText("Done");
-		done.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				// all primary items saved when selected
-				primaryGood = true;
-				primaryOpen = false;
-				primaryShell.dispose();
-			}
-		});
-		done.pack();
-		
-		// open shell
-		primaryShell.pack();
-		primaryShell.layout();
-		CharacterWizard.center(primaryShell);
-		primaryShell.open();
+            // Race
+            Element Race = doc.createElement("Race");
+            Race.appendChild(doc.createTextNode(character.getCharRace().getName()));
+            Character.appendChild(Race);		
 
-		// check if disposed
-		while (!primaryShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
+            // Alignment
+            Element Alignment = doc.createElement("Alignment");
+            Alignment.appendChild(doc.createTextNode(character.getAlignment()));
+            Character.appendChild(Alignment);		
 
-		return primaryGood;
-	}
+            // Size
+            Element Size = doc.createElement("Size");
+            Size.appendChild(doc.createTextNode(
+                    Integer.toString(character.getSize())));
+            Character.appendChild(Size);		
 
-	private boolean selectSpells() {
+            // Age
+            Element Age = doc.createElement("Age");
+            Age.appendChild(doc.createTextNode(character.getAge()));
+            Character.appendChild(Age);	
 
-		/*
-		 * barbarian - no spells, non lawful
-		 * bard - cha, arcane(bard spell list), non lawful
-		 * cleric - wis, divine(cleric spell list), alignment must match domain, alignment must be within 1 step of deities, st cuthbert only LN or LG, 
-		 * 		choose god/domain (choose two from god's domains list, or choose no deity and select any two), 
-		 * 		domain adds class skills!
-		 * druid - wis, divine(druid spell list), can't use spells that are opposite his/her own alignment, 
-		 * 		animal companion 35, must have neutral?
-		 * fighter - no spells
-		 * monk - lawful, no spells, 
-		 * paladin - wis, divine, lawful good!, spells at 4th level, mount(5th level)
-		 * ranger - divine, 5th level, favored enemy
-		 * rogue - no spells
-		 * sorcerer - cha, arcane, familiar
-		 * wizard - int, arcane, familiar, school specialization(optional), must choose 2 two schools to give up(not divination), if divination, give up 1
-		 * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
-		 */
+            // Gender
+            Element Gender = doc.createElement("Gender");
+            Gender.appendChild(doc.createTextNode(character.getGender()));
+            Character.appendChild(Gender);	
+
+            // Height
+            Element Height = doc.createElement("Height");
+            Height.appendChild(doc.createTextNode(character.getHeight()));
+            Character.appendChild(Height);	
+
+            // Weight
+            Element Weight = doc.createElement("Weight");
+            Weight.appendChild(doc.createTextNode(character.getWeight()));
+            Character.appendChild(Weight);	
+
+            // Eyes
+            Element Eyes = doc.createElement("Eyes");
+            Eyes.appendChild(doc.createTextNode(character.getEyes()));
+            Character.appendChild(Eyes);	
+
+            // Hair
+            Element Hair = doc.createElement("Hair");
+            Hair.appendChild(doc.createTextNode(character.getHair()));
+            Character.appendChild(Hair);	
+
+            // Skin
+            Element Skin = doc.createElement("Skin");
+            Skin.appendChild(doc.createTextNode(character.getSkin()));
+            Character.appendChild(Skin);	
+
+            // Strength
+            Element Strength = doc.createElement("STR");
+            Strength.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[0])));
+            Character.appendChild(Strength);	
+
+            // Dexterity
+            Element Dexterity = doc.createElement("DEX");
+            Dexterity.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[1])));
+            Character.appendChild(Dexterity);	
+
+            // Constitution
+            Element Constitution = doc.createElement("CON");
+            Constitution.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[2])));
+            Character.appendChild(Constitution);	
+
+            // Intelligence
+            Element Intelligence = doc.createElement("INT");
+            Intelligence.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[3])));
+            Character.appendChild(Intelligence);	
+
+            // Wisdom
+            Element Wisdom = doc.createElement("WIS");
+            Wisdom.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[4])));
+            Character.appendChild(Wisdom);	
+
+            // Charisma
+            Element Charisma = doc.createElement("CHA");
+            Charisma.appendChild(doc.createTextNode(
+                    Integer.toString(character.getAbilityScores()[5])));
+            Character.appendChild(Charisma);	
+
+            // Hitpoints
+            Element Hitpoints = doc.createElement("HP");
+            Hitpoints.appendChild(doc.createTextNode(
+                    Integer.toString(character.getHitPoints())));
+            Character.appendChild(Hitpoints);	
+
+            // Remaining Hitpoints
+            Element RemainingHP = doc.createElement("DMG");
+            RemainingHP.appendChild(doc.createTextNode(
+                    Integer.toString(character.getDamageTaken())));
+            Character.appendChild(RemainingHP);	
+
+            //Go through the Skill list
+            String skillList = ""; 
+            for(int i = 0; i < character.getSkills().size(); i++){
+                // Skill Name
+                skillList += character.getSkills().get(i).getSkill().getName()
+                        + " " + character.getSkills().get(i).getRank();
+                if( i != character.getSkills().size() - 1) {
+                    skillList += "/";
+                }
+            }
+            Element Skills = doc.createElement("Skills");
+            Skills.appendChild(doc.createTextNode(skillList));
+            Character.appendChild(Skills);
+
+			// Launguages
+			Element Languages = doc.createElement("Languages");
+	//		Launguages.appendChild(doc.createTextNode(character.getLanguages())); TODO
+			Character.appendChild(Languages);	
+
+            // Gold
+            Element Gold = doc.createElement("GP");
+            Gold.appendChild(doc.createTextNode(
+                    Integer.toString(character.getGP())));
+            Character.appendChild(Gold);
+
+            //Go through the Feat list
+            String featsList = "";
+            // featName:special;count
+            for(int i = 0; i < character.getFeats().size(); i++){
+                featsList += character.getFeats().get(i).getFeat().getName();
+                featsList += ":";
+                if (character.getFeats().get(i).getSpecial() != null)
+                	featsList += character.getFeats().get(i).getSpecial(); 
+                featsList += ";" + character.getFeats().get(i).getCount() + "/";
+            }
+            Element Feats = doc.createElement("Feats");
+            Feats.appendChild(doc.createTextNode(featsList));
+            Character.appendChild(Feats);
+
+            //Go through the Abilities list
+            String abilityList = "";
+            for(int i = 0; i < character.getSpecialAbilities().size(); i++){
+
+                // Ability
+                abilityList += character.getSpecialAbilities().get(i).getName() + "/";
 
 
+            }
+            Element Ability = doc.createElement("Abilities");
+            Ability.appendChild(doc.createTextNode(abilityList));
+            Character.appendChild(Ability);	
 
-		// check if character is a spell caster
-		if (!character.getCharClass().isCaster())
-			return true;
+            //Go through the Spell list TODO
+            String spellList = " ";
+            for(int i = 0; i < character.getSpells().size(); i++){
 
-		// get spells from references
-		Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
-		Iterator<DNDEntity> spellItr = spellsCol.iterator();
-		ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
-		while (spellItr.hasNext()) {
-			spells.add((SpellEntity) spellItr.next());
-		}
+                // Spell Name
+                spellList += character.getSpells().get(i).getName() + "/";
 
-		// check if character can select spells
-		if (character.getCharClass().getSpellsKnown() == null) {
-			if (character.getCharClass().getName().equalsIgnoreCase("Wizard")) {
-				// add all 0 level wizard spells that aren't in their prohibited schools
-				for (int i = 0; i < spells.size(); i++) {
-					if (getLevel(spells.get(i)) == 0){
-						if (checkIfProhibited(spells.get(i))) {
-							character.addSpell(spells.get(i));
-						}
-					}
-				}
-			} else {
-				// add that character's spell list to their known spells
-				for (int i = 0; i < spells.size(); i++) {
-					try { 
-						if (getLevel(spells.get(i)) != -1) {
-							character.addSpell(spells.get(i));
-						}
-					} catch (Exception e) {
-						System.out.println("failed at spell "+spells.get(i).getName());
-					}
-				}
-				return true;
-			}
-		}
+            }
+            Element Spell = doc.createElement("Spells");
+            Spell.appendChild(doc.createTextNode(spellList));
+            Character.appendChild(Spell);
 
-		// initialize layout
-		spellShell = new Shell(wiz8.getDisplay());
-		spellShell.setImage(new Image(wiz8.getDisplay(), "images/bnb_logo.gif"));
-		spellShell.setText("Select Known Spells");
-		GridLayout gl = new GridLayout(7, true);
-		spellShell.setLayout(gl);
-		spellShell.addListener(SWT.Close, new Listener() {
-			public void handleEvent(Event event) {
-				primaryGood = false;
-				spellOpen = false;
-			}
-		});
+            //Go through the Prep Spell list TODO
+            String prepSpells = " ";
+            for(int i = 0; i < character.getPrepSpells().size(); i++){
 
-		GridData gd;
+                // Prep Spell Name
+                prepSpells += character.getPrepSpells().get(i).getName() + "/";
 
-		numSpellsLeft = new Label(spellShell, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
-		numSpellsLeft.setLayoutData(gd);
-		
-		Label detailsLabel = new Label(spellShell, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
-		detailsLabel.setLayoutData(gd);
-		
-		Label errorLabel = new Label(spellShell, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
-		errorLabel.setLayoutData(gd);		
+            }
+            Element PrepSpell = doc.createElement("PreparedSpells");
+            PrepSpell.appendChild(doc.createTextNode(prepSpells));
+            Character.appendChild(PrepSpell);	
 
-		List spellsList = new List(spellShell, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		spellsList.setLayoutData(gd);
+            //Go through the Items list
+            String itemList = "";
+            for(int i = 0; i < character.getItems().size(); i++){
 
-		Button addButton = new Button(spellShell, SWT.PUSH);
-		gd = new GridData(SWT.CENTER, SWT.END, false, true);
-		addButton.setLayoutData(gd);
+                // Item Name
+                itemList += character.getItems().get(i).getName() + "/";
 
-		charSpellsList =  new List(spellShell, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		charSpellsList.setLayoutData(gd);
+            }
+            Element Item = doc.createElement("Items");
+            Item.appendChild(doc.createTextNode(itemList));
+            Character.appendChild(Item);
 
-		Button removeButton = new Button(spellShell, SWT.PUSH);
-		gd = new GridData(SWT.CENTER, SWT.BEGINNING, false, true);
-		removeButton.setLayoutData(gd);
+            //Go through the Weapons list TODO
+            String weaponsList = " ";
+            for(int i = 0; i < character.getWeapons().size(); i++){
 
-		Button cancelButton = new Button(spellShell, SWT.PUSH);
-		gd = new GridData(SWT.LEFT, SWT.END, true, false);
-		gd.horizontalSpan = 3;
-		cancelButton.setLayoutData(gd);
-		
-		// placeholder
-		new Label(spellShell, SWT.NONE).setLayoutData(new GridData());
-		
-		Button doneButton = new Button(spellShell, SWT.PUSH);
-		gd = new GridData(SWT.RIGHT, SWT.END, true, false);
-		gd.horizontalSpan = 3;
-		doneButton.setLayoutData(gd);
-		
-		
-		// create content
+                // Weapons Name
+                weaponsList += character.getWeapons().get(i).getName();
 
-		// num spells left label
-		int[][] temp = character.getCharClass().getSpellsKnown();
-		// get num spells the character can know based on their level
-		if (temp == null) {
-			
-			int level = character.getLevel();
-			int[] wizSPD;
-			if (level-1 >= character.getCharClass().getSpellsPerDay().length) {
-				wizSPD = character.getCharClass().getSpellsPerDay()[character.getCharClass().getSpellsPerDay().length-1];
-			} else 
-				wizSPD = character.getCharClass().getSpellsPerDay()[character.getLevel() - 1];
-			wizHighestLevel = 0;
-			for (int i = 0; i < wizSPD.length; i++) {
-				if (wizSPD.length >= 0)
-					wizHighestLevel = i;
-			}
-			bonusSpells = 2*(level-1);
-			int[] wizSpells = new int[wizSPD.length];
-			for (int i = 0; i < wizSpells.length; i++) {
-				if (i == 1)
-					wizSpells[i] = 3+character.getAbilityModifiers()[GameState.INTELLIGENCE];
-				else if (wizSPD[i] == -1)
-					wizSpells[i] = -1;
-				else
-					wizSpells[i] = 0;
-			}
-			numSpells = wizSpells;
-		}
-		else if (character.getLevel() - 1 >= temp.length)
-			numSpells = temp[temp.length-1];
-		else
-			numSpells = temp[character.getLevel() - 1];
-		// character cannot yet add spells at their level
-		if (numSpells[0] == -1) {
-			return true;
-		}
-		
-		spellOpen = true;
-		
-		origNumSpells = new int[numSpells.length];
-		for (int i = 0; i < origNumSpells.length; i++)
-			origNumSpells[i] = numSpells[i];
-		updateNumSpellsLeft();
-		
-		// details label
-		detailsLabel.setText("Double click on a spell to see details");
-		detailsLabel.pack();
-		
-		// error label - set text when called
-		errorLabel.setForeground(new Color(dev, 255, 0, 0));
-		errorLabel.setVisible(false);
+            }
+            Element Weapon = doc.createElement("Weapons");
+            Weapon.appendChild(doc.createTextNode(weaponsList));
+            Character.appendChild(Weapon);
 
-		// add spells to list
-		for (int i = 0; i < spells.size(); i++) {
-			int level = getLevel(spells.get(i));
-			if (level > -1) {
-				// only add spells they can learn
-				if (numSpells[level] > 0 && checkIfProhibited(spells.get(i)))
-					spellsList.add(spells.get(i).getName() + ": lvl. " + level);
-				if (bonusSpells != 0) {
-					if (level <= wizHighestLevel && checkIfProhibited(spells.get(i))) {
-						spellsList.add(spells.get(i).getName() + ": lvl. " + level);
-					}
-				}
-			}
-		}
-		spellsList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = spellsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String spellName = spellsList.getItem(index).substring(0, spellsList.getItem(index).indexOf(':'));
-				Main.gameState.spells.get(spellName).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-		
-		charSpellsList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = charSpellsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String spellName = charSpellsList.getItem(index).substring(0, charSpellsList.getItem(index).indexOf(':'));
-				Main.gameState.spells.get(spellName).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
+            //Go through the Armor list TODO
+            Element Armors = doc.createElement("Armors");
+            String armorList = " ";
+            for(int i = 0; i < character.getArmor().size(); i++){
+                armorList += character.getArmor().get(i).getName();
+                if( i != character.getArmor().size() - 1) {
+                    armorList += "/";
+                }
+            }
+            Armors.appendChild(doc.createTextNode(armorList));
+            Character.appendChild(Armors);	
 
-		// create buttons
+            //Go through the Shield list
+            Element shields = doc.createElement("Shields");
+            String shieldList = " ";
+            //for(int i = 0; i < character.getArmor().size(); i++){
+            // shieldList += character.getArmor().get(i).getName();
+            // if( i != character.getArmor().size() - 1) {
+            //   shieldList += "/";
+            // }
+            //}
+            shields.appendChild(doc.createTextNode(shieldList));
+            Character.appendChild(shields);  
 
-		// add button
-		addButton.setText("Add");
-		addButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				numSpellsLeft.setBackground(null);
-				errorLabel.setVisible(false);
-				int index = spellsList.getSelectionIndex();
-				if (index == -1) {
-					errorLabel.setText("You must select a spell to add");
-					errorLabel.pack();
-					spellShell.layout();
-					errorLabel.setVisible(true);
-					return;
-				}
+            // AC
+            Element AC = doc.createElement("AC");
+            String ac = Integer.toString(character.getAC()[0]);
+            for (int i = 0; i < character.getAC().length; i++)
+            	ac += " + " + character.getAC()[i];
+            AC.appendChild(doc.createTextNode(ac));
+            Character.appendChild(AC);	
 
-				String spell = spellsList.getItem(index);
-				String spellName = spell.substring(0, spell.indexOf(':'));
+            // TouchAC
+            Element TouchAC = doc.createElement("TouchAC");
+            TouchAC.appendChild(doc.createTextNode(Integer.toString(
+                    character.getTouchAC())));
+            Character.appendChild(TouchAC);	
 
-				// check if already added
-				for (int i = 0; i < charSpells.size(); i++) {
-					if (charSpells.get(i).getName().equalsIgnoreCase(spellName)) {
-						errorLabel.setText("Spell already added");
-						errorLabel.pack();
-						spellShell.layout();
-						errorLabel.setVisible(true);
-						return;
-					}
-				}
+            // flatFootedAC
+            Element FlatAC = doc.createElement("FlatAC");
+            FlatAC.appendChild(doc.createTextNode(Integer.toString(
+                    character.getFlatFootedAC())));
+            Character.appendChild(FlatAC);	
 
-				// check level
-				int spellLevel = Integer.parseInt(spell.replaceAll("[^\\d]", ""));
-				if (numSpells[spellLevel] > 0) {
-					charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
-					updateCharSpellsList();
-					numSpells[spellLevel]--;
-					updateNumSpellsLeft();
-				} else if (bonusSpells > 0) {
-					charSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
-					updateCharSpellsList();
-					bonusSpells--;
-					updateNumSpellsLeft();
-				} else {
-					errorLabel.setText("You cannot add a spell of that level");
-					errorLabel.pack();
-					spellShell.layout();
-					errorLabel.setVisible(true);
-				}
+            // initMod
+            Element initMod = doc.createElement("InitMod");
+            String init = Integer.toString(character.getInitMod()[0]);
+            for (int i = 0; i < character.getInitMod().length; i++)
+            	init += " + " + character.getInitMod()[i];
+            initMod.appendChild(doc.createTextNode(init));
+            Character.appendChild(initMod);	
 
-			}
-		});
+            // Fortitude Saving throw
+            Element fortSave = doc.createElement("FortSave");
+            String fort = Integer.toString(character.getFortSave()[0]);
+            for (int i = 0; i < character.getFortSave().length; i++)
+            	fort += " + " + character.getFortSave()[i];
+            fortSave.appendChild(doc.createTextNode(fort));
+            Character.appendChild(fortSave);	
 
-		// remove button
-		removeButton.setText("Remove");
-		removeButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				numSpellsLeft.setBackground(null);
-				errorLabel.setVisible(false);
-				int index = charSpellsList.getSelectionIndex();
-				if (index == -1) {
-					errorLabel.setText("You must select a spell to remove");
-					errorLabel.pack();
-					spellShell.layout();
-					errorLabel.setVisible(true);
-					return;
-				}
-				String temp = charSpellsList.getItem(index);
-				int level = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
-				if (numSpells[level] == origNumSpells[level]) {
-					bonusSpells++;
-				} else
-					numSpells[level]++;
-				charSpells.remove(index);
-				updateCharSpellsList();
-				updateNumSpellsLeft();
-			}
-		});	
-		
-		// cancel button
-		cancelButton.setText("Cancel");
-		cancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				spellsGood = false;
-				spellShell.dispose();
-				spellOpen = false;
-			}
-		});
-		
-		// done button
-		doneButton.setText("Done");
-		doneButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				// check if they have any spells left
-				for (int i = 0; i < numSpells.length; i++) {
-					if (numSpells[i] > 0){
-						numSpellsLeft.setBackground(new Color(dev, 255, 100, 100));
-						return;
-					}
-				}
-				
-				// if they have chosen all known spells, save and close
-				for (int i = 0; i < charSpells.size(); i++) {
-					character.addSpell(charSpells.get(i));
-				}
-				
-				spellsGood = true;
-				spellShell.dispose();
-				spellOpen = false;
-			}
-		});
+            // Reflex Saving throw
+            Element reflexSave = doc.createElement("ReflexSave");
+            String reflex = Integer.toString(character.getReflexSave()[0]);
+            for (int i = 0; i < character.getReflexSave().length; i++)
+            	reflex += " + " + character.getReflexSave()[i];
+            reflexSave.appendChild(doc.createTextNode(reflex));
+            Character.appendChild(reflexSave);	
 
-		spellShell.layout();
-		
-		// open shell
-				spellShell.pack();
-				spellShell.layout();
-				CharacterWizard.center(spellShell);
-				spellShell.open();
+            // Will Saving throw
+            Element willSave = doc.createElement("WillSave");
+            String will = Integer.toString(character.getWillSave()[0]);
+            for (int i = 0; i < character.getWillSave().length; i++)
+            	will += " + " + character.getWillSave()[i];
+            willSave.appendChild(doc.createTextNode(will));
+            Character.appendChild(willSave);	
 
-				// check if disposed
-				while (!spellShell.isDisposed()) {
-					if (!wiz8.getDisplay().readAndDispatch()) {
-						wiz8.getDisplay().sleep();
-					}
-				}
+            // baseAttackBonus
+            Element baseAttackBonus = doc.createElement("BaseAttackBonus");
+            baseAttackBonus.appendChild(doc.createTextNode(Integer.toString(
+                    character.getBaseAttackBonus())));
+            Character.appendChild(baseAttackBonus);	
 
-		return spellsGood;
-	}
+            // spellResistance
+            Element spellResistance = doc.createElement("SpellResistance");
+            spellResistance.appendChild(doc.createTextNode(Integer.toString(
+                    character.getSpellResistance())));
+            Character.appendChild(spellResistance);	
+ 
+            // grappleMod
+            Element grappleMod = doc.createElement("GrappleMod");
+            String grapple = Integer.toString(character.getGrappleMod()[0]);
+            for (int i = 0; i < character.getGrappleMod().length; i++)
+            	grapple += " + " + character.getGrappleMod()[i];
+            grappleMod.appendChild(doc.createTextNode(grapple));
+            Character.appendChild(grappleMod);	
 
-	private void updateCharSpellsList() {
-		charSpellsList.removeAll();
-		for (int i = 0; i < charSpells.size(); i++){
-			charSpellsList.add(charSpells.get(i).getName() + ": lvl. " + getLevel(charSpells.get(i)));
-		}
-	}
+            // Speed
+            Element Speed = doc.createElement("Speed");
+            Speed.appendChild(doc.createTextNode(Integer.toString(
+                    character.getSpeed())));
+            Character.appendChild(Speed);
 
-	private void updateNumSpellsLeft() {
-		String result = "0 level spells: " + numSpells[0];
-		for (int i = 1; i < numSpells.length; i++) {
-			if (numSpells[i] >= 0) {
-				result += "\n" + i + " level spells: " + numSpells[i];
-			}
-		}
-		if (bonusSpells != 0) {
-			result += "\nBonus Spells: " + bonusSpells;
-		}
-		numSpellsLeft.setText(result);
-		numSpellsLeft.pack();
-		spellShell.layout();
-	}
+            // damageReduction
+            Element damageReduction = doc.createElement("DamageReduction");
+            damageReduction.appendChild(doc.createTextNode(Integer.toString(
+                    character.getDamageReduction())));
+            Character.appendChild(damageReduction);
 
-	private int getLevel(SpellEntity spell) {
-		String[] levelArr = spell.getLevel();
-		boolean found = false;
-		if (levelArr != null) { // take this if out once spells xml is fixed
-			for (int j = 0; j < levelArr.length && !found; j++) {
-				if (levelArr[j].contains(character.getCharClass().getName())) {
-					return Integer.parseInt(levelArr[j].replaceAll("[^\\d]", ""));
-				}
-			}
-		}
-		return -1;
-	}
-	
-	/**
-	 * returns true if spell is allowed(not prohibited) and false if prohibited
-	 * @param spell
-	 * @return
-	 */
-	private boolean checkIfProhibited(SpellEntity spell) {
-		if (character.getWizardProhibitedSchools() == null)
-			return true;
-		for (int k = 0; k < character.getWizardProhibitedSchools().length; k++) {
-			if (spell.getSchool().toLowerCase().contains(character.getWizardProhibitedSchools()[k].toLowerCase())) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	private void updateCharWeaponsList() {
-		charWeaponsList.removeAll();
-		for (int i = 0; i < charWeapons.size(); i++){
-			CharItem curr = charWeapons.get(i);
-			charWeaponsList.add(curr.getCount() + " x " + curr.getItem().getName());
-		}
-	}
-	
-	private void updateCharArmorList() {
-		charArmorList.removeAll();
-		for (int i = 0; i < charArmor.size(); i++){
-			CharItem curr = charArmor.get(i);
-			charArmorList.add(curr.getCount() + " x " + curr.getItem().getName());
-		}
-	}
-	
-	private void updateCharShieldsList() {
-		charShieldsList.removeAll();
-		for (int i = 0; i < charShields.size(); i++){
-			CharItem curr = charShields.get(i);
-			charShieldsList.add(curr.getCount() + " x " + curr.getItem().getName());
-		}
-	}
+            // TODO
+            Element shield = doc.createElement("Shield");
+            shield.appendChild(doc.createTextNode(" "));
+            Character.appendChild(shield);
 
-	private void createNextPage() {
-		cw.wizPageCreated[8] = true;
-		cw.wizs.add(new Wiz9(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
-	}
+            // TODO
+            Element pp = doc.createElement("PP");
+            pp.appendChild(doc.createTextNode(" "));
+            Character.appendChild(pp);
 
-	public Composite getWiz8() { return wiz8; }
+            // TODO
+            Element armor = doc.createElement("Armor");
+            armor.appendChild(doc.createTextNode(" "));
+            Character.appendChild(armor);
+
+            // TODO
+            Element sp = doc.createElement("SP");
+            sp.appendChild(doc.createTextNode(" "));
+            Character.appendChild(sp);
+
+            // TODO
+            Element cp = doc.createElement("CP");
+            cp.appendChild(doc.createTextNode(" "));
+            Character.appendChild(cp);
+
+            // TODO
+            Element secClass = doc.createElement("SecClass");
+            secClass.appendChild(doc.createTextNode(" "));
+            Character.appendChild(secClass);
+
+            // TODO
+            Element secLevel = doc.createElement("SecLevel");
+            secLevel.appendChild(doc.createTextNode("0"));
+            Character.appendChild(secLevel);
+
+            // TODO
+            Element priWeapon = doc.createElement("PrimaryWeapon");
+            priWeapon.appendChild(doc.createTextNode(" "));
+            Character.appendChild(priWeapon);
+
+            // TODO
+            Element secWeapon = doc.createElement("SecondaryWeapon");
+            secWeapon.appendChild(doc.createTextNode(" "));
+            Character.appendChild(secWeapon);
+
+            // TODO
+            Element dmgTaken = doc.createElement("DamageTaken");
+            dmgTaken.appendChild(doc.createTextNode(" "));
+            Character.appendChild(dmgTaken);
+
+            // TODO
+            Element imagePath = doc.createElement("Image");
+            imagePath.appendChild(doc.createTextNode(" "));
+            Character.appendChild(imagePath);
+
+            //Go through the ClericDomains list
+            String clericDomainList = "";
+            if(character.getClericDomains() != null){
+
+                for(int i = 0; i < character.getClericDomains().length; i++){
+
+                    // Item Name
+                    clericDomainList += character.getClericDomains()[i] + "/";
+
+                }
+            }
+            Element clericDomains = doc.createElement("ClericDomains");
+            clericDomains.appendChild(doc.createTextNode(clericDomainList));
+            Character.appendChild(clericDomains);
+
+            // druidAnimalCompanion
+            String animalCompanion = "";
+            if (character.getDruidAnimalCompanion() != null)
+                animalCompanion = character.getDruidAnimalCompanion();
+            Element druidAnimalCompanion = doc.createElement("DruidAnimalCompanion");
+            druidAnimalCompanion.appendChild(doc.createTextNode(animalCompanion));
+            Character.appendChild(druidAnimalCompanion);
+
+            // rangerFavoredEnemy
+            String favoriteEnemy = "";
+            if (character.getRangerFavoredEnemy() != null)
+                favoriteEnemy = character.getRangerFavoredEnemy();
+            Element rangerFavoredEnemy = doc.createElement("RangerFavoredEnemy");
+            rangerFavoredEnemy.appendChild(doc.createTextNode(
+                    favoriteEnemy));
+            Character.appendChild(rangerFavoredEnemy);
+
+            // familiar
+            String familiarName = "";
+            if (character.getFamiliar() != null)
+                familiarName = character.getFamiliar();
+            Element familiar = doc.createElement("Familiar");
+            familiar.appendChild(doc.createTextNode(
+                    familiarName));
+            Character.appendChild(familiar);
+
+            // wizardSpecialtySchool
+            String specialtySchool = "";
+            if (character.getWizardSpecialtySchool() != null)
+                specialtySchool = character.getWizardSpecialtySchool();
+            Element wizardSpecialtySchool = doc.createElement("WizardSpecialtySchool");
+            wizardSpecialtySchool.appendChild(doc.createTextNode(
+                    specialtySchool));
+            Character.appendChild(wizardSpecialtySchool);
+
+            //Go through the wizardProhibitedSchools list
+            String wizardProhibitedSchoolsList = "";
+            if(character.getWizardProhibitedSchools() != null){
+                for(int i = 0; i < character.getWizardProhibitedSchools().length; i++){
+
+                    // Item Name
+                    wizardProhibitedSchoolsList += character.getWizardProhibitedSchools()[i] + "/";
+
+                }
+            }
+            Element wizardProhibitedSchools = doc.createElement("WizardProhibitedSchools");
+            wizardProhibitedSchools.appendChild(doc.createTextNode(wizardProhibitedSchoolsList));
+            Character.appendChild(wizardProhibitedSchools);
+
+            // Notes
+            Element Notes = doc.createElement("Notes");
+            Notes.appendChild(doc.createTextNode(character.getNotes()));
+            Character.appendChild(Notes);	
+
+            // write the content into xml file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+
+            //change back to character.getName() is not working correctly
+            String charName = character.getName().replaceAll("[^A-Za-z0-9]", "");
+            try{
+                File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
+                CHARACTER.mkdir();
+                File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character" + "//DND" + charName);
+                CHARDIR.mkdir();
+                StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
+
+
+                transformer.transform(source, result);
+            }catch(Exception e){
+                
+            }
+            // Output to console for testing
+            // StreamResult result = new StreamResult(System.out);
+
+            //TODO Refresh the character list when new Character is made
+            // add to random character*/
+            HomeWindow.loadCharacters();
+            System.out.println("File saved!");
+
+
+        } catch (Exception pce) {
+            pce.printStackTrace();
+        } 
+    }
+
+    public Composite getWiz8() { return wiz8; }
+
 }

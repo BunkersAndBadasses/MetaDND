@@ -1,53 +1,36 @@
 /*
- * CHOOSE FEATS
- */
-
-/*TODO
- * martial weapon not prompting for weapon selection
- * auto feats added twice to character?
- * null pointer issue
- * add race bonus feats
- * martial/exotic - show only those weapons, not all
- * if weapon familiarity, add to martial list
- * prerequisite checking on pop-up
+ * CHOOSE ITEMS
  */
 
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Random;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
-import core.CharFeat;
+import entity.*;
+import core.CharItem;
 import core.GameState;
-import core.character;
 import core.Main;
-import entity.ClassEntity;
-import entity.DNDEntity;
-import entity.DeityEntity;
-import entity.FeatEntity;
-import entity.SkillEntity;
-import entity.WeaponEntity;
+import core.character;
 
 public class Wiz6 {
 
@@ -62,23 +45,16 @@ public class Wiz6 {
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	private int numFeats;
-	private int numBonusFeats = 0;
-	private ClassEntity charClass;
-	private ArrayList<FeatEntity> feats = new ArrayList<FeatEntity>();
-	private ArrayList<CharFeat> charFeats = new ArrayList<CharFeat>();
-	private ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();	
-	List charFeatsList;
 	
-	private Shell bonusFeatShell;
-	private Shell featSpecialShell;
+	private Text goldText;
+	private ArrayList<CharItem> charItems;
+	private final Random rng = new Random();
+	private GameState gs = Main.gameState;
 	
-	private boolean specialValid = false;
-	private boolean bonusDone = false;
-	private boolean bonusOpen = false;
-	private boolean specialOpen = false;
-	
-	private Label featsLabel;
+	private List charItemsList;
+//	final ScrolledComposite charItemScroll;
+//	final Composite charItemScreen;
+	private Composite inner;
 
 	public Wiz6(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, final StackLayout layout, 
@@ -94,36 +70,22 @@ public class Wiz6 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
-		
-
-		
-		// get feats from references 
-		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
-		Iterator<DNDEntity> itr = featsCol.iterator();
-		while (itr.hasNext()) {
-			feats.add((FeatEntity) itr.next());
-		}
+//		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
+//		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		
 		createPageContent();
-		charClass = character.getCharClass();
 	}
 
 	private void createPageContent() {
-		Label wiz6Label = new Label(wiz6, SWT.NONE);
-		wiz6Label.setText("Choose Feats");
-		wiz6Label.pack();
+		Label wiz7Label = new Label(wiz6, SWT.NONE);
+		wiz7Label.setText("Choose Equipment");
+		wiz7Label.pack();
+
+		//////////instantiate layout //////////
 		
-		// number of remaining feats
-		numFeats = 1;
-		if (cw.getCharacter().getCharRace().getName().equals("Human"))
-			numFeats += 1;
+		GridLayout gl = new GridLayout(5, true);
 		
-		
-		////////// instantiate layout //////////
-		
-		GridLayout gl = new GridLayout(7, true);
-		
-		Composite inner = new Composite(wiz6, SWT.NONE);
+		inner = new Composite(wiz6, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
 
@@ -131,809 +93,332 @@ public class Wiz6 {
 		
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
-		Label temp = new Label(inner, SWT.NONE);
-		temp.setLayoutData(gd);
+		gd.horizontalSpan = 5;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
 		
-		// feats label
-		featsLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
-		featsLabel.setLayoutData(gd);
+		////////////////////
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
 		
-		// details label
+		// gold label
+		Label goldLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		goldLabel.setLayoutData(gd);
+		
+		// gold text box
+		goldText = new Text(inner, SWT.BORDER | SWT.CENTER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		goldText.setLayoutData(gd);
+
+		
+		// random gold button
+		Button randomGold = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		randomGold.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		////////////////////
+		
+		////////////////////
+		// details
 		Label detailsLabel = new Label(inner, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 7;
+		gd.horizontalSpan = 5;
 		detailsLabel.setLayoutData(gd);
+		////////////////////
 		
-		// feat list
-		List featsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		////////////////////
+		// item list
+		List itemsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		featsList.setLayoutData(gd);
+		gd.horizontalSpan = 2;
+		gd.verticalSpan = 8;
+		itemsList.setLayoutData(gd);
+			
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+
+		// char item list
+		charItemsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		gd.verticalSpan = 8;
+		charItemsList.setLayoutData(gd);
+		////////////////////
 		
-		// add button
+		////////////////////
+		// add 1
 		Button addButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(SWT.FILL, SWT.END, true, true);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		addButton.setLayoutData(gd);
 		
-		// character feat list
-		charFeatsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		charFeatsList.setLayoutData(gd);
+		// add 5
+		Button add5Button = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		add5Button.setLayoutData(gd);
 		
-		// remove button
+		// add 10
+		Button add10Button = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		add10Button.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		// remove 1
 		Button removeButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(SWT.FILL, SWT.BEGINNING, true, true);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		removeButton.setLayoutData(gd);
+		
+		// remove all
+		Button removeAllButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		removeAllButton.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		////////////////////
 		
 		
 		////////// create content //////////
 		
-		// number of feats remaining label
-		featsLabel.setText("Number of Feats Remaining: " + numFeats);
+		goldLabel.setText("Starting Gold(gp):");
+		goldLabel.pack();
+		
+		goldText.setText("0");
+		goldText.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				Text text = (Text) event.widget;
+				text.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
+		
+		
+		randomGold.setText("Random");
+		randomGold.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int min = 75;
+				int max = 150;
+				int gold = rng.nextInt(max - min) + min + 1;
+				goldText.setText(Integer.toString(gold));
+				goldText.setBackground(new Color(dev, 255, 255, 255));
+			}
+		});
 		
 		// details label
-		detailsLabel.setText("Double click on a feat to see details");
+		detailsLabel.setText("Double click on a item to see details");
 		
-		// grid layout for both available and selected feat lists
-		FillLayout featLayout = new FillLayout();
-		
-		// available feats list
-		for (int i = 0; i < feats.size(); i++) {
-			featsList.add(feats.get(i).getName());
+		// get items from references
+		Collection<DNDEntity> itemsCol =  gs.items.values();
+		Iterator<DNDEntity> itr = itemsCol.iterator();
+		ArrayList<ItemEntity> items = new ArrayList<ItemEntity>();
+		charItems = new ArrayList<CharItem>();
+		while (itr.hasNext()) {
+			items.add((ItemEntity) itr.next());
 		}
-		featsList.addSelectionListener(new SelectionListener(){
+		
+		// available items list
+		for (int i = 0; i < items.size(); i++) {
+			itemsList.add(items.get(i).getName());
+		}
+		itemsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
-				int index = featsList.getSelectionIndex();
+				int index = itemsList.getSelectionIndex();
 				if (index == -1)
 					return;
-				String featName = featsList.getItem(index);
-				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
+				String itemName = itemsList.getItem(index);
+				((ItemEntity)Main.gameState.items.get(itemName)).toTooltipWindow();
+			}
+			@Override
+			//leave blank, but must have
+			public void widgetSelected(SelectionEvent e) {}
+		});
+
+		// selected items list
+		charItemsList.addSelectionListener(new SelectionListener(){
+			public void widgetDefaultSelected(SelectionEvent e){
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				charItems.get(index).getItem().toTooltipWindow();
 			}
 			@Override
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
 		
-		// selected feats list
-		for (int i = 0; i < charFeats.size(); i++)
-			charFeatsList.add(charFeats.get(i).getFeat().getName());
-		charFeatsList.addSelectionListener(new SelectionListener(){
-			public void widgetDefaultSelected(SelectionEvent e){
-				int index = charFeatsList.getSelectionIndex();
-				if (index == -1)
-					return;
-				String featName = charFeatsList.getItem(index);
-				((FeatEntity)Main.gameState.feats.get(featName)).toTooltipWindow();
-			}
-			@Override
-			//leave blank, but must have
-			public void widgetSelected(SelectionEvent e) {}
-		});
-		
-		// error message
-		Label errorMsg = new Label(wiz6, SWT.NONE);
-		errorMsg.setLocation(WIDTH/2 - 150, HEIGHT - 75);
-		errorMsg.setForeground(new Color(dev, 255, 0, 0));
-		errorMsg.setVisible(false);
-		errorMsg.pack();                                                              
-		
-		// add automatic character feats
-		charClass = character.getCharClass();
-		String[] autoFeats = charClass.getBonusFeats();
-		for (int i = 0; i < autoFeats.length; i ++) {
-			if (autoFeats[i].indexOf('[') != -1) {
-				String special = autoFeats[i].substring(autoFeats[i].indexOf('[')+1, autoFeats[i].indexOf(']'));
-				String featName = autoFeats[i].substring(0, autoFeats[i].indexOf('[')-1);
-				charFeats.add(new CharFeat((FeatEntity)Main.gameState.feats.get(featName), special));
-			} else {
-				charFeats.add(0, new CharFeat((FeatEntity)Main.gameState.feats.get(autoFeats[i])));
-			}
-		}
-		updateCharFeatsList();
-		numBonusFeats = charFeats.size();
-		
-		// add feat button
-		addButton.setText("Add >");
+		// add item button
+		addButton.setText("Add 1 >");
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
-				errorMsg.setVisible(false);
-				boolean error = false;
-				// check if the user can add another feat
-				if (numFeats == 0) {
-					errorMsg.setText("You cannot add any more feats");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
+				int index = itemsList.getSelectionIndex();
+				// check if an item is selected
+				if (index == -1)
 					return;
-				}
-				int index = featsList.getSelectionIndex();
-				// check if a feat was selected
-				if (index == -1) {
-					errorMsg.setText("You must select a feat to add");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
-					return;
-				}
-				CharFeat feat = new CharFeat(feats.get(index));
-				// launches popup to select feat special
-				if (feat.getFeat().getApplications() != null) {
-					if (!selectFeatSpecial(feat))
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(selection)) {
+						charItems.get(i).incCount();
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
 						return;
-				}
-				// check if replacing simple weapon proficiency for select weapons to all
-				if (feat.getFeat().getName().equals("Simple Weapon Proficiency")) {
-					int i = 0;
-					while (i < charFeats.size()) {
-						if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
-							if (!(charFeats.get(i).getSpecial().equalsIgnoreCase("All"))) {
-								charFeats.remove(i);
-								updateCharFeatsList();
-								numBonusFeats--;
-							} else i++;
-						} else i++;
-					}
-					feat.setSpecial("All");
-				}
-				// check if that feat was already added
-				for(int i = 0; i < charFeats.size(); i++) {
-					if (charFeats.get(i).getFeat().getName().equals(feat.getFeat().getName())) {
-						// feat found - check if that feat can be added multiple times
-						if (!feat.getFeat().canHaveMultiple()) {
-							// feat cannot be added multiple times
-							errorMsg.setText("Feat already added");
-							errorMsg.pack();
-							errorMsg.setVisible(true);
-							error = true;
-						}
-						else {
-							// feat can be added multiple times
-							if (charFeats.get(i).getFeat().canStack()) {
-								// feat benefits can stack - increment count of feat
-								charFeats.get(i).incCount();
-							}
-							else {
-								// feat benefits cannot stack - check if the exact same feat is added
-								if (charFeats.get(i).getSpecial().equals(feat.getSpecial())) {
-									errorMsg.setText("Feat already added");
-									errorMsg.pack();
-									errorMsg.setVisible(true);
-									error = true;
-								}
-							}
-						}
 					}
 				}
-
-				// if something went wrong, do not perform the add
-				if (error)
-					return;
-				// pop-up for extra info (i.e. weapons, schools of magic, skills, spells);
-				if (!checkPrerequisites(charFeats, feat, character)) {
-					errorMsg.setText("Feat requirements not met");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
-					return;
-				}
-
-
-				// otherwise, add the feat
-				charFeats.add(feat);
-				updateCharFeatsList();
-				numFeats--;
-				featsLabel.setText("Number of Feats Remaining: " + numFeats);
-				featsLabel.setBackground(null);
-				featsLabel.pack();
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index));
+				charItems.add(c);
+				charItemsList.add("1 x " + selection);
+			
+				// refresh char items list
+				updateCharItemsList();
 			}
 		});
 		
-		// remove feat button
-		removeButton.setText("< Remove");
+		// add 5 button
+		add5Button.setText("Add 5 >");
+		add5Button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int index = itemsList.getSelectionIndex();
+				// check if an item is selected
+				if (index == -1)
+					return;
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(selection)) {
+						charItems.get(i).incCountBy(5);
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
+						return;
+					}
+				}
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index), 5);
+				charItems.add(c);
+				charItemsList.add("5 x " + selection);
+			
+				// refresh char items list
+				updateCharItemsList();
+			}
+		});
+		
+		// add 10 button
+		add10Button.setText("Add 10 >");
+		add10Button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				int index = itemsList.getSelectionIndex();
+				// check if an item is selected
+				if (index == -1)
+					return;
+				// get selected item
+				String selection = itemsList.getItem(index);
+				// if item is already added, increment
+				for(int i = 0; i < charItems.size(); i++) {
+					if (charItems.get(i).getName().equals(selection)) {
+						charItems.get(i).incCountBy(10);
+						if (charItems.get(i).getCount() > 100)
+							charItems.get(i).setCount(100);
+						charItemsList.setItem(i, Integer.toString(charItems.get(i).getCount()) + " x " + charItems.get(i).getName());
+						return;
+					}
+				}
+				// otherwise add it to the list
+				CharItem c = new CharItem(items.get(index), 10);
+				charItems.add(c);
+				charItemsList.add("10 x " + selection);
+			
+				// refresh char items list
+				updateCharItemsList();
+			}
+		});
+
+
+		
+		// remove item button
+		removeButton.setText("< Remove 1");
 		removeButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
-				errorMsg.setVisible(false);
-				// check if there are any feats to remove
-				if (charFeats.isEmpty()) {
-					errorMsg.setText("There are no feats to remove");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
+				if (charItems.isEmpty())
 					return;
-				}
-				int index = charFeatsList.getSelectionIndex();
-				// check if a feat is selected
-				if (index == -1){
-					errorMsg.setText("You must select a feat to remove");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
 					return;
+				if (charItems.get(index).decCount()) {
+					charItemsList.setItem(index, Integer.toString(charItems.get(index).getCount()) + " x " + charItems.get(index).getName());
 				}
-				// user cannot remove a bonus feat
-				if (index < numBonusFeats) {
-					errorMsg.setText("You cannot remove a class bonus feat");
-					errorMsg.pack();
-					errorMsg.setVisible(true);
-					return;
+				else {
+					charItemsList.remove(index);
+					charItems.remove(index);
 				}
-				// if nothing goes wrong, remove the feat
-				charFeats.remove(index);
-				updateCharFeatsList();
-				numFeats++;
-				featsLabel.setText("Number of Feats Remaining: " + numFeats);
-				featsLabel.setBackground(null);
-				featsLabel.pack();
+				updateCharItemsList();
 			}
 		});
 		
-		Button wiz6NextButton = cw.createNextButton(wiz6);
-		wiz6NextButton.addListener(SWT.Selection, new Listener() {
+		// remove all button
+		removeAllButton.setText("< Remove All");
+		removeAllButton.pack();
+		removeAllButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (charItems.isEmpty())
+					return;
+				int index = charItemsList.getSelectionIndex();
+				if (index == -1)
+					return;
+				charItemsList.remove(index);
+				charItems.remove(index);
+				updateCharItemsList();
+			}
+		});
+		
+		// next button
+		Button wiz7NextButton = cw.createNextButton(wiz6);
+		wiz7NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				// cannot continue if there is a pop up open
-				if (specialOpen) {
-					featSpecialShell.forceActive();
+				int gold = 0;
+				try {
+					gold = Integer.parseInt(goldText.getText());
+					if (gold < 0) 
+						throw new Exception();
+				} catch (Exception e) {
+					goldText.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
-				if (bonusOpen) {
-					bonusFeatShell.forceActive();
-					return;
+				character.setGP(gold);
+				
+				for (int i = 0; i < charItems.size(); i++) {
+					character.addItem(charItems.get(i));
 				}
 				
-				// error checking
-				if (numFeats > 0) {
-					featsLabel.setBackground(new Color(dev, 255, 100, 100));
-					return;
-				}
-				
-				// if the pop up is closed
-				if (!createBonusPopUp())
-					return;
-				
-				// if all is good, save to character
-				for (int i = 0; i < charFeats.size(); i++)
-					character.addFeat(charFeats.get(i));
-				
-				// switch to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
-				if (!cw.wizPageCreated[6])
+				if (!cw.wizPageCreated[7])
 					createNextPage();
 				layout.topControl = nextPage;
 				panel.layout();
 			}
 		});
-		
-		//Button wiz6BackButton = cw.createBackButton(wiz5, panel, layout);
-		Button wiz6CancelButton = cw.createCancelButton(wiz6);
-		wiz6CancelButton.addListener(SWT.Selection, new Listener() {
+
+		//Button wiz7BackButton = cw.createBackButton(wiz7, panel, layout);
+		Button wiz7CancelButton = cw.createCancelButton(wiz6);
+		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
 					cw.reset();
 			}
 		});
-
+		
 		inner.layout();
-	}
-	
-	private boolean createBonusPopUp() {
-		// get lists of bonus feats
-		
-		/*
-		 * barbarian: simple/martial weapon proficiency, light/medium armor, all shields(not towers)
-		 * bard: simple weapons (plus extras - p.28), light armor, light shields, bard - no silent spell
-		 * cleric: simple weapons, all armors, all shields(not towers), martial weapons if deity's favored weapon is martial, weapon focus for deities favored weapon
-		 * druid: light and medium armor, shields(not towers)
-		 * fighter: bonus feat (from list - must meet prerequisite), simple and martial weapons, all armor, all shields
-		 * monk: improved grapple/stunning fist (does not need to meet prerequisites), improved unarmed strike
-		 * paladin: simple and martial weapons, all armor, all shields(not towers)
-		 * ranger: simple and martial weapons, light armor, light shields(not towers), track
-		 * rogue: simple weapons, light armor
-		 * sorcerer: simple weapons
-		 * wizard: scribe scroll
-		 */
-		
-		bonusDone = false;
-		
-		
-		if (charClass.getName().equalsIgnoreCase("Cleric")) {
-			String[] domains = character.getClericDomains();
-			if (domains != null) {
-				boolean war = false;
-				for (int i = 0; i < domains.length; i++) {
-					if (domains[i].equalsIgnoreCase("War")) 
-						war = true;
-				}
-				if (war) {
-					String deityName = character.getDeity();
-					DeityEntity deity = (DeityEntity)Main.gameState.deities.get(deityName);
-					if (deity != null) {
-						String weaponName = deity.getFavoredweapon();
-						WeaponEntity weapon = (WeaponEntity)Main.gameState.weapons.get(weaponName);
-						if (weapon != null) {
-							String type = weapon.getType();
-							if (!type.equalsIgnoreCase("Simple")) {
-								FeatEntity weaponFeat = (FeatEntity)Main.gameState.feats.get(type + " Weapon Proficiency");
-								CharFeat weaponCharFeat = new CharFeat(weaponFeat, weaponName);
-								charFeats.add(weaponCharFeat);
-							}
-							CharFeat weaponFocus = new CharFeat((FeatEntity)Main.gameState.feats.get("Weapon Focus"), weaponName);
-							charFeats.add(weaponFocus);
-						}
-					}
-				}
-			}
-		}
-		updateCharFeatsList();
-		numBonusFeats = charFeats.size();
-		
-		// compile list of bonus feats (from which the user can choose one)
-		if (charClass.getName().toLowerCase().equals("fighter")){
-			for (int i = 0; i < feats.size(); i++){
-				if (feats.get(i).getFighterBonus() != null)
-					bonusFeats.add(feats.get(i));
-			}
-		} else if (charClass.getName().toLowerCase().equals("monk")){
-			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Grapple"));
-			bonusFeats.add((FeatEntity)Main.gameState.feats.get("Stunning Fist"));
-		} else
-			return true;
-
-		bonusOpen = true;
-		
-		// create shell
-		Display display = wiz6.getDisplay();
-		bonusFeatShell = new Shell(display);
-		bonusFeatShell.setImage(new Image(display, "images/bnb_logo.gif"));
-		bonusFeatShell.setText("Select Bonus Feat");
-		GridLayout gridLayout = new GridLayout(2, true);
-		bonusFeatShell.setLayout(gridLayout);
-		bonusFeatShell.addListener(SWT.Close, new Listener() {
-	        public void handleEvent(Event event) {
-	            bonusDone = false;
-	            bonusOpen = false;
-	        }
-	    });
-
-		// label - select a bonus feat
-		Label selectBonusFeat = new Label(bonusFeatShell, SWT.WRAP);
-		selectBonusFeat.setText("Select A Bonus Feat");
-		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		selectGD.horizontalSpan = 2;
-		selectBonusFeat.setLayoutData(selectGD);
-		selectBonusFeat.pack();
-		
-		// drop down menu containing bonus feat options
-		CCombo bonusFeatCombo = new CCombo(bonusFeatShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		for (int i = 0; i < bonusFeats.size(); i++)
-			bonusFeatCombo.add(bonusFeats.get(i).getName());
-		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		featsGD.horizontalSpan = 2;
-		bonusFeatCombo.setLayoutData(featsGD);
-		bonusFeatCombo.addListener(SWT.MouseDown, new Listener() {
-			public void handleEvent(Event event) {
-				bonusFeatCombo.setBackground(new Color(dev, 255, 255, 255));
-			}
-		});
-		bonusFeatCombo.pack();
-		
-		// done button
-		Button done = new Button(bonusFeatShell, SWT.PUSH);
-		done.setText("Done");
-		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		doneGD.horizontalSpan = 2;
-		done.setLayoutData(doneGD);
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (bonusFeatCombo.getSelectionIndex() == -1) {
-					bonusFeatCombo.setBackground(new Color(dev, 255, 100, 100));
-					return;
-				}
-				numBonusFeats++;
-				charFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
-				updateCharFeatsList();
-				bonusDone = true;
-				bonusOpen = false;
-				bonusFeatShell.dispose();
-			}
-		});
-		done.pack();
-
-		// open shell
-		bonusFeatShell.pack();
-		CharacterWizard.center(bonusFeatShell);
-		bonusFeatShell.open();
-		
-		// check if disposed
-		while (!bonusFeatShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		
-		return bonusDone;
-	}
-	
-	public static boolean checkPrerequisites(ArrayList<CharFeat> charFeats, CharFeat feat, character character) {
-		/*
-		 * prerequisite possibilities: 
-		 * 
-		 *           another feat
-		 * 		Spell Focus (Conjuration)
-		 *        Caster level x
-		 * 		Str xx
-		 * 		Int xx
-		 * 		Dex xx
-		 * 		Wis xx
-		 * 		base attack bonus +x
-		 * 		(plus Str 13 for bastard sword or dwarven waraxe)
-		 * 		Ability to turn or rebuke creatures
-		 * 		Proficiency with selected weapon
-		 * 		Weapon Focus with selected weapon
-		 * 		Greater Weapon Focus with selected weapon
-		 * 		Weapon Specialization with selected weapon
-		 * 		Fighter level x
-		 * 		Ability to acquire a new familiar
-		 * 		compatible alignment
-		 * 		sufficiently high level
-		 * 		Character level x
-		 * 		Ride 1 rank
-		 * 		wild shape ability
-		 * 		Weapon Proficiency (crossbow type chosen)
-		 * 		Wizard level x
-		 * 	Spell Focus (selected school of magic)
-		 */
-		if (feat.getFeat().getPrerequisites() == null) 
-			return true;
-		String[] reqs = feat.getFeat().getPrerequisites();
-		if (feat.getFeat().getName().equalsIgnoreCase("Improved Familiar")) {
-			// TODO
-		}
-		for (int i = 0; i < reqs.length; i++) {
-			if (reqs[i].substring(0, 3).equalsIgnoreCase("Str ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.STRENGTH] < value)
-					return false;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Dex ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.DEXTERITY] < value)
-					return false;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Con ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.CONSTITUTION] < value)
-					return false;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Int ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.INTELLIGENCE] < value)
-					return false;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Wis ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.WISDOM] < value)
-					return false;
-			} else if (reqs[i].substring(0, 3).equalsIgnoreCase("Cha ")) {
-				int value = Integer.parseInt(reqs[i].substring(4));
-				if (character.getAbilityScores()[GameState.CHARISMA] < value)
-					return false;
-			} else if (reqs[i].contains("base attack bonus")) {
-				int value = Integer.parseInt(reqs[i].replaceAll("[^0-9]", ""));
-				if (character.getBaseAttackBonus() < value) 
-					return false;
-			} else if (reqs[i].contains("Barbarian level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Barbarian")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Bard level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Bard")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Cleric level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Cleric")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Druid level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Druid")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Fighter level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Fighter")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Monk level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Monk")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Paladin level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Paladin")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Ranger level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Ranger")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Sorcerer level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Sorcerer")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Wizard level")) {
-				if (character.getCharClass().getName().equalsIgnoreCase("Wizard")){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Caster level")) {
-				if (!(character.getCharClass().getName().equalsIgnoreCase("Barbarian")
-						|| character.getCharClass().getName().equalsIgnoreCase("Fighter")
-						|| character.getCharClass().getName().equalsIgnoreCase("Monk")
-						|| character.getCharClass().getName().equalsIgnoreCase("Rogue"))){
-					int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-					if (character.getLevel() < value)
-						return false;
-				} else 
-					return false;
-			} else if (reqs[i].contains("Character level")) {
-				int value = Integer.parseInt((reqs[i].substring(reqs[i].indexOf("level")).substring(6)));
-				if (character.getLevel() < value)
-					return false;
-			} else if (reqs[i].equalsIgnoreCase("wild shape ability")) {
-
-			} else if (reqs[i].contains("Ride") &&  reqs[i].contains("rank")) {
-
-			} else if (reqs[i].contains("with selected weapon")) {
-				String featName = reqs[i].substring(0, reqs[i].indexOf("with") - 1);
-				// make sure the character has that feat
-				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
-				// if that feat is a valid feat, check it
-				if (reqFeat != null) {
-					// check if user has already added the required feat
-					boolean found = false;
-					for (int j = 0; j < charFeats.size() && !found; j++) {
-						// find feat
-						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
-							// check special
-							if (charFeats.get(j).getSpecial().equals(reqFeat.getSpecial()) || reqFeat.getSpecial().equals("All"))
-								// the required feat has already been added
-								found = true;
-						}
-					}
-					if (!found)
-						return false;
-				}
-				//				if (reqs[i].contains("Weapon Focus")) {
-				//
-				//				} else if (reqs[i].contains("Greater Weapon Focus")) {
-				//
-				//				} else if (reqs[i].contains("Weapon Specialization")) {
-				//
-				//				} 
-			} else if (reqs[i].equalsIgnoreCase("Ability to turn or rebuke creatures")) {
-
-			}  else if (reqs[i].equalsIgnoreCase("Weapon Proficiency (crossbow type chosen)")) {
-				// TODO fix this after addding charFeats
-				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
-				// assume the prerequisite is another feat
-				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
-				// if that feat is a valid feat, check it
-				if (reqFeat != null) {
-					// check if user has already added the required feat
-					boolean found = false;
-					for (int j = 0; j < charFeats.size() && !found; j++) {
-						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
-							// the required feat has already been added
-							found = true;
-						}
-					}
-					if (!found)
-						return false;
-				}
-			} else if (reqs[i].contains("Spell Focus (")) {
-				// TODO fix this after addding charFeats
-				String featName = reqs[i].substring(0, reqs[i].indexOf('(') - 1);
-				// assume the prerequisite is another feat
-				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(featName);
-				// if that feat is a valid feat, check it
-				if (reqFeat != null) {
-					// check if user has already added the required feat
-					boolean found = false;
-					for (int j = 0; j < charFeats.size() && !found; j++) {
-						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
-							// the required feat has already been added
-							found = true;
-						}
-					}
-					if (!found)
-						return false;
-				}
-			} else {
-				// assume the prerequisite is another feat
-				FeatEntity reqFeat = (FeatEntity) Main.gameState.feats.get(reqs[i]);
-				// if that feat is a valid feat, check it
-				if (reqFeat != null) {
-					// check if user has already added the required feat
-					boolean found = false;
-					for (int j = 0; j < charFeats.size() && !found; j++) {
-						if (charFeats.get(j).getFeat().getName().equals(reqFeat.getName())) {
-							// the required feat has already been added
-							found = true;
-						}
-					}
-					if (!found)
-						return false;
-				}
-				// otherwise, assume it's fine
-			}
-		}
-		return true;
-	}
-	private boolean selectFeatSpecial(CharFeat feat) {
-		// create shell
-		
-		specialOpen = true;
-				Display display = wiz6.getDisplay();
-				featSpecialShell = new Shell(display);
-				featSpecialShell.setImage(new Image(display, "images/bnb_logo.gif"));
-				featSpecialShell.setText("Apply Feat");
-				GridLayout gridLayout = new GridLayout(2, true);
-				featSpecialShell.setLayout(gridLayout);
-				featSpecialShell.addListener(SWT.Close, new Listener() {
-			        public void handleEvent(Event event) {
-			            specialValid = false;
-			            specialOpen = false;
-			        }
-			    });
-				
-//				String[] specialsA = feat.getFeat().getApplications();
-
-				// label - select a feat special
-				Label selectFeatSpecial = new Label(featSpecialShell, SWT.WRAP);
-				selectFeatSpecial.setText("Apply Feat:");
-				GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-				selectGD.horizontalSpan = 2;
-				selectFeatSpecial.setLayoutData(selectGD);
-				selectFeatSpecial.pack();
-				
-				// drop down menu containing feat special options
-				CCombo specialsCombo = new CCombo(featSpecialShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-
-				ArrayList<String> specials = getSpecials(feat.getFeat());
-				if (specials == null)
-					return true;
-				if (specials.size() == 1) {
-					feat.setSpecial(specials.get(0));
-					return true;
-				}
-				for (int i = 0; i < specials.size(); i++) {
-					specialsCombo.add(specials.get(i));
-				}
-				GridData specialsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-				specialsGD.horizontalSpan = 2;
-				specialsCombo.setLayoutData(specialsGD);
-				specialsCombo.addListener(SWT.MouseDown, new Listener() {
-					public void handleEvent(Event event) {
-						specialsCombo.setBackground(null);
-					}
-				});
-				specialsCombo.pack();
-				
-				// done button
-				Button done = new Button(featSpecialShell, SWT.PUSH);
-				done.setText("Done");
-				GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-				doneGD.horizontalSpan = 2;
-				done.setLayoutData(doneGD);
-				done.addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event event) {
-						if (specialsCombo.getSelectionIndex() == -1) {
-							specialsCombo.setBackground(new Color(dev, 255, 100, 100));
-							return;
-						}
-						feat.setSpecial(specialsCombo.getItem(specialsCombo.getSelectionIndex()));
-						featSpecialShell.dispose();
-						specialValid = true;
-						specialOpen = false;
-					}
-				});
-				done.pack();
-
-				// open shell
-				featSpecialShell.pack();
-				CharacterWizard.center(featSpecialShell);
-				featSpecialShell.open();
-				
-				// check if disposed
-				while (!featSpecialShell.isDisposed()) {
-					if (!display.readAndDispatch()) {
-						display.sleep();
-					}
-				}
-		return specialValid;
-	}
-	
-	public static ArrayList<String> getSpecials(FeatEntity feat) {
-		String[] specialsArray = feat.getApplications();
-		if (specialsArray == null)
-			return null;
-		ArrayList<String> specials = new ArrayList<String>();
-		for (int i = 0; i < specialsArray.length; i++) {
-			switch (specialsArray[i]) {
-			case ("weapons"): {
-				Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
-				Iterator<DNDEntity> itr = weaponsCol.iterator();
-				ArrayList<WeaponEntity> weapons = new ArrayList<WeaponEntity>();
-				while (itr.hasNext()) {
-					weapons.add((WeaponEntity) itr.next());
-				}
-				for (int j = 0; j < weapons.size(); j++) {
-					specials.add(weapons.get(j).getName());
-				}
-				break;
-			}
-			case ("schools of magic"):
-				for (int j = 0; j < GameState.schoolsOfMagic.length; j++) {
-					specials.add(GameState.schoolsOfMagic[j]);
-				}
-				break;
-			case ("skills"): {
-				Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
-				Iterator<DNDEntity> itr = skillsCol.iterator();
-				ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
-				while (itr.hasNext()) {
-					skills.add((SkillEntity) itr.next());
-				}						
-				for (int j = 0; j < skills.size(); j++) {
-					specials.add(skills.get(j).getName());
-				}
-				break;
-			}
-			case ("selection of spells"): {
-				specials.add("selection of spells");
-			}
-			default:
-				specials.add(specialsArray[i]);
-			}
-		}
-		return specials;
-	}
-	
-	private void updateCharFeatsList() {
-		charFeatsList.removeAll();
-		for (int i = 0; i < charFeats.size(); i++){
-			CharFeat curr = charFeats.get(i);
-			String temp = curr.getFeat().getName();
-			if (curr.getSpecial() != null)
-				temp += " [" + curr.getSpecial() + "]";
-			if (curr.getCount() > 1)
-				temp += ": " + curr.getCount();
-			charFeatsList.add(temp);
-		}
 	}
 
 	private void createNextPage() {
@@ -941,5 +426,15 @@ public class Wiz6 {
 		cw.wizs.add(new Wiz7(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
 	}
 
+	private void updateCharItemsList() {
+		charItemsList.removeAll();
+		for (int i = 0; i<charItems.size(); i++){
+			CharItem curr = charItems.get(i);
+			charItemsList.add(curr.getCount() + " x " + curr.getItem().getName());
+		}
+		charItemsList.pack();
+		inner.layout();
+	}
+	
 	public Composite getWiz6() { return wiz6; }
 }

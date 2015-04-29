@@ -58,7 +58,7 @@ public class CharacterWizard {
 	public boolean cancelOpen = false;
 	private Shell areYouSureShell;
 	public boolean[] wizPageCreated = { false, false, false, false,
-		false, false, false, false, false, false };
+		false, false, false, false};
 	
 	private Composite wizPanel;
 	
@@ -475,10 +475,10 @@ public class CharacterWizard {
 		//Random 1 feat
 		CharFeat randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
 		System.out.println("Random feat is " + randomToAdd.getFeat().getName());
-		System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+		System.out.println("Char meets prereqs is " + Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character));
 		boolean done = false;
 		do {
-			if(Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character)){
+			if(Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character)){
 				for(int i = 0; i < character.getFeats().size(); i++) {
 					if (character.getFeats().get(i).getFeat().getName().equals(randomToAdd.getFeat().getName())) {
 						// feat found - check if that feat can be added multiple times
@@ -513,7 +513,7 @@ public class CharacterWizard {
 			else{ 
 					randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
 					System.out.println("New random feat is " + randomToAdd.getFeat().getName());
-					System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+					System.out.println("Char meets prereqs is " + Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character));
 			}
 		}while(!done);
 		System.out.println("------------------------------------");
@@ -700,7 +700,7 @@ public class CharacterWizard {
 						return;
 					}
 					character.setName(namebox.getText());
-					Wiz9.saveCharacter(character);
+					Wiz8.saveCharacter(character);
 					newshell.close();
 					shell.dispose();
 				}
@@ -889,8 +889,8 @@ public class CharacterWizard {
 		wizPages.add(wiz7);
 		final Composite wiz8 = new Composite(wizPanel, SWT.NONE);
 		wizPages.add(wiz8);
-		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz9);
+//		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
+//		wizPages.add(wiz9);
 	}
 	
 	public CharacterWizard getThis() { return cw; }
