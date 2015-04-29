@@ -44,10 +44,9 @@ public class Wiz1 {
 	private int HEIGHT;
 	private character character;
 	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
+	//private Composite home;
+	//private Composite homePanel;
 	private StackLayout layout;
-	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -76,8 +75,7 @@ public class Wiz1 {
 
 
 	public Wiz1(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, StackLayout homeLayout, 
+			final Composite panel, final StackLayout layout, 
 			final ArrayList<Composite> wizPages) {
 		wiz1 = wizPages.get(0);
 		layout.topControl = wiz1;
@@ -88,10 +86,7 @@ public class Wiz1 {
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
 		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
 		this.layout = layout;
-		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(2);
 		this.wizPagesSize = wizPages.size();
@@ -101,7 +96,7 @@ public class Wiz1 {
 
 	private void createPageContent() {
 		Label wiz1Label = new Label(wiz1, SWT.NONE);
-		wiz1Label.setText("Select starting level and roll for ability scores");
+		wiz1Label.setText("Roll initial ability scores and select character race and class");
 		wiz1Label.pack();
 		
 		
@@ -509,7 +504,7 @@ public class Wiz1 {
 		});
 		
 		// cancel button
-		Button wiz1CancelButton = cw.createCancelButton(wiz1, home, homePanel, homeLayout);
+		Button wiz1CancelButton = cw.createCancelButton(wiz1);
 		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
@@ -1125,8 +1120,8 @@ public class Wiz1 {
 
 	private void createNextPage() {
 		cw.wizPageCreated[2] = true;
-		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, home, homePanel,
-				layout, homeLayout, wizPages, cw.getBaseAbilityScores()));
+		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, 
+				layout, wizPages, cw.getBaseAbilityScores()));
 	}
 
 }

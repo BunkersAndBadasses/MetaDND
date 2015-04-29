@@ -468,8 +468,7 @@ public class Wiz2 {
 
 
 		// cancel button
-		Button wiz2CancelButton = cw.createCancelButton(wiz2, home,
-				homePanel, homeLayout);
+		Button wiz2CancelButton = cw.createCancelButton(wiz2);
 		wiz2CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
@@ -1084,8 +1083,7 @@ public class Wiz2 {
 
 	private void createNextPage() {
 		cw.wizPageCreated[2] = true;
-		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages, cw.getBaseAbilityScores()));
+		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages, cw.getBaseAbilityScores()));
 		layout.topControl = nextPage;
 		panel.layout();
 	}

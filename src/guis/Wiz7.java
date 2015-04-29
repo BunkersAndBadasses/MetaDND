@@ -41,10 +41,7 @@ public class Wiz7 {
 	private int HEIGHT;
 	private character character;
 	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
 	private StackLayout layout;
-	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -60,8 +57,7 @@ public class Wiz7 {
 	private Composite inner;
 
 	public Wiz7(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, final StackLayout homeLayout, 
+			final Composite panel, final StackLayout layout, 
 			final ArrayList<Composite> wizPages) {
 		wiz7 = wizPages.get(6);
 		this.cw = cw;
@@ -70,10 +66,7 @@ public class Wiz7 {
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
 		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
 		this.layout = layout;
-		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(7);
 		this.wizPagesSize = wizPages.size();
@@ -417,7 +410,7 @@ public class Wiz7 {
 		});
 
 		//Button wiz7BackButton = cw.createBackButton(wiz7, panel, layout);
-		Button wiz7CancelButton = cw.createCancelButton(wiz7, home, homePanel, homeLayout);
+		Button wiz7CancelButton = cw.createCancelButton(wiz7);
 		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
@@ -430,8 +423,7 @@ public class Wiz7 {
 
 	private void createNextPage() {
 		cw.wizPageCreated[7] = true;
-		cw.wizs.add(new Wiz8(cw, dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages));
+		cw.wizs.add(new Wiz8(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
 	}
 
 	private void updateCharItemsList() {

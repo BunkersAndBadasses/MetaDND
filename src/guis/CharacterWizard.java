@@ -61,6 +61,10 @@ public class CharacterWizard {
 		false, false, false, false, false, false };
 	
 	private Composite wizPanel;
+	
+	private StackLayout homeLayout;
+	private Composite homePanel;
+	private Composite home;
 
 	private ArrayList<Composite> wizPages;
 
@@ -124,9 +128,9 @@ public class CharacterWizard {
 
 		//////////////////// HOME PANEL SETUP ////////////////////////////
 
-		final Composite homePanel = new Composite(shell, SWT.NONE);
+		homePanel = new Composite(shell, SWT.NONE);
 		homePanel.setBounds(0, 0, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
-		final StackLayout homeLayout = new StackLayout();
+		homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
 
 		//////////////////// HOME SCREEN SETUP ////////////////////////////
@@ -134,7 +138,7 @@ public class CharacterWizard {
 		// this screen is what is first seen when the window opens. 
 		// it contains the buttons that link to the character wizard, the manual
 		// character entering, and the random character generation
-		final Composite home = new Composite(homePanel, SWT.BORDER);
+		home = new Composite(homePanel, SWT.BORDER);
 		home.setLocation(homePanel.getLocation());
 		home.setSize(homePanel.getSize().x, homePanel.getSize().y - 25);
 		GridLayout gridLayout = new GridLayout(4, true);
@@ -280,8 +284,7 @@ public class CharacterWizard {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
 				instantiateWizPages();
-				Wiz1 wiz1 = new Wiz1(cw, dev, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT, wizPanel, home,
-						homePanel, wizLayout, homeLayout, wizPages);
+				Wiz1 wiz1 = new Wiz1(cw, dev, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT, wizPanel, wizLayout,  wizPages);
 				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);
 				wizPanel.layout();
@@ -777,8 +780,7 @@ public class CharacterWizard {
 	 * @param layout
 	 * @return
 	 */
-	public Button createCancelButton(Composite c, final Composite home,
-			final Composite panel, final StackLayout layout) {
+	public Button createCancelButton(Composite c) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
 		cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
@@ -852,8 +854,8 @@ public class CharacterWizard {
 				// if user clicks yes, return to new character home
 				if (cancel) {
 					wizPageNum = -1;
-					layout.topControl = home;
-					panel.layout();
+					homeLayout.topControl = home;
+					homePanel.layout();
 				}
 			}
 		});

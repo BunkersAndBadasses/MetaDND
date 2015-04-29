@@ -53,22 +53,15 @@ public class Wiz9 {
     private int WIDTH;
     private int HEIGHT;
     private character character;
-    private Composite home;
-    private Composite homePanel;
-    private StackLayout homeLayout;
 
     public Wiz9(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-            final Composite panel, Composite home, Composite homePanel, 
-            final StackLayout layout, final StackLayout homeLayout, 
+            final Composite panel, final StackLayout layout, 
             final ArrayList<Composite> wizPages) {
         wiz9 = wizPages.get(8);
         this.cw = cw;
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         this.character = cw.getCharacter();
-        this.home = home;
-        this.homePanel = homePanel;
-        this.homeLayout = homeLayout;
 
         createPageContent();
     }
@@ -98,7 +91,7 @@ public class Wiz9 {
         });
 
         //Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
-        Button wiz9CancelButton = cw.createCancelButton(wiz9, home, homePanel, homeLayout);
+        Button wiz9CancelButton = cw.createCancelButton(wiz9);
         wiz9CancelButton.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
                 if (cw.cancel)

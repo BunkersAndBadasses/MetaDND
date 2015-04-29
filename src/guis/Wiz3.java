@@ -34,10 +34,7 @@ public class Wiz3 {
 	private int HEIGHT;
 	private character character;
 	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
 	private StackLayout layout;
-	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -60,8 +57,7 @@ public class Wiz3 {
 	//private Label choiceLabel2;
 
 	public Wiz3(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, final StackLayout homeLayout, 
+			final Composite panel, final StackLayout layout, 
 			final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
 		// initialization
 		wiz3 = wizPages.get(2);
@@ -71,10 +67,7 @@ public class Wiz3 {
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
 		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
 		this.layout = layout;
-		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(3);
 		this.wizPagesSize = wizPages.size();
@@ -439,7 +432,7 @@ public class Wiz3 {
 		//Button wiz3BackButton = cw.createBackButton(wiz3, panel, layout);
 
 		// cancel button
-		Button wiz3CancelButton = cw.createCancelButton(wiz3, home, homePanel, homeLayout);
+		Button wiz3CancelButton = cw.createCancelButton(wiz3);
 		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
@@ -453,8 +446,7 @@ public class Wiz3 {
 	
 	private void createNextPage() {
 		cw.wizPageCreated[3] = true;
-		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages));
+		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
 	}
 	
 //	public void updateCharRace() {
