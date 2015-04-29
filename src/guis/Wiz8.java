@@ -32,6 +32,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -501,6 +502,7 @@ public class Wiz8{
 		// create shell
 		Display display = wiz8.getDisplay();
 		primaryShell = new Shell(wiz8.getDisplay());
+		primaryShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		primaryShell.setText("Set Primary");
 		GridLayout gridLayout = new GridLayout(2, true);
 		primaryShell.setLayout(gridLayout);
@@ -774,6 +776,7 @@ public class Wiz8{
 
 		// initialize layout
 		spellShell = new Shell(wiz8.getDisplay());
+		spellShell.setImage(new Image(wiz8.getDisplay(), "images/bnb_logo.gif"));
 		spellShell.setText("Select Known Spells");
 		GridLayout gl = new GridLayout(7, true);
 		spellShell.setLayout(gl);

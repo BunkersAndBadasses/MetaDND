@@ -25,6 +25,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -483,6 +484,7 @@ public class Wiz6 {
 		// create shell
 		Display display = wiz6.getDisplay();
 		bonusFeatShell = new Shell(display);
+		bonusFeatShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		bonusFeatShell.setText("Select Bonus Feat");
 		GridLayout gridLayout = new GridLayout(2, true);
 		bonusFeatShell.setLayout(gridLayout);
@@ -796,6 +798,7 @@ public class Wiz6 {
 		specialOpen = true;
 				Display display = wiz6.getDisplay();
 				featSpecialShell = new Shell(display);
+				featSpecialShell.setImage(new Image(display, "images/bnb_logo.gif"));
 				featSpecialShell.setText("Apply Feat");
 				GridLayout gridLayout = new GridLayout(2, true);
 				featSpecialShell.setLayout(gridLayout);
