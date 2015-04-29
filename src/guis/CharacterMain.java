@@ -374,10 +374,11 @@ public class CharacterMain {
 				
 				File imageFile = new File(selected);
 				String imageName = imageFile.getName().replaceAll("\\s", ""); 
+				String spacelessName = charName.replaceAll("[^A-Za-z0-9]", "");
 				File copiedImageFile = new File(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + charName, imageFile.getName());
+						"User Data" + "//Character" + "//DND" + spacelessName, imageFile.getName());
 				writeValue("Image", System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + charName + "//" 
+						"User Data" + "//Character" + "//DND" + spacelessName + "//" 
 						+ imageName, element);
 				try {
 				    FileUtils.copyFile(imageFile, copiedImageFile);
