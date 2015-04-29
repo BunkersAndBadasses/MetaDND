@@ -16,6 +16,8 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -53,8 +55,9 @@ public class Wiz7 {
 	private GameState gs = Main.gameState;
 	
 	private List charItemsList;
-	final ScrolledComposite charItemScroll;
-	final Composite charItemScreen;
+//	final ScrolledComposite charItemScroll;
+//	final Composite charItemScreen;
+	private Composite inner;
 
 	public Wiz7(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
@@ -74,8 +77,8 @@ public class Wiz7 {
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(7);
 		this.wizPagesSize = wizPages.size();
-		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
-		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
+//		charItemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
+//		charItemScreen = new Composite (charItemScroll, SWT.BORDER);
 		
 		createPageContent();
 	}
@@ -85,14 +88,117 @@ public class Wiz7 {
 		wiz7Label.setText("Choose Equipment");
 		wiz7Label.pack();
 
-		Label goldLabel = new Label(wiz7, SWT.NONE);
+		//////////instantiate layout //////////
+		
+		GridLayout gl = new GridLayout(5, true);
+		
+		inner = new Composite(wiz7, SWT.NONE);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+
+		GridData gd;
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 5;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		////////////////////
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		// gold label
+		Label goldLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		goldLabel.setLayoutData(gd);
+		
+		// gold text box
+		goldText = new Text(inner, SWT.BORDER | SWT.CENTER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		goldText.setLayoutData(gd);
+
+		
+		// random gold button
+		Button randomGold = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		randomGold.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		////////////////////
+		
+		////////////////////
+		// details
+		Label detailsLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 5;
+		detailsLabel.setLayoutData(gd);
+		////////////////////
+		
+		////////////////////
+		// item list
+		List itemsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		gd.verticalSpan = 8;
+		itemsList.setLayoutData(gd);
+			
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+
+		// char item list
+		charItemsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		gd.verticalSpan = 8;
+		charItemsList.setLayoutData(gd);
+		////////////////////
+		
+		////////////////////
+		// add 1
+		Button addButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		addButton.setLayoutData(gd);
+		
+		// add 5
+		Button add5Button = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		add5Button.setLayoutData(gd);
+		
+		// add 10
+		Button add10Button = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		add10Button.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		// remove 1
+		Button removeButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		removeButton.setLayoutData(gd);
+		
+		// remove all
+		Button removeAllButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		removeAllButton.setLayoutData(gd);
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		////////////////////
+		
+		
+		////////// create content //////////
+		
 		goldLabel.setText("Starting Gold(gp):");
-		goldLabel.setLocation(10, 50);
 		goldLabel.pack();
 		
-		goldText = new Text(wiz7, SWT.BORDER);
 		goldText.setText("0");
-		goldText.setBounds(135, 45, 80, 30);
 		goldText.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
 				Text text = (Text) event.widget;
@@ -101,10 +207,7 @@ public class Wiz7 {
 		});
 		
 		
-		Button randomGold = new Button(wiz7, SWT.PUSH);
 		randomGold.setText("Random");
-		randomGold.setLocation(225, 45);
-		randomGold.pack();
 		randomGold.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int min = 75;
@@ -115,11 +218,8 @@ public class Wiz7 {
 			}
 		});
 		
-		// search label
-		Label searchLabel = new Label(wiz7, SWT.NONE);
-		searchLabel.setLocation(10, 80);
-		searchLabel.setText("Double click on a item to see details");
-		searchLabel.pack();		
+		// details label
+		detailsLabel.setText("Double click on a item to see details");
 		
 		// get items from references
 		Collection<DNDEntity> itemsCol =  gs.items.values();
@@ -130,31 +230,7 @@ public class Wiz7 {
 			items.add((ItemEntity) itr.next());
 		}
 		
-		// layout for scrolling item list
-		FillLayout itemLayout = new FillLayout();
-		
-		// create scrollable list of items
-		final ScrolledComposite itemScroll = new ScrolledComposite(wiz7, SWT.V_SCROLL | SWT.BORDER);
-		itemScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
-	    itemScroll.setExpandHorizontal(true);
-	    itemScroll.setExpandVertical(true);
-	    itemScroll.setMinWidth(WIDTH);
-		final Composite itemListScreen = new Composite(itemScroll, SWT.NONE);
-		itemScroll.setContent(itemListScreen);
-		itemListScreen.setSize(itemListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		itemListScreen.setLayout(itemLayout);
-		
-		// create scrollable list of selected items
-		charItemScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
-	    charItemScroll.setExpandHorizontal(true);
-	    charItemScroll.setExpandVertical(true);
-	    charItemScroll.setMinWidth(WIDTH);
-		charItemScroll.setContent(charItemScreen);
-		charItemScreen.setSize(charItemScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		charItemScreen.setLayout(itemLayout);
-		
 		// available items list
-		List itemsList = new List(itemListScreen, SWT.NONE);
 		for (int i = 0; i < items.size(); i++) {
 			itemsList.add(items.get(i).getName());
 		}
@@ -170,15 +246,8 @@ public class Wiz7 {
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		itemsList.pack();
-		itemScroll.setMinHeight(itemsList.getBounds().height);
-	    
-//		// number items list
-//		List numCharItemsList = new List(charItemScreen, SWT.NONE);
-//		numCharItemsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-//		
+
 		// selected items list
-		charItemsList = new List(charItemScreen, SWT.NONE);
 		charItemsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = charItemsList.getSelectionIndex();
@@ -190,13 +259,9 @@ public class Wiz7 {
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		charItemsList.pack();
 		
 		// add item button
-		Button addButton = new Button(wiz7, SWT.PUSH);
 		addButton.setText("Add 1 >");
-		addButton.setLocation(WIDTH/2 - 35, HEIGHT/2 - 110);
-		addButton.pack();
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int index = itemsList.getSelectionIndex();
@@ -226,10 +291,7 @@ public class Wiz7 {
 		});
 		
 		// add 5 button
-		Button add5Button = new Button(wiz7, SWT.PUSH);
 		add5Button.setText("Add 5 >");
-		add5Button.setLocation(WIDTH/2 - 35, HEIGHT/2 - 80);
-		add5Button.pack();
 		add5Button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int index = itemsList.getSelectionIndex();
@@ -259,10 +321,7 @@ public class Wiz7 {
 		});
 		
 		// add 10 button
-		Button add10Button = new Button(wiz7, SWT.PUSH);
 		add10Button.setText("Add 10 >");
-		add10Button.setLocation(WIDTH/2 - 38, HEIGHT/2 - 50);
-		add10Button.pack();
 		add10Button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				int index = itemsList.getSelectionIndex();
@@ -294,10 +353,7 @@ public class Wiz7 {
 
 		
 		// remove item button
-		Button removeButton = new Button(wiz7, SWT.PUSH);
 		removeButton.setText("< Remove 1");
-		removeButton.setLocation(WIDTH/2 - 45, HEIGHT/2);
-		removeButton.pack();
 		removeButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				if (charItems.isEmpty())
@@ -317,9 +373,7 @@ public class Wiz7 {
 		});
 		
 		// remove all button
-		Button removeAllButton = new Button(wiz7, SWT.PUSH);
 		removeAllButton.setText("< Remove All");
-		removeAllButton.setLocation(WIDTH/2 - 48, HEIGHT/2 + 30);
 		removeAllButton.pack();
 		removeAllButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -333,9 +387,6 @@ public class Wiz7 {
 				updateCharItemsList();
 			}
 		});
-		
-		itemListScreen.pack();
-		charItemScreen.pack();
 		
 		// next button
 		Button wiz7NextButton = cw.createNextButton(wiz7);
@@ -373,6 +424,8 @@ public class Wiz7 {
 					cw.reset();
 			}
 		});
+		
+		inner.layout();
 	}
 
 	private void createNextPage() {
@@ -388,9 +441,7 @@ public class Wiz7 {
 			charItemsList.add(curr.getCount() + " x " + curr.getItem().getName());
 		}
 		charItemsList.pack();
-		charItemScroll.setMinHeight(charItemsList.getBounds().height);
-		charItemScreen.layout();
-		charItemScroll.layout();
+		inner.layout();
 	}
 	
 	public Composite getWiz7() { return wiz7; }

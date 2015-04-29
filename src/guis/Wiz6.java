@@ -163,7 +163,7 @@ public class Wiz6 {
 		
 		// add button
 		Button addButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(SWT.CENTER, SWT.END, true, true);
+		gd = new GridData(SWT.FILL, SWT.END, true, true);
 		addButton.setLayoutData(gd);
 		
 		// character feat list
@@ -175,7 +175,7 @@ public class Wiz6 {
 		
 		// remove button
 		Button removeButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(SWT.CENTER, SWT.BEGINNING, true, true);
+		gd = new GridData(SWT.FILL, SWT.BEGINNING, true, true);
 		removeButton.setLayoutData(gd);
 		
 		
