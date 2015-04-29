@@ -273,18 +273,25 @@ public class DnDie {
 			else{
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
-				String filepath = System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls";
+				String filepath;
+				if(charFileName == "BiggusDickus"){
+					filepath = System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//" + charFileName + "//favRolls";
+				}
+				else{
+					filepath = System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//DND" + charFileName + "//favRolls";
+				}
 				Files.walk(Paths.get(filepath)).forEach(filePath ->{
-							if(filePath.getFileName().toString().contains(".xml")){
-								String fileName = filePath.getFileName().toString();
-								fileName = (String) fileName.subSequence(0, fileName.length() - 4);
-								DieWindow.favList.add(fileName);
-							}
-							else{
-								//System.out.println(filePath.getFileName() + " is not an XML file");
-							}
-						});
+					if(filePath.getFileName().toString().contains(".xml")){
+						String fileName = filePath.getFileName().toString();
+						fileName = (String) fileName.subSequence(0, fileName.length() - 4);
+						DieWindow.favList.add(fileName);
+					}
+					else{
+						//System.out.println(filePath.getFileName() + " is not an XML file");
+					}
+				});
 			}
 
 		} catch (IOException e) {
