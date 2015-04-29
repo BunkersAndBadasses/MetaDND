@@ -41,63 +41,70 @@ import core.character;
 public class CharacterMain {
     private static DocumentBuilderFactory dbFactory;
     private static DocumentBuilder dBuilder;
-    private static Document doc;
-    private static String filename;
-    private static Element element;
-    private static String charName;
-    private static String shieldName;
-    private static String armorName;
-    private static String charClass;
-    private static int charLevel;
-    private static String charSecClass;
-    private static int charSecLevel;
-    private static int strVal;
-    private static int dexVal;
-    private static int conVal;
-    private static int intVal;
-    private static int wisVal;
-    private static int chaVal;
-    private static int hpVal;
-    private static int speedVal;
-    private static int acVal;
-    private static int ffVal;
-    private static int touchVal;
-    private static int fortVal;
-    private static int refVal;
-    private static int willVal;
-    private static int initVal;
-    private static String priWeapon;
-    private static String secWeapon;
-    private static String[] items;
-    private static String[] languages;
-    private static String[] weapons;
-    private static String[] armors;
-    private static String[] skills;
-    private static String[] spells;
-    private static String[] shields;
-    private static String[] feats;
-    private static String notes;
-    private static String imagePath;
-    private static String dmgTaken;
-    private static String delims = "[/]+";
-    private static String pp, gp, sp, cp;
-    private static File stocks;
-    private static StackLayout mainWindowLayout;
-    private static Display display;
-    private static Composite mainWindow;
-    private static Composite mainComp;
-	private static GridLayout charLayout;
-    private static String bonus;
-    private static String exp;
+    private Document doc;
+    private String filename;
+    private Element element;
+    private String charName;
+    private String shieldName;
+    private String armorName;
+    private String charClass;
+    private int charLevel;
+    private String charSecClass;
+    private int charSecLevel;
+    private int strVal;
+    private int dexVal;
+    private int conVal;
+    private int intVal;
+    private int wisVal;
+    private int chaVal;
+    private int hpVal;
+    private int speedVal;
+    private int acVal;
+    private int ffVal;
+    private int touchVal;
+    private int fortVal;
+    private int refVal;
+    private int willVal;
+    private int initVal;
+    private String priWeapon;
+    private String secWeapon;
+    private String[] items;
+    private String[] languages;
+    private String[] weapons;
+    private String[] armors;
+    private String[] skills;
+    private String[] spells;
+    private String[] shields;
+    private String[] feats;
+    private String notes;
+    private String imagePath;
+    private String dmgTaken;
+    private String delims = "[/]+";
+    private String pp, gp, sp, cp;
+    private File stocks;
+    private StackLayout mainWindowLayout;
+    private Display display;
+    private Composite mainWindow;
+    private Composite mainComp;
+    private GridLayout charLayout;
+    private String bonus;
+    private String exp;
     private Shell m_shell;
     private Image m_characterImage;
+    private character c;
+    private String [] priVals = new String[6];
+    private String [] secVals = new String[6];
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
-    	
-    	m_shell = shell;
-    	
+
+        m_shell = shell;
+
         String pathName = args[0];
+
+
+        Main.gameState.currentlyLoadedCharacter = new character();
+        c = Main.gameState.currentlyLoadedCharacter;
         getPlayerInfo(pathName);
 
         // TODO Auto-generated method stub
@@ -110,7 +117,7 @@ public class CharacterMain {
         charLayout = new GridLayout(5, true);
         charLayout.makeColumnsEqualWidth = true;
         mainComp.setLayout(charLayout);
-        
+
 
         //panel.setImage(new Image(display, "images/bnb_logo.gif"));
 
@@ -291,35 +298,48 @@ public class CharacterMain {
         weapCompGD.horizontalAlignment = SWT.CENTER;
         weapCompGD.grabExcessHorizontalSpace = true;
         weap1Comp.setLayoutData(weapCompGD );
-        
+
         GridData weapGD = new GridData();
         weapGD.horizontalAlignment = SWT.CENTER;
         weapGD.grabExcessHorizontalSpace = true;
         weapGD.widthHint = 200;
         weapGD.heightHint = 17;
-        
+
         Label priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priLabel.setText(priWeapon);
         priLabel.setLayoutData(weapGD);
+        
+        boolean boo = false;
+        if (!priWeapon.equals("")) {
+            boo = true;
+            priVals[0] = "" + c.getBaseAttackBonus();
+            priVals[1] = c.getPrimaryWeapon().getDamageMedium();
+            priVals[2] = c.getPrimaryWeapon().getRange();
+            int i = c.getPrimaryWeapon().getCriticalRange()[0];
+            priVals[3] = "";
+            if (i != 0) priVals[3] = "" + i + "-20";
+            priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
+            priVals[5] = c.getPrimaryWeapon().getDamageType();
+        }
 
         Label priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priBonusLabel.setText("Bonus: ");
+        priBonusLabel.setText("Bonus: " + (boo ? priVals[0] : ""));
         priBonusLabel.setLayoutData(weapGD);
 
         Label priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priDamageLabel.setText("Damage: ");
+        priDamageLabel.setText("Damage: " + (boo ? priVals[1] : ""));
         priDamageLabel.setLayoutData(weapGD);
 
         Label priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priRangeLabel.setText("Range: ");
+        priRangeLabel.setText("Range: " + (boo ? priVals[2] : ""));
         priRangeLabel.setLayoutData(weapGD);
 
         Label priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priCriticalLabel.setText("Crit: ");
+        priCriticalLabel.setText("Crit: " + (boo ? priVals[3] + "  x" + priVals[4]: ""));
         priCriticalLabel.setLayoutData(weapGD);
 
         Label priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priTypeLabel.setText("Type: ");
+        priTypeLabel.setText("Type: " + (boo ? priVals[5] : ""));
         priTypeLabel.setLayoutData(weapGD);
 
         /////////////Secondary weapon box /////////
@@ -347,8 +367,8 @@ public class CharacterMain {
         secTypeLabel.setText("Type: ");
         secTypeLabel.setLayoutData(weapGD);
         weap1Comp.pack();
-        
-        
+
+
         Button uploadButton = new Button(mainComp, SWT.PUSH);
         uploadButton.setText("Upload Image");
 
@@ -359,49 +379,49 @@ public class CharacterMain {
         uploadButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-            	FileDialog dialog = new FileDialog(m_shell, SWT.OPEN);
-            	dialog.setText("Open");
-            	dialog.setFilterPath(GameState.IMAGESFOLDER.toString());
+                FileDialog dialog = new FileDialog(m_shell, SWT.OPEN);
+                dialog.setText("Open");
+                dialog.setFilterPath(GameState.IMAGESFOLDER.toString());
                 String[] filterExt = { "*.png;*.jpg;*.gif"};
                 dialog.setFilterExtensions(filterExt);
                 String selected = dialog.open();
                 if (selected == null || selected.equals("")) {
-                	return;
+                    return;
                 }
                 m_characterImage = new Image(Display.getCurrent(), selected);
-				img.setImage(m_characterImage);
-				
-				
-				File imageFile = new File(selected);
-				String imageName = imageFile.getName().replaceAll("\\s", ""); 
-				String spacelessName = charName.replaceAll("[^A-Za-z0-9]", "");
-				File copiedImageFile = new File(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + spacelessName, imageFile.getName());
-				writeValue("Image", System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + spacelessName + "//" 
-						+ imageName, element);
-				try {
-				    FileUtils.copyFile(imageFile, copiedImageFile);
-				} catch (IOException exception) {
-				    exception.printStackTrace();
-				}
-				
+                img.setImage(m_characterImage);
+
+
+                File imageFile = new File(selected);
+                String imageName = imageFile.getName().replaceAll("\\s", ""); 
+                String spacelessName = charName.replaceAll("[^A-Za-z0-9]", "");
+                File copiedImageFile = new File(System.getProperty("user.dir") + "//" + 
+                        "User Data" + "//Character" + "//DND" + spacelessName, imageFile.getName());
+                writeValue("Image", System.getProperty("user.dir") + "//" + 
+                        "User Data" + "//Character" + "//DND" + spacelessName + "//" 
+                        + imageName, element);
+                try {
+                    FileUtils.copyFile(imageFile, copiedImageFile);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+
             }
         }); 
-        
+
         Label nameLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         nameLabel.setText(charName);
         nameLabel.setLayoutData(statGD);
-        
-        
-        
+
+
+
         Combo priCombo = new Combo(mainComp, SWT.CENTER);
         priCombo.setItems(weapons);
         priCombo.add("Primary", 0);
         priCombo.add("None", 1);
         priCombo.select(0);
         priCombo.setLayoutData(statGD);
-        
+
         Combo secCombo = new Combo(mainComp, SWT.CENTER);
         secCombo.setItems(weapons);
         secCombo.add("Secondary", 0);
@@ -422,21 +442,21 @@ public class CharacterMain {
         shieldCombo.add("None", 1);
         shieldCombo.select(0);
         shieldCombo.setLayoutData(statGD);
-        
+
         Label initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         initLabel.setText("Initiative: " + initVal);
         initLabel.setLayoutData(statGD);
-        
-        
+
+
         GridData buttonGD = new GridData();
         buttonGD.horizontalAlignment = SWT.CENTER;
         buttonGD.grabExcessHorizontalSpace = true;
         buttonGD.widthHint = 160;
-        
+
         new Label(mainComp, SWT.NONE);
         new Label(mainComp, SWT.NONE);
         new Label(mainComp, SWT.NONE);
-        
+
         Button change = new Button(mainComp, SWT.PUSH);
         change.setText("Change");
         change.setLayoutData(buttonGD);
@@ -486,7 +506,7 @@ public class CharacterMain {
                 shieldLabel.setText(shieldName);
             }
         }); 
-        
+
         Combo skillCombo = new Combo(mainComp, SWT.CENTER);
         skillCombo.setItems(skills);
         skillCombo.add("Skills", 0);
@@ -516,9 +536,9 @@ public class CharacterMain {
         inventoryCombo.add("Inventory", 0);;
         inventoryCombo.select(0);
         inventoryCombo.setLayoutData(statGD);
-        
+
         new Label(mainComp, SWT.NONE);
-        
+
         Button spellButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         spellButt.setText("Spell Manager");
         spellButt.setLayoutData(buttonGD);
@@ -538,7 +558,7 @@ public class CharacterMain {
                 new FeatWizard(shell.getDisplay());
             }
         }); 
-        
+
         new Label(mainComp, SWT.NONE);
 
         Button inventoryButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
@@ -551,14 +571,14 @@ public class CharacterMain {
                 new ItemWizard(Display.getCurrent());
             }
         }); 
-        
+
         StyledText notesText = new StyledText(mainComp, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
         notesText.setText(notes);
         GridData notesGD = new GridData(SWT.FILL, SWT.FILL, true, true);
         notesGD.horizontalSpan = 5;
         notesText.setLayoutData(notesGD);
-        
-      //Composite for damage
+
+        //Composite for damage
         Composite currencyComp = new Composite(mainComp, SWT.NONE);
         GridLayout currencyGrid = new GridLayout(10, true);
         currencyComp.setLayout(currencyGrid);
@@ -573,8 +593,8 @@ public class CharacterMain {
         amountGD.horizontalAlignment = SWT.CENTER;
         amountGD.widthHint = 40;
         amountGD.heightHint = 17;
-        
-      //Money Tracker
+
+        //Money Tracker
         Label ppLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
         ppLabel.setText("PP");
         ppLabel.setLayoutData(currencyGD);
@@ -606,7 +626,7 @@ public class CharacterMain {
         StyledText cpText = new StyledText(currencyComp, SWT.BORDER);
         cpText.setText(cp);
         cpText.setLayoutData(amountGD);
-        
+
         Label expLabel = new Label(currencyComp, SWT.BORDER | SWT.CENTER);
         expLabel.setText("EXP");
         expLabel.setLayoutData(currencyGD);
@@ -623,8 +643,8 @@ public class CharacterMain {
 
         currencyComp.setLayoutData(currencyCompGD);
         currencyComp.pack();
-        
-      //Save All Information
+
+        //Save All Information
         Button saveAllButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         saveAllButt.setText("Save All");
         saveAllButt.setLayoutData(buttonGD);
@@ -646,7 +666,7 @@ public class CharacterMain {
                 writeValue("Exp", expText.getText(), element);
             }
         });
-        
+
         //new Label(mainComp, SWT.NONE);
         mainComp.layout();
 
@@ -658,28 +678,51 @@ public class CharacterMain {
 
 
         //shell.open(); // Open the Window and process the clicks
-//        while (!shell.isDisposed()) {
-//            if (display.readAndDispatch()) {
-//                display.sleep();
-//            }
-//        }
+        //        while (!shell.isDisposed()) {
+        //            if (display.readAndDispatch()) {
+        //                display.sleep();
+        //            }
+        //        }
 
 
     }
 
 
     public Composite getMainWindow() {
-		return mainWindow;
-	}
+        return mainWindow;
+    }
 
 
-	private static void getPlayerInfo(String pathName) {
+    private void getPlayerInfo(String pathName) {
         // TODO Auto-generated method stub
         filename = pathName;
-        Main.gameState.currentlyLoadedCharacter = new character();
-        new LoadCharacter(pathName, Main.gameState.currentlyLoadedCharacter);
-        character c = Main.gameState.currentlyLoadedCharacter;
+        new LoadCharacter(pathName, c);
         charName = c.getName();
+        imagePath = c.getImage();
+        charLevel = c.getLevel();
+        charClass = c.getCharClass().getName();
+        charSecLevel = c.getSecLevel();
+        charSecClass = " ";
+        if(c.getSecClass() != null) {
+            charSecClass = c.getSecClass().getName();
+        }
+
+        strVal = c.getAbilityScores()[0];
+        dexVal = c.getAbilityScores()[1];
+        conVal = c.getAbilityScores()[2];
+        intVal = c.getAbilityScores()[3];
+        wisVal = c.getAbilityScores()[4];
+        chaVal = c.getAbilityScores()[5];
+
+        speedVal = c.getSpeed();
+        priWeapon = "";
+        if(c.getPrimaryWeapon() != null) {
+            priWeapon = c.getPrimaryWeapon().getName();
+        }
+        secWeapon = "";
+        if(c.getSecondaryWeapon() != null) {
+            secWeapon = c.getSecondaryWeapon().getName();
+        }
         try {
 
             stocks = new File(filename);
@@ -694,11 +737,11 @@ public class CharacterMain {
 
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 element = (Element) node;
-                imagePath = getValue("Image", element);
+                //imagePath = getValue("Image", element);
                 //charName = getValue("Name", element);
-                charLevel = Integer.parseInt(getValue("Level", element));
-                charClass = getValue("Class", element);
-                charSecLevel = Integer.parseInt(getValue("SecLevel", element));
+                //charLevel = Integer.parseInt(getValue("Level", element));
+                //charClass = getValue("Class", element);
+                /*charSecLevel = Integer.parseInt(getValue("SecLevel", element));
                 charSecClass = getValue("SecClass", element);
                 strVal = Integer.parseInt(getValue("STR", element));
                 dexVal = Integer.parseInt(getValue("DEX", element));
@@ -709,7 +752,7 @@ public class CharacterMain {
                 hpVal = Integer.parseInt(getValue("HP", element));
                 speedVal = Integer.parseInt(getValue("Speed", element));
                 priWeapon = getValue("PrimaryWeapon", element);
-                secWeapon =  getValue("SecondaryWeapon", element);
+                secWeapon =  getValue("SecondaryWeapon", element);*/
                 armorName = getValue("Armor", element);
                 shieldName  = getValue("Shield", element);
                 notes = getValue("Notes", element);
@@ -753,7 +796,7 @@ public class CharacterMain {
 
 
 
-    private static String getValue(String tag, Element element) {
+    private String getValue(String tag, Element element) {
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         String str;
@@ -766,7 +809,7 @@ public class CharacterMain {
         return str;
     }
 
-    private static boolean writeValue(String tag, String value, Element element){
+    private boolean writeValue(String tag, String value, Element element){
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         node.setTextContent(value);
@@ -785,8 +828,8 @@ public class CharacterMain {
         return true;
     }
     public Composite getMainComp() {
-		return mainComp;
-	}
+        return mainComp;
+    }
 
 
 }
