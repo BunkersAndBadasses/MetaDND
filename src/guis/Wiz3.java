@@ -11,6 +11,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -47,13 +49,15 @@ public class Wiz3 {
 	private List wisList;
 	private List chaList;
 
+	ArrayList<ArrayList<Button>> buttons;
+	
 	private int[] abilityScoresBefore;
 	private int[] abilityScoresAfter = new int[6];
 	private Label errorLabel;
 	private RaceEntity charRace;
 	private ClassEntity charClass;
-	private ClassEntity charSecClass;
-	private Label choiceLabel2;
+	//private ClassEntity charSecClass;
+	//private Label choiceLabel2;
 
 	public Wiz3(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
 			final Composite panel, Composite home, Composite homePanel, 
@@ -75,10 +79,11 @@ public class Wiz3 {
 		this.nextPage = wizPages.get(3);
 		this.wizPagesSize = wizPages.size();
 		abilityScoresBefore = abilityScoresIn;
-		choiceLabel2 = new Label(wiz3, SWT.NONE);
+		//choiceLabel2 = new Label(wiz3, SWT.NONE);
 		charRace = cw.getCharacter().getCharRace();
 		charClass = cw.getCharacter().getCharClass();
 		
+		buttons = new ArrayList<ArrayList<Button>>(6);
 
 		createPageContent();
 	}
@@ -87,213 +92,230 @@ public class Wiz3 {
 		Label wiz3Label = new Label(wiz3, SWT.NONE);
 		wiz3Label.setText("Apply Ability Scores");
 		wiz3Label.pack();
+		
+		////////// instantiate layout //////////
+		
+		GridLayout gl = new GridLayout(6, true);
+		
+		Composite inner = new Composite(wiz3, SWT.BORDER);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+
+		GridData gd;
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 6;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		////////// class/race label //////////
+		Label choiceLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 6;
+		choiceLabel.setLayoutData(gd);
+		////////// class/race label //////////
+
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 6;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		
+		
+		////////// strength //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label strLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		strLabel.setLayoutData(gd);
+		Composite strComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		strComp.setLayoutData(gd);
+		GridLayout strGL = new GridLayout(6, true);
+		strComp.setLayout(strGL);
+		buttons.add(createASButtons(strComp));
+		strComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// strength //////////
+		
+		////////// dexterity //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label dexLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		dexLabel.setLayoutData(gd);
+		Composite dexComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		dexComp.setLayoutData(gd);
+		GridLayout dexGL = new GridLayout(6, true);
+		dexComp.setLayout(dexGL);
+		buttons.add(createASButtons(dexComp));
+		dexComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// dexterity //////////
+		
+		////////// constitution //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label conLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		conLabel.setLayoutData(gd);
+		Composite conComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		conComp.setLayoutData(gd);
+		GridLayout conGL = new GridLayout(6, true);
+		conComp.setLayout(conGL);
+		buttons.add(createASButtons(conComp));
+		conComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// constitution //////////
+		
+		////////// intelligence //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label intLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		intLabel.setLayoutData(gd);
+		Composite intComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		intComp.setLayoutData(gd);
+		GridLayout intGL = new GridLayout(6, true);
+		intComp.setLayout(intGL);
+		buttons.add(createASButtons(intComp));
+		intComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// intelligence //////////
+		
+		////////// wisdom //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label wisLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wisLabel.setLayoutData(gd);
+		Composite wisComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		wisComp.setLayoutData(gd);
+		GridLayout wisGL = new GridLayout(6, true);
+		wisComp.setLayout(wisGL);
+		buttons.add(createASButtons(wisComp));
+		wisComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// wisdom //////////
+		
+		////////// charisma //////////
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		
+		Label chaLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		chaLabel.setLayoutData(gd);
+		Composite chaComp = new Composite(inner, SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		chaComp.setLayoutData(gd);
+		GridLayout chaGL = new GridLayout(6, true);
+		chaComp.setLayout(chaGL);
+		buttons.add(createASButtons(chaComp));
+		chaComp.layout();
+		
+		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		////////// charisma //////////
+		
+		////////// error //////////
+		// error label
+		errorLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 6;
+		errorLabel.setLayoutData(gd);
+		////////// error //////////
+		
+		////////// instantiate layout //////////
+
+
+		////////// button listeners //////////
+		for (int i = 0; i < buttons.size(); i++) {
+			for (int j = 0; j < buttons.get(i).size(); j++) {
+				buttons.get(i).get(j).addListener(SWT.Selection, new Listener() {
+					public void handleEvent(Event e) {
+						errorLabel.setVisible(false);
+						int index = 0;
+						// find index of selected button, reset empty rows
+						for (int j = 0; j < buttons.get(0).size(); j++) {
+							boolean all = true;
+							for (int i = 0; i < buttons.size(); i++) {
+								if (buttons.get(i).get(j).equals(e.widget)) {
+									index = j;
+								}
+								if (buttons.get(i).get(j).getSelection()) 
+									all = false;
+							}
+							if (all) {
+								for (int i = 0; i < buttons.size(); i++) {
+									buttons.get(i).get(j).setForeground(null);
+								}
+							}
+						}
+						// deselect and color red the row of the selected button
+						for (int i = 0; i < buttons.size(); i++) {
+							if (!buttons.get(i).get(index).equals(e.widget)) {
+								buttons.get(i).get(index).setSelection(false);
+								buttons.get(i).get(index).setForeground(wiz3.getDisplay().getSystemColor(SWT.COLOR_RED));
+							} else {
+								buttons.get(i).get(index).setForeground(null);
+							}
+						}
+					}
+				});
+			}
+		}
+		////////// button listeners //////////
+		
+		
+		////////// create content //////////
 
 		// labels for user choice of character race and class
-		Label choiceLabel1 = new Label(wiz3, SWT.NONE);
-		choiceLabel1.setText("You chose:");
-		choiceLabel1.setLocation(20, 75);
-		choiceLabel1.pack();
-		
-
-		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-		choiceLabel2.setFont(new Font(dev, new FontData("Arial", 18,
-				SWT.BOLD)));
-		choiceLabel2.setBounds(100, 70, 200, 50);
-		choiceLabel2.pack();
+		choiceLabel.setText("You chose: " + charRace.getName() + " " + charClass.getName());
+		choiceLabel.pack();
 		
 		// labels for ability scores
 
 		// strength label
-		Label strLabel = new Label(wiz3, SWT.NONE);
-		strLabel.setLocation(20, 150);
 		strLabel.setText("Strength");
 		strLabel.pack();
 		
 		// dexterity label
-		Label dexLabel = new Label(wiz3, SWT.NONE);
-		dexLabel.setLocation(WIDTH/6 + 20, 150);
 		dexLabel.setText("Dexterity");
 		dexLabel.pack();
 
 		// constitution label
-		Label conLabel = new Label(wiz3, SWT.NONE);
-		conLabel.setLocation(2*(WIDTH/6) + 20, 150);
 		conLabel.setText("Constitution");
 		conLabel.pack();
 
 		// intelligence label
-		Label intLabel = new Label(wiz3, SWT.NONE);
-		intLabel.setLocation(3*(WIDTH/6) + 20, 150);
 		intLabel.setText("Intelligence");
 		intLabel.pack();
 
 		// wisdom label
-		Label wisLabel = new Label(wiz3, SWT.NONE);
-		wisLabel.setLocation(4*(WIDTH/6) + 20, 150);
 		wisLabel.setText("Wisdom");
 		wisLabel.pack();
 
 		// charisma label
-		Label chaLabel = new Label(wiz3, SWT.NONE);
-		chaLabel.setLocation(5*(WIDTH/6) + 20, 150);
 		chaLabel.setText("Charisma");
 		chaLabel.pack();
-
 		
 		// error label
-		
-		errorLabel = new Label(wiz3, SWT.NONE);
-		errorLabel.setLocation(WIDTH/2 - 130, 360);
 		errorLabel.setForeground(new Color(dev, 255, 0, 0));
 		errorLabel.setText("You must select a value for each ability!");
 		errorLabel.setVisible(false);
 		errorLabel.pack();
-
-		
-		// ability score lists
-		
-		// strength list
-		strList = new List(wiz3, SWT.BORDER); 
-		strList.setBounds(35, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			strList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		strList.setBackground(new Color(dev, 85,200,120));
-		
-		// dexterity list
-		dexList = new List(wiz3, SWT.BORDER); 
-		dexList.setBounds((WIDTH/6) + 37, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			dexList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		dexList.setBackground(new Color(dev, 85,200,120));
-
-		// constitution list
-		conList = new List(wiz3, SWT.BORDER); 
-		conList.setBounds(2*(WIDTH/6) + 48, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			conList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		conList.setBackground(new Color(dev, 85,200,120));
-
-		// intelligence list
-		intList = new List(wiz3, SWT.BORDER); 
-		intList.setBounds(3*(WIDTH/6) + 45, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			intList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		intList.setBackground(new Color(dev, 85,200,120));
-
-		// wisdom list		
-		wisList = new List(wiz3, SWT.BORDER); 
-		wisList.setBounds(4*(WIDTH/6) + 35, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			wisList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		wisList.setBackground(new Color(dev, 85,200,120));
-
-		// charisma list
-		chaList = new List(wiz3, SWT.BORDER); 
-		chaList.setBounds(5*(WIDTH/6) + 37, 185, 27, 140);
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			chaList.add(Integer.toString(abilityScoresBefore[i]));
-		}
-		chaList.setBackground(new Color(dev, 85,200,120));
-
-		
-		// selection listeners for ability score lists
-		
-		// strength
-		strList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = strList.getSelection();
-		    	int index = strList.getSelectionIndex();
-		    	dexList.deselect(index);
-		    	conList.deselect(index);
-		    	intList.deselect(index);
-		    	wisList.deselect(index);
-		    	chaList.deselect(index);
-		    	abilityScoresAfter[0] = Integer.parseInt(items[0]);
-		    	
-		    }
-		});
-		
-		// dexterity
-		dexList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = dexList.getSelection();
-		    	int index = dexList.getSelectionIndex();
-		    	strList.deselect(index);
-		    	conList.deselect(index);
-		    	intList.deselect(index);
-		    	wisList.deselect(index);
-		    	chaList.deselect(index);
-		    	abilityScoresAfter[1] = Integer.parseInt(items[0]);
-		    }
-		});
-		
-		// constitution
-		conList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = conList.getSelection();
-		    	int index = conList.getSelectionIndex();
-		    	strList.deselect(index);
-		    	dexList.deselect(index);
-		    	intList.deselect(index);
-		    	wisList.deselect(index);
-		    	chaList.deselect(index);
-		    	abilityScoresAfter[2] = Integer.parseInt(items[0]);
-		    }
-		});
-		
-		// intelligence
-		intList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = intList.getSelection();
-		    	int index = intList.getSelectionIndex();
-		    	strList.deselect(index);
-		    	dexList.deselect(index);
-		    	conList.deselect(index);
-		    	wisList.deselect(index);
-		    	chaList.deselect(index);
-		    	abilityScoresAfter[3] = Integer.parseInt(items[0]);
-		    }
-		});
-		
-		// wisdom
-		wisList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = wisList.getSelection();
-		    	int index = wisList.getSelectionIndex();
-		    	strList.deselect(index);
-		    	dexList.deselect(index);
-		    	conList.deselect(index);
-		    	intList.deselect(index);
-		    	chaList.deselect(index);
-		    	abilityScoresAfter[4] = Integer.parseInt(items[0]);
-		    }
-		});
-		
-		// charisma
-		chaList.addListener(SWT.Selection, new Listener () {
-		    public void handleEvent (Event e) {
-		    	errorLabel.setVisible(false);
-		    	String[] items = chaList.getSelection();
-		    	int index = chaList.getSelectionIndex();
-		    	strList.deselect(index);
-		    	dexList.deselect(index);
-		    	conList.deselect(index);
-		    	intList.deselect(index);
-		    	wisList.deselect(index);
-		    	abilityScoresAfter[5] = Integer.parseInt(items[0]);
-		    }
-		});
-		
 		
 		// next button
 		Button wiz3NextButton = cw.createNextButton(wiz3);
@@ -302,55 +324,88 @@ public class Wiz3 {
 				// error checking - make sure each list has something selected
 				boolean error = false;
 				{
-					String[] selection = strList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(0).size(); i++) {
+						if (buttons.get(0).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(0).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else 
-						abilityScoresAfter[0] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[0] = value;
 				}
 				{
-					String[] selection = dexList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(1).size(); i++) {
+						if (buttons.get(1).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(1).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else 
-						abilityScoresAfter[1] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[1] = value;
 				}
 				{
-					String[] selection = conList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(2).size(); i++) {
+						if (buttons.get(2).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(2).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else 
-						abilityScoresAfter[2] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[2] = value;
 				}
 				{
-					String[] selection = intList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(3).size(); i++) {
+						if (buttons.get(3).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(3).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else
-						abilityScoresAfter[3] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[3] = value;
 				}
 				{
-					String[] selection = wisList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(4).size(); i++) {
+						if (buttons.get(4).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(4).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else 
-						abilityScoresAfter[4] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[4] = value;
 				}
 				{
-					String[] selection = chaList.getSelection();
-					if (selection.length == 0) {
-						errorLabel.setVisible(true);
+					int value = 0;
+					// find selected button, also checks if no button is selected in that row
+					for (int i = 0; i < buttons.get(5).size(); i++) {
+						if (buttons.get(5).get(i).getSelection()) {
+							value = Integer.parseInt(buttons.get(5).get(i).getText());
+						}
+					}
+					if (value == 0)
 						error = true;
-					} else 
-						abilityScoresAfter[5] = Integer.parseInt(selection[0]);
+					else 
+						abilityScoresAfter[5] = value;
 				}
 				
-				if (error) return;
+				if (error) {
+					errorLabel.setVisible(true);
+					return;
+				}
 				
 				// if all is good, save to character
 				
@@ -380,10 +435,8 @@ public class Wiz3 {
 			}
 		});
 
-
 		// back button
 		//Button wiz3BackButton = cw.createBackButton(wiz3, panel, layout);
-
 
 		// cancel button
 		Button wiz3CancelButton = cw.createCancelButton(wiz3, home, homePanel, homeLayout);
@@ -393,6 +446,9 @@ public class Wiz3 {
 					cw.reset();
 			}
 		});	
+		////////// create content //////////
+		
+		inner.layout();
 	}
 	
 	private void createNextPage() {
@@ -401,30 +457,42 @@ public class Wiz3 {
 				homePanel, layout, homeLayout, wizPages));
 	}
 	
-	public void updateCharRace() {
-		charRace = cw.getCharacter().getCharRace();
-		String text = charRace.getName() + " " + charClass.getName();
-		choiceLabel2.setText(text);
-		choiceLabel2.pack();
-	}
-	
-	public void updateCharClass() {
-		charClass = cw.getCharacter().getCharClass();
-		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-		choiceLabel2.pack();
-	}
-	
-	public void updateCharSecClass() {
-		charSecClass = cw.getCharacter().getCharSecClass();
-		if (charSecClass == null)
-			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-		else if (charSecClass.equals(""))
-			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-		else
-			choiceLabel2.setText(charRace.getName() + " " + charClass.getName() + "-" + charSecClass.getName());
-		choiceLabel2.pack();
-	}
+//	public void updateCharRace() {
+//		charRace = cw.getCharacter().getCharRace();
+//		String text = charRace.getName() + " " + charClass.getName();
+//		choiceLabel2.setText(text);
+//		choiceLabel2.pack();
+//	}
+//	
+//	public void updateCharClass() {
+//		charClass = cw.getCharacter().getCharClass();
+//		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
+//		choiceLabel2.pack();
+//	}
+//	
+//	public void updateCharSecClass() {
+//		charSecClass = cw.getCharacter().getCharSecClass();
+//		if (charSecClass == null)
+//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
+//		else if (charSecClass.equals(""))
+//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
+//		else
+//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName() + "-" + charSecClass.getName());
+//		choiceLabel2.pack();
+//	}
 
+	private ArrayList<Button> createASButtons(Composite c) {
+		ArrayList<Button> buttons = new ArrayList<Button>();
+		for (int i = 0; i < abilityScoresBefore.length; i++) {
+			GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+			Button button = new Button(c, SWT.RADIO);
+			button.setLayoutData(gd);
+			button.setText(Integer.toString(abilityScoresBefore[i]));
+			buttons.add(button);
+		}
+		return buttons;
+	}
+	
 	public Composite getWiz3() { return wiz3; }
 
 }
