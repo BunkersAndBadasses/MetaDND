@@ -80,6 +80,7 @@ public class CharacterWizard {
 	public CharacterWizard(Display d) {
 		display = d;
 		shell = new Shell(d);
+		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create New Character");
 		shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
 		character = new character();
