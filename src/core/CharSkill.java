@@ -97,4 +97,6 @@ public class CharSkill {
 	public boolean useUntrained() { return untrained; }
 	
 	public void setRank(int r) { rank = r ; }
+	
+	public void setMiscMod(int m) { miscMod = m; }
 }

@@ -30,7 +30,8 @@ public class LoadCharacter {
     private Document doc;
     private Element element;
     private String delims = "[/]+"; 
-    private String regex = "[?]+";
+    private String regex = "[;]+";
+    private String str;
 
     public LoadCharacter(String xmlLocation, character loadChar){
         try {
@@ -43,6 +44,7 @@ public class LoadCharacter {
             doc.getDocumentElement().normalize();
             String temp, name, description;
             String[] tempArr;
+            String[] tempMiniArr;
 
             NodeList nodes = doc.getElementsByTagName("Character");
 
@@ -52,121 +54,236 @@ public class LoadCharacter {
 
 
                 element = (Element) node;
-                
-                c.setExp(Integer.parseInt(getValue("EXP", element)));
-                c.setCharRace((RaceEntity) Main.gameState.races.get(getValue("Race", element)));
-                c.setAlignment(getValue("Alignment", element));
-                c.setDeity(getValue("Deity", element));
-                c.setSize(Integer.parseInt(getValue("Size", element)));
-                c.setAge(getValue("Age", element));
-                c.setGender(getValue("Gender", element));
+
+                str = getValue("Exp", element);
+                if (str.equals(" ")) { str = "0"; }
+                c.setExp(Integer.parseInt(str));
+
+                str = getValue("Race", element);
+                if (!str.equals(" ")) { 
+                    c.setCharRace((RaceEntity) Main.gameState.races.get(str));
+                }
+
+                str = getValue("Alignment", element);
+                if (!str.equals(" ")) { 
+                    c.setAlignment(str);
+                }
+
+                str = getValue("Deity", element);
+                if (!str.equals(" ")) { 
+                    c.setDeity(str);
+                }
+
+                str = getValue("Size", element);
+                if (str.equals(" ")) { str = "0"; }
+                c.setSize(Integer.parseInt(str));
+
+                str = getValue("Age", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setAge(str);
+
+                str = getValue("Gender", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setGender(str);
+
+                str = getValue("Height", element);
+                //if (str.equals(" ")) { str = "0"; }
                 c.setHeight(getValue("Height", element));
-                c.setWeight(getValue("Weight", element));
-                c.setEyes(getValue("Eyes", element));
-                c.setHair(getValue("Hair", element));
-                c.setSkin(getValue("Skin", element));
-                c.setDescription(getValue("Description", element));
-                
-                temp = getValue("SpecialAbilities", element);
-                tempArr = temp.split(delims);
-                for(int i = 0; i < tempArr.length; i ++){
-                    name = tempArr[i].split(regex)[0];
-                    description = tempArr[i].split(regex)[1];
-                    AbilityEntity ae = new AbilityEntity(name, description);
-                    c.addSpecialAbility(ae);
+
+                str = getValue("Weight", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setWeight(str);
+
+                str = getValue("Eyes", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setEyes(str);
+
+                str = getValue("Hair", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setHair(str);
+
+                str = getValue("Skin", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setSkin(str);
+
+                str = getValue("Description", element);
+                //if (str.equals(" ")) { str = "0"; }
+                c.setDescription(str);
+
+                str = getValue("SpecialAbilities", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    for(int i = 0; i < tempArr.length; i ++){
+                        name = tempArr[i].split(regex)[0];
+                        description = tempArr[i].split(regex)[1];
+                        AbilityEntity ae = new AbilityEntity(name, description);
+                        c.addSpecialAbility(ae);
+                    }
                 }
-                
-                temp = getValue("Spells", element);
-                tempArr = temp.split(delims);
-                for(int i = 0; i < tempArr.length; i ++) {
-                    c.addSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
+
+                str = getValue("Spells", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    for(int i = 0; i < tempArr.length; i ++) {
+                        c.addSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
+                    }
                 }
-                
-                getValue("PreparedSpells", element);
-                tempArr = temp.split(delims);
-                for(int i = 0; i < tempArr.length; i ++) {
-                    c.prepSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
+
+                str = getValue("PreparedSpells", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    for(int i = 0; i < tempArr.length; i ++) {
+                        c.prepSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
+                    }
                 }
-                String[] acString = getValue("AC", element).split(" + ");
+
+                String[] acString = getValue("AC", element).split(delims);
                 int[] ac = new int[acString.length];
                 for (int i = 0; i < acString.length; i++) {
-                	ac[i] = Integer.parseInt(acString[i]);
+                    ac[i] = Integer.parseInt(acString[i]);
                 }
                 c.setAC(ac);
-                String[] initString = getValue("Init", element).split(" + ");
+
+                String[] initString = getValue("Init", element).split(delims);
                 int[] init = new int[initString.length];
                 for (int i = 0; i < initString.length; i++) {
-                	init[i] = Integer.parseInt(initString[i]);
+                    init[i] = Integer.parseInt(initString[i]);
                 }
                 c.setInitMod(init);
-                String[] fortString = getValue("Fortitude", element).split(" + ");
+
+                String[] fortString = getValue("Fortitude", element).split(delims);
                 int[] fort = new int[fortString.length];
                 for (int i = 0; i < fortString.length; i++) {
-                	fort[i] = Integer.parseInt(fortString[i]);
+                    fort[i] = Integer.parseInt(fortString[i]);
                 }
-                String[] reflexString = getValue("Reflex", element).split(" + ");
+
+                String[] reflexString = getValue("Reflex", element).split(delims);
                 int[] reflex = new int[reflexString.length];
                 for (int i = 0; i < reflexString.length; i++) {
-                	reflex[i] = Integer.parseInt(reflexString[i]);
+                    reflex[i] = Integer.parseInt(reflexString[i]);
                 }
-                String[] willString = getValue("Will", element).split(" + ");
+
+                String[] willString = getValue("Will", element).split(delims);
                 int[] will = new int[willString.length];
                 for (int i = 0; i < willString.length; i++) {
-                	will[i] = Integer.parseInt(willString[i]);
+                    will[i] = Integer.parseInt(willString[i]);
                 }
-                c.setSavingThrows(fort, reflex, will);
-                c.setBaseAttackBonus(Integer.parseInt(getValue("BaseAttack", element)));//
-                c.setSpellResistance(Integer.parseInt(getValue("SpellResistance", element)));
-                String[] grappleString = getValue("Grapple", element).split(" + ");
+                c.setSavingThrows(fort, reflex, will); // TODO
+
+                str = getValue("BaseAttack", element);
+                if (!str.equals(" ")) { 
+                    c.setBaseAttackBonus(Integer.parseInt(str));
+                }
+
+                str = getValue("SpellResistance", element);
+                if (!str.equals(" ")) {
+                    c.setSpellResistance(Integer.parseInt(str));
+                }
+
+
+                String[] grappleString = getValue("Grapple", element).split(delims);
                 int[] grapple = new int[grappleString.length];
                 for (int i = 0; i < grappleString.length; i++) {
-                	grapple[i] = Integer.parseInt(grappleString[i]);
+                    grapple[i] = Integer.parseInt(grappleString[i]);
                 }
                 c.setGrappleMod(grapple);
-                c.setSpeed(Integer.parseInt(getValue("Speed", element)));
-                c.setDamageReduction(Integer.parseInt(getValue("DamageReduction", element)));
-                
-                temp = getValue("ClericDomains", element);
-                tempArr = temp.split(delims);
-                c.setClericDomains(tempArr);
-                
-                c.setDruidAnimalCompanion(getValue("DruidCompanion", element));
-                c.setRangerFavoredEnemy(getValue("RangerFavoredEnemy", element));
-                c.setFamiliar(getValue("Familiar", element));
-                c.setWizardSpecialtySchool(getValue("WizardSpecialty", element));
-                
-                temp = getValue("WizardProhibitedSchools", element);
-                tempArr= temp.split(delims);
-                c.setWizardProhibitedSchools(tempArr);
 
+                str = getValue("Speed", element);
+                if (str.equals(" ")) { str = "30"; }
+                c.setSpeed(Integer.parseInt(str));
 
-                c.setImage(getValue("Image", element));
-                c.setName(getValue("Name", element));
-                c.setLevel(Integer.parseInt(getValue("Level", element)));
-                temp = getValue("Class", element);
-                c.setCharClass((ClassEntity) Main.gameState.classes.get(temp));
-                c.setSecLevel(Integer.parseInt(getValue("SecLevel", element)));
-                temp = getValue("SecClass", element);
-                c.setCharSecClass((ClassEntity) Main.gameState.classes.get(temp));
+                str = getValue("DamageReduction", element);
+                if (str.equals(" ")) { str = "0"; }
+                c.setDamageReduction(Integer.parseInt(str));
 
+                str = getValue("ClericDomains", element);
+                if (!str.equals(" ")) { 
+                    tempArr = str.split(delims);
+                    c.setClericDomains(tempArr);
+                }
+
+                str = getValue("DruidCompanion", element);
+                if (!str.equals(" ")) {
+                    c.setDruidAnimalCompanion(str);
+                }
+
+                str = getValue("RangerFavoredEnemy", element);
+                if (!str.equals(" ")) {
+                    c.setRangerFavoredEnemy(str);
+                }
+
+                str = getValue("Familiar", element);
+                if (!str.equals(" ")) {
+                    c.setFamiliar(str);
+                }
+
+                str = getValue("WizardSpecialty", element);
+                if (!str.equals(" ")) {
+                    c.setWizardSpecialtySchool(str);
+                }
+
+                str = getValue("WizardProhibitedSchools", element);
+                if (!str.equals(" ")) {
+                    tempArr= str.split(delims);
+                    c.setWizardProhibitedSchools(tempArr);
+                }
+
+                str = getValue("Image", element);
+                c.setImage(str);
+
+                str = getValue("Name", element);
+                c.setName(str);
+
+                str = getValue("Level", element);
+                if (!str.equals(" ")) { str = "1"; }
+                c.setLevel(Integer.parseInt(str));
+
+                str = getValue("Class", element);
+                if (!str.equals(" ")) {
+                    c.setCharClass((ClassEntity) Main.gameState.classes.get(str));
+                }
+
+                str = getValue("SecLevel", element);
+                if (!str.equals(" ")) { str = "0"; }
+                c.setSecLevel(Integer.parseInt(str));
+
+                str = getValue("SecClass", element);
+                if (!str.equals(" ")) {
+                    c.setCharSecClass((ClassEntity) Main.gameState.classes.get(str));
+                }
+
+                // Should be fine
                 c.setAbilityScores(Integer.parseInt(getValue("STR", element)),
                         Integer.parseInt(getValue("DEX", element)),
                         Integer.parseInt(getValue("CON", element)),
                         Integer.parseInt(getValue("INT", element)),
                         Integer.parseInt(getValue("WIS", element)),
                         Integer.parseInt(getValue("CHA", element)));
+
+
                 c.setHitPoints(Integer.parseInt(getValue("HP", element)));
-                c.setSpeed(Integer.parseInt(getValue("Speed", element)));
 
-                temp = getValue("PrimaryWeapon", element);
-                c.setPrimaryWeapon((WeaponEntity) Main.gameState.weapons.get(temp));
-                temp =  getValue("SecondaryWeapon", element);
-                c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(temp));
+                str = getValue("PrimaryWeapon", element);
+                if (!str.equals(" ")) {
+                    c.setPrimaryWeapon((WeaponEntity) Main.gameState.weapons.get(str));
+                }
 
-                temp = getValue("Armor", element);
-                c.setCurrArmor((ArmorEntity) Main.gameState.armor.get(temp));
-                temp  = getValue("Shield", element);
-                c.setCurrShield((ArmorEntity) Main.gameState.armor.get(temp));
+                str = getValue("SecondaryWeapon", element);
+                if (!str.equals(" ")) {
+                    c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(str));
+                }
+
+                str = getValue("Armor", element);
+                if (!str.equals(" ")) {
+                    c.setCurrArmor((ItemEntity) Main.gameState.armor.get(str));
+                }
+
+                str = getValue("Shield", element);
+                if (!str.equals(" ")) {
+                    c.setCurrShield((ItemEntity) Main.gameState.armor.get(str));
+                }
+
+
                 c.setNotes(getValue("Notes", element));
                 c.setDamageTaken(Integer.parseInt(getValue("DamageTaken", element)));
                 c.setPP(Integer.parseInt(getValue("PP", element)));
@@ -174,79 +291,98 @@ public class LoadCharacter {
                 c.setSP(Integer.parseInt(getValue("SP", element)));
                 c.setCP(Integer.parseInt(getValue("CP", element)));
 
-                temp = getValue("Items", element);
-                tempArr = temp.split(delims);
-                // itemname;count
-                for(int i = 0; i < tempArr.length; i++){
-                    //temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                	String itemName = tempArr[i].substring(0, tempArr[i].indexOf(';'));
-                	ItemEntity item = (ItemEntity)Main.gameState.items.get(itemName);
-                	//TODO here 
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    // TODO ^^ cannot do this, some items have digits in their names, use indexOf(';') instead
-                    CharItem ci = new CharItem((ItemEntity) Main.gameState.items.get(temp), count);
-                    c.addItem(ci);
+
+                str = getValue("Items", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // itemname;count
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        String itemName = tempMiniArr[0];
+                        ItemEntity item = (ItemEntity)Main.gameState.items.get(itemName);
+                        int count = Integer.parseInt(tempMiniArr[1]);
+                        CharItem ci = new CharItem(item, count);
+                        c.addItem(ci);
+                    }
                 }
 
+                // Going to assume this is good
                 temp = getValue("Languages", element);
                 c.setLanguages(new ArrayList<String>(Arrays.asList(temp.split(delims))));
 
-                temp = getValue("Weapons", element);
-                tempArr = temp.split(delims);
-                // weaponname;quantity
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(temp));
-                    CharItem ci = new CharItem(we, count);
-                    c.addWeapon(ci);
+                str = getValue("Weapons", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // weaponname;quantity
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int count = Integer.parseInt(tempMiniArr[1]); 
+                        WeaponEntity we = (WeaponEntity) (Main.gameState.weapons.get(temp));
+                        CharItem ci = new CharItem(we, count);
+                        c.addWeapon(ci);
+                    }
                 }
 
-                temp = getValue("Armors", element);
-                tempArr = temp.split(delims);
-                // armorname;quantity
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp)); // some in armor list are weapons
-                    CharItem ci = new CharItem(ae,count);
-                    c.addArmor(ci);
+                str = getValue("Armors", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // armorname;quantity
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int count = Integer.parseInt(tempMiniArr[1]); 
+                        ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp)); // some in armor list are weapons
+                        CharItem ci = new CharItem(ae,count);
+                        c.addArmor(ci);
+                    }
                 }
 
-                temp = getValue("Skills", element);
-                tempArr = temp.split(delims);
-                // skillname:abilitymod+miscmod+rank
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z:+]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
-                    cs.setRank(count);
-                    // TODO this needs to change. ability mod and misc mod need to be saved to char skill
+                str = getValue("Skills", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // skillname:abilitymod+miscmod+rank
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int rank = Integer.parseInt(tempMiniArr[3]); 
+                        int miscMod = Integer.parseInt(tempMiniArr[2]);
+                        CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
+                        cs.setRank(rank);
+                        cs.setMiscMod(miscMod);
+                    }
                 }
 
-                temp = getValue("Shields", element);
-                tempArr = temp.split(delims);
-                // shieldname;quantity
-                for(int i = 0; i < tempArr.length; i++){
-                    temp = tempArr[i].replaceAll("[^a-zA-Z;]", "");
-                    int count = Integer.parseInt(tempArr[i].replaceAll("[^\\d.]", "")); 
-                    ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp));  // some in armor list are weapons
-                    CharItem ci = new CharItem(ae, count);
-                    c.addShield(ci);
+                str = getValue("Shields", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // shieldname;quantity
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        temp = tempMiniArr[0];
+                        int count = Integer.parseInt(tempMiniArr[1]); 
+                        ItemEntity ae = (ItemEntity) (Main.gameState.armor.get(temp));  // some in armor list are weapons
+                        CharItem ci = new CharItem(ae, count);
+                        c.addShield(ci);
+                    }
                 }
 
-                temp = getValue("Feats", element);
-                tempArr = temp.split(delims);
-                // featName:special;count
-                for(int i = 0; i < tempArr.length; i++){
-                	String featName = tempArr[i].substring(0, tempArr[i].indexOf(':'));
-                	FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
-                	int count = Integer.parseInt(tempArr[i].substring(tempArr[i].indexOf(';')+1));
-                	if (tempArr[i].indexOf(':')!= -1) {
-                		String special = tempArr[i].substring(tempArr[i].indexOf(':')+1, tempArr[i].indexOf(';'));
-                		c.addFeat(new CharFeat(feat, special, count));
-                	} else
-                		c.addFeat(new CharFeat(feat, count));
+                str = getValue("Feats", element);
+                if (!str.equals(" ")) {
+                    tempArr = str.split(delims);
+                    // featName;special;count
+                    for(int i = 0; i < tempArr.length; i++){
+                        tempMiniArr = tempArr[i].split(regex);
+                        int size = tempMiniArr.length;
+                        String featName = tempMiniArr[0];
+                        FeatEntity feat = (FeatEntity)Main.gameState.feats.get(featName);
+                        int count = Integer.parseInt(tempMiniArr[size-1]);
+                        if (size == 3) {
+                            String special = tempMiniArr[1];
+                            c.addFeat(new CharFeat(feat, special, count));
+                        } else
+                            c.addFeat(new CharFeat(feat, count));
+                    }
                 }
 
             }

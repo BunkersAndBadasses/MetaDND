@@ -6,7 +6,7 @@ import entity.*;
 public class character {	
 	
 	//////////////// VARIABLES /////////////////
-	private String name = "<empty>";
+	private String name = " ";
 	private int level = 1;
 	private int exp = 0;
 	private ClassEntity secClass;//
@@ -14,17 +14,17 @@ public class character {
 	private ClassEntity charClass = null;
 	private RaceEntity charRace = null;	
 	private ClassEntity charSecClass = null;
-	private String alignment = "<empty>";
-	private String deity = "<empty>";
+	private String alignment = " ";
+	private String deity = " ";
 	private int size = 0;
-	private String age = "<empty>"; 
-	private String gender = "<empty>";
-	private String height = "<empty>"; 
-	private String weight = "<empty>"; 
-	private String eyes = "<empty>"; 
-	private String hair = "<empty>"; 
-	private String skin = "<empty>"; 
-	private String description = "<empty>"; 
+	private String age = " "; 
+	private String gender = " ";
+	private String height = " "; 
+	private String weight = " "; 
+	private String eyes = " "; 
+	private String hair = " "; 
+	private String skin = " "; 
+	private String description = " "; 
 	private int[] abilityScores = {0,0,0,0,0,0};							// STR, DEX, CON, INT, WIS, CHA
 	private int hp = 0; 													// hitpoints
 	private int dmg = 0;
@@ -43,7 +43,7 @@ public class character {
 	private ArrayList<CharItem> weapons = new ArrayList<CharItem>();
 	private ArrayList<CharItem> armor = new ArrayList<CharItem>();
 	private ArrayList<CharItem> shields = new ArrayList<CharItem>();
-	private String notes = "<empty>";
+	private String notes = " ";
 	private ItemEntity currArmor;//
 	private ItemEntity currShield;//
 	private WeaponEntity priWeapon;//
@@ -480,11 +480,11 @@ public class character {
 		s += "Level: " + level + "\n";
 		s += "Exp: " + exp + "\n";
 		if (charRace == null)
-			s += "Race: <empty>\n";
+			s += "Race:  \n";
 		else
 			s += "Race: " + charRace.getName()  + "\n";
 		if (charClass == null)
-			s += "Class: <empty>\n";
+			s += "Class:  \n";
 		else
 			s += "Class: " + charClass.getName() + "\n";
 		if (clericDomains != null) {
@@ -545,69 +545,69 @@ public class character {
 			s += "\t" + skills.get(i).getSkill().getName() + ": " + skills.get(i).getRank() + "\n";
 		s += "Languages: \n";
 		if (languages.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < languages.size(); i++)
 			s += "\t" + languages.get(i) + "\n";
 		s += "Gold: " + gp + "\n";
 		s += "Feats: " + "\n";
 		if (feats.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < feats.size(); i++) {
 			s += "\t" + feats.get(i) + "\n";
 		}
 		s += "Special Abilities: " + "\n";
 		if (specialAbilities.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < specialAbilities.size(); i++)
 			s += "\t" + specialAbilities.get(i).getName() + "\n";
 		s += "Spells: " + "\n";
 		if (spells.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < spells.size(); i++)
 			s += "\t" + spells.get(i).getName() + "\n";
 		s += "Prepared Spells: " + "\n";
 		if (prepSpells.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < prepSpells.size(); i++)
 			s += "\t" + prepSpells.get(i).getName() + "\n";
 		s += "Items: " + "\n";
 		if (items.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < items.size(); i++)
 			s += "\t" + items.get(i).getCount() + " x " + items.get(i).getItem().getName() + "\n";
 		s += "Weapons: " + "\n";
 		if (weapons.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < weapons.size(); i++)
 			s += "\t" + weapons.get(i).getCount() + " x " + weapons.get(i).getItem().getName() + "\n";
 		s += "Primary Weapon: ";
 		if (priWeapon == null)
-			s += "<empty>\n";
+			s += " \n";
 		else 
 			s += priWeapon.getName() + "\n";
 		s += "Secondary Weapon: ";
 		if (secWeapon == null)
-			s += "<empty>\n";
+			s += " \n";
 		else 
 			s += secWeapon.getName() + "\n";
 		s += "Armor: " + "\n";
 		if (armor.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < armor.size(); i++)
 			s += "\t" + armor.get(i).getCount() + " x " + armor.get(i).getItem().getName() + "\n";
 		s += "Current Armor: ";
 		if (currArmor == null)
-			s += "<empty>\n";
+			s += " \n";
 		else 
 			s += currArmor.getName() + "\n";
 		s += "Shields: " + "\n";
 		if (shields.size() == 0)
-			s += "\t<empty>\n";
+			s += "\t \n";
 		for (int i = 0; i < shields.size(); i++)
 			s += "\t" + shields.get(i).getCount() + " x " + shields.get(i).getItem().getName() + "\n";
 		s += "Current Shield: ";
 		if (currShield == null)
-			s += "<empty>\n";
+			s += " \n";
 		else 
 			s += currShield.getName() + "\n";
 		s += "Notes: " + notes + "\n";

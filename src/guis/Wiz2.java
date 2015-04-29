@@ -12,6 +12,7 @@ import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -54,7 +55,7 @@ public class Wiz2 {
 	private Label badSearch;
 	private Combo raceDropDown;
 	private Combo classDropDown;
-	private Combo secClassDropDown;
+	//private Combo secClassDropDown;
 	private boolean finished;
 	private boolean popUpOpen = false;
 	
@@ -87,25 +88,125 @@ public class Wiz2 {
 		Label wiz2Label = new Label(wiz2, SWT.NONE);
 		wiz2Label.setText("Select Class and Race");
 		wiz2Label.pack();
+		
+		
+		// initialize layout
+		
+		GridLayout gl = new GridLayout(4, true);
+		
+		Composite inner = new Composite(wiz2, SWT.NONE);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+
+		GridData gd;
+		
+		//////////////////
+		// placeholder
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
+		gd.horizontalSpan = 4;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		//////////////////
+		
+		//////////////////
+		// placeholder
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
+		gd.horizontalSpan = 4;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		//////////////////
+		
+		//////////////////
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		
+		// race label
+		Label raceLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		raceLabel.setLayoutData(gd);
+
+		// class label
+		Label classLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		classLabel.setLayoutData(gd);
+
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		//////////////////
+		
+		//////////////////
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+
+		// race drop down
+		raceDropDown = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		raceDropDown.setLayoutData(gd);
+		
+		// class drop down
+		classDropDown = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		classDropDown.setLayoutData(gd);
+		
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		//////////////////
+		
+		//////////////////
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+
+		// race details button
+		Button raceSearchButton = createSearchButton(inner);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		raceSearchButton.setLayoutData(gd);
+		
+		// class details button
+		Button classSearchButton = createSearchButton(inner);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		classSearchButton.setLayoutData(gd);
+
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+		//////////////////
+		
+		
+		// search error
+		badSearch = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 4;
+		badSearch.setLayoutData(gd);
+		
+		// race error
+		badRaceSelect = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 4;
+		badRaceSelect.setLayoutData(gd);
+		
+		// class error
+		badClassSelect = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 4;
+		badClassSelect.setLayoutData(gd);
+		
+		
+		// create content
+		
 
 		// labels for race, class, and secondary class fields
 		// race label
-		Label raceLabel = new Label(wiz2, SWT.NONE);
 		raceLabel.setText("Race: ");
-		raceLabel.setLocation(130,150);
+		//raceLabel.setLocation(130,150);
 		raceLabel.pack();
 
 		// class label
-		Label classLabel = new Label(wiz2, SWT.NONE);
 		classLabel.setText("Class: ");
-		classLabel.setLocation(WIDTH/2 - 40,150);
+		//classLabel.setLocation(WIDTH/2 - 40,150);
 		classLabel.pack();
 
-		// secondary class label
-		Label secClassLabel = new Label(wiz2, SWT.NONE);
-		secClassLabel.setText("Secondary Class: ");
-		secClassLabel.setLocation(WIDTH-230,150);
-		secClassLabel.pack();
+//		// secondary class label
+//		Label secClassLabel = new Label(wiz2, SWT.NONE);
+//		secClassLabel.setText("Secondary Class: ");
+//		secClassLabel.setLocation(WIDTH-230,150);
+//		secClassLabel.pack();
 
 		// get races from references
 		Collection<DNDEntity> racesCol = Main.gameState.races.values();
@@ -124,72 +225,66 @@ public class Wiz2 {
 		}
 
 		// race drop down menu
-		raceDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
 		for (int i = 0; i < races.size(); i++) {
 			raceDropDown.add(races.get(i).getName());
 		}
-		raceDropDown.setLocation(100,HEIGHT/2 - 75);
+		//raceDropDown.setLocation(100,HEIGHT/2 - 75);
 		raceDropDown.pack();
 
 		// class drop down menu
-		classDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
 		for (int i = 0; i < classes.size(); i++) {
 			classDropDown.add(classes.get(i).getName());
 		}
-		classDropDown.setLocation(WIDTH/2 - 70,HEIGHT/2 - 75);
-		classDropDown.addListener(SWT.Selection, new Listener () {
-			public void handleEvent(Event event) {
-				int index = classDropDown.getSelectionIndex();
-				secClassDropDown.deselect(index + 1);
-			}
-		});
+		//classDropDown.setLocation(WIDTH/2 - 70,HEIGHT/2 - 75);
+//		classDropDown.addListener(SWT.Selection, new Listener () {
+//			public void handleEvent(Event event) {
+//				int index = classDropDown.getSelectionIndex();
+//				secClassDropDown.deselect(index + 1);
+//			}
+//		});
 		classDropDown.pack();
 
-		// secondary class drop down menu
-		secClassDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
-		secClassDropDown.add("");
-		for (int i = 0; i < classes.size(); i++) {
-			secClassDropDown.add(classes.get(i).getName());
-		}
-		secClassDropDown.setLocation(WIDTH-225,HEIGHT/2 - 75);
-		secClassDropDown.addListener(SWT.Selection, new Listener () {
-			public void handleEvent(Event event) {
-				int index = secClassDropDown.getSelectionIndex();
-				if (index == 0)
-					return;
-				classDropDown.deselect(index - 1);
-			}
-		});
-		secClassDropDown.pack();
-		secClassDropDown.setEnabled(false);
+//		// secondary class drop down menu
+//		secClassDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
+//		secClassDropDown.add("");
+//		for (int i = 0; i < classes.size(); i++) {
+//			secClassDropDown.add(classes.get(i).getName());
+//		}
+//		secClassDropDown.setLocation(WIDTH-225,HEIGHT/2 - 75);
+//		secClassDropDown.addListener(SWT.Selection, new Listener () {
+//			public void handleEvent(Event event) {
+//				int index = secClassDropDown.getSelectionIndex();
+//				if (index == 0)
+//					return;
+//				classDropDown.deselect(index - 1);
+//			}
+//		});
+//		secClassDropDown.pack();
+//		secClassDropDown.setEnabled(false);
 
 
 		// error handling
 		// this appears when an item is not selected and search is clicked
-		badSearch = new Label(wiz2, SWT.NONE);
 		badSearch.setForeground(new Color(dev,255,0,0));
-		badSearch.setBounds(WIDTH/2 - 117,HEIGHT/2 + 70,234,30);
+		//badSearch.setBounds(WIDTH/2 - 117,HEIGHT/2 + 70,234,30);
 		badSearch.setVisible(false);
 		badSearch.setText("you must select an item to search!");
 
 		// this appears when a race is not selected
-		badRaceSelect = new Label(wiz2, SWT.NONE);
 		badRaceSelect.setForeground(new Color(dev,255,0,0));
-		badRaceSelect.setBounds(WIDTH/2 - 80,HEIGHT/2 + 105,160,30);
+		//badRaceSelect.setBounds(WIDTH/2 - 80,HEIGHT/2 + 105,160,30);
 		badRaceSelect.setVisible(false);
 		badRaceSelect.setText("you must select a race!");
 
 		// this appears when a class is not selected
-		badClassSelect = new Label(wiz2, SWT.NONE);
 		badClassSelect.setForeground(new Color(dev,255,0,0));
-		badClassSelect.setBounds(WIDTH/2 -80,HEIGHT/2 + 140,160,30);
+		//badClassSelect.setBounds(WIDTH/2 -80,HEIGHT/2 + 140,160,30);
 		badClassSelect.setVisible(false);
 		badClassSelect.setText("you must select a class!");
 
 		
 		// search buttons - searches references using selection in drop down 
-		Button raceSearchButton = createSearchButton(wiz2);
-		raceSearchButton.setLocation(106, HEIGHT/2 - 30);
+		//raceSearchButton.setLocation(106, HEIGHT/2 - 30);
 		raceSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (raceDropDown.getText().equals("")) {
@@ -204,8 +299,7 @@ public class Wiz2 {
 			}
 		});
 
-		Button classSearchButton = createSearchButton(wiz2);
-		classSearchButton.setLocation(WIDTH/2 - 58, HEIGHT/2 - 30);
+		//classSearchButton.setLocation(WIDTH/2 - 58, HEIGHT/2 - 30);
 		classSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (classDropDown.getText().equals("")) {
@@ -219,23 +313,25 @@ public class Wiz2 {
 				}
 			}
 		});
+		
+		inner.layout();
 
-		Button secClassSearchButton = createSearchButton(wiz2);
-		secClassSearchButton.setLocation(WIDTH - 213, HEIGHT/2 - 30);
-		secClassSearchButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (secClassDropDown.getText().equals("")) {
-					// nothing is selected to be searched - display error
-					badSearch.setVisible(true);
-				} else {
-					badSearch.setVisible(false);
-					// launch search
-					DNDEntity search = Main.gameState.classes.get(secClassDropDown.getText());
-					search.toTooltipWindow();
-				}
-			}
-		});	
-		secClassSearchButton.setEnabled(false);
+//		Button secClassSearchButton = createSearchButton(wiz2);
+//		secClassSearchButton.setLocation(WIDTH - 213, HEIGHT/2 - 30);
+//		secClassSearchButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				if (secClassDropDown.getText().equals("")) {
+//					// nothing is selected to be searched - display error
+//					badSearch.setVisible(true);
+//				} else {
+//					badSearch.setVisible(false);
+//					// launch search
+//					DNDEntity search = Main.gameState.classes.get(secClassDropDown.getText());
+//					search.toTooltipWindow();
+//				}
+//			}
+//		});	
+//		secClassSearchButton.setEnabled(false);
 
 		/*
 		// add custom buttons - launches respective wizard to add new item
@@ -315,11 +411,11 @@ public class Wiz2 {
 				// set class
 				character.setCharClass(classes.get(classDropDown.getSelectionIndex()));
 				// set second class (if any)
-				int secClassIndex = secClassDropDown.getSelectionIndex();
-				if (secClassIndex < 1)
+//				int secClassIndex = secClassDropDown.getSelectionIndex();
+//				if (secClassIndex < 1)
 					character.setCharSecClass(null);
-				else 
-					character.setCharSecClass(classes.get(secClassIndex));
+//				else 
+//					character.setCharSecClass(classes.get(secClassIndex));
 				// set size
 				character.setSize(character.getCharRace().getSize());
 				// set size
@@ -382,18 +478,18 @@ public class Wiz2 {
 		});
 	}
 
-		/**
-		 * creates a 'search' button. does not set location or add listener.
-		 * literally only creates a button with a specific size with the text set 
-		 * to "Search"
-		 * @return
-		 */
-		private Button createSearchButton(Composite c) {
-			Button searchButton = new Button(c, SWT.PUSH);
-			searchButton.setText("Details");
-			searchButton.setSize(80,30);
-			return searchButton;
-		}
+	/**
+	 * creates a 'search' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Search"
+	 * @return
+	 */
+	private Button createSearchButton(Composite c) {
+		Button searchButton = new Button(c, SWT.PUSH);
+		searchButton.setText("Details");
+		searchButton.setSize(80,30);
+		return searchButton;
+	}
 	//
 	//	/**
 	//	 * creates a 'add custom' button. does not set location or add listener.
@@ -421,6 +517,7 @@ public class Wiz2 {
 		// create shell
 		Display display = wiz2.getDisplay();
 		classExtrasShell = new Shell(display);
+		classExtrasShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		classExtrasShell.setText("Class Extras");
 		GridLayout gridLayout = new GridLayout(2, true);
 		classExtrasShell.setLayout(gridLayout);

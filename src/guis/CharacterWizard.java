@@ -80,6 +80,7 @@ public class CharacterWizard {
 	public CharacterWizard(Display d) {
 		display = d;
 		shell = new Shell(d);
+		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create New Character");
 		shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
 		character = new character();
@@ -331,11 +332,6 @@ public class CharacterWizard {
 		character.setCharRace((RaceEntity) racecol.toArray()[randomgene.GetRandomInteger(0, racecol.size()-1)]);
 		Collection<DNDEntity> classcol = Main.gameState.classes.values();
 		character.setCharClass((ClassEntity) classcol.toArray()[randomgene.GetRandomInteger(0, classcol.size()-1)]);
-		//Alignment
-		String[] Alignments = {"Lawful Good", "Lawful Neutral", "Lawful Evil", 
-				"Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", 
-				"Chaotic Neutral", "Chaotic Evil"};
-		character.setAlignment(Alignments[randomgene.GetRandomInteger(0, Alignments.length - 1)]);
 		//Deity
 		String[] deities = { 
 				"Boccob(N): god of magic", 
@@ -361,6 +357,13 @@ public class CharacterWizard {
 		{
 		character.setDeity(deities[randomgene.GetRandomInteger(0, deities.length - 1)]);
 		}
+		//Alignment
+				String[] Alignments = {"Lawful Good", "Lawful Neutral", "Lawful Evil", 
+						"Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", 
+						"Chaotic Neutral", "Chaotic Evil"};
+				character.setAlignment(Alignments[randomgene.GetRandomInteger(0, Alignments.length - 1)]);
+				//TODO add consistency with deity
+
 		//Size
 		character.setSize(character.getCharRace().getSize());
 		//Age
@@ -655,6 +658,7 @@ public class CharacterWizard {
 					}
 					else if(namebox.getText().length() > 200 ){
 						//TODO ADD a error message box
+						//TODO Add check for non-alphabatic word
 						final Shell saveNameError = new Shell(display);
 						saveNameError.setText("Character Name Error");
 						//saveName.setSize(300, 200);

@@ -1,9 +1,18 @@
 package core;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -20,12 +29,14 @@ public class SaveCharacter {
     private static File stocks;
     private static Document element;
     private static character c = Main.gameState.currentlyLoadedCharacter;
-    private Element ele;
     private String temp;
-    private DocumentBuilderFactory dbFactory;
-    private DocumentBuilder dBuilder;
     String empty; 
     int mt;
+    String fo = "";
+    private DocumentBuilderFactory dbFactory;
+    private DocumentBuilder dBuilder;
+    private File toWrite;
+    private BufferedWriter bw;
 
 
 
@@ -33,13 +44,23 @@ public class SaveCharacter {
         try {
             // New character file
             if (New) {
-                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                fo += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Character>\n";
 
-                // root elements
-                doc = docBuilder.newDocument();
-                ele = doc.createElement("Character");
-                doc.appendChild(ele);
+                String charName = c.getName().replaceAll("[^A-Za-z0-9]", "");
+                try{
+                    File CHARACTER = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character");
+                    CHARACTER.mkdir();
+                    File CHARDIR = new File(System.getProperty("user.dir") + "//" + "User Data" + "//" + "Character" + "//DND" + charName);
+                    CHARDIR.mkdir();
+                    toWrite = new File(CHARACTER.getPath() + "//DND" + charName + "//DND" + charName +".xml");
+                    FileOutputStream fos = new FileOutputStream(toWrite);
+                    
+                    bw = new BufferedWriter(new OutputStreamWriter(fos));
+                    
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                bw.write(fo);
 
                 try {
                     empty  = c.getName();
@@ -54,7 +75,7 @@ public class SaveCharacter {
                 try {
                     mt  = c.getExp();
                 } catch (NullPointerException npe) { mt = 0; }
-                appendValue("EXP", mt);
+                appendValue("Exp", mt);
 
                 try {
                     empty  = c.getCharRace().getName();
@@ -135,7 +156,8 @@ public class SaveCharacter {
                 if (mt != 0) {
                     temp = "";
                     for(int i = 0; i < c.getSpecialAbilities().size(); i++){
-                        temp += c.getSpecialAbilities().get(i).getName() + "/";
+                        temp += c.getSpecialAbilities().get(i).getName() + ";"
+                                + c.getSpecialAbilities().get(i).getDescription() + "/";
                     }
                 }
                 appendValue("SpecialAbilities", temp);
@@ -236,39 +258,44 @@ public class SaveCharacter {
 
                 try {
                     empty  = c.getDruidAnimalCompanion();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("DruidCompanion", empty);
 
                 try {
                     empty  = c.getRangerFavoredEnemy();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("RangerFavoredEnemy", empty);
 
                 try {
                     empty  = c.getFamiliar();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Familiar", empty);
 
                 try {
                     empty  = c.getWizardSpecialtySchool();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("WizardSpecialty", empty);
 
                 try {
                     empty  = "";
                     for(int i = 0; i < c.getWizardProhibitedSchools().length; i++){
-                        temp += c.getWizardProhibitedSchools()[i]+ "/";
+                        empty += c.getWizardProhibitedSchools()[i]+ "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("WizardProhibitedSchools", empty);
 
                 try {
                     empty  = c.getImage();
+                    if(empty == null) { empty = " "; }
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Image", empty);
 
                 try {
-                    empty  = c.getClass().getName();
+                    empty  = c.getCharClass().getName();
                 } catch (NullPointerException npe) { empty = " "; }
                 appendValue("Class", empty);
 
@@ -283,13 +310,20 @@ public class SaveCharacter {
                 appendValue("SecClass", empty);
 
                 try {
-                    appendValue("STR", c.getAbilityModifiers()[0]);
-                    appendValue("DEX", c.getAbilityModifiers()[1]);
-                    appendValue("CON", c.getAbilityModifiers()[2]);
-                    appendValue("INT", c.getAbilityModifiers()[3]);
-                    appendValue("WIS", c.getAbilityModifiers()[4]);
-                    appendValue("CHA", c.getAbilityModifiers()[5]);
-                } catch (NullPointerException npe) {}
+                    appendValue("STR", c.getAbilityScores()[0]);
+                    appendValue("DEX", c.getAbilityScores()[1]);
+                    appendValue("CON", c.getAbilityScores()[2]);
+                    appendValue("INT", c.getAbilityScores()[3]);
+                    appendValue("WIS", c.getAbilityScores()[4]);
+                    appendValue("CHA", c.getAbilityScores()[5]);
+                } catch (NullPointerException npe) {
+                    appendValue("STR", 0);
+                    appendValue("DEX", 0);
+                    appendValue("CON", 0);
+                    appendValue("INT", 0);
+                    appendValue("WIS", 0);
+                    appendValue("CHA", 0);
+                }
 
                 try {
                     mt  = c.getHitPoints();
@@ -353,6 +387,7 @@ public class SaveCharacter {
                         empty += c.getItems().get(i).getName() + ";" + c.getItems().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getItems().size() == 0) { empty = " "; }
                 appendValue("Items", empty);
 
 
@@ -372,6 +407,7 @@ public class SaveCharacter {
 
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getWeapons().size() == 0) { empty = " "; }
                 appendValue("Weapons", empty); 
 
                 // armorname;quantity
@@ -381,6 +417,7 @@ public class SaveCharacter {
                         empty += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getArmor().size() == 0) { empty = " "; }
                 appendValue("Armors", empty); 
 
                 // skillname;abilitymod;miscmod;rank 
@@ -391,6 +428,7 @@ public class SaveCharacter {
                                 + c.getSkills().get(i).getMiscMod() + ";" + c.getSkills().get(i).getRank() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getSkills().size() == 0) { empty = " "; }
                 appendValue("Skills", empty);
 
 
@@ -401,12 +439,13 @@ public class SaveCharacter {
                         empty += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getCount() +  "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
+                if (c.getShields().size() == 0) { empty = " "; }
                 appendValue("Shields", empty);
-                
-                
+
+
                 // featName;special;count
                 try {
-                    empty  = c.getName();
+                    empty  = "";
                     for(int i = 0; i < c.getFeats().size(); i++){
                         empty += c.getFeats().get(i).getFeat().getName();
                         if (c.getFeats().get(i).getSpecial() != null)
@@ -414,10 +453,16 @@ public class SaveCharacter {
                         empty += ";" + c.getFeats().get(i).getCount() + "/";
                     }
                 } catch (NullPointerException npe) { empty = " "; }
-                appendValue("Feats", empty);
+                if (c.getFeats().size() == 0) { empty = " "; }
+                appendValue("Feats", empty); //*/
+                bw.write("</Character>");
+                bw.close();
 
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
+
+                /*TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
                 DOMSource source = new DOMSource(doc);
 
                 //change back to character.getName() is not working correctly
@@ -428,12 +473,10 @@ public class SaveCharacter {
                     File CHARDIR = new File(CHARACTER.getPath() + "//DND" + charName);
                     CHARDIR.mkdir();
                     StreamResult result = new StreamResult(CHARDIR.getPath() + "//DND" + charName + ".xml");
-
-
                     transformer.transform(source, result);
                 }catch(Exception e){
                     e.printStackTrace();
-                } // TODO end
+                } // TODO end*/
 
             }
             // Not a new Character
@@ -449,39 +492,74 @@ public class SaveCharacter {
 
                 Node node = nodes.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    
+                    empty = c.getName();
                     writeValue("Name", c.getName());
+                    
+                    mt = c.getLevel();
                     writeValue("Level", c.getLevel());
-                    writeValue("EXP", c.getExp());
+                    
+                    mt = c.getExp();
+                    writeValue("Exp", c.getExp());
+                    
+                    empty = c.getCharRace().getName();
                     writeValue("Race", c.getCharRace().getName());
+                    
+                    empty = c.getAlignment();
                     writeValue("Alignment", c.getAlignment());
 
+                    empty = c.getDeity();
                     writeValue("Deity", c.getDeity());
+                    
+                    mt = c.getSize();
                     writeValue("Size", c.getSize());
+                    
+                    empty = c.getAge();
                     writeValue("Age", c.getAge());
+                    
+                    empty = c.getGender();
                     writeValue("Gender", c.getGender());
+                    
+                    empty = c.getHeight();
                     writeValue("Height", c.getHeight());
 
+                    empty = c.getWeight();
                     writeValue("Weight", c.getWeight());
+                    
+                    empty = c.getEyes();
                     writeValue("Eyes", c.getEyes());
+                    
+                    empty = c.getHair();
                     writeValue("Hair", c.getHair());
+                    
+                    empty = c.getSkin();
                     writeValue("Skin", c.getSkin());
+                    
+                    empty = c.getDescription();
                     writeValue("Description", c.getDescription());
 
+                    mt = c.getSpells().size();
                     temp = "";
                     for(int i = 0; i < c.getSpells().size(); i++){
                         temp += c.getSpells().get(i).getName() + "/";
                     }
                     writeValue("Spells", temp);
+                    
+                    mt = c.getSpecialAbilities().size();
                     temp = "";
                     for(int i = 0; i < c.getSpecialAbilities().size(); i++){
                         temp += c.getSpecialAbilities().get(i).getName() + "/";
                     }
                     writeValue("SpecialAbilities", temp);
+                    
+                    mt = c.getPrepSpells().size();
                     temp = "";
                     for(int i = 0; i < c.getPrepSpells().size(); i++){
                         temp += c.getPrepSpells().get(i).getName() + "/";
                     }
                     writeValue("PreparedSpells", temp);
+                    
+                    mt = c.getAC().length; // TODO null
                     temp = Integer.toString(c.getAC()[0]);
                     for (int i = 0; i < c.getAC().length; i++)
                         temp += " + " + c.getAC()[i];
@@ -489,6 +567,8 @@ public class SaveCharacter {
                     writeValue("TouchAC", c.getTouchAC());
 
                     writeValue("FlatFootedAC", c.getFlatFootedAC());
+                    
+                    //TODO null
                     temp = Integer.toString(c.getInitMod()[0]);
                     for (int i = 0; i < c.getInitMod().length; i++)
                         temp += " + " + c.getInitMod()[i];
@@ -515,20 +595,38 @@ public class SaveCharacter {
                     writeValue("Grapple", temp);
                     writeValue("DamageReduction", c.getDamageReduction());
 
-                    writeValue("ClericDomains", c.getName());//
+                    mt = c.getClericDomains().length;
+                    writeValue("ClericDomains", c.getName());//TODO
+                    
+                    empty = c.getDruidAnimalCompanion();
                     writeValue("DruidCompanion", c.getDruidAnimalCompanion());
+                    
+                    empty = c.getRangerFavoredEnemy();
                     writeValue("RangerFavoredEnemy", c.getRangerFavoredEnemy());
+                    
+                    empty = c.getFamiliar();
                     writeValue("Familiar", c.getFamiliar());
+                    
+                    empty = c.getWizardSpecialtySchool();
                     writeValue("WizardSpecialty", c.getWizardSpecialtySchool());
 
+                    mt = c.getWizardProhibitedSchools().length;
                     temp = "";
                     for(int i = 0; i < c.getWizardProhibitedSchools().length; i++){
                         temp += c.getWizardProhibitedSchools()[i]+ "/";
                     }
                     writeValue("WizardProhibitedSchools", temp);
+                    
+                    empty = c.getImage();
                     writeValue("Image", c.getImage());
-                    writeValue("Class", c.getClass().getName());
+                    
+                    empty = c.getCharClass().getName();
+                    writeValue("Class", c.getCharClass().getName());
+                    
+                    mt = c.getSecLevel();
                     writeValue("SecLevel", c.getSecLevel());
+                    
+                    empty = c.getCharSecClass().getName();
                     writeValue("SecClass", c.getSecClass().getName());
 
                     writeValue("STR", c.getAbilityModifiers()[0]);
@@ -633,9 +731,16 @@ public class SaveCharacter {
     }
 
     private boolean appendValue(String tag, String value) {
-        Element temp = doc.createElement(tag);
+        fo = "<" + tag + ">" + value + "</" + tag + ">\n";
+        try {
+            bw.write(fo);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /*Element temp = doc.createElement(tag);
         temp.appendChild(doc.createTextNode(value));
-        ele.appendChild(temp);
+        ele.appendChild(temp);*/
         return true;
     }
 

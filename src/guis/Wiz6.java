@@ -25,6 +25,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -75,15 +76,12 @@ public class Wiz6 {
 	private Shell bonusFeatShell;
 	private Shell featSpecialShell;
 	
-	final ScrolledComposite charFeatScreenScroll;
-	final Composite charFeatScreen;
-	
 	private boolean specialValid = false;
 	private boolean bonusDone = false;
 	private boolean bonusOpen = false;
 	private boolean specialOpen = false;
 	
-	private Label numFeatsLabel;
+	private Label featsLabel;
 
 	public Wiz6(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
 			final Composite panel, Composite home, Composite homePanel, 
@@ -104,8 +102,7 @@ public class Wiz6 {
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
 		
-		charFeatScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
-		charFeatScreen = new Composite (charFeatScreenScroll, SWT.BORDER);
+
 		
 		// get feats from references 
 		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
@@ -123,54 +120,77 @@ public class Wiz6 {
 		wiz6Label.setText("Choose Feats");
 		wiz6Label.pack();
 		
-		// "number of feats remaining: " label
-		Label featsLabel = new Label(wiz6, SWT.NONE);
-		featsLabel.setLocation(240,30);
-		featsLabel.setText("Number of Feats Remaining:");
-		featsLabel.pack();
-
 		// number of remaining feats
 		numFeats = 1;
 		if (cw.getCharacter().getCharRace().getName().equals("Human"))
 			numFeats += 1;
 		
-		// number of remaining feats label
-		numFeatsLabel = new Label(wiz6, SWT.NONE);
-		numFeatsLabel.setLocation(435, 30);
-		numFeatsLabel.setText(Integer.toString(numFeats));
-		numFeatsLabel.pack();
 		
-		// search label
-		Label searchLabel = new Label(wiz6, SWT.NONE);
-		searchLabel.setLocation(230, 60);
-		searchLabel.setText("Double click on a feat to see details");
-		searchLabel.pack();
+		////////// instantiate layout //////////
+		
+		GridLayout gl = new GridLayout(7, true);
+		
+		Composite inner = new Composite(wiz6, SWT.BORDER);
+		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+
+		GridData gd;
+		
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		Label temp = new Label(inner, SWT.NONE);
+		temp.setLayoutData(gd);
+		
+		// feats label
+		featsLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		featsLabel.setLayoutData(gd);
+		
+		// details label
+		Label detailsLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 7;
+		detailsLabel.setLayoutData(gd);
+		
+		// feat list
+		List featsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		featsList.setLayoutData(gd);
+		
+		// add button
+		Button addButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.END, true, true);
+		addButton.setLayoutData(gd);
+		
+		// character feat list
+		charFeatsList = new List(inner, SWT.V_SCROLL | SWT.BORDER);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		gd.verticalSpan = 2;
+		charFeatsList.setLayoutData(gd);
+		
+		// remove button
+		Button removeButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(SWT.CENTER, SWT.BEGINNING, true, true);
+		removeButton.setLayoutData(gd);
+		
+		
+		////////// create content //////////
+		
+		// number of feats remaining label
+		featsLabel.setText("Number of Feats Remaining: " + numFeats);
+		
+		// details label
+		detailsLabel.setText("Double click on a feat to see details");
 		
 		// grid layout for both available and selected feat lists
 		FillLayout featLayout = new FillLayout();
 		
-		// create scrollable list of feats
-		final ScrolledComposite featScreenScroll = new ScrolledComposite(wiz6, SWT.V_SCROLL | SWT.BORDER);
-		featScreenScroll.setBounds(10, 110, WIDTH/2 - 65, HEIGHT - 210);
-	    featScreenScroll.setExpandHorizontal(true);
-	    featScreenScroll.setExpandVertical(true);
-	    featScreenScroll.setMinWidth(WIDTH);
-		final Composite featListScreen = new Composite(featScreenScroll, SWT.NONE);
-		featScreenScroll.setContent(featListScreen);
-		featListScreen.setSize(featListScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		featListScreen.setLayout(featLayout);
-				
-		// create scrollable list of selected feats
-		charFeatScreenScroll.setBounds(WIDTH/2 + 55, 110, WIDTH/2 - 75, HEIGHT - 210);
-	    charFeatScreenScroll.setExpandHorizontal(true);
-	    charFeatScreenScroll.setExpandVertical(true);
-	    charFeatScreenScroll.setMinWidth(WIDTH);
-		charFeatScreenScroll.setContent(charFeatScreen);
-		charFeatScreen.setSize(charFeatScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		charFeatScreen.setLayout(featLayout);
-		
 		// available feats list
-		List featsList = new List(featListScreen, SWT.NONE);
 		for (int i = 0; i < feats.size(); i++) {
 			featsList.add(feats.get(i).getName());
 		}
@@ -186,11 +206,8 @@ public class Wiz6 {
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		featsList.pack();
-		featScreenScroll.setMinHeight(featsList.getBounds().height);
-	    	
+		
 		// selected feats list
-		charFeatsList = new List(charFeatScreen, SWT.NONE);
 		for (int i = 0; i < charFeats.size(); i++)
 			charFeatsList.add(charFeats.get(i).getFeat().getName());
 		charFeatsList.addSelectionListener(new SelectionListener(){
@@ -205,7 +222,6 @@ public class Wiz6 {
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		charFeatsList.pack();
 		
 		// error message
 		Label errorMsg = new Label(wiz6, SWT.NONE);
@@ -230,10 +246,7 @@ public class Wiz6 {
 		numBonusFeats = charFeats.size();
 		
 		// add feat button
-		Button addButton = new Button(wiz6, SWT.PUSH);
 		addButton.setText("Add >");
-		addButton.setLocation(WIDTH/2 - 25, HEIGHT/2 - 50);
-		addButton.pack();
 		addButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				errorMsg.setVisible(false);
@@ -319,17 +332,14 @@ public class Wiz6 {
 				charFeats.add(feat);
 				updateCharFeatsList();
 				numFeats--;
-				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setBackground(null);
-				numFeatsLabel.pack();
+				featsLabel.setText("Number of Feats Remaining: " + numFeats);
+				featsLabel.setBackground(null);
+				featsLabel.pack();
 			}
 		});
 		
 		// remove feat button
-		Button removeButton = new Button(wiz6, SWT.PUSH);
 		removeButton.setText("< Remove");
-		removeButton.setLocation(WIDTH/2 - 38, HEIGHT/2);
-		removeButton.pack();
 		removeButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				errorMsg.setVisible(false);
@@ -359,15 +369,12 @@ public class Wiz6 {
 				charFeats.remove(index);
 				updateCharFeatsList();
 				numFeats++;
-				numFeatsLabel.setText(Integer.toString(numFeats));
-				numFeatsLabel.setBackground(null);
-				numFeatsLabel.pack();
+				featsLabel.setText("Number of Feats Remaining: " + numFeats);
+				featsLabel.setBackground(null);
+				featsLabel.pack();
 			}
 		});
 		
-		featListScreen.pack();
-		charFeatScreen.pack();
-
 		Button wiz6NextButton = cw.createNextButton(wiz6);
 		wiz6NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -383,7 +390,7 @@ public class Wiz6 {
 				
 				// error checking
 				if (numFeats > 0) {
-					numFeatsLabel.setBackground(new Color(dev, 255, 100, 100));
+					featsLabel.setBackground(new Color(dev, 255, 100, 100));
 					return;
 				}
 				
@@ -413,6 +420,8 @@ public class Wiz6 {
 					cw.reset();
 			}
 		});
+
+		inner.layout();
 	}
 	
 	private boolean createBonusPopUp() {
@@ -483,6 +492,7 @@ public class Wiz6 {
 		// create shell
 		Display display = wiz6.getDisplay();
 		bonusFeatShell = new Shell(display);
+		bonusFeatShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		bonusFeatShell.setText("Select Bonus Feat");
 		GridLayout gridLayout = new GridLayout(2, true);
 		bonusFeatShell.setLayout(gridLayout);
@@ -796,6 +806,7 @@ public class Wiz6 {
 		specialOpen = true;
 				Display display = wiz6.getDisplay();
 				featSpecialShell = new Shell(display);
+				featSpecialShell.setImage(new Image(display, "images/bnb_logo.gif"));
 				featSpecialShell.setText("Apply Feat");
 				GridLayout gridLayout = new GridLayout(2, true);
 				featSpecialShell.setLayout(gridLayout);
@@ -930,10 +941,6 @@ public class Wiz6 {
 				temp += ": " + curr.getCount();
 			charFeatsList.add(temp);
 		}
-		charFeatsList.pack();
-		charFeatScreenScroll.setMinHeight(charFeatsList.getBounds().height);
-		charFeatScreen.layout();
-		charFeatScreenScroll.layout();
 	}
 
 	private void createNextPage() {
