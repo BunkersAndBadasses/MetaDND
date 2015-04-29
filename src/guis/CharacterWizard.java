@@ -657,6 +657,7 @@ public class CharacterWizard {
 					}
 					else if(namebox.getText().length() > 200 ){
 						//TODO ADD a error message box
+						//TODO Add check for non-alphabatic word
 						final Shell saveNameError = new Shell(display);
 						saveNameError.setText("Character Name Error");
 						//saveName.setSize(300, 200);
