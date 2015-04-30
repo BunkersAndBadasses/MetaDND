@@ -424,10 +424,14 @@ public class SaveCharacter {
                 try {
                     empty  = "";
                     for(int i = 0; i < c.getSkills().size(); i++){
+                        //System.out.println(c.getSkills().get(i).getSkill().getName() + " " + c.getSkills().size());
                         empty += c.getSkills().get(i).getSkill().getName() + ";" + c.getSkills().get(i).getAbilityMod() + ";" 
                                 + c.getSkills().get(i).getMiscMod() + ";" + c.getSkills().get(i).getRank() + "/";
                     }
-                } catch (NullPointerException npe) { empty = " "; }
+                } catch (NullPointerException npe) { 
+                    System.out.println("Npe");
+                    empty = " "; 
+                    }
                 if (c.getSkills().size() == 0) { empty = " "; }
                 appendValue("Skills", empty);
 

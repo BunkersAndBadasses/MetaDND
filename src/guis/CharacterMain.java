@@ -2,6 +2,7 @@ package guis;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,11 +32,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import core.CharFeat;
+import core.CharItem;
+import core.CharSkill;
 import core.DungeonConstants;
 import core.GameState;
 import core.LoadCharacter;
 import core.Main;
 import core.character;
+import entity.AbilityEntity;
+import entity.ArmorEntity;
+import entity.ItemEntity;
+import entity.SkillEntity;
 
 
 public class CharacterMain {
@@ -68,14 +76,14 @@ public class CharacterMain {
     private int initVal;
     private String priWeapon;
     private String secWeapon;
-    private String[] items;
-    private String[] languages;
-    private String[] weapons;
-    private String[] armors;
-    private String[] skills;
-    private String[] spells;
-    private String[] shields;
-    private String[] feats;
+    private ArrayList<String> items;
+    private ArrayList<String> languages;
+    private ArrayList<String> weapons;
+    private ArrayList<String> armors;
+    private ArrayList<String> skills;
+    private ArrayList<String> specialAbilities;
+    private ArrayList<String> shields;
+    private ArrayList<String> feats;
     private String notes;
     private String imagePath;
     private String dmgTaken;
@@ -94,6 +102,7 @@ public class CharacterMain {
     private character c;
     private String [] priVals = new String[6];
     private String [] secVals = new String[6];
+    private String[] strArr;
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
@@ -184,7 +193,7 @@ public class CharacterMain {
         intLabel.setLayoutData(statGD);
 
         Label secClassLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        secClassLabel.setText("Sec Class: " + charSecClass);
+        if (!charSecClass.equals("")) secClassLabel.setText("Sec Class: " + charSecClass);
         secClassLabel.setLayoutData(statGD);
 
         //Composite for damage
@@ -237,7 +246,10 @@ public class CharacterMain {
         chaLabel.setLayoutData(statGD);
 
         Label levelLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        levelLabel.setText("Level: " + charLevel + ", " + charSecLevel);
+        bonus = "";
+        bonus += "Level: " + charLevel;
+        if (charSecLevel != 0)bonus += "," + charSecLevel;
+        levelLabel.setText(bonus);
         levelLabel.setLayoutData(statGD);
 
         Label speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
@@ -308,7 +320,7 @@ public class CharacterMain {
         Label priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priLabel.setText(priWeapon);
         priLabel.setLayoutData(weapGD);
-        
+
         boolean boo = false;
         if (!priWeapon.equals("")) {
             boo = true;
@@ -320,6 +332,18 @@ public class CharacterMain {
             if (i != 0) priVals[3] = "" + i + "-20";
             priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
             priVals[5] = c.getPrimaryWeapon().getDamageType();
+        }
+
+        if (!secWeapon.equals("")) {
+            boo = true;
+            secVals[0] = "" + c.getBaseAttackBonus();
+            secVals[1] = c.getSecondaryWeapon().getDamageMedium();
+            secVals[2] = c.getSecondaryWeapon().getRange();
+            int i = c.getSecondaryWeapon().getCriticalRange()[0];
+            secVals[3] = "";
+            if (i != 0) secVals[3] = "" + i + "-20";
+            secVals[4] = "" + c.getSecondaryWeapon().getCriticalMultiplier();
+            secVals[5] = c.getSecondaryWeapon().getDamageType();
         }
 
         Label priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
@@ -348,23 +372,23 @@ public class CharacterMain {
         secLabel.setLayoutData(weapGD);
 
         Label secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secBonusLabel.setText("Bonus: ");
+        secBonusLabel.setText("Bonus: " + (boo ? secVals[0] : ""));
         secBonusLabel.setLayoutData(weapGD);
 
         Label secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secDamageLabel.setText("Damage: ");
+        secDamageLabel.setText("Damage: " + (boo ? secVals[1] : ""));
         secDamageLabel.setLayoutData(weapGD);
 
         Label secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secRangeLabel.setText("Range: ");
+        secRangeLabel.setText("Range: " + (boo ? secVals[2] : ""));
         secRangeLabel.setLayoutData(weapGD);
 
         Label secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secCriticalLabel.setText("Crit: ");
+        secCriticalLabel.setText("Crit: " + (boo ? secVals[3] + "  x" + secVals[4]: ""));
         secCriticalLabel.setLayoutData(weapGD);
 
         Label secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secTypeLabel.setText("Type: ");
+        secTypeLabel.setText("Type: " + (boo ? secVals[5] : ""));
         secTypeLabel.setLayoutData(weapGD);
         weap1Comp.pack();
 
@@ -416,28 +440,32 @@ public class CharacterMain {
 
 
         Combo priCombo = new Combo(mainComp, SWT.CENTER);
-        priCombo.setItems(weapons);
+        strArr = new String[weapons.size()];
+        priCombo.setItems(weapons.toArray(strArr));
         priCombo.add("Primary", 0);
         priCombo.add("None", 1);
         priCombo.select(0);
         priCombo.setLayoutData(statGD);
 
         Combo secCombo = new Combo(mainComp, SWT.CENTER);
-        secCombo.setItems(weapons);
+        strArr = new String[weapons.size()];
+        secCombo.setItems(weapons.toArray(strArr));
         secCombo.add("Secondary", 0);
         secCombo.add("None", 1);
         secCombo.select(0);
         secCombo.setLayoutData(statGD);
 
         Combo armorCombo = new Combo(mainComp, SWT.CENTER);
-        armorCombo.setItems(armors);
+        strArr = new String[armors.size()];
+        armorCombo.setItems(armors.toArray(strArr));
         armorCombo.add("Armor", 0);
         armorCombo.add("None", 1);
         armorCombo.select(0);
         armorCombo.setLayoutData(statGD);
 
         Combo shieldCombo = new Combo(mainComp, SWT.CENTER);
-        shieldCombo.setItems(shields);
+        strArr = new String[shields.size()];
+        shieldCombo.setItems(shields.toArray(strArr));
         shieldCombo.add("Shield", 0);
         shieldCombo.add("None", 1);
         shieldCombo.select(0);
@@ -508,31 +536,36 @@ public class CharacterMain {
         }); 
 
         Combo skillCombo = new Combo(mainComp, SWT.CENTER);
-        skillCombo.setItems(skills);
+        strArr = new String[skills.size()];
+        skillCombo.setItems(skills.toArray(strArr));
         skillCombo.add("Skills", 0);
         skillCombo.select(0);
         skillCombo.setLayoutData(statGD);
 
-        Combo spellCombo = new Combo(mainComp, SWT.CENTER);
-        spellCombo.setItems(spells);
-        spellCombo.add("Spells", 0);
-        spellCombo.select(0);
-        spellCombo.setLayoutData(statGD);
+        Combo specAbilCombo = new Combo(mainComp, SWT.CENTER);
+        strArr = new String[specialAbilities.size()];
+        specAbilCombo.setItems(specialAbilities.toArray(strArr));
+        specAbilCombo.add("Special Abilities", 0);
+        specAbilCombo.select(0);
+        specAbilCombo.setLayoutData(statGD);
 
         Combo featCombo = new Combo(mainComp, SWT.CENTER);
-        featCombo.setItems(feats);
+        strArr = new String[feats.size()];
+        featCombo.setItems(feats.toArray(strArr));
         featCombo.add("Feats", 0);
         featCombo.select(0);
         featCombo.setLayoutData(statGD);
 
         Combo languageCombo = new Combo(mainComp, SWT.CENTER);
-        languageCombo.setItems(languages);
+        strArr = new String[languages.size()];
+        languageCombo.setItems(languages.toArray(strArr));
         languageCombo.add("Languages", 0);
         languageCombo.select(0);
         languageCombo.setLayoutData(statGD);
 
         Combo inventoryCombo = new Combo(mainComp, SWT.CENTER);
-        inventoryCombo.setItems(items);
+        strArr = new String[items.size()];
+        inventoryCombo.setItems(items.toArray(strArr));
         inventoryCombo.add("Inventory", 0);;
         inventoryCombo.select(0);
         inventoryCombo.setLayoutData(statGD);
@@ -702,7 +735,7 @@ public class CharacterMain {
         charLevel = c.getLevel();
         charClass = c.getCharClass().getName();
         charSecLevel = c.getSecLevel();
-        charSecClass = " ";
+        charSecClass = "";
         if(c.getSecClass() != null) {
             charSecClass = c.getSecClass().getName();
         }
@@ -713,8 +746,100 @@ public class CharacterMain {
         intVal = c.getAbilityScores()[3];
         wisVal = c.getAbilityScores()[4];
         chaVal = c.getAbilityScores()[5];
+        armorName = "";
+        if (c.getCurrArmor() != null) {
+            armorName = c.getCurrArmor().getName();
+        }
+        shieldName = "";
+        if (c.getCurrShield() != null ) {
+            shieldName = c.getCurrShield().getName();
+        }
+
+        acVal = 0;
+        for (int i = 0; i < c.getAC().length; i++) {
+            acVal += c.getAC()[i];
+        }
+        ffVal = c.getTouchAC();
+        touchVal = c.getTouchAC();
+        willVal = c.getWillSaveTotal();
+        refVal = c.getReflexSaveTotal();
+        fortVal = c.getFortSaveTotal();
+        initVal = c.getInitModTotal();
+
+        notes = c.getNotes();
+        dmgTaken = "" + c.getDamageTaken(); //TODO
+        pp = "" + c.getPP();//TODO
+        gp = "" + c.getGP();//TODO
+        sp = "" + c.getSP();//TODO
+        cp = "" + c.getCP();//TODO
+        exp = "" + c.getExp(); //TODO
+
+        items = new ArrayList<String>();
+        for(int i = 0; i < c.getItems().size(); i ++) {
+            CharItem ci = c.getItems().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+        }
+
+        languages = new ArrayList<String>();
+        for(int i = 0; i < c.getLanguages().size(); i ++) {
+            String s = c.getLanguages().get(i);
+            languages.add(s);
+        }
+
+        weapons = new ArrayList<String>();
+        for(int i = 0; i < c.getWeapons().size(); i ++) {
+            CharItem ci = c.getWeapons().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            weapons.add(ci.getName());
+        }
+
+        armors = new ArrayList<String>();
+        for(int i = 0; i < c.getArmor().size(); i ++) {
+            CharItem ci = c.getArmor().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            armors.add(ci.getName());
+        }
+
+        shields = new ArrayList<String>();
+        for(int i = 0; i < c.getShields().size(); i ++) {
+            CharItem ci = c.getShields().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            shields.add(ci.getName());
+        }
+
+        skills = new ArrayList<String>();
+        for(int i = 0; i < c.getSkills().size(); i ++) {
+            CharSkill cs = c.getSkills().get(i);
+            skills.add(cs.getSkill().getName() + " (" + cs.getTotal()+ ")");
+        }
+
+        specialAbilities = new ArrayList<String>();
+        for(int i = 0; i < c.getSpecialAbilities().size(); i ++) {
+            AbilityEntity ae = c.getSpecialAbilities().get(i);
+            specialAbilities.add(ae.getName());
+        }
+
+        feats = new ArrayList<String>();
+        for(int i = 0; i < c.getFeats().size(); i ++) {
+            CharFeat cf = c.getFeats().get(i);
+            int count = cf.getCount();
+            String addOn = "";
+            if (cf.getSpecial() != null && !cf.getSpecial().equals("")){ 
+                addOn += ": " + cf.getSpecial();
+            }
+            if ( count != 1) addOn += " (" + count + ")";
+            feats.add(cf.getFeat().getName() + addOn);
+        }
+        items.sort(String.CASE_INSENSITIVE_ORDER);
+        languages.sort(String.CASE_INSENSITIVE_ORDER);
+        weapons.sort(String.CASE_INSENSITIVE_ORDER);
+        armors.sort(String.CASE_INSENSITIVE_ORDER);
+        shields.sort(String.CASE_INSENSITIVE_ORDER);
+        skills.sort(String.CASE_INSENSITIVE_ORDER);
+        feats.sort(String.CASE_INSENSITIVE_ORDER);
 
         speedVal = c.getSpeed();
+        hpVal = c.getHitPoints();
         priWeapon = "";
         if(c.getPrimaryWeapon() != null) {
             priWeapon = c.getPrimaryWeapon().getName();
@@ -737,55 +862,6 @@ public class CharacterMain {
 
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 element = (Element) node;
-                //imagePath = getValue("Image", element);
-                //charName = getValue("Name", element);
-                //charLevel = Integer.parseInt(getValue("Level", element));
-                //charClass = getValue("Class", element);
-                /*charSecLevel = Integer.parseInt(getValue("SecLevel", element));
-                charSecClass = getValue("SecClass", element);
-                strVal = Integer.parseInt(getValue("STR", element));
-                dexVal = Integer.parseInt(getValue("DEX", element));
-                conVal = Integer.parseInt(getValue("CON", element));
-                intVal = Integer.parseInt(getValue("INT", element));
-                wisVal = Integer.parseInt(getValue("WIS", element));
-                chaVal = Integer.parseInt(getValue("CHA", element));
-                hpVal = Integer.parseInt(getValue("HP", element));
-                speedVal = Integer.parseInt(getValue("Speed", element));
-                priWeapon = getValue("PrimaryWeapon", element);
-                secWeapon =  getValue("SecondaryWeapon", element);*/
-                armorName = getValue("Armor", element);
-                shieldName  = getValue("Shield", element);
-                notes = getValue("Notes", element);
-                dmgTaken = getValue("DamageTaken", element);
-                pp = getValue("PP", element);
-                gp = getValue("GP", element);
-                sp = getValue("SP", element);
-                cp = getValue("CP", element);
-                exp = getValue("Exp", element);
-
-                String raw = getValue("Items", element);
-                items = raw.split(delims);
-
-                raw = getValue("Languages", element);
-                languages = raw.split(delims);
-
-                raw = getValue("Weapons", element);
-                weapons = raw.split(delims);
-
-                raw = getValue("Armors", element);
-                armors = raw.split(delims);
-
-                raw = getValue("Skills", element);
-                skills = raw.split(delims);
-
-                raw = getValue("Spells", element);
-                spells = raw.split(delims);
-
-                raw = getValue("Shields", element);
-                shields = raw.split(delims);
-
-                raw = getValue("Feats", element);
-                feats = raw.split(delims);
 
             }
 

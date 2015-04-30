@@ -211,6 +211,8 @@ public class character {
 	
 	public void setSkills(ArrayList<CharSkill> s) { skills = s; }
 	public ArrayList<CharSkill> getSkills(){ return skills;}
+	
+	public void addSkill (CharSkill cs) { skills.add(cs); }
 
 	public void setLanguages(ArrayList<String> l) { languages = l; }
 	public ArrayList<String> getLanguages(){ return languages; }

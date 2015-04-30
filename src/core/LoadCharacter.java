@@ -350,6 +350,7 @@ public class LoadCharacter {
                         CharSkill cs =  new CharSkill((SkillEntity) (Main.gameState.skills.get(temp)),c);
                         cs.setRank(rank);
                         cs.setMiscMod(miscMod);
+                        c.a
                     }
                 }
 
