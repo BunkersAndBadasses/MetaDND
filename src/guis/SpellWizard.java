@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -56,6 +57,7 @@ public class SpellWizard {
 		}
 		display = d;
 		shell = new Shell(d);
+		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create new Spell");
 		//int width = display.getMonitors()[0].getBounds().width;
 		//shell.setSize(width / 3, width * 2 / 3);

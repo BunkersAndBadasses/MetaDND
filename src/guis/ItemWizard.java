@@ -9,6 +9,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -55,6 +56,7 @@ public class ItemWizard {
 		}
 		display = d;
 		shell = new Shell(d);
+		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create New Item");
 		//int width = display.getMonitors()[0].getBounds().width;
 		//shell.setSize(width / 3, width * 2 / 9);
