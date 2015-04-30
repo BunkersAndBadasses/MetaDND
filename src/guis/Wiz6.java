@@ -146,7 +146,7 @@ public class Wiz6 {
 		itemsList.setLayoutData(gd);
 			
 		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 		new Label(inner, SWT.NONE).setLayoutData(gd);
 
 		// char item list
@@ -188,7 +188,7 @@ public class Wiz6 {
 		removeAllButton.setLayoutData(gd);
 		
 		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
 		new Label(inner, SWT.NONE).setLayoutData(gd);
 		////////////////////
 		

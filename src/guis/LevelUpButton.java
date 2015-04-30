@@ -29,6 +29,7 @@ public class LevelUpButton {
 		int exp = character.getExp();
 		
 		// if exp is not enough, do not level up
+		// TODO popup window 
 		if (exp < getReqExp(level+1))
 			return;
 		
