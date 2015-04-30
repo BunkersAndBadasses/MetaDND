@@ -735,6 +735,13 @@ public class SaveCharacter {
     }
 
     private boolean appendValue(String tag, String value) {
+        value = value.replaceAll("&", "&amp;");
+        value = value.replaceAll("<", "&lt;");
+        value = value.replaceAll(">", "&gt;");
+        value = value.replaceAll("'", "&apos;");
+        value = value.replaceAll("\"", "&quot;");
+        
+        
         fo = "<" + tag + ">" + value + "</" + tag + ">\n";
         try {
             bw.write(fo);
