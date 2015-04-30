@@ -531,4 +531,92 @@
 			At 20th level, a monk becomes a magical creature. She is forevermore treated as an outsider rather than as a humanoid (or whatever the monk's creature type was) for the purpose of spells and magical effects. Additionally, the monk gains damage Reduction 10/magic, which allows her to ignore the first 10 points of damage from any attack made by a nonmagical weapon or by any natural attack made by a creature that doesn't have similar damage Reduction. Unlike other outsiders, the monk can still be brought back from the dead as if she were a member of her previous creature type.
 		</DESCRIPTION>
 	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Aura of Good
+		</NAME>
+		<DESCRIPTION>
+			The power of a paladin's aura of good (see the detect good spell) is equal to her paladin level.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Turn Undead
+		</NAME>
+		<DESCRIPTION>
+			When a paladin reaches 4th level, she gains the supernatural ability to turn undead. She may use this ability a number of times per day equal to 3 + her Charisma modifier. She turns undead as a cleric of three levels lower would.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Detect Evil
+		</NAME>
+		<DESCRIPTION>
+			At will, a paladin can use detect evil, as the spell.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Smite Evil
+		</NAME>
+		<DESCRIPTION>
+			Once per day, a paladin may attempt to smite evil with one normal melee attack. She adds her Charisma bonus (if any) to her attack roll and deals 1 extra point of damage per paladin level. If the paladin accidentally smites a creature that is not evil, the smite has no effect, but the ability is still used up for that day.
+			At 5th level, and at every five levels thereafter, the paladin may smite evil one additional time per day, as indicated on Table: The Paladin, to a maximum of five times per day at 20th level.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Divine Grace
+		</NAME>
+		<DESCRIPTION>
+			At 2nd level, a paladin gains a bonus equal to her Charisma bonus (if any) on all saving throws.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Lay on Hands
+		</NAME>
+		<DESCRIPTION>
+			Beginning at 2nd level, a paladin with a Charisma score of 12 or higher can heal wounds (her own or those of others) by touch. Each day she can heal a total number of hit points of damage equal to her paladin level x her Charisma bonus. A paladin may choose to divide her healing among multiple recipients, and she doesn't have to use it all at once. Using lay on hands is a standard action.
+			Alternatively, a paladin can use any or all of this healing power to deal damage to undead creatures. Using lay on hands in this way requires a successful melee touch attack and doesn't provoke an attack of opportunity. The paladin decides how many of her daily allotment of points to use as damage after successfully touching an undead creature.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Aura of Courage
+		</NAME>
+		<DESCRIPTION>
+			Beginning at 3rd level, a paladin is immune to fear (magical or otherwise). Each ally within 10 feet of her gains a +4 morale bonus on saving throws against fear effects.
+			This ability functions while the paladin is conscious, but not if she is unconscious or dead.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Divine Health
+		</NAME>
+		<DESCRIPTION>
+			At 3rd level, a paladin gains immunity to all diseases, including supernatural and magical diseases.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Special Mount
+		</NAME>
+		<DESCRIPTION>
+			Upon reaching 5th level, a paladin gains the service of an unusually intelligent, strong, and loyal steed to serve her in her crusade against evil (see below). This mount is usually a heavy warhorse (for a Medium paladin) or a warpony (for a Small paladin).
+			Once per day, as a full-round action, a paladin may magically call her mount from the celestial realms in which it resides. This ability is the equivalent of a spell of a level equal to one-third the paladin's level. The mount immediately appears adjacent to the paladin and remains for 2 hours per paladin level it may be dismissed at any time as a free action. The mount is the same creature each time it is summoned, though the paladin may release a particular mount from service.
+			Each time the mount is called, it appears in full health, regardless of any damage it may have taken previously. The mount also appears wearing or carrying any gear it had when it was last dismissed. Calling a mount is a conjuration (calling) effect.
+			Should the paladin's mount die, it immediately disappears, leaving behind any equipment it was carrying. The paladin may not summon another mount for thirty days or until she gains a paladin level, whichever comes first, even if the mount is somehow returned from the dead. During this thirty-day period, the paladin takes a -1 penalty on attack and weapon damage rolls.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Remove Disease
+		</NAME>
+		<DESCRIPTION>
+			At 6th level, a paladin can produce a remove disease effect, as the spell, once per week. She can use this ability one additional time per week for every three levels after 6th (twice per week at 9th, three times at 12th, and so forth).
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		
 </ABILITIES>
