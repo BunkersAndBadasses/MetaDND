@@ -1,37 +1,21 @@
 package guis;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import core.GameState;
 import core.Main;
 import core.character;
 import entity.SpellEntity;
@@ -43,6 +27,8 @@ public class SpellGUI {
     private static character c;
     private static ArrayList<String> spellsPrepared = new ArrayList<String>();
     private static HashMap<String, SpellEntity> spellsKnown = new HashMap<String, SpellEntity>();
+    private static String version = "Ver0.9.Beta";
+    private static String[] strArr;
 
     private static void getInfo(){
         c = Main.gameState.currentlyLoadedCharacter;
@@ -69,6 +55,10 @@ public class SpellGUI {
         // TODO Auto-generated method stub
         Display display = Display.getCurrent();
         Shell shell = new Shell(display);
+        
+        Image logo = new Image(display, "images/bnb_logo.gif");
+        shell.setImage(logo);
+        shell.setText("Meta D&D " + version );
         getInfo();
 
         FormLayout layout = new FormLayout();
@@ -76,7 +66,8 @@ public class SpellGUI {
 
         final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
         if (spellsKnown.size() != 0) {
-            spellSel.setItems((String[]) spellsKnown.keySet().toArray()); // TODO Load Spells known
+            strArr = new String[spellsKnown.size()];
+            spellSel.setItems(spellsKnown.keySet().toArray(strArr)); // TODO Load Spells known
         }
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);

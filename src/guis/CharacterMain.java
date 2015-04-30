@@ -439,7 +439,7 @@ public class CharacterMain {
 
 
 
-        Combo priCombo = new Combo(mainComp, SWT.CENTER);
+        Combo priCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[weapons.size()];
         priCombo.setItems(weapons.toArray(strArr));
         priCombo.add("Primary", 0);
@@ -447,7 +447,7 @@ public class CharacterMain {
         priCombo.select(0);
         priCombo.setLayoutData(statGD);
 
-        Combo secCombo = new Combo(mainComp, SWT.CENTER);
+        Combo secCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[weapons.size()];
         secCombo.setItems(weapons.toArray(strArr));
         secCombo.add("Secondary", 0);
@@ -455,7 +455,7 @@ public class CharacterMain {
         secCombo.select(0);
         secCombo.setLayoutData(statGD);
 
-        Combo armorCombo = new Combo(mainComp, SWT.CENTER);
+        Combo armorCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[armors.size()];
         armorCombo.setItems(armors.toArray(strArr));
         armorCombo.add("Armor", 0);
@@ -463,7 +463,7 @@ public class CharacterMain {
         armorCombo.select(0);
         armorCombo.setLayoutData(statGD);
 
-        Combo shieldCombo = new Combo(mainComp, SWT.CENTER);
+        Combo shieldCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[shields.size()];
         shieldCombo.setItems(shields.toArray(strArr));
         shieldCombo.add("Shield", 0);
@@ -535,35 +535,35 @@ public class CharacterMain {
             }
         }); 
 
-        Combo skillCombo = new Combo(mainComp, SWT.CENTER);
+        Combo skillCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[skills.size()];
         skillCombo.setItems(skills.toArray(strArr));
         skillCombo.add("Skills", 0);
         skillCombo.select(0);
         skillCombo.setLayoutData(statGD);
 
-        Combo specAbilCombo = new Combo(mainComp, SWT.CENTER);
+        Combo specAbilCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[specialAbilities.size()];
         specAbilCombo.setItems(specialAbilities.toArray(strArr));
         specAbilCombo.add("Special Abilities", 0);
         specAbilCombo.select(0);
         specAbilCombo.setLayoutData(statGD);
 
-        Combo featCombo = new Combo(mainComp, SWT.CENTER);
+        Combo featCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[feats.size()];
         featCombo.setItems(feats.toArray(strArr));
         featCombo.add("Feats", 0);
         featCombo.select(0);
         featCombo.setLayoutData(statGD);
 
-        Combo languageCombo = new Combo(mainComp, SWT.CENTER);
+        Combo languageCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[languages.size()];
         languageCombo.setItems(languages.toArray(strArr));
         languageCombo.add("Languages", 0);
         languageCombo.select(0);
         languageCombo.setLayoutData(statGD);
 
-        Combo inventoryCombo = new Combo(mainComp, SWT.CENTER);
+        Combo inventoryCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[items.size()];
         inventoryCombo.setItems(items.toArray(strArr));
         inventoryCombo.add("Inventory", 0);;
