@@ -48,6 +48,7 @@ public class SpellWizard {
 	static String spellduration;
 	static String spelllevel;
 	static String spellresistance;
+	public Boolean desfirst;
 	public SpellWizard(Display d)
 	{
 		if (GameState.isWindowOpen("Spell")) {
@@ -60,6 +61,7 @@ public class SpellWizard {
 		//shell.setSize(width / 3, width * 2 / 3);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
+		desfirst = false;
 		createPageContent();
 		GameState.windowsOpen.add("Spell");
 		run();
@@ -235,6 +237,16 @@ public class SpellWizard {
 		
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
 		descriptionInput.setText("Description (Optional)");
+		descriptionInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desfirst)
+				{
+					descriptionInput.setText("");
+					desfirst = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;

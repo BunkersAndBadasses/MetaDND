@@ -46,6 +46,7 @@ public class ItemWizard {
 	static String ItemValue;
 	private static int wizPageNum;
 	private static Device dev;
+	public Boolean desfirst;
 	
 	public ItemWizard(Display d)
 	{
@@ -59,6 +60,7 @@ public class ItemWizard {
 		//shell.setSize(width / 3, width * 2 / 9);
 		wizPages = new ArrayList<Composite>();
 		wizPageNum = 0;
+		desfirst = false;
 		createPageContent();
 		GameState.windowsOpen.add("Item");
 		run();
@@ -143,6 +145,16 @@ public class ItemWizard {
 		//Description
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
 		descriptionInput.setText("Description (Optional)");
+		descriptionInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desfirst)
+				{
+					descriptionInput.setText("");
+					desfirst = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;

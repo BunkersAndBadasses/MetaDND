@@ -32,6 +32,7 @@ public class AbilityWizard {
 	public static AbilityEntity newability;
 	static String abilityname;
 	static String abilityscript;
+	public Boolean desfirst;
 	public AbilityWizard(Display d)
 	{
 		if (GameState.isWindowOpen("Ability")) {
@@ -43,6 +44,7 @@ public class AbilityWizard {
 		int width = display.getMonitors()[0].getBounds().width;
 		shell.setSize(width / 3, width * 2 / 9);
 		new ArrayList<Composite>();
+		desfirst = false;
 		createPageContent();
 		GameState.windowsOpen.add("Ability");
 		run();
@@ -100,6 +102,17 @@ public class AbilityWizard {
 		nameInput.pack();
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL |SWT.BORDER);
 		descriptionInput.setText("Description (Optional)");
+		descriptionInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desfirst)
+				{
+					System.out.println("a");
+					descriptionInput.setText("");
+					desfirst = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 6;
 		gd.verticalSpan = 26;

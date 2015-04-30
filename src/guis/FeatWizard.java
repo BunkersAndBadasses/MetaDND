@@ -43,6 +43,8 @@ public class FeatWizard
 	static String featbenefit;
 	static String featfighter;
 	static String featscript;
+	public Boolean desfirst;
+	public Boolean desben;
 	public FeatWizard(Display d)
 	{
 		if (GameState.isWindowOpen("Feat")) {
@@ -55,6 +57,8 @@ public class FeatWizard
 		//shell.setSize(width / 3, width * 2 / 9);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
+		desfirst = false;
+		desben = false;
 		createPageContent();
 		GameState.windowsOpen.add("Feat");
 		run();
@@ -152,6 +156,16 @@ public class FeatWizard
 		//Benefit
 		Text benefitInput = new Text(shell, SWT.WRAP | SWT.BORDER);
 		benefitInput.setText("Benefit");
+		benefitInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desben)
+				{
+					benefitInput.setText("");
+					desben = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, false, false);
 		gd.horizontalSpan = 3;
 		gd.verticalSpan = 5;
@@ -172,6 +186,16 @@ public class FeatWizard
 		//Description
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL|SWT.BORDER);
 		descriptionInput.setText("Description (Optional)");
+		descriptionInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desfirst)
+				{
+					descriptionInput.setText("");
+					desfirst = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;
