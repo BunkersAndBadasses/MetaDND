@@ -132,7 +132,7 @@ public class xmlLoader implements Runnable{
 						Main.gameState.customContent.put(readWeapon.getName(), readWeapon);
 				}
 				else if(node.getNodeName() == "ARMOR"){
-					WeaponEntity readArmor = new WeaponEntity(entity);
+					ArmorEntity readArmor = new ArmorEntity(entity);
 					Main.gameState.armor.put(readArmor.getName(), readArmor);
 					if(node.getParentNode().getNodeName() == "CUSTOM")
 						Main.gameState.customContent.put(readArmor.getName(), readArmor);
