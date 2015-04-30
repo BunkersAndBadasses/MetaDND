@@ -178,7 +178,7 @@ public class CharacterWizard {
 		
 		new Label(home, SWT.NONE).setLayoutData(new GridData());
 		
-		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.MULTI | SWT.CENTER);
+		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.CENTER);
 		wizardButton.setText("Interactive Character Wizard");
 		wizardButton.setFont(font2);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -857,6 +857,8 @@ public class CharacterWizard {
 				
 				// if user clicks yes, return to new character home
 				if (cancel) {
+					shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
+					center(shell);
 					wizPageNum = -1;
 					homeLayout.topControl = home;
 					homePanel.layout();
