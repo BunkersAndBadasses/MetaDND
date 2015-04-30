@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
 
 import core.CharFeat;
 import core.CharItem;
@@ -701,6 +702,12 @@ public class CharacterWizard {
 							}
 						}
 						
+						return;
+					}
+					//check for special character
+					if(namebox.getText().matches("[^a-zA-Z0-9 ]"))
+					{
+						namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
 						return;
 					}
 					character.setName(namebox.getText());

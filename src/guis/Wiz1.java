@@ -44,8 +44,6 @@ public class Wiz1 {
 	private int HEIGHT;
 	private character character;
 	private Composite wizPanel;
-	//private Composite home;
-	//private Composite homePanel;
 	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
@@ -117,6 +115,13 @@ public class Wiz1 {
 		gd.horizontalSpan = 2;
 		inner.setLayoutData(gd);
 
+		////////////////////
+		// placeholder
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd.horizontalSpan = 10;
+		new Label(inner, SWT.NONE).setLayoutData(gd);
+		////////////////////
+		
 		////////////////////
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
