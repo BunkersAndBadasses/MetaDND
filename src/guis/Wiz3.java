@@ -2,7 +2,8 @@
  * ADD DESCRIPTION
  */
 
-//TODO alignment checking different
+// TODO alignment checking different? 
+// TODO fix remove lang button
 
 package guis;
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class Wiz3 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private StackLayout layout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -76,7 +77,6 @@ public class Wiz3 {
  
 	private Shell clericShell;
 	
-	private boolean popUpOpen = false;
 	private boolean alignOpen = false;
 	private boolean clericOpen = false;
 
@@ -106,8 +106,8 @@ public class Wiz3 {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(3);
 		this.wizPagesSize = wizPages.size();
@@ -120,9 +120,17 @@ public class Wiz3 {
 	}
 
 	private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz3.setLayout(layout);
+
+		GridData gd;
+		
 		// main label
 		Label wiz4Label = new Label(wiz3, SWT.NONE);
 		wiz4Label.setText("Add Description");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz4Label.setLayoutData(gd);
 		wiz4Label.pack();
 		
 		GridLayout gl = new GridLayout(8, true);
@@ -130,8 +138,9 @@ public class Wiz3 {
 		Composite inner = new Composite(wiz3, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
-
-		GridData gd;
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 		
 		
 		// initialize layout
@@ -615,7 +624,7 @@ public class Wiz3 {
 				// see if lang was already added
 				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
 				for (int i = 0; i < langInput.getItemCount(); i++) {
-					if (langInput.getItem(0).equals(selection))
+					if (langInput.getItem(i).equalsIgnoreCase(selection))
 						return;
 				}
 				langInput.add(selection);
@@ -631,8 +640,21 @@ public class Wiz3 {
 		});
 		inner.layout();
 
+		// cancel button
+		Button wiz4CancelButton = cw.createCancelButton(wiz3);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz4CancelButton.setLayoutData(gd);
+		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
+			}
+		});
+		
 		// next button
 		Button wiz4NextButton = cw.createNextButton(wiz3);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz4NextButton.setLayoutData(gd);
 		wiz4NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// cannot move on if there is a window open
@@ -741,8 +763,8 @@ public class Wiz3 {
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[3])
 					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
 
@@ -750,17 +772,8 @@ public class Wiz3 {
 		// back button
 		//Button wiz4BackButton = cw.createBackButton(wiz6, panel, layout);
 
-
-		// cancel button
-		Button wiz4CancelButton = cw.createCancelButton(wiz3);
-		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});
-
 		inner.layout();
+		wiz3.layout();
 	}
 
 	private boolean checkAlignmentPopUp(String a1, String a2, DeityEntity deity) {
@@ -1073,7 +1086,7 @@ public class Wiz3 {
 
 	private void createNextPage() {
 		cw.wizPageCreated[3] = true;
-		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
+		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
 
 	public Composite getWiz3() { return wiz3; }

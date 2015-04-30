@@ -18,29 +18,31 @@
 
 package guis;
 
-import java.io.File;
+//import java.io.File;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+//
+//import javax.xml.parsers.DocumentBuilder;
+//import javax.xml.parsers.DocumentBuilderFactory;
+//import javax.xml.parsers.ParserConfigurationException;
+//import javax.xml.transform.Transformer;
+//import javax.xml.transform.TransformerException;
+//import javax.xml.transform.TransformerFactory;
+//import javax.xml.transform.dom.DOMSource;
+//import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+//import org.w3c.dom.Document;
+//import org.w3c.dom.Element;
 
 import core.Main;
 import core.SaveCharacter;
@@ -50,8 +52,6 @@ public class Wiz8 {
 
     private CharacterWizard cw;
     private Composite wiz8;
-    private int WIDTH;
-    private int HEIGHT;
     private character character;
 
     public Wiz8(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
@@ -59,26 +59,47 @@ public class Wiz8 {
             final ArrayList<Composite> wizPages) {
         wiz8 = wizPages.get(7);
         this.cw = cw;
-        this.WIDTH = WIDTH;
-        this.HEIGHT = HEIGHT;
         this.character = cw.getCharacter();
 
         createPageContent();
     }
 
     private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz8.setLayout(layout);
+
+		GridData gd;
+		
         Label wiz9Label = new Label(wiz8, SWT.NONE);
         wiz9Label.setText("Done!");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz9Label.setLayoutData(gd);
         wiz9Label.pack();
 
         Text charText = new Text(wiz8, SWT.BORDER | SWT.READ_ONLY | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-        charText.setBounds(10, 20, WIDTH - 40, HEIGHT - 110);
+        //charText.setBounds(10, 20, WIDTH - 40, HEIGHT - 110);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		charText.setLayoutData(gd);
         charText.setText(character.toString());
         //charText.pack();
 
+        Button wiz9CancelButton = cw.createCancelButton(wiz8);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz9CancelButton.setLayoutData(gd);
+        wiz9CancelButton.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event event) {
+                if (cw.cancel)
+                    cw.reset();
+            }
+        });
+        
         Button wiz9SaveButton = new Button(wiz8, SWT.PUSH);
         wiz9SaveButton.setText("Save");
-        wiz9SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz9SaveButton.setLayoutData(gd);
+        //wiz9SaveButton.setBounds(WIDTH-117,HEIGHT-90, 100, 50);
         wiz9SaveButton.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
 
@@ -91,13 +112,7 @@ public class Wiz8 {
         });
 
         //Button wiz9BackButton = cw.createBackButton(wiz9, panel, layout);
-        Button wiz9CancelButton = cw.createCancelButton(wiz8);
-        wiz9CancelButton.addListener(SWT.Selection, new Listener() {
-            public void handleEvent(Event event) {
-                if (cw.cancel)
-                    cw.reset();
-            }
-        });
+        wiz8.layout();
     }
     public static void saveCharacter(character character) {
     	try {

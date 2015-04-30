@@ -33,8 +33,8 @@ public class Wiz2 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private StackLayout layout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -64,8 +64,8 @@ public class Wiz2 {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(2);
 		this.wizPagesSize = wizPages.size();
@@ -79,8 +79,16 @@ public class Wiz2 {
 	}
 
 	private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz2.setLayout(layout);
+		
+		GridData gd;
+		
 		Label wiz3Label = new Label(wiz2, SWT.NONE);
 		wiz3Label.setText("Apply Ability Scores");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz3Label.setLayoutData(gd);
 		wiz3Label.pack();
 		
 		////////// instantiate layout //////////
@@ -90,8 +98,10 @@ public class Wiz2 {
 		Composite inner = new Composite(wiz2, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 
-		GridData gd;
 		
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
@@ -307,8 +317,21 @@ public class Wiz2 {
 		errorLabel.setVisible(false);
 		errorLabel.pack();
 		
+		// cancel button
+		Button wiz3CancelButton = cw.createCancelButton(wiz2);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz3CancelButton.setLayoutData(gd);
+		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
+			}
+		});
+		
 		// next button
 		Button wiz3NextButton = cw.createNextButton(wiz2);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz3NextButton.setLayoutData(gd);
 		wiz3NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// error checking - make sure each list has something selected
@@ -420,30 +443,24 @@ public class Wiz2 {
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[2])
 					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
 
 		// back button
 		//Button wiz3BackButton = cw.createBackButton(wiz3, panel, layout);
 
-		// cancel button
-		Button wiz3CancelButton = cw.createCancelButton(wiz2);
-		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});	
+	
 		////////// create content //////////
 		
 		inner.layout();
+		wiz2.layout();
 	}
 	
 	private void createNextPage() {
 		cw.wizPageCreated[2] = true;
-		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
+		cw.wizs.add(new Wiz3(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
 	
 //	public void updateCharRace() {

@@ -3,6 +3,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
@@ -81,6 +82,8 @@ public class CharacterWizard {
 		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create New Character");
 		shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
+		FillLayout shellLayout = new FillLayout();
+		shell.setLayout(shellLayout);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
@@ -217,7 +220,8 @@ public class CharacterWizard {
 		// set home as the first screen viewed when new character window  is launched
 		homeLayout.topControl = home;
 
-
+		shell.layout();
+		
 		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
 
 		wizPanel = new Composite(homePanel, SWT.BORDER);
@@ -741,7 +745,7 @@ public class CharacterWizard {
 	public Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
-		nextButton.setBounds(GameState.CHARWIZ_WIDTH - 117, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
+		//nextButton.setBounds(GameState.CHARWIZ_WIDTH - 117, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
 		return nextButton;
 	}
 
@@ -783,7 +787,7 @@ public class CharacterWizard {
 	public Button createCancelButton(Composite c) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
-		cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
+		//cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cancelOpen) {

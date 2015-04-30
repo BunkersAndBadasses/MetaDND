@@ -59,24 +59,24 @@ public class Wiz7{
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private StackLayout layout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	
+
 	private boolean primaryGood = false;
 	private boolean spellsGood = false;
 	private boolean primaryOpen = false;
 	private boolean spellOpen = false;
-	
+
 	private List charWeaponsList;
 	private List charArmorList;
 	private List charShieldsList;
 	private List weaponsList;
 	private List armorList;
 	private List shieldsList;
-	
+
 	private List charSpellsList;
 	private Label numSpellsLeft;
 	private int[] numSpells;
@@ -85,7 +85,7 @@ public class Wiz7{
 	private int wizHighestLevel;
 	private Shell spellShell;
 	private Shell primaryShell;
-	
+
 	private ArrayList<CharItem> charWeapons = new ArrayList<CharItem>();
 	private ArrayList<CharItem> charArmor = new ArrayList<CharItem>();
 	private ArrayList<CharItem> charShields = new ArrayList<CharItem>();
@@ -101,159 +101,168 @@ public class Wiz7{
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(7);
 		this.wizPagesSize = wizPages.size();
-		
+
 		createPageContent();
 	}
 
 	private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz7.setLayout(layout);
+
+		GridData gd;
+		
 		Label wiz8Label = new Label(wiz7, SWT.NONE);
 		wiz8Label.setText("Choose Weapons and Armor");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz8Label.setLayoutData(gd);
 		wiz8Label.pack();
-		
-		
+
+
 		// initialize layout
-		
+
 		GridLayout gl = new GridLayout(6, true);
-		
+
 		Composite inner = new Composite(wiz7, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
-		
-		GridData gd;
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 		
 		Label detailsLabel = new Label(inner, SWT.NONE);
 		detailsLabel.setText("Double click on an item to see details");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 6;
 		detailsLabel.setLayoutData(gd);
-		
+
 		Label weaponsLabel = new Label(inner, SWT.NONE);
 		weaponsLabel.setText("Weapons");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		weaponsLabel.setLayoutData(gd);
 		weaponsLabel.pack();
-		
+
 		Label armorLabel = new Label(inner, SWT.NONE);
 		armorLabel.setText("Armor");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		armorLabel.setLayoutData(gd);
 		armorLabel.pack();
-		
+
 		Label shieldsLabel = new Label(inner, SWT.NONE);
 		shieldsLabel.setText("Shield");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		shieldsLabel.setLayoutData(gd);
 		shieldsLabel.pack();
-		
+
 		charWeaponsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 		gd.horizontalSpan = 2;
 		gd.verticalSpan = 2;
 		charWeaponsList.setLayoutData(gd);
 		charWeaponsList.pack();
-		
+
 		charArmorList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 		gd.horizontalSpan = 2;
 		gd.verticalSpan = 2;
 		charArmorList.setLayoutData(gd);
 		charArmorList.pack();
-		
+
 		charShieldsList = new List(inner, SWT.V_SCROLL);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 		gd.horizontalSpan = 2;
 		gd.verticalSpan = 2;
 		charShieldsList.setLayoutData(gd);
 		charShieldsList.pack();
-		
+
 		Button addWeapon = new Button(inner, SWT.PUSH);
 		addWeapon.setText("Add");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		addWeapon.setLayoutData(gd);
 		addWeapon.pack();
-		
+
 		Button removeWeapon = new Button(inner, SWT.PUSH);
 		removeWeapon.setText("Remove");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		removeWeapon.setLayoutData(gd);
 		removeWeapon.pack();
-		
+
 		Button addArmor = new Button(inner, SWT.PUSH);
 		addArmor.setText("Add");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		addArmor.setLayoutData(gd);
 		addArmor.pack();
-		
+
 		Button removeArmor = new Button(inner, SWT.PUSH);
 		removeArmor.setText("Remove");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		removeArmor.setLayoutData(gd);
 		removeArmor.pack();
-		
+
 		Button addShield = new Button(inner, SWT.PUSH);
 		addShield.setText("Add");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		addShield.setLayoutData(gd);
 		addShield.pack();
-		
+
 		Button removeShield = new Button(inner, SWT.PUSH);
 		removeShield.setText("Remove");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		removeShield.setLayoutData(gd);
 		removeShield.pack();
-		
+
 		Label weaponsListLabel = new Label(inner, SWT.NONE);
 		weaponsListLabel.setText("Weapons List");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		weaponsListLabel.setLayoutData(gd);
 		weaponsListLabel.pack();
-		
+
 		Label armorListLabel = new Label(inner, SWT.NONE);
 		armorListLabel.setText("Armor List");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		armorListLabel.setLayoutData(gd);
 		armorListLabel.pack();
-		
+
 		Label shieldsListLabel = new Label(inner, SWT.NONE);
 		shieldsListLabel.setText("Shield List");
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
 		shieldsListLabel.setLayoutData(gd);
 		shieldsListLabel.pack();
-		
+
 		weaponsList = new List(inner, SWT.V_SCROLL);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
 		weaponsList.setLayoutData(gd);
 		weaponsList.pack();
-		
+
 		armorList = new List(inner, SWT.V_SCROLL);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
 		armorList.setLayoutData(gd);
 		armorList.pack();
-		
+
 		shieldsList = new List(inner, SWT.V_SCROLL);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd.horizontalSpan = 2;
 		shieldsList.setLayoutData(gd);
 		shieldsList.pack();
-		
+
 		inner.layout();
-		
-		
+
+
 		// get content
-		
+
 		// get weapons from references
 		Collection<DNDEntity> weaponsCol =  Main.gameState.weapons.values();
 		Iterator<DNDEntity> weaponItr = weaponsCol.iterator();
@@ -261,7 +270,7 @@ public class Wiz7{
 		while (weaponItr.hasNext()) {
 			weapons.add((WeaponEntity) weaponItr.next());
 		}
-		
+
 		// get armor/shields from references
 		Collection<DNDEntity> armorCol =  Main.gameState.armor.values();
 		Iterator<DNDEntity> armorItr = armorCol.iterator();
@@ -269,12 +278,12 @@ public class Wiz7{
 		while (armorItr.hasNext()) {
 			armor.add(armorItr.next());
 		}
-		
+
 		// add weapons to list
 		for (int i = 0; i < weapons.size(); i++) {
 			weaponsList.add(weapons.get(i).getName());
 		}
-		
+
 		// add armor/shields to list
 		for (int i = 0; i < armor.size(); i++) {
 			if (armor.get(i).getName().contains("Shield"))
@@ -282,10 +291,10 @@ public class Wiz7{
 			else
 				armorList.add(armor.get(i).getName());
 		}
-		
-		
+
+
 		// double click listeners to launch tool tip window
-		
+
 		weaponsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = weaponsList.getSelectionIndex();
@@ -298,7 +307,7 @@ public class Wiz7{
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		
+
 		armorList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = armorList.getSelectionIndex();
@@ -311,7 +320,7 @@ public class Wiz7{
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		
+
 		shieldsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = shieldsList.getSelectionIndex();
@@ -324,11 +333,11 @@ public class Wiz7{
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		
-		
+
+
 		// add/remove button listeners
-		
-		 addWeapon.addListener(SWT.Selection, new Listener() {
+
+		addWeapon.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = weaponsList.getSelectionIndex();
 				if (index == -1)
@@ -345,8 +354,8 @@ public class Wiz7{
 				charWeapons.add(new CharItem(add));
 				updateCharWeaponsList();
 			}
-		 });
-		 removeWeapon.addListener(SWT.Selection, new Listener() {
+		});
+		removeWeapon.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = charWeaponsList.getSelectionIndex();
 				if (index == -1)
@@ -354,8 +363,8 @@ public class Wiz7{
 				charWeapons.remove(index);
 				updateCharWeaponsList();
 			}
-		 });
-		 addArmor.addListener(SWT.Selection, new Listener() {
+		});
+		addArmor.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = armorList.getSelectionIndex();
 				if (index == -1)
@@ -371,8 +380,8 @@ public class Wiz7{
 				charArmor.add(new CharItem(add));
 				updateCharArmorList();
 			}
-		 });
-		 removeArmor.addListener(SWT.Selection, new Listener() {
+		});
+		removeArmor.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = charArmorList.getSelectionIndex();
 				if (index == -1)
@@ -380,8 +389,8 @@ public class Wiz7{
 				charArmor.remove(index);
 				updateCharArmorList();				
 			}
-		 });
-		 addShield.addListener(SWT.Selection, new Listener() {
+		});
+		addShield.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = shieldsList.getSelectionIndex();
 				if (index == -1)
@@ -397,8 +406,8 @@ public class Wiz7{
 				charShields.add(new CharItem(add));
 				updateCharShieldsList();
 			}
-		 });
-		 removeShield.addListener(SWT.Selection, new Listener() {
+		});
+		removeShield.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) { 
 				int index = charShieldsList.getSelectionIndex();
 				if (index == -1)
@@ -406,11 +415,23 @@ public class Wiz7{
 				charShields.remove(index);
 				updateCharShieldsList();
 			}
-		 });
-		 
-		
+		});
+
+		// cancel button
+		Button wiz8CancelButton = cw.createCancelButton(wiz7);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz8CancelButton.setLayoutData(gd);
+		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
+			}
+		});
+
 		// next button
 		Button wiz8NextButton = cw.createNextButton(wiz7);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz8NextButton.setLayoutData(gd);
 		wiz8NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// cannot move on if a window is open
@@ -426,20 +447,20 @@ public class Wiz7{
 						spellShell.forceActive();
 					return;
 				}
-				
+
 				// launch pop-up (if user clicks cancel, do not continue)
 				if (!setPrimary())
 					return;
 				if (!selectSpells())
 					return;				
-				
+
 				// save weapons
 				character.setWeapons(charWeapons);
 				// save armor
 				character.setArmor(charArmor);
 				// save shields
 				character.setShields(charShields);
-				
+
 				// add armor bonus to ac
 				ArmorEntity temp = null;
 				try {
@@ -451,7 +472,7 @@ public class Wiz7{
 					character.setACArmorBonus(0);
 				else
 					character.setACArmorBonus(temp.getArmorBonus());
-				
+
 				// add shield bonus to ac
 				temp = null;
 				try {
@@ -463,30 +484,22 @@ public class Wiz7{
 					character.setACShieldBonus(0);
 				else
 					character.setACShieldBonus(temp.getArmorBonus());
-				
+
 				// switch to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[7])
 					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
-		
-		
+
+
 		// back button
 		//Button wiz8BackButton = cw.createBackButton(wiz8, panel, layout);
-		
-		
-		// cancel button
-		Button wiz8CancelButton = cw.createCancelButton(wiz7);
-		wiz8CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});
+
+		wiz7.layout();
 	}
 
 	private boolean setPrimary() {
@@ -507,7 +520,7 @@ public class Wiz7{
 		});
 
 		GridData gd;
-		
+
 		if (charWeapons.size() == 0 && charArmor.size() == 0 && charShields.size() == 0)
 			return true;
 
@@ -539,15 +552,15 @@ public class Wiz7{
 					character.setPrimaryWeapon(temp);
 				}
 			});
-			
+
 			if (charWeapons.size() == 1) {
 				primaryWeaponList.select(0);
 				WeaponEntity temp = (WeaponEntity) Main.gameState.weapons.get(primaryWeaponList.getItem(0));
 				character.setPrimaryWeapon(temp);
 			}
-			
+
 			if (charWeapons.size() > 1) {
-				
+
 				Label secondaryWeapon = new Label(primaryShell, SWT.NONE);
 				secondaryWeapon.setText("Select Secondary Weapon");
 				gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
@@ -560,7 +573,7 @@ public class Wiz7{
 				gd.horizontalSpan = 2;
 				secondaryWeaponList.setLayoutData(gd);
 				secondaryWeaponList.setEnabled(false);
-				
+
 				secondaryWeaponList.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event e) {
 						int index = secondaryWeaponList.getSelectionIndex();
@@ -571,7 +584,7 @@ public class Wiz7{
 						character.setSecondaryWeapon(temp);
 					}
 				});
-				
+
 				primaryWeaponList.addListener(SWT.Selection, new Listener() {
 					public void handleEvent(Event e) {
 						int index = primaryWeaponList.getSelectionIndex();
@@ -587,10 +600,10 @@ public class Wiz7{
 						primaryShell.layout();
 					}
 				});
-				
+
 			}
 		}
-		
+
 		if (charArmor.size() > 0) {
 			Label primaryArmor = new Label(primaryShell, SWT.NONE);
 			primaryArmor.setText("Select Primary Armor");
@@ -618,14 +631,14 @@ public class Wiz7{
 					character.setCurrArmor(temp);
 				}
 			});
-			
+
 			if (charArmor.size() == 1) {
 				primaryArmorList.select(0);
 				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryArmorList.getItem(0));
 				character.setCurrArmor(temp);
 			}
 		}
-		
+
 		if (charShields.size() > 0) {
 			Label primaryShield = new Label(primaryShell, SWT.NONE);
 			primaryShield.setText("Select Primary Shield");
@@ -653,14 +666,14 @@ public class Wiz7{
 					character.setCurrShield(temp);
 				}
 			});
-			
+
 			if (charShields.size() == 1) {
 				primaryShieldList.select(0);
 				ItemEntity temp = (ItemEntity) Main.gameState.armor.get(primaryShieldList.getItem(0));
 				character.setCurrShield(temp);
 			}
 		}
-		
+
 		primaryOpen = true;
 
 		// cancel button
@@ -676,7 +689,7 @@ public class Wiz7{
 		});
 		cancel.pack();
 
-		
+
 		// done button
 		Button done = new Button(primaryShell, SWT.PUSH);
 		done.setText("Done");
@@ -690,7 +703,7 @@ public class Wiz7{
 			}
 		});
 		done.pack();
-		
+
 		// open shell
 		primaryShell.pack();
 		primaryShell.layout();
@@ -786,12 +799,12 @@ public class Wiz7{
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 7;
 		numSpellsLeft.setLayoutData(gd);
-		
+
 		Label detailsLabel = new Label(spellShell, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 7;
 		detailsLabel.setLayoutData(gd);
-		
+
 		Label errorLabel = new Label(spellShell, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 7;
@@ -821,23 +834,23 @@ public class Wiz7{
 		gd = new GridData(SWT.LEFT, SWT.END, true, false);
 		gd.horizontalSpan = 3;
 		cancelButton.setLayoutData(gd);
-		
+
 		// placeholder
 		new Label(spellShell, SWT.NONE).setLayoutData(new GridData());
-		
+
 		Button doneButton = new Button(spellShell, SWT.PUSH);
 		gd = new GridData(SWT.RIGHT, SWT.END, true, false);
 		gd.horizontalSpan = 3;
 		doneButton.setLayoutData(gd);
-		
-		
+
+
 		// create content
 
 		// num spells left label
 		int[][] temp = character.getCharClass().getSpellsKnown();
 		// get num spells the character can know based on their level
 		if (temp == null) {
-			
+
 			int level = character.getLevel();
 			int[] wizSPD;
 			if (level-1 >= character.getCharClass().getSpellsPerDay().length) {
@@ -869,18 +882,18 @@ public class Wiz7{
 		if (numSpells[0] == -1) {
 			return true;
 		}
-		
+
 		spellOpen = true;
-		
+
 		origNumSpells = new int[numSpells.length];
 		for (int i = 0; i < origNumSpells.length; i++)
 			origNumSpells[i] = numSpells[i];
 		updateNumSpellsLeft();
-		
+
 		// details label
 		detailsLabel.setText("Double click on a spell to see details");
 		detailsLabel.pack();
-		
+
 		// error label - set text when called
 		errorLabel.setForeground(new Color(dev, 255, 0, 0));
 		errorLabel.setVisible(false);
@@ -911,7 +924,7 @@ public class Wiz7{
 			//leave blank, but must have
 			public void widgetSelected(SelectionEvent e) {}
 		});
-		
+
 		charSpellsList.addSelectionListener(new SelectionListener(){
 			public void widgetDefaultSelected(SelectionEvent e){
 				int index = charSpellsList.getSelectionIndex();
@@ -1003,7 +1016,7 @@ public class Wiz7{
 				updateNumSpellsLeft();
 			}
 		});	
-		
+
 		// cancel button
 		cancelButton.setText("Cancel");
 		cancelButton.addListener(SWT.Selection, new Listener() {
@@ -1013,7 +1026,7 @@ public class Wiz7{
 				spellOpen = false;
 			}
 		});
-		
+
 		// done button
 		doneButton.setText("Done");
 		doneButton.addListener(SWT.Selection, new Listener() {
@@ -1025,12 +1038,12 @@ public class Wiz7{
 						return;
 					}
 				}
-				
+
 				// if they have chosen all known spells, save and close
 				for (int i = 0; i < charSpells.size(); i++) {
 					character.addSpell(charSpells.get(i));
 				}
-				
+
 				spellsGood = true;
 				spellShell.dispose();
 				spellOpen = false;
@@ -1038,19 +1051,19 @@ public class Wiz7{
 		});
 
 		spellShell.layout();
-		
-		// open shell
-				spellShell.pack();
-				spellShell.layout();
-				CharacterWizard.center(spellShell);
-				spellShell.open();
 
-				// check if disposed
-				while (!spellShell.isDisposed()) {
-					if (!wiz7.getDisplay().readAndDispatch()) {
-						wiz7.getDisplay().sleep();
-					}
-				}
+		// open shell
+		spellShell.pack();
+		spellShell.layout();
+		CharacterWizard.center(spellShell);
+		spellShell.open();
+
+		// check if disposed
+		while (!spellShell.isDisposed()) {
+			if (!wiz7.getDisplay().readAndDispatch()) {
+				wiz7.getDisplay().sleep();
+			}
+		}
 
 		return spellsGood;
 	}
@@ -1089,7 +1102,7 @@ public class Wiz7{
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * returns true if spell is allowed(not prohibited) and false if prohibited
 	 * @param spell
@@ -1105,7 +1118,7 @@ public class Wiz7{
 		}
 		return true;
 	}
-	
+
 	private void updateCharWeaponsList() {
 		charWeaponsList.removeAll();
 		for (int i = 0; i < charWeapons.size(); i++){
@@ -1113,7 +1126,7 @@ public class Wiz7{
 			charWeaponsList.add(curr.getCount() + " x " + curr.getItem().getName());
 		}
 	}
-	
+
 	private void updateCharArmorList() {
 		charArmorList.removeAll();
 		for (int i = 0; i < charArmor.size(); i++){
@@ -1121,7 +1134,7 @@ public class Wiz7{
 			charArmorList.add(curr.getCount() + " x " + curr.getItem().getName());
 		}
 	}
-	
+
 	private void updateCharShieldsList() {
 		charShieldsList.removeAll();
 		for (int i = 0; i < charShields.size(); i++){
@@ -1132,7 +1145,7 @@ public class Wiz7{
 
 	private void createNextPage() {
 		cw.wizPageCreated[7] = true;
-		cw.wizs.add(new Wiz8(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
+		cw.wizs.add(new Wiz8(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
 
 	public Composite getWiz7() { return wiz7; }

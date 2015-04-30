@@ -42,10 +42,7 @@ public class Wiz2_prev {
 	private int HEIGHT;
 	private character character;
 	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
 	private StackLayout layout;
-	private StackLayout homeLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -62,9 +59,7 @@ public class Wiz2_prev {
 	private Shell classExtrasShell;
 	
 	public Wiz2_prev(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
-			Composite panel, Composite home, Composite homePanel, 
-			StackLayout layout, StackLayout homeLayout, 
-			ArrayList<Composite> wizPages) {
+			Composite panel, StackLayout layout, ArrayList<Composite> wizPages) {
 		wiz2 = wizPages.get(1);
 		this.cw = cw;
 		this.dev = dev;
@@ -72,10 +67,7 @@ public class Wiz2_prev {
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
 		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
 		this.layout = layout;
-		this.homeLayout = homeLayout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(2);
 		wizPagesSize = wizPages.size();

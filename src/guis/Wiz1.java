@@ -43,10 +43,10 @@ public class Wiz1 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
+	private Composite wizPanel;
 	//private Composite home;
 	//private Composite homePanel;
-	private StackLayout layout;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -85,8 +85,8 @@ public class Wiz1 {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(1);
 		this.wizPagesSize = wizPages.size();
@@ -95,21 +95,28 @@ public class Wiz1 {
 	}
 
 	private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz1.setLayout(layout);
+		
+		GridData gd;
+		
 		Label wiz1Label = new Label(wiz1, SWT.NONE);
 		wiz1Label.setText("Roll initial ability scores and select character race and class");
-		wiz1Label.pack();
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz1Label.setLayoutData(gd);
 		
 		
 		// initialize layout
-		
 		GridLayout gl = new GridLayout(10, false);
 		
 		Composite inner = new Composite(wiz1, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 
-		GridData gd;
-		
 		////////////////////
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
@@ -383,8 +390,22 @@ public class Wiz1 {
 		
 		inner.layout();
 		
+		
+		// cancel button
+		Button wiz1CancelButton = cw.createCancelButton(wiz1);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz1CancelButton.setLayoutData(gd);
+		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
+			}
+		});
+		
 		// next button
 		Button wiz1NextButton = cw.createNextButton(wiz1);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz1NextButton.setLayoutData(gd);
 		wiz1NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// user cannot move on if there is a pop up open
@@ -498,19 +519,12 @@ public class Wiz1 {
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[1])
 					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
-		
-		// cancel button
-		Button wiz1CancelButton = cw.createCancelButton(wiz1);
-		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});
+		wiz1.layout();
+
 	}
 	
 	/**
@@ -1120,8 +1134,8 @@ public class Wiz1 {
 
 	private void createNextPage() {
 		cw.wizPageCreated[1] = true;
-		cw.wizs.add(new Wiz2(cw, dev, WIDTH, HEIGHT, panel, 
-				layout, wizPages, cw.getBaseAbilityScores()));
+		cw.wizs.add(new Wiz2(cw, dev, WIDTH, HEIGHT, wizPanel, 
+				wizLayout, wizPages, cw.getBaseAbilityScores()));
 	}
 
 }

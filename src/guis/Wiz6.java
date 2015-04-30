@@ -9,13 +9,11 @@ import java.util.Iterator;
 import java.util.Random;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -40,8 +38,8 @@ public class Wiz6 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private StackLayout layout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
@@ -65,8 +63,8 @@ public class Wiz6 {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.layout = layout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(6);
 		this.wizPagesSize = wizPages.size();
@@ -77,8 +75,16 @@ public class Wiz6 {
 	}
 
 	private void createPageContent() {
+		GridLayout layout = new GridLayout(2, true);
+		wiz6.setLayout(layout);
+
+		GridData gd;
+		
 		Label wiz7Label = new Label(wiz6, SWT.NONE);
 		wiz7Label.setText("Choose Equipment");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz7Label.setLayoutData(gd);
 		wiz7Label.pack();
 
 		//////////instantiate layout //////////
@@ -88,8 +94,9 @@ public class Wiz6 {
 		inner = new Composite(wiz6, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
-
-		GridData gd;
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 		
 		// placeholder
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
@@ -381,8 +388,20 @@ public class Wiz6 {
 			}
 		});
 		
+		Button wiz7CancelButton = cw.createCancelButton(wiz6);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz7CancelButton.setLayoutData(gd);
+		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
+			}
+		});
+		
 		// next button
 		Button wiz7NextButton = cw.createNextButton(wiz6);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz7NextButton.setLayoutData(gd);
 		wiz7NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				int gold = 0;
@@ -404,26 +423,20 @@ public class Wiz6 {
 					cw.wizPageNum++;
 				if (!cw.wizPageCreated[7])
 					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
 
 		//Button wiz7BackButton = cw.createBackButton(wiz7, panel, layout);
-		Button wiz7CancelButton = cw.createCancelButton(wiz6);
-		wiz7CancelButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
-			}
-		});
 		
 		inner.layout();
+		wiz6.layout();
 	}
 
 	private void createNextPage() {
 		cw.wizPageCreated[6] = true;
-		cw.wizs.add(new Wiz7(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages));
+		cw.wizs.add(new Wiz7(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
 
 	private void updateCharItemsList() {
