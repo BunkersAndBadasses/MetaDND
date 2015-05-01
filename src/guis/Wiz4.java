@@ -8,6 +8,7 @@
  */
 
 package guis;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -36,6 +37,7 @@ import org.eclipse.swt.widgets.Text;
 
 import entity.*;
 import core.character;
+
 /* TODO
  * add text box to add custom skill
  * add boxes next to craft, profession, etc
@@ -110,7 +112,7 @@ public class Wiz4 {
 
 		GridLayout gl = new GridLayout(3, false);
 
-		Composite inner = new Composite(wiz4, SWT.NONE);
+		inner = new Composite(wiz4, SWT.NONE);
 		//inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);

@@ -2,9 +2,6 @@
  * ADD DESCRIPTION
  */
 
-// TODO alignment checking different? 
-// TODO fix remove lang button
-
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;

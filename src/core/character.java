@@ -168,14 +168,10 @@ public class character {
 		setReflexSaveDexMod(getAbilityModifiers()[GameState.DEXTERITY]);
 		setWillSaveWisMod(getAbilityModifiers()[GameState.WISDOM]);
 	}
-	/**
-	 * 
-	 * @return an int array of ability score of the character.
-	 */
+
 	public int[] getAbilityScores() { return abilityScores; }
 	/**
-	 * The ability modifier is calculated by : (ability score / 2) - 5, omit the number
-	 * after dot.
+	 * The ability modifier equation is (ability score / 2) - 5, round down
 	 * @return an int array of ability modifiers of the character.
 	 */
 	public int[] getAbilityModifiers() {
