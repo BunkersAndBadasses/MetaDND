@@ -54,6 +54,16 @@ public class LoadCharacter {
 
 
                 element = (Element) node;
+                
+                str = getValue("Armor", element);
+                if (!str.equals(" ")) {
+                    c.setCurrArmor((ItemEntity) Main.gameState.armor.get(str));
+                }
+
+                str = getValue("Shield", element);
+                if (!str.equals(" ")) {
+                    c.setCurrShield((ItemEntity) Main.gameState.armor.get(str));
+                }
 
                 str = getValue("Exp", element);
                 if (str.equals(" ")) { str = "0"; }
@@ -273,15 +283,7 @@ public class LoadCharacter {
                     c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(str));
                 }
 
-                str = getValue("Armor", element);
-                if (!str.equals(" ")) {
-                    c.setCurrArmor((ItemEntity) Main.gameState.armor.get(str));
-                }
-
-                str = getValue("Shield", element);
-                if (!str.equals(" ")) {
-                    c.setCurrShield((ItemEntity) Main.gameState.armor.get(str));
-                }
+                
 
 
                 c.setNotes(getValue("Notes", element));
