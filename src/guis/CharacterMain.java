@@ -872,6 +872,9 @@ public class CharacterMain {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        // TODO
+        new test(display);
     }
 
 

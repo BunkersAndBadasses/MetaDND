@@ -86,7 +86,7 @@ public abstract class DNDEntity {
 	    int WIDTH = 700;
 		int HEIGHT = (int)(bounds.height * 2.0/3.0);
 		
-		ScrolledComposite sc = new ScrolledComposite(shell, SWT.V_SCROLL);
+		ScrolledComposite sc = new ScrolledComposite(shell, SWT.V_SCROLL | SWT.H_SCROLL);
 		sc.setBounds(0, 0, WIDTH - 20, HEIGHT - 50);
 		sc.setExpandHorizontal(true);
 		sc.setExpandVertical(true);
@@ -128,12 +128,7 @@ public abstract class DNDEntity {
 	    
 		shell.pack();
 		shell.open();
-		shell.addListener (SWT.Resize,  new Listener () {
-	        public void handleEvent (Event e) {
-	          Rectangle rect = shell.getClientArea ();
-	          sc.setBounds(rect);
-	        }
-	      });
+		
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();

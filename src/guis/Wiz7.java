@@ -17,8 +17,7 @@
  */
 
 /*
- * TODO only show weapons/armor/shields the character is proficient with
- * curr shield not saving? only one?
+ * TODO fix popup
  */
 
 package guis;

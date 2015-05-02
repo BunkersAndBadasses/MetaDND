@@ -54,15 +54,9 @@ public class CharSkill {
 	public int getRank() { return rank; }
 	
 	public boolean incRank(int numSkillPoints) {
-		if ((classSkill && rank ==4) || (!classSkill && (rank == 2 || numSkillPoints == 1)))
+		int max = getMaxClassSkillRank(character.getLevel());
+		if ((classSkill && rank == max) || (!classSkill && (rank == max/2 || numSkillPoints == 1)))
 			return false;
-//		if(!classSkill){
-//			if (!halfPoint) {
-//				halfPoint = true;
-//				return true;		
-//			} else 
-//				halfPoint = false;
-//		}
 		rank++;
 		return true;
 	}
@@ -70,14 +64,6 @@ public class CharSkill {
 	public boolean decRank() {
 		if (rank == 0)
 			return false;
-//		if (!classSkill) {
-//			if (halfPoint) {
-//				halfPoint = false;
-//			} else {
-//				halfPoint = true;
-//				return true;
-//			}
-//		}
 		rank--;
 		return true;
 	}
@@ -99,4 +85,8 @@ public class CharSkill {
 	public void setRank(int r) { rank = r ; }
 	
 	public void setMiscMod(int m) { miscMod = m; }
+	
+	public int getMaxClassSkillRank(int level) {
+		return level + 3;
+	}
 }

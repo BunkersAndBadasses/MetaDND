@@ -2,9 +2,6 @@
  * ADD DESCRIPTION
  */
 
-// TODO alignment checking different? 
-// TODO fix remove lang button
-
 package guis;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,6 +69,8 @@ public class Wiz3 {
 	private Text customLang;
 	private int remainingBonusLangs;
 	private int numBonusLangs;
+	
+	private int numAutoLangs = 0;
 	
 	private Shell alignmentShell;
  
@@ -249,14 +248,19 @@ public class Wiz3 {
 		langInput = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
 		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
+		gd.verticalSpan = 3;
 		langInput.setLayoutData(gd);
 		
 		List possibleLangsList = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
 		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
+		gd.verticalSpan = 3;
 		possibleLangsList.setLayoutData(gd);
+		
+		Label errorLabel = new Label(inner, SWT.WRAP);
+		gd = new GridData(GridData.CENTER, GridData.CENTER, true, true);
+		gd.horizontalSpan = 2;
+		errorLabel.setLayoutData(gd);
 		
 		Button removeLang = new Button(inner, SWT.PUSH);
 		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
@@ -552,14 +556,19 @@ public class Wiz3 {
 		customLang.setMessage("Custom Language");
 		customLang.addListener(SWT.DefaultSelection, new Listener() {
 			public void handleEvent(Event e) {
+				errorLabel.setVisible(false);
 				if (remainingBonusLangs == 0)
 					return;
 				if (customLang.getText().length() == 0)
 					return;
 				// check if language was already added
 				for (int i = 0; i < langInput.getItemCount(); i++) {
-					if (langInput.getItem(0).equals(customLang.getText()))
+					if (langInput.getItem(i).equalsIgnoreCase(customLang.getText())) {
+						errorLabel.setText("You already added that language");
+						errorLabel.setVisible(true);
+						inner.layout();
 						return;
+					}
 				}
 				langInput.add(customLang.getText());
 				remainingBonusLangs--;
@@ -572,12 +581,34 @@ public class Wiz3 {
 				addLang.setBackground(null);
 			}
 		});
+		
+		errorLabel.setVisible(false);
+		errorLabel.setForeground(wiz3.getDisplay().getSystemColor(SWT.COLOR_RED));
 
 		removeLang.setText("Remove");
 		removeLang.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
-				if (numBonusLangs != remainingBonusLangs) {
-					langInput.remove(langInput.getItemCount()-1);
+//				if (numBonusLangs != remainingBonusLangs) {
+//					langInput.remove(langInput.getItemCount()-1);
+//					remainingBonusLangs++;
+//					if (remainingBonusLangs == 1)
+//						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+//					else
+//						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+//					addLang.pack();
+//					inner.layout();
+//				}
+				errorLabel.setVisible(false);
+				int index = langInput.getSelectionIndex();
+				if (index == -1)
+					return;
+				if (index < numAutoLangs) {
+					errorLabel.setText("You cannot remove an automatic language");
+					errorLabel.setVisible(true);
+					inner.layout();
+					return;
+				} else {
+					langInput.remove(index);
 					remainingBonusLangs++;
 					if (remainingBonusLangs == 1)
 						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
@@ -604,7 +635,8 @@ public class Wiz3 {
 		possibleLangs.setText("Possible Languages:");
 		possibleLangs.pack();
 
-		String[] raceLangs = charRace.getAutoLanguages(); 
+		String[] raceLangs = charRace.getAutoLanguages();
+		numAutoLangs = raceLangs.length;
 		for(int i = 0; i < raceLangs.length; i++) 
 			langInput.add(raceLangs[i]);
 		
@@ -619,13 +651,18 @@ public class Wiz3 {
 		possibleLangsList.pack();
 		possibleLangsList.addListener(SWT.DefaultSelection, new Listener() {
 			public void handleEvent(Event e) {
+				errorLabel.setVisible(false);
 				if (remainingBonusLangs == 0)
 					return;
 				// see if lang was already added
 				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
 				for (int i = 0; i < langInput.getItemCount(); i++) {
-					if (langInput.getItem(i).equalsIgnoreCase(selection))
+					if (langInput.getItem(i).equalsIgnoreCase(selection)) {
+						errorLabel.setText("You already added that language");
+						errorLabel.setVisible(true);
+						inner.layout();
 						return;
+					}
 				}
 				langInput.add(selection);
 				remainingBonusLangs--;

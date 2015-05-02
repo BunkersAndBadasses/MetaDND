@@ -36,13 +36,11 @@ import entity.WeaponEntity;
  * barbarian illiteracy
  * speak language skill
  * barbarian: rage per day
- * languages - change remove
  * 
  * change skill list - numbers in line, headers
  * back button
  * starting at level > 1
  * adding custom skills
- * saving character image
  */
 
 public class CharacterWizard {

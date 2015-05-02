@@ -1,6 +1,7 @@
 package core;
 import guis.HomeWindow;
 import guis.Startscreen;
+import guis.test;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -17,7 +18,7 @@ public class Main {
 		
 		Display display = new Display();
 		boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
-		new Startscreen(display);
+		//new Startscreen(display);
 		homeWindow = new HomeWindow(display);
 		
 		display.dispose();
