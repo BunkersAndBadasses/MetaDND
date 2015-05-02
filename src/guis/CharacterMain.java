@@ -749,10 +749,14 @@ public class CharacterMain {
         armorName = "";
         if (c.getCurrArmor() != null) {
             armorName = c.getCurrArmor().getName();
+            ArmorEntity ae = (ArmorEntity) c.getCurrArmor();
+            c.setACArmorBonus(ae.getArmorBonus());
         }
         shieldName = "";
         if (c.getCurrShield() != null ) {
             shieldName = c.getCurrShield().getName();
+            ArmorEntity ae = (ArmorEntity) c.getCurrShield();
+            c.setACArmorBonus(ae.getArmorBonus());
         }
 
         acVal = 0;
