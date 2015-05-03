@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import core.CharSkill;
 import core.GameState;
 import core.RNG;
+import core.SkillAdjNode;
 import core.character;
 
 public class LevelUpButton {
@@ -40,9 +41,12 @@ public class LevelUpButton {
 	private Shell areYouSureShell;
 	private Shell curr;
 	
+	int numSkillPoints;
+	
 	// stuff to save when done
 	private int saveHP;
 	private int saveAS; // 0-5, index of ability score to increase
+	private ArrayList<SkillAdjNode> saveSkills;
 	
 	public LevelUpButton(Composite page, character character) {
 		this.page = page;
@@ -67,6 +71,7 @@ public class LevelUpButton {
 			return;
 		} else {
 			// otherwise, perform the level up	
+			character.incLevel();
 			levelUp();
 		}
 	}
@@ -76,7 +81,7 @@ public class LevelUpButton {
 //		StackLayout stackLayout = new StackLayout();
 //		levelUpShell.setLayout(stackLayout);
 		
-		int newLevel = character.getLevel() + 1;
+		int level = character.getLevel();
 		
 		////////// PAGE NUMBERS //////////
 		final int HP = 0;
@@ -221,7 +226,7 @@ public class LevelUpButton {
 		skillsPage.setLayout(gl);
 		
 		Label skillPointsLabel = new Label(skillsPage, SWT.NONE);
-		int numSkillPoints = Integer.parseInt(Character.toString(character.getCharClass().getSkillPointsPerLevel().charAt(0))) + character.getAbilityModifiers()[GameState.INTELLIGENCE];
+		numSkillPoints = Integer.parseInt(Character.toString(character.getCharClass().getSkillPointsPerLevel().charAt(0))) + character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		//int numSkillPoints = 5;
 		// TODO check if <= 0
 		skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
@@ -229,13 +234,44 @@ public class LevelUpButton {
 		gd.horizontalSpan = 8;
 		skillPointsLabel.setLayoutData(gd);
 		
-//		Composite titleRow = new Composite(skillsPage, SWT.BORDER);
-//		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-//		gd.horizontalSpan = 2;
-//		titleRow.setLayoutData(gd);
-//		titleRow.setLayout(new GridLayout(8, true));
-		String[] titles = {"+", Character.toString(((char) 8211)), "Skill (Type)", "Ability Mod", "Misc Mod", "Rank", "Total"};
+		// class skill color
+		Color classSkillColor = new Color(display, 0, 200, 100);
 		
+		// cross class skill color
+		Color crossClassSkillColor = new Color(display, 0, 0, 255);
+	
+		// class skill label
+		Label classSkillLabel = new Label(skillsPage, SWT.NONE);
+		classSkillLabel.setForeground(classSkillColor);
+		classSkillLabel.setText("Class Skills: 1 point = 1 rank");
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		classSkillLabel.setLayoutData(gd);
+
+		// cross-class skill label
+		Label crossClassSkillLabel = new Label(skillsPage, SWT.NONE);
+		crossClassSkillLabel.setForeground(crossClassSkillColor);
+		crossClassSkillLabel.setText("Cross-Class Skills: 2 points = 1 rank");
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		crossClassSkillLabel.setLayoutData(gd);
+
+		// untrained label
+		Label untrainedLabel = new Label(skillsPage, SWT.NONE);
+		untrainedLabel.setText(Character.toString((char)8226) + " : skill can be used untrained");
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		untrainedLabel.setLayoutData(gd);
+		
+		// ac penalty label
+		Label acPenLabel = new Label(skillsPage, SWT.NONE);
+		acPenLabel.setText("*: AC penalty  **: double AC penalty");
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		acPenLabel.setLayoutData(gd);
+		
+		// column titles
+		String[] titles = {"+", Character.toString(((char) 8211)), "Skill (Type)", "Rank", "Ability Mod", "Misc Mod", "Total"};
 		for (int i = 0; i < titles.length; i++) {
 			Label label = new Label(skillsPage, SWT.BORDER | SWT.CENTER);
 			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
@@ -256,11 +292,23 @@ public class LevelUpButton {
 		GridLayout skillsInnerLayout = new GridLayout(1, true);
 		skillsInner.setLayout(skillsInnerLayout);
 		
+		// error label
+		Label errorLabel = new Label(skillsPage, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 8;
+		errorLabel.setLayoutData(gd);
+		errorLabel.setVisible(false);
+		errorLabel.setForeground(new Color(display, 255,0,0));
+		errorLabel.pack();
+		
 		ArrayList<CharSkill> charSkills = character.getSkills();
+		saveSkills = new ArrayList<SkillAdjNode>();
 		ArrayList<Composite> rows = new ArrayList<Composite>();
-		//rows.add(titleRow);
 		
 		for (int i = 0; i < charSkills.size(); i++) {
+			// set current, add to list
+			SkillAdjNode current = new SkillAdjNode(charSkills.get(i), 0);
+			saveSkills.add(current);
 			// create composite
 			Composite currRow = new Composite(skillsInner, SWT.BORDER);
 			rows.add(currRow);
@@ -278,11 +326,34 @@ public class LevelUpButton {
 			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 			dec.setLayoutData(gd);
 			// skill name (type)
+			// TODO set color
 			Label skill = new Label(currRow, SWT.NONE);
-			skill.setText(charSkills.get(i).getSkill().getName() + " (" + charSkills.get(i).getAbilityType() + ")");
+			final String acPen;
+			if (current.getCharSkill().hasACPen()) {
+				if (current.getCharSkill().getSkill().getName().equalsIgnoreCase("Swim"))
+					acPen = "**";
+				else 
+					acPen = "*";
+			} else 
+				acPen = "";
+			final String untrained;
+			if (current.getCharSkill().useUntrained())
+				untrained = Character.toString ((char) 8226);
+			else 
+				untrained = "  ";
+			skill.setText(untrained + charSkills.get(i).getSkill().getName() + " (" + charSkills.get(i).getAbilityType() + ")" + acPen);
+			if (current.getCharSkill().isClassSkill())
+				skill.setForeground(classSkillColor);
+			else
+				skill.setForeground(crossClassSkillColor);
 			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 			gd.horizontalSpan = 2;
 			skill.setLayoutData(gd);
+			// rank
+			Label rank = new Label(currRow, SWT.CENTER);
+			rank.setText(Integer.toString(charSkills.get(i).getRank()));
+			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+			rank.setLayoutData(gd);
 			// ability mod
 			Label abilMod = new Label(currRow, SWT.CENTER);
 			abilMod.setText(Integer.toString(charSkills.get(i).getAbilityMod()));
@@ -293,16 +364,71 @@ public class LevelUpButton {
 			miscMod.setText(Integer.toString(charSkills.get(i).getMiscMod()));
 			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 			miscMod.setLayoutData(gd);
-			// rank
-			Label rank = new Label(currRow, SWT.CENTER);
-			rank.setText(Integer.toString(charSkills.get(i).getRank()));
-			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
-			rank.setLayoutData(gd);
 			// total
 			Label total = new Label(currRow, SWT.CENTER);
-			total.setText(Integer.toString(charSkills.get(i).getTotal()));
+			int totalTemp = current.getCharSkill().getTotal() + current.getAdj();
+			String temp = "";
+			if (totalTemp > 0)
+				temp += "+";
+			temp += totalTemp;
+			total.setText(temp);
 			gd = new GridData(SWT.FILL, SWT.FILL, true, false);
 			total.setLayoutData(gd);
+			// inc listener
+			inc.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					errorLabel.setVisible(false);
+					if (numSkillPoints == 0) {
+						errorLabel.setText("You have no more skill points to spend!");
+						errorLabel.setVisible(true);
+						skillsPage.layout();
+						return;
+					}
+					if (current.getCharSkill().tryIncRank(numSkillPoints)) {
+						current.incAdj();
+						rank.setText(Integer.toString(current.getCharSkill().getRank() + current.getAdj()));
+						int totalTemp = current.getCharSkill().getTotal() + current.getAdj();
+						String temp = "";
+						if (totalTemp > 0)
+							temp += "+";
+						temp += totalTemp;
+						total.setText(temp);						
+						if (!current.getCharSkill().isClassSkill())
+							numSkillPoints--;
+						numSkillPoints--;
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
+					} else {
+						errorLabel.setText("You have maxed out that skill!");
+						errorLabel.setVisible(true);
+						skillsPage.layout();
+					}
+				}
+			});
+			// dec listener
+			dec.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					errorLabel.setVisible(false);
+					if (current.decAdj()) {
+						rank.setText(Integer.toString(current.getCharSkill().getRank() + current.getAdj()));
+						int totalTemp = current.getCharSkill().getTotal() + current.getAdj();
+						String temp = "";
+						if (totalTemp > 0)
+							temp += "+";
+						temp += totalTemp;
+						total.setText(temp);
+						if (!current.getCharSkill().isClassSkill())
+							numSkillPoints++;
+						numSkillPoints++;
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
+					} else {
+						errorLabel.setText("That skill's rank cannot be decreased further!");
+						errorLabel.setVisible(true);
+						skillsPage.layout();
+					}
+				}
+			});
 			
 			currRow.layout();
 			currRow.pack();
@@ -325,10 +451,16 @@ public class LevelUpButton {
 		Button skillsNext = nextButton(skillsPage);
 		skillsNext.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
+				if (numSkillPoints > 0) {
+					errorLabel.setText("You must spend all skill points!");
+					errorLabel.setVisible(true);
+					skillsPage.layout();
+					return;
+				}
 				Shell nextPage;
-				if ((newLevel % 3) == 0) {
+				if ((level % 3) == 0) {
 					nextPage = pages.get(FEAT);
-				} else if ((newLevel % 4) == 0) {
+				} else if ((level % 4) == 0) {
 					nextPage = pages.get(AS);
 				} // TODO any other pages
 				else {
@@ -359,7 +491,7 @@ public class LevelUpButton {
 		featsNext.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				Shell nextPage;
-				if ((newLevel % 4) == 0) {
+				if ((level % 4) == 0) {
 					nextPage = pages.get(AS);
 				} // TODO any other pages
 				else {
@@ -673,6 +805,8 @@ public class LevelUpButton {
 						areYouSureShell.dispose();
 						//levelUpShell.dispose();
 						curr.dispose();
+						// reverse the level up
+						character.setLevel(character.getLevel()-1);
 					}
 				});
 				yes.pack();
@@ -725,3 +859,5 @@ public class LevelUpButton {
 	public Button getButton() { return button; }
 	
 }
+
+
