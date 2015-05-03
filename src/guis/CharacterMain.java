@@ -131,6 +131,12 @@ public class CharacterMain {
     private Label priCriticalLabel;
     private Label priTypeLabel;
     private boolean boo;
+    private Combo skillCombo;
+    private Combo specAbilCombo;
+    private Combo featCombo;
+    private Combo languageCombo;
+    private Combo inventoryCombo;
+    private Label priLabel;
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
@@ -337,8 +343,7 @@ public class CharacterMain {
         weapGD.widthHint = 200;
         weapGD.heightHint = 17;
 
-        Label priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priLabel.setText(priWeapon);
+        priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priLabel.setLayoutData(weapGD);
 
 
@@ -426,39 +431,18 @@ public class CharacterMain {
 
 
         priCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[weapons.size()];
-        priCombo.setItems(weapons.toArray(strArr));
-        priCombo.add("Primary", 0);
-        priCombo.add("None", 1);
-        priCombo.select(0);
         priCombo.setLayoutData(statGD);
 
         secCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[weapons.size()];
-        secCombo.setItems(weapons.toArray(strArr));
-        secCombo.add("Secondary", 0);
-        secCombo.add("None", 1);
-        secCombo.select(0);
         secCombo.setLayoutData(statGD);
 
         armorCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[armors.size()];
-        armorCombo.setItems(armors.toArray(strArr));
-        armorCombo.add("Armor", 0);
-        armorCombo.add("None", 1);
-        armorCombo.select(0);
         armorCombo.setLayoutData(statGD);
 
         shieldCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[shields.size()];
-        shieldCombo.setItems(shields.toArray(strArr));
-        shieldCombo.add("Shield", 0);
-        shieldCombo.add("None", 1);
-        shieldCombo.select(0);
         shieldCombo.setLayoutData(statGD);
 
         initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        initLabel.setText("Initiative: " + initVal);
         initLabel.setLayoutData(statGD);
 
 
@@ -478,7 +462,7 @@ public class CharacterMain {
         change.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                
+
                 if (shieldCombo.getSelectionIndex() == 0) {
 
                 } else if (shieldCombo.getSelectionIndex() == 1) {
@@ -523,47 +507,24 @@ public class CharacterMain {
                     secWeapon = secCombo.getText();
                     c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(secWeapon));
                 }
-                priLabel.setText(priWeapon);
-                secLabel.setText(secWeapon);
-                armorLabel.setText(armorName);
-                shieldLabel.setText(shieldName);
+
                 refresh();
             }
         }); 
 
-        Combo skillCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[skills.size()];
-        skillCombo.setItems(skills.toArray(strArr));
-        skillCombo.add("Skills", 0);
-        skillCombo.select(0);
+        skillCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         skillCombo.setLayoutData(statGD);
 
-        Combo specAbilCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[specialAbilities.size()];
-        specAbilCombo.setItems(specialAbilities.toArray(strArr));
-        specAbilCombo.add("Special Abilities", 0);
-        specAbilCombo.select(0);
+        specAbilCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         specAbilCombo.setLayoutData(statGD);
 
-        Combo featCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[feats.size()];
-        featCombo.setItems(feats.toArray(strArr));
-        featCombo.add("Feats", 0);
-        featCombo.select(0);
+        featCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         featCombo.setLayoutData(statGD);
 
-        Combo languageCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[languages.size()];
-        languageCombo.setItems(languages.toArray(strArr));
-        languageCombo.add("Languages", 0);
-        languageCombo.select(0);
+        languageCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         languageCombo.setLayoutData(statGD);
 
-        Combo inventoryCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
-        strArr = new String[items.size()];
-        inventoryCombo.setItems(items.toArray(strArr));
-        inventoryCombo.add("Inventory", 0);;
-        inventoryCombo.select(0);
+        inventoryCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         inventoryCombo.setLayoutData(statGD);
 
         new Label(mainComp, SWT.NONE);
@@ -753,7 +714,7 @@ public class CharacterMain {
         if (c.getCurrShield() != null ) {
             shieldName = c.getCurrShield().getName();
             ArmorEntity ae = (ArmorEntity) c.getCurrShield();
-            c.setACArmorBonus(ae.getArmorBonus());
+            c.setACShieldBonus(ae.getArmorBonus());
         }
 
         acVal = 0;
@@ -909,6 +870,75 @@ public class CharacterMain {
 
     private void refresh() {
         //TODO
+        acVal = c.getACTotal();
+        ffVal = c.getTouchAC();
+        touchVal = c.getTouchAC();
+
+        items = new ArrayList<String>();
+        for(int i = 0; i < c.getItems().size(); i ++) {
+            CharItem ci = c.getItems().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+        }
+
+        languages = new ArrayList<String>();
+        for(int i = 0; i < c.getLanguages().size(); i ++) {
+            String s = c.getLanguages().get(i);
+            languages.add(s);
+        }
+
+        weapons = new ArrayList<String>();
+        for(int i = 0; i < c.getWeapons().size(); i ++) {
+            CharItem ci = c.getWeapons().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            weapons.add(ci.getName());
+        }
+
+        armors = new ArrayList<String>();
+        for(int i = 0; i < c.getArmor().size(); i ++) {
+            CharItem ci = c.getArmor().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            armors.add(ci.getName());
+        }
+
+        shields = new ArrayList<String>();
+        for(int i = 0; i < c.getShields().size(); i ++) {
+            CharItem ci = c.getShields().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            shields.add(ci.getName());
+        }
+
+        skills = new ArrayList<String>();
+        for(int i = 0; i < c.getSkills().size(); i ++) {
+            CharSkill cs = c.getSkills().get(i);
+            skills.add(cs.getSkill().getName() + " (" + cs.getTotal()+ ")");
+        }
+
+        specialAbilities = new ArrayList<String>();
+        for(int i = 0; i < c.getSpecialAbilities().size(); i ++) {
+            AbilityEntity ae = c.getSpecialAbilities().get(i);
+            specialAbilities.add(ae.getName());
+        }
+
+        feats = new ArrayList<String>();
+        for(int i = 0; i < c.getFeats().size(); i ++) {
+            CharFeat cf = c.getFeats().get(i);
+            int count = cf.getCount();
+            String addOn = "";
+            if (cf.getSpecial() != null && !cf.getSpecial().equals("")){ 
+                addOn += ": " + cf.getSpecial();
+            }
+            if ( count != 1) addOn += " (" + count + ")";
+            feats.add(cf.getFeat().getName() + addOn);
+        }
+        items.sort(String.CASE_INSENSITIVE_ORDER);
+        languages.sort(String.CASE_INSENSITIVE_ORDER);
+        weapons.sort(String.CASE_INSENSITIVE_ORDER);
+        armors.sort(String.CASE_INSENSITIVE_ORDER);
+        shields.sort(String.CASE_INSENSITIVE_ORDER);
+        skills.sort(String.CASE_INSENSITIVE_ORDER);
+        feats.sort(String.CASE_INSENSITIVE_ORDER);
+
+
         armorLabel.setText(armorName);
 
         acLabel.setText("AC: " + acVal);
@@ -957,6 +987,63 @@ public class CharacterMain {
         secRangeLabel.setText("Range: " + (boo ? secVals[2] : ""));
         secCriticalLabel.setText("Crit: " + (boo ? secVals[3] + "  x" + secVals[4]: ""));
         secTypeLabel.setText("Type: " + (boo ? secVals[5] : ""));
+
+        priLabel.setText(priWeapon);
+        secLabel.setText(secWeapon);
+        armorLabel.setText(armorName);
+        shieldLabel.setText(shieldName);
+
+
+        strArr = new String[weapons.size()];
+        priCombo.setItems(weapons.toArray(strArr));
+        priCombo.add("Primary", 0);
+        priCombo.add("None", 1);
+        priCombo.select(0);
+
+        strArr = new String[weapons.size()];
+        secCombo.setItems(weapons.toArray(strArr));
+        secCombo.add("Secondary", 0);
+        secCombo.add("None", 1);
+        secCombo.select(0);
+
+        strArr = new String[armors.size()];
+        armorCombo.setItems(armors.toArray(strArr));
+        armorCombo.add("Armor", 0);
+        armorCombo.add("None", 1);
+        armorCombo.select(0);
+
+        strArr = new String[shields.size()];
+        shieldCombo.setItems(shields.toArray(strArr));
+        shieldCombo.add("Shield", 0);
+        shieldCombo.add("None", 1);
+        shieldCombo.select(0);
+
+        initLabel.setText("Initiative: " + initVal);
+
+        strArr = new String[skills.size()];
+        skillCombo.setItems(skills.toArray(strArr));
+        skillCombo.add("Skills", 0);
+        skillCombo.select(0);
+
+        strArr = new String[specialAbilities.size()];
+        specAbilCombo.setItems(specialAbilities.toArray(strArr));
+        specAbilCombo.add("Special Abilities", 0);
+        specAbilCombo.select(0);
+
+        strArr = new String[feats.size()];
+        featCombo.setItems(feats.toArray(strArr));
+        featCombo.add("Feats", 0);
+        featCombo.select(0);
+
+        strArr = new String[languages.size()];
+        languageCombo.setItems(languages.toArray(strArr));
+        languageCombo.add("Languages", 0);
+        languageCombo.select(0);
+
+        strArr = new String[items.size()];
+        inventoryCombo.setItems(items.toArray(strArr));
+        inventoryCombo.add("Inventory", 0);;
+        inventoryCombo.select(0);
 
     }
 

@@ -196,17 +196,23 @@ public class character {
 
     public void setCurrShield(ItemEntity shi){ //TODO fix armor switching and shield switching
         int temp = 0;
-        if (currShield != null) temp = ((ArmorEntity)currShield).getArmorBonus();
+        if (currShield != null) 
+            temp -= ((ArmorEntity)currShield).getArmorBonus();
+        if (shi != null)  
+            temp += ((ArmorEntity)shi).getArmorBonus();
         currShield = shi; 
-        this.setACShieldBonus(this.getACShieldBonus() - temp + ((ArmorEntity)shi).getArmorBonus());
+        this.setACShieldBonus(this.getACShieldBonus() + temp);
     }
     public ItemEntity getCurrShield() { return currShield; }
 
     public void setCurrArmor(ItemEntity arm){ 
         int temp = 0;
-        if (currArmor != null) temp = ((ArmorEntity)currArmor).getArmorBonus();
+        if (currArmor != null) 
+            temp -= ((ArmorEntity)currArmor).getArmorBonus();
+        if (arm != null)  
+            temp += ((ArmorEntity)arm).getArmorBonus();
         currArmor = arm; 
-        this.setACArmorBonus(this.getACArmorBonus() - temp + ((ArmorEntity)arm).getArmorBonus());
+        this.setACArmorBonus(this.getACArmorBonus() + temp);
     }
     public ItemEntity getCurrArmor() { return currArmor; }
 
