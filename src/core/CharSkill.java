@@ -28,25 +28,19 @@ public class CharSkill {
 		int base;
 		switch(skill.skillParentAttribute) {
 		case ("STR"):
-			base = character.getAbilityScores()[GameState.STRENGTH];
-		break;
+			return character.getAbilityModifiers()[GameState.STRENGTH];
 		case ("DEX"):
-			base = character.getAbilityScores()[GameState.DEXTERITY];
-		break;
+			return character.getAbilityModifiers()[GameState.DEXTERITY];
 		case ("CON"):
-			base = character.getAbilityScores()[GameState.CONSTITUTION];
-		break;
+			return character.getAbilityModifiers()[GameState.CONSTITUTION];
 		case ("INT"):
-			base = character.getAbilityScores()[GameState.INTELLIGENCE];
-		break;
+			return character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		case ("WIS"):
-			base = character.getAbilityScores()[GameState.WISDOM];
-		break;
+			return character.getAbilityModifiers()[GameState.WISDOM];
 		default: // CHA
-			base = character.getAbilityScores()[GameState.CHARISMA];
-		break;
+			return character.getAbilityModifiers()[GameState.CHARISMA];
 		}
-		return (base - 8) / 2;
+		
 	}
 	
 	public SkillEntity getSkill() { return skill; }
@@ -54,17 +48,29 @@ public class CharSkill {
 	public int getRank() { return rank; }
 	
 	public boolean incRank(int numSkillPoints) {
-		int max = getMaxClassSkillRank(character.getLevel());
-		if ((classSkill && rank == max) || (!classSkill && (rank == max/2 || numSkillPoints == 1)))
+		if (!tryIncRank(numSkillPoints))
 			return false;
 		rank++;
 		return true;
 	}
 	
+	public boolean tryIncRank(int numSkillPoints) {
+		int max = getMaxClassSkillRank(character.getLevel());
+		if ((classSkill && rank == max) || (!classSkill && (rank == max/2 || numSkillPoints == 1)))
+			return false;
+		return true;
+	}
+	
 	public boolean decRank() {
-		if (rank == 0)
+		if (!tryDecRank())
 			return false;
 		rank--;
+		return true;
+	}
+	
+	public boolean tryDecRank() {
+		if (rank == 0)
+			return false;
 		return true;
 	}
 	
