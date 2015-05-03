@@ -180,6 +180,10 @@ public class character {
             mods[i] = (abilityScores[i]/2)-5;
         return mods;
     }
+    
+    public int getAbilityModifier(int base) {
+    	return (base/2)-5;
+    }
 
     public void setImage(String url){ imageUrl = url; }
     public String getImage() { return imageUrl; }

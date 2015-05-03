@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
+import core.CharFeat;
 import core.CharSkill;
 import core.GameState;
 import core.RNG;
@@ -37,16 +38,18 @@ public class LevelUpButton {
 	private Button button;
 	private character character;
 	private boolean cancelOpen;
-	private Shell levelUpShell;
+//	private Shell levelUpShell;
 	private Shell areYouSureShell;
 	private Shell curr;
 	
-	int numSkillPoints;
+	private int numSkillPoints;
+	private boolean skipSkills = false;
 	
 	// stuff to save when done
-	private int saveHP;
-	private int saveAS; // 0-5, index of ability score to increase
+	private int saveHP = 0;
+	private int saveAS = -1; // 0-5, index of ability score to increase
 	private ArrayList<SkillAdjNode> saveSkills;
+	private ArrayList<CharFeat> saveFeats;
 	
 	public LevelUpButton(Composite page, character character) {
 		this.page = page;
@@ -84,10 +87,10 @@ public class LevelUpButton {
 		int level = character.getLevel();
 		
 		////////// PAGE NUMBERS //////////
-		final int HP = 0;
-		final int SKILL = 1;
-		final int FEAT = 2;
-		final int AS = 3;
+		final int AS = 0;
+		final int HP = 1;
+		final int SKILL = 2;
+		final int FEAT = 3;
 		final int SPELL = 4;
 		final int DONE = 5;
 		
@@ -209,7 +212,11 @@ public class LevelUpButton {
 				}
 //				stackLayout.topControl = pages.get(SKILL);
 //				levelUpShell.layout();
-				openNextPage(pages.get(SKILL));
+				if (skipSkills) {
+					// TODO openNextPage();
+				} else {
+					openNextPage(pages.get(SKILL));
+				}
 				
 				int total = conMod + value;
 				if (total < 1)
@@ -228,7 +235,8 @@ public class LevelUpButton {
 		Label skillPointsLabel = new Label(skillsPage, SWT.NONE);
 		numSkillPoints = Integer.parseInt(Character.toString(character.getCharClass().getSkillPointsPerLevel().charAt(0))) + character.getAbilityModifiers()[GameState.INTELLIGENCE];
 		//int numSkillPoints = 5;
-		// TODO check if <= 0
+		if (numSkillPoints <= 0)
+			skipSkills = true;
 		skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 8;

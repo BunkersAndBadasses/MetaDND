@@ -18,14 +18,11 @@ public class CharSkill {
 		classSkill = SkillInfo.isClassSkill(charClass, skill.getName());
 		abilityType = skill.skillParentAttribute;
 		abilityMod = setAbilityMod(); 
-		// TODO set miscMod
 		acPen = skill.armorCheckPenalty;
 		untrained = SkillInfo.useUntrained(skill.getName());
 	}
 	
-	// TODO check this logic // TODO int rounding off
 	private int setAbilityMod() {
-		int base;
 		switch(skill.skillParentAttribute) {
 		case ("STR"):
 			return character.getAbilityModifiers()[GameState.STRENGTH];
