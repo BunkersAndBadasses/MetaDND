@@ -466,7 +466,7 @@ public class CharacterMain {
                 if (shieldCombo.getSelectionIndex() == 0) {
 
                 } else if (shieldCombo.getSelectionIndex() == 1) {
-                    shieldName = " ";
+                    shieldName = "";
                     c.setCurrShield(null);
                 }
                 else {
@@ -477,7 +477,7 @@ public class CharacterMain {
                 if (armorCombo.getSelectionIndex() == 0) {
 
                 } else if (armorCombo.getSelectionIndex() == 1) {
-                    armorName = " ";
+                    armorName = "";
                     c.setCurrArmor(null);
                 }
                 else {

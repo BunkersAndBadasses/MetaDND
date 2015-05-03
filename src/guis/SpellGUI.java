@@ -40,7 +40,9 @@ public class SpellGUI {
     private int[] prepTot = new int[10];
     private String className;
     private String adjName;
-    
+    private String[] titles = { "Level", "Total", "Cast", "Prepared" };
+    private Table spellTable;
+
 
     private void getInfo(){
         c = Main.gameState.currentlyLoadedCharacter;
@@ -93,7 +95,7 @@ public class SpellGUI {
             else if(modName.equals("Druid") || modName.equals("Sorcerer/Wizard")) {
                 level = ti;
             }
-            
+
         }
         return level;
     }
@@ -113,7 +115,7 @@ public class SpellGUI {
         final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
         if (spellsKnown.size() != 0) {
             strArr = new String[spellsKnown.size()];
-            spellSel.setItems(spellsKnown.toArray(strArr)); // TODO Load Spells known
+            spellSel.setItems(spellsKnown.toArray(strArr)); 
         }
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);
@@ -132,6 +134,17 @@ public class SpellGUI {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 // TODO Cast spell
+                if(spellSel.getSelectionIndex() == 1110) {
+
+                }
+                else {
+                    int ind = spellSel.getSelectionIndex();
+                    String tmp = spellSel.getText();
+                    String num = tmp.substring(0, 1);
+                    int spellLev = Integer.parseInt(num);
+                    castTot[spellLev] = castTot[spellLev] + 1;
+                    refresh();
+                }
             }
         }); 
 
@@ -325,28 +338,19 @@ public class SpellGUI {
 
         // Table
 
-        Table spellTable = new Table(shell, SWT.BORDER );
-        spellTable.setHeaderVisible(true);
-        String[] titles = { "Level", "Total", "Cast", "Prepared" };
-
-        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
-            TableColumn column = new TableColumn(spellTable, SWT.NULL);
-            column.setAlignment(SWT.CENTER);
-            column.setText(titles[loopIndex]);
-        }
-
+        spellTable = new Table(shell, SWT.BORDER );
         for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
-            TableItem item = new TableItem(spellTable, SWT.NULL);
-            item.setText("" + loopIndex); // TODO Set actual values
-            item.setText(0, "" + loopIndex);
-            item.setText(1, "" + totSpells[loopIndex]);
-            item.setText(2, "" + castTot[loopIndex]);
-            item.setText(3, "" + prepTot[loopIndex]);
+            TableItem item = new TableItem(spellTable, SWT.NULL);  
         }
+        
+        spellTable.setHeaderVisible(true);
 
+        refresh();
+        
         for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
             spellTable.getColumn(loopIndex).pack();
         }
+
 
 
         FormData spellTableData = new FormData(165,200);
@@ -379,6 +383,27 @@ public class SpellGUI {
 
     }
 
+    private void refresh() {
+        
+
+        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
+            TableColumn column = new TableColumn(spellTable, SWT.NULL);
+            column.setAlignment(SWT.CENTER);
+            column.setText(titles[loopIndex]);
+        }
+        for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
+            TableItem item = spellTable.getItem(loopIndex);
+            item.setText("" + loopIndex); // TODO Set actual values
+            item.setText(0, "" + loopIndex);
+            item.setText(1, "" + totSpells[loopIndex]);
+            item.setText(2, "" + castTot[loopIndex]);
+            item.setText(3, "" + prepTot[loopIndex]);
+        }
+
+        
+
+    }
+
     private void loadArr() {
         int[][] sorc = {
                 {5,3,0,0,0,0,0,0,0,0},
@@ -401,7 +426,7 @@ public class SpellGUI {
                 {6,6,6,6,6,6,6,6,5,3}, // 18
                 {6,6,6,6,6,6,6,6,6,4}, // 19
                 {6,6,6,6,6,6,6,6,6,6}};
-        
+
         int[][] wiz = {
                 {3,1,0,0,0,0,0,0,0,0}, // 1
                 {4,2,0,0,0,0,0,0,0,0}, // 2
@@ -423,7 +448,7 @@ public class SpellGUI {
                 {4,4,4,4,4,4,4,3,3,2}, // 18
                 {4,4,4,4,4,4,4,6,3,3},
                 {4,4,4,4,4,4,4,6,6,4}};
-        
+
         int[][] clerk = {
                 {3,2,0,0,0,0,0,0,0,0}, // 1
                 {4,3,0,0,0,0,0,0,0,0}, // 2
@@ -445,7 +470,7 @@ public class SpellGUI {
                 {6,6,6,6,6,5,5,4,4,3}, // 18
                 {6,6,6,6,6,6,5,5,4,4},
                 {6,6,6,6,6,6,5,5,5,5}};
-        
+
         int[][] druid = {
                 {3,1,0,0,0,0,0,0,0,0}, // 1
                 {4,2,0,0,0,0,0,0,0,0}, // 2
@@ -467,7 +492,7 @@ public class SpellGUI {
                 {6,5,5,5,5,4,4,3,3,2}, // 18
                 {6,5,5,5,5,5,4,4,3,3},
                 {6,5,5,5,5,5,4,4,4,4}};
-        
+
         int[][] bard = {
                 {2,0,0,0,0,0,0,0,0,0}, // 1
                 {3,9,0,0,0,0,0,0,0,0}, // 2
@@ -489,7 +514,7 @@ public class SpellGUI {
                 {4,4,4,4,4,3,2,0,0,0}, // 18
                 {4,4,4,4,4,4,3,0,0,0},
                 {4,4,4,4,4,4,4,0,0,0}};
-        
+
         int[][] fuckingRanger = {
                 {0,0,0,0,0,0,0,0,0,0}, // 1
                 {0,0,0,0,0,0,0,0,0,0}, // 2
@@ -511,47 +536,47 @@ public class SpellGUI {
                 {0,3,2,2,1,0,0,0,0,0}, // 18
                 {0,3,3,3,2,0,0,0,0,0},
                 {0,3,3,3,3,0,0,0,0,0}};
-        
+
         switch(className) {
-        
+
         case "Bard":
             spd = bard;
             classMod = c.getAbilityModifiers()[5];
             adjName = className;
             break;
-            
+
         case "Cleric":
             spd = clerk;
             classMod = c.getAbilityModifiers()[4];
             adjName = className;
             break;
-            
+
         case "Druid":
             spd = druid;
             classMod = c.getAbilityModifiers()[4];
             adjName = className;
             break;
-            
+
         case "Ranger":
             spd = fuckingRanger;
             classMod = c.getAbilityModifiers()[4];
             adjName = className;
             break;
-            
+
         case "Sorcerer":
             spd= sorc;
             classMod = c.getAbilityModifiers()[5];
             adjName = "Sorcerer/Wizard";
             break;
-            
+
         case "Wizard":
             spd = wiz;
             classMod = c.getAbilityModifiers()[3];
             adjName = "Sorcerer/Wizard";
             break;
-            
-            default:
-                spd = new int[20][10];
+
+        default:
+            spd = new int[20][10];
         }
         int[] bs = {0,
                 (classMod + 3)/4, // 1
