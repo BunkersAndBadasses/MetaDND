@@ -1,6 +1,7 @@
 package guis;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -16,6 +17,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+
 import core.Main;
 import core.character;
 import entity.SpellEntity;
@@ -27,11 +29,18 @@ public class SpellGUI {
     private static character c;
     private static ArrayList<String> spellsPrepared = new ArrayList<String>();
     private static HashMap<String, SpellEntity> spellsKnown = new HashMap<String, SpellEntity>();
-    private static String version = "Ver0.9.Beta";
+    private static String version = "Spell Manager";
     private static String[] strArr;
+    int[][] spd;
+    int[] bSpells = new int[10];
+    int classMod;
+    int[] totSpells = new int[10];
+    private int[] castTot = new int[10];
+    private int[] prepTot = new int[10];
 
-    private static void getInfo(){
+    private void getInfo(){
         c = Main.gameState.currentlyLoadedCharacter;
+        loadArr();
         allSpells.addAll(Main.gameState.spells.keySet());
         try {
             for(int i = 0; i < c.getSpells().size(); i++) {
@@ -51,11 +60,11 @@ public class SpellGUI {
 
     }
 
-    public static void main(String args) {
+    public SpellGUI(String args) {
         // TODO Auto-generated method stub
         Display display = Display.getCurrent();
         Shell shell = new Shell(display);
-        
+
         Image logo = new Image(display, "images/bnb_logo.gif");
         shell.setImage(logo);
         shell.setText("Meta D&D " + version );
@@ -293,9 +302,9 @@ public class SpellGUI {
             TableItem item = new TableItem(spellTable, SWT.NULL);
             item.setText("" + loopIndex); // TODO Set actual values
             item.setText(0, "" + loopIndex);
-            item.setText(1, "" + 0);
-            item.setText(2, "" + 0);
-            item.setText(3, "" + 0);
+            item.setText(1, "" + totSpells[loopIndex]);
+            item.setText(2, "" + castTot[loopIndex]);
+            item.setText(3, "" + prepTot[loopIndex]);
         }
 
         for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
@@ -333,4 +342,171 @@ public class SpellGUI {
 
     }
 
+    private void loadArr() {
+        int[][] sorc = {
+                {5,3,0,0,0,0,0,0,0,0},
+                {6,4,0,0,0,0,0,0,0,0}, // 2
+                {6,5,0,0,0,0,0,0,0,0}, // 3
+                {6,6,3,0,0,0,0,0,0,0}, // 4
+                {6,6,4,0,0,0,0,0,0,0}, // 5
+                {6,6,5,3,0,0,0,0,0,0}, // 6
+                {6,6,6,4,0,0,0,0,0,0}, // 7
+                {6,6,6,5,3,0,0,0,0,0}, // 8
+                {6,6,6,6,4,0,0,0,0,0}, // 9
+                {6,6,6,6,5,3,0,0,0,0}, // 10
+                {6,6,6,6,6,4,0,0,0,0}, // 11
+                {6,6,6,6,6,5,3,0,0,0}, // 12
+                {6,6,6,6,6,6,4,0,0,0}, // 13
+                {6,6,6,6,6,6,5,3,0,0}, // 14
+                {6,6,6,6,6,6,6,4,0,0}, // 15
+                {6,6,6,6,6,6,6,5,3,0}, // 16
+                {6,6,6,6,6,6,6,6,4,0}, // 17
+                {6,6,6,6,6,6,6,6,5,3}, // 18
+                {6,6,6,6,6,6,6,6,6,4}, // 19
+                {6,6,6,6,6,6,6,6,6,6}};
+        
+        int[][] wiz = {
+                {3,1,0,0,0,0,0,0,0,0}, // 1
+                {4,2,0,0,0,0,0,0,0,0}, // 2
+                {4,2,1,0,0,0,0,0,0,0}, // 3
+                {4,3,2,0,0,0,0,0,0,0}, // 4
+                {4,3,2,1,0,0,0,0,0,0}, // 5
+                {4,3,3,2,0,0,0,0,0,0}, // 6
+                {4,4,3,2,1,0,0,0,0,0}, // 7
+                {4,4,3,3,2,0,0,0,0,0}, // 8
+                {4,4,4,3,2,1,0,0,0,0}, // 9
+                {4,4,4,3,3,2,0,0,0,0}, // 10
+                {4,4,4,4,3,2,1,0,0,0}, // 11
+                {4,4,4,4,3,3,2,0,0,0}, // 12
+                {4,4,4,4,4,3,2,1,0,0}, // 13
+                {4,4,4,4,4,3,3,2,0,0}, // 14
+                {4,4,4,4,4,4,3,2,1,0}, // 15
+                {4,4,4,4,4,4,3,3,2,0}, // 16
+                {4,4,4,4,4,4,4,3,2,1}, // 17
+                {4,4,4,4,4,4,4,3,3,2}, // 18
+                {4,4,4,4,4,4,4,6,3,3},
+                {4,4,4,4,4,4,4,6,6,4}};
+        
+        int[][] clerk = {
+                {3,2,0,0,0,0,0,0,0,0}, // 1
+                {4,3,0,0,0,0,0,0,0,0}, // 2
+                {4,3,2,0,0,0,0,0,0,0}, // 3
+                {5,4,3,0,0,0,0,0,0,0}, // 4
+                {5,4,3,2,0,0,0,0,0,0}, // 5
+                {5,4,4,3,0,0,0,0,0,0}, // 6
+                {6,5,4,3,2,0,0,0,0,0}, // 7
+                {6,5,4,4,3,0,0,0,0,0}, // 8
+                {6,5,5,4,3,2,0,0,0,0}, // 9
+                {6,5,5,4,4,3,0,0,0,0}, // 10
+                {6,6,5,5,4,3,2,0,0,0}, // 11
+                {6,6,5,5,4,4,3,0,0,0}, // 12
+                {6,6,6,5,5,4,3,2,0,0}, // 13
+                {6,6,6,5,5,4,4,3,0,0}, // 14
+                {6,6,6,6,5,5,4,3,2,0}, // 15
+                {6,6,6,6,5,5,4,4,3,0}, // 16
+                {6,6,6,6,6,5,5,4,3,2}, // 17
+                {6,6,6,6,6,5,5,4,4,3}, // 18
+                {6,6,6,6,6,6,5,5,4,4},
+                {6,6,6,6,6,6,5,5,5,5}};
+        
+        int[][] druid = {
+                {3,1,0,0,0,0,0,0,0,0}, // 1
+                {4,2,0,0,0,0,0,0,0,0}, // 2
+                {4,2,1,0,0,0,0,0,0,0}, // 3
+                {5,3,2,0,0,0,0,0,0,0}, // 4
+                {5,3,2,1,0,0,0,0,0,0}, // 5
+                {5,3,3,2,0,0,0,0,0,0}, // 6
+                {6,4,3,2,1,0,0,0,0,0}, // 7
+                {6,4,3,3,2,0,0,0,0,0}, // 8
+                {6,4,4,3,2,1,0,0,0,0}, // 9
+                {6,4,4,3,3,2,0,0,0,0}, // 10
+                {6,5,4,4,3,2,1,0,0,0}, // 11
+                {6,5,4,4,3,3,2,0,0,0}, // 12
+                {6,5,5,4,4,3,2,1,0,0}, // 13
+                {6,5,5,4,4,3,3,2,0,0}, // 14
+                {6,5,5,5,4,4,3,2,1,0}, // 15
+                {6,5,5,5,4,4,3,3,2,0}, // 16
+                {6,5,5,5,5,4,4,3,2,1}, // 17
+                {6,5,5,5,5,4,4,3,3,2}, // 18
+                {6,5,5,5,5,5,4,4,3,3},
+                {6,5,5,5,5,5,4,4,4,4}};
+        
+        int[][] bard = {
+                {2,0,0,0,0,0,0,0,0,0}, // 1
+                {3,9,0,0,0,0,0,0,0,0}, // 2
+                {3,1,0,0,0,0,0,0,0,0}, // 3
+                {3,2,9,0,0,0,0,0,0,0}, // 4
+                {3,3,1,0,0,0,0,0,0,0}, // 5
+                {3,3,2,0,0,0,0,0,0,0}, // 6
+                {3,3,2,9,0,0,0,0,0,0}, // 7
+                {3,3,3,1,0,0,0,0,0,0}, // 8
+                {3,3,3,2,0,0,0,0,0,0}, // 9
+                {3,3,3,2,9,0,0,0,0,0}, // 10
+                {3,3,3,3,1,0,0,0,0,0}, // 11
+                {3,3,3,3,2,0,0,0,0,0}, // 12
+                {3,3,3,3,2,9,0,0,0,0}, // 13
+                {4,3,3,3,3,1,0,0,0,0}, // 14
+                {4,4,3,3,3,2,0,0,0,0}, // 15
+                {4,4,4,3,3,2,9,0,0,0}, // 16
+                {4,4,4,4,3,3,1,0,0,0}, // 17
+                {4,4,4,4,4,3,2,0,0,0}, // 18
+                {4,4,4,4,4,4,3,0,0,0},
+                {4,4,4,4,4,4,4,0,0,0}};
+        
+        switch(c.getCharClass().getName()) {
+        
+        case "Bard":
+            spd = bard;
+            classMod = c.getAbilityModifiers()[5];
+            break;
+            
+        case "Cleric":
+            spd = clerk;
+            classMod = c.getAbilityModifiers()[4];
+            break;
+            
+        case "Druid":
+            spd = druid;
+            classMod = c.getAbilityModifiers()[4];
+            break;
+            
+        case "Sorcerer":
+            spd= sorc;
+            classMod = c.getAbilityModifiers()[5];
+            break;
+            
+        case "Wizard":
+            spd = wiz;
+            classMod = c.getAbilityModifiers()[3];
+            break;
+            
+            default:
+                System.out.println("This is a default case");
+        }
+        int[] bs = {0,
+                (classMod + 3)/4, // 1
+                (classMod + 2)/4, // 2
+                (classMod + 1)/4, // 3
+                (classMod + 0)/4, // 4
+                (classMod - 1)/4, // 5
+                (classMod - 2)/4, // 6
+                (classMod - 3)/4, // 7
+                (classMod - 4)/4, // 8
+                (classMod - 5)/4};
+        bSpells = bs;
+        int lev = c.getLevel();
+        for(int i = 0; i < 10; i ++) {
+            if(spd[lev][i] == 0 )
+                totSpells[i] = 0;
+            else if (spd[lev][i] == 9){
+                totSpells[i] = 0;
+                if (bSpells[i] > 0) totSpells[i] = bSpells[i];
+            }
+            else {
+                totSpells[i] = spd[lev][i];
+                if(bSpells[i] > 0) totSpells[i] += bSpells[i];
+            }
+        }
+    }
 }
+

@@ -535,7 +535,7 @@ public class CharacterMain {
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                SpellGUI.main(args[0]);
+                new SpellGUI(args[0]);
             }
         }); 
 
@@ -870,6 +870,7 @@ public class CharacterMain {
 
     private void refresh() {
         //TODO
+        //m_shell.setText("Character Page: " + charName);
         acVal = c.getACTotal();
         ffVal = c.getTouchAC();
         touchVal = c.getTouchAC();
