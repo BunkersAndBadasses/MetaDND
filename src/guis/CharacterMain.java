@@ -23,6 +23,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
@@ -44,6 +45,7 @@ import entity.AbilityEntity;
 import entity.ArmorEntity;
 import entity.ItemEntity;
 import entity.SkillEntity;
+import entity.WeaponEntity;
 
 
 public class CharacterMain {
@@ -103,6 +105,32 @@ public class CharacterMain {
     private String [] priVals = new String[6];
     private String [] secVals = new String[6];
     private String[] strArr;
+    private Combo shieldCombo;
+    private Combo armorCombo;
+    private Combo priCombo;
+    private Combo secCombo;
+    private Label secLabel;
+    private Label secBonusLabel;
+    private Label secDamageLabel;
+    private Label secRangeLabel;
+    private Label secCriticalLabel;
+    private Label secTypeLabel;
+    private Label initLabel;
+    private Label speedLabel;
+    private Label armorLabel;
+    private Label acLabel;
+    private Label ffLabel;
+    private Label touchLabel;
+    private Label shieldLabel;
+    private Label reflexLabel;
+    private Label fortLabel;
+    private Label willLabel;
+    private Label priBonusLabel;
+    private Label priDamageLabel;
+    private Label priRangeLabel;
+    private Label priCriticalLabel;
+    private Label priTypeLabel;
+    private boolean boo;
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
@@ -252,7 +280,7 @@ public class CharacterMain {
         levelLabel.setText(bonus);
         levelLabel.setLayoutData(statGD);
 
-        Label speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         speedLabel.setText("Speed: " + speedVal);
         speedLabel.setLayoutData(statGD);
 
@@ -266,36 +294,28 @@ public class CharacterMain {
         a.setLayoutData(statGD);
 
         // Armor, shields, and saving throws
-        Label armorLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        armorLabel.setText(armorName);
+        armorLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         armorLabel.setLayoutData(statGD);
 
-        Label acLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        acLabel.setText("AC: " + acVal);
+        acLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         acLabel.setLayoutData(statGD);
 
-        Label ffLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        ffLabel.setText("Flat Footed: " + ffVal);
+        ffLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         ffLabel.setLayoutData(statGD);
 
-        Label touchLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        touchLabel.setText("Touch AC: " + touchVal);
+        touchLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         touchLabel.setLayoutData(statGD);
 
-        Label shieldLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        shieldLabel.setText(shieldName);
+        shieldLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         shieldLabel.setLayoutData(statGD);
 
-        Label reflexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        reflexLabel.setText("Reflex: " + refVal);
+        reflexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         reflexLabel.setLayoutData(statGD);
 
-        Label fortLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        fortLabel.setText("Fortitude: " + fortVal);
+        fortLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         fortLabel.setLayoutData(statGD);
 
-        Label willLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        willLabel.setText("Will: " + willVal);
+        willLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         willLabel.setLayoutData(statGD);
 
 
@@ -321,74 +341,40 @@ public class CharacterMain {
         priLabel.setText(priWeapon);
         priLabel.setLayoutData(weapGD);
 
-        boolean boo = false;
-        if (!priWeapon.equals("")) {
-            boo = true;
-            priVals[0] = "" + c.getBaseAttackBonus();
-            priVals[1] = c.getPrimaryWeapon().getDamageMedium();
-            priVals[2] = c.getPrimaryWeapon().getRange();
-            int i = c.getPrimaryWeapon().getCriticalRange()[0];
-            priVals[3] = "";
-            if (i != 0) priVals[3] = "" + i + "-20";
-            priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
-            priVals[5] = c.getPrimaryWeapon().getDamageType();
-        }
 
-        if (!secWeapon.equals("")) {
-            boo = true;
-            secVals[0] = "" + c.getBaseAttackBonus();
-            secVals[1] = c.getSecondaryWeapon().getDamageMedium();
-            secVals[2] = c.getSecondaryWeapon().getRange();
-            int i = c.getSecondaryWeapon().getCriticalRange()[0];
-            secVals[3] = "";
-            if (i != 0) secVals[3] = "" + i + "-20";
-            secVals[4] = "" + c.getSecondaryWeapon().getCriticalMultiplier();
-            secVals[5] = c.getSecondaryWeapon().getDamageType();
-        }
 
-        Label priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priBonusLabel.setText("Bonus: " + (boo ? priVals[0] : ""));
+        priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priBonusLabel.setLayoutData(weapGD);
 
-        Label priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priDamageLabel.setText("Damage: " + (boo ? priVals[1] : ""));
+        priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priDamageLabel.setLayoutData(weapGD);
 
-        Label priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priRangeLabel.setText("Range: " + (boo ? priVals[2] : ""));
+        priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priRangeLabel.setLayoutData(weapGD);
 
-        Label priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priCriticalLabel.setText("Crit: " + (boo ? priVals[3] + "  x" + priVals[4]: ""));
+        priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priCriticalLabel.setLayoutData(weapGD);
 
-        Label priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priTypeLabel.setText("Type: " + (boo ? priVals[5] : ""));
+        priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priTypeLabel.setLayoutData(weapGD);
 
         /////////////Secondary weapon box /////////
-        Label secLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secLabel.setText(secWeapon);
+        secLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secLabel.setLayoutData(weapGD);
 
-        Label secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secBonusLabel.setText("Bonus: " + (boo ? secVals[0] : ""));
+        secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secBonusLabel.setLayoutData(weapGD);
 
-        Label secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secDamageLabel.setText("Damage: " + (boo ? secVals[1] : ""));
+        secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secDamageLabel.setLayoutData(weapGD);
 
-        Label secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secRangeLabel.setText("Range: " + (boo ? secVals[2] : ""));
+        secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secRangeLabel.setLayoutData(weapGD);
 
-        Label secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secCriticalLabel.setText("Crit: " + (boo ? secVals[3] + "  x" + secVals[4]: ""));
+        secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secCriticalLabel.setLayoutData(weapGD);
 
-        Label secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secTypeLabel.setText("Type: " + (boo ? secVals[5] : ""));
+        secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secTypeLabel.setLayoutData(weapGD);
         weap1Comp.pack();
 
@@ -439,7 +425,7 @@ public class CharacterMain {
 
 
 
-        Combo priCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
+        priCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[weapons.size()];
         priCombo.setItems(weapons.toArray(strArr));
         priCombo.add("Primary", 0);
@@ -447,7 +433,7 @@ public class CharacterMain {
         priCombo.select(0);
         priCombo.setLayoutData(statGD);
 
-        Combo secCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
+        secCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[weapons.size()];
         secCombo.setItems(weapons.toArray(strArr));
         secCombo.add("Secondary", 0);
@@ -455,7 +441,7 @@ public class CharacterMain {
         secCombo.select(0);
         secCombo.setLayoutData(statGD);
 
-        Combo armorCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
+        armorCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[armors.size()];
         armorCombo.setItems(armors.toArray(strArr));
         armorCombo.add("Armor", 0);
@@ -463,7 +449,7 @@ public class CharacterMain {
         armorCombo.select(0);
         armorCombo.setLayoutData(statGD);
 
-        Combo shieldCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
+        shieldCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         strArr = new String[shields.size()];
         shieldCombo.setItems(shields.toArray(strArr));
         shieldCombo.add("Shield", 0);
@@ -471,7 +457,7 @@ public class CharacterMain {
         shieldCombo.select(0);
         shieldCombo.setLayoutData(statGD);
 
-        Label initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         initLabel.setText("Initiative: " + initVal);
         initLabel.setLayoutData(statGD);
 
@@ -492,46 +478,56 @@ public class CharacterMain {
         change.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+                
                 if (shieldCombo.getSelectionIndex() == 0) {
 
                 } else if (shieldCombo.getSelectionIndex() == 1) {
                     shieldName = " ";
+                    c.setCurrShield(null);
                 }
                 else {
                     shieldName = shieldCombo.getText();
+                    c.setCurrShield((ItemEntity)Main.gameState.armor.get(shieldName));
                 }
 
                 if (armorCombo.getSelectionIndex() == 0) {
 
                 } else if (armorCombo.getSelectionIndex() == 1) {
                     armorName = " ";
+                    c.setCurrArmor(null);
                 }
                 else {
                     armorName = armorCombo.getText();
+                    c.setCurrArmor((ItemEntity)Main.gameState.armor.get(armorName));
                 }
 
                 if (priCombo.getSelectionIndex() == 0) {
 
                 } else if (priCombo.getSelectionIndex() == 1) {
-                    priWeapon = " ";
+                    priWeapon = "";
+                    c.setPrimaryWeapon(null);
                 }
                 else {
                     priWeapon = priCombo.getText();
+                    c.setPrimaryWeapon((WeaponEntity) Main.gameState.weapons.get(priWeapon));
                 }
 
 
                 if (secCombo.getSelectionIndex() == 0) {
 
                 } else if (secCombo.getSelectionIndex() == 1) {
-                    secWeapon = " ";
+                    secWeapon = "";
+                    c.setSecondaryWeapon(null);
                 }
                 else {
                     secWeapon = secCombo.getText();
+                    c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(secWeapon));
                 }
                 priLabel.setText(priWeapon);
                 secLabel.setText(secWeapon);
                 armorLabel.setText(armorName);
                 shieldLabel.setText(shieldName);
+                refresh();
             }
         }); 
 
@@ -700,6 +696,8 @@ public class CharacterMain {
             }
         });
 
+        refresh();
+
         //new Label(mainComp, SWT.NONE);
         mainComp.layout();
 
@@ -727,7 +725,6 @@ public class CharacterMain {
 
 
     private void getPlayerInfo(String pathName) {
-        // TODO Auto-generated method stub
         filename = pathName;
         new LoadCharacter(pathName, c);
         charName = c.getName();
@@ -872,7 +869,7 @@ public class CharacterMain {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         // TODO
         //new test(display);
     }
@@ -886,7 +883,7 @@ public class CharacterMain {
         try {
             str = node.getNodeValue();
         } catch (NullPointerException n) {
-            str = "0"; // TODO looky here
+            str = "0";
         }
 
         return str;
@@ -904,12 +901,65 @@ public class CharacterMain {
             StreamResult result = new StreamResult(stocks.getAbsolutePath());
             transformer.transform(source, result);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return true;
     }
+
+    private void refresh() {
+        //TODO
+        armorLabel.setText(armorName);
+
+        acLabel.setText("AC: " + acVal);
+        ffLabel.setText("Flat Footed: " + ffVal);
+        touchLabel.setText("Touch AC: " + touchVal);
+        shieldLabel.setText(shieldName);
+        reflexLabel.setText("Reflex: " + refVal);
+        fortLabel.setText("Fortitude: " + fortVal);
+        willLabel.setText("Will: " + willVal);
+
+        boo = false;
+        if (!priWeapon.equals("")) {
+            boo = true;
+            priVals[0] = "" + c.getBaseAttackBonus();
+            priVals[1] = c.getPrimaryWeapon().getDamageMedium();
+            priVals[2] = c.getPrimaryWeapon().getRange();
+            int i = c.getPrimaryWeapon().getCriticalRange()[0];
+            priVals[3] = "";
+            if (i != 0) priVals[3] = "" + i + "-20";
+            priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
+            priVals[5] = c.getPrimaryWeapon().getDamageType();
+        }
+
+        priBonusLabel.setText("Bonus: " + (boo ? priVals[0] : ""));
+        priDamageLabel.setText("Damage: " + (boo ? priVals[1] : ""));
+        priRangeLabel.setText("Range: " + (boo ? priVals[2] : ""));
+        priCriticalLabel.setText("Crit: " + (boo ? priVals[3] + "  x" + priVals[4]: ""));
+        priTypeLabel.setText("Type: " + (boo ? priVals[5] : ""));
+
+        boo = false;
+        if (!secWeapon.equals("")) {
+            boo = true;
+            secVals[0] = "" + c.getBaseAttackBonus();
+            secVals[1] = c.getSecondaryWeapon().getDamageMedium();
+            secVals[2] = c.getSecondaryWeapon().getRange();
+            int i = c.getSecondaryWeapon().getCriticalRange()[0];
+            secVals[3] = "";
+            if (i != 0) secVals[3] = "" + i + "-20";
+            secVals[4] = "" + c.getSecondaryWeapon().getCriticalMultiplier();
+            secVals[5] = c.getSecondaryWeapon().getDamageType();
+        }
+
+        secLabel.setText(secWeapon);
+        secBonusLabel.setText("Bonus: " + (boo ? secVals[0] : ""));
+        secDamageLabel.setText("Damage: " + (boo ? secVals[1] : ""));
+        secRangeLabel.setText("Range: " + (boo ? secVals[2] : ""));
+        secCriticalLabel.setText("Crit: " + (boo ? secVals[3] + "  x" + secVals[4]: ""));
+        secTypeLabel.setText("Type: " + (boo ? secVals[5] : ""));
+
+    }
+
     public Composite getMainComp() {
         return mainComp;
     }
