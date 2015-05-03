@@ -514,11 +514,15 @@ public class Wiz1 {
 				// size mod updates with setbaseattackbonus, str mod updates in wiz3
 				character.setGrappleSizeMod(GameState.grappleSizeMods[character.getSize()]);
 				// set abilities
-				String[] abilities = character.getCharRace().getSpecialAbilities();
-				for (int i = 0; i < abilities.length; i++)
-					if (!abilities[i].equals(""))
-						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(abilities[i]));
-
+				String[] raceAbilities = character.getCharRace().getSpecialAbilities();
+				for (int i = 0; i < raceAbilities.length; i++)
+					if (!raceAbilities[i].equals(""))
+						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(raceAbilities[i]));
+				String[] classAbilities = character.getCharClass().getSpecial()[character.getLevel()];
+				for (int i = 0; i < classAbilities.length; i++) {
+					if (!classAbilities[i].equals("") && !classAbilities[i].equalsIgnoreCase("bonus feat"))
+						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(classAbilities[i]));
+				}
 
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;

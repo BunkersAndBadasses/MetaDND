@@ -44,6 +44,7 @@ import core.character;
  * fix speak language
  * add extra cleric class skills
  * add class bonuses (i.e. druid nature sense)
+ * update to match level up button
  */
 
 public class Wiz4 {
