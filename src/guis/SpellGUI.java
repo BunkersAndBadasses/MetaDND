@@ -24,27 +24,40 @@ import entity.SpellEntity;
 
 
 public class SpellGUI {
-    private static ArrayList<String> allSpells = new ArrayList<String>();
-    private static ArrayList<String> materials = new ArrayList<String>();
-    private static character c;
-    private static ArrayList<String> spellsPrepared = new ArrayList<String>();
-    private static HashMap<String, SpellEntity> spellsKnown = new HashMap<String, SpellEntity>();
-    private static String version = "Spell Manager";
-    private static String[] strArr;
+    private HashMap<String, SpellEntity> allSpells = new HashMap<String, SpellEntity>();
+    private ArrayList<String> materials = new ArrayList<String>();
+    private character c;
+    private ArrayList<String> spellsPrepared = new ArrayList<String>();
+    private ArrayList<String> spellsKnown = new ArrayList<String>();
+    private ArrayList<String> allArr = new ArrayList<String>();
+    private String version = "Spell Manager";
+    private String[] strArr;
     int[][] spd;
     int[] bSpells = new int[10];
     int classMod;
     int[] totSpells = new int[10];
     private int[] castTot = new int[10];
     private int[] prepTot = new int[10];
+    private String className;
+    private String adjName;
+    
 
     private void getInfo(){
         c = Main.gameState.currentlyLoadedCharacter;
+        className = c.getCharClass().getName();
         loadArr();
-        allSpells.addAll(Main.gameState.spells.keySet());
+        ArrayList<String> seTemp = new ArrayList<String>();
+        seTemp.addAll(Main.gameState.spells.keySet());
+        for(int i = 0; i < seTemp.size(); i++){
+            SpellEntity se = (SpellEntity) Main.gameState.spells.get(seTemp.get(i));
+            int level = mostRelevantLevel(se);
+            allSpells.put("" + level + ". " + seTemp.get(i), se);
+            allArr.add("" + level + ". " + seTemp.get(i));
+        }
         try {
             for(int i = 0; i < c.getSpells().size(); i++) {
-                spellsKnown.put(c.getSpells().get(i).getName(), c.getSpells().get(i));  
+                int level = mostRelevantLevel(c.getSpells().get(i));
+                spellsKnown.add("" + level + ". " + c.getSpells().get(i).getName()); 
             }
         } catch (NullPointerException npe) {
 
@@ -52,16 +65,40 @@ public class SpellGUI {
 
         try {
             for(int i = 0; i < c.getPrepSpells().size(); i++) {
-                spellsPrepared.add(c.getPrepSpells().get(i).getName());
+                int level = mostRelevantLevel(c.getPrepSpells().get(i));
+                spellsPrepared.add("" + level + ". " + c.getPrepSpells().get(i).getName());
             } 
         } catch (NullPointerException npe) {
 
         }
+        allArr.sort(String.CASE_INSENSITIVE_ORDER);
+        spellsKnown.sort(String.CASE_INSENSITIVE_ORDER);
+        spellsPrepared.sort(String.CASE_INSENSITIVE_ORDER);
 
     }
 
+    private int mostRelevantLevel(SpellEntity se) {
+        int level = -1;
+        for(int i = 0; i < se.getLevel().length; i++){
+            String trans =  se.getLevel()[i];
+            trans = trans.replaceAll("[^\\d.]", "");
+            int ti = Integer.parseInt(trans);
+            if(level < 0) level = ti;
+            String modName = se.getLevel()[i];
+            modName = modName.replaceAll("[^A-Za-z]", "").trim();
+            if(modName.equals(adjName)) {
+                level = ti;
+                break;
+            }
+            else if(modName.equals("Druid") || modName.equals("Sorcerer/Wizard")) {
+                level = ti;
+            }
+            
+        }
+        return level;
+    }
+
     public SpellGUI(String args) {
-        // TODO Auto-generated method stub
         Display display = Display.getCurrent();
         Shell shell = new Shell(display);
 
@@ -76,7 +113,7 @@ public class SpellGUI {
         final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
         if (spellsKnown.size() != 0) {
             strArr = new String[spellsKnown.size()];
-            spellSel.setItems(spellsKnown.keySet().toArray(strArr)); // TODO Load Spells known
+            spellSel.setItems(spellsKnown.toArray(strArr)); // TODO Load Spells known
         }
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);
@@ -183,8 +220,8 @@ public class SpellGUI {
         // TODO all Spells
 
         final Combo newSpellSel = new Combo(shell, SWT.READ_ONLY);
-        String[] strArr = new String[allSpells.size()];
-        strArr = allSpells.toArray(strArr);
+        String[] strArr = new String[allArr.size()];
+        strArr = allArr.toArray(strArr);
         newSpellSel.setItems(strArr); // TODO Load all spells
         FormData allSpellData = new FormData(140,30);
         newSpellSel.select(0);
@@ -453,35 +490,68 @@ public class SpellGUI {
                 {4,4,4,4,4,4,3,0,0,0},
                 {4,4,4,4,4,4,4,0,0,0}};
         
-        switch(c.getCharClass().getName()) {
+        int[][] fuckingRanger = {
+                {0,0,0,0,0,0,0,0,0,0}, // 1
+                {0,0,0,0,0,0,0,0,0,0}, // 2
+                {0,0,0,0,0,0,0,0,0,0}, // 3
+                {0,9,0,0,0,0,0,0,0,0}, // 4
+                {0,9,0,0,0,0,0,0,0,0}, // 5
+                {0,1,0,0,0,0,0,0,0,0}, // 6
+                {0,1,0,0,0,0,0,0,0,0}, // 7
+                {0,1,9,0,0,0,0,0,0,0}, // 8
+                {0,1,9,0,0,0,0,0,0,0}, // 9
+                {0,1,1,0,0,0,0,0,0,0}, // 10
+                {0,1,1,9,0,0,0,0,0,0}, // 11
+                {0,1,1,1,0,0,0,0,0,0}, // 12
+                {0,1,1,1,0,0,0,0,0,0}, // 13
+                {0,2,1,1,9,0,0,0,0,0}, // 14
+                {0,2,1,1,1,0,0,0,0,0}, // 15
+                {0,2,2,1,1,0,0,0,0,0}, // 16
+                {0,2,2,2,1,0,0,0,0,0}, // 17
+                {0,3,2,2,1,0,0,0,0,0}, // 18
+                {0,3,3,3,2,0,0,0,0,0},
+                {0,3,3,3,3,0,0,0,0,0}};
+        
+        switch(className) {
         
         case "Bard":
             spd = bard;
             classMod = c.getAbilityModifiers()[5];
+            adjName = className;
             break;
             
         case "Cleric":
             spd = clerk;
             classMod = c.getAbilityModifiers()[4];
+            adjName = className;
             break;
             
         case "Druid":
             spd = druid;
             classMod = c.getAbilityModifiers()[4];
+            adjName = className;
+            break;
+            
+        case "Ranger":
+            spd = fuckingRanger;
+            classMod = c.getAbilityModifiers()[4];
+            adjName = className;
             break;
             
         case "Sorcerer":
             spd= sorc;
             classMod = c.getAbilityModifiers()[5];
+            adjName = "Sorcerer/Wizard";
             break;
             
         case "Wizard":
             spd = wiz;
             classMod = c.getAbilityModifiers()[3];
+            adjName = "Sorcerer/Wizard";
             break;
             
             default:
-                System.out.println("This is a default case");
+                spd = new int[20][10];
         }
         int[] bs = {0,
                 (classMod + 3)/4, // 1
