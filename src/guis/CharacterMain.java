@@ -657,6 +657,7 @@ public class CharacterMain {
                     c.setGP(Integer.parseInt(gp));
                     c.setSP(Integer.parseInt(sp));
                     c.setCP(Integer.parseInt(cp));
+                    c.setDamageTaken(Integer.parseInt(dmgTaken));
                 } catch (Exception ex) {
                     failed = true;
                 }
