@@ -544,7 +544,7 @@
 			2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12
 		</WILLSAVE>
 		<SPECIAL>
-			Bonus Feat, Flurry Of Blows, Unarmed Strike | Bonus Feat, Evasion | Still Mind | Ki Strike(magic), Slow Fall 20ft. | Purity Of Body | Bonus Feat, Slow Fall 30ft. | Wholeness Of Body | Slow Fall 40ft. | Improved Evasion | Ki Strike (lawful), Slow Fall 50ft. | Diamond Body, Greater Flurry | Abundant Step, Slow Fall 60ft. | Diamond Soul | Slow Fall 70ft. | Quivering Palm | Ki Strike (adamantine), Slow Fall 80ft. | Timeless Body, Tongue Of The Sun And Moon | Slow Fall 90ft. | Empty Body | Perfect Self, Slow Fall Any Distance
+			Bonus Feat, Flurry Of Blows, Unarmed Strike | Bonus Feat, Evasion | Still Mind, Fast Movement | Ki Strike(magic), Slow Fall 20ft. | Purity Of Body | Bonus Feat, Slow Fall 30ft. | Wholeness Of Body | Slow Fall 40ft. | Improved Evasion | Ki Strike (lawful), Slow Fall 50ft. | Diamond Body, Greater Flurry | Abundant Step, Slow Fall 60ft. | Diamond Soul | Slow Fall 70ft. | Quivering Palm | Ki Strike (adamantine), Slow Fall 80ft. | Timeless Body, Tongue Of The Sun And Moon | Slow Fall 90ft. | Empty Body | Perfect Self, Slow Fall Any Distance
 		</SPECIAL>
 		<CLASSSKILLS>
 			The monk's class skills (and the key ability for each skill) are Balance (Dex), Climb (Str), Concentration (Con), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Hide (Dex), Jump (Str), Knowledge (arcana) (Int), Knowledge (religion) (Int), Listen (Wis), Move Silently (Dex), Perform (Cha), Profession (Wis), Sense Motive (Wis), Spot (Wis), Swim (Str), and Tumble (Dex).
@@ -575,6 +575,7 @@
 			Flurry of Blows
 			Unarmed Strike
 			Evasion
+			Fast Movement
 			Still Mind
 			Ki Strike
 			Slow Fall

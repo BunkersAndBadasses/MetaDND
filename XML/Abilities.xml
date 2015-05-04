@@ -94,6 +94,7 @@
 		</NAME>
 		<DESCRIPTION>
 			A barbarian's land speed is faster than the norm for his race by 10 feet. This benefit applies only when he is wearing no armor, light armor, or medium armor and not carrying a heavy load. Apply this bonus before modifying the barbarian's speed because of any load carried or armor worn.
+			At 3rd level, a monk gains an enhancement bonus to her speed, as shown on Table 3–10. A monk in armor (even light armor) or carrying a medium or heavy load loses this
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -130,6 +131,9 @@
 		</NAME>
 		<DESCRIPTION>
 			Starting at 3rd level, a barbarian gains a  bonus on Reflex saves made to avoid traps and a  dodge bonus to AC against attacks made by traps. These bonuses rise by  every three barbarian levels thereafter (6th, 9th, 12th, 15th, and 18th level). Trap sense bonuses gained from multiple classes stack.
+
+			At 3rd level, a rogue gains an intuitive sense that alerts her to danger from traps, giving her a  bonus on Reflex saves made to avoid traps and a  dodge bonus to AC against attacks made by traps. These bonuses rise to +2 when the rogue reaches 6th level, to +3 when she reaches 9th level, to +4 when she reaches 12th level, to +5 at 15th, and to +6 at 18th level.
+			Trap sense bonuses gained from multiple classes stack.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -138,6 +142,10 @@
 		</NAME>
 		<DESCRIPTION>
 			At 5th level and higher, a barbarian can no longer be flanked. This defense denies a rogue the ability to sneak attack the barbarian by flanking him, unless the attacker has at least four more rogue levels than the target has barbarian levels. If a character already has uncanny dodge (see above) from a second class, the character automatically gains improved uncanny dodge instead, and the levels from the classes that grant uncanny dodge stack to determine the minimum level a rogue must be to flank the character.
+
+			A rogue of 8th level or higher can no longer be flanked.
+			This defense denies another rogue the ability to sneak attack the character by flanking her, unless the attacker has at least four more rogue levels than the target does.
+			If a character already has uncanny dodge (see above) from a second class, the character automatically gains improved uncanny dodge instead, and the levels from the classes that grant uncanny dodge stack to determine the minimum rogue level required to flank the character.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -324,10 +332,13 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Woodland Stride (Druid)
+			Woodland Stride
 		</NAME>
 		<DESCRIPTION>
 			Starting at 2nd level, a druid may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at her normal speed and without taking damage or suffering any other impairment. However, thorns, briars, and overgrown areas that have been magically manipulated to impede motion still affect her.
+
+			Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.
+			However, thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion still affect him.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -686,7 +697,6 @@
 			If the ranger selects archery, he is treated as having the Rapid Shot feat, even if he does not have the normal prerequisites for that feat.
 			If the ranger selects two-weapon combat, he is treated as having the Two-Weapon Fighting feat, even if he does not have the normal prerequisites for that feat.
 			The benefits of the ranger's chosen style apply only when he wears light or no armor. He loses all benefits of his combat style when wearing medium or heavy armor.
-			
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -714,15 +724,6 @@
 			At 6th level, a ranger's aptitude in his chosen combat style (archery or two-weapon combat) improves. If he selected archery at 2nd level, he is treated as having the Manyshot feat, even if he does not have the normal prerequisites for that feat.
 			If the ranger selected two-weapon combat at 2nd level, he is treated as having the Improved Two-Weapon Fighting feat, even if he does not have the normal prerequisites for that feat.
 			As before, the benefits of the ranger's chosen style apply only when he wears light or no armor. He loses all benefits of his combat style when wearing medium or heavy armor.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Woodland Stride (Ranger)
-		</NAME>
-		<DESCRIPTION>
-			Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.
-			However, thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion still affect him.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -799,25 +800,6 @@
 			Finding a nonmagical trap has a DC of at least 20, or higher if it is well hidden. Finding a magic trap has a DC of 25 + the level of the spell used to create it.
 			Rogues (and only rogues) can use the Disable Device skill to disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
 			A rogue who beats a trap's DC by 10 or more with a Disable Device check can study a trap, figure out how it works, and bypass it (with her party) without disarming it.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Trap Sense
-		</NAME>
-		<DESCRIPTION>
-			At 3rd level, a rogue gains an intuitive sense that alerts her to danger from traps, giving her a  bonus on Reflex saves made to avoid traps and a  dodge bonus to AC against attacks made by traps. These bonuses rise to +2 when the rogue reaches 6th level, to +3 when she reaches 9th level, to +4 when she reaches 12th level, to +5 at 15th, and to +6 at 18th level.
-			Trap sense bonuses gained from multiple classes stack.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Improved Uncanny Dodge
-		</NAME>
-		<DESCRIPTION>
-			A rogue of 8th level or higher can no longer be flanked.
-			This defense denies another rogue the ability to sneak attack the character by flanking her, unless the attacker has at least four more rogue levels than the target does.
-			If a character already has uncanny dodge (see above) from a second class, the character automatically gains improved uncanny dodge instead, and the levels from the classes that grant uncanny dodge stack to determine the minimum rogue level required to flank the character.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
