@@ -38,6 +38,7 @@ import core.SkillAdjNode;
 import core.character;
 import entity.DNDEntity;
 import entity.FeatEntity;
+import entity.SpellEntity;
 
 public class LevelUpButton {
 
@@ -69,6 +70,7 @@ class LevelUpLogic {
 	private boolean skipSkills = false;
 	private boolean skipFeats = true;
 	private boolean skipFighter = true;
+	private boolean skipSpells = false;
 
 	private boolean specialOpen;
 	private boolean bonusOpen;
@@ -81,6 +83,13 @@ class LevelUpLogic {
 	private int numFeats = 0;
 	private int numCharFeats;
 	
+	private int[] numSpells;
+	private List charSpellsList;
+	private Label numSpellsLeft;
+	private int bonusSpells;
+	private int wizHighestLevel;
+
+	
 	private ArrayList<FeatEntity> feats;
 
 	// stuff to save when done
@@ -89,6 +98,7 @@ class LevelUpLogic {
 	private String[] saveSpecialAbilities;
 	private ArrayList<SkillAdjNode> saveSkills;
 	private ArrayList<CharFeat> saveFeats = new ArrayList<CharFeat>();
+	private ArrayList<SpellEntity> saveSpells = new ArrayList<SpellEntity>();
 
 	public LevelUpLogic(Button button, character character, Display display) {
 		this.character = character;
@@ -374,8 +384,8 @@ class LevelUpLogic {
 						nextPage = pages.get(FEAT);
 					else if (level%2 == 0 && !skipFighter)
 						nextPage = pages.get(FIGHTER);
-					//					else if() TODO
-					//						nextPage = pages.get(SPELL);
+					else if(!skipSpells)
+						nextPage = pages.get(SPELL);
 					else
 						nextPage = pages.get(DONE);
 				} else {
@@ -638,9 +648,9 @@ class LevelUpLogic {
 					nextPage = pages.get(FEAT);
 				} else if (level % 2 == 0 && !skipFighter) {
 					nextPage = pages.get(FIGHTER);
-				}
-				// TODO any other pages
-				else {
+				} else if (!skipSpells) {
+					nextPage = pages.get(SPELL);
+				} else {
 					nextPage = pages.get(DONE);
 				}
 				openNextPage(nextPage);
@@ -915,6 +925,8 @@ class LevelUpLogic {
 				//else
 				if (level % 2 == 0 && !skipFighter)
 					nextPage = pages.get(FIGHTER);
+				else if (!skipSpells)
+					nextPage = pages.get(SPELL);
 				else
 					nextPage = pages.get(DONE);
 				openNextPage(nextPage);
@@ -1033,11 +1045,10 @@ class LevelUpLogic {
 				numCharFeats++;
 				saveFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
 				Shell nextPage;
-				// TODO any other pages
-				//				if ()
-				//					nextPage = pages.get(SPELL);
-				//				else
-				nextPage = pages.get(DONE);
+				if (!skipSpells)
+					nextPage = pages.get(SPELL);
+				else
+					nextPage = pages.get(DONE);
 				openNextPage(nextPage);
 			}
 		});
@@ -1047,14 +1058,350 @@ class LevelUpLogic {
 
 		
 		//////////////////// SPELL PAGE ////////////////////
-		gl = new GridLayout(2, true);
+		gl = new GridLayout(7, true);
 		spellsPage.setLayout(gl);
+
+			/*
+			 * barbarian - no spells, non lawful
+			 * bard - cha, arcane(bard spell list), non lawful
+			 * cleric - wis, divine(cleric spell list), alignment must match domain, alignment must be within 1 step of deities, st cuthbert only LN or LG, 
+			 * 		choose god/domain (choose two from god's domains list, or choose no deity and select any two), 
+			 * 		domain adds class skills!
+			 * druid - wis, divine(druid spell list), can't use spells that are opposite his/her own alignment, 
+			 * 		animal companion 35, must have neutral?
+			 * fighter - no spells
+			 * monk - lawful, no spells, 
+			 * paladin - wis, divine, lawful good!, spells at 4th level, mount(5th level)
+			 * ranger - divine, 5th level, favored enemy
+			 * rogue - no spells
+			 * sorcerer - cha, arcane, familiar
+			 * wizard - int, arcane, familiar, school specialization(optional), must choose 2 two schools to give up(not divination), if divination, give up 1
+			 * 		spells known = all 0 level (- prohibited schools) + 3 + INT MOD 1st level spells
+			 */
+
+			/*
+			 * TODO: 
+			 * 
+			 * wizard - gets 2 bonus spells every level? only show spells that they can cast 
+			 * 	(from spellsKnown)
+			 * shouldn't have level-spells to select? 
+			 * characters who can cast spells starting at certain levels, check? 
+			 * add spells known only once they can cast spells?
+			 * 
+			 */
+			
+
+			// check if character is a spell caster
+			if (!character.getCharClass().isCaster())
+				skipSpells = true;
+
+			// get spells from references
+			Collection<DNDEntity> spellsCol =  Main.gameState.spells.values();
+			Iterator<DNDEntity> spellItr = spellsCol.iterator();
+			ArrayList<SpellEntity> spells = new ArrayList<SpellEntity>();
+			while (spellItr.hasNext()) {
+				spells.add((SpellEntity) spellItr.next());
+			}
+
+			// check if character can select spells
+			if (character.getCharClass().getSpellsKnown() == null) {
+				if (character.getCharClass().getName().equalsIgnoreCase("Wizard")) {
+					// add all 0 level wizard spells that aren't in their prohibited schools
+//					for (int i = 0; i < spells.size(); i++) {
+//						if (Wiz7.getLevel(character, spells.get(i)) == 0){
+//							if (Wiz7.checkIfProhibited(character, spells.get(i))) {
+//								character.addSpell(spells.get(i));
+//							}
+//						}
+//					}
+					//TODO do stuff here?
+				} else {
+					skipSpells = true;
+				}
+			}
+
+			// initialize layout
+			spellsPage.setImage(new Image(display, "images/bnb_logo.gif"));
+			spellsPage.setText("Select Known Spells");
+
+			numSpellsLeft = new Label(spellsPage, SWT.NONE);
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd.horizontalSpan = 7;
+			numSpellsLeft.setLayoutData(gd);
+
+			detailsLabel = new Label(spellsPage, SWT.NONE);
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd.horizontalSpan = 7;
+			detailsLabel.setLayoutData(gd);
+
+			Label spellErrorLabel = new Label(spellsPage, SWT.NONE);
+			gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+			gd.horizontalSpan = 7;
+			spellErrorLabel.setLayoutData(gd);		
+
+			List spellsList = new List(spellsPage, SWT.V_SCROLL);
+			gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+			gd.horizontalSpan = 3;
+			gd.verticalSpan = 2;
+			spellsList.setLayoutData(gd);
+
+			addButton = new Button(spellsPage, SWT.PUSH);
+			gd = new GridData(SWT.CENTER, SWT.END, false, true);
+			addButton.setLayoutData(gd);
+
+			charSpellsList =  new List(spellsPage, SWT.V_SCROLL);
+			gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+			gd.horizontalSpan = 3;
+			gd.verticalSpan = 2;
+			charSpellsList.setLayoutData(gd);
+
+			removeButton = new Button(spellsPage, SWT.PUSH);
+			gd = new GridData(SWT.CENTER, SWT.BEGINNING, false, true);
+			removeButton.setLayoutData(gd);
+
+//			Button cancelButton = new Button(spellsPage, SWT.PUSH);
+//			gd = new GridData(SWT.LEFT, SWT.END, true, false);
+//			gd.horizontalSpan = 3;
+//			cancelButton.setLayoutData(gd);
+//
+//			// placeholder
+//			new Label(spellsPage, SWT.NONE).setLayoutData(new GridData());
+//
+//			Button doneButton = new Button(spellsPage, SWT.PUSH);
+//			gd = new GridData(SWT.RIGHT, SWT.END, true, false);
+//			gd.horizontalSpan = 3;
+//			doneButton.setLayoutData(gd);
+
+
+			// create content
+
+			// num spells left label
+			int[][] temp = character.getCharClass().getSpellsKnown();
+			// get num spells the character can know based on their level
+			if (temp == null) {
+				int[] wizSPD;
+				if (level-1 >= character.getCharClass().getSpellsPerDay().length) {
+					wizSPD = character.getCharClass().getSpellsPerDay()[character.getCharClass().getSpellsPerDay().length-1];
+				} else 
+					wizSPD = character.getCharClass().getSpellsPerDay()[character.getLevel() - 1];
+				wizHighestLevel = 0;
+				for (int i = 0; i < wizSPD.length; i++) {
+					if (wizSPD.length >= 0)
+						wizHighestLevel = i;
+				}
+				bonusSpells = 2*(level-1);
+				int[] wizSpells = new int[wizSPD.length];
+				for (int i = 0; i < wizSpells.length; i++) {
+					if (i == 1)
+						wizSpells[i] = 3+character.getAbilityModifiers()[GameState.INTELLIGENCE];
+					else if (wizSPD[i] == -1)
+						wizSpells[i] = -1;
+					else
+						wizSpells[i] = 0;
+				}
+				numSpells = wizSpells;
+			}
+			else if (character.getLevel() - 1 >= temp.length)
+				numSpells = temp[temp.length-1];
+			else
+				numSpells = temp[character.getLevel() - 1];
+			// character cannot yet add spells at their level
+			if (numSpells[0] == -1) {
+				skipSpells = true;
+			}
+
+			int[] origNumSpells = new int[numSpells.length];
+			for (int i = 0; i < origNumSpells.length; i++)
+				origNumSpells[i] = numSpells[i];
+			updateNumSpellsLeft();
+			spellsPage.layout();
+
+			// details label
+			detailsLabel.setText("Double click on a spell to see details");
+			detailsLabel.pack();
+
+			// error label - set text when called
+			errorLabel.setForeground(new Color(display, 255, 0, 0));
+			errorLabel.setVisible(false);
+
+			// add spells to list
+			for (int i = 0; i < spells.size(); i++) {
+				int spellLevel = Wiz7.getLevel(character, spells.get(i));
+				if (spellLevel > -1) {
+					// only add spells they can learn
+					if (numSpells[spellLevel] > 0 && Wiz7.checkIfProhibited(character, spells.get(i)))
+						spellsList.add(spells.get(i).getName() + ": lvl. " + spellLevel);
+					if (bonusSpells != 0) {
+						if (spellLevel <= wizHighestLevel && Wiz7.checkIfProhibited(character, spells.get(i))) {
+							spellsList.add(spells.get(i).getName() + ": lvl. " + spellLevel);
+						}
+					}
+				}
+			}
+			spellsList.addSelectionListener(new SelectionListener(){
+				public void widgetDefaultSelected(SelectionEvent e){
+					int index = spellsList.getSelectionIndex();
+					if (index == -1)
+						return;
+					String spellName = spellsList.getItem(index).substring(0, spellsList.getItem(index).indexOf(':'));
+					Main.gameState.spells.get(spellName).toTooltipWindow();
+				}
+				@Override
+				//leave blank, but must have
+				public void widgetSelected(SelectionEvent e) {}
+			});
+
+			charSpellsList.addSelectionListener(new SelectionListener(){
+				public void widgetDefaultSelected(SelectionEvent e){
+					int index = charSpellsList.getSelectionIndex();
+					if (index == -1)
+						return;
+					String spellName = charSpellsList.getItem(index).substring(0, charSpellsList.getItem(index).indexOf(':'));
+					Main.gameState.spells.get(spellName).toTooltipWindow();
+				}
+				@Override
+				//leave blank, but must have
+				public void widgetSelected(SelectionEvent e) {}
+			});
+
+			// create buttons
+
+			// add button
+			addButton.setText("Add");
+			addButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					numSpellsLeft.setBackground(null);
+					errorLabel.setVisible(false);
+					int index = spellsList.getSelectionIndex();
+					if (index == -1) {
+						spellErrorLabel.setText("You must select a spell to add");
+						spellErrorLabel.pack();
+						spellsPage.layout();
+						spellErrorLabel.setVisible(true);
+						return;
+					}
+
+					String spell = spellsList.getItem(index);
+					String spellName = spell.substring(0, spell.indexOf(':'));
+
+					// check if already added
+					for (int i = 0; i < saveSpells.size(); i++) {
+						if (saveSpells.get(i).getName().equalsIgnoreCase(spellName)) {
+							spellErrorLabel.setText("Spell already added");
+							spellErrorLabel.pack();
+							spellsPage.layout();
+							spellErrorLabel.setVisible(true);
+							return;
+						}
+					}
+
+					// check level
+					int spellLevel = Integer.parseInt(spell.replaceAll("[^\\d]", ""));
+					if (numSpells[spellLevel] > 0) {
+						saveSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
+						updateCharSpellsList();
+						numSpells[spellLevel]--;
+						updateNumSpellsLeft();
+						spellsPage.layout();
+					} else if (bonusSpells > 0) {
+						saveSpells.add((SpellEntity)Main.gameState.spells.get(spellName));
+						updateCharSpellsList();
+						bonusSpells--;
+						updateNumSpellsLeft();
+						spellsPage.layout();
+					} else {
+						spellErrorLabel.setText("You cannot add a spell of that level");
+						spellErrorLabel.pack();
+						spellsPage.layout();
+						spellErrorLabel.setVisible(true);
+					}
+
+				}
+			});
+
+			// remove button
+			removeButton.setText("Remove");
+			removeButton.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event e) {
+					numSpellsLeft.setBackground(null);
+					errorLabel.setVisible(false);
+					int index = charSpellsList.getSelectionIndex();
+					if (index == -1) {
+						spellErrorLabel.setText("You must select a spell to remove");
+						spellErrorLabel.pack();
+						spellsPage.layout();
+						spellErrorLabel.setVisible(true);
+						return;
+					}
+					String temp = charSpellsList.getItem(index);
+					int level = Integer.parseInt(temp.replaceAll("[^\\d]", ""));
+					if (numSpells[level] == origNumSpells[level]) {
+						bonusSpells++;
+					} else
+						numSpells[level]++;
+					saveSpells.remove(index);
+					updateCharSpellsList();
+					updateNumSpellsLeft();
+					spellsPage.layout();
+				}
+			});	
+
+//			// cancel button
+//			cancelButton.setText("Cancel");
+//			cancelButton.addListener(SWT.Selection, new Listener() {
+//				public void handleEvent(Event e) {
+//					spellsGood = false;
+//					spellsPage.dispose();
+//					spellOpen = false;
+//				}
+//			});
+//
+//			// done button
+//			doneButton.setText("Done");
+//			doneButton.addListener(SWT.Selection, new Listener() {
+//				public void handleEvent(Event e) {
+//					// check if they have any spells left
+//
+//
+////					// if they have chosen all known spells, save and close
+////					for (int i = 0; i < saveSpells.size(); i++) {
+////						character.addSpell(charSpells.get(i));
+////					}
+////
+////					spellsGood = true;
+////					spellsPage.dispose();
+////					spellOpen = false;
+////				}
+//			});
+////
+//			spellsPage.layout();
+//
+//			// open shell
+//			spellsPage.pack();
+//			spellsPage.layout();
+//			CharacterWizard.center(spellsPage);
+//			spellsPage.open();
+//
+//			// check if disposed
+//			while (!spellsPage.isDisposed()) {
+//				if (!wiz7.getDisplay().readAndDispatch()) {
+//					wiz7.getDisplay().sleep();
+//				}
+//			}
+//
+//			return spellsGood;
 
 		cancelButton(spellsPage);
 
 		Button spellsNext = nextButton(spellsPage);
 		spellsNext.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
+				for (int i = 0; i < numSpells.length; i++) {
+					if (numSpells[i] > 0){
+						numSpellsLeft.setBackground(new Color(display, 255, 100, 100));
+						return;
+					}
+				}
 				Shell nextPage;
 				//				if () {
 				//				// TODO any other pages
@@ -1363,6 +1710,27 @@ class LevelUpLogic {
 			}
 		}
 		return specialValid;
+	}
+	
+	private void updateCharSpellsList() {
+		charSpellsList.removeAll();
+		for (int i = 0; i < saveSpells.size(); i++){
+			charSpellsList.add(saveSpells.get(i).getName() + ": lvl. " + Wiz7.getLevel(character, saveSpells.get(i)));
+		}
+	}
+
+	private void updateNumSpellsLeft() {
+		String result = "0 level spells: " + numSpells[0];
+		for (int i = 1; i < numSpells.length; i++) {
+			if (numSpells[i] >= 0) {
+				result += "\n" + i + " level spells: " + numSpells[i];
+			}
+		}
+		if (bonusSpells != 0) {
+			result += "\nBonus Spells: " + bonusSpells;
+		}
+		numSpellsLeft.setText(result);
+		numSpellsLeft.pack();
 	}
 	
 	private void updateCharFeatsList() {

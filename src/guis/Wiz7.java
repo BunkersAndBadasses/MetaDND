@@ -758,8 +758,8 @@ public class Wiz7{
 			if (character.getCharClass().getName().equalsIgnoreCase("Wizard")) {
 				// add all 0 level wizard spells that aren't in their prohibited schools
 				for (int i = 0; i < spells.size(); i++) {
-					if (getLevel(spells.get(i)) == 0){
-						if (checkIfProhibited(spells.get(i))) {
+					if (getLevel(character, spells.get(i)) == 0){
+						if (checkIfProhibited(character, spells.get(i))) {
 							character.addSpell(spells.get(i));
 						}
 					}
@@ -768,7 +768,7 @@ public class Wiz7{
 				// add that character's spell list to their known spells
 				for (int i = 0; i < spells.size(); i++) {
 					try { 
-						if (getLevel(spells.get(i)) != -1) {
+						if (getLevel(character, spells.get(i)) != -1) {
 							character.addSpell(spells.get(i));
 						}
 					} catch (Exception e) {
@@ -899,13 +899,13 @@ public class Wiz7{
 
 		// add spells to list
 		for (int i = 0; i < spells.size(); i++) {
-			int level = getLevel(spells.get(i));
+			int level = getLevel(character, spells.get(i));
 			if (level > -1) {
 				// only add spells they can learn
-				if (numSpells[level] > 0 && checkIfProhibited(spells.get(i)))
+				if (numSpells[level] > 0 && checkIfProhibited(character, spells.get(i)))
 					spellsList.add(spells.get(i).getName() + ": lvl. " + level);
 				if (bonusSpells != 0) {
-					if (level <= wizHighestLevel && checkIfProhibited(spells.get(i))) {
+					if (level <= wizHighestLevel && checkIfProhibited(character, spells.get(i))) {
 						spellsList.add(spells.get(i).getName() + ": lvl. " + level);
 					}
 				}
@@ -1070,7 +1070,7 @@ public class Wiz7{
 	private void updateCharSpellsList() {
 		charSpellsList.removeAll();
 		for (int i = 0; i < charSpells.size(); i++){
-			charSpellsList.add(charSpells.get(i).getName() + ": lvl. " + getLevel(charSpells.get(i)));
+			charSpellsList.add(charSpells.get(i).getName() + ": lvl. " + getLevel(character, charSpells.get(i)));
 		}
 	}
 
@@ -1089,11 +1089,16 @@ public class Wiz7{
 		spellShell.layout();
 	}
 
-	private int getLevel(SpellEntity spell) {
+	/**
+	 * returns int level of spell if it is in the list of spells for the character's class
+	 * @param character
+	 * @param spell
+	 * @return level of spell, -1 if not in char class spell list
+	 */
+	public static int getLevel(character character, SpellEntity spell) {
 		String[] levelArr = spell.getLevel();
-		boolean found = false;
 		if (levelArr != null) { // take this if out once spells xml is fixed
-			for (int j = 0; j < levelArr.length && !found; j++) {
+			for (int j = 0; j < levelArr.length; j++) {
 				if (levelArr[j].contains(character.getCharClass().getName())) {
 					return Integer.parseInt(levelArr[j].replaceAll("[^\\d]", ""));
 				}
@@ -1107,7 +1112,7 @@ public class Wiz7{
 	 * @param spell
 	 * @return
 	 */
-	private boolean checkIfProhibited(SpellEntity spell) {
+	public static boolean checkIfProhibited(character character, SpellEntity spell) {
 		if (character.getWizardProhibitedSchools() == null)
 			return true;
 		for (int k = 0; k < character.getWizardProhibitedSchools().length; k++) {
