@@ -25,10 +25,10 @@ import org.w3c.dom.NodeList;
 
 public class SaveCharacter {
 
-    private static Document doc;
-    private static File stocks;
-    private static Document element;
-    private static character c = Main.gameState.currentlyLoadedCharacter;
+    private Document doc;
+    private File stocks;
+    private Document element;
+    private character c = Main.gameState.currentlyLoadedCharacter;
     private String temp;
     String empty; 
     int mt;
@@ -709,10 +709,10 @@ public class SaveCharacter {
     }
 
     public SaveCharacter(Boolean New) {
-        this(New, c.getFilename());
+        this(New, Main.gameState.currentlyLoadedCharacter.getFilename());
     }
 
-    private static boolean writeValue(String tag, String value){
+    private boolean writeValue(String tag, String value){
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         node.setTextContent(value);
@@ -730,7 +730,7 @@ public class SaveCharacter {
         return true;
     }
 
-    private static boolean writeValue(String tag, int value) {
+    private boolean writeValue(String tag, int value) {
         return writeValue(tag, Integer.toString(value));
     }
 
