@@ -51,12 +51,12 @@ public class SpellGUI {
     private Table spellTable;
     private Combo spellSel;
     private Combo preparedSel;
-    private Composite mainComp;
+    private Composite mostComp;
     private GridLayout mainLayout;
     private referencePanel playerScreenReferencePanel;
     private Composite mainWindow;
     private StackLayout mainWindowLayout;
-    private GridLayout charLayout;
+    private GridLayout mostLayout;
 
 
     private void getInfo(){
@@ -129,10 +129,10 @@ public class SpellGUI {
         mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
         mainWindowLayout = new StackLayout();
         mainWindow.setLayout(mainWindowLayout);
-        mainComp = new Composite(mainWindow, SWT.NONE);
-        charLayout = new GridLayout(4, true);
-        charLayout.makeColumnsEqualWidth = false;
-        mainComp.setLayout(charLayout);
+        mostComp = new Composite(mainWindow, SWT.NONE);
+        mostLayout = new GridLayout(4, true);
+        mostLayout.makeColumnsEqualWidth = false;
+        mostComp.setLayout(mostLayout);
         
         
         GridData combGD = new GridData();
@@ -159,12 +159,12 @@ public class SpellGUI {
 
         
 
-        spellSel = new Combo(mainComp, SWT.READ_ONLY);
+        spellSel = new Combo(mostComp, SWT.READ_ONLY);
         
         spellSel.select(0);
         spellSel.setLayoutData(combGD);
 
-        Button cast = new Button(mainComp, SWT.PUSH);
+        Button cast = new Button(mostComp, SWT.PUSH);
         cast.setText("Cast");
         cast.setLayoutData(buttGD);
 
@@ -185,7 +185,7 @@ public class SpellGUI {
             }
         }); 
         
-        spellTable = new Table(mainComp, SWT.BORDER );
+        spellTable = new Table(mostComp, SWT.BORDER );
         for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
             TableItem item = new TableItem(spellTable, SWT.NULL);  
         }
@@ -202,13 +202,14 @@ public class SpellGUI {
         }
         spellTable.setLayoutData(tabGD);
         
-        playerScreenReferencePanel = new referencePanel(mainComp); // TODO move after table
+        playerScreenReferencePanel = new referencePanel(mostComp); // TODO move after table
         Composite ps_rp = playerScreenReferencePanel.getRefPanel();
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         gridData.verticalSpan = 10;
         ps_rp.setLayoutData(gridData);
+        ps_rp.pack();
 
-        Button removeSpell = new Button(mainComp, SWT.PUSH);
+        Button removeSpell = new Button(mostComp, SWT.PUSH);
         removeSpell.setText("Remove from spell list");
         removeSpell.setLayoutData(combGD);
         removeSpell.pack();
@@ -229,7 +230,7 @@ public class SpellGUI {
             }
         }); 
 
-        Button prepareSpell = new Button(mainComp, SWT.PUSH);
+        Button prepareSpell = new Button(mostComp, SWT.PUSH);
         prepareSpell.setText("Prepare");
         prepareSpell.setLayoutData(buttGD);
         prepareSpell.pack();
@@ -254,16 +255,16 @@ public class SpellGUI {
             }
         });
         
-        new Label(mainComp, SWT.NONE);
-        new Label(mainComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
 
 
-        preparedSel = new Combo(mainComp, SWT.READ_ONLY);
+        preparedSel = new Combo(mostComp, SWT.READ_ONLY);
         preparedSel.select(0);
         preparedSel.setLayoutData(combGD);
         preparedSel.pack();
 
-        Button castPrep = new Button(mainComp, SWT.PUSH);
+        Button castPrep = new Button(mostComp, SWT.PUSH);
         castPrep.setText("Cast");
         castPrep.setLayoutData(buttGD);
         castPrep.pack();
@@ -289,7 +290,7 @@ public class SpellGUI {
             }
         }); 
 
-        Button removePrepSpell = new Button(mainComp, SWT.PUSH);
+        Button removePrepSpell = new Button(mostComp, SWT.PUSH);
         removePrepSpell.setText("Remove from prepared");
         removePrepSpell.setLayoutData(combGD);
         removePrepSpell.pack();
@@ -311,7 +312,7 @@ public class SpellGUI {
             }
         }); 
 
-        Button resetPrep = new Button(mainComp, SWT.PUSH);
+        Button resetPrep = new Button(mostComp, SWT.PUSH);
         resetPrep.setText("Reset");
         resetPrep.setLayoutData(buttGD);
         resetPrep.pack();
@@ -326,11 +327,11 @@ public class SpellGUI {
             }
         }); 
         
-        new Label(mainComp, SWT.NONE);
-        new Label(mainComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
 
 
-        final Combo newSpellSel = new Combo(mainComp, SWT.READ_ONLY);
+        final Combo newSpellSel = new Combo(mostComp, SWT.READ_ONLY);
         String[] strArr = new String[allArr.size()];
         strArr = allArr.toArray(strArr);
         newSpellSel.setItems(strArr);
@@ -338,7 +339,7 @@ public class SpellGUI {
         newSpellSel.setLayoutData(combGD);
         newSpellSel.pack();
 
-        Button getInfo = new Button(mainComp, SWT.PUSH);
+        Button getInfo = new Button(mostComp, SWT.PUSH);
         getInfo.setText("Get info");
         getInfo.setLayoutData(buttGD); 
         getInfo.pack();
@@ -350,7 +351,7 @@ public class SpellGUI {
             }
         }); 
 
-        Button addSpell = new Button(mainComp, SWT.PUSH);
+        Button addSpell = new Button(mostComp, SWT.PUSH);
         addSpell.setText("Add to spell list");
         addSpell.setLayoutData(combGD);
         addSpell.pack();
@@ -414,7 +415,7 @@ public class SpellGUI {
 
         // Spell Wizard
 
-        Button spellWiz= new Button(mainComp, SWT.PUSH);
+        Button spellWiz= new Button(mostComp, SWT.PUSH);
         spellWiz.setText("Spell wizard");
         spellWiz.setLayoutData(buttGD);
         spellWiz.pack();
@@ -427,10 +428,10 @@ public class SpellGUI {
             }
         });
         
-        new Label(mainComp, SWT.NONE);
-        new Label(mainComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
+        new Label(mostComp, SWT.NONE);
 
-        Button resetTable = new Button(mainComp, SWT.PUSH);
+        Button resetTable = new Button(mostComp, SWT.PUSH);
         resetTable.setText("Reset");
         resetTable.setLayoutData(buttGD);
         resetTable.pack();
@@ -441,11 +442,11 @@ public class SpellGUI {
                 // TODO reset table
             }
         }); 
-        //mainComp.layout();
+        mostComp.layout();
         refresh();
-        mainComp.pack();
+        mostComp.pack();
         
-        mainWindowLayout.topControl = mainComp;
+        mainWindowLayout.topControl = mostComp;
         
         
 
