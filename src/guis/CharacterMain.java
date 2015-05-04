@@ -664,6 +664,9 @@ public class CharacterMain {
                 if(!failed) {
                     new SaveCharacter(false);
                 }
+                else {
+                    //TODO notify failure
+                }
                 
                 /*writeValue("Notes", notes, element);
                 String damageTaken = dmgText.getText();

@@ -3,21 +3,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
+import core.GameState;
 import core.Main;
 import core.character;
 import entity.SpellEntity;
@@ -44,6 +51,12 @@ public class SpellGUI {
     private Table spellTable;
     private Combo spellSel;
     private Combo preparedSel;
+    private Composite mainComp;
+    private GridLayout mainLayout;
+    private referencePanel playerScreenReferencePanel;
+    private Composite mainWindow;
+    private StackLayout mainWindowLayout;
+    private GridLayout charLayout;
 
 
     private void getInfo(){
@@ -104,30 +117,56 @@ public class SpellGUI {
 
     public SpellGUI(String args) {
         Display display = Display.getCurrent();
-        Shell shell = new Shell(display);
+        Shell s = new Shell(display);
 
         Image logo = new Image(display, "images/bnb_logo.gif");
-        shell.setImage(logo);
-        shell.setText("Meta D&D " + version );
+        s.setImage(logo);
+        s.setText("Meta D&D " + version );
+        s.setSize(700, 350);
+        s.setLayout(new GridLayout(1, false));
         getInfo();
-
-        FormLayout layout = new FormLayout();
-        shell.setLayout(layout);
-
-        spellSel = new Combo(shell, SWT.READ_ONLY);
+        mainWindow = new Composite(s, SWT.NONE);
+        mainWindow.setLayoutData(new GridData(GridData.FILL_BOTH));
+        mainWindowLayout = new StackLayout();
+        mainWindow.setLayout(mainWindowLayout);
+        mainComp = new Composite(mainWindow, SWT.NONE);
+        charLayout = new GridLayout(4, true);
+        charLayout.makeColumnsEqualWidth = false;
+        mainComp.setLayout(charLayout);
         
-        FormData spellSelData = new FormData(140,30);
-        spellSel.select(0);
-        spellSelData.left = new FormAttachment(5);
-        spellSelData.top = new FormAttachment(5);
-        spellSel.setLayoutData(spellSelData);
+        
+        GridData combGD = new GridData();
+        combGD.horizontalAlignment = SWT.CENTER;
+        combGD.grabExcessHorizontalSpace = true;
+        combGD.widthHint = 160;
+        combGD.heightHint = 30;
+        
+        GridData buttGD = new GridData();
+        buttGD.horizontalAlignment = SWT.CENTER;
+        buttGD.grabExcessHorizontalSpace = true;
+        buttGD.widthHint = 80;
+        buttGD.heightHint = 24;
+        
+        GridData tabGD = new GridData();
+        tabGD.horizontalAlignment = SWT.CENTER;
+        tabGD.grabExcessHorizontalSpace = true;
+        tabGD.verticalSpan = 8;
+        tabGD.widthHint = 165;
+        tabGD.heightHint = 200;
+        
+        
+        
 
-        Button cast = new Button(shell, SWT.PUSH);
+        
+
+        spellSel = new Combo(mainComp, SWT.READ_ONLY);
+        
+        spellSel.select(0);
+        spellSel.setLayoutData(combGD);
+
+        Button cast = new Button(mainComp, SWT.PUSH);
         cast.setText("Cast");
-        FormData castData = new FormData(80,24);
-        castData.left = new FormAttachment(spellSel, 5, SWT.RIGHT);
-        castData.top = new FormAttachment(spellSel, 0, SWT.TOP);
-        cast.setLayoutData(castData);
+        cast.setLayoutData(buttGD);
 
         cast.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -145,14 +184,34 @@ public class SpellGUI {
                 }
             }
         }); 
+        
+        spellTable = new Table(mainComp, SWT.BORDER );
+        for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
+            TableItem item = new TableItem(spellTable, SWT.NULL);  
+        }
+        
+        spellTable.setHeaderVisible(true);
+        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
+            TableColumn column = new TableColumn(spellTable, SWT.NULL);
+            column.setAlignment(SWT.CENTER);
+            column.setText(titles[loopIndex]);
+        }
+        
+        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
+            spellTable.getColumn(loopIndex).pack();
+        }
+        spellTable.setLayoutData(tabGD);
+        
+        playerScreenReferencePanel = new referencePanel(mainComp); // TODO move after table
+        Composite ps_rp = playerScreenReferencePanel.getRefPanel();
+        GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        gridData.verticalSpan = 10;
+        ps_rp.setLayoutData(gridData);
 
-        Button removeSpell = new Button(shell, SWT.PUSH);
+        Button removeSpell = new Button(mainComp, SWT.PUSH);
         removeSpell.setText("Remove from spell list");
-        FormData removeData = new FormData(167,24);
-        removeData.left = new FormAttachment(spellSel, 0, SWT.LEFT);
-        removeData.top = new FormAttachment(spellSel, 5, SWT.BOTTOM);
-        removeSpell.setLayoutData(removeData);
-
+        removeSpell.setLayoutData(combGD);
+        removeSpell.pack();
         removeSpell.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -170,12 +229,10 @@ public class SpellGUI {
             }
         }); 
 
-        Button prepareSpell = new Button(shell, SWT.PUSH);
+        Button prepareSpell = new Button(mainComp, SWT.PUSH);
         prepareSpell.setText("Prepare");
-        FormData prepareData = new FormData(80,24);
-        prepareData.left = new FormAttachment(removeSpell, 5, SWT.RIGHT);
-        prepareData.top = new FormAttachment(removeSpell, 0, SWT.TOP);
-        prepareSpell.setLayoutData(prepareData);
+        prepareSpell.setLayoutData(buttGD);
+        prepareSpell.pack();
 
         prepareSpell.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -195,23 +252,21 @@ public class SpellGUI {
                     refresh();
                 }
             }
-        }); 
-
-
-        preparedSel = new Combo(shell, SWT.READ_ONLY);
+        });
         
-        FormData preparedData = new FormData(140,30);
-        preparedSel.select(0);
-        preparedData.left = new FormAttachment(removeSpell, 0, SWT.LEFT);
-        preparedData.top = new FormAttachment(removeSpell, 24, SWT.BOTTOM);
-        preparedSel.setLayoutData(preparedData);
+        new Label(mainComp, SWT.NONE);
+        new Label(mainComp, SWT.NONE);
 
-        Button castPrep = new Button(shell, SWT.PUSH);
+
+        preparedSel = new Combo(mainComp, SWT.READ_ONLY);
+        preparedSel.select(0);
+        preparedSel.setLayoutData(combGD);
+        preparedSel.pack();
+
+        Button castPrep = new Button(mainComp, SWT.PUSH);
         castPrep.setText("Cast");
-        FormData castPrepData = new FormData(80,24);
-        castPrepData.left = new FormAttachment(preparedSel, 5, SWT.RIGHT);
-        castPrepData.top = new FormAttachment(preparedSel, 0, SWT.TOP);
-        castPrep.setLayoutData(castPrepData);
+        castPrep.setLayoutData(buttGD);
+        castPrep.pack();
 
         castPrep.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -234,12 +289,10 @@ public class SpellGUI {
             }
         }); 
 
-        Button removePrepSpell = new Button(shell, SWT.PUSH);
+        Button removePrepSpell = new Button(mainComp, SWT.PUSH);
         removePrepSpell.setText("Remove from prepared");
-        FormData removePrepData = new FormData(167,24);
-        removePrepData.left = new FormAttachment(preparedSel, 0, SWT.LEFT);
-        removePrepData.top = new FormAttachment(preparedSel, 5, SWT.BOTTOM);
-        removePrepSpell.setLayoutData(removePrepData);
+        removePrepSpell.setLayoutData(combGD);
+        removePrepSpell.pack();
 
         removePrepSpell.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -258,12 +311,10 @@ public class SpellGUI {
             }
         }); 
 
-        Button resetPrep = new Button(shell, SWT.PUSH);
+        Button resetPrep = new Button(mainComp, SWT.PUSH);
         resetPrep.setText("Reset");
-        FormData resetPrepData = new FormData(80,24);
-        resetPrepData.left = new FormAttachment(removePrepSpell, 5, SWT.RIGHT);
-        resetPrepData.top = new FormAttachment(removePrepSpell, 0, SWT.TOP);
-        resetPrep.setLayoutData(resetPrepData);
+        resetPrep.setLayoutData(buttGD);
+        resetPrep.pack();
 
         resetPrep.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -274,24 +325,23 @@ public class SpellGUI {
                 refresh();
             }
         }); 
+        
+        new Label(mainComp, SWT.NONE);
+        new Label(mainComp, SWT.NONE);
 
 
-        final Combo newSpellSel = new Combo(shell, SWT.READ_ONLY);
+        final Combo newSpellSel = new Combo(mainComp, SWT.READ_ONLY);
         String[] strArr = new String[allArr.size()];
         strArr = allArr.toArray(strArr);
         newSpellSel.setItems(strArr);
-        FormData allSpellData = new FormData(140,30);
         newSpellSel.select(0);
-        allSpellData.left = new FormAttachment(removePrepSpell, 0, SWT.LEFT);
-        allSpellData.top = new FormAttachment(removePrepSpell, 24, SWT.BOTTOM);
-        newSpellSel.setLayoutData(allSpellData);
+        newSpellSel.setLayoutData(combGD);
+        newSpellSel.pack();
 
-        Button getInfo = new Button(shell, SWT.PUSH);
-        getInfo.setText("Get information");
-        FormData getInfoData = new FormData(120,24);
-        getInfoData.left = new FormAttachment(newSpellSel, 5, SWT.RIGHT);
-        getInfoData.top = new FormAttachment(newSpellSel, 0, SWT.TOP);
-        getInfo.setLayoutData(getInfoData); 
+        Button getInfo = new Button(mainComp, SWT.PUSH);
+        getInfo.setText("Get info");
+        getInfo.setLayoutData(buttGD); 
+        getInfo.pack();
 
         getInfo.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -300,12 +350,10 @@ public class SpellGUI {
             }
         }); 
 
-        Button addSpell = new Button(shell, SWT.PUSH);
+        Button addSpell = new Button(mainComp, SWT.PUSH);
         addSpell.setText("Add to spell list");
-        FormData addData = new FormData(167,24);
-        addData.left = new FormAttachment(newSpellSel, 0, SWT.LEFT);
-        addData.top = new FormAttachment(newSpellSel, 5, SWT.BOTTOM);
-        addSpell.setLayoutData(addData);
+        addSpell.setLayoutData(combGD);
+        addSpell.pack();
 
         addSpell.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -316,7 +364,7 @@ public class SpellGUI {
 
         // TODO  Spell materials
 
-        final Combo materialSel = new Combo(shell, SWT.READ_ONLY);
+       /* final Combo materialSel = new Combo(mainWindow, SWT.READ_ONLY);
         if (materials.size() != 0) {
             strArr = new String[materials.size()];
             strArr = materials.toArray(strArr);
@@ -328,7 +376,7 @@ public class SpellGUI {
         materialData.top = new FormAttachment(addSpell, 24, SWT.BOTTOM);
         materialSel.setLayoutData(materialData);
 
-        Button matAdd = new Button(shell, SWT.PUSH);
+        Button matAdd = new Button(mainWindow, SWT.PUSH);
         matAdd.setText("Add quantity");
         FormData matAddData = new FormData(120,24);
         matAddData.left = new FormAttachment(materialSel, 0, SWT.LEFT);
@@ -342,7 +390,7 @@ public class SpellGUI {
             }
         }); 
 
-        Spinner matSpin = new Spinner(shell, SWT.COLOR_GREEN);
+        Spinner matSpin = new Spinner(mainWindow, SWT.COLOR_GREEN);
         matSpin.setMinimum(0);
         matSpin.setMaximum(1000000);
         FormData matSpinData = new FormData(40,24);
@@ -350,7 +398,7 @@ public class SpellGUI {
         matSpinData.top = new FormAttachment(materialSel, 0, SWT.TOP);
         matSpin.setLayoutData(matSpinData);
 
-        Button matSub= new Button(shell, SWT.PUSH);
+        Button matSub= new Button(mainWindow, SWT.PUSH);
         matSub.setText("Remove quantity");
         FormData matSubData = new FormData(120,24);
         matSubData.left = new FormAttachment(matAdd, 5, SWT.RIGHT);
@@ -362,16 +410,14 @@ public class SpellGUI {
             public void widgetSelected(SelectionEvent e) {
                 // TODO Remove materials
             }
-        }); 
+        }); */
 
         // Spell Wizard
 
-        Button spellWiz= new Button(shell, SWT.PUSH);
+        Button spellWiz= new Button(mainComp, SWT.PUSH);
         spellWiz.setText("Spell wizard");
-        FormData spellWizData = new FormData(120,24);
-        spellWizData.left = new FormAttachment(matAdd, 0, SWT.LEFT);
-        spellWizData.top = new FormAttachment(matAdd, 24, SWT.BOTTOM);
-        spellWiz.setLayoutData(spellWizData);
+        spellWiz.setLayoutData(buttGD);
+        spellWiz.pack();
 
         spellWiz.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -379,41 +425,15 @@ public class SpellGUI {
                 // TODO Launch Spell Wizard
                 new SpellWizard(Display.getCurrent());
             }
-        }); 
-
-        // Table
-
-        spellTable = new Table(shell, SWT.BORDER );
-        for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
-            TableItem item = new TableItem(spellTable, SWT.NULL);  
-        }
+        });
         
-        spellTable.setHeaderVisible(true);
-        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
-            TableColumn column = new TableColumn(spellTable, SWT.NULL);
-            column.setAlignment(SWT.CENTER);
-            column.setText(titles[loopIndex]);
-        }
+        new Label(mainComp, SWT.NONE);
+        new Label(mainComp, SWT.NONE);
 
-        
-        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
-            spellTable.getColumn(loopIndex).pack();
-        }
-
-
-
-        FormData spellTableData = new FormData(165,200);
-
-        spellTableData.left = new FormAttachment(cast, 60, SWT.RIGHT);
-        spellTableData.top = new FormAttachment(cast, 0, SWT.TOP);
-        spellTable.setLayoutData(spellTableData);
-
-        Button resetTable = new Button(shell, SWT.PUSH);
+        Button resetTable = new Button(mainComp, SWT.PUSH);
         resetTable.setText("Reset");
-        FormData resetTableData = new FormData(80,24);
-        resetTableData.left = new FormAttachment(spellTable, 50, SWT.LEFT);
-        resetTableData.top = new FormAttachment(spellTable, 10, SWT.BOTTOM);
-        resetTable.setLayoutData(resetTableData);
+        resetTable.setLayoutData(buttGD);
+        resetTable.pack();
 
         resetTable.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -421,11 +441,16 @@ public class SpellGUI {
                 // TODO reset table
             }
         }); 
-        
+        //mainComp.layout();
         refresh();
+        mainComp.pack();
+        
+        mainWindowLayout.topControl = mainComp;
+        
+        
 
-        shell.open(); // Open the Window and process the clicks
-        while (!shell.isDisposed()) {
+        s.open(); // Open the Window and process the clicks
+        while (!s.isDisposed()) {
             if (display.readAndDispatch()) {
                 display.sleep();
             }
