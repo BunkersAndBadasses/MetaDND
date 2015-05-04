@@ -40,6 +40,7 @@ import core.DungeonConstants;
 import core.GameState;
 import core.LoadCharacter;
 import core.Main;
+import core.SaveCharacter;
 import core.character;
 import entity.AbilityEntity;
 import entity.ArmorEntity;
@@ -642,7 +643,28 @@ public class CharacterMain {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 notes = notesText.getText();
-                writeValue("Notes", notes, element);
+                boolean failed = false;
+                exp = expText.getText();
+                gp = gpText.getText();
+                pp = ppText.getText();
+                sp = spText.getText();
+                cp = cpText.getText();
+                dmgTaken = dmgText.getText();
+                try {
+                    c.setNotes(notes);
+                    c.setExp(Integer.parseInt(exp));
+                    c.setPP(Integer.parseInt(pp));
+                    c.setGP(Integer.parseInt(gp));
+                    c.setSP(Integer.parseInt(sp));
+                    c.setCP(Integer.parseInt(cp));
+                } catch (Exception ex) {
+                    failed = true;
+                }
+                if(!failed) {
+                    new SaveCharacter(false);
+                }
+                
+                /*writeValue("Notes", notes, element);
                 String damageTaken = dmgText.getText();
                 writeValue("DamageTaken", damageTaken, element);
                 writeValue("Shield", shieldName, element);
@@ -653,7 +675,7 @@ public class CharacterMain {
                 writeValue("GP", gpText.getText(), element);
                 writeValue("SP", spText.getText(), element);
                 writeValue("CP", cpText.getText(), element);
-                writeValue("Exp", expText.getText(), element);
+                writeValue("Exp", expText.getText(), element);*/
             }
         });
 
