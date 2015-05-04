@@ -1,28 +1,40 @@
 /*
- * APPLY ABILITY SCORES
+ * ADD DESCRIPTION
  */
 
 package guis;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Random;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
 
 import core.GameState;
+import core.Main;
 import core.character;
 import entity.ClassEntity;
+import entity.DNDEntity;
+import entity.DeityEntity;
 import entity.RaceEntity;
 
 public class Wiz3 {
@@ -33,466 +45,1086 @@ public class Wiz3 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
-	private StackLayout layout;
-	private StackLayout homeLayout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
-	
-	private List strList;
-	private List dexList;
-	private List conList;
-	private List intList;
-	private List wisList;
-	private List chaList;
 
-	ArrayList<ArrayList<Button>> buttons;
+	private Text nameInput;
+	private CCombo alignmentInput1;
+	private CCombo alignmentInput2;
+	private Text deityInput;
+	private Combo deityListInput;
+	private boolean deitySelect = false;
+	private Text heightInput;
+	private Text weightInput;
+	private Text ageInput;
+	private Text genderInput;
+	private Text eyesInput;
+	private Text hairInput;
+	private Text skinInput;
+	private Text descriptionInput;
+	private List langInput;
+	private Text customLang;
+	private int remainingBonusLangs;
+	private int numBonusLangs;
 	
-	private int[] abilityScoresBefore;
-	private int[] abilityScoresAfter = new int[6];
-	private Label errorLabel;
-	private RaceEntity charRace;
+	private int numAutoLangs = 0;
+	
+	private Shell alignmentShell;
+ 
+	private Shell clericShell;
+	
+	private boolean alignOpen = false;
+	private boolean clericOpen = false;
+
+	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
+			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
+			"Luck", "Magic", "Plant", "Protection", "Strength", "Sun", 
+			"Travel", "Trickery", "War", "Water"};
+
+	private Random rng = new Random();
+
 	private ClassEntity charClass;
-	//private ClassEntity charSecClass;
-	//private Label choiceLabel2;
+	private RaceEntity charRace;
+
+	private boolean goOn;
+	private boolean finished;
+
+	private final Color red = new Color(dev, 255, 100, 100);
+	private final Color white = new Color(dev, 255, 255, 255);
+
 
 	public Wiz3(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, final StackLayout homeLayout, 
-			final ArrayList<Composite> wizPages, int[] abilityScoresIn) {
-		// initialization
+			final Composite panel, final StackLayout layout, 
+			final ArrayList<Composite> wizPages) {
 		wiz3 = wizPages.get(2);
 		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
-		this.layout = layout;
-		this.homeLayout = homeLayout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(3);
 		this.wizPagesSize = wizPages.size();
-		abilityScoresBefore = abilityScoresIn;
-		//choiceLabel2 = new Label(wiz3, SWT.NONE);
-		charRace = cw.getCharacter().getCharRace();
-		charClass = cw.getCharacter().getCharClass();
-		
-		buttons = new ArrayList<ArrayList<Button>>(6);
 
+		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
+		charClass = cw.getCharacter().getCharClass();
+		charRace = cw.getCharacter().getCharRace();
+		
 		createPageContent();
 	}
 
 	private void createPageContent() {
-		Label wiz3Label = new Label(wiz3, SWT.NONE);
-		wiz3Label.setText("Apply Ability Scores");
-		wiz3Label.pack();
+		GridLayout layout = new GridLayout(2, true);
+		wiz3.setLayout(layout);
+
+		GridData gd;
 		
-		////////// instantiate layout //////////
+		// main label
+		Label wiz4Label = new Label(wiz3, SWT.NONE);
+		wiz4Label.setText("Add Description");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		wiz4Label.setLayoutData(gd);
+		wiz4Label.pack();
 		
-		GridLayout gl = new GridLayout(6, true);
+		GridLayout gl = new GridLayout(8, true);
 		
 		Composite inner = new Composite(wiz3, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
-
-		GridData gd;
-		
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 6;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		
-		////////// class/race label //////////
-		Label choiceLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 6;
-		choiceLabel.setLayoutData(gd);
-		////////// class/race label //////////
-
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 6;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 		
 		
-		////////// strength //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
+		// initialize layout
 		
-		Label strLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		strLabel.setLayoutData(gd);
-		Composite strComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		nameInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		nameInput.setLayoutData(gd);
+		
+		genderInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		genderInput.setLayoutData(gd);
+		
+		ageInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		ageInput.setLayoutData(gd);
+		
+		heightInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		heightInput.setLayoutData(gd);
+		
+		Button heightRandom = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		heightRandom.setLayoutData(gd);
+		
+		eyesInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		eyesInput.setLayoutData(gd);
+		
+		hairInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		hairInput.setLayoutData(gd);
+		
+		skinInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		skinInput.setLayoutData(gd);
+		
+		Label spacer = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		spacer.setLayoutData(gd);		
+		
+		weightInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weightInput.setLayoutData(gd);
+		
+		Button weightRandom = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		weightRandom.setLayoutData(gd);
+		
+		descriptionInput = new Text(inner, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd.horizontalSpan = 4;
+		gd.verticalSpan = 2;
+		descriptionInput.setLayoutData(gd);
+		
+		alignmentInput1 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		alignmentInput1.setLayoutData(gd);	
+		
+		alignmentInput2 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		alignmentInput2.setLayoutData(gd);
+		
+		deityListInput = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 4;
+		deityListInput.setLayoutData(gd);
+		
+		Button deitySearchButton = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		deitySearchButton.setLayoutData(gd);
+		
+		deityInput = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 3;
-		strComp.setLayoutData(gd);
-		GridLayout strGL = new GridLayout(6, true);
-		strComp.setLayout(strGL);
-		buttons.add(createASButtons(strComp));
-		strComp.layout();
+		deityInput.setLayoutData(gd);		
 		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// strength //////////
+		Label addLang = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		addLang.setLayoutData(gd);
 		
-		////////// dexterity //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		
-		Label dexLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		dexLabel.setLayoutData(gd);
-		Composite dexComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		Label knownLangs = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 3;
-		dexComp.setLayoutData(gd);
-		GridLayout dexGL = new GridLayout(6, true);
-		dexComp.setLayout(dexGL);
-		buttons.add(createASButtons(dexComp));
-		dexComp.layout();
+		knownLangs.setLayoutData(gd);
 		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// dexterity //////////
-		
-		////////// constitution //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		
-		Label conLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		conLabel.setLayoutData(gd);
-		Composite conComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		Label possibleLangs = new Label(inner, SWT.NONE);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gd.horizontalSpan = 3;
-		conComp.setLayoutData(gd);
-		GridLayout conGL = new GridLayout(6, true);
-		conComp.setLayout(conGL);
-		buttons.add(createASButtons(conComp));
-		conComp.layout();
+		possibleLangs.setLayoutData(gd);
 		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// constitution //////////
+		customLang = new Text(inner, SWT.BORDER);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		gd.horizontalSpan = 2;
+		customLang.setLayoutData(gd);
 		
-		////////// intelligence //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		
-		Label intLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		intLabel.setLayoutData(gd);
-		Composite intComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		langInput = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
-		intComp.setLayoutData(gd);
-		GridLayout intGL = new GridLayout(6, true);
-		intComp.setLayout(intGL);
-		buttons.add(createASButtons(intComp));
-		intComp.layout();
+		gd.verticalSpan = 3;
+		langInput.setLayoutData(gd);
 		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// intelligence //////////
-		
-		////////// wisdom //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		
-		Label wisLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		wisLabel.setLayoutData(gd);
-		Composite wisComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		List possibleLangsList = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
+		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gd.horizontalSpan = 3;
-		wisComp.setLayoutData(gd);
-		GridLayout wisGL = new GridLayout(6, true);
-		wisComp.setLayout(wisGL);
-		buttons.add(createASButtons(wisComp));
-		wisComp.layout();
+		gd.verticalSpan = 3;
+		possibleLangsList.setLayoutData(gd);
 		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// wisdom //////////
-		
-		////////// charisma //////////
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		
-		Label chaLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		chaLabel.setLayoutData(gd);
-		Composite chaComp = new Composite(inner, SWT.BORDER);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		gd.horizontalSpan = 3;
-		chaComp.setLayoutData(gd);
-		GridLayout chaGL = new GridLayout(6, true);
-		chaComp.setLayout(chaGL);
-		buttons.add(createASButtons(chaComp));
-		chaComp.layout();
-		
-		new Label(inner, SWT.NONE).setLayoutData(new GridData());
-		////////// charisma //////////
-		
-		////////// error //////////
-		// error label
-		errorLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 6;
+		Label errorLabel = new Label(inner, SWT.WRAP);
+		gd = new GridData(GridData.CENTER, GridData.CENTER, true, true);
+		gd.horizontalSpan = 2;
 		errorLabel.setLayoutData(gd);
-		////////// error //////////
 		
-		////////// instantiate layout //////////
-
-
-		////////// button listeners //////////
-		for (int i = 0; i < buttons.size(); i++) {
-			for (int j = 0; j < buttons.get(i).size(); j++) {
-				buttons.get(i).get(j).addListener(SWT.Selection, new Listener() {
-					public void handleEvent(Event e) {
-						errorLabel.setVisible(false);
-						int index = 0;
-						// find index of selected button, reset empty rows
-						for (int j = 0; j < buttons.get(0).size(); j++) {
-							boolean all = true;
-							for (int i = 0; i < buttons.size(); i++) {
-								if (buttons.get(i).get(j).equals(e.widget)) {
-									index = j;
-								}
-								if (buttons.get(i).get(j).getSelection()) 
-									all = false;
-							}
-							if (all) {
-								for (int i = 0; i < buttons.size(); i++) {
-									buttons.get(i).get(j).setForeground(null);
-								}
-							}
-						}
-						// deselect and color red the row of the selected button
-						for (int i = 0; i < buttons.size(); i++) {
-							if (!buttons.get(i).get(index).equals(e.widget)) {
-								buttons.get(i).get(index).setSelection(false);
-								buttons.get(i).get(index).setForeground(wiz3.getDisplay().getSystemColor(SWT.COLOR_RED));
-							} else {
-								buttons.get(i).get(index).setForeground(null);
-							}
-						}
-					}
-				});
-			}
-		}
-		////////// button listeners //////////
+		Button removeLang = new Button(inner, SWT.PUSH);
+		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
+		gd.horizontalSpan = 2;
+		removeLang.setLayoutData(gd);
 		
 		
-		////////// create content //////////
-
-		// labels for user choice of character race and class
-		choiceLabel.setText("You chose: " + charRace.getName() + " " + charClass.getName());
-		choiceLabel.pack();
+		// create content
 		
-		// labels for ability scores
-
-		// strength label
-		strLabel.setText("Strength");
-		strLabel.pack();
+		// name
 		
-		// dexterity label
-		dexLabel.setText("Dexterity");
-		dexLabel.pack();
-
-		// constitution label
-		conLabel.setText("Constitution");
-		conLabel.pack();
-
-		// intelligence label
-		intLabel.setText("Intelligence");
-		intLabel.pack();
-
-		// wisdom label
-		wisLabel.setText("Wisdom");
-		wisLabel.pack();
-
-		// charisma label
-		chaLabel.setText("Charisma");
-		chaLabel.pack();
-		
-		// error label
-		errorLabel.setForeground(new Color(dev, 255, 0, 0));
-		errorLabel.setText("You must select a value for each ability!");
-		errorLabel.setVisible(false);
-		errorLabel.pack();
-		
-		// next button
-		Button wiz3NextButton = cw.createNextButton(wiz3);
-		wiz3NextButton.addListener(SWT.Selection, new Listener() {
+		nameInput.setText("");
+		nameInput.addListener(SWT.MouseUp, new Listener() {
 			public void handleEvent(Event event) {
-				// error checking - make sure each list has something selected
-				boolean error = false;
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(0).size(); i++) {
-						if (buttons.get(0).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(0).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[0] = value;
+				Text text = (Text) event.widget;
+				text.setBackground(white);
+			}
+		});
+		nameInput.setMessage("Name");
+		nameInput.pack();
+
+
+		// deity
+
+		// get deities from references
+		Collection<DNDEntity> deitiesCol = Main.gameState.deities.values();
+		Iterator<DNDEntity> itr2 = deitiesCol.iterator();
+		ArrayList<DeityEntity> deities = new ArrayList<DeityEntity>();
+		while (itr2.hasNext()) {
+			deities.add((DeityEntity) itr2.next());
+		}
+
+		deityListInput.add("Deity");
+		for (int i = 0; i < deities.size(); i++) {
+			deityListInput.add(deities.get(i).getName() + " (" + deities.get(i).getAlignment() + ")");
+		}
+		deityListInput.select(0);
+		deityListInput.pack();
+
+		// custom deity/selected deity text box
+		deityInput.setText("");
+		deityInput.setMessage("Custom Deity");
+		deityInput.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				deityInput.setBackground(null);
+			}
+		});
+		deityInput.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent event) {
+				deityListInput.setBackground(null);
+				deityInput.setBackground(null);
+				if (!deitySelect) {
+					deityListInput.select(0);
 				}
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(1).size(); i++) {
-						if (buttons.get(1).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(1).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[1] = value;
-				}
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(2).size(); i++) {
-						if (buttons.get(2).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(2).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[2] = value;
-				}
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(3).size(); i++) {
-						if (buttons.get(3).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(3).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[3] = value;
-				}
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(4).size(); i++) {
-						if (buttons.get(4).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(4).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[4] = value;
-				}
-				{
-					int value = 0;
-					// find selected button, also checks if no button is selected in that row
-					for (int i = 0; i < buttons.get(5).size(); i++) {
-						if (buttons.get(5).get(i).getSelection()) {
-							value = Integer.parseInt(buttons.get(5).get(i).getText());
-						}
-					}
-					if (value == 0)
-						error = true;
-					else 
-						abilityScoresAfter[5] = value;
-				}
-				
-				if (error) {
-					errorLabel.setVisible(true);
-					return;
-				}
-				
-				// if all is good, save to character
-				
-				// set ability scores
-				int[] racialMods = character.getCharRace().getAbilityAdj();
-				character.setAbilityScores(
-						abilityScoresAfter[0] + racialMods[0], 
-						abilityScoresAfter[1] + racialMods[1], 
-						abilityScoresAfter[2] + racialMods[2], 
-						abilityScoresAfter[3] + racialMods[3], 
-						abilityScoresAfter[4] + racialMods[4], 
-						abilityScoresAfter[5] + racialMods[5]);	
-				
-				// set hitpoints
-				int hitDie = Integer.parseInt(character.getCharClass().getHitDie().substring(1));
-				int hp = hitDie + character.getAbilityModifiers()[GameState.CONSTITUTION];
-				if (hp < 3)
-					hp = 3;
-				character.setHitPoints(hp);
-				
-				if (cw.wizPageNum < wizPagesSize - 1)
-					cw.wizPageNum++;
-				if (!cw.wizPageCreated[3])
-					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
+				deitySelect = false;
+			}
+		});
+		deityInput.pack();
+
+		deityListInput.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				deityListInput.setBackground(null);
+				deitySelect = true;
+				if (deityListInput.getSelectionIndex() == 0)
+					deityInput.setText("");
+				else 
+					deityInput.setText(deities.get(deityListInput.getSelectionIndex()-1).getName());
+			}
+		});
+		deityListInput.addListener(SWT.MouseDown, new Listener() {
+			public void handleEvent(Event e) {
+				deityListInput.setBackground(null);
 			}
 		});
 
-		// back button
-		//Button wiz3BackButton = cw.createBackButton(wiz3, panel, layout);
+		
+		// deity search button
+		deitySearchButton.setText("Details");
+		deitySearchButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				deityListInput.setBackground(null);
+				int index = deityListInput.getSelectionIndex();
+				if (index == 0 || index == -1) {
+					deityListInput.setBackground(red);
+					return;
+				}
+				deities.get(index-1).toTooltipWindow();
+			}
+		});
+		deitySearchButton.pack();
+
+		// alignment
+
+		alignmentInput1.add("Law-Chaos");
+		alignmentInput1.add("Lawful");
+		alignmentInput1.add("Neutral");
+		alignmentInput1.add("Chaotic");
+		alignmentInput1.select(0);
+		alignmentInput1.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				alignmentInput1.setBackground(null);
+			}
+		});	
+		alignmentInput1.pack();
+
+		alignmentInput2.add("Good-Evil");
+		alignmentInput2.add("Good");
+		alignmentInput2.add("Neutral");
+		alignmentInput2.add("Evil");
+		alignmentInput2.select(0);
+		alignmentInput2.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event e) {
+				alignmentInput2.setBackground(null);
+			}
+		});
+		alignmentInput2.pack();
+
+
+		// eyes
+		eyesInput.setText("");
+		eyesInput.setMessage("Eyes");
+		eyesInput.pack();
+
+
+		// hair 
+		hairInput.setText("");
+		hairInput.setMessage("Hair");
+		hairInput.pack();
+
+
+		// skin
+		skinInput.setText("");
+		skinInput.setMessage("Skin");
+		skinInput.pack();
+		
+		
+		// height
+
+		heightInput.setText("");
+		heightInput.setMessage("Height");
+		heightInput.pack();
+
+		heightRandom.setText("Random Height");
+		heightRandom.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				int height = 0;
+				int min = 0;
+				int max = 0;
+				switch (charRace.getName()) {
+
+				case ("Dwarf"): 
+				{
+					min = 45;
+					max = 53;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				case ("Elf"):
+				{
+					min = 55;
+					max = 65;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				case ("Gnome"): 
+				{
+					min = 36;
+					max = 44;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				case ("Half-elf"):
+				{
+					min = 55;
+					max = 71;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				case ("Half-orc"):
+				{
+					min = 55;
+					max = 82;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				case ("Halfling"):
+				{
+					min = 32;
+					max = 40;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				default:
+				{
+					// human
+					min = 55;
+					max = 78;
+					height = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				}
+				String heightString = "";
+				heightString += Integer.toString(height/12);
+				heightString += "'";
+				heightString += Integer.toString(height % 12);
+				heightString += "\"";
+				heightInput.setText(heightString);
+			}
+		});
+		heightRandom.pack();
+		
+		// weight
+		weightInput.setText("");
+		weightInput.setMessage("Weight");
+		weightInput.pack();
+
+		weightRandom.setText("Random Weight");
+		weightRandom.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				int weight = 0;
+				int min = 0;
+				int max = 0;
+				switch (charRace.getName()) {
+
+				case ("Dwarf"):
+					min = 85;
+				max = 230;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				case ("Elf"):
+					min = 80;
+				max = 160;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				case ("Gnome"): 
+					min = 35;
+				max = 50;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				case ("Half-elf"):
+					min = 80;
+				max = 230;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				case ("Half-orc"):
+					min = 110;
+				max = 440;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				case ("Halfling"):
+					min = 25;
+				max = 40;
+				weight = rng.nextInt(max - min) + min + 1;
+				break;
+				default:
+					// human
+					min = 125;
+					max = 280;
+					weight = rng.nextInt(max - min) + min + 1;
+					break;
+				}
+				String weightString = Integer.toString(weight)+ " lbs";
+				weightInput.setText(weightString);
+			}
+		});
+		weightRandom.pack();
+
+
+		// gender
+		genderInput.setText("");
+		genderInput.setMessage("Gender");
+		genderInput.pack();
+
+		
+		// age
+		ageInput.setText("");
+		ageInput.setMessage("Age");
+		ageInput.pack();
+		
+		
+		// description
+		descriptionInput.setMessage("Description");
+		descriptionInput.pack();
+		
+
+		// languages
+		langInput.addListener(SWT.MouseUp, new Listener() {
+			public void handleEvent(Event event) {
+				addLang.setBackground(null);
+			}
+		});
+
+		customLang.setMessage("Custom Language");
+		customLang.addListener(SWT.DefaultSelection, new Listener() {
+			public void handleEvent(Event e) {
+				errorLabel.setVisible(false);
+				if (remainingBonusLangs == 0)
+					return;
+				if (customLang.getText().length() == 0)
+					return;
+				// check if language was already added
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(i).equalsIgnoreCase(customLang.getText())) {
+						errorLabel.setText("You already added that language");
+						errorLabel.setVisible(true);
+						inner.layout();
+						return;
+					}
+				}
+				langInput.add(customLang.getText());
+				remainingBonusLangs--;
+				if (remainingBonusLangs == 1)
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+				else
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+				addLang.pack();
+				inner.layout();
+				addLang.setBackground(null);
+			}
+		});
+		
+		errorLabel.setVisible(false);
+		errorLabel.setForeground(wiz3.getDisplay().getSystemColor(SWT.COLOR_RED));
+
+		removeLang.setText("Remove");
+		removeLang.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+//				if (numBonusLangs != remainingBonusLangs) {
+//					langInput.remove(langInput.getItemCount()-1);
+//					remainingBonusLangs++;
+//					if (remainingBonusLangs == 1)
+//						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+//					else
+//						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+//					addLang.pack();
+//					inner.layout();
+//				}
+				errorLabel.setVisible(false);
+				int index = langInput.getSelectionIndex();
+				if (index == -1)
+					return;
+				if (index < numAutoLangs) {
+					errorLabel.setText("You cannot remove an automatic language");
+					errorLabel.setVisible(true);
+					inner.layout();
+					return;
+				} else {
+					langInput.remove(index);
+					remainingBonusLangs++;
+					if (remainingBonusLangs == 1)
+						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+					else
+						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+					addLang.pack();
+					inner.layout();
+				}
+			}
+		});
+		
+		if (numBonusLangs < 0)
+			numBonusLangs = 0;
+		remainingBonusLangs = numBonusLangs;
+		if (remainingBonusLangs == 1)
+			addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+		else
+			addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+		addLang.pack();
+		
+		knownLangs.setText("Known Languages:");
+		knownLangs.pack();
+		
+		possibleLangs.setText("Possible Languages:");
+		possibleLangs.pack();
+
+		String[] raceLangs = charRace.getAutoLanguages();
+		numAutoLangs = raceLangs.length;
+		for(int i = 0; i < raceLangs.length; i++) 
+			langInput.add(raceLangs[i]);
+		
+		String[] raceBonusLangs = charRace.getBonusLanguages();
+		for (int i = 0; i < raceBonusLangs.length; i++)
+			possibleLangsList.add(raceBonusLangs[i]);
+		String[] classBonusLangs = charClass.getBonusLanguages();
+		if (classBonusLangs != null) {
+		for (int i = 0; i < classBonusLangs.length; i++)
+			possibleLangsList.add(classBonusLangs[i]);
+		}
+		possibleLangsList.pack();
+		possibleLangsList.addListener(SWT.DefaultSelection, new Listener() {
+			public void handleEvent(Event e) {
+				errorLabel.setVisible(false);
+				if (remainingBonusLangs == 0)
+					return;
+				// see if lang was already added
+				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
+				for (int i = 0; i < langInput.getItemCount(); i++) {
+					if (langInput.getItem(i).equalsIgnoreCase(selection)) {
+						errorLabel.setText("You already added that language");
+						errorLabel.setVisible(true);
+						inner.layout();
+						return;
+					}
+				}
+				langInput.add(selection);
+				remainingBonusLangs--;
+				if (remainingBonusLangs == 1)
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
+				else
+					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
+				addLang.pack();
+				inner.layout();
+				addLang.setBackground(null);
+			}
+		});
+		inner.layout();
 
 		// cancel button
-		Button wiz3CancelButton = cw.createCancelButton(wiz3, home, homePanel, homeLayout);
-		wiz3CancelButton.addListener(SWT.Selection, new Listener() {
+		Button wiz4CancelButton = cw.createCancelButton(wiz3);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz4CancelButton.setLayoutData(gd);
+		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
 					cw.reset();
 			}
-		});	
-		////////// create content //////////
+		});
 		
+		// next button
+		Button wiz4NextButton = cw.createNextButton(wiz3);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz4NextButton.setLayoutData(gd);
+		wiz4NextButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// cannot move on if there is a window open
+				if (alignOpen || clericOpen) {
+					if (alignOpen && clericOpen) {
+						alignmentShell.dispose();
+						alignOpen = false;
+						clericShell.forceActive();
+					} else if (alignOpen) 
+						alignmentShell.forceActive();
+					else if (clericOpen)
+						clericShell.forceActive();
+					return;
+				}
+				
+				// error checking
+				boolean error = false;
+				
+				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
+				String condensed = nameInput.getText().replaceAll("\\s","");
+				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
+				if (condensed.length() == 0) {
+					nameInput.setText("");           
+					nameInput.setBackground(red);
+					error = true;
+				}
+				if (condensed.length() > 200 ) {
+					nameInput.setBackground(red);
+					error = true;
+				}
+				if (remainingBonusLangs > 0){
+					addLang.setBackground(red);
+					error = true;
+				}
+				if (charClass.getName().equalsIgnoreCase("cleric")) {
+					if (deityInput.getText().length() == 0) {
+						deityInput.setBackground(red);
+						error = true;
+					}
+					if (alignmentInput1.getSelectionIndex() < 1) {
+						alignmentInput1.setBackground(red);
+						error = true;
+					}
+					if (alignmentInput2.getSelectionIndex() < 1) {
+						alignmentInput2.setBackground(red);
+						error = true;
+					}
+				}
+				
+				// if there is an error, do not move on
+				if (error)
+					return;
+				
+				// otherwise, save data
+				String a1, a2;
+				if (alignmentInput1.getSelectionIndex() < 1)
+					a1 = " ";
+				else 
+					a1 = alignmentInput1.getText();
+				if (alignmentInput2.getSelectionIndex() < 1)
+					a2 = " ";
+				else
+					a2 = alignmentInput2.getText();
+
+				DeityEntity deitySelect;
+				if (deityListInput.getSelectionIndex() >= 1)
+					deitySelect = deities.get(deityListInput.getSelectionIndex()-1);
+				else
+					deitySelect = null;
+
+				boolean done = true;
+				done = checkAlignmentPopUp(a1, a2, deitySelect);
+				if (done) {
+					if (charClass.getName().equalsIgnoreCase("cleric"))
+						done = clericPopUp(deitySelect);
+				}
+				if (!done)
+					return;
+				// if no errors, save to character
+				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
+				character.setName(nameInput.getText());	
+				character.setAlignment(a1 + ";" + a2);
+				if (deityInput.getText().length() != 0)
+					character.setDeity(deityInput.getText());
+				if (heightInput.getText().length() != 0)
+					character.setHeight(heightInput.getText());
+				if (weightInput.getText().length() != 0)
+					character.setWeight(weightInput.getText());
+				if (ageInput.getText().length() != 0)
+					character.setAge(ageInput.getText());
+				if (genderInput.getText().length() != 0)
+					character.setGender(genderInput.getText());
+				if (eyesInput.getText().length() != 0)
+					character.setEyes(eyesInput.getText());
+				if (hairInput.getText().length() != 0)
+					character.setHair(hairInput.getText());
+				if (skinInput.getText().length() != 0)
+					character.setSkin(skinInput.getText());
+				if (descriptionInput.getText().length() != 0)
+					character.setDescription(descriptionInput.getText());
+				for (int i = 0; i < langInput.getItemCount(); i++)
+					character.addLanguage(langInput.getItem(i));
+
+				// change to next page				
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[3])
+					createNextPage();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
+			}
+		});
+
+
+		// back button
+		//Button wiz4BackButton = cw.createBackButton(wiz6, panel, layout);
+
 		inner.layout();
+		wiz3.layout();
 	}
-	
+
+	private boolean checkAlignmentPopUp(String a1, String a2, DeityEntity deity) {
+		if (a1.equals("<empty>") || a2.equals("<empty>"))
+			return true;
+
+		goOn = false;
+
+		// create shell
+		Display display = wiz3.getDisplay();
+		alignmentShell = new Shell(wiz3.getDisplay());
+		alignmentShell.setImage(new Image(display, "images/bnb_logo.gif"));
+		alignmentShell.setText("Check Alignment");
+		GridLayout gridLayout = new GridLayout(2, true);
+		alignmentShell.setLayout(gridLayout);
+		alignmentShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				finished = false;
+				alignOpen = false;
+			}
+		});
+
+		// warning label
+		Label warning = new Label(alignmentShell, SWT.WRAP);
+		GridData warningGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		warningGD.horizontalSpan = 2;
+		warning.setLayoutData(warningGD);
+
+
+		switch(charClass.getName()) {
+		case("Barbarian"): 
+		{
+			// must be non-lawful
+			if (!a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Barbarians should be non-lawful.");
+			break;
+		}
+		case("Bard"): 
+		{
+			// must be non-lawful
+			if (!a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Bards should be non-lawful.");
+			break;
+		}
+		case("Cleric"): 
+		{
+			// cleric's alignment must be within 1 step of deity
+			if (deity == null)
+				return true;
+			if (a1.equals("<empty>") || a2.equals("<empty>"))
+				return true;
+			String[] deityAlignment = deity.getAlignment().split(" ");
+			char d1 = Character.toLowerCase(deityAlignment[0].charAt(0));
+			char d2 = Character.toLowerCase(deityAlignment[1].charAt(0));
+			// if alignment is true neutral, set d1 and d2 to n (neutral)
+			if (d1 == 't')
+				d1 = d2;
+			char c1 = Character.toLowerCase(a1.charAt(0));
+			char c2 = Character.toLowerCase(a2.charAt(0));
+
+			int step = 0;
+
+			if (d1 == c1){
+				if (d2 == c2); // no step difference
+				else {
+					if (d2 == 'n' || c2 == 'n')
+						step++;
+					else 
+						step += 2;
+				}
+			} else {
+				if (d1 == 'n' || c1 == 'n')
+					step++;
+				else 
+					step += 2;
+				if (d2 == c2); // no step difference
+				else if (d2 == 'n' || c2 == 'n')
+					step ++;
+				else 
+					step += 2;
+			}
+			if (step <= 1)
+				return true;
+			warning.setText("There should only be one step difference between the deity's alignment and the cleric's alignment.");
+			break;
+		}
+		case("Druid"): 
+		{
+			// must have at lease one neutral
+			if (a1.equalsIgnoreCase("neutral") | a2.equalsIgnoreCase("neutral"))
+				return true;
+			warning.setText("Druids should have at least one neutral alignment.");
+			break;
+		}
+		case("Monk"): 
+		{
+			// must be lawful
+			if (a1.equalsIgnoreCase("lawful"))
+				return true;
+			warning.setText("Monks should be lawful.");
+			break;
+		}
+		case("Paladin"): 
+		{
+			// must be lawful good
+			if (a1.equalsIgnoreCase("lawful") && a2.equalsIgnoreCase("good"))
+				return true;
+			warning.setText("Paladins should be lawful good.");
+			break;
+		}
+		case("Fighter"): 
+		case("Ranger"): 
+		case("Rogue"): 
+		case("Sorcerer"): 
+		default: // wizard
+			// no alignment restrictions
+			return true;
+		}
+		warning.pack();
+		
+		alignOpen = true;
+		
+		alignmentShell.addListener(SWT.Close, new Listener() {
+	        public void handleEvent(Event event) {
+	            goOn = false;
+	            alignOpen = false;
+	        }
+	    });
+
+		// display user's alignment choice
+		Label userChoice = new Label(alignmentShell, SWT.NONE);
+		userChoice.setText("You chose: " + a1 + " " + a2);
+		GridData userChoiceGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		userChoiceGD.horizontalSpan = 2;
+		userChoice.setLayoutData(userChoiceGD);
+		userChoice.pack();
+
+		// label - do you want to continue
+		Label continueLabel = new Label(alignmentShell, SWT.WRAP);
+		continueLabel.setText("Do you want to continue with this alignment?");
+		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		continueGD.horizontalSpan = 2;
+		continueLabel.setLayoutData(continueGD);
+		continueLabel.pack();
+
+		// no button
+		Button no = new Button(alignmentShell, SWT.PUSH);
+		no.setText("No");
+		no.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
+		no.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				goOn = false;
+				alignmentShell.dispose();
+				alignOpen = false;
+			}
+		});
+		no.pack();
+
+		// yes button
+		Button yes = new Button(alignmentShell, SWT.PUSH);
+		yes.setText("Yes");
+		yes.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
+		yes.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				goOn = true;
+				alignmentShell.dispose();
+				alignOpen = false;
+			}
+		});
+		yes.pack();
+
+		// open shell
+		alignmentShell.pack();
+		CharacterWizard.center(alignmentShell);
+		alignmentShell.open();
+
+		// check if disposed
+		while (!alignmentShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+
+		return goOn;
+	}
+
+	private boolean clericPopUp(DeityEntity deity) {
+		// choose domain based on deity select
+		finished = false;
+		clericOpen = true;
+		
+		// create shell
+		Display display = wiz3.getDisplay();
+		clericShell = new Shell(wiz3.getDisplay());
+		clericShell.setImage(new Image(display, "images/bnb_logo.gif"));
+		clericShell = new Shell(display);
+		clericShell.setText("Set Domains");
+		GridLayout gridLayout = new GridLayout(2, true);
+		clericShell.setLayout(gridLayout);
+		clericShell.addListener(SWT.Close, new Listener() {
+			public void handleEvent(Event event) {
+				finished = false;
+				clericOpen = false;
+			}
+		});
+		// label - do you want to continue
+		Label domainsLabel = new Label(clericShell, SWT.WRAP);
+		domainsLabel.setText("Select Two Domains");
+		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		continueGD.horizontalSpan = 2;
+		domainsLabel.setLayoutData(continueGD);
+		domainsLabel.pack();
+
+		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		domains1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		domains2.setEnabled(false);
+
+		if (deity != null)
+			domains = deity.getDomain();
+
+		for(int i = 0; i < domains.length; i++) {
+			domains1.add(domains[i]);
+		}
+		domains1.pack();
+
+		// set listeners
+		domains1.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				domains1.setBackground(null);
+				domains2.setBackground(null);
+				domains2.removeAll();
+				for(int i = 0; i < domains.length; i++) {
+					if(!domains1.getItem(domains1.getSelectionIndex()).equals(domains[i])){
+						domains2.add(domains[i]);
+					}
+				}
+				domains2.setEnabled(true);
+				domains2.pack();
+			}
+		});
+
+		domains2.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				domains2.setBackground(null);
+			}
+		});
+
+
+		// cancel button
+		Button cancel = new Button(clericShell, SWT.PUSH);
+		cancel.setText("Cancel");
+		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
+		cancel.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				finished = false;
+				clericShell.dispose();
+				clericOpen = false;
+			}
+		});
+		cancel.pack();
+
+		// done button
+		Button done = new Button(clericShell, SWT.PUSH);
+		done.setText("Done");
+		done.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
+		done.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				boolean error = false;
+				if (domains1.getSelectionIndex() == -1) {
+					domains1.setBackground(red);
+					error = true;
+				}
+				if (domains2.getSelectionIndex() == -1) {
+					domains2.setBackground(red);
+					error = true;
+				}
+				if (error) 
+					return;
+				String d1 = domains1.getText();
+				String d2 = domains2.getText();
+				String[] domains = {d1, d2};
+				character.setClericDomains(domains);
+				finished = true;
+				clericOpen = false;
+				clericShell.dispose();
+			}
+		});
+		done.pack();
+
+		// open shell
+		clericShell.pack();
+		clericShell.layout();
+		CharacterWizard.center(clericShell);
+		clericShell.open();
+
+		// check if disposed
+		while (!clericShell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+
+		return finished;
+	}
+
 	private void createNextPage() {
 		cw.wizPageCreated[3] = true;
-		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages));
+		cw.wizs.add(new Wiz4(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
-	
-//	public void updateCharRace() {
-//		charRace = cw.getCharacter().getCharRace();
-//		String text = charRace.getName() + " " + charClass.getName();
-//		choiceLabel2.setText(text);
-//		choiceLabel2.pack();
-//	}
-//	
-//	public void updateCharClass() {
-//		charClass = cw.getCharacter().getCharClass();
-//		choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-//		choiceLabel2.pack();
-//	}
-//	
-//	public void updateCharSecClass() {
-//		charSecClass = cw.getCharacter().getCharSecClass();
-//		if (charSecClass == null)
-//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-//		else if (charSecClass.equals(""))
-//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName());
-//		else
-//			choiceLabel2.setText(charRace.getName() + " " + charClass.getName() + "-" + charSecClass.getName());
-//		choiceLabel2.pack();
-//	}
 
-	private ArrayList<Button> createASButtons(Composite c) {
-		ArrayList<Button> buttons = new ArrayList<Button>();
-		for (int i = 0; i < abilityScoresBefore.length; i++) {
-			GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-			Button button = new Button(c, SWT.RADIO);
-			button.setLayoutData(gd);
-			button.setText(Integer.toString(abilityScoresBefore[i]));
-			buttons.add(button);
-		}
-		return buttons;
-	}
-	
 	public Composite getWiz3() { return wiz3; }
-
 }

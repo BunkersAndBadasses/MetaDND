@@ -1,26 +1,18 @@
 package guis;
 
-import java.awt.Rectangle;
-import java.io.IOException;
-
-import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
-import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.swing.JSVGScrollPane;
-import org.apache.batik.util.XMLResourceDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
 import core.DungeonConstants;
 import core.DungeonGenerator;
 import core.GameState;
 import core.GridMapper;
+import core.JSVGScrollPane;
+import core.JSVGCanvas;
 
 
 public class DungeonViewer {
@@ -121,7 +113,6 @@ public class DungeonViewer {
 		java.awt.Panel panel = new java.awt.Panel(new java.awt.BorderLayout());
 		
 		JSVGScrollPane jsvgsp = new JSVGScrollPane(svgCanvas);
-		
 		fileTableFrame.add(panel);
 		panel.add(jsvgsp);
 		

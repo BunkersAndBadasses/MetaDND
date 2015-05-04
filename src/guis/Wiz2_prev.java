@@ -1,16 +1,11 @@
 /*
- * CHOOSE ABILITY SCORES, CHOOSE RACE AND CLASS
+ * CHOOSE RACE AND CLASS
  */
 
 package guis;
-import core.GameState;
-import core.Main;
-import core.character;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Random;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -30,287 +25,180 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import core.GameState;
+import core.Main;
+import core.character;
 import entity.AbilityEntity;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.RaceEntity;
 
-public class Wiz1 {	
-
-	private Composite wiz1;
+public class Wiz2_prev {
+	
+	private Composite wiz2;
 	private CharacterWizard cw;
 	private Device dev;
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite wizPanel;
-	private StackLayout wizLayout;
+	private Composite panel;
+	private StackLayout layout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	public int[] as = new int[6]; // ability scores array
-	private Text wiz1AS1;
-	private Text wiz1AS2;
-	private Text wiz1AS3;
-	private Text wiz1AS4;
-	private Text wiz1AS5;
-	private Text wiz1AS6;
-	//private Label badLevelInputText;
-	private Label badASInputText;
-	
-	private Combo raceDropDown;
-	private Combo classDropDown;
-	
-	private Label badSearch;
 	private Label badRaceSelect;
 	private Label badClassSelect;
-	
+	private Label badSearch;
+	private Combo raceDropDown;
+	private Combo classDropDown;
+	//private Combo secClassDropDown;
 	private boolean finished;
 	private boolean popUpOpen = false;
 	
 	private Shell classExtrasShell;
-
-
-	public Wiz1(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, final StackLayout layout, 
-			final ArrayList<Composite> wizPages) {
-		wiz1 = wizPages.get(0);
-		layout.topControl = wiz1;
-		panel.layout();
+	
+	public Wiz2_prev(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT,
+			Composite panel, StackLayout layout, ArrayList<Composite> wizPages) {
+		wiz2 = wizPages.get(1);
 		this.cw = cw;
 		this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.wizPanel = panel;
-		this.wizLayout = layout;
+		this.panel = panel;
+		this.layout = layout;
 		this.wizPages = wizPages;
-		this.nextPage = wizPages.get(1);
-		this.wizPagesSize = wizPages.size();
+		this.nextPage = wizPages.get(2);
+		wizPagesSize = wizPages.size();
 
 		createPageContent();
+
 	}
 
 	private void createPageContent() {
-		GridLayout layout = new GridLayout(2, true);
-		wiz1.setLayout(layout);
-		
-		GridData gd;
-		
-		Label wiz1Label = new Label(wiz1, SWT.NONE);
-		wiz1Label.setText("Roll initial ability scores and select character race and class");
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		wiz1Label.setLayoutData(gd);
+		Label wiz2Label = new Label(wiz2, SWT.NONE);
+		wiz2Label.setText("Select Class and Race");
+		wiz2Label.pack();
 		
 		
 		// initialize layout
-		GridLayout gl = new GridLayout(10, false);
 		
-		Composite inner = new Composite(wiz1, SWT.NONE);
+		GridLayout gl = new GridLayout(4, true);
+		
+		Composite inner = new Composite(wiz2, SWT.NONE);
 		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
 		inner.setLayout(gl);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gd.horizontalSpan = 2;
-		inner.setLayoutData(gd);
 
-		////////////////////
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
+		GridData gd;
 		
-		////////////////////
+		//////////////////
 		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
-		
-		////////////////////
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
 		gd.horizontalSpan = 4;
 		new Label(inner, SWT.NONE).setLayoutData(gd);
+		//////////////////
 		
-		// level label
-		Label wiz1LevelLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		wiz1LevelLabel.setLayoutData(gd);
-		
+		//////////////////
 		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
 		gd.horizontalSpan = 4;
 		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
+		//////////////////
 		
-		////////////////////
+		//////////////////
 		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-
-		// ability scores fields
-		wiz1AS1 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS1.setLayoutData(gd);
-		wiz1AS2 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS2.setLayoutData(gd);
-		wiz1AS3 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS3.setLayoutData(gd);
-		wiz1AS4 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS4.setLayoutData(gd);
-		wiz1AS5 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS5.setLayoutData(gd);
-		wiz1AS6 = new Text(inner, SWT.BORDER | SWT.CENTER);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		wiz1AS6.setLayoutData(gd);
-
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
-		
-		////////////////////
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 4;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		
-		// roll button
-		Button wiz1RollButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		wiz1RollButton.setLayoutData(gd);
-		
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 4;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
-		
-		////////////////////
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
-		
-		////////////////////
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		new Label(inner, SWT.NONE).setLayoutData(gd);
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
 		
 		// race label
 		Label raceLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		raceLabel.setLayoutData(gd);
-		
-		// race drop down
-		raceDropDown = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		raceDropDown.setLayoutData(gd);
-		
-		// race details button
-		Button raceSearchButton = createSearchButton(inner);
-		gd = new GridData(SWT.LEFT, SWT.CENTER, true, true);
-		raceSearchButton.setLayoutData(gd);
-		
+
 		// class label
 		Label classLabel = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, true);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		classLabel.setLayoutData(gd);
+
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		//////////////////
 		
-		// class drop down 
+		//////////////////
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+
+		// race drop down
+		raceDropDown = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		raceDropDown.setLayoutData(gd);
+		
+		// class drop down
 		classDropDown = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(SWT.FILL, SWT.CENTER, true, true);
-		gd.horizontalSpan = 2;
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		classDropDown.setLayoutData(gd);
+		
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
+		//////////////////
+		
+		//////////////////
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+
+		// race details button
+		Button raceSearchButton = createSearchButton(inner);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		raceSearchButton.setLayoutData(gd);
 		
 		// class details button
 		Button classSearchButton = createSearchButton(inner);
-		gd = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		classSearchButton.setLayoutData(gd);
-		
-		// placeholder
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		new Label(inner, SWT.NONE).setLayoutData(gd);
-		////////////////////
 
-//		// level error message
-//		badLevelInputText = new Label(inner, SWT.NONE);
-//		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-//		gd.horizontalSpan = 10;
-//		badLevelInputText.setLayoutData(gd);
+		// placeholder
+		new Label(inner, SWT.NONE).setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true));
+		//////////////////
 		
-		////////////////////
-		// ability score error message
-		badASInputText = new Label(inner, SWT.NONE);
+		
+		// search error
+		badSearch = new Label(inner, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
-		badASInputText.setLayoutData(gd);
-		////////////////////
+		gd.horizontalSpan = 4;
+		badSearch.setLayoutData(gd);
 		
-		////////////////////
 		// race error
 		badRaceSelect = new Label(inner, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
+		gd.horizontalSpan = 4;
 		badRaceSelect.setLayoutData(gd);
-		////////////////////
 		
-		////////////////////
 		// class error
 		badClassSelect = new Label(inner, SWT.NONE);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
+		gd.horizontalSpan = 4;
 		badClassSelect.setLayoutData(gd);
-		////////////////////
 		
-		////////////////////
-		// details error
-		badSearch = new Label(inner, SWT.NONE);
-		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		gd.horizontalSpan = 10;
-		badSearch.setLayoutData(gd);
-		////////////////////
 		
 		// create content
 		
-		// level field
-		wiz1LevelLabel.setText("Starting Level: 1");
-		wiz1LevelLabel.pack();
 
-		// roll button
-		wiz1RollButton.setText("Roll");
-		wiz1RollButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				badASInputText.setVisible(false);
-				//badLevelInputText.setVisible(false);
-				int[] roll = genAS();
-				wiz1AS1.setText(Integer.toString(roll[0]));
-				wiz1AS2.setText(Integer.toString(roll[1]));
-				wiz1AS3.setText(Integer.toString(roll[2]));
-				wiz1AS4.setText(Integer.toString(roll[3]));
-				wiz1AS5.setText(Integer.toString(roll[4]));
-				wiz1AS6.setText(Integer.toString(roll[5]));
-			}
-		});
-		
+		// labels for race, class, and secondary class fields
 		// race label
 		raceLabel.setText("Race: ");
+		//raceLabel.setLocation(130,150);
+		raceLabel.pack();
 
 		// class label
 		classLabel.setText("Class: ");
+		//classLabel.setLocation(WIDTH/2 - 40,150);
+		classLabel.pack();
+
+//		// secondary class label
+//		Label secClassLabel = new Label(wiz2, SWT.NONE);
+//		secClassLabel.setText("Secondary Class: ");
+//		secClassLabel.setLocation(WIDTH-230,150);
+//		secClassLabel.pack();
 
 		// get races from references
 		Collection<DNDEntity> racesCol = Main.gameState.races.values();
@@ -327,18 +215,68 @@ public class Wiz1 {
 		while (itr2.hasNext()) {
 			classes.add((ClassEntity) itr2.next());
 		}
-		
-		// race drop down
+
+		// race drop down menu
 		for (int i = 0; i < races.size(); i++) {
 			raceDropDown.add(races.get(i).getName());
 		}
-		
-		// class drop down
+		//raceDropDown.setLocation(100,HEIGHT/2 - 75);
+		raceDropDown.pack();
+
+		// class drop down menu
 		for (int i = 0; i < classes.size(); i++) {
 			classDropDown.add(classes.get(i).getName());
 		}
+		//classDropDown.setLocation(WIDTH/2 - 70,HEIGHT/2 - 75);
+//		classDropDown.addListener(SWT.Selection, new Listener () {
+//			public void handleEvent(Event event) {
+//				int index = classDropDown.getSelectionIndex();
+//				secClassDropDown.deselect(index + 1);
+//			}
+//		});
+		classDropDown.pack();
+
+//		// secondary class drop down menu
+//		secClassDropDown = new Combo(wiz2, SWT.DROP_DOWN | SWT.READ_ONLY);
+//		secClassDropDown.add("");
+//		for (int i = 0; i < classes.size(); i++) {
+//			secClassDropDown.add(classes.get(i).getName());
+//		}
+//		secClassDropDown.setLocation(WIDTH-225,HEIGHT/2 - 75);
+//		secClassDropDown.addListener(SWT.Selection, new Listener () {
+//			public void handleEvent(Event event) {
+//				int index = secClassDropDown.getSelectionIndex();
+//				if (index == 0)
+//					return;
+//				classDropDown.deselect(index - 1);
+//			}
+//		});
+//		secClassDropDown.pack();
+//		secClassDropDown.setEnabled(false);
+
+
+		// error handling
+		// this appears when an item is not selected and search is clicked
+		badSearch.setForeground(new Color(dev,255,0,0));
+		//badSearch.setBounds(WIDTH/2 - 117,HEIGHT/2 + 70,234,30);
+		badSearch.setVisible(false);
+		badSearch.setText("you must select an item to search!");
+
+		// this appears when a race is not selected
+		badRaceSelect.setForeground(new Color(dev,255,0,0));
+		//badRaceSelect.setBounds(WIDTH/2 - 80,HEIGHT/2 + 105,160,30);
+		badRaceSelect.setVisible(false);
+		badRaceSelect.setText("you must select a race!");
+
+		// this appears when a class is not selected
+		badClassSelect.setForeground(new Color(dev,255,0,0));
+		//badClassSelect.setBounds(WIDTH/2 -80,HEIGHT/2 + 140,160,30);
+		badClassSelect.setVisible(false);
+		badClassSelect.setText("you must select a class!");
+
 		
-		// race details
+		// search buttons - searches references using selection in drop down 
+		//raceSearchButton.setLocation(106, HEIGHT/2 - 30);
 		raceSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (raceDropDown.getText().equals("")) {
@@ -352,8 +290,8 @@ public class Wiz1 {
 				}
 			}
 		});
-		
-		// class details
+
+		//classSearchButton.setLocation(WIDTH/2 - 58, HEIGHT/2 - 30);
 		classSearchButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (classDropDown.getText().equals("")) {
@@ -367,51 +305,56 @@ public class Wiz1 {
 				}
 			}
 		});
-
-//		// this appears when there is invalid input in level box
-//		badLevelInputText.setForeground(wiz1.getDisplay().getSystemColor(SWT.COLOR_RED));
-//		badLevelInputText.setVisible(false);
-//		badLevelInputText.setText("invalid level: must be a positive integer");
-
-		// this appears when there is invalid input in any ability score boxes
-		badASInputText.setForeground(wiz1.getDisplay().getSystemColor(SWT.COLOR_RED));
-		badASInputText.setVisible(false);
-		badASInputText.setText("invalid ability score: must be a positive integer from 3 to 18");
-
-		// search error
-		badSearch.setForeground(wiz1.getDisplay().getSystemColor(SWT.COLOR_RED));
-		badSearch.setVisible(false);
-		badSearch.setText("You must select an item to see details!");
-		
-		// race error
-		badRaceSelect.setForeground(wiz1.getDisplay().getSystemColor(SWT.COLOR_RED));
-		badRaceSelect.setVisible(false);
-		badRaceSelect.setText("You must select a race!");
-		
-		// class error
-		badClassSelect.setForeground(wiz1.getDisplay().getSystemColor(SWT.COLOR_RED));
-		badClassSelect.setVisible(false);
-		badClassSelect.setText("You must select a class!");
 		
 		inner.layout();
-		
-		
-		// cancel button
-		Button wiz1CancelButton = cw.createCancelButton(wiz1);
-		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
-		wiz1CancelButton.setLayoutData(gd);
-		wiz1CancelButton.addListener(SWT.Selection, new Listener() {
+
+//		Button secClassSearchButton = createSearchButton(wiz2);
+//		secClassSearchButton.setLocation(WIDTH - 213, HEIGHT/2 - 30);
+//		secClassSearchButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				if (secClassDropDown.getText().equals("")) {
+//					// nothing is selected to be searched - display error
+//					badSearch.setVisible(true);
+//				} else {
+//					badSearch.setVisible(false);
+//					// launch search
+//					DNDEntity search = Main.gameState.classes.get(secClassDropDown.getText());
+//					search.toTooltipWindow();
+//				}
+//			}
+//		});	
+//		secClassSearchButton.setEnabled(false);
+
+		/*
+		// add custom buttons - launches respective wizard to add new item
+		Button raceAddCustomButton = createAddCustomButton(wiz2);
+		raceAddCustomButton.setLocation(97, HEIGHT/2 + 20);
+		raceAddCustomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				if (cw.cancel)
-					cw.reset();
+				// launch race wizard
 			}
 		});
-		
+
+		Button classAddCustomButton = createAddCustomButton(wiz2);
+		classAddCustomButton.setLocation(WIDTH/2 - 67, HEIGHT/2 + 20);
+		classAddCustomButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// launch class wizard
+			}
+		});
+
+		Button secClassAddCustomButton = createAddCustomButton(wiz2);
+		secClassAddCustomButton.setLocation(WIDTH - 222, HEIGHT/2 + 20);
+		secClassAddCustomButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				// launch class wizard
+			}
+		});
+		*/ 
+
 		// next button
-		Button wiz1NextButton = cw.createNextButton(wiz1);
-		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		wiz1NextButton.setLayoutData(gd);
-		wiz1NextButton.addListener(SWT.Selection, new Listener() {
+		Button wiz2NextButton = cw.createNextButton(wiz2);
+		wiz2NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				// user cannot move on if there is a pop up open
 				if (popUpOpen) {
@@ -419,36 +362,10 @@ public class Wiz1 {
 					return;		
 				}
 				
-				// error checking for level
-				boolean error = false;
-				int level = 1;
-//				try {
-//					badLevelInputText.setVisible(false);
-//					if (level <= 0 || level > 25) throw new Exception();
-//				} catch (Exception e) {
-//					badLevelInputText.setVisible(true);
-//					error = true;
-//				}
-
-				// error checking for ability scores
-				try {
-					badASInputText.setVisible(false);
-					as[0] = Integer.parseInt(wiz1AS1.getText());
-					as[1] = Integer.parseInt(wiz1AS2.getText());
-					as[2] = Integer.parseInt(wiz1AS3.getText());
-					as[3] = Integer.parseInt(wiz1AS4.getText());
-					as[4] = Integer.parseInt(wiz1AS5.getText());
-					as[5] = Integer.parseInt(wiz1AS6.getText());
-					for (int i = 0; i < 6; i++)
-						if (as[i] < 3 || as[i] > 18) throw new Exception();
-				} catch (Exception e) {
-					badASInputText.setVisible(true);
-					error = true;
-				}
-				
 				badSearch.setVisible(false);
 
-				// error checking for race/class
+				// error checking
+				boolean error = false;
 				badRaceSelect.setVisible(false);	// clear any past errors
 				// check if user selected a race
 
@@ -466,10 +383,8 @@ public class Wiz1 {
 
 				// user cannot move on with an error
 				if (error) return;
-
-				// if all goes well, save info
-				character.setLevel(level);
-				cw.setBaseAbilityScores(as);
+				
+				// if all goes well, save race/class
 				boolean done = true;
 				String charClass = classes.get(classDropDown.getSelectionIndex()).getName();
 				if (charClass.equalsIgnoreCase("druid") 
@@ -514,56 +429,73 @@ public class Wiz1 {
 				// size mod updates with setbaseattackbonus, str mod updates in wiz3
 				character.setGrappleSizeMod(GameState.grappleSizeMods[character.getSize()]);
 				// set abilities
-				String[] raceAbilities = character.getCharRace().getSpecialAbilities();
-				for (int i = 0; i < raceAbilities.length; i++)
-					if (!raceAbilities[i].equals(""))
-						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(raceAbilities[i]));
-				String[] classAbilities = character.getCharClass().getSpecial()[character.getLevel()];
-				for (int i = 0; i < classAbilities.length; i++) {
-					if (!classAbilities[i].equals("") && !classAbilities[i].equalsIgnoreCase("bonus feat"))
-						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(classAbilities[i]));
-				}
-
+				String[] abilities = character.getCharRace().getSpecialAbilities();
+				for (int i = 0; i < abilities.length; i++)
+					if (!abilities[i].equals(""))
+						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(abilities[i]));
+				// change to next page
 				if (cw.wizPageNum < wizPagesSize - 1)
 					cw.wizPageNum++;
-				if (!cw.wizPageCreated[1])
+				if (!cw.wizPageCreated[2])
 					createNextPage();
-				wizLayout.topControl = nextPage;
-				wizPanel.layout();
+				layout.topControl = nextPage;
+				panel.layout();
+
+				// clear any past error messages
+				badRaceSelect.setVisible(false);
+				badClassSelect.setVisible(false);
 			}
 		});
-		wiz1.layout();
 
-	}
-	
-	/**
-	 *  generates random number between 3 and 18 (for use as an ability score)
-	 *  simulates rolling 4 dnd dropping the lowest roll
-	 */
-	private int[] genAS() {
-		Random r = new Random();
-		int[] result = { 0, 0, 0, 0, 0, 0 };
-		for (int i = 0; i < 6; i++) {
-			int roll[] = { r.nextInt(6) + 1, r.nextInt(6) + 1,
-					r.nextInt(6) + 1, r.nextInt(6) + 1 };
-			int min = 7; // max value a roll can be is 6
-			for (int j = 0; j < 4; j++) {
-				result[i] += roll[j];
-				if (roll[j] < min)
-					min = roll[j];
+
+		// back button
+		//		Button wiz2BackButton = CharacterWizard.createBackButton(wiz2, panel, layout);
+		//		wiz2BackButton.addListener(SWT.Selection, new Listener() {
+		//			public void handleEvent(Event event) {
+		//				badSearch.setVisible(false);
+		//				badRaceSelect.setVisible(false);
+		//				badClassSelect.setVisible(false);
+		//			}
+		//		});
+
+
+		// cancel button
+		Button wiz2CancelButton = cw.createCancelButton(wiz2);
+		wiz2CancelButton.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				if (cw.cancel)
+					cw.reset();
 			}
-			result[i] -= min;
-		}
-		return result;
+		});
 	}
-	
+
+	/**
+	 * creates a 'search' button. does not set location or add listener.
+	 * literally only creates a button with a specific size with the text set 
+	 * to "Search"
+	 * @return
+	 */
 	private Button createSearchButton(Composite c) {
 		Button searchButton = new Button(c, SWT.PUSH);
 		searchButton.setText("Details");
 		searchButton.setSize(80,30);
 		return searchButton;
 	}
-	
+	//
+	//	/**
+	//	 * creates a 'add custom' button. does not set location or add listener.
+	//	 * literally only creates a button with a specific size with the text set 
+	//	 * to "Add Custom"
+	//	 * @return
+	//	 */
+	//	private Button createAddCustomButton(Composite c) {
+	//		Button addCustomButton = new Button(c, SWT.PUSH);
+	//		addCustomButton.setText("Add Custom");
+	//		addCustomButton.setSize(100,30);
+	//		return addCustomButton;
+	//	}
+	// 
+
 	private boolean extraStuffWindow(String c) {
 		// druid - animal companion
 		// ranger - favored enemy
@@ -574,7 +506,7 @@ public class Wiz1 {
 		popUpOpen = true;
 		
 		// create shell
-		Display display = wiz1.getDisplay();
+		Display display = wiz2.getDisplay();
 		classExtrasShell = new Shell(display);
 		classExtrasShell.setImage(new Image(display, "images/bnb_logo.gif"));
 		classExtrasShell.setText("Class Extras");
@@ -1139,12 +1071,12 @@ public class Wiz1 {
 		return finished;
 	}
 
-	public Composite getWiz1() { return wiz1; }
+	public Composite getWiz2() { return wiz2; }
 
 	private void createNextPage() {
-		cw.wizPageCreated[1] = true;
-		cw.wizs.add(new Wiz2(cw, dev, WIDTH, HEIGHT, wizPanel, 
-				wizLayout, wizPages, cw.getBaseAbilityScores()));
+		cw.wizPageCreated[2] = true;
+		cw.wizs.add(new Wiz2(cw, dev, WIDTH, HEIGHT, panel, layout, wizPages, cw.getBaseAbilityScores()));
+		layout.topControl = nextPage;
+		panel.layout();
 	}
-
 }

@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -48,6 +49,7 @@ public class SpellWizard {
 	static String spellduration;
 	static String spelllevel;
 	static String spellresistance;
+	public Boolean desfirst;
 	public SpellWizard(Display d)
 	{
 		if (GameState.isWindowOpen("Spell")) {
@@ -55,11 +57,13 @@ public class SpellWizard {
 		}
 		display = d;
 		shell = new Shell(d);
+		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create new Spell");
 		//int width = display.getMonitors()[0].getBounds().width;
 		//shell.setSize(width / 3, width * 2 / 3);
 		wizpagenum = 0;
 		wizPages = new ArrayList<Composite>();
+		desfirst = false;
 		createPageContent();
 		GameState.windowsOpen.add("Spell");
 		run();
@@ -235,6 +239,16 @@ public class SpellWizard {
 		
 		Text descriptionInput = new Text(shell, SWT.WRAP | SWT.V_SCROLL);
 		descriptionInput.setText("Description (Optional)");
+		descriptionInput.addListener(SWT.Activate, new Listener(){
+			public void handleEvent(Event event)
+			{
+				if(!desfirst)
+				{
+					descriptionInput.setText("");
+					desfirst = true;
+				}
+			}
+		});
 		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gd.horizontalSpan = 4;
 		gd.verticalSpan = 15;

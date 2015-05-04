@@ -1,45 +1,61 @@
 /*
- * ADD DESCRIPTION
+ * ADD RANKS TO SKILLS
  */
 
-//TODO alignment checking different
+/*
+ * TODO add barbarian illiteracy, custom skills, profession/craft boxes
+ * add class modifiers - i.e. druid gets +2 Knowledge(nature) and Survival checks
+ */
 
 package guis;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Random;
+
+import core.CharSkill;
+import core.GameState;
+import core.Main;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
-import core.GameState;
-import core.Main;
+import entity.*;
 import core.character;
-import entity.ClassEntity;
-import entity.DNDEntity;
-import entity.DeityEntity;
-import entity.RaceEntity;
+
+/* TODO
+ * add text box to add custom skill
+ * add boxes next to craft, profession, etc
+ * fix speak language
+ * add extra cleric class skills
+ * add class bonuses (i.e. druid nature sense)
+ * update to match level up button
+ */
 
 public class Wiz4 {
+
+	private static final int INC = 0;
+	private static final int DEC = 1;
+	private static final int NAME = 2;
+	private static final int RANK = 3;
+	private static final int ABILMOD = 4;
+	private static final int MISCMOD = 5;
+	private static final int TOTAL = 6;
 
 	private Composite wiz4;
 	private CharacterWizard cw;
@@ -47,62 +63,23 @@ public class Wiz4 {
 	private int WIDTH;
 	private int HEIGHT;
 	private character character;
-	private Composite panel;
-	private Composite home;
-	private Composite homePanel;
-	private StackLayout layout;
-	private StackLayout homeLayout;
+	private Composite wizPanel;
+	private StackLayout wizLayout;
 	private ArrayList<Composite> wizPages;
 	private Composite nextPage;
 	private int wizPagesSize;
 
-	private Text nameInput;
-	private CCombo alignmentInput1;
-	private CCombo alignmentInput2;
-	private Text deityInput;
-	private Combo deityListInput;
-	private boolean deitySelect = false;
-	private Text heightInput;
-	private Text weightInput;
-	private Text ageInput;
-	private Text genderInput;
-	private Text eyesInput;
-	private Text hairInput;
-	private Text skinInput;
-	private Text descriptionInput;
-	private List langInput;
-	private Text customLang;
-	private int remainingBonusLangs;
-	private int numBonusLangs;
-	
-	private Shell alignmentShell;
- 
-	private Shell clericShell;
-	
-	private boolean popUpOpen = false;
-	private boolean alignOpen = false;
-	private boolean clericOpen = false;
+	private Composite inner;
 
-	private String domains[] = {"Air", "Animal", "Chaos", "Death", "Destruction", 
-			"Earth", "Evil", "Fire", "Good", "Healing", "Knowledge", "Law", 
-			"Luck", "Magic", "Plant", "Protection", "Strength", "Sun", 
-			"Travel", "Trickery", "War", "Water"};
-
-	private Random rng = new Random();
-
-	private ClassEntity charClass;
-	private RaceEntity charRace;
-
-	private boolean goOn;
-	private boolean finished;
-
-	private final Color red = new Color(dev, 255, 100, 100);
-	private final Color white = new Color(dev, 255, 255, 255);
+	private Label skillPointsLabel;
+	private Label unusedSkillPointsError;
+	private String charClass;
+	private int numSkillPoints;
+	private ArrayList<CharSkill> charSkills = new ArrayList<CharSkill>();
 
 
 	public Wiz4(CharacterWizard cw, Device dev, int WIDTH, int HEIGHT, 
-			final Composite panel, Composite home, Composite homePanel, 
-			final StackLayout layout, final StackLayout homeLayout, 
+			final Composite panel, final StackLayout layout, 
 			final ArrayList<Composite> wizPages) {
 		wiz4 = wizPages.get(3);
 		this.cw = cw;
@@ -110,979 +87,437 @@ public class Wiz4 {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
-		this.panel = panel;
-		this.home = home;
-		this.homePanel = homePanel;
-		this.layout = layout;
-		this.homeLayout = homeLayout;
+		this.wizPanel = panel;
+		this.wizLayout = layout;
 		this.wizPages = wizPages;
 		this.nextPage = wizPages.get(4);
 		this.wizPagesSize = wizPages.size();
 
-		numBonusLangs = character.getAbilityModifiers()[GameState.INTELLIGENCE];
-		charClass = cw.getCharacter().getCharClass();
-		charRace = cw.getCharacter().getCharRace();
-		
+		charClass = character.getCharClass().getName();
+
 		createPageContent();
 	}
 
 	private void createPageContent() {
-		// main label
-		Label wiz4Label = new Label(wiz4, SWT.NONE);
-		wiz4Label.setText("Add Description");
-		wiz4Label.pack();
-		
-		GridLayout gl = new GridLayout(8, true);
-		
-		Composite inner = new Composite(wiz4, SWT.NONE);
-		inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
-		inner.setLayout(gl);
+		GridLayout layout = new GridLayout(2, true);
+		wiz4.setLayout(layout);
 
 		GridData gd;
 		
-		
-		// initialize layout
-		
-		nameInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 4;
-		nameInput.setLayoutData(gd);
-		
-		genderInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		Label wiz4Label = new Label(wiz4, SWT.NONE);
+		wiz4Label.setText("Add Ranks to Skills");
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
 		gd.horizontalSpan = 2;
-		genderInput.setLayoutData(gd);
-		
-		ageInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		ageInput.setLayoutData(gd);
-		
-		heightInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		heightInput.setLayoutData(gd);
-		
-		Button heightRandom = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		heightRandom.setLayoutData(gd);
-		
-		eyesInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		eyesInput.setLayoutData(gd);
-		
-		hairInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		hairInput.setLayoutData(gd);
-		
-		skinInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		skinInput.setLayoutData(gd);
-		
-		Label spacer = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		spacer.setLayoutData(gd);		
-		
-		weightInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		weightInput.setLayoutData(gd);
-		
-		Button weightRandom = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		weightRandom.setLayoutData(gd);
-		
-		descriptionInput = new Text(inner, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.SEARCH);
-		gd = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gd.horizontalSpan = 4;
-		gd.verticalSpan = 2;
-		descriptionInput.setLayoutData(gd);
-		
-		alignmentInput1 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		alignmentInput1.setLayoutData(gd);	
-		
-		alignmentInput2 = new CCombo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		alignmentInput2.setLayoutData(gd);
-		
-		deityListInput = new Combo(inner, SWT.DROP_DOWN | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 4;
-		deityListInput.setLayoutData(gd);
-		
-		Button deitySearchButton = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		deitySearchButton.setLayoutData(gd);
-		
-		deityInput = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 3;
-		deityInput.setLayoutData(gd);		
-		
-		Label addLang = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 2;
-		addLang.setLayoutData(gd);
-		
-		Label knownLangs = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 3;
-		knownLangs.setLayoutData(gd);
-		
-		Label possibleLangs = new Label(inner, SWT.NONE);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gd.horizontalSpan = 3;
-		possibleLangs.setLayoutData(gd);
-		
-		customLang = new Text(inner, SWT.BORDER);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		customLang.setLayoutData(gd);
-		
-		langInput = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		langInput.setLayoutData(gd);
-		
-		List possibleLangsList = new List(inner, SWT.BORDER | SWT.V_SCROLL | SWT.READ_ONLY);
-		gd = new GridData(GridData.FILL, GridData.FILL, true, true);
-		gd.horizontalSpan = 3;
-		gd.verticalSpan = 2;
-		possibleLangsList.setLayoutData(gd);
-		
-		Button removeLang = new Button(inner, SWT.PUSH);
-		gd = new GridData(GridData.FILL, GridData.CENTER, true, true);
-		gd.horizontalSpan = 2;
-		removeLang.setLayoutData(gd);
-		
-		
-		// create content
-		
-		// name
-		
-		nameInput.setText("");
-		nameInput.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event event) {
-				Text text = (Text) event.widget;
-				text.setBackground(white);
-			}
-		});
-		nameInput.setMessage("Name");
-		nameInput.pack();
+		wiz4Label.setLayoutData(gd);
+		wiz4Label.pack();
 
+		GridLayout gl = new GridLayout(3, false);
 
-		// deity
+		inner = new Composite(wiz4, SWT.NONE);
+		//inner.setBounds(5, 20, WIDTH-10, HEIGHT-110);
+		inner.setLayout(gl);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
+		inner.setLayoutData(gd);
 
-		// get deities from references
-		Collection<DNDEntity> deitiesCol = Main.gameState.deities.values();
-		Iterator<DNDEntity> itr2 = deitiesCol.iterator();
-		ArrayList<DeityEntity> deities = new ArrayList<DeityEntity>();
-		while (itr2.hasNext()) {
-			deities.add((DeityEntity) itr2.next());
+		skillPointsLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		skillPointsLabel.setLayoutData(gd);
+
+//		numSkillPointsLabel = new Label(inner, SWT.NONE);
+//		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+//		gd.horizontalSpan = 2;
+//		numSkillPointsLabel.setLayoutData(gd);
+		
+		Label exampleSkillLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		gd.horizontalSpan = 3;
+		exampleSkillLabel.setLayoutData(gd);
+
+		Label classSkillLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		classSkillLabel.setLayoutData(gd);
+
+		Label crossClassSkillLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		crossClassSkillLabel.setLayoutData(gd);
+
+		Label untrainedLabel = new Label(inner, SWT.NONE);
+		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+		untrainedLabel.setLayoutData(gd);
+
+		//		Table skillTable = new Table(inner, SWT.PUSH | SWT.BORDER | SWT.V_SCROLL);
+		//		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//		gd.horizontalSpan = 3;
+		//		skillTable.setLayoutData(gd);
+		//		skillTable.setHeaderVisible(true);
+		//		skillTable.setLinesVisible(true);
+		//		String[] titles = { "+", Character.toString ((char) 8211), "Skill (Type)", "Rank", "Ability Modifier", "Misc. Modifier", "Total"};
+		//		
+		//		for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
+		//			TableColumn column = new TableColumn(skillTable, SWT.NONE);
+		//			column.setText(titles[loopIndex]);
+		//		}
+
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 3;
+
+		// set up scrollable composite
+		final ScrolledComposite skillsScreenScroll = new ScrolledComposite(inner, SWT.V_SCROLL | SWT.BORDER);
+		//skillsScreenScroll.setBounds(10, 110, WIDTH - 30, HEIGHT - 210);
+		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 3;
+		skillsScreenScroll.setLayoutData(gd);
+		skillsScreenScroll.setExpandHorizontal(true);
+		skillsScreenScroll.setExpandVertical(true);
+		skillsScreenScroll.setMinWidth(WIDTH);
+		final Composite skillsScreen = new Composite(skillsScreenScroll, SWT.NONE);
+		skillsScreenScroll.setContent(skillsScreen);
+		skillsScreen.setSize(skillsScreen.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		skillsScreen.setLayout(gridLayout);
+
+		// set number of skill points
+		String pointsString = cw.getCharacter().getCharClass().getSkillPointsPerLevel();
+		int classPoints = Integer.parseInt(Character.toString(pointsString.charAt(0)));
+
+		int intMod = cw.getCharacter().getAbilityModifiers()[GameState.INTELLIGENCE];
+		numSkillPoints = (classPoints + intMod) * 4;
+		if (numSkillPoints < 4) 
+			numSkillPoints = 4;
+		if (cw.getCharacter().getCharRace().equals("Human"))
+			numSkillPoints += 4;
+
+		// skill points remaining label
+		skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+		skillPointsLabel.pack();
+
+		// example skill label
+		exampleSkillLabel.setText("Skill (Type) = (Ability Mod) + (Misc Mod) + (Rank) = (Total)" 
+				+ "         *: AC penalty  **: double AC penalty");
+		exampleSkillLabel.pack();
+
+		// class skill label
+		Color classSkillColor = new Color(dev, 0, 200, 100);
+		classSkillLabel.setForeground(classSkillColor);
+		classSkillLabel.setText("Class Skills: 1 point = 1 rank");
+		classSkillLabel.pack();
+
+		// cross-class skill label
+		Color crossClassSkillColor = new Color(dev, 0, 0, 255);
+		crossClassSkillLabel.setForeground(crossClassSkillColor);
+		crossClassSkillLabel.setText("Cross-Class Skills: 2 points = 1 rank");
+		crossClassSkillLabel.pack();
+
+		// untrained label
+		untrainedLabel.setText(Character.toString((char)8226) + " : skill can be used untrained");
+		untrainedLabel.pack();
+
+		// get skills from references
+		Collection<DNDEntity> skillsCol =  Main.gameState.skills.values();
+		Iterator<DNDEntity> itr = skillsCol.iterator();
+		ArrayList<SkillEntity> skills = new ArrayList<SkillEntity>();
+		while (itr.hasNext()) {
+			skills.add((SkillEntity) itr.next());
 		}
 
-		deityListInput.add("Deity");
-		for (int i = 0; i < deities.size(); i++) {
-			deityListInput.add(deities.get(i).getName() + " (" + deities.get(i).getAlignment() + ")");
+		// TODO add misc modifiers
+		// class racial modifiers? 
+		// familiars modifiers
+
+		for (int i = 0; i < skills.size(); i++) {
+			charSkills.add(new CharSkill(skills.get(i), character));
 		}
-		deityListInput.select(0);
-		deityListInput.pack();
-
-		// custom deity/selected deity text box
-		deityInput.setText("");
-		deityInput.setMessage("Custom Deity");
-		deityInput.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event e) {
-				deityInput.setBackground(null);
-			}
-		});
-		deityInput.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent event) {
-				deityListInput.setBackground(null);
-				deityInput.setBackground(null);
-				if (!deitySelect) {
-					deityListInput.select(0);
-				}
-				deitySelect = false;
-			}
-		});
-		deityInput.pack();
-
-		deityListInput.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				deityListInput.setBackground(null);
-				deitySelect = true;
-				if (deityListInput.getSelectionIndex() == 0)
-					deityInput.setText("");
-				else 
-					deityInput.setText(deities.get(deityListInput.getSelectionIndex()-1).getName());
-			}
-		});
-		deityListInput.addListener(SWT.MouseDown, new Listener() {
-			public void handleEvent(Event e) {
-				deityListInput.setBackground(null);
-			}
-		});
-
 		
-		// deity search button
-		deitySearchButton.setText("Details");
-		deitySearchButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				deityListInput.setBackground(null);
-				int index = deityListInput.getSelectionIndex();
-				if (index == 0 || index == -1) {
-					deityListInput.setBackground(red);
-					return;
-				}
-				deities.get(index-1).toTooltipWindow();
-			}
-		});
-		deitySearchButton.pack();
+		// create content (+/- buttons, skills, ranks, mods, etc
+		ArrayList<Label> skillNameLabels = new ArrayList<Label>();
+		ArrayList<Button> incButtons = new ArrayList<Button>();
+		ArrayList<Button> decButtons = new ArrayList<Button>();
 
-		// alignment
+		// instantiate table items
+		//		for (int i = 0; i < charSkills.size(); i++) {
+		//		      new TableItem(skillTable, SWT.NONE);
+		//		}
 
-		alignmentInput1.add("Law-Chaos");
-		alignmentInput1.add("Lawful");
-		alignmentInput1.add("Neutral");
-		alignmentInput1.add("Chaotic");
-		alignmentInput1.select(0);
-		alignmentInput1.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event e) {
-				alignmentInput1.setBackground(null);
-			}
-		});	
-		alignmentInput1.pack();
+		//TableItem[] items = skillTable.getItems();
 
-		alignmentInput2.add("Good-Evil");
-		alignmentInput2.add("Good");
-		alignmentInput2.add("Neutral");
-		alignmentInput2.add("Evil");
-		alignmentInput2.select(0);
-		alignmentInput2.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event e) {
-				alignmentInput2.setBackground(null);
-			}
-		});
-		alignmentInput2.pack();
+		//		for (int i = 0; i < charSkills.size(); i++) {
+		//			TableEditor editor = new TableEditor(skillTable);
 
+		/*
+			// inc button
+//			Button incButton = new Button(skillTable, SWT.PUSH);
+//			incButton.setText("+");
+//			incButton.addListener(SWT.Selection, new Listener() {
+//				public void handleEvent(Event event) {
+////					if (numSkillPoints == 0)
+////						return;
+////					if (current.incRank(numSkillPoints)) {
+////						skillName.setText(untrained + current.getSkill().getName() + " (" 
+////								+ current.getAbilityType() + ")" + acPen + " = " 
+////								+ abilityMod + " + " + miscMod + " + " 
+////								+ current.getRank() + " = " + current.getTotal());
+////						skillName.pack();
+////						if (!current.isClassSkill())
+////							numSkillPoints--;
+////						numSkillPoints--;
+////						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+////						numSkillPointsLabel.pack();
+////						unusedSkillPointsError.setVisible(false);
+////					}
+//				}
+//			});
+//			incButton.pack();
+//		    editor.minimumWidth = incButton.getSize().x;
+//		    editor.horizontalAlignment = SWT.LEFT;
+//			editor.setEditor(incButton, items[i], 0); // sets location in table
 
-		// eyes
-		eyesInput.setText("");
-		eyesInput.setMessage("Eyes");
-		eyesInput.pack();
+			// dec button
+//			editor = new TableEditor(skillTable);
+//			Button decButton = new Button(skillTable, SWT.PUSH);
+//			decButton.setText(Character.toString ((char) 8211));
+//			decButton.addListener(SWT.Selection, new Listener() {
+//				public void handleEvent(Event event) {
+////					if (current.decRank()) {
+////						skillName.setText(untrained + current.getSkill().getName() + " (" 
+////								+ current.getAbilityType() + ")" + acPen + " = " + abilityMod 
+////								+ " + " + miscMod + " + " + current.getRank() 
+////								+ " = " + current.getTotal());
+////						skillName.pack();
+////						if (!current.isClassSkill())
+////							numSkillPoints++;
+////						numSkillPoints++;
+////						numSkillPointsLabel.setText(Integer.toString(numSkillPoints));
+////						numSkillPointsLabel.pack();
+////						unusedSkillPointsError.setVisible(false);
+////					}
+//				}
+//			});
+//			decButton.pack();
+//		    editor.minimumWidth = decButton.getSize().x;
+//		    editor.horizontalAlignment = SWT.LEFT;
+//			editor.setEditor(decButton, items[i], 1);
+		 */
+		//			CharSkill skill = charSkills.get(i);
+		//			TableItem item = new TableItem(skillTable, SWT.NONE);
+		//			item.setText(INC, "+");
+		//			item.setText(DEC, Character.toString ((char) 8211));
+		//			item.setText(NAME, getSkillText(skill));
+		//			item.setText(RANK, "0");
+		//			item.setText(ABILMOD, Integer.toString(charSkills.get(i).getAbilityMod()));
+		//			item.setText(MISCMOD, Integer.toString(charSkills.get(i).getMiscMod()));
+		/*
+			// skill name
+//			editor = new TableEditor(skillTable);
+			Text skillName = new Text(skillTable, SWT.READ_ONLY);
+			skillName.setText(getSkillText(skill));
+			if (skill.isClassSkill())
+				skillName.setForeground(classSkillColor);
+			else
+				skillName.setForeground(crossClassSkillColor);
+//			editor.grabHorizontal = true;
+//			editor.setEditor(skillName, items[i], 2);
+//			skillName.pack();
 
+			// rank
+//			editor = new TableEditor(skillTable);
+			Text rank = new Text(skillTable, SWT.READ_ONLY);
+			rank.setText("0");
+			//editor.grabHorizontal = true;
+//			editor.setEditor(rank, items[i], 3);
+//			rank.pack();
 
-		// hair 
-		hairInput.setText("");
-		hairInput.setMessage("Hair");
-		hairInput.pack();
+			// ability mod
+//			editor = new TableEditor(skillTable);
+			Text abilityMod = new Text(skillTable, SWT.READ_ONLY);
+			abilityMod.setText(Integer.toString(skill.getAbilityMod()));
+//			editor.grabHorizontal = true;
+//			editor.setEditor(abilityMod, items[i], 4);
+//			abilityMod.pack();
 
+			// misc mod
+//			editor = new TableEditor(skillTable);
+			Text miscMod = new Text(skillTable, SWT.READ_ONLY);
+			miscMod.setText(Integer.toString(skill.getAbilityMod()));
+//			editor.grabHorizontal = true;
+//			editor.setEditor(miscMod, items[i], 5);
+//			miscMod.pack();
 
-		// skin
-		skinInput.setText("");
-		skinInput.setMessage("Skin");
-		skinInput.pack();
-		
-		
-		// height
+			// total
+//			editor = new TableEditor(skillTable);
+			Text total = new Text(skillTable, SWT.READ_ONLY);
+			total.setText("0");
+//			editor.grabHorizontal = true;
+//			editor.setEditor(total, items[i], 6);
+//			total.pack();
+		 * 
+		 */
+		//	}
+		//		skillTable.pack();
+		unusedSkillPointsError = new Label(inner, SWT.NONE);
 
-		heightInput.setText("");
-		heightInput.setMessage("Height");
-		heightInput.pack();
-
-		heightRandom.setText("Random Height");
-		heightRandom.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				int height = 0;
-				int min = 0;
-				int max = 0;
-				switch (charRace.getName()) {
-
-				case ("Dwarf"): 
-				{
-					min = 45;
-					max = 53;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				case ("Elf"):
-				{
-					min = 55;
-					max = 65;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				case ("Gnome"): 
-				{
-					min = 36;
-					max = 44;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				case ("Half-elf"):
-				{
-					min = 55;
-					max = 71;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				case ("Half-orc"):
-				{
-					min = 55;
-					max = 82;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				case ("Halfling"):
-				{
-					min = 32;
-					max = 40;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				default:
-				{
-					// human
-					min = 55;
-					max = 78;
-					height = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				}
-				String heightString = "";
-				heightString += Integer.toString(height/12);
-				heightString += "'";
-				heightString += Integer.toString(height % 12);
-				heightString += "\"";
-				heightInput.setText(heightString);
-			}
-		});
-		heightRandom.pack();
-		
-		// weight
-		weightInput.setText("");
-		weightInput.setMessage("Weight");
-		weightInput.pack();
-
-		weightRandom.setText("Random Weight");
-		weightRandom.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				int weight = 0;
-				int min = 0;
-				int max = 0;
-				switch (charRace.getName()) {
-
-				case ("Dwarf"):
-					min = 85;
-				max = 230;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Elf"):
-					min = 80;
-				max = 160;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Gnome"): 
-					min = 35;
-				max = 50;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-elf"):
-					min = 80;
-				max = 230;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Half-orc"):
-					min = 110;
-				max = 440;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				case ("Halfling"):
-					min = 25;
-				max = 40;
-				weight = rng.nextInt(max - min) + min + 1;
-				break;
-				default:
-					// human
-					min = 125;
-					max = 280;
-					weight = rng.nextInt(max - min) + min + 1;
-					break;
-				}
-				String weightString = Integer.toString(weight)+ " lbs";
-				weightInput.setText(weightString);
-			}
-		});
-		weightRandom.pack();
-
-
-		// gender
-		genderInput.setText("");
-		genderInput.setMessage("Gender");
-		genderInput.pack();
-
-		
-		// age
-		ageInput.setText("");
-		ageInput.setMessage("Age");
-		ageInput.pack();
-		
-		
-		// description
-		descriptionInput.setMessage("Description");
-		descriptionInput.pack();
-		
-
-		// languages
-		langInput.addListener(SWT.MouseUp, new Listener() {
-			public void handleEvent(Event event) {
-				addLang.setBackground(null);
-			}
-		});
-
-		customLang.setMessage("Custom Language");
-		customLang.addListener(SWT.DefaultSelection, new Listener() {
-			public void handleEvent(Event e) {
-				if (remainingBonusLangs == 0)
-					return;
-				if (customLang.getText().length() == 0)
-					return;
-				// check if language was already added
-				for (int i = 0; i < langInput.getItemCount(); i++) {
-					if (langInput.getItem(0).equals(customLang.getText()))
-						return;
-				}
-				langInput.add(customLang.getText());
-				remainingBonusLangs--;
-				if (remainingBonusLangs == 1)
-					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
-				else
-					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
-				addLang.pack();
-				inner.layout();
-				addLang.setBackground(null);
-			}
-		});
-
-		removeLang.setText("Remove");
-		removeLang.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				if (numBonusLangs != remainingBonusLangs) {
-					langInput.remove(langInput.getItemCount()-1);
-					remainingBonusLangs++;
-					if (remainingBonusLangs == 1)
-						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
-					else
-						addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
-					addLang.pack();
-					inner.layout();
-				}
-			}
-		});
-		
-		if (numBonusLangs < 0)
-			numBonusLangs = 0;
-		remainingBonusLangs = numBonusLangs;
-		if (remainingBonusLangs == 1)
-			addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
-		else
-			addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
-		addLang.pack();
-		
-		knownLangs.setText("Known Languages:");
-		knownLangs.pack();
-		
-		possibleLangs.setText("Possible Languages:");
-		possibleLangs.pack();
-
-		String[] raceLangs = charRace.getAutoLanguages(); 
-		for(int i = 0; i < raceLangs.length; i++) 
-			langInput.add(raceLangs[i]);
-		
-		String[] raceBonusLangs = charRace.getBonusLanguages();
-		for (int i = 0; i < raceBonusLangs.length; i++)
-			possibleLangsList.add(raceBonusLangs[i]);
-		String[] classBonusLangs = charClass.getBonusLanguages();
-		if (classBonusLangs != null) {
-		for (int i = 0; i < classBonusLangs.length; i++)
-			possibleLangsList.add(classBonusLangs[i]);
-		}
-		possibleLangsList.pack();
-		possibleLangsList.addListener(SWT.DefaultSelection, new Listener() {
-			public void handleEvent(Event e) {
-				if (remainingBonusLangs == 0)
-					return;
-				// see if lang was already added
-				String selection = possibleLangsList.getItem(possibleLangsList.getSelectionIndex());
-				for (int i = 0; i < langInput.getItemCount(); i++) {
-					if (langInput.getItem(0).equals(selection))
-						return;
-				}
-				langInput.add(selection);
-				remainingBonusLangs--;
-				if (remainingBonusLangs == 1)
-					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Language");
-				else
-					addLang.setText("Pick " + Integer.toString(remainingBonusLangs) + " Bonus Languages");
-				addLang.pack();
-				inner.layout();
-				addLang.setBackground(null);
-			}
-		});
 		inner.layout();
 
-		// next button
-		Button wiz4NextButton = cw.createNextButton(wiz4);
-		wiz4NextButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				// cannot move on if there is a window open
-				if (alignOpen || clericOpen) {
-					if (alignOpen && clericOpen) {
-						alignmentShell.dispose();
-						alignOpen = false;
-						clericShell.forceActive();
-					} else if (alignOpen) 
-						alignmentShell.forceActive();
-					else if (clericOpen)
-						clericShell.forceActive();
-					return;
-				}
-				
-				// error checking
-				boolean error = false;
-				
-				// checks if name is the empty string or comprised of only whitespace/non-alphanumeric characters
-				String condensed = nameInput.getText().replaceAll("\\s","");
-				condensed = condensed.replaceAll("[^A-Za-z0-9]", "");
-				if (condensed.length() == 0) {
-					nameInput.setText("");           
-					nameInput.setBackground(red);
-					error = true;
-				}
-				if (condensed.length() > 200 ) {
-					nameInput.setBackground(red);
-					error = true;
-				}
-				if (remainingBonusLangs > 0){
-					addLang.setBackground(red);
-					error = true;
-				}
-				if (charClass.getName().equalsIgnoreCase("cleric")) {
-					if (deityInput.getText().length() == 0) {
-						deityInput.setBackground(red);
-						error = true;
-					}
-					if (alignmentInput1.getSelectionIndex() < 1) {
-						alignmentInput1.setBackground(red);
-						error = true;
-					}
-					if (alignmentInput2.getSelectionIndex() < 1) {
-						alignmentInput2.setBackground(red);
-						error = true;
-					}
-				}
-				
-				// if there is an error, do not move on
-				if (error)
-					return;
-				
-				// otherwise, save data
-				String a1, a2;
-				if (alignmentInput1.getSelectionIndex() < 1)
-					a1 = " ";
+		for(int i = 0; i < charSkills.size(); i++) {
+			Button inc = new Button(skillsScreen, SWT.PUSH);
+			inc.setText("+");
+			GridData incGD = new GridData(SWT.LEFT);
+			inc.setLayoutData(incGD);
+			inc.pack();
+			Button dec = new Button(skillsScreen, SWT.PUSH);
+			dec.setText(Character.toString ((char) 8211));
+			GridData decGD = new GridData(SWT.LEFT);
+			dec.setLayoutData(decGD);
+			dec.pack();
+			final Label skillName = new Label(skillsScreen, SWT.NONE);
+			skillName.setLayoutData(new GridData(SWT.LEFT));
+			final CharSkill current = charSkills.get(i);
+			final int abilityMod = current.getAbilityMod();
+			final int miscMod = current.getMiscMod();
+			final String acPen;
+			if (current.hasACPen()) {
+				if (current.getSkill().getName().equalsIgnoreCase("Swim"))
+					acPen = "**";
 				else 
-					a1 = alignmentInput1.getText();
-				if (alignmentInput2.getSelectionIndex() < 1)
-					a2 = " ";
-				else
-					a2 = alignmentInput2.getText();
-
-				DeityEntity deitySelect;
-				if (deityListInput.getSelectionIndex() >= 1)
-					deitySelect = deities.get(deityListInput.getSelectionIndex()-1);
-				else
-					deitySelect = null;
-
-				boolean done = true;
-				done = checkAlignmentPopUp(a1, a2, deitySelect);
-				if (done) {
-					if (charClass.getName().equalsIgnoreCase("cleric"))
-						done = clericPopUp(deitySelect);
+					acPen = "*";
+			} else 
+				acPen = "";
+			final String untrained;
+			if (current.useUntrained())
+				untrained = Character.toString ((char) 8226);
+			else 
+				untrained = "  ";
+			skillName.setText(untrained + current.getSkill().getName() + " (" 
+					+ current.getAbilityType() + ")" + acPen + " = " + abilityMod + " + " 
+					+ miscMod + " + " + current.getRank() + " = " + current.getTotal());
+			if (current.isClassSkill())
+				skillName.setForeground(classSkillColor);
+			else
+				skillName.setForeground(crossClassSkillColor);
+			skillName.pack();
+			skillNameLabels.add(skillName);
+			inc.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (numSkillPoints == 0)
+						return;
+					if (current.incRank(numSkillPoints)) {
+						skillName.setText(untrained + current.getSkill().getName() + " (" 
+								+ current.getAbilityType() + ")" + acPen + " = " 
+								+ abilityMod + " + " + miscMod + " + " 
+								+ current.getRank() + " = " + current.getTotal());
+						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints--;
+						numSkillPoints--;
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
+						unusedSkillPointsError.setVisible(false);
+					}
 				}
-				if (!done)
-					return;
-				// if no errors, save to character
-				//name, alignment, deity, height, weight, age, gender, eyes, hair, skin, description, languages
-				character.setName(nameInput.getText());	
-				character.setAlignment(a1 + ";" + a2);
-				if (deityInput.getText().length() != 0)
-					character.setDeity(deityInput.getText());
-				if (heightInput.getText().length() != 0)
-					character.setHeight(heightInput.getText());
-				if (weightInput.getText().length() != 0)
-					character.setWeight(weightInput.getText());
-				if (ageInput.getText().length() != 0)
-					character.setAge(ageInput.getText());
-				if (genderInput.getText().length() != 0)
-					character.setGender(genderInput.getText());
-				if (eyesInput.getText().length() != 0)
-					character.setEyes(eyesInput.getText());
-				if (hairInput.getText().length() != 0)
-					character.setHair(hairInput.getText());
-				if (skinInput.getText().length() != 0)
-					character.setSkin(skinInput.getText());
-				if (descriptionInput.getText().length() != 0)
-					character.setDescription(descriptionInput.getText());
-				for (int i = 0; i < langInput.getItemCount(); i++)
-					character.addLanguage(langInput.getItem(i));
-
-				// change to next page				
-				if (cw.wizPageNum < wizPagesSize - 1)
-					cw.wizPageNum++;
-				if (!cw.wizPageCreated[4])
-					createNextPage();
-				layout.topControl = nextPage;
-				panel.layout();
-			}
-		});
+			});
+			incButtons.add(inc);
+			dec.addListener(SWT.Selection, new Listener() {
+				public void handleEvent(Event event) {
+					if (current.decRank()) {
+						skillName.setText(untrained + current.getSkill().getName() + " (" 
+								+ current.getAbilityType() + ")" + acPen + " = " + abilityMod 
+								+ " + " + miscMod + " + " + current.getRank() 
+								+ " = " + current.getTotal());
+						skillName.pack();
+						if (!current.isClassSkill())
+							numSkillPoints++;
+						numSkillPoints++;
+						skillPointsLabel.setText("Skill Points Remaining: " + numSkillPoints);
+						skillPointsLabel.pack();
+						unusedSkillPointsError.setVisible(false);
+					}
+				}
+			});
+			decButtons.add(dec);
+			skillsScreen.pack();
+		}
 
 
-		// back button
-		//Button wiz4BackButton = cw.createBackButton(wiz6, panel, layout);
+		skillsScreenScroll.setMinHeight(incButtons.get(incButtons.size()-1).getLocation().y + incButtons.get(incButtons.size()-1).getSize().y);
 
+		// create error label
+		unusedSkillPointsError.setVisible(false);
+		//unusedSkillPointsError.setLocation(200, HEIGHT - 75);
+		unusedSkillPointsError.setText("You must use all of your skill points!");
+		unusedSkillPointsError.setForeground(new Color(dev, 255,0,0));
+		unusedSkillPointsError.pack();
 
 		// cancel button
-		Button wiz4CancelButton = cw.createCancelButton(wiz4, home, homePanel, homeLayout);
-		wiz4CancelButton.addListener(SWT.Selection, new Listener() {
+		Button wiz5CancelButton = cw.createCancelButton(wiz4);
+		gd = new GridData(SWT.LEFT, SWT.CENTER, true, false);
+		wiz5CancelButton.setLayoutData(gd);
+		wiz5CancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cw.cancel)
 					cw.reset();
 			}
 		});
-
-		inner.layout();
-	}
-
-	private boolean checkAlignmentPopUp(String a1, String a2, DeityEntity deity) {
-		if (a1.equals("<empty>") || a2.equals("<empty>"))
-			return true;
-
-		goOn = false;
-
-		// create shell
-		Display display = wiz4.getDisplay();
-		alignmentShell = new Shell(wiz4.getDisplay());
-		alignmentShell.setImage(new Image(display, "images/bnb_logo.gif"));
-		alignmentShell.setText("Check Alignment");
-		GridLayout gridLayout = new GridLayout(2, true);
-		alignmentShell.setLayout(gridLayout);
-		alignmentShell.addListener(SWT.Close, new Listener() {
+		
+		// next button
+		Button wiz5NextButton = cw.createNextButton(wiz4);
+		gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		wiz5NextButton.setLayoutData(gd);
+		wiz5NextButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-				finished = false;
-				alignOpen = false;
-			}
-		});
-
-		// warning label
-		Label warning = new Label(alignmentShell, SWT.WRAP);
-		GridData warningGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		warningGD.horizontalSpan = 2;
-		warning.setLayoutData(warningGD);
-
-
-		switch(charClass.getName()) {
-		case("Barbarian"): 
-		{
-			// must be non-lawful
-			if (!a1.equalsIgnoreCase("lawful"))
-				return true;
-			warning.setText("Barbarians should be non-lawful.");
-			break;
-		}
-		case("Bard"): 
-		{
-			// must be non-lawful
-			if (!a1.equalsIgnoreCase("lawful"))
-				return true;
-			warning.setText("Bards should be non-lawful.");
-			break;
-		}
-		case("Cleric"): 
-		{
-			// cleric's alignment must be within 1 step of deity
-			if (deity == null)
-				return true;
-			if (a1.equals("<empty>") || a2.equals("<empty>"))
-				return true;
-			String[] deityAlignment = deity.getAlignment().split(" ");
-			char d1 = Character.toLowerCase(deityAlignment[0].charAt(0));
-			char d2 = Character.toLowerCase(deityAlignment[1].charAt(0));
-			// if alignment is true neutral, set d1 and d2 to n (neutral)
-			if (d1 == 't')
-				d1 = d2;
-			char c1 = Character.toLowerCase(a1.charAt(0));
-			char c2 = Character.toLowerCase(a2.charAt(0));
-
-			int step = 0;
-
-			if (d1 == c1){
-				if (d2 == c2); // no step difference
-				else {
-					if (d2 == 'n' || c2 == 'n')
-						step++;
-					else 
-						step += 2;
-				}
-			} else {
-				if (d1 == 'n' || c1 == 'n')
-					step++;
-				else 
-					step += 2;
-				if (d2 == c2); // no step difference
-				else if (d2 == 'n' || c2 == 'n')
-					step ++;
-				else 
-					step += 2;
-			}
-			if (step <= 1)
-				return true;
-			warning.setText("There should only be one step difference between the deity's alignment and the cleric's alignment.");
-			break;
-		}
-		case("Druid"): 
-		{
-			// must have at lease one neutral
-			if (a1.equalsIgnoreCase("neutral") | a2.equalsIgnoreCase("neutral"))
-				return true;
-			warning.setText("Druids should have at least one neutral alignment.");
-			break;
-		}
-		case("Monk"): 
-		{
-			// must be lawful
-			if (a1.equalsIgnoreCase("lawful"))
-				return true;
-			warning.setText("Monks should be lawful.");
-			break;
-		}
-		case("Paladin"): 
-		{
-			// must be lawful good
-			if (a1.equalsIgnoreCase("lawful") && a2.equalsIgnoreCase("good"))
-				return true;
-			warning.setText("Paladins should be lawful good.");
-			break;
-		}
-		case("Fighter"): 
-		case("Ranger"): 
-		case("Rogue"): 
-		case("Sorcerer"): 
-		default: // wizard
-			// no alignment restrictions
-			return true;
-		}
-		warning.pack();
-		
-		alignOpen = true;
-		
-		alignmentShell.addListener(SWT.Close, new Listener() {
-	        public void handleEvent(Event event) {
-	            goOn = false;
-	            alignOpen = false;
-	        }
-	    });
-
-		// display user's alignment choice
-		Label userChoice = new Label(alignmentShell, SWT.NONE);
-		userChoice.setText("You chose: " + a1 + " " + a2);
-		GridData userChoiceGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		userChoiceGD.horizontalSpan = 2;
-		userChoice.setLayoutData(userChoiceGD);
-		userChoice.pack();
-
-		// label - do you want to continue
-		Label continueLabel = new Label(alignmentShell, SWT.WRAP);
-		continueLabel.setText("Do you want to continue with this alignment?");
-		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		continueGD.horizontalSpan = 2;
-		continueLabel.setLayoutData(continueGD);
-		continueLabel.pack();
-
-		// no button
-		Button no = new Button(alignmentShell, SWT.PUSH);
-		no.setText("No");
-		no.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
-		no.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				goOn = false;
-				alignmentShell.dispose();
-				alignOpen = false;
-			}
-		});
-		no.pack();
-
-		// yes button
-		Button yes = new Button(alignmentShell, SWT.PUSH);
-		yes.setText("Yes");
-		yes.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
-		yes.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				goOn = true;
-				alignmentShell.dispose();
-				alignOpen = false;
-			}
-		});
-		yes.pack();
-
-		// open shell
-		alignmentShell.pack();
-		CharacterWizard.center(alignmentShell);
-		alignmentShell.open();
-
-		// check if disposed
-		while (!alignmentShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-
-		return goOn;
-	}
-
-	private boolean clericPopUp(DeityEntity deity) {
-		// choose domain based on deity select
-		finished = false;
-		clericOpen = true;
-		
-		// create shell
-		Display display = wiz4.getDisplay();
-		clericShell = new Shell(wiz4.getDisplay());
-		clericShell.setImage(new Image(display, "images/bnb_logo.gif"));
-		clericShell = new Shell(display);
-		clericShell.setText("Set Domains");
-		GridLayout gridLayout = new GridLayout(2, true);
-		clericShell.setLayout(gridLayout);
-		clericShell.addListener(SWT.Close, new Listener() {
-			public void handleEvent(Event event) {
-				finished = false;
-				clericOpen = false;
-			}
-		});
-		// label - do you want to continue
-		Label domainsLabel = new Label(clericShell, SWT.WRAP);
-		domainsLabel.setText("Select Two Domains");
-		GridData continueGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		continueGD.horizontalSpan = 2;
-		domainsLabel.setLayoutData(continueGD);
-		domainsLabel.pack();
-
-		CCombo domains1 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		domains1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-
-		CCombo domains2 = new CCombo(clericShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		domains2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		domains2.setEnabled(false);
-
-		if (deity != null)
-			domains = deity.getDomain();
-
-		for(int i = 0; i < domains.length; i++) {
-			domains1.add(domains[i]);
-		}
-		domains1.pack();
-
-		// set listeners
-		domains1.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				domains1.setBackground(null);
-				domains2.setBackground(null);
-				domains2.removeAll();
-				for(int i = 0; i < domains.length; i++) {
-					if(!domains1.getItem(domains1.getSelectionIndex()).equals(domains[i])){
-						domains2.add(domains[i]);
-					}
-				}
-				domains2.setEnabled(true);
-				domains2.pack();
-			}
-		});
-
-		domains2.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				domains2.setBackground(null);
-			}
-		});
-
-
-		// cancel button
-		Button cancel = new Button(clericShell, SWT.PUSH);
-		cancel.setText("Cancel");
-		cancel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
-		cancel.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				finished = false;
-				clericShell.dispose();
-				clericOpen = false;
-			}
-		});
-		cancel.pack();
-
-		// done button
-		Button done = new Button(clericShell, SWT.PUSH);
-		done.setText("Done");
-		done.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false));
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event e) {
-				boolean error = false;
-				if (domains1.getSelectionIndex() == -1) {
-					domains1.setBackground(red);
-					error = true;
-				}
-				if (domains2.getSelectionIndex() == -1) {
-					domains2.setBackground(red);
-					error = true;
-				}
-				if (error) 
+				// make sure all skill points are used
+				if (numSkillPoints > 0) {
+					unusedSkillPointsError.setVisible(true);
 					return;
-				String d1 = domains1.getText();
-				String d2 = domains2.getText();
-				String[] domains = {d1, d2};
-				character.setClericDomains(domains);
-				finished = true;
-				clericOpen = false;
-				clericShell.dispose();
+				}
+
+				// save to character
+				character.setSkills(charSkills);
+
+				// move on to next page
+				if (cw.wizPageNum < wizPagesSize - 1)
+					cw.wizPageNum++;
+				if (!cw.wizPageCreated[4])
+					createNextPage();
+				wizLayout.topControl = nextPage;
+				wizPanel.layout();
 			}
 		});
-		done.pack();
 
-		// open shell
-		clericShell.pack();
-		clericShell.layout();
-		CharacterWizard.center(clericShell);
-		clericShell.open();
+		//		// back button
+		//		Button wiz4BackButton = cw.createBackButton(wiz4, panel, layout);
+		//		wiz4BackButton.addListener(SWT.Selection, new Listener() {
+		//			public void handleEvent(Event event) {
+		//				unusedSkillPointsError.setVisible(false);
+		//			}
+		//		});
 
-		// check if disposed
-		while (!clericShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
+		wiz4.layout();
+	}
 
-		return finished;
+	private String getSkillText(CharSkill skill) {
+		final String acPen;
+		if (skill.hasACPen()) {
+			if (skill.getSkill().getName().equalsIgnoreCase("Swim"))
+				acPen = "**";
+			else 
+				acPen = "*";
+		} else 
+			acPen = "";
+		final String untrained;
+		if (skill.useUntrained())
+			untrained = Character.toString ((char) 8226);
+		else 
+			untrained = "  ";
+		return (untrained + skill.getSkill().getName() + " (" 
+				+ skill.getAbilityType() + ")" + acPen);
+
 	}
 
 	private void createNextPage() {
-		cw.wizPageCreated[4] = true;
-		cw.wizs.add(new Wiz5(cw, dev, WIDTH, HEIGHT, panel, home,
-				homePanel, layout, homeLayout, wizPages));
+		cw.wizPageCreated[4] = true;		
+		cw.wizs.add(new Wiz5(cw, dev, WIDTH, HEIGHT, wizPanel, wizLayout, wizPages));
 	}
 
-	public Composite getWiz6() { return wiz4; }
+	public Composite getWiz4() { return wiz4; }
+
 }

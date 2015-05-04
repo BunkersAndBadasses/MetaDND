@@ -306,7 +306,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Wild Empathy
+			Wild Empathy (Druid)
 		</NAME>
 		<DESCRIPTION>
 			A druid can improve the attitude of an animal. This ability functions just like a Diplomacy check made to improve the attitude of a person. The druid rolls 1d20 and adds her druid level and her Charisma modifier to determine the wild empathy check result.
@@ -317,7 +317,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Woodland Stride
+			Woodland Stride (Druid)
 		</NAME>
 		<DESCRIPTION>
 			Starting at 2nd level, a druid may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at her normal speed and without taking damage or suffering any other impairment. However, thorns, briars, and overgrown areas that have been magically manipulated to impede motion still affect her.
@@ -412,11 +412,10 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Evasion
+			Evasion (Monk)
 		</NAME>
 		<DESCRIPTION>
 			At 2nd level or higher if a monk makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if a monk is wearing light armor or no armor. A helpless monk does not gain the benefit of evasion.
-			Fast Movement (Ex): At 3rd level, a monk gains an enhancement bonus to her speed, as shown on Table: The Monk. A monk in armor or carrying a medium or heavy load loses this extra speed.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -529,6 +528,383 @@
 		</NAME>
 		<DESCRIPTION>
 			At 20th level, a monk becomes a magical creature. She is forevermore treated as an outsider rather than as a humanoid (or whatever the monk's creature type was) for the purpose of spells and magical effects. Additionally, the monk gains damage Reduction 10/magic, which allows her to ignore the first 10 points of damage from any attack made by a nonmagical weapon or by any natural attack made by a creature that doesn't have similar damage Reduction. Unlike other outsiders, the monk can still be brought back from the dead as if she were a member of her previous creature type.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Aura of Good
+		</NAME>
+		<DESCRIPTION>
+			The power of a paladin's aura of good (see the detect good spell) is equal to her paladin level.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Turn Undead
+		</NAME>
+		<DESCRIPTION>
+			When a paladin reaches 4th level, she gains the supernatural ability to turn undead. She may use this ability a number of times per day equal to 3 + her Charisma modifier. She turns undead as a cleric of three levels lower would.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Detect Evil
+		</NAME>
+		<DESCRIPTION>
+			At will, a paladin can use detect evil, as the spell.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Smite Evil
+		</NAME>
+		<DESCRIPTION>
+			Once per day, a paladin may attempt to smite evil with one normal melee attack. She adds her Charisma bonus (if any) to her attack roll and deals 1 extra point of damage per paladin level. If the paladin accidentally smites a creature that is not evil, the smite has no effect, but the ability is still used up for that day.
+			At 5th level, and at every five levels thereafter, the paladin may smite evil one additional time per day, as indicated on Table: The Paladin, to a maximum of five times per day at 20th level.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Divine Grace
+		</NAME>
+		<DESCRIPTION>
+			At 2nd level, a paladin gains a bonus equal to her Charisma bonus (if any) on all saving throws.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Lay on Hands
+		</NAME>
+		<DESCRIPTION>
+			Beginning at 2nd level, a paladin with a Charisma score of 12 or higher can heal wounds (her own or those of others) by touch. Each day she can heal a total number of hit points of damage equal to her paladin level x her Charisma bonus. A paladin may choose to divide her healing among multiple recipients, and she doesn't have to use it all at once. Using lay on hands is a standard action.
+			Alternatively, a paladin can use any or all of this healing power to deal damage to undead creatures. Using lay on hands in this way requires a successful melee touch attack and doesn't provoke an attack of opportunity. The paladin decides how many of her daily allotment of points to use as damage after successfully touching an undead creature.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Aura of Courage
+		</NAME>
+		<DESCRIPTION>
+			Beginning at 3rd level, a paladin is immune to fear (magical or otherwise). Each ally within 10 feet of her gains a +4 morale bonus on saving throws against fear effects.
+			This ability functions while the paladin is conscious, but not if she is unconscious or dead.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Divine Health
+		</NAME>
+		<DESCRIPTION>
+			At 3rd level, a paladin gains immunity to all diseases, including supernatural and magical diseases.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Special Mount
+		</NAME>
+		<DESCRIPTION>
+			Upon reaching 5th level, a paladin gains the service of an unusually intelligent, strong, and loyal steed to serve her in her crusade against evil (see below). This mount is usually a heavy warhorse (for a Medium paladin) or a warpony (for a Small paladin).
+			Once per day, as a full-round action, a paladin may magically call her mount from the celestial realms in which it resides. This ability is the equivalent of a spell of a level equal to one-third the paladin's level. The mount immediately appears adjacent to the paladin and remains for 2 hours per paladin level it may be dismissed at any time as a free action. The mount is the same creature each time it is summoned, though the paladin may release a particular mount from service.
+			Each time the mount is called, it appears in full health, regardless of any damage it may have taken previously. The mount also appears wearing or carrying any gear it had when it was last dismissed. Calling a mount is a conjuration (calling) effect.
+			Should the paladin's mount die, it immediately disappears, leaving behind any equipment it was carrying. The paladin may not summon another mount for thirty days or until she gains a paladin level, whichever comes first, even if the mount is somehow returned from the dead. During this thirty-day period, the paladin takes a -1 penalty on attack and weapon damage rolls.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Remove Disease
+		</NAME>
+		<DESCRIPTION>
+			At 6th level, a paladin can produce a remove disease effect, as the spell, once per week. She can use this ability one additional time per week for every three levels after 6th (twice per week at 9th, three times at 12th, and so forth).
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Favored Enemy
+		</NAME>
+		<DESCRIPTION>
+			At 1st level, a ranger may select a type of creature from among those given on Table: Ranger Favored Enemies. The ranger gains a +2 bonus on Bluff, Listen, Sense Motive, Spot, and Survival checks when using these skills against creatures of this type. Likewise, he gets a +2 bonus on weapon damage rolls against such creatures.
+			At 5th level and every five levels thereafter (10th, 15th, and 20th level), the ranger may select an additional favored enemy from those given on the table. In addition, at each such interval, the bonus against any one favored enemy (including the one just selected, if so desired) increases by 2.
+			If the ranger chooses humanoids or outsiders as a favored enemy, he must also choose an associated subtype, as indicated on the table. If a specific creature falls into more than one category of favored enemy, the ranger's bonuses do not stack he simply uses whichever bonus is higher.
+
+			Table: Ranger Favored Enemies
+			Type (Subtype)
+			Type (Subtype)
+			Aberration
+			Humanoid (reptilian)
+			Animal
+			Magical beast
+			Construct
+			Monstrous humanoid
+			Dragon
+			Ooze
+			Elemental
+			Outsider (air)
+			Fey
+			Outsider (chaotic)
+			Giant
+			Outsider (earth)
+			Humanoid (aquatic)
+			Outsider (evil)
+			Humanoid (dwarf)
+			Outsider (fire)
+			Humanoid (elf)
+			Outsider (good)
+			Humanoid (goblinoid)
+			Outsider (lawful)
+			Humanoid (gnoll)
+			Outsider (native)
+			Humanoid (gnome)
+			Outsider (water)
+			Humanoid (halfling)
+			Plant
+			Humanoid (human)
+			Undead
+			Humanoid (orc)
+			Vermin
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Track
+		</NAME>
+		<DESCRIPTION>
+			A ranger gains Track as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Wild Empathy (Ranger)
+		</NAME>
+		<DESCRIPTION>
+			A ranger can improve the attitude of an animal. This ability functions just like a Diplomacy check to improve the attitude of a person. The ranger rolls 1d20 and adds his ranger level and his Charisma bonus to determine the wild empathy check result. The typical domestic animal has a starting attitude of indifferent, while wild animals are usually unfriendly.
+			To use wild empathy, the ranger and the animal must be able to study each other, which means that they must be within 30 feet of one another under normal visibility conditions. Generally, influencing an animal in this way takes 1 minute, but, as with influencing people, it might take more or less time.
+			The ranger can also use this ability to influence a magical beast with an Intelligence score of 1 or 2, but he takes a -4 penalty on the check.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Combat Style
+		</NAME>
+		<DESCRIPTION>
+			At 2nd level, a ranger must select one of two combat styles to pursue: archery or two-weapon combat. This choice affects the character's class features but does not restrict his selection of feats or special abilities in any way.
+			If the ranger selects archery, he is treated as having the Rapid Shot feat, even if he does not have the normal prerequisites for that feat.
+			If the ranger selects two-weapon combat, he is treated as having the Two-Weapon Fighting feat, even if he does not have the normal prerequisites for that feat.
+			The benefits of the ranger's chosen style apply only when he wears light or no armor. He loses all benefits of his combat style when wearing medium or heavy armor.
+			
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Animal Companion
+		</NAME>
+		<DESCRIPTION>
+			At 4th level, a ranger gains an animal companion selected from the following list: badger, camel, dire rat, dog, riding dog, eagle, hawk, horse (light or heavy), owl, pony, snake (Small or Medium viper), or wolf. If the campaign takes place wholly or partly in an aquatic environment, the following creatures may be added to the ranger's list of options: crocodile, porpoise, Medium shark, and squid. This animal is a loyal companion that accompanies the ranger on his adventures as appropriate for its kind.
+			This ability functions like the druid ability of the same name, except that the ranger's effective druid level is one-half his ranger level. A ranger may select from the alternative lists of animal companions just as a druid can, though again his effective druid level is half his ranger level. Like a druid, a ranger cannot select an alternative animal if the choice would reduce his effective druid level below 1st. 
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Endurance
+		</NAME>
+		<DESCRIPTION>
+			A ranger gains Endurance as a bonus feat at 3rd level.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Improved Combat Style
+		</NAME>
+		<DESCRIPTION>
+			At 6th level, a ranger's aptitude in his chosen combat style (archery or two-weapon combat) improves. If he selected archery at 2nd level, he is treated as having the Manyshot feat, even if he does not have the normal prerequisites for that feat.
+			If the ranger selected two-weapon combat at 2nd level, he is treated as having the Improved Two-Weapon Fighting feat, even if he does not have the normal prerequisites for that feat.
+			As before, the benefits of the ranger's chosen style apply only when he wears light or no armor. He loses all benefits of his combat style when wearing medium or heavy armor.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Woodland Stride (Ranger)
+		</NAME>
+		<DESCRIPTION>
+			Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.
+			However, thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion still affect him.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Swift Tracker
+		</NAME>
+		<DESCRIPTION>
+			Beginning at 8th level, a ranger can move at his normal speed while following tracks without taking the normal -5 penalty. He takes only a -10 penalty (instead of the normal -20) when moving at up to twice normal speed while tracking.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Evasion (Ranger)
+		</NAME>
+		<DESCRIPTION>
+			At 9th level, a ranger can avoid even magical and unusual attacks with great agility. If he makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, he instead takes no damage. Evasion can be used only if the ranger is wearing light armor or no armor. A helpless ranger does not gain the benefit of evasion.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Combat Style Mastery
+		</NAME>
+		<DESCRIPTION>
+			At 11th level, a ranger's aptitude in his chosen combat style (archery or two-weapon combat) improves again. If he selected archery at 2nd level, he is treated as having the Improved Precise Shot feat, even if he does not have the normal prerequisites for that feat.
+			If the ranger selected two-weapon combat at 2nd level, he is treated as having the Greater Two-Weapon Fighting feat, even if he does not have the normal prerequisites for that feat.
+			As before, the benefits of the ranger's chosen style apply only when he wears light or no armor. He loses all benefits of his combat style when wearing medium or heavy armor.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Camoflage
+		</NAME>
+		<DESCRIPTION>
+			A ranger of 13th level or higher can use the Hide skill in any sort of natural terrain, even if the terrain doesn't grant cover or concealment.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Hide in Plain Sight
+		</NAME>
+		<DESCRIPTION>
+			While in any sort of natural terrain, a ranger of 17th level or higher can use the Hide skill even while being observed.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Familiar
+		</NAME>
+		<DESCRIPTION>
+			A sorcerer or wizard can obtain a familiar (see below). Doing so takes 24 hours and uses up magical materials that cost 100 gp. A familiar is a magical beast that resembles a small animal and is unusually tough and intelligent. The creature serves as a companion and servant.
+			The sorcerer chooses the kind of familiar he gets. As the sorcerer advances in level, his familiar also increases in power.
+			If the familiar dies or is dismissed by the sorcerer, the sorcerer must attempt a DC 15 Fortitude saving throw. Failure means he loses 200 experience points per sorcerer level success reduces the loss to one-half that amount. However, a sorcerer's experience point total can never go below 0 as the result of a familiar's demise or dismissal. A slain or dismissed familiar cannot be replaced for a year and day. A slain familiar can be raised from the dead just as a character can be, and it does not lose a level or a Constitution point when this happy event occurs.
+			A character with more than one class that grants a familiar may have only one familiar at a time
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Scribe Scroll
+		</NAME>
+		<DESCRIPTION>
+			At 1st level, a wizard gains Scribe Scroll as a bonus feat.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Sneak Attack
+		</NAME>
+		<DESCRIPTION>
+			If a rogue can catch an opponent when he is unable to defend himself effectively from her attack, she can strike a vital spot for extra damage.
+			The rogue's attack deals extra damage any time her target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the rogue flanks her target. This extra damage is 1d6 at 1st level, and it increases by 1d6 every two rogue levels thereafter. Should the rogue score a critical hit with a sneak attack, this extra damage is not multiplied.
+			Ranged attacks can count as sneak attacks only if the target is within 30 feet.
+			With a sap (blackjack) or an unarmed strike, a rogue can make a sneak attack that deals nonlethal damage instead of lethal damage. She cannot use a weapon that deals lethal damage to deal nonlethal damage in a sneak attack, not even with the usual -4 penalty.
+			A rogue can sneak attack only living creatures with discernible anatomies-undead, constructs, oozes, plants, and incorporeal creatures lack vital areas to attack. Any creature that is immune to critical hits is not vulnerable to sneak attacks. The rogue must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. A rogue cannot sneak attack while striking a creature with concealment or striking the limbs of a creature whose vitals are beyond reach.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Trap Finding
+		</NAME>
+		<DESCRIPTION>
+			Rogues (and only rogues) can use the Search skill to locate traps when the task has a Difficulty Class higher than 20.
+			Finding a nonmagical trap has a DC of at least 20, or higher if it is well hidden. Finding a magic trap has a DC of 25 + the level of the spell used to create it.
+			Rogues (and only rogues) can use the Disable Device skill to disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
+			A rogue who beats a trap's DC by 10 or more with a Disable Device check can study a trap, figure out how it works, and bypass it (with her party) without disarming it.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Evasion (Rogue)
+		</NAME>
+		<DESCRIPTION>
+			At 2nd level and higher, a rogue can avoid even magical and unusual attacks with great agility. If she makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the rogue is wearing light armor or no armor. A helpless rogue does not gain the benefit of evasion.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Trap Sense
+		</NAME>
+		<DESCRIPTION>
+			At 3rd level, a rogue gains an intuitive sense that alerts her to danger from traps, giving her a  bonus on Reflex saves made to avoid traps and a  dodge bonus to AC against attacks made by traps. These bonuses rise to +2 when the rogue reaches 6th level, to +3 when she reaches 9th level, to +4 when she reaches 12th level, to +5 at 15th, and to +6 at 18th level.
+			Trap sense bonuses gained from multiple classes stack.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Uncanny Dodge
+		</NAME>
+		<DESCRIPTION>
+			Starting at 4th level, a rogue can react to danger before her senses would normally allow her to do so. She retains her Dexterity bonus to AC (if any) even if she is caught flat-footed or struck by an invisible attacker. However, she still loses her Dexterity bonus to AC if immobilized.
+			If a rogue already has uncanny dodge from a different class she automatically gains improved uncanny dodge (see below) instead.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Improved Uncanny Dodge
+		</NAME>
+		<DESCRIPTION>
+			A rogue of 8th level or higher can no longer be flanked.
+			This defense denies another rogue the ability to sneak attack the character by flanking her, unless the attacker has at least four more rogue levels than the target does.
+			If a character already has uncanny dodge (see above) from a second class, the character automatically gains improved uncanny dodge instead, and the levels from the classes that grant uncanny dodge stack to determine the minimum rogue level required to flank the character.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Special Abilities
+		</NAME>
+		<DESCRIPTION>
+			On attaining 10th level, and at every three levels thereafter (13th, 16th, and 19th), a rogue gains a special ability of her choice from among the following options.
+			Crippling Strike, Defensive Roll, Improved Evasion, Opportunist, Skill Mastery, Slippery Mind, or a bonus feat
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Crippling Strike
+		</NAME>
+		<DESCRIPTION>
+			A rogue with this ability can sneak attack opponents with such precision that her blows weaken and hamper them. An opponent damaged by one of her sneak attacks also takes 2 points of Strength damage. Ability points lost to damage return on their own at the rate of 1 point per day for each damaged ability.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Defensive Roll
+		</NAME>
+		<DESCRIPTION>
+			The rogue can roll with a potentially lethal blow to take less damage from it than she otherwise would. Once per day, when she would be reduced to 0 or fewer hit points by damage in combat (from a weapon or other blow, not a spell or special ability), the rogue can attempt to roll with the damage. To use this ability, the rogue must attempt a Reflex saving throw (DC = damage dealt). If the save succeeds, she takes only half damage from the blow if it fails, she takes full damage. She must be aware of the attack and able to react to it in order to execute her defensive roll-if she is denied her Dexterity bonus to AC, she can't use this ability. Since this effect would not normally allow a character to make a Reflex save for half damage, the rogue's evasion ability does not apply to the defensive roll.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Improved Evasion (Rogue)
+		</NAME>
+		<DESCRIPTION>
+			This ability works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks henceforth she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Opportunist
+		</NAME>
+		<DESCRIPTION>
+			Once per round, the rogue can make an attack of opportunity against an opponent who has just been struck for damage in melee by another character. This attack counts as the rogue's attack of opportunity for that round. Even a rogue with the Combat Reflexes feat can't use the opportunist ability more than once per round.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Skill Mastery
+		</NAME>
+		<DESCRIPTION>
+			The rogue becomes so certain in the use of certain skills that she can use them reliably even under adverse conditions.
+			Upon gaining this ability, she selects a number of skills equal to 3 + her Intelligence modifier. When making a skill check with one of these skills, she may take 10 even if stress and distractions would normally prevent her from doing so. A rogue may gain this special ability multiple times, selecting additional skills for it to apply to each time.
+		</DESCRIPTION>
+	</ABILITY>
+	<ABILITY>
+		<NAME>
+			Slippery Mind
+		</NAME>
+		<DESCRIPTION>
+			This ability represents the rogue's ability to wriggle free from magical effects that would otherwise control or compel her. If a rogue with slippery mind is affected by an enchantment spell or effect and fails her saving throw, she can attempt it again 1 round later at the same DC. She gets only this one extra chance to succeed on
+			her saving throw.
 		</DESCRIPTION>
 	</ABILITY>
 </ABILITIES>

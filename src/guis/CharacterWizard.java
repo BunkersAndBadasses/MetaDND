@@ -3,12 +3,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
 
 import core.CharFeat;
 import core.CharItem;
@@ -33,20 +35,12 @@ import entity.WeaponEntity;
  * monk - add wis to ac
  * barbarian illiteracy
  * speak language skill
- *  
  * barbarian: rage per day
- * 
- * languages - make so they can't add a language they already know
- * 
- * FINISH BEFORE WEEKEND
- * 
- * iteration 2 -  weekend!: 
  * 
  * change skill list - numbers in line, headers
  * back button
  * starting at level > 1
  * adding custom skills
- * saving character image
  */
 
 public class CharacterWizard {
@@ -64,9 +58,13 @@ public class CharacterWizard {
 	public boolean cancelOpen = false;
 	private Shell areYouSureShell;
 	public boolean[] wizPageCreated = { false, false, false, false,
-		false, false, false, false, false, false };
+		false, false, false, false};
 	
 	private Composite wizPanel;
+	
+	private StackLayout homeLayout;
+	private Composite homePanel;
+	private Composite home;
 
 	private ArrayList<Composite> wizPages;
 
@@ -83,6 +81,8 @@ public class CharacterWizard {
 		shell.setImage(new Image(display, "images/bnb_logo.gif"));
 		shell.setText("Create New Character");
 		shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
+		FillLayout shellLayout = new FillLayout();
+		shell.setLayout(shellLayout);
 		character = new character();
 		wizPages = new ArrayList<Composite>();
         randomgene = new RNG();
@@ -130,9 +130,9 @@ public class CharacterWizard {
 
 		//////////////////// HOME PANEL SETUP ////////////////////////////
 
-		final Composite homePanel = new Composite(shell, SWT.NONE);
+		homePanel = new Composite(shell, SWT.NONE);
 		homePanel.setBounds(0, 0, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
-		final StackLayout homeLayout = new StackLayout();
+		homeLayout = new StackLayout();
 		homePanel.setLayout(homeLayout);
 
 		//////////////////// HOME SCREEN SETUP ////////////////////////////
@@ -140,7 +140,7 @@ public class CharacterWizard {
 		// this screen is what is first seen when the window opens. 
 		// it contains the buttons that link to the character wizard, the manual
 		// character entering, and the random character generation
-		final Composite home = new Composite(homePanel, SWT.BORDER);
+		home = new Composite(homePanel, SWT.BORDER);
 		home.setLocation(homePanel.getLocation());
 		home.setSize(homePanel.getSize().x, homePanel.getSize().y - 25);
 		GridLayout gridLayout = new GridLayout(4, true);
@@ -177,7 +177,7 @@ public class CharacterWizard {
 		
 		new Label(home, SWT.NONE).setLayoutData(new GridData());
 		
-		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.MULTI | SWT.CENTER);
+		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.CENTER);
 		wizardButton.setText("Interactive Character Wizard");
 		wizardButton.setFont(font2);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -219,7 +219,8 @@ public class CharacterWizard {
 		// set home as the first screen viewed when new character window  is launched
 		homeLayout.topControl = home;
 
-
+		shell.layout();
+		
 		// ///////////////// WIZARD PANEL SETUP ///////////////////////////
 
 		wizPanel = new Composite(homePanel, SWT.BORDER);
@@ -286,8 +287,7 @@ public class CharacterWizard {
 			public void handleEvent(Event event) {
 				// create the first page (creates next pages at runtime)
 				instantiateWizPages();
-				Wiz1 wiz1 = new Wiz1(cw, dev, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT, wizPanel, home,
-						homePanel, wizLayout, homeLayout, wizPages);
+				Wiz1 wiz1 = new Wiz1(cw, dev, GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT, wizPanel, wizLayout,  wizPages);
 				wizs.add(wiz1);
 				wizLayout.topControl = wizPages.get(0);
 				wizPanel.layout();
@@ -478,10 +478,10 @@ public class CharacterWizard {
 		//Random 1 feat
 		CharFeat randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
 		System.out.println("Random feat is " + randomToAdd.getFeat().getName());
-		System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+		System.out.println("Char meets prereqs is " + Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character));
 		boolean done = false;
 		do {
-			if(Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character)){
+			if(Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character)){
 				for(int i = 0; i < character.getFeats().size(); i++) {
 					if (character.getFeats().get(i).getFeat().getName().equals(randomToAdd.getFeat().getName())) {
 						// feat found - check if that feat can be added multiple times
@@ -516,7 +516,7 @@ public class CharacterWizard {
 			else{ 
 					randomToAdd = new CharFeat((FeatEntity) featcol.toArray()[randomgene.GetRandomInteger(0, featcol.size() - 1)]);
 					System.out.println("New random feat is " + randomToAdd.getFeat().getName());
-					System.out.println("Char meets prereqs is " + Wiz6.checkPrerequisites(character.getFeats(), randomToAdd, character));
+					System.out.println("Char meets prereqs is " + Wiz5.checkPrerequisites(character.getFeats(), randomToAdd, character));
 			}
 		}while(!done);
 		System.out.println("------------------------------------");
@@ -702,8 +702,14 @@ public class CharacterWizard {
 						
 						return;
 					}
+					//check for special character
+					if(namebox.getText().matches("[^a-zA-Z0-9 ]"))
+					{
+						namebox.setBackground(display.getSystemColor(SWT.COLOR_RED));
+						return;
+					}
 					character.setName(namebox.getText());
-					Wiz9.saveCharacter(character);
+					Wiz8.saveCharacter(character);
 					newshell.close();
 					shell.dispose();
 				}
@@ -744,7 +750,7 @@ public class CharacterWizard {
 	public Button createNextButton(Composite c) {
 		Button nextButton = new Button(c, SWT.PUSH);
 		nextButton.setText("Next");
-		nextButton.setBounds(GameState.CHARWIZ_WIDTH - 117, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
+		//nextButton.setBounds(GameState.CHARWIZ_WIDTH - 117, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
 		return nextButton;
 	}
 
@@ -783,11 +789,10 @@ public class CharacterWizard {
 	 * @param layout
 	 * @return
 	 */
-	public Button createCancelButton(Composite c, final Composite home,
-			final Composite panel, final StackLayout layout) {
+	public Button createCancelButton(Composite c) {
 		Button cancelButton = new Button(c, SWT.PUSH);
 		cancelButton.setText("Cancel");
-		cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
+		//cancelButton.setBounds(10, GameState.CHARWIZ_HEIGHT - 90, 100, 50);
 		cancelButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				if (cancelOpen) {
@@ -857,9 +862,11 @@ public class CharacterWizard {
 				
 				// if user clicks yes, return to new character home
 				if (cancel) {
+					shell.setSize(GameState.CHARWIZ_WIDTH, GameState.CHARWIZ_HEIGHT);
+					center(shell);
 					wizPageNum = -1;
-					layout.topControl = home;
-					panel.layout();
+					homeLayout.topControl = home;
+					homePanel.layout();
 				}
 			}
 		});
@@ -893,8 +900,8 @@ public class CharacterWizard {
 		wizPages.add(wiz7);
 		final Composite wiz8 = new Composite(wizPanel, SWT.NONE);
 		wizPages.add(wiz8);
-		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
-		wizPages.add(wiz9);
+//		final Composite wiz9 = new Composite(wizPanel, SWT.NONE);
+//		wizPages.add(wiz9);
 	}
 	
 	public CharacterWizard getThis() { return cw; }

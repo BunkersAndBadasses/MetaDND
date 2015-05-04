@@ -25,10 +25,10 @@ import org.w3c.dom.NodeList;
 
 public class SaveCharacter {
 
-    private static Document doc;
-    private static File stocks;
-    private static Document element;
-    private static character c = Main.gameState.currentlyLoadedCharacter;
+    private Document doc;
+    private File stocks;
+    private Element element;
+    private character c = Main.gameState.currentlyLoadedCharacter;
     private String temp;
     String empty; 
     int mt;
@@ -424,10 +424,14 @@ public class SaveCharacter {
                 try {
                     empty  = "";
                     for(int i = 0; i < c.getSkills().size(); i++){
+                        //System.out.println(c.getSkills().get(i).getSkill().getName() + " " + c.getSkills().size());
                         empty += c.getSkills().get(i).getSkill().getName() + ";" + c.getSkills().get(i).getAbilityMod() + ";" 
                                 + c.getSkills().get(i).getMiscMod() + ";" + c.getSkills().get(i).getRank() + "/";
                     }
-                } catch (NullPointerException npe) { empty = " "; }
+                } catch (NullPointerException npe) { 
+                    System.out.println("Npe");
+                    empty = " "; 
+                    }
                 if (c.getSkills().size() == 0) { empty = " "; }
                 appendValue("Skills", empty);
 
@@ -492,9 +496,407 @@ public class SaveCharacter {
 
                 Node node = nodes.item(0);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    element = (Element)node;
+                    try {
+                        empty  = c.getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Name", empty);
+
+                    try {
+                        mt  = c.getLevel();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("Level", mt);
+
+                    try {
+                        mt  = c.getExp();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("Exp", mt);
+
+                    try {
+                        empty  = c.getCharRace().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Race", empty);
+
+                    try {
+                        empty  = c.getAlignment();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Alignment", empty);
+
+                    try {
+                        empty  = c.getDeity();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Deity", empty);
+
+                    try {
+                        mt  = c.getSize();
+                    } catch (NullPointerException npe) { mt = 0;}
+                    writeValue("Size", mt);
+
+                    try {
+                        empty  = c.getAge();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Age", empty);
+
+                    try {
+                        empty  = c.getGender();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Gender", empty);
+
+                    try {
+                        empty  = c.getHeight();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Height", empty);
+
+                    try {
+                        empty  = c.getWeight();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Weight", empty);
+
+                    try {
+                        empty  = c.getEyes();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Eyes", empty);
+
+                    try {
+                        empty  = c.getHair();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Hair", empty);
+
+                    try {
+                        empty  = c.getSkin();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Skin", empty);
+
+                    try {
+                        empty  = c.getDescription();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Description", empty);
+
+                    try {
+                        mt  = c.getSpells().size();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    temp = " ";
+                    if (mt != 0) {
+                        temp = "";
+                        for(int i = 0; i < c.getSpells().size(); i++){
+                            temp += c.getSpells().get(i).getName() + "/";
+                        }
+                    }
+                    writeValue("Spells", temp);
+
+                    try {
+                        mt  = c.getSpecialAbilities().size();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    temp = " ";
+                    if (mt != 0) {
+                        temp = "";
+                        for(int i = 0; i < c.getSpecialAbilities().size(); i++){
+                            temp += c.getSpecialAbilities().get(i).getName() + ";"
+                                    + c.getSpecialAbilities().get(i).getDescription() + "/";
+                        }
+                    }
+                    writeValue("SpecialAbilities", temp);
+
+                    try {
+                        mt  = c.getPrepSpells().size();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    temp = " ";
+                    if (mt != 0) {
+                        temp = "";
+                        for(int i = 0; i < c.getPrepSpells().size(); i++){
+                            temp += c.getPrepSpells().get(i).getName() + "/";
+                        }
+                    }
+                    writeValue("PreparedSpells", temp);
+
+                    try {
+                        empty = "";
+                        for (int i = 0; i < c.getAC().length; i++)
+                            empty += c.getAC()[i] + "/";
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("AC", empty);
+
+                    try {
+                        mt  = c.getTouchAC();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("TouchAC", mt);
+
+                    try {
+                        mt  = c.getFlatFootedAC();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("FlatFootedAC", mt);
+
+
+                    try {
+                        empty  = "";
+                        for (int i = 0; i < c.getInitMod().length; i++)
+                            empty +=  c.getInitMod()[i]  + "/";
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Init", empty);
+
+                    try {
+                        empty = "";
+                        for (int i = 0; i < c.getFortSave().length; i++)
+                            empty += c.getFortSave()[i] + "/";
+
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Fortitude",empty);
+
+                    try {
+                        empty  = "";
+                        for (int i = 0; i < c.getReflexSave().length; i++)
+                            empty += c.getReflexSave()[i] + "/";
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Reflex", empty);
+
+                    try {
+                        empty  = "";
+                        for (int i = 0; i < c.getWillSave().length; i++)
+                            empty += c.getWillSave()[i] + "/";
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Will", empty);
+
+                    try {
+                        mt  = c.getBaseAttackBonus();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("BaseAttack", mt);
+
+                    try {
+                        mt  = c.getSpellResistance();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("SpellResistance", mt);
+
+                    try {
+                        mt  = c.getSpeed();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("Speed", mt);
+
+                    try {
+                        empty  = "";
+                        for (int i = 0; i < c.getGrappleMod().length; i++)
+                            empty += c.getGrappleMod()[i]  + "/";
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Grapple", empty);
+
+                    try {
+                        mt  = c.getDamageReduction();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("DamageReduction", mt);
+
+                    try {
+                        empty  = "";
+                        for (int i = 0; i < c.getClericDomains().length; i++ ) {
+                            empty += c.getClericDomains()[i] + "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("ClericDomains", empty);
+
+                    try {
+                        empty  = c.getDruidAnimalCompanion();
+                        if(empty == null) { empty = " "; }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("DruidCompanion", empty);
+
+                    try {
+                        empty  = c.getRangerFavoredEnemy();
+                        if(empty == null) { empty = " "; }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("RangerFavoredEnemy", empty);
+
+                    try {
+                        empty  = c.getFamiliar();
+                        if(empty == null) { empty = " "; }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Familiar", empty);
+
+                    try {
+                        empty  = c.getWizardSpecialtySchool();
+                        if(empty == null) { empty = " "; }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("WizardSpecialty", empty);
+
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getWizardProhibitedSchools().length; i++){
+                            empty += c.getWizardProhibitedSchools()[i]+ "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("WizardProhibitedSchools", empty);
+
+                    try {
+                        empty  = c.getImage();
+                        if(empty == null) { empty = " "; }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Image", empty);
+
+                    try {
+                        empty  = c.getCharClass().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Class", empty);
+
+                    try {
+                        mt  = c.getSecLevel();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("SecLevel", mt);
+
+                    try {
+                        empty  = c.getSecClass().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("SecClass", empty);
+
+                    try {
+                        writeValue("STR", c.getAbilityScores()[0]);
+                        writeValue("DEX", c.getAbilityScores()[1]);
+                        writeValue("CON", c.getAbilityScores()[2]);
+                        writeValue("INT", c.getAbilityScores()[3]);
+                        writeValue("WIS", c.getAbilityScores()[4]);
+                        writeValue("CHA", c.getAbilityScores()[5]);
+                    } catch (NullPointerException npe) {
+                        writeValue("STR", 0);
+                        writeValue("DEX", 0);
+                        writeValue("CON", 0);
+                        writeValue("INT", 0);
+                        writeValue("WIS", 0);
+                        writeValue("CHA", 0);
+                    }
+
+                    try {
+                        mt  = c.getHitPoints();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("HP", mt);
+
+                    try {
+                        empty  = c.getPrimaryWeapon().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("PrimaryWeapon", empty);
+
+                    try {
+                        empty  = c.getSecondaryWeapon().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("SecondaryWeapon", empty);
+
+                    try {
+                        empty  = c.getCurrArmor().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Armor", empty);
+
+                    try {
+                        empty  = c.getCurrShield().getName();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Shield", empty);
+
+                    try {
+                        empty  = c.getNotes();
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Notes", empty);
+
+                    try {
+                        mt  = c.getDamageTaken();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("DamageTaken", mt);
+
+                    try {
+                        mt  = c.getPP();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("PP", mt);
+
+                    try {
+                        mt  = c.getGP();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("GP", mt);
+
+                    try {
+                        mt  = c.getSP();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("SP", mt);
+
+                    try {
+                        mt  = c.getCP();
+                    } catch (NullPointerException npe) { mt = 0; }
+                    writeValue("CP", mt);
+
+                    // itemname;count
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getItems().size(); i++){
+                            empty += c.getItems().get(i).getName() + ";" + c.getItems().get(i).getCount() + "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    if (c.getItems().size() == 0) { empty = " "; }
+                    writeValue("Items", empty);
+
+
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getLanguages().size(); i++){
+                            empty += c.getLanguages().get(i) + "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    writeValue("Languages", empty);
+
+                    // weaponname;quantity
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getWeapons().size(); i++){
+                            empty += c.getWeapons().get(i).getName() + ";" +  c.getWeapons().get(i).getCount() + "/";
+
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    if (c.getWeapons().size() == 0) { empty = " "; }
+                    writeValue("Weapons", empty); 
+
+                    // armorname;quantity
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getArmor().size(); i++){
+                            empty += c.getArmor().get(i).getName()  + ";"+ c.getArmor().get(i).getCount() + "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    if (c.getArmor().size() == 0) { empty = " "; }
+                    writeValue("Armors", empty); 
+
+                    // skillname;abilitymod;miscmod;rank 
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getSkills().size(); i++){
+                            //System.out.println(c.getSkills().get(i).getSkill().getName() + " " + c.getSkills().size());
+                            empty += c.getSkills().get(i).getSkill().getName() + ";" + c.getSkills().get(i).getAbilityMod() + ";" 
+                                    + c.getSkills().get(i).getMiscMod() + ";" + c.getSkills().get(i).getRank() + "/";
+                        }
+                    } catch (NullPointerException npe) { 
+                        System.out.println("Npe");
+                        empty = " "; 
+                        }
+                    if (c.getSkills().size() == 0) { empty = " "; }
+                    writeValue("Skills", empty);
+
+
+                    // shieldname;quantity
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getShields().size(); i++){
+                            empty += c.getShields().get(i).getName() + ";" + c.getShields().get(i).getCount() +  "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    if (c.getShields().size() == 0) { empty = " "; }
+                    writeValue("Shields", empty);
+
+
+                    // featName;special;count
+                    try {
+                        empty  = "";
+                        for(int i = 0; i < c.getFeats().size(); i++){
+                            empty += c.getFeats().get(i).getFeat().getName();
+                            if (c.getFeats().get(i).getSpecial() != null)
+                                empty += ";" + c.getFeats().get(i).getSpecial(); 
+                            empty += ";" + c.getFeats().get(i).getCount() + "/";
+                        }
+                    } catch (NullPointerException npe) { empty = " "; }
+                    if (c.getFeats().size() == 0) { empty = " "; }
+                    writeValue("Feats", empty); //*/
                     
-                    empty = c.getName();
-                    writeValue("Name", c.getName());
+                    /*empty = c.getName(); //TODO
+                    writeValue("Name", c.getName()); //TODO end
                     
                     mt = c.getLevel();
                     writeValue("Level", c.getLevel());
@@ -693,7 +1095,7 @@ public class SaveCharacter {
                             temp += ":" + c.getFeats().get(i).getSpecial(); 
                         temp += ";" + c.getFeats().get(i).getCount() + "/";
                     }
-                    writeValue("Feats", temp);
+                    writeValue("Feats", temp);*/
                 }
 
             }
@@ -705,10 +1107,10 @@ public class SaveCharacter {
     }
 
     public SaveCharacter(Boolean New) {
-        this(New, c.getFilename());
+        this(New, Main.gameState.currentlyLoadedCharacter.getFilename());
     }
 
-    private static boolean writeValue(String tag, String value){
+    private boolean writeValue(String tag, String value){
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         node.setTextContent(value);
@@ -726,11 +1128,18 @@ public class SaveCharacter {
         return true;
     }
 
-    private static boolean writeValue(String tag, int value) {
+    private boolean writeValue(String tag, int value) {
         return writeValue(tag, Integer.toString(value));
     }
 
     private boolean appendValue(String tag, String value) {
+        value = value.replaceAll("&", "&amp;");
+        value = value.replaceAll("<", "&lt;");
+        value = value.replaceAll(">", "&gt;");
+        value = value.replaceAll("'", "&apos;");
+        value = value.replaceAll("\"", "&quot;");
+        
+        
         fo = "<" + tag + ">" + value + "</" + tag + ">\n";
         try {
             bw.write(fo);

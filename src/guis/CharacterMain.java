@@ -2,6 +2,7 @@ package guis;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,6 +23,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
@@ -31,11 +33,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import core.CharFeat;
+import core.CharItem;
+import core.CharSkill;
 import core.DungeonConstants;
 import core.GameState;
 import core.LoadCharacter;
 import core.Main;
+import core.SaveCharacter;
 import core.character;
+import entity.AbilityEntity;
+import entity.ArmorEntity;
+import entity.ItemEntity;
+import entity.SkillEntity;
+import entity.WeaponEntity;
 
 
 public class CharacterMain {
@@ -68,14 +79,14 @@ public class CharacterMain {
     private int initVal;
     private String priWeapon;
     private String secWeapon;
-    private String[] items;
-    private String[] languages;
-    private String[] weapons;
-    private String[] armors;
-    private String[] skills;
-    private String[] spells;
-    private String[] shields;
-    private String[] feats;
+    private ArrayList<String> items;
+    private ArrayList<String> languages;
+    private ArrayList<String> weapons;
+    private ArrayList<String> armors;
+    private ArrayList<String> skills;
+    private ArrayList<String> specialAbilities;
+    private ArrayList<String> shields;
+    private ArrayList<String> feats;
     private String notes;
     private String imagePath;
     private String dmgTaken;
@@ -94,6 +105,39 @@ public class CharacterMain {
     private character c;
     private String [] priVals = new String[6];
     private String [] secVals = new String[6];
+    private String[] strArr;
+    private Combo shieldCombo;
+    private Combo armorCombo;
+    private Combo priCombo;
+    private Combo secCombo;
+    private Label secLabel;
+    private Label secBonusLabel;
+    private Label secDamageLabel;
+    private Label secRangeLabel;
+    private Label secCriticalLabel;
+    private Label secTypeLabel;
+    private Label initLabel;
+    private Label speedLabel;
+    private Label armorLabel;
+    private Label acLabel;
+    private Label ffLabel;
+    private Label touchLabel;
+    private Label shieldLabel;
+    private Label reflexLabel;
+    private Label fortLabel;
+    private Label willLabel;
+    private Label priBonusLabel;
+    private Label priDamageLabel;
+    private Label priRangeLabel;
+    private Label priCriticalLabel;
+    private Label priTypeLabel;
+    private boolean boo;
+    private Combo skillCombo;
+    private Combo specAbilCombo;
+    private Combo featCombo;
+    private Combo languageCombo;
+    private Combo inventoryCombo;
+    private Label priLabel;
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
@@ -184,7 +228,7 @@ public class CharacterMain {
         intLabel.setLayoutData(statGD);
 
         Label secClassLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        secClassLabel.setText("Sec Class: " + charSecClass);
+        if (!charSecClass.equals("")) secClassLabel.setText("Sec Class: " + charSecClass);
         secClassLabel.setLayoutData(statGD);
 
         //Composite for damage
@@ -237,10 +281,13 @@ public class CharacterMain {
         chaLabel.setLayoutData(statGD);
 
         Label levelLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        levelLabel.setText("Level: " + charLevel + ", " + charSecLevel);
+        bonus = "";
+        bonus += "Level: " + charLevel;
+        if (charSecLevel != 0)bonus += "," + charSecLevel;
+        levelLabel.setText(bonus);
         levelLabel.setLayoutData(statGD);
 
-        Label speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         speedLabel.setText("Speed: " + speedVal);
         speedLabel.setLayoutData(statGD);
 
@@ -254,36 +301,28 @@ public class CharacterMain {
         a.setLayoutData(statGD);
 
         // Armor, shields, and saving throws
-        Label armorLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        armorLabel.setText(armorName);
+        armorLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         armorLabel.setLayoutData(statGD);
 
-        Label acLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        acLabel.setText("AC: " + acVal);
+        acLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         acLabel.setLayoutData(statGD);
 
-        Label ffLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        ffLabel.setText("Flat Footed: " + ffVal);
+        ffLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         ffLabel.setLayoutData(statGD);
 
-        Label touchLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        touchLabel.setText("Touch AC: " + touchVal);
+        touchLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         touchLabel.setLayoutData(statGD);
 
-        Label shieldLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        shieldLabel.setText(shieldName);
+        shieldLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         shieldLabel.setLayoutData(statGD);
 
-        Label reflexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        reflexLabel.setText("Reflex: " + refVal);
+        reflexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         reflexLabel.setLayoutData(statGD);
 
-        Label fortLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        fortLabel.setText("Fortitude: " + fortVal);
+        fortLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         fortLabel.setLayoutData(statGD);
 
-        Label willLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        willLabel.setText("Will: " + willVal);
+        willLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         willLabel.setLayoutData(statGD);
 
 
@@ -305,66 +344,43 @@ public class CharacterMain {
         weapGD.widthHint = 200;
         weapGD.heightHint = 17;
 
-        Label priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priLabel.setText(priWeapon);
+        priLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priLabel.setLayoutData(weapGD);
-        
-        boolean boo = false;
-        if (!priWeapon.equals("")) {
-            boo = true;
-            priVals[0] = "" + c.getBaseAttackBonus();
-            priVals[1] = c.getPrimaryWeapon().getDamageMedium();
-            priVals[2] = c.getPrimaryWeapon().getRange();
-            int i = c.getPrimaryWeapon().getCriticalRange()[0];
-            priVals[3] = "";
-            if (i != 0) priVals[3] = "" + i + "-20";
-            priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
-            priVals[5] = c.getPrimaryWeapon().getDamageType();
-        }
 
-        Label priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priBonusLabel.setText("Bonus: " + (boo ? priVals[0] : ""));
+
+
+        priBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priBonusLabel.setLayoutData(weapGD);
 
-        Label priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priDamageLabel.setText("Damage: " + (boo ? priVals[1] : ""));
+        priDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priDamageLabel.setLayoutData(weapGD);
 
-        Label priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priRangeLabel.setText("Range: " + (boo ? priVals[2] : ""));
+        priRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priRangeLabel.setLayoutData(weapGD);
 
-        Label priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priCriticalLabel.setText("Crit: " + (boo ? priVals[3] + "  x" + priVals[4]: ""));
+        priCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priCriticalLabel.setLayoutData(weapGD);
 
-        Label priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        priTypeLabel.setText("Type: " + (boo ? priVals[5] : ""));
+        priTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         priTypeLabel.setLayoutData(weapGD);
 
         /////////////Secondary weapon box /////////
-        Label secLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secLabel.setText(secWeapon);
+        secLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secLabel.setLayoutData(weapGD);
 
-        Label secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secBonusLabel.setText("Bonus: ");
+        secBonusLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secBonusLabel.setLayoutData(weapGD);
 
-        Label secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secDamageLabel.setText("Damage: ");
+        secDamageLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secDamageLabel.setLayoutData(weapGD);
 
-        Label secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secRangeLabel.setText("Range: ");
+        secRangeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secRangeLabel.setLayoutData(weapGD);
 
-        Label secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secCriticalLabel.setText("Crit: ");
+        secCriticalLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secCriticalLabel.setLayoutData(weapGD);
 
-        Label secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
-        secTypeLabel.setText("Type: ");
+        secTypeLabel = new Label(weap1Comp, SWT.BORDER | SWT.CENTER);
         secTypeLabel.setLayoutData(weapGD);
         weap1Comp.pack();
 
@@ -415,36 +431,19 @@ public class CharacterMain {
 
 
 
-        Combo priCombo = new Combo(mainComp, SWT.CENTER);
-        priCombo.setItems(weapons);
-        priCombo.add("Primary", 0);
-        priCombo.add("None", 1);
-        priCombo.select(0);
+        priCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         priCombo.setLayoutData(statGD);
 
-        Combo secCombo = new Combo(mainComp, SWT.CENTER);
-        secCombo.setItems(weapons);
-        secCombo.add("Secondary", 0);
-        secCombo.add("None", 1);
-        secCombo.select(0);
+        secCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         secCombo.setLayoutData(statGD);
 
-        Combo armorCombo = new Combo(mainComp, SWT.CENTER);
-        armorCombo.setItems(armors);
-        armorCombo.add("Armor", 0);
-        armorCombo.add("None", 1);
-        armorCombo.select(0);
+        armorCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         armorCombo.setLayoutData(statGD);
 
-        Combo shieldCombo = new Combo(mainComp, SWT.CENTER);
-        shieldCombo.setItems(shields);
-        shieldCombo.add("Shield", 0);
-        shieldCombo.add("None", 1);
-        shieldCombo.select(0);
+        shieldCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         shieldCombo.setLayoutData(statGD);
 
-        Label initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        initLabel.setText("Initiative: " + initVal);
+        initLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         initLabel.setLayoutData(statGD);
 
 
@@ -464,77 +463,69 @@ public class CharacterMain {
         change.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+
                 if (shieldCombo.getSelectionIndex() == 0) {
 
                 } else if (shieldCombo.getSelectionIndex() == 1) {
-                    shieldName = " ";
+                    shieldName = "";
+                    c.setCurrShield(null);
                 }
                 else {
                     shieldName = shieldCombo.getText();
+                    c.setCurrShield((ItemEntity)Main.gameState.armor.get(shieldName));
                 }
 
                 if (armorCombo.getSelectionIndex() == 0) {
 
                 } else if (armorCombo.getSelectionIndex() == 1) {
-                    armorName = " ";
+                    armorName = "";
+                    c.setCurrArmor(null);
                 }
                 else {
                     armorName = armorCombo.getText();
+                    c.setCurrArmor((ItemEntity)Main.gameState.armor.get(armorName));
                 }
 
                 if (priCombo.getSelectionIndex() == 0) {
 
                 } else if (priCombo.getSelectionIndex() == 1) {
-                    priWeapon = " ";
+                    priWeapon = "";
+                    c.setPrimaryWeapon(null);
                 }
                 else {
                     priWeapon = priCombo.getText();
+                    c.setPrimaryWeapon((WeaponEntity) Main.gameState.weapons.get(priWeapon));
                 }
 
 
                 if (secCombo.getSelectionIndex() == 0) {
 
                 } else if (secCombo.getSelectionIndex() == 1) {
-                    secWeapon = " ";
+                    secWeapon = "";
+                    c.setSecondaryWeapon(null);
                 }
                 else {
                     secWeapon = secCombo.getText();
+                    c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(secWeapon));
                 }
-                priLabel.setText(priWeapon);
-                secLabel.setText(secWeapon);
-                armorLabel.setText(armorName);
-                shieldLabel.setText(shieldName);
+
+                refresh();
             }
         }); 
 
-        Combo skillCombo = new Combo(mainComp, SWT.CENTER);
-        skillCombo.setItems(skills);
-        skillCombo.add("Skills", 0);
-        skillCombo.select(0);
+        skillCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         skillCombo.setLayoutData(statGD);
 
-        Combo spellCombo = new Combo(mainComp, SWT.CENTER);
-        spellCombo.setItems(spells);
-        spellCombo.add("Spells", 0);
-        spellCombo.select(0);
-        spellCombo.setLayoutData(statGD);
+        specAbilCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
+        specAbilCombo.setLayoutData(statGD);
 
-        Combo featCombo = new Combo(mainComp, SWT.CENTER);
-        featCombo.setItems(feats);
-        featCombo.add("Feats", 0);
-        featCombo.select(0);
+        featCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         featCombo.setLayoutData(statGD);
 
-        Combo languageCombo = new Combo(mainComp, SWT.CENTER);
-        languageCombo.setItems(languages);
-        languageCombo.add("Languages", 0);
-        languageCombo.select(0);
+        languageCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         languageCombo.setLayoutData(statGD);
 
-        Combo inventoryCombo = new Combo(mainComp, SWT.CENTER);
-        inventoryCombo.setItems(items);
-        inventoryCombo.add("Inventory", 0);;
-        inventoryCombo.select(0);
+        inventoryCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         inventoryCombo.setLayoutData(statGD);
 
         new Label(mainComp, SWT.NONE);
@@ -545,7 +536,7 @@ public class CharacterMain {
         spellButt.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                SpellGUI.main(args[0]);
+                new SpellGUI(args[0]);
             }
         }); 
 
@@ -652,7 +643,32 @@ public class CharacterMain {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 notes = notesText.getText();
-                writeValue("Notes", notes, element);
+                boolean failed = false;
+                exp = expText.getText();
+                gp = gpText.getText();
+                pp = ppText.getText();
+                sp = spText.getText();
+                cp = cpText.getText();
+                dmgTaken = dmgText.getText();
+                try {
+                    c.setNotes(notes);
+                    c.setExp(Integer.parseInt(exp));
+                    c.setPP(Integer.parseInt(pp));
+                    c.setGP(Integer.parseInt(gp));
+                    c.setSP(Integer.parseInt(sp));
+                    c.setCP(Integer.parseInt(cp));
+                    c.setDamageTaken(Integer.parseInt(dmgTaken));
+                } catch (Exception ex) {
+                    failed = true;
+                }
+                if(!failed) {
+                    new SaveCharacter(false);
+                }
+                else {
+                    //TODO notify failure
+                }
+                
+                /*writeValue("Notes", notes, element);
                 String damageTaken = dmgText.getText();
                 writeValue("DamageTaken", damageTaken, element);
                 writeValue("Shield", shieldName, element);
@@ -663,9 +679,11 @@ public class CharacterMain {
                 writeValue("GP", gpText.getText(), element);
                 writeValue("SP", spText.getText(), element);
                 writeValue("CP", cpText.getText(), element);
-                writeValue("Exp", expText.getText(), element);
+                writeValue("Exp", expText.getText(), element);*/
             }
         });
+
+        refresh();
 
         //new Label(mainComp, SWT.NONE);
         mainComp.layout();
@@ -694,7 +712,6 @@ public class CharacterMain {
 
 
     private void getPlayerInfo(String pathName) {
-        // TODO Auto-generated method stub
         filename = pathName;
         new LoadCharacter(pathName, c);
         charName = c.getName();
@@ -702,7 +719,7 @@ public class CharacterMain {
         charLevel = c.getLevel();
         charClass = c.getCharClass().getName();
         charSecLevel = c.getSecLevel();
-        charSecClass = " ";
+        charSecClass = "";
         if(c.getSecClass() != null) {
             charSecClass = c.getSecClass().getName();
         }
@@ -713,8 +730,104 @@ public class CharacterMain {
         intVal = c.getAbilityScores()[3];
         wisVal = c.getAbilityScores()[4];
         chaVal = c.getAbilityScores()[5];
+        armorName = "";
+        if (c.getCurrArmor() != null) {
+            armorName = c.getCurrArmor().getName();
+            ArmorEntity ae = (ArmorEntity) c.getCurrArmor();
+            c.setACArmorBonus(ae.getArmorBonus());
+        }
+        shieldName = "";
+        if (c.getCurrShield() != null ) {
+            shieldName = c.getCurrShield().getName();
+            ArmorEntity ae = (ArmorEntity) c.getCurrShield();
+            c.setACShieldBonus(ae.getArmorBonus());
+        }
+
+        acVal = 0;
+        for (int i = 0; i < c.getAC().length; i++) {
+            acVal += c.getAC()[i];
+        }
+        ffVal = c.getTouchAC();
+        touchVal = c.getTouchAC();
+        willVal = c.getWillSaveTotal();
+        refVal = c.getReflexSaveTotal();
+        fortVal = c.getFortSaveTotal();
+        initVal = c.getInitModTotal();
+
+        notes = c.getNotes();
+        dmgTaken = "" + c.getDamageTaken(); //TODO
+        pp = "" + c.getPP();//TODO
+        gp = "" + c.getGP();//TODO
+        sp = "" + c.getSP();//TODO
+        cp = "" + c.getCP();//TODO
+        exp = "" + c.getExp(); //TODO
+
+        items = new ArrayList<String>();
+        for(int i = 0; i < c.getItems().size(); i ++) {
+            CharItem ci = c.getItems().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+        }
+
+        languages = new ArrayList<String>();
+        for(int i = 0; i < c.getLanguages().size(); i ++) {
+            String s = c.getLanguages().get(i);
+            languages.add(s);
+        }
+
+        weapons = new ArrayList<String>();
+        for(int i = 0; i < c.getWeapons().size(); i ++) {
+            CharItem ci = c.getWeapons().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            weapons.add(ci.getName());
+        }
+
+        armors = new ArrayList<String>();
+        for(int i = 0; i < c.getArmor().size(); i ++) {
+            CharItem ci = c.getArmor().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            armors.add(ci.getName());
+        }
+
+        shields = new ArrayList<String>();
+        for(int i = 0; i < c.getShields().size(); i ++) {
+            CharItem ci = c.getShields().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            shields.add(ci.getName());
+        }
+
+        skills = new ArrayList<String>();
+        for(int i = 0; i < c.getSkills().size(); i ++) {
+            CharSkill cs = c.getSkills().get(i);
+            skills.add(cs.getSkill().getName() + " (" + cs.getTotal()+ ")");
+        }
+
+        specialAbilities = new ArrayList<String>();
+        for(int i = 0; i < c.getSpecialAbilities().size(); i ++) {
+            AbilityEntity ae = c.getSpecialAbilities().get(i);
+            specialAbilities.add(ae.getName());
+        }
+
+        feats = new ArrayList<String>();
+        for(int i = 0; i < c.getFeats().size(); i ++) {
+            CharFeat cf = c.getFeats().get(i);
+            int count = cf.getCount();
+            String addOn = "";
+            if (cf.getSpecial() != null && !cf.getSpecial().equals("")){ 
+                addOn += ": " + cf.getSpecial();
+            }
+            if ( count != 1) addOn += " (" + count + ")";
+            feats.add(cf.getFeat().getName() + addOn);
+        }
+        items.sort(String.CASE_INSENSITIVE_ORDER);
+        languages.sort(String.CASE_INSENSITIVE_ORDER);
+        weapons.sort(String.CASE_INSENSITIVE_ORDER);
+        armors.sort(String.CASE_INSENSITIVE_ORDER);
+        shields.sort(String.CASE_INSENSITIVE_ORDER);
+        skills.sort(String.CASE_INSENSITIVE_ORDER);
+        feats.sort(String.CASE_INSENSITIVE_ORDER);
 
         speedVal = c.getSpeed();
+        hpVal = c.getHitPoints();
         priWeapon = "";
         if(c.getPrimaryWeapon() != null) {
             priWeapon = c.getPrimaryWeapon().getName();
@@ -737,61 +850,15 @@ public class CharacterMain {
 
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 element = (Element) node;
-                //imagePath = getValue("Image", element);
-                //charName = getValue("Name", element);
-                //charLevel = Integer.parseInt(getValue("Level", element));
-                //charClass = getValue("Class", element);
-                /*charSecLevel = Integer.parseInt(getValue("SecLevel", element));
-                charSecClass = getValue("SecClass", element);
-                strVal = Integer.parseInt(getValue("STR", element));
-                dexVal = Integer.parseInt(getValue("DEX", element));
-                conVal = Integer.parseInt(getValue("CON", element));
-                intVal = Integer.parseInt(getValue("INT", element));
-                wisVal = Integer.parseInt(getValue("WIS", element));
-                chaVal = Integer.parseInt(getValue("CHA", element));
-                hpVal = Integer.parseInt(getValue("HP", element));
-                speedVal = Integer.parseInt(getValue("Speed", element));
-                priWeapon = getValue("PrimaryWeapon", element);
-                secWeapon =  getValue("SecondaryWeapon", element);*/
-                armorName = getValue("Armor", element);
-                shieldName  = getValue("Shield", element);
-                notes = getValue("Notes", element);
-                dmgTaken = getValue("DamageTaken", element);
-                pp = getValue("PP", element);
-                gp = getValue("GP", element);
-                sp = getValue("SP", element);
-                cp = getValue("CP", element);
-                exp = getValue("Exp", element);
-
-                String raw = getValue("Items", element);
-                items = raw.split(delims);
-
-                raw = getValue("Languages", element);
-                languages = raw.split(delims);
-
-                raw = getValue("Weapons", element);
-                weapons = raw.split(delims);
-
-                raw = getValue("Armors", element);
-                armors = raw.split(delims);
-
-                raw = getValue("Skills", element);
-                skills = raw.split(delims);
-
-                raw = getValue("Spells", element);
-                spells = raw.split(delims);
-
-                raw = getValue("Shields", element);
-                shields = raw.split(delims);
-
-                raw = getValue("Feats", element);
-                feats = raw.split(delims);
 
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        // TODO
+        //new test(display);
     }
 
 
@@ -803,7 +870,7 @@ public class CharacterMain {
         try {
             str = node.getNodeValue();
         } catch (NullPointerException n) {
-            str = "0"; // TODO looky here
+            str = "0";
         }
 
         return str;
@@ -821,12 +888,192 @@ public class CharacterMain {
             StreamResult result = new StreamResult(stocks.getAbsolutePath());
             transformer.transform(source, result);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return true;
     }
+
+    private void refresh() {
+        //TODO
+        //m_shell.setText("Character Page: " + charName);
+        acVal = c.getACTotal();
+        ffVal = c.getTouchAC();
+        touchVal = c.getTouchAC();
+
+        items = new ArrayList<String>();
+        for(int i = 0; i < c.getItems().size(); i ++) {
+            CharItem ci = c.getItems().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+        }
+
+        languages = new ArrayList<String>();
+        for(int i = 0; i < c.getLanguages().size(); i ++) {
+            String s = c.getLanguages().get(i);
+            languages.add(s);
+        }
+
+        weapons = new ArrayList<String>();
+        for(int i = 0; i < c.getWeapons().size(); i ++) {
+            CharItem ci = c.getWeapons().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            weapons.add(ci.getName());
+        }
+
+        armors = new ArrayList<String>();
+        for(int i = 0; i < c.getArmor().size(); i ++) {
+            CharItem ci = c.getArmor().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            armors.add(ci.getName());
+        }
+
+        shields = new ArrayList<String>();
+        for(int i = 0; i < c.getShields().size(); i ++) {
+            CharItem ci = c.getShields().get(i);
+            items.add(ci.getName() + " (" + ci.getCount() + ")");
+            shields.add(ci.getName());
+        }
+
+        skills = new ArrayList<String>();
+        for(int i = 0; i < c.getSkills().size(); i ++) {
+            CharSkill cs = c.getSkills().get(i);
+            skills.add(cs.getSkill().getName() + " (" + cs.getTotal()+ ")");
+        }
+
+        specialAbilities = new ArrayList<String>();
+        for(int i = 0; i < c.getSpecialAbilities().size(); i ++) {
+            AbilityEntity ae = c.getSpecialAbilities().get(i);
+            specialAbilities.add(ae.getName());
+        }
+
+        feats = new ArrayList<String>();
+        for(int i = 0; i < c.getFeats().size(); i ++) {
+            CharFeat cf = c.getFeats().get(i);
+            int count = cf.getCount();
+            String addOn = "";
+            if (cf.getSpecial() != null && !cf.getSpecial().equals("")){ 
+                addOn += ": " + cf.getSpecial();
+            }
+            if ( count != 1) addOn += " (" + count + ")";
+            feats.add(cf.getFeat().getName() + addOn);
+        }
+        items.sort(String.CASE_INSENSITIVE_ORDER);
+        languages.sort(String.CASE_INSENSITIVE_ORDER);
+        weapons.sort(String.CASE_INSENSITIVE_ORDER);
+        armors.sort(String.CASE_INSENSITIVE_ORDER);
+        shields.sort(String.CASE_INSENSITIVE_ORDER);
+        skills.sort(String.CASE_INSENSITIVE_ORDER);
+        feats.sort(String.CASE_INSENSITIVE_ORDER);
+
+
+        armorLabel.setText(armorName);
+
+        acLabel.setText("AC: " + acVal);
+        ffLabel.setText("Flat Footed: " + ffVal);
+        touchLabel.setText("Touch AC: " + touchVal);
+        shieldLabel.setText(shieldName);
+        reflexLabel.setText("Reflex: " + refVal);
+        fortLabel.setText("Fortitude: " + fortVal);
+        willLabel.setText("Will: " + willVal);
+
+        boo = false;
+        if (!priWeapon.equals("")) {
+            boo = true;
+            priVals[0] = "" + c.getBaseAttackBonus();
+            priVals[1] = c.getPrimaryWeapon().getDamageMedium();
+            priVals[2] = c.getPrimaryWeapon().getRange();
+            int i = c.getPrimaryWeapon().getCriticalRange()[0];
+            priVals[3] = "";
+            if (i != 0) priVals[3] = "" + i + "-20";
+            priVals[4] = "" + c.getPrimaryWeapon().getCriticalMultiplier();
+            priVals[5] = c.getPrimaryWeapon().getDamageType();
+        }
+
+        priBonusLabel.setText("Bonus: " + (boo ? priVals[0] : ""));
+        priDamageLabel.setText("Damage: " + (boo ? priVals[1] : ""));
+        priRangeLabel.setText("Range: " + (boo ? priVals[2] : ""));
+        priCriticalLabel.setText("Crit: " + (boo ? priVals[3] + "  x" + priVals[4]: ""));
+        priTypeLabel.setText("Type: " + (boo ? priVals[5] : ""));
+
+        boo = false;
+        if (!secWeapon.equals("")) {
+            boo = true;
+            secVals[0] = "" + c.getBaseAttackBonus();
+            secVals[1] = c.getSecondaryWeapon().getDamageMedium();
+            secVals[2] = c.getSecondaryWeapon().getRange();
+            int i = c.getSecondaryWeapon().getCriticalRange()[0];
+            secVals[3] = "";
+            if (i != 0) secVals[3] = "" + i + "-20";
+            secVals[4] = "" + c.getSecondaryWeapon().getCriticalMultiplier();
+            secVals[5] = c.getSecondaryWeapon().getDamageType();
+        }
+
+        secLabel.setText(secWeapon);
+        secBonusLabel.setText("Bonus: " + (boo ? secVals[0] : ""));
+        secDamageLabel.setText("Damage: " + (boo ? secVals[1] : ""));
+        secRangeLabel.setText("Range: " + (boo ? secVals[2] : ""));
+        secCriticalLabel.setText("Crit: " + (boo ? secVals[3] + "  x" + secVals[4]: ""));
+        secTypeLabel.setText("Type: " + (boo ? secVals[5] : ""));
+
+        priLabel.setText(priWeapon);
+        secLabel.setText(secWeapon);
+        armorLabel.setText(armorName);
+        shieldLabel.setText(shieldName);
+
+
+        strArr = new String[weapons.size()];
+        priCombo.setItems(weapons.toArray(strArr));
+        priCombo.add("Primary", 0);
+        priCombo.add("None", 1);
+        priCombo.select(0);
+
+        strArr = new String[weapons.size()];
+        secCombo.setItems(weapons.toArray(strArr));
+        secCombo.add("Secondary", 0);
+        secCombo.add("None", 1);
+        secCombo.select(0);
+
+        strArr = new String[armors.size()];
+        armorCombo.setItems(armors.toArray(strArr));
+        armorCombo.add("Armor", 0);
+        armorCombo.add("None", 1);
+        armorCombo.select(0);
+
+        strArr = new String[shields.size()];
+        shieldCombo.setItems(shields.toArray(strArr));
+        shieldCombo.add("Shield", 0);
+        shieldCombo.add("None", 1);
+        shieldCombo.select(0);
+
+        initLabel.setText("Initiative: " + initVal);
+
+        strArr = new String[skills.size()];
+        skillCombo.setItems(skills.toArray(strArr));
+        skillCombo.add("Skills", 0);
+        skillCombo.select(0);
+
+        strArr = new String[specialAbilities.size()];
+        specAbilCombo.setItems(specialAbilities.toArray(strArr));
+        specAbilCombo.add("Special Abilities", 0);
+        specAbilCombo.select(0);
+
+        strArr = new String[feats.size()];
+        featCombo.setItems(feats.toArray(strArr));
+        featCombo.add("Feats", 0);
+        featCombo.select(0);
+
+        strArr = new String[languages.size()];
+        languageCombo.setItems(languages.toArray(strArr));
+        languageCombo.add("Languages", 0);
+        languageCombo.select(0);
+
+        strArr = new String[items.size()];
+        inventoryCombo.setItems(items.toArray(strArr));
+        inventoryCombo.add("Inventory", 0);;
+        inventoryCombo.select(0);
+
+    }
+
     public Composite getMainComp() {
         return mainComp;
     }
