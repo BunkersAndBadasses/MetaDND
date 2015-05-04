@@ -42,6 +42,8 @@ public class SpellGUI {
     private String adjName;
     private String[] titles = { "Level", "Total", "Cast", "Prepared" };
     private Table spellTable;
+    private Combo spellSel;
+    private Combo preparedSel;
 
 
     private void getInfo(){
@@ -112,11 +114,8 @@ public class SpellGUI {
         FormLayout layout = new FormLayout();
         shell.setLayout(layout);
 
-        final Combo spellSel = new Combo(shell, SWT.READ_ONLY);
-        if (spellsKnown.size() != 0) {
-            strArr = new String[spellsKnown.size()];
-            spellSel.setItems(spellsKnown.toArray(strArr)); 
-        }
+        spellSel = new Combo(shell, SWT.READ_ONLY);
+        
         FormData spellSelData = new FormData(140,30);
         spellSel.select(0);
         spellSelData.left = new FormAttachment(5);
@@ -133,8 +132,7 @@ public class SpellGUI {
         cast.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Cast spell
-                if(spellSel.getSelectionIndex() == 1110) {
+                if(spellSel.getSelectionIndex() == 0) {
 
                 }
                 else {
@@ -158,7 +156,17 @@ public class SpellGUI {
         removeSpell.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Remove spell
+                String str = "";
+                if(spellsKnown.size()== 0 || spellSel.getSelectionIndex() == 0) {
+                    
+                }
+                else {
+                    str = spellSel.getText();
+                    SpellEntity se = allSpells.get(str);
+                    c.delSpell(se);
+                    spellsKnown.remove(str);
+                    refresh();
+                }
             }
         }); 
 
@@ -172,16 +180,26 @@ public class SpellGUI {
         prepareSpell.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Prepare spell
+                String str = "";
+                if(spellsKnown.size()== 0 || spellSel.getSelectionIndex() == 0) {
+                    
+                }
+                else {
+                    str = spellSel.getText();
+                    String num = str.substring(0, 1);
+                    int spellLev = Integer.parseInt(num);
+                    prepTot[spellLev] = prepTot[spellLev] + 1;
+                    SpellEntity se = allSpells.get(str);
+                    c.prepSpell(se);
+                    spellsPrepared.add(str);
+                    refresh();
+                }
             }
         }); 
 
-        // TODO Prepared Spells
 
-        final Combo preparedSel = new Combo(shell, SWT.READ_ONLY);
-        if (spellsPrepared.size() != 0) {
-            preparedSel.setItems((String[]) spellsPrepared.toArray()); // TODO Load prepared spells
-        }
+        preparedSel = new Combo(shell, SWT.READ_ONLY);
+        
         FormData preparedData = new FormData(140,30);
         preparedSel.select(0);
         preparedData.left = new FormAttachment(removeSpell, 0, SWT.LEFT);
@@ -195,10 +213,24 @@ public class SpellGUI {
         castPrepData.top = new FormAttachment(preparedSel, 0, SWT.TOP);
         castPrep.setLayoutData(castPrepData);
 
-        cast.addSelectionListener(new SelectionAdapter() {
+        castPrep.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Cast spell
+                String str = "";
+                if(spellsPrepared.size()== 0 || preparedSel.getSelectionIndex() == 0) {
+                    
+                }
+                else {
+                    str = preparedSel.getText();
+                    String num = str.substring(0, 1);
+                    int spellLev = Integer.parseInt(num);
+                    castTot[spellLev] = castTot[spellLev] + 1;
+                    prepTot[spellLev] = prepTot[spellLev] - 1;
+                    SpellEntity se = allSpells.get(str);
+                    c.unprepSpell(se);
+                    spellsPrepared.remove(str);
+                    refresh();
+                }
             }
         }); 
 
@@ -212,7 +244,17 @@ public class SpellGUI {
         removePrepSpell.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Remove spell
+                String str = "";
+                if(spellsPrepared.size()== 0 || preparedSel.getSelectionIndex() == 0) {
+                    
+                }
+                else {
+                    str = preparedSel.getText();
+                    SpellEntity se = allSpells.get(str);
+                    c.unprepSpell(se);
+                    spellsPrepared.remove(str);
+                    refresh();
+                }
             }
         }); 
 
@@ -226,16 +268,18 @@ public class SpellGUI {
         resetPrep.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO reset preparation
+                spellsPrepared = new ArrayList<String>();
+                prepTot = new int[10];
+                c.resetPrepSpells();
+                refresh();
             }
         }); 
 
-        // TODO all Spells
 
         final Combo newSpellSel = new Combo(shell, SWT.READ_ONLY);
         String[] strArr = new String[allArr.size()];
         strArr = allArr.toArray(strArr);
-        newSpellSel.setItems(strArr); // TODO Load all spells
+        newSpellSel.setItems(strArr);
         FormData allSpellData = new FormData(140,30);
         newSpellSel.select(0);
         allSpellData.left = new FormAttachment(removePrepSpell, 0, SWT.LEFT);
@@ -276,7 +320,7 @@ public class SpellGUI {
         if (materials.size() != 0) {
             strArr = new String[materials.size()];
             strArr = materials.toArray(strArr);
-            materialSel.setItems((String[]) materials.toArray()); // TODO Load all spells
+            materialSel.setItems((String[]) materials.toArray());
         }
         FormData materialData = new FormData(140,30);
         materialSel.select(0);
@@ -333,6 +377,7 @@ public class SpellGUI {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 // TODO Launch Spell Wizard
+                new SpellWizard(Display.getCurrent());
             }
         }); 
 
@@ -344,8 +389,12 @@ public class SpellGUI {
         }
         
         spellTable.setHeaderVisible(true);
+        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
+            TableColumn column = new TableColumn(spellTable, SWT.NULL);
+            column.setAlignment(SWT.CENTER);
+            column.setText(titles[loopIndex]);
+        }
 
-        refresh();
         
         for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
             spellTable.getColumn(loopIndex).pack();
@@ -372,6 +421,8 @@ public class SpellGUI {
                 // TODO reset table
             }
         }); 
+        
+        refresh();
 
         shell.open(); // Open the Window and process the clicks
         while (!shell.isDisposed()) {
@@ -384,13 +435,28 @@ public class SpellGUI {
     }
 
     private void refresh() {
+        allArr.sort(String.CASE_INSENSITIVE_ORDER);
+        spellsKnown.sort(String.CASE_INSENSITIVE_ORDER);
+        spellsPrepared.sort(String.CASE_INSENSITIVE_ORDER);
+        spellSel.removeAll();
+        preparedSel.removeAll();
+        
+        if (spellsKnown.size() != 0) {
+            strArr = new String[spellsKnown.size()];
+            spellSel.setItems(spellsKnown.toArray(strArr)); 
+        }
+        spellSel.add("Known Spells", 0);
+        spellSel.select(0);
+        
+        if (spellsPrepared.size() != 0) {
+            strArr = new String[spellsPrepared.size()];
+            preparedSel.setItems(spellsPrepared.toArray(strArr));
+        }
+        preparedSel.add("Prepared Spells", 0);
+        preparedSel.select(0);
         
 
-        for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
-            TableColumn column = new TableColumn(spellTable, SWT.NULL);
-            column.setAlignment(SWT.CENTER);
-            column.setText(titles[loopIndex]);
-        }
+        
         for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
             TableItem item = spellTable.getItem(loopIndex);
             item.setText("" + loopIndex); // TODO Set actual values

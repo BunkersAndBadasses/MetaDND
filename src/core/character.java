@@ -268,12 +268,14 @@ public class character {
     public ArrayList<AbilityEntity> getSpecialAbilities() { return specialAbilities; }
 
     public void addSpell(SpellEntity s) { spells.add(s); }
+    public void delSpell(SpellEntity s) {spells.remove(s); }
     public void setSpells(ArrayList<SpellEntity> s) { spells = s; }
     public ArrayList<SpellEntity> getSpells() { return spells; }
 
     public void prepSpell(SpellEntity s) { prepSpells.add(s); } // TODO type spell or string?
     public void unprepSpell(SpellEntity s) { prepSpells.remove(s); } // remove spell from prepSpell list
     public ArrayList<SpellEntity> getPrepSpells() { return prepSpells; }
+    public void resetPrepSpells() { prepSpells = new ArrayList<SpellEntity>(); }
 
     public void addItem(CharItem i) { items.add(i); }
     public void delItem(CharItem i) { items.remove(i); }
