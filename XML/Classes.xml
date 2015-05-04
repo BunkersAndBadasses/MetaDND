@@ -41,8 +41,8 @@
 			Armor Proficiency (Light) | Armor Proficiency (Medium) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
-			Weapon Proficiency (Martial)
+			Simple Weapon Proficiency [All]
+			Martial Weapon Proficiency [All]
 			Shield Proficiency 
 			Armor Proficiency (Light)
 			Armor Proficiency (Medium)
@@ -148,13 +148,13 @@
 			Martial Weapon Proficiency [Longsword] | Martial Weapon Proficiency [Rapier] | Martial Weapon Proficiency [Sap] | Martial Weapon Proficiency [Sword, Short] | Martial Weapon Proficiency [Shortbow] | Exotic Weapon Proficiency [Whip] | Armor Proficiency (Light) | Simple Weapon Proficiency [All] | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
-			Weapon Proficiency (Longsword)
-			Weapon Proficiency (Rapier)
-			Weapon Proficiency (Sap)
-			Weapon Proficiency (Sword, Short)
-			Weapon Proficiency (Shortbow)
-			Weapon Proficiency (Whip)
+			Simple Weapon Proficiency [All]
+			Martial Weapon Proficiency [Longsword]
+			Martial Weapon Proficiency [Rapier]
+			Martial Weapon Proficiency [Sap]
+			Martial Weapon Proficiency [Sword, Short]
+			Martial Weapon Proficiency [Shortbow]
+			Martial Weapon Proficiency [Whip]
 			Shield Proficiency 
 			Armor Proficiency (Light)
 			Bardic Knowledge
@@ -241,7 +241,7 @@
 			Armor Proficiency (Light) | Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
+			Simple Weapon Proficiency [All]
 			Shield Proficiency 
 			Armor Proficiency (Light)
 			Armor Proficiency (Medium)
@@ -318,15 +318,15 @@
 			Simple Weapon Proficiency [Club] | Simple Weapon Proficiency [Dagger] | Simple Weapon Proficiency [Dart] | Simple Weapon Proficiency [Quarterstaff] | Simple Weapon Proficiency [Sickle] | Simple Weapon Proficiency [Shortspear] | Simple Weapon Proficiency [Sling] | Simple Weapon Proficiency [Spear] | Martial Weapon Proficiency [Scimitar] | Armor Proficiency (Light) | Armor Proficiency (Medium) | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Club)
-			Weapon Proficiency (Dagger)
-			Weapon Proficiency (Dart)
-			Weapon Proficiency (Quarterstaff)
-			Weapon Proficiency (Scimitar)
-			Weapon Proficiency (Sickle)
-			Weapon Proficiency (Shortspear)
-			Weapon Proficiency (Sling)
-			Weapon Proficiency (Spear)
+			Simple Weapon Proficiency [Club]
+			Simple Weapon Proficiency [Dagger]
+			Simple Weapon Proficiency [Dart]
+			Simple Weapon Proficiency [Quarterstaff]
+			Martial Weapon Proficiency [Scimitar]
+			Simple Weapon Proficiency [Sickle]
+			Simple Weapon Proficiency [Shortspear]
+			Simple Weapon Proficiency [Sling]
+			Simple Weapon Proficiency [Spear]
 			Shield Proficiency 
 			Armor Proficiency (Light)
 			Armor Proficiency (Medium)
@@ -507,8 +507,8 @@
 			Armor Proficiency (Light) | Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency | Tower Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
-			Weapon Proficiency (Martial)
+			Simple Weapon Proficiency [All]
+			Martial Weapon Proficiency [All]
 			Shield Proficiency
 			Tower Shield Proficiency
 			Armor Proficiency (Light)
@@ -559,19 +559,19 @@
 			Simple Weapon Proficiency [Club] | Simple Weapon Proficiency [Crossbow, Light] | Simple Weapon Proficiency [Crossbow, Heavy] | Simple Weapon Proficiency [Dagger] | Simple Weapon Proficiency [Javelin] | Simple Weapon Proficiency [Quarterstaff] | Simple Weapon Proficiency [Sling] | Martial Weapon Proficiency [Handaxe] | Exotic Weapon Proficiency [Kama] | Exotic Weapon Proficiency [Nunchaku] | Exotic Weapon Proficiency [Sai] | Exotic Weapon Proficiency [Shuriken] | Exotic Weapon Proficiency [Siangham] | Improved Unarmed Strike
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Club)
-			Weapon Proficiency (Crossbow, Light)
-			Weapon Proficiency (Crossbow, Heavy)
-			Weapon Proficiency (Dagger)
-			Weapon Proficiency (Javelin)
-			Weapon Proficiency (Quarterstaff)
-			Weapon Proficiency (Sling)
-			Weapon Proficiency (Handaxe)
-			Weapon Proficiency (Kama)
-			Weapon Proficiency (Nunchaku)
-			Weapon Proficiency (Sai)
-			Weapon Proficiency (Shuriken)
-			Weapon Proficiency (Siangham)
+			Simple Weapon Proficiency [Club]
+			Simple Weapon Proficiency [Crossbow, Light]
+			Simple Weapon Proficiency [Crossbow, Heavy]
+			Simple Weapon Proficiency [Dagger]
+			Simple Weapon Proficiency [Javelin]
+			Simple Weapon Proficiency [Quarterstaff]
+			Simple Weapon Proficiency [Sling]
+			Martial Weapon Proficiency [Handaxe]
+			Exotic Weapon Proficiency [Kama]
+			Exotic Weapon Proficiency [Nunchaku]
+			Exotic Weapon Proficiency [Sai]
+			Exotic Weapon Proficiency [Shuriken]
+			Exotic Weapon Proficiency [Sianham]
 			Flurry of Blows
 			Unarmed Strike
 			Evasion
@@ -659,8 +659,8 @@
 			Armor Proficiency (Light) | Armor Proficiency (Medium) | Armor Proficiency (Heavy) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
-			Weapon Proficiency (Martial)
+			Simple Weapon Proficiency [All]
+			Martial Weapon Proficiency [All]
 			Shield Proficiency
 			Armor Proficiency (Light)
 			Armor Proficiency (Medium)
@@ -796,8 +796,8 @@
 			Track | Armor Proficiency (Light) | Simple Weapon Proficiency [All] | Martial Weapon Proficiency [All] | Shield Proficiency
 		</BONUSFEATS>
 		<CLASSABILITIES>
-			Weapon Proficiency (Simple)
-			Weapon Proficiency (Martial)
+			Simple Weapon Proficiency [All]
+			Martial Weapon Proficiency [All]
 			Shield Proficiency
 			Armor Proficiency (Light)
 			Favored Enemy
@@ -955,6 +955,13 @@
 		<CLASSSKILLS>
 			The sorcerer's class skills (and the key ability for each skill) are Bluff (Cha), Concentration (Con), Craft (Int), Knowledge (arcana) (Int), Profession (Wis), and Spellcraft (Int).
 		</CLASSSKILLS>
+		<BONUSFEATS>
+			Simple Weapon Proficiency [All]
+		</BONUSFEATS>
+		<CLASSABILITIES>
+			Simple Weapon Proficiency [All]
+			Familiar
+		</CLASSABILITIES>
 		<SKILLPOINTSFIRST>
 			(2 + Int modifier) x4.
 		</SKILLPOINTSFIRST>

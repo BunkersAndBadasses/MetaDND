@@ -34,7 +34,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Weapon Proficiency (Longsword)
+			Martial Weapon Proficiency [Longsword]
 		</NAME>
 		<DESCRIPTION>
 			Receive the Martial Weapon Proficiency feats for the longsword as a bonus feat.
@@ -42,7 +42,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Weapon Proficiency (Rapier)
+			Martial Weapon Proficiency [Rapier]
 		</NAME>
 		<DESCRIPTION>
 			Receive the Martial Weapon Proficiency feats for the rapier as a bonus feat.
@@ -50,7 +50,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Weapon Proficiency (Longbow)
+			Martial Weapon Proficiency [Longbow]
 		</NAME>
 		<DESCRIPTION>
 			Receive the Martial Weapon Proficiency feats for the longbow (including composite longbow) as a bonus feat.
@@ -58,7 +58,7 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Weapon Proficiency (Shortbow)
+			Martial Weapon Proficiency [Shortbow]
 		</NAME>
 		<DESCRIPTION>
 			Receive the Martial Weapon Proficiency feats for the shortbow (including composite shortbow) as a bonus feat.
@@ -119,6 +119,9 @@
 		</NAME>
 		<DESCRIPTION>
 			At 2nd level, a barbarian retains his Dexterity bonus to AC (if any) even if he is caught flat-footed or struck by an invisible attacker. However, he still loses his Dexterity bonus to AC if immobilized. If a barbarian already has uncanny dodge from a different class, he automatically gains improved uncanny dodge (see below) instead.
+
+			Starting at 4th level, a rogue can react to danger before her senses would normally allow her to do so. She retains her Dexterity bonus to AC (if any) even if she is caught flat-footed or struck by an invisible attacker. However, she still loses her Dexterity bonus to AC if immobilized.
+			If a rogue already has uncanny dodge from a different class she automatically gains improved uncanny dodge (see below) instead.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -306,13 +309,17 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Wild Empathy (Druid)
+			Wild Empathy
 		</NAME>
 		<DESCRIPTION>
 			A druid can improve the attitude of an animal. This ability functions just like a Diplomacy check made to improve the attitude of a person. The druid rolls 1d20 and adds her druid level and her Charisma modifier to determine the wild empathy check result.
 			The typical domestic animal has a starting attitude of indifferent, while wild animals are usually unfriendly.
 			To use wild empathy, the druid and the animal must be able to study each other, which means that they must be within 30 feet of one another under normal conditions. Generally, influencing an animal in this way takes 1 minute but, as with influencing people, it might take more or less time.
 			A druid can also use this ability to influence a magical beast with an Intelligence score of 1 or 2, but she takes a -4 penalty on the check.
+
+			A ranger can improve the attitude of an animal. This ability functions just like a Diplomacy check to improve the attitude of a person. The ranger rolls 1d20 and adds his ranger level and his Charisma bonus to determine the wild empathy check result. The typical domestic animal has a starting attitude of indifferent, while wild animals are usually unfriendly.
+			To use wild empathy, the ranger and the animal must be able to study each other, which means that they must be within 30 feet of one another under normal visibility conditions. Generally, influencing an animal in this way takes 1 minute, but, as with influencing people, it might take more or less time.
+			The ranger can also use this ability to influence a magical beast with an Intelligence score of 1 or 2, but he takes a -4 penalty on the check.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -372,11 +379,13 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Timeless Body (Druid)
+			Timeless Body
 		</NAME>
 		<DESCRIPTION>
 			After attaining 15th level, a druid no longer takes ability score penalties for aging and cannot be magically aged. Any penalties she may have already incurred, however, remain in place.
 			Bonuses still accrue, and the druid still dies of old age when her time is up.
+
+			Upon attaining 17th level, a monk no longer takes penalties to her ability scores for aging and cannot be magically aged. Any such penalties that she has already taken, however, remain in place. Bonuses still accrue, and the monk still dies of old age when her time is up.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -412,10 +421,14 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Evasion (Monk)
+			Evasion
 		</NAME>
 		<DESCRIPTION>
 			At 2nd level or higher if a monk makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if a monk is wearing light armor or no armor. A helpless monk does not gain the benefit of evasion.
+
+			At 2nd level and higher, a rogue can avoid even magical and unusual attacks with great agility. If she makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the rogue is wearing light armor or no armor. A helpless rogue does not gain the benefit of evasion.
+
+			At 9th level, a ranger can avoid even magical and unusual attacks with great agility. If he makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, he instead takes no damage. Evasion can be used only if the ranger is wearing light armor or no armor. A helpless ranger does not gain the benefit of evasion.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -463,6 +476,8 @@
 			Improved Evasion
 		</NAME>
 		<DESCRIPTION>
+			This ability works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks henceforth she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion.
+
 			At 9th level, a monk's evasion ability improves. She still takes no damage on a successful Reflex saving throw against attacks, but henceforth she takes only half damage on a failed save. A helpless monk does not gain the benefit of improved evasion.
 		</DESCRIPTION>
 	</ABILITY>
@@ -496,14 +511,6 @@
 		</NAME>
 		<DESCRIPTION>
 			Starting at 15th level, a monk can set up vibrations within the body of another creature that can thereafter be fatal if the monk so desires. She can use this quivering palm attack once a week, and she must announce her intent before making her attack roll. Constructs, oozes, plants, undead, incorporeal creatures, and creatures immune to critical hits cannot be affected. Otherwise, if the monk strikes successfully and the target takes damage from the blow, the quivering palm attack succeeds. Thereafter the monk can try to slay the victim at any later time, as long as the attempt is made within a number of days equal to her monk level. To make such an attempt, the monk merely wills the target to die (a free action), and unless the target makes a Fortitude saving throw (DC 10 + 1/2 the monk's level + the monk's Wis modifier), it dies. If the saving throw is successful, the target is no longer in danger from that particular quivering palm attack, but it may still be affected by another one at a later time.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Timeless Body (Monk)
-		</NAME>
-		<DESCRIPTION>
-			Upon attaining 17th level, a monk no longer takes penalties to her ability scores for aging and cannot be magically aged. Any such penalties that she has already taken, however, remain in place. Bonuses still accrue, and the monk still dies of old age when her time is up.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -672,16 +679,6 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Wild Empathy (Ranger)
-		</NAME>
-		<DESCRIPTION>
-			A ranger can improve the attitude of an animal. This ability functions just like a Diplomacy check to improve the attitude of a person. The ranger rolls 1d20 and adds his ranger level and his Charisma bonus to determine the wild empathy check result. The typical domestic animal has a starting attitude of indifferent, while wild animals are usually unfriendly.
-			To use wild empathy, the ranger and the animal must be able to study each other, which means that they must be within 30 feet of one another under normal visibility conditions. Generally, influencing an animal in this way takes 1 minute, but, as with influencing people, it might take more or less time.
-			The ranger can also use this ability to influence a magical beast with an Intelligence score of 1 or 2, but he takes a -4 penalty on the check.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
 			Combat Style
 		</NAME>
 		<DESCRIPTION>
@@ -734,14 +731,6 @@
 		</NAME>
 		<DESCRIPTION>
 			Beginning at 8th level, a ranger can move at his normal speed while following tracks without taking the normal -5 penalty. He takes only a -10 penalty (instead of the normal -20) when moving at up to twice normal speed while tracking.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Evasion (Ranger)
-		</NAME>
-		<DESCRIPTION>
-			At 9th level, a ranger can avoid even magical and unusual attacks with great agility. If he makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, he instead takes no damage. Evasion can be used only if the ranger is wearing light armor or no armor. A helpless ranger does not gain the benefit of evasion.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -814,28 +803,11 @@
 	</ABILITY>
 	<ABILITY>
 		<NAME>
-			Evasion (Rogue)
-		</NAME>
-		<DESCRIPTION>
-			At 2nd level and higher, a rogue can avoid even magical and unusual attacks with great agility. If she makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the rogue is wearing light armor or no armor. A helpless rogue does not gain the benefit of evasion.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
 			Trap Sense
 		</NAME>
 		<DESCRIPTION>
 			At 3rd level, a rogue gains an intuitive sense that alerts her to danger from traps, giving her a  bonus on Reflex saves made to avoid traps and a  dodge bonus to AC against attacks made by traps. These bonuses rise to +2 when the rogue reaches 6th level, to +3 when she reaches 9th level, to +4 when she reaches 12th level, to +5 at 15th, and to +6 at 18th level.
 			Trap sense bonuses gained from multiple classes stack.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Uncanny Dodge
-		</NAME>
-		<DESCRIPTION>
-			Starting at 4th level, a rogue can react to danger before her senses would normally allow her to do so. She retains her Dexterity bonus to AC (if any) even if she is caught flat-footed or struck by an invisible attacker. However, she still loses her Dexterity bonus to AC if immobilized.
-			If a rogue already has uncanny dodge from a different class she automatically gains improved uncanny dodge (see below) instead.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
@@ -871,14 +843,6 @@
 		</NAME>
 		<DESCRIPTION>
 			The rogue can roll with a potentially lethal blow to take less damage from it than she otherwise would. Once per day, when she would be reduced to 0 or fewer hit points by damage in combat (from a weapon or other blow, not a spell or special ability), the rogue can attempt to roll with the damage. To use this ability, the rogue must attempt a Reflex saving throw (DC = damage dealt). If the save succeeds, she takes only half damage from the blow if it fails, she takes full damage. She must be aware of the attack and able to react to it in order to execute her defensive roll-if she is denied her Dexterity bonus to AC, she can't use this ability. Since this effect would not normally allow a character to make a Reflex save for half damage, the rogue's evasion ability does not apply to the defensive roll.
-		</DESCRIPTION>
-	</ABILITY>
-	<ABILITY>
-		<NAME>
-			Improved Evasion (Rogue)
-		</NAME>
-		<DESCRIPTION>
-			This ability works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks henceforth she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion.
 		</DESCRIPTION>
 	</ABILITY>
 	<ABILITY>
