@@ -67,16 +67,18 @@ class LevelUpLogic {
 
 	private int numSkillPoints;
 	private boolean skipSkills = false;
+	private boolean skipFeats = true;
+	private boolean skipFighter = true;
 
 	private boolean specialOpen;
 	private boolean bonusOpen;
 	private boolean specialValid;
 	private boolean bonusDone;
 	private Shell featSpecialShell;
-	private Shell bonusFeatShell;
+	private Shell fighterPage;
 	
 	private List charFeatsList;
-	private int numFeats;
+	private int numFeats = 0;
 	private int numCharFeats;
 	
 	private ArrayList<FeatEntity> feats;
@@ -118,13 +120,30 @@ class LevelUpLogic {
 		saveSpecialAbilities = character.getCharClass().getSpecial()[level];
 		// TODO when saving, don't save 'bonus feat'
 
+		if (level % 3 == 0) {
+			skipFeats = false;
+			numFeats++;
+		}
+		for (int i = 0; i < saveSpecialAbilities.length; i++) {
+			if (saveSpecialAbilities[i].equalsIgnoreCase("bonus feat")) {
+				String charClass = character.getCharClass().getName();
+				if (charClass.equalsIgnoreCase("fighter") || charClass.equalsIgnoreCase("monk"))
+					skipFighter = false;
+				else {
+					numFeats++;
+					skipFeats = false;
+				}
+			}
+		}
+		
 		////////// PAGE NUMBERS //////////
 		final int AS = 0;
 		final int HP = 1;
 		final int SKILL = 2;
 		final int FEAT = 3;
-		final int SPELL = 4;
-		final int DONE = 5;
+		final int FIGHTER = 4;
+		final int SPELL = 5;
+		final int DONE = 6;
 
 		//////////////////// INITIALIZE PAGES ////////////////////
 		//ArrayList<Composite> pages = new ArrayList<Composite>();
@@ -146,6 +165,10 @@ class LevelUpLogic {
 		Shell featsPage = new Shell(display);
 		featsPage.setImage(new Image(display, "images/bnb_logo.gif"));
 		pages.add(featsPage);
+		//Composite fighterPage = new Composite(levelUpShell, SWT.NONE);
+		Shell fighterPage = new Shell(display);
+		fighterPage.setImage(new Image(display, "images/bnb_logo.gif"));
+		pages.add(fighterPage);
 		//Composite spellsPage = new Composite(levelUpShell, SWT.NONE);
 		Shell spellsPage = new Shell(display);
 		spellsPage.setImage(new Image(display, "images/bnb_logo.gif"));
@@ -349,6 +372,8 @@ class LevelUpLogic {
 				if (skipSkills) {
 					if (level%3 == 0)
 						nextPage = pages.get(FEAT);
+					else if (level%2 == 0 && !skipFighter)
+						nextPage = pages.get(FIGHTER);
 					//					else if() TODO
 					//						nextPage = pages.get(SPELL);
 					else
@@ -611,7 +636,9 @@ class LevelUpLogic {
 				Shell nextPage;
 				if (level % 3 == 0) {
 					nextPage = pages.get(FEAT);
-				} 
+				} else if (level % 2 == 0 && !skipFighter) {
+					nextPage = pages.get(FIGHTER);
+				}
 				// TODO any other pages
 				else {
 					nextPage = pages.get(DONE);
@@ -871,22 +898,25 @@ class LevelUpLogic {
 					featSpecialShell.forceActive();
 					return;
 				}	
-				if (bonusOpen) {
-					bonusFeatShell.forceActive();
-					return;
-				}
+//				if (bonusOpen) {
+//					bonusFeatShell.forceActive();
+//					return;
+//				}
 				// error checking
 				if (numFeats > 0) {
 					featsLabel.setBackground(new Color(display, 255, 100, 100));
 					return;
 				}
 				// if the pop up is closed
-				if (!createBonusPopUp())
-					return;
+//				if (!createBonusPopUp())
+//					return;
 				Shell nextPage;
 				// TODO any other pages
 				//else
-				nextPage = pages.get(DONE);
+				if (level % 2 == 0 && !skipFighter)
+					nextPage = pages.get(FIGHTER);
+				else
+					nextPage = pages.get(DONE);
 				openNextPage(nextPage);
 			}
 		});
@@ -894,7 +924,129 @@ class LevelUpLogic {
 		featsPage.layout();
 		featsPage.pack();
 
-		//////////////////// SPELLS PAGES ////////////////////
+		//////////////////// FIGHTER PAGE ////////////////////
+		// TODO check if they already have that feat!
+		// compile list of bonus feats (from which the user can choose one)
+		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
+		if (character.getCharClass().getName().toLowerCase().equals("fighter")){
+			if (character.getLevel()%2 == 0) {
+				for (int i = 0; i < feats.size(); i++){
+					if (feats.get(i).getFighterBonus() != null)
+						bonusFeats.add(feats.get(i));
+				}
+			} else
+				skipFighter = true;
+		} else if (character.getCharClass().getName().toLowerCase().equals("monk")){
+			if (character.getLevel() == 2) {
+				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Combat Reflexes"));
+				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Deflect Arrows"));
+			} else if (character.getLevel() == 6) {
+				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Disarm"));
+				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Trip"));
+			} else
+				skipFighter = true;
+		} else
+			skipFighter = true;
+
+//		bonusOpen = true;
+		
+//		// create shell
+//		bonusFeatShell = new Shell(display);
+//		bonusFeatShell.setImage(new Image(display, "images/bnb_logo.gif"));
+//		bonusFeatShell.setText("Select Bonus Feat");
+		GridLayout gridLayout = new GridLayout(2, true);
+		fighterPage.setLayout(gridLayout);
+//		fighterPage.addListener(SWT.Close, new Listener() {
+//	        public void handleEvent(Event event) {
+//	            bonusDone = false;
+//	            bonusOpen = false;
+//	        }
+//	    });
+
+		// label - select a bonus feat
+		Label selectBonusFeat = new Label(fighterPage, SWT.WRAP);
+		selectBonusFeat.setText("Select A Bonus Feat");
+		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		selectGD.horizontalSpan = 2;
+		selectBonusFeat.setLayoutData(selectGD);
+		selectBonusFeat.pack();
+		
+		// drop down menu containing bonus feat options
+		CCombo bonusFeatCombo = new CCombo(fighterPage, SWT.DROP_DOWN | SWT.READ_ONLY);
+		for (int i = 0; i < bonusFeats.size(); i++)
+			bonusFeatCombo.add(bonusFeats.get(i).getName());
+		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		featsGD.horizontalSpan = 2;
+		bonusFeatCombo.setLayoutData(featsGD);
+		bonusFeatCombo.addListener(SWT.MouseDown, new Listener() {
+			public void handleEvent(Event event) {
+				bonusFeatCombo.setBackground(new Color(display, 255, 255, 255));
+			}
+		});
+		bonusFeatCombo.pack();
+		
+		// done button
+//		Button done = new Button(fighterPage, SWT.PUSH);
+//		done.setText("Done");
+//		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+//		doneGD.horizontalSpan = 2;
+//		done.setLayoutData(doneGD);
+//		done.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				if (bonusFeatCombo.getSelectionIndex() == -1) {
+//					bonusFeatCombo.setBackground(new Color(display, 255, 100, 100));
+//					return;
+//				}
+//				numCharFeats++;
+//				saveFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
+//				updateCharFeatsList();
+//				bonusDone = true;
+//				bonusOpen = false;
+//				fighterPage.dispose();
+//			}
+//		});
+//		done.pack();
+//
+//		// open shell
+//		bonusFeatShell.pack();
+//		CharacterWizard.center(bonusFeatShell);
+//		bonusFeatShell.open();
+//		
+//		// check if disposed
+//		while (!bonusFeatShell.isDisposed()) {
+//			if (!display.readAndDispatch()) {
+//				display.sleep();
+//			}
+//		}
+//		
+//		return bonusDone;
+		
+		cancelButton(fighterPage);
+
+		Button fighterNext = nextButton(fighterPage);
+		fighterNext.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event e) {
+				if (bonusFeatCombo.getSelectionIndex() == -1) {
+					bonusFeatCombo.setBackground(new Color(display, 255, 100, 100));
+					return;
+				}
+				numCharFeats++;
+				saveFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
+				Shell nextPage;
+				// TODO any other pages
+				//				if ()
+				//					nextPage = pages.get(SPELL);
+				//				else
+				nextPage = pages.get(DONE);
+				openNextPage(nextPage);
+			}
+		});
+
+		fighterPage.layout();
+		fighterPage.pack();
+
+		
+		//////////////////// SPELL PAGE ////////////////////
 		gl = new GridLayout(2, true);
 		spellsPage.setLayout(gl);
 
@@ -1224,105 +1376,6 @@ class LevelUpLogic {
 				temp += ": " + curr.getCount();
 			charFeatsList.add(temp);
 		}
-	}
-
-	private boolean createBonusPopUp() {
-		bonusDone = false;
-		// compile list of bonus feats (from which the user can choose one)
-		ArrayList<FeatEntity> bonusFeats = new ArrayList<FeatEntity>();
-		if (character.getCharClass().getName().toLowerCase().equals("fighter")){
-			if (character.getLevel()%2 == 0) {
-				for (int i = 0; i < feats.size(); i++){
-					if (feats.get(i).getFighterBonus() != null)
-						bonusFeats.add(feats.get(i));
-				}
-			} else
-				return true;
-		} else if (character.getCharClass().getName().toLowerCase().equals("monk")){
-			if (character.getLevel() == 2) {
-				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Combat Reflexes"));
-				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Deflect Arrows"));
-			} else if (character.getLevel() == 6) {
-				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Disarm"));
-				bonusFeats.add((FeatEntity)Main.gameState.feats.get("Improved Trip"));
-			} else
-				return true;
-		} else
-			return true;
-
-		bonusOpen = true;
-		
-		// create shell
-		bonusFeatShell = new Shell(display);
-		bonusFeatShell.setImage(new Image(display, "images/bnb_logo.gif"));
-		bonusFeatShell.setText("Select Bonus Feat");
-		GridLayout gridLayout = new GridLayout(2, true);
-		bonusFeatShell.setLayout(gridLayout);
-		bonusFeatShell.addListener(SWT.Close, new Listener() {
-	        public void handleEvent(Event event) {
-	            bonusDone = false;
-	            bonusOpen = false;
-	        }
-	    });
-
-		// label - select a bonus feat
-		Label selectBonusFeat = new Label(bonusFeatShell, SWT.WRAP);
-		selectBonusFeat.setText("Select A Bonus Feat");
-		GridData selectGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		selectGD.horizontalSpan = 2;
-		selectBonusFeat.setLayoutData(selectGD);
-		selectBonusFeat.pack();
-		
-		// drop down menu containing bonus feat options
-		CCombo bonusFeatCombo = new CCombo(bonusFeatShell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		for (int i = 0; i < bonusFeats.size(); i++)
-			bonusFeatCombo.add(bonusFeats.get(i).getName());
-		GridData featsGD = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-		featsGD.horizontalSpan = 2;
-		bonusFeatCombo.setLayoutData(featsGD);
-		bonusFeatCombo.addListener(SWT.MouseDown, new Listener() {
-			public void handleEvent(Event event) {
-				bonusFeatCombo.setBackground(new Color(display, 255, 255, 255));
-			}
-		});
-		bonusFeatCombo.pack();
-		
-		// done button
-		Button done = new Button(bonusFeatShell, SWT.PUSH);
-		done.setText("Done");
-		GridData doneGD = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		doneGD.horizontalSpan = 2;
-		done.setLayoutData(doneGD);
-		done.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				if (bonusFeatCombo.getSelectionIndex() == -1) {
-					bonusFeatCombo.setBackground(new Color(display, 255, 100, 100));
-					return;
-				}
-				numCharFeats++;
-				saveFeats.add(0, new CharFeat(bonusFeats.get(bonusFeatCombo.getSelectionIndex())));
-				updateCharFeatsList();
-				bonusDone = true;
-				bonusOpen = false;
-				bonusFeatShell.dispose();
-			}
-		});
-		done.pack();
-
-		// open shell
-		bonusFeatShell.pack();
-		CharacterWizard.center(bonusFeatShell);
-		bonusFeatShell.open();
-		
-		// check if disposed
-		while (!bonusFeatShell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		
-		return bonusDone;
-
 	}
 	
 	/**
