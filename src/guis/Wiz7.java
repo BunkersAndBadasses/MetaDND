@@ -768,11 +768,13 @@ public class Wiz7{
 				// add that character's spell list to their known spells
 				for (int i = 0; i < spells.size(); i++) {
 					try { 
+						if (spells.get(i) == null) 
+							throw new Exception();
 						if (getLevel(character, spells.get(i)) != -1) {
 							character.addSpell(spells.get(i));
 						}
 					} catch (Exception e) {
-						System.out.println("failed at spell "+spells.get(i).getName());
+						System.out.println("failed at spell " + spells.get(i).getName());
 					}
 				}
 				return true;
