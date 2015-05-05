@@ -865,7 +865,7 @@ public class CharacterMain {
         }
 
         // TODO
-        if(red)new test(display);
+        //if(red)new test(display);
     }
 
 
