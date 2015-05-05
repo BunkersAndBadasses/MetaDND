@@ -590,7 +590,10 @@ public class character {
         if (spells.size() == 0)
             s += "\t \n";
         for (int i = 0; i < spells.size(); i++)
-            s += "\t" + spells.get(i).getName() + "\n";
+        	if (spells.get(i) == null)
+        		s+= "\tnull\n";
+        	else
+        		s += "\t" + spells.get(i).getName() + "\n";
         s += "Prepared Spells: " + "\n";
         if (prepSpells.size() == 0)
             s += "\t \n";

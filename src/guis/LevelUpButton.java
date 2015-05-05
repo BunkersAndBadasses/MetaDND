@@ -1439,6 +1439,13 @@ class LevelUpLogic {
 			public void handleEvent(Event e) {
 				// TODO save everything
 				// TODO refresh character sheet
+				
+				saveHP
+				saveAS
+				saveSpecialAbilities;
+				saveSkills;
+				saveFeats;
+				saveSpells
 				curr.dispose();
 			}
 		});
