@@ -870,7 +870,7 @@ public class CharacterMain {
         }
 
         // TODO
-        //new test(display);
+        new test(display);
     }
 
 

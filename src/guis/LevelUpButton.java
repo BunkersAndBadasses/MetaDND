@@ -73,11 +73,8 @@ class LevelUpLogic {
 	private boolean skipSpells = false;
 
 	private boolean specialOpen;
-	private boolean bonusOpen;
 	private boolean specialValid;
-	private boolean bonusDone;
 	private Shell featSpecialShell;
-	private Shell fighterPage;
 	
 	private List charFeatsList;
 	private int numFeats = 0;
@@ -129,22 +126,6 @@ class LevelUpLogic {
 		int level = character.getLevel();
 		saveSpecialAbilities = character.getCharClass().getSpecial()[level];
 		// TODO when saving, don't save 'bonus feat'
-
-		if (level % 3 == 0) {
-			skipFeats = false;
-			numFeats++;
-		}
-		for (int i = 0; i < saveSpecialAbilities.length; i++) {
-			if (saveSpecialAbilities[i].equalsIgnoreCase("bonus feat")) {
-				String charClass = character.getCharClass().getName();
-				if (charClass.equalsIgnoreCase("fighter") || charClass.equalsIgnoreCase("monk"))
-					skipFighter = false;
-				else {
-					numFeats++;
-					skipFeats = false;
-				}
-			}
-		}
 		
 		////////// PAGE NUMBERS //////////
 		final int AS = 0;
@@ -290,12 +271,16 @@ class LevelUpLogic {
 
 
 		//////////////////// HIT POINTS PAGE ////////////////////
+		// TODO check if ability score changed was con, add changed mod instead
 		gl = new GridLayout(4, true);
 		hpPage.setLayout(gl);
 
 		String hitDie = character.getCharClass().getHitDie();
 		int hitDieValue = Integer.parseInt(hitDie.replaceAll("[^\\d]", ""));
-		int conMod = character.getAbilityModifiers()[GameState.CONSTITUTION];
+		int conBase = character.getAbilityScores()[GameState.CONSTITUTION];
+		if (saveAS == GameState.CONSTITUTION)
+			conBase++;
+		int conMod = character.getAbilityModifier(conBase);
 
 		Label hpLabel = new Label(hpPage, SWT.NONE);
 		hpLabel.setText("Roll a " + hitDie +" for additional hit points.");
@@ -380,9 +365,9 @@ class LevelUpLogic {
 				}
 				Shell nextPage;
 				if (skipSkills) {
-					if (level%3 == 0)
+					if (!skipFeats)
 						nextPage = pages.get(FEAT);
-					else if (level%2 == 0 && !skipFighter)
+					else if (!skipFighter)
 						nextPage = pages.get(FIGHTER);
 					else if(!skipSpells)
 						nextPage = pages.get(SPELL);
@@ -644,9 +629,9 @@ class LevelUpLogic {
 					return;
 				}
 				Shell nextPage;
-				if (level % 3 == 0) {
+				if (!skipFeats) {
 					nextPage = pages.get(FEAT);
-				} else if (level % 2 == 0 && !skipFighter) {
+				} else if (!skipFighter) {
 					nextPage = pages.get(FIGHTER);
 				} else if (!skipSpells) {
 					nextPage = pages.get(SPELL);
@@ -663,9 +648,26 @@ class LevelUpLogic {
 		//////////////////// FEATS PAGE ////////////////////
 		gl = new GridLayout(7, true);
 		featsPage.setLayout(gl);
-
-		numFeats = 1;
-		// TODO check for bonus feat special ability
+		
+		// check if feat page should be skipped
+		if (level % 3 == 0) {
+			// all characters get a bonus feat every 3 levels
+			skipFeats = false;
+			numFeats++;
+		}
+		for (int i = 0; i < saveSpecialAbilities.length; i++) {
+			// check if that character's class gets a bonus feat at that level
+			if (saveSpecialAbilities[i].equalsIgnoreCase("bonus feat")) {
+				String charClass = character.getCharClass().getName();
+				// fighters and monks choose from a selection of bonus feats
+				if (charClass.equalsIgnoreCase("fighter") || charClass.equalsIgnoreCase("monk"))
+					skipFighter = false;
+				else {
+					numFeats++;
+					skipFeats = false;
+				}
+			}
+		}
 
 		// get feats from references 
 		Collection<DNDEntity> featsCol =  Main.gameState.feats.values();
@@ -917,12 +919,7 @@ class LevelUpLogic {
 					featsLabel.setBackground(new Color(display, 255, 100, 100));
 					return;
 				}
-				// if the pop up is closed
-//				if (!createBonusPopUp())
-//					return;
 				Shell nextPage;
-				// TODO any other pages
-				//else
 				if (level % 2 == 0 && !skipFighter)
 					nextPage = pages.get(FIGHTER);
 				else if (!skipSpells)
@@ -1087,6 +1084,8 @@ class LevelUpLogic {
 			 * shouldn't have level-spells to select? 
 			 * characters who can cast spells starting at certain levels, check? 
 			 * add spells known only once they can cast spells?
+			 * check if they already have that spell!
+			 * add known spells to charspellslist
 			 * 
 			 */
 			
@@ -1392,6 +1391,10 @@ class LevelUpLogic {
 //			return spellsGood;
 
 		cancelButton(spellsPage);
+		
+		gd = new GridData();
+		gd.horizontalSpan = 5;
+		new Label(spellsPage, SWT.NONE).setLayoutData(gd);
 
 		Button spellsNext = nextButton(spellsPage);
 		spellsNext.addListener(SWT.Selection, new Listener() {
@@ -1402,12 +1405,7 @@ class LevelUpLogic {
 						return;
 					}
 				}
-				Shell nextPage;
-				//				if () {
-				//				// TODO any other pages
-				//				} 
-				//				else {
-				nextPage = pages.get(DONE);
+				Shell nextPage = pages.get(DONE);
 				openNextPage(nextPage);
 			}
 		});
@@ -1441,7 +1439,6 @@ class LevelUpLogic {
 			public void handleEvent(Event e) {
 				// TODO save everything
 				// TODO refresh character sheet
-				//levelUpShell.dispose();
 				curr.dispose();
 			}
 		});
