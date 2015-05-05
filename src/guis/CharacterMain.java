@@ -906,7 +906,7 @@ public class CharacterMain {
         return true;
     }
 
-    private void refresh() {
+    public void refresh() {
         //TODO
         //m_shell.setText("Character Page: " + charName);
         acVal = c.getACTotal();
