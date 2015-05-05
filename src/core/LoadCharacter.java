@@ -245,7 +245,7 @@ public class LoadCharacter {
                 c.setName(str);
 
                 str = getValue("Level", element);
-                if (!str.equals(" ")) { str = "1"; }
+                if (str.equals(" ")) { str = "1"; }
                 c.setLevel(Integer.parseInt(str));
 
                 str = getValue("Class", element);

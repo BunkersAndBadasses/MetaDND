@@ -34,6 +34,7 @@ import core.CharSkill;
 import core.GameState;
 import core.Main;
 import core.RNG;
+import core.SaveCharacter;
 import core.SkillAdjNode;
 import core.character;
 import entity.AbilityEntity;
@@ -1470,7 +1471,9 @@ class LevelUpLogic {
 				// TODO save to xml?
 
 				// refresh character sheet
+				character.getCharMain().getPlayerInfo(character.getFilename(), false);
 				character.getCharMain().refresh();
+				new SaveCharacter(false);
 				
 				curr.dispose();
 			}

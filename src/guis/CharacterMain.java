@@ -142,6 +142,15 @@ public class CharacterMain {
     private Combo languageCombo;
     private Combo inventoryCombo;
     private Label priLabel;
+    private Label wisLabel;
+    private Label chaLabel;
+    private Label levelLabel;
+    private Label strLabel;
+    private Label dexLabel;
+    private Label classLabel;
+    private Label hpLabel;
+    private Label conLabel;
+    private Label intLabel;
 
 
     public CharacterMain(String[] args, Composite panel, Shell shell) {
@@ -153,7 +162,7 @@ public class CharacterMain {
 
         Main.gameState.currentlyLoadedCharacter = new character();
         c = Main.gameState.currentlyLoadedCharacter;
-        getPlayerInfo(pathName);
+        getPlayerInfo(pathName, true);
 
         // TODO Auto-generated method stub
 
@@ -190,28 +199,18 @@ public class CharacterMain {
         statGD.grabExcessHorizontalSpace = true;
         statGD.widthHint = 160;
         statGD.heightHint = 17;
-        bonus = "";
-        if (strVal >= 10) {
-            bonus +="+";
-        }
-        Label strLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        strLabel.setText("STR: " + strVal + " (" + bonus + (strVal/2 - 5) + ")");
+
+        strLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         strLabel.setLayoutData(statGD);
 
-        bonus = "";
-        if (dexVal >= 10) {
-            bonus +="+";
-        }
-        Label dexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        dexLabel.setText("DEX: " + dexVal + " (" + bonus + (dexVal/2 - 5) + ")");
+
+        dexLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         dexLabel.setLayoutData(statGD);
 
-        Label classLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        classLabel.setText("Class: " + charClass);
+        classLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);        
         classLabel.setLayoutData(statGD);
 
-        Label hpLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        hpLabel.setText("HP: " + hpVal);
+        hpLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         hpLabel.setLayoutData(statGD);
         hpLabel.pack();
 
@@ -219,7 +218,7 @@ public class CharacterMain {
         if (conVal >= 10) {
             bonus +="+";
         }
-        Label conLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        conLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         conLabel.setText("CON: " + conVal + " (" + bonus + (conVal/2 - 5) + ")");
         conLabel.setLayoutData(statGD);
 
@@ -227,7 +226,7 @@ public class CharacterMain {
         if (intVal >= 10) {
             bonus +="+";
         }
-        Label intLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
+        intLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         intLabel.setText("INT: " + intVal + " (" + bonus + (intVal/2 - 5) + ")");
         intLabel.setLayoutData(statGD);
 
@@ -268,31 +267,18 @@ public class CharacterMain {
         dmgComp.setLayoutData(dmgGD2);
         dmgComp.pack();
 
-        bonus = "";
-        if (wisVal >= 10) {
-            bonus +="+";
-        }
-        Label wisLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        wisLabel.setText("WIS: " + wisVal + " (" + bonus + (wisVal/2 - 5) + ")");
+
+        wisLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         wisLabel.setLayoutData(statGD);
 
-        bonus = "";
-        if (chaVal >= 10) {
-            bonus +="+";
-        }
-        Label chaLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        chaLabel.setText("CHA: " + chaVal + " (" + bonus + (chaVal/2 - 5) + ")");
+
+        chaLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         chaLabel.setLayoutData(statGD);
 
-        Label levelLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        bonus = "";
-        bonus += "Level: " + charLevel;
-        if (charSecLevel != 0)bonus += "," + charSecLevel;
-        levelLabel.setText(bonus);
+        levelLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
         levelLabel.setLayoutData(statGD);
 
         speedLabel = new Label(mainComp, SWT.BORDER | SWT.CENTER);
-        speedLabel.setText("Speed: " + speedVal);
         speedLabel.setLayoutData(statGD);
 
         Label a = new Label(mainComp, SWT.NONE);
@@ -723,9 +709,9 @@ public class CharacterMain {
     }
 
 
-    private void getPlayerInfo(String pathName) {
+    public void getPlayerInfo(String pathName, boolean red) {
         filename = pathName;
-        new LoadCharacter(pathName, c);
+        if(red) new LoadCharacter(pathName, c);
         charName = c.getName();
         imagePath = c.getImage();
         charLevel = c.getLevel();
@@ -870,7 +856,7 @@ public class CharacterMain {
         }
 
         // TODO
-        new test(display);
+        if(red)new test(display);
     }
 
 
@@ -909,6 +895,53 @@ public class CharacterMain {
     public void refresh() {
         //TODO
         //m_shell.setText("Character Page: " + charName);
+        
+        classLabel.setText("Class: " + charClass);
+
+        hpLabel.setText("HP: " + c.getHitPoints());
+        bonus = "";
+        bonus += "Level: " + c.getLevel();
+        if (charSecLevel != 0)bonus += "," + charSecLevel;
+        levelLabel.setText(bonus);
+        
+        bonus = "";
+        if (intVal >= 10) {
+            bonus +="+";
+        }
+        intLabel.setText("INT: " + intVal + " (" + bonus + (intVal/2 - 5) + ")");
+        
+        bonus = "";
+        if (conVal >= 10) {
+            bonus +="+";
+        }
+        conLabel.setText("CON: " + conVal + " (" + bonus + (conVal/2 - 5) + ")");
+
+        bonus = "";
+        if (strVal >= 10) {
+            bonus +="+";
+        }
+        strLabel.setText("STR: " + strVal + " (" + bonus + (strVal/2 - 5) + ")");
+
+        bonus = "";
+        if (dexVal >= 10) {
+            bonus +="+";
+        }
+        dexLabel.setText("DEX: " + dexVal + " (" + bonus + (dexVal/2 - 5) + ")");
+
+        bonus = "";
+        if (wisVal >= 10) {
+            bonus +="+";
+        }
+
+        wisLabel.setText("WIS: " + wisVal + " (" + bonus + (wisVal/2 - 5) + ")");
+        bonus = "";
+        if (chaVal >= 10) {
+            bonus +="+";
+        }
+        chaLabel.setText("CHA: " + chaVal + " (" + bonus + (chaVal/2 - 5) + ")");
+
+        speedLabel.setText("Speed: " + speedVal);
+
         acVal = c.getACTotal();
         ffVal = c.getTouchAC();
         touchVal = c.getTouchAC();
