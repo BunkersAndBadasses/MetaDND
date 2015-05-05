@@ -261,7 +261,7 @@ public class FeatWizard
 				featname = nameInput.getText();
 				a.put("DESCRIPTION", descriptionInput.getText());
 				newfeat = new FeatEntity(a);
-				Main.gameState.abilities.put(featname, newfeat);
+				Main.gameState.feats.put(featname, newfeat);
 				Main.gameState.customContent.put(featname, newfeat);
 				shell.close();
 			}

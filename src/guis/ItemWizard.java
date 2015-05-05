@@ -218,7 +218,7 @@ public class ItemWizard {
 				a.put("VALUE", valueInput.getText());
 				a.put("DESCRIPTION", descriptionInput.getText());
 				newitem = new ItemEntity(a);
-				Main.gameState.abilities.put(nameInput.getText(), newitem);
+				Main.gameState.items.put(nameInput.getText(), newitem);
 				Main.gameState.customContent.put(nameInput.getText(), newitem);
 				shell.close();
 			}
