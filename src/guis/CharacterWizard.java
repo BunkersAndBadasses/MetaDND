@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 import core.CharFeat;
 import core.CharItem;
+import core.CharSkill;
 import core.GameState;
 import core.Main;
 import core.RNG;
@@ -24,6 +25,7 @@ import entity.DNDEntity;
 import entity.FeatEntity;
 import entity.ItemEntity;
 import entity.RaceEntity;
+import entity.SkillEntity;
 import entity.WeaponEntity;
 
 
@@ -555,6 +557,12 @@ public class CharacterWizard {
 				}
 			}
 			character.addSpecialAbility(c);
+		}
+		//Skill
+		Collection<DNDEntity> skillcol = Main.gameState.skills.values();
+		for(DNDEntity skill: skillcol)
+		{
+			character.addSkill(new CharSkill((SkillEntity)skill, character));
 		}
 		//Spells is <empty> for now
 		Collection<DNDEntity> spellcol = Main.gameState.spells.values();
