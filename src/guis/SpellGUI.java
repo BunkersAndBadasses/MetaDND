@@ -57,6 +57,7 @@ public class SpellGUI {
     private Composite mainWindow;
     private StackLayout mainWindowLayout;
     private GridLayout mostLayout;
+    private Combo newSpellSel;
 
 
     private void getInfo(){
@@ -133,34 +134,30 @@ public class SpellGUI {
         mostLayout = new GridLayout(4, true);
         mostLayout.makeColumnsEqualWidth = false;
         mostComp.setLayout(mostLayout);
-        
-        
+
+
         GridData combGD = new GridData();
         combGD.horizontalAlignment = SWT.CENTER;
         combGD.grabExcessHorizontalSpace = true;
         combGD.widthHint = 160;
-        combGD.heightHint = 30;
-        
+        combGD.heightHint = 24;
+
         GridData buttGD = new GridData();
         buttGD.horizontalAlignment = SWT.CENTER;
         buttGD.grabExcessHorizontalSpace = true;
         buttGD.widthHint = 80;
         buttGD.heightHint = 24;
-        
+
         GridData tabGD = new GridData();
         tabGD.horizontalAlignment = SWT.CENTER;
         tabGD.grabExcessHorizontalSpace = true;
         tabGD.verticalSpan = 8;
         tabGD.widthHint = 165;
         tabGD.heightHint = 200;
-        
-        
-        
 
-        
 
         spellSel = new Combo(mostComp, SWT.READ_ONLY);
-        
+
         spellSel.select(0);
         spellSel.setLayoutData(combGD);
 
@@ -184,25 +181,25 @@ public class SpellGUI {
                 }
             }
         }); 
-        
+
         spellTable = new Table(mostComp, SWT.BORDER );
         for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
             TableItem item = new TableItem(spellTable, SWT.NULL);  
         }
-        
+
         spellTable.setHeaderVisible(true);
         for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
             TableColumn column = new TableColumn(spellTable, SWT.NULL);
             column.setAlignment(SWT.CENTER);
             column.setText(titles[loopIndex]);
         }
-        
+
         for (int loopIndex = 0; loopIndex < titles.length; loopIndex++) {
             spellTable.getColumn(loopIndex).pack();
         }
         spellTable.setLayoutData(tabGD);
-        
-        playerScreenReferencePanel = new referencePanel(mostComp); // TODO move after table
+
+        playerScreenReferencePanel = new referencePanel(mostComp); 
         Composite ps_rp = playerScreenReferencePanel.getRefPanel();
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         gridData.verticalSpan = 10;
@@ -218,7 +215,7 @@ public class SpellGUI {
             public void widgetSelected(SelectionEvent e) {
                 String str = "";
                 if(spellsKnown.size()== 0 || spellSel.getSelectionIndex() == 0) {
-                    
+
                 }
                 else {
                     str = spellSel.getText();
@@ -240,7 +237,7 @@ public class SpellGUI {
             public void widgetSelected(SelectionEvent e) {
                 String str = "";
                 if(spellsKnown.size()== 0 || spellSel.getSelectionIndex() == 0) {
-                    
+
                 }
                 else {
                     str = spellSel.getText();
@@ -254,7 +251,7 @@ public class SpellGUI {
                 }
             }
         });
-        
+
         new Label(mostComp, SWT.NONE);
         new Label(mostComp, SWT.NONE);
 
@@ -274,7 +271,7 @@ public class SpellGUI {
             public void widgetSelected(SelectionEvent e) {
                 String str = "";
                 if(spellsPrepared.size()== 0 || preparedSel.getSelectionIndex() == 0) {
-                    
+
                 }
                 else {
                     str = preparedSel.getText();
@@ -300,7 +297,7 @@ public class SpellGUI {
             public void widgetSelected(SelectionEvent e) {
                 String str = "";
                 if(spellsPrepared.size()== 0 || preparedSel.getSelectionIndex() == 0) {
-                    
+
                 }
                 else {
                     str = preparedSel.getText();
@@ -326,16 +323,12 @@ public class SpellGUI {
                 refresh();
             }
         }); 
-        
+
         new Label(mostComp, SWT.NONE);
         new Label(mostComp, SWT.NONE);
 
 
-        final Combo newSpellSel = new Combo(mostComp, SWT.READ_ONLY);
-        String[] strArr = new String[allArr.size()];
-        strArr = allArr.toArray(strArr);
-        newSpellSel.setItems(strArr);
-        newSpellSel.select(0);
+        newSpellSel = new Combo(mostComp, SWT.READ_ONLY);
         newSpellSel.setLayoutData(combGD);
         newSpellSel.pack();
 
@@ -347,7 +340,15 @@ public class SpellGUI {
         getInfo.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Cast spell
+                String str = "";
+                if(newSpellSel.getSelectionIndex() == 0) {
+
+                }
+                else {
+                    str = newSpellSel.getText();
+                    SpellEntity se = allSpells.get(str);
+                    se.toTooltipWindow();
+                }
             }
         }); 
 
@@ -359,13 +360,22 @@ public class SpellGUI {
         addSpell.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Remove spell
+                String str = "";
+                if(newSpellSel.getSelectionIndex() == 0) {
+
+                }
+                else {
+                    str = newSpellSel.getText();
+                    SpellEntity se = allSpells.get(str);
+                    c.addSpell(se);
+                    refresh();
+                }
             }
         }); 
 
         // TODO  Spell materials
 
-       /* final Combo materialSel = new Combo(mainWindow, SWT.READ_ONLY);
+        /* final Combo materialSel = new Combo(mainWindow, SWT.READ_ONLY);
         if (materials.size() != 0) {
             strArr = new String[materials.size()];
             strArr = materials.toArray(strArr);
@@ -423,11 +433,10 @@ public class SpellGUI {
         spellWiz.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO Launch Spell Wizard
                 new SpellWizard(Display.getCurrent());
             }
         });
-        
+
         new Label(mostComp, SWT.NONE);
         new Label(mostComp, SWT.NONE);
 
@@ -439,23 +448,24 @@ public class SpellGUI {
         resetTable.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO reset table
+                castTot = new int[10];
+                refresh();
             }
         }); 
         mostComp.layout();
         refresh();
-        mostComp.pack();
-        
+        //mostComp.pack();
+
         mainWindowLayout.topControl = mostComp;
-        
-        
+
+
 
         s.open(); // Open the Window and process the clicks
-        while (!s.isDisposed()) {
+        /*while (!s.isDisposed()) {
             if (display.readAndDispatch()) {
                 display.sleep();
             }
-        }
+        }*/
 
 
     }
@@ -466,23 +476,31 @@ public class SpellGUI {
         spellsPrepared.sort(String.CASE_INSENSITIVE_ORDER);
         spellSel.removeAll();
         preparedSel.removeAll();
-        
+
         if (spellsKnown.size() != 0) {
             strArr = new String[spellsKnown.size()];
             spellSel.setItems(spellsKnown.toArray(strArr)); 
         }
         spellSel.add("Known Spells", 0);
         spellSel.select(0);
-        
+
         if (spellsPrepared.size() != 0) {
             strArr = new String[spellsPrepared.size()];
             preparedSel.setItems(spellsPrepared.toArray(strArr));
         }
         preparedSel.add("Prepared Spells", 0);
         preparedSel.select(0);
-        
 
-        
+        if (allArr.size() != 0) {
+
+            strArr = new String[allArr.size()];
+            newSpellSel.setItems(allArr.toArray(strArr));
+        }
+        newSpellSel.add("All Spells", 0);
+        newSpellSel.select(0);
+
+
+
         for (int loopIndex = 0; loopIndex < 10; loopIndex++) {
             TableItem item = spellTable.getItem(loopIndex);
             item.setText("" + loopIndex); // TODO Set actual values
@@ -492,7 +510,7 @@ public class SpellGUI {
             item.setText(3, "" + prepTot[loopIndex]);
         }
 
-        
+
 
     }
 
@@ -628,7 +646,7 @@ public class SpellGUI {
                 {0,3,2,2,1,0,0,0,0,0}, // 18
                 {0,3,3,3,2,0,0,0,0,0},
                 {0,3,3,3,3,0,0,0,0,0}};
-        
+
         int[][] paladin = {
                 {0,0,0,0,0,0,0,0,0,0}, // 1
                 {0,0,0,0,0,0,0,0,0,0}, // 2
@@ -670,7 +688,7 @@ public class SpellGUI {
             classMod = c.getAbilityModifiers()[4];
             adjName = className;
             break;
-            
+
         case "Paladin":
             spd = paladin;
             classMod = c.getAbilityModifiers()[4];
