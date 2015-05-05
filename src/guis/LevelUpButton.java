@@ -1452,8 +1452,10 @@ class LevelUpLogic {
 				character.modifyAbilityScores(asMod);
 				String[] specials = character.getCharClass().getSpecial()[character.getLevel()];
 				for (int i = 0; i < specials.length; i++) {
-					if (!specials[i].equalsIgnoreCase("bonus feat"))
-						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(specials[i]));
+					if (!specials[i].equalsIgnoreCase("bonus feat")){
+					    AbilityEntity ae = (AbilityEntity)Main.gameState.abilities.get(specials[i]);
+						if (ae != null )character.addSpecialAbility(ae);
+					}
 				}
 				ArrayList<CharSkill> newSkills = new ArrayList<CharSkill>();
 				for (int i = 0; i < saveSkills.size(); i++) {
