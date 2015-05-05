@@ -263,6 +263,7 @@ public class character {
     public void addFeat(CharFeat f) { feats.add(f); }
     public void delFeat(CharFeat f) { feats.remove(f); }
     public ArrayList<CharFeat> getFeats() { return feats; }
+    public void setFeats(ArrayList<CharFeat> feats) { this.feats = feats; }
 
     public void addSpecialAbility(AbilityEntity a) { specialAbilities.add(a); }
     public void delSpecialAbility(AbilityEntity a) { specialAbilities.remove(a); }

@@ -36,6 +36,7 @@ import core.Main;
 import core.RNG;
 import core.SkillAdjNode;
 import core.character;
+import entity.AbilityEntity;
 import entity.DNDEntity;
 import entity.FeatEntity;
 import entity.SpellEntity;
@@ -1437,15 +1438,27 @@ class LevelUpLogic {
 		saveButton.setLayoutData(gd);
 		saveButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
-				// TODO save everything
+				// save everything
+				character.modHitPoints(saveHP);
+				int[] asMod = {0, 0, 0, 0, 0, 0};
+				asMod[saveAS]++;
+				character.modifyAbilityScores(asMod);
+				String[] specials = character.getCharClass().getSpecial()[character.getLevel()];
+				for (int i = 0; i < specials.length; i++) {
+					character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(specials[i]));
+				}
+				ArrayList<CharSkill> newSkills = new ArrayList<CharSkill>();
+				for (int i = 0; i < saveSkills.size(); i++) {
+					CharSkill temp = saveSkills.get(i).getCharSkill();
+					temp.modRank(saveSkills.get(i).getAdj());
+					newSkills.add(temp);
+				}
+				character.setSkills(newSkills);
+				character.setFeats(saveFeats);
+				character.setSpells(saveSpells);
+
 				// TODO refresh character sheet
 				
-				saveHP
-				saveAS
-				saveSpecialAbilities;
-				saveSkills;
-				saveFeats;
-				saveSpells
 				curr.dispose();
 			}
 		});
