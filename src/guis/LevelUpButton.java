@@ -1465,8 +1465,10 @@ class LevelUpLogic {
 					newSkills.add(temp);
 				}
 				character.setSkills(newSkills);
-				character.setFeats(saveFeats);
-				character.setSpells(saveSpells);
+				if (saveFeats.size() != 0)
+					character.setFeats(saveFeats);
+				if (saveSpells.size() != 0)
+					character.setSpells(saveSpells);
 				
 				// TODO save to xml?
 
