@@ -86,6 +86,7 @@ class LevelUpLogic {
 	private Label numSpellsLeft;
 	private int bonusSpells;
 	private int wizHighestLevel;
+	int[] origNumSpells = null;
 
 	
 	private ArrayList<FeatEntity> feats;
@@ -1171,8 +1172,6 @@ class LevelUpLogic {
 //			gd = new GridData(SWT.RIGHT, SWT.END, true, false);
 //			gd.horizontalSpan = 3;
 //			doneButton.setLayoutData(gd);
-
-			int[] origNumSpells;
 			
 			// create content
 			if (!skipSpells) {
