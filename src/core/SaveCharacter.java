@@ -54,9 +54,9 @@ public class SaveCharacter {
                     CHARDIR.mkdir();
                     toWrite = new File(CHARACTER.getPath() + "//DND" + charName + "//DND" + charName +".xml");
                     FileOutputStream fos = new FileOutputStream(toWrite);
-                    
+
                     bw = new BufferedWriter(new OutputStreamWriter(fos));
-                    
+
                 }catch(Exception e){
                     e.printStackTrace();
                 }
@@ -431,7 +431,7 @@ public class SaveCharacter {
                 } catch (NullPointerException npe) { 
                     System.out.println("Npe");
                     empty = " "; 
-                    }
+                }
                 if (c.getSkills().size() == 0) { empty = " "; }
                 appendValue("Skills", empty);
 
@@ -579,7 +579,8 @@ public class SaveCharacter {
                     if (mt != 0) {
                         temp = "";
                         for(int i = 0; i < c.getSpells().size(); i++){
-                            temp += c.getSpells().get(i).getName() + "/";
+                            if(c.getSpells() != null)
+                                temp += c.getSpells().get(i).getName() + "/";
                         }
                     }
                     writeValue("Spells", temp);
@@ -866,7 +867,7 @@ public class SaveCharacter {
                     } catch (NullPointerException npe) { 
                         System.out.println("Npe");
                         empty = " "; 
-                        }
+                    }
                     if (c.getSkills().size() == 0) { empty = " "; }
                     writeValue("Skills", empty);
 
@@ -894,49 +895,49 @@ public class SaveCharacter {
                     } catch (NullPointerException npe) { empty = " "; }
                     if (c.getFeats().size() == 0) { empty = " "; }
                     writeValue("Feats", empty); //*/
-                    
+
                     /*empty = c.getName(); //TODO
                     writeValue("Name", c.getName()); //TODO end
-                    
+
                     mt = c.getLevel();
                     writeValue("Level", c.getLevel());
-                    
+
                     mt = c.getExp();
                     writeValue("Exp", c.getExp());
-                    
+
                     empty = c.getCharRace().getName();
                     writeValue("Race", c.getCharRace().getName());
-                    
+
                     empty = c.getAlignment();
                     writeValue("Alignment", c.getAlignment());
 
                     empty = c.getDeity();
                     writeValue("Deity", c.getDeity());
-                    
+
                     mt = c.getSize();
                     writeValue("Size", c.getSize());
-                    
+
                     empty = c.getAge();
                     writeValue("Age", c.getAge());
-                    
+
                     empty = c.getGender();
                     writeValue("Gender", c.getGender());
-                    
+
                     empty = c.getHeight();
                     writeValue("Height", c.getHeight());
 
                     empty = c.getWeight();
                     writeValue("Weight", c.getWeight());
-                    
+
                     empty = c.getEyes();
                     writeValue("Eyes", c.getEyes());
-                    
+
                     empty = c.getHair();
                     writeValue("Hair", c.getHair());
-                    
+
                     empty = c.getSkin();
                     writeValue("Skin", c.getSkin());
-                    
+
                     empty = c.getDescription();
                     writeValue("Description", c.getDescription());
 
@@ -946,21 +947,21 @@ public class SaveCharacter {
                         temp += c.getSpells().get(i).getName() + "/";
                     }
                     writeValue("Spells", temp);
-                    
+
                     mt = c.getSpecialAbilities().size();
                     temp = "";
                     for(int i = 0; i < c.getSpecialAbilities().size(); i++){
                         temp += c.getSpecialAbilities().get(i).getName() + "/";
                     }
                     writeValue("SpecialAbilities", temp);
-                    
+
                     mt = c.getPrepSpells().size();
                     temp = "";
                     for(int i = 0; i < c.getPrepSpells().size(); i++){
                         temp += c.getPrepSpells().get(i).getName() + "/";
                     }
                     writeValue("PreparedSpells", temp);
-                    
+
                     mt = c.getAC().length; // TODO null
                     temp = Integer.toString(c.getAC()[0]);
                     for (int i = 0; i < c.getAC().length; i++)
@@ -969,7 +970,7 @@ public class SaveCharacter {
                     writeValue("TouchAC", c.getTouchAC());
 
                     writeValue("FlatFootedAC", c.getFlatFootedAC());
-                    
+
                     //TODO null
                     temp = Integer.toString(c.getInitMod()[0]);
                     for (int i = 0; i < c.getInitMod().length; i++)
@@ -999,16 +1000,16 @@ public class SaveCharacter {
 
                     mt = c.getClericDomains().length;
                     writeValue("ClericDomains", c.getName());//TODO
-                    
+
                     empty = c.getDruidAnimalCompanion();
                     writeValue("DruidCompanion", c.getDruidAnimalCompanion());
-                    
+
                     empty = c.getRangerFavoredEnemy();
                     writeValue("RangerFavoredEnemy", c.getRangerFavoredEnemy());
-                    
+
                     empty = c.getFamiliar();
                     writeValue("Familiar", c.getFamiliar());
-                    
+
                     empty = c.getWizardSpecialtySchool();
                     writeValue("WizardSpecialty", c.getWizardSpecialtySchool());
 
@@ -1018,16 +1019,16 @@ public class SaveCharacter {
                         temp += c.getWizardProhibitedSchools()[i]+ "/";
                     }
                     writeValue("WizardProhibitedSchools", temp);
-                    
+
                     empty = c.getImage();
                     writeValue("Image", c.getImage());
-                    
+
                     empty = c.getCharClass().getName();
                     writeValue("Class", c.getCharClass().getName());
-                    
+
                     mt = c.getSecLevel();
                     writeValue("SecLevel", c.getSecLevel());
-                    
+
                     empty = c.getCharSecClass().getName();
                     writeValue("SecClass", c.getSecClass().getName());
 
@@ -1138,8 +1139,8 @@ public class SaveCharacter {
         value = value.replaceAll(">", "&gt;");
         value = value.replaceAll("'", "&apos;");
         value = value.replaceAll("\"", "&quot;");
-        
-        
+
+
         fo = "<" + tag + ">" + value + "</" + tag + ">\n";
         try {
             bw.write(fo);
