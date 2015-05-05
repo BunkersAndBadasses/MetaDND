@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><Character>
+<Name>Biggus Dickus</Name>
+<Level>1</Level>
+<Exp>0</Exp>
+<Race>Human</Race>
+<Alignment> ; </Alignment>
+<Deity> </Deity>
+<Size>4</Size>
+<Age> </Age>
+<Gender> </Gender>
+<Height> </Height>
+<Weight> </Weight>
+<Eyes> </Eyes>
+<Hair> </Hair>
+<Skin> </Skin>
+<Description> </Description>
+<Spells> </Spells>
+<SpecialAbilities> </SpecialAbilities>
+<PreparedSpells> </PreparedSpells>
+<AC>10/3/0/1/0/0/</AC>
+<TouchAC>11</TouchAC>
+<FlatFootedAC>13</FlatFootedAC>
+<Init>1/0/</Init>
+<Fortitude>2/2/0/0/</Fortitude>
+<Reflex>0/1/0/0/</Reflex>
+<Will>0/0/0/0/</Will>
+<BaseAttack>1</BaseAttack>
+<SpellResistance>0</SpellResistance>
+<Speed>30</Speed>
+<Grapple>1/3/0/0/</Grapple>
+<DamageReduction>0</DamageReduction>
+<ClericDomains> </ClericDomains>
+<DruidCompanion> </DruidCompanion>
+<RangerFavoredEnemy> </RangerFavoredEnemy>
+<Familiar> </Familiar>
+<WizardSpecialty> </WizardSpecialty>
+<WizardProhibitedSchools> </WizardProhibitedSchools>
+<Image>User Data\Character\BiggusDickus\BiggusDickus.jpg</Image>
+<Class>Fighter</Class>
+<SecLevel>0</SecLevel>
+<SecClass> </SecClass>
+<STR>17</STR>
+<DEX>13</DEX>
+<CON>14</CON>
+<INT>12</INT>
+<WIS>10</WIS>
+<CHA>10</CHA>
+<HP>12</HP>
+<PrimaryWeapon>Greatsword</PrimaryWeapon>
+<SecondaryWeapon>Longsword</SecondaryWeapon>
+<Armor>Studded Leather</Armor>
+<Shield> </Shield>
+<Notes> </Notes>
+<DamageTaken>0</DamageTaken>
+<PP>0</PP>
+<GP>77</GP>
+<SP>0</SP>
+<CP>0</CP>
+<Items>Crowbar;1/Holy Water (Flask);1/Ink;1/</Items>
+<Languages>Common/Latin/</Languages>
+<Weapons>Longsword;1/Greatsword;1/Longbow;1/</Weapons>
+<Armors>Studded Leather;1/</Armors>
+<Skills>Appraise;1;0;0/Balance;1;0;0/Bluff;0;0;0/Climb;3;0;4/Concentration;2;0;0/Craft;1;0;4/Decipher Script;1;0;0/Diplomacy;0;0;0/Disable Device;1;0;0/Disguise;0;0;0/Escape Artist;1;0;0/Forgery;1;0;0/Gather Information;0;0;0/Handle Animal;0;0;0/Heal;0;0;0/Hide;1;0;0/Intimidate;0;0;0/Jump;3;0;4/Knowledge;1;0;0/Listen;0;0;0/Move Silently;1;0;0/Open Lock;1;0;0/Perform;0;0;0/Profession;0;0;0/Ride;1;0;0/Search;1;0;0/Sense Motive;0;0;0/Sleight Of Hand;1;0;0/Speak Language;0;0;0/Spellcraft;1;0;0/Spot;0;0;0/Survival;0;0;0/Swim;3;0;0/Tumble;1;0;0/Use Magic Device;0;0;0/Use Rope;1;0;0/</Skills>
+<Shields> </Shields>
+<Feats>Dodge;1/Tower Shield Proficiency;1/Shield Proficiency;1/Armor Proficiency (Heavy);1/Armor Proficiency (Medium);1/Armor Proficiency (Light);1/Simple Weapon Proficiency;All;1/Martial Weapon Proficiency;All;1/Acrobatic;1/Agile;1/</Feats>
+</Character>
