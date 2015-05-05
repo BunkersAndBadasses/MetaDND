@@ -60,7 +60,7 @@ public class Wiz2 {
 		// initialization
 		wiz2 = wizPages.get(1);
 		this.cw = cw;
-		this.dev = dev;
+		//this.dev = dev;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.character = cw.getCharacter();
@@ -312,7 +312,7 @@ public class Wiz2 {
 		chaLabel.pack();
 		
 		// error label
-		errorLabel.setForeground(wiz2.getDisplay().getSystemColor(SWT.COLOR_RED));
+		errorLabel.setForeground(new Color(dev, 255, 0, 0));
 		errorLabel.setText("You must select a value for each ability!");
 		errorLabel.setVisible(false);
 		errorLabel.pack();
