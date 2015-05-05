@@ -154,7 +154,7 @@ public class CharacterWizard {
 		
 		Label homeLabel = new Label(home, SWT.NONE);
 		homeLabel.setText("Let's create a character!");
-		Font font1 = new Font(homeLabel.getDisplay(), new FontData("Arial", 24,
+		Font font1 = new Font(display, new FontData(display.getSystemFont().getFontData()[0].getName(), 24,
 				SWT.BOLD));
 		homeLabel.setFont(font1);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
@@ -168,7 +168,7 @@ public class CharacterWizard {
 		
 		Label homeLabel2 = new Label(home, SWT.NONE);
 		homeLabel2.setText("Choose a method:");
-		Font font2 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
+		Font font2 = new Font(homeLabel.getDisplay(), new FontData(display.getSystemFont().getFontData()[0].getName(), 18,
 				SWT.BOLD));
 		homeLabel2.setFont(font2);
 		gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
@@ -181,7 +181,7 @@ public class CharacterWizard {
 		
 		new Label(home, SWT.NONE).setLayoutData(new GridData());
 		
-		Button wizardButton = new Button(home, SWT.PUSH | SWT.WRAP | SWT.CENTER);
+		Button wizardButton = new Button(home, SWT.PUSH | SWT.CENTER);
 		wizardButton.setText("Interactive Character Wizard");
 		wizardButton.setFont(font2);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -196,7 +196,7 @@ public class CharacterWizard {
 
 //		Button manualButton = new Button(home, SWT.PUSH);
 //		manualButton.setText("Manual");
-		Font font3 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
+		Font font3 = new Font(homeLabel.getDisplay(), new FontData(display.getSystemFont().getFontData()[0].getName(), 18,
 				SWT.NONE));
 //		manualButton.setFont(font3);
 //		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
