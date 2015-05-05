@@ -217,6 +217,7 @@ public class character {
     public ItemEntity getCurrArmor() { return currArmor; }
 
     public void setHitPoints(int hp) { this.hp = hp; resetDamage(); }
+    public void modHitPoints(int inc) { this.hp += inc; }
     public int getHitPoints() { return hp; }
 
     public void setDamageTaken(int rhp) { dmg = rhp; }
