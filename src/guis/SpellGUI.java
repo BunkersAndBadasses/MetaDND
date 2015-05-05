@@ -367,7 +367,10 @@ public class SpellGUI {
                 else {
                     str = newSpellSel.getText();
                     SpellEntity se = allSpells.get(str);
-                    c.addSpell(se);
+                    if(!c.getSpells().contains(se)) {
+                        c.addSpell(se);
+                        spellsKnown.add(str);
+                    }
                     refresh();
                 }
             }
