@@ -267,7 +267,13 @@ public class SpellEntity extends DNDEntity{
 		output += this.threeTabs + this.school + "\n";
 		output += this.twoTabs + "</SCHOOL>\n";
 		output += this.twoTabs + "<LEVEL>\n";
-		output += this.threeTabs + this.level + "\n";
+		output += this.threeTabs;
+		for(int i = 0; i < this.level.length; i++){
+			output += this.level[i];
+			if(i != this.level.length - 1)
+				output += ", ";
+		}
+		output += "\n";
 		output += this.twoTabs + "</LEVEL>\n";
 		output += this.twoTabs + "<COMPONENTS>\n";
 		output += this.threeTabs + this.components + "\n";
