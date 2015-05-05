@@ -312,7 +312,7 @@ public class Wiz2 {
 		chaLabel.pack();
 		
 		// error label
-		errorLabel.setForeground(new Color(dev, 255, 0, 0));
+		errorLabel.setForeground(wiz2.getDisplay().getSystemColor(SWT.COLOR_RED));
 		errorLabel.setText("You must select a value for each ability!");
 		errorLabel.setVisible(false);
 		errorLabel.pack();

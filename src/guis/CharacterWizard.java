@@ -43,6 +43,8 @@ import entity.WeaponEntity;
  * back button
  * starting at level > 1
  * adding custom skills
+ * 
+ * special abilities being saved as null
  */
 
 public class CharacterWizard {
