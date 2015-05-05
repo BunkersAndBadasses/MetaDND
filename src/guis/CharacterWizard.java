@@ -192,18 +192,19 @@ public class CharacterWizard {
 		
 		new Label(home, SWT.NONE).setLayoutData(new GridData());
 
-		Button manualButton = new Button(home, SWT.PUSH);
-		manualButton.setText("Manual");
+//		Button manualButton = new Button(home, SWT.PUSH);
+//		manualButton.setText("Manual");
 		Font font3 = new Font(homeLabel.getDisplay(), new FontData("Arial", 18,
 				SWT.NONE));
-		manualButton.setFont(font3);
-		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-		manualButton.setLayoutData(gd);
+//		manualButton.setFont(font3);
+//		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+//		manualButton.setLayoutData(gd);
 
 		Button randomButton = new Button(home, SWT.PUSH);
 		randomButton.setText("Random");
 		randomButton.setFont(font3);
 		gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gd.horizontalSpan = 2;
 		randomButton.setLayoutData(gd);
 
 		new Label(home, SWT.NONE).setLayoutData(new GridData());
@@ -297,12 +298,12 @@ public class CharacterWizard {
 				homePanel.layout();
 			}
 		});
-		manualButton.addListener(SWT.Selection, new Listener() {
-			public void handleEvent(Event event) {
-				homeLayout.topControl = manualWizard;
-				homePanel.layout();
-			}
-		});
+//		manualButton.addListener(SWT.Selection, new Listener() {
+//			public void handleEvent(Event event) {
+//				homeLayout.topControl = manualWizard;
+//				homePanel.layout();
+//			}
+//		});
 		randomButton.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				randomgeneration(randomPanel, randomLayout, homePanel);
