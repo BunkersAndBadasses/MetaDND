@@ -217,6 +217,7 @@ public class character {
     public ItemEntity getCurrArmor() { return currArmor; }
 
     public void setHitPoints(int hp) { this.hp = hp; resetDamage(); }
+    public void modHitPoints(int inc) { this.hp += inc; }
     public int getHitPoints() { return hp; }
 
     public void setDamageTaken(int rhp) { dmg = rhp; }
@@ -262,6 +263,7 @@ public class character {
     public void addFeat(CharFeat f) { feats.add(f); }
     public void delFeat(CharFeat f) { feats.remove(f); }
     public ArrayList<CharFeat> getFeats() { return feats; }
+    public void setFeats(ArrayList<CharFeat> feats) { this.feats = feats; }
 
     public void addSpecialAbility(AbilityEntity a) { specialAbilities.add(a); }
     public void delSpecialAbility(AbilityEntity a) { specialAbilities.remove(a); }
@@ -590,7 +592,10 @@ public class character {
         if (spells.size() == 0)
             s += "\t \n";
         for (int i = 0; i < spells.size(); i++)
-            s += "\t" + spells.get(i).getName() + "\n";
+        	if (spells.get(i) == null)
+        		s+= "\tnull\n";
+        	else
+        		s += "\t" + spells.get(i).getName() + "\n";
         s += "Prepared Spells: " + "\n";
         if (prepSpells.size() == 0)
             s += "\t \n";

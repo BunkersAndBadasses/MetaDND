@@ -87,6 +87,8 @@ public class CharSkill {
 	
 	public void setRank(int r) { rank = r ; }
 	
+	public void modRank(int mod) { rank += mod; }
+	
 	public void setMiscMod(int m) { miscMod = m; }
 	
 	public int getMaxClassSkillRank(int level) {

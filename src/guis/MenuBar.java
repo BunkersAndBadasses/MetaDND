@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
+import core.GameState;
 import core.GameState.PAGE;
 import core.DungeonConstants;
 import core.Main;
@@ -325,6 +326,7 @@ public class MenuBar {
         });
         
         //Exit
+        if(page != GameState.PAGE.DungeonViewerScreen){
         MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
         exitItem.setText("&Exit");
         
@@ -336,6 +338,19 @@ public class MenuBar {
                 Main.exitProgram();
             }
         });
+        }
+        else{
+        	MenuItem closeItem = new MenuItem(fileMenu, SWT.PUSH);
+            closeItem.setText("&Close");
+            
+
+            closeItem.addSelectionListener(new SelectionAdapter() {
+                @Override
+                public void widgetSelected(SelectionEvent e) {
+                	shell.dispose();
+                }
+            });
+        }
         
         
       //Die Roller
