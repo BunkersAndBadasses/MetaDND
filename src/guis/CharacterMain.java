@@ -632,6 +632,15 @@ public class CharacterMain {
 
         currencyComp.setLayoutData(currencyCompGD);
         currencyComp.pack();
+        
+        Button levelUpButton = new LevelUpButton(mainComp, Main.gameState.currentlyLoadedCharacter).getButton();
+        //GridData gd = new GridData(SWT.CENTER, SWT.CENTER, true, false);
+        levelUpButton.setLayoutData(buttonGD);
+        
+        new Label(mainComp, SWT.NONE).setLayoutData(buttonGD);
+        new Label(mainComp, SWT.NONE).setLayoutData(buttonGD);
+        new Label(mainComp, SWT.NONE).setLayoutData(buttonGD);
+        new Label(mainComp, SWT.NONE).setLayoutData(buttonGD);
 
         //Save All Information
         Button saveAllButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);

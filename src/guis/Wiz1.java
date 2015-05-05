@@ -520,8 +520,13 @@ public class Wiz1 {
 						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(raceAbilities[i]));
 				String[] classAbilities = character.getCharClass().getSpecial()[character.getLevel()];
 				for (int i = 0; i < classAbilities.length; i++) {
-					if (!classAbilities[i].equals("") && !classAbilities[i].equalsIgnoreCase("bonus feat"))
-						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(classAbilities[i]));
+					if (!classAbilities[i].equals("") && !classAbilities[i].equalsIgnoreCase("bonus feat")) {
+						AbilityEntity temp = (AbilityEntity)Main.gameState.abilities.get(classAbilities[i]);
+						character.addSpecialAbility(temp);
+						if (temp == null) {
+							System.out.println("Failed at ability : " + classAbilities[i]); // TODO
+						}
+					}
 				}
 
 				if (cw.wizPageNum < wizPagesSize - 1)
