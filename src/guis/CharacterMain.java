@@ -3,6 +3,7 @@ package guis;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,11 +14,13 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -27,6 +30,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -528,7 +532,15 @@ public class CharacterMain {
         inventoryCombo = new Combo(mainComp, SWT.CENTER | SWT.READ_ONLY);
         inventoryCombo.setLayoutData(statGD);
 
-        new Label(mainComp, SWT.NONE);
+        Button infoButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
+        infoButt.setText("Character Info");
+        infoButt.setLayoutData(buttonGD);
+        infoButt.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                toTooltipWindow();
+            }
+        }); 
 
         Button spellButt = new Button(mainComp, SWT.CENTER | SWT.PUSH);
         spellButt.setText("Spell Manager");
@@ -667,7 +679,7 @@ public class CharacterMain {
                 else {
                     //TODO notify failure
                 }
-                
+
                 /*writeValue("Notes", notes, element);
                 String damageTaken = dmgText.getText();
                 writeValue("DamageTaken", damageTaken, element);
@@ -894,7 +906,7 @@ public class CharacterMain {
         return true;
     }
 
-    private void refresh() {
+    public void refresh() {
         //TODO
         //m_shell.setText("Character Page: " + charName);
         acVal = c.getACTotal();
@@ -1076,6 +1088,59 @@ public class CharacterMain {
 
     public Composite getMainComp() {
         return mainComp;
+    }
+
+    private void toTooltipWindow(){
+
+        Display display = Display.getCurrent();
+        Shell shell = new Shell(display);
+        Image logo = new Image(display, "images/bnb_logo.gif");
+        shell.setImage(logo);
+        Monitor monitor = display.getPrimaryMonitor();
+        Rectangle bounds = monitor.getBounds();
+        int WIDTH = 700;
+        int HEIGHT = (int)(bounds.height * 2.0/3.0);
+
+        ScrolledComposite sc = new ScrolledComposite(shell, SWT.V_SCROLL | SWT.H_SCROLL);
+        sc.setBounds(0, 0, WIDTH - 20, HEIGHT - 50);
+        sc.setExpandHorizontal(true);
+        sc.setExpandVertical(true);
+
+        Composite com = new Composite(sc, SWT.NONE);
+        sc.setContent(com);
+        com.setSize(com.computeSize(SWT.DEFAULT, SWT.DEFAULT)); 
+        GridLayout layout = new GridLayout(1, false);
+        com.setLayout(layout);
+
+        //Font boldFont = new Font(display, new FontData( display.getSystemFont().getFontData()[0].getName(), 12, SWT.BOLD ));
+
+        Label textLabel = new Label(com, SWT.NONE);
+        String windowSize = "(.{" + bounds.width / 18 + "} )";
+        //This guy finds a space every 120 characters and makes a new line, nice text formatting for the tooltip windows
+        String parsedStr = c.toString().replaceAll(windowSize, "$1\n");
+        String finalString = "";
+        String[] split = parsedStr.split("\n");
+        for(int i = 0; i < split.length; i++){
+            finalString += split[i].trim() + "\n";
+        }
+
+        //parsedStr = parsedStr.replaceAll("\t", "");
+        textLabel.setText(finalString);
+        textLabel.pack();
+
+        com.pack();
+        sc.setMinHeight(com.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+
+
+        shell.setLocation((int)(bounds.width * .75) - com.getSize().x / 2, (int)(bounds.height * .05));
+
+        shell.pack();
+        shell.open();
+
+        while(!shell.isDisposed()){
+            if(!display.readAndDispatch())
+                display.sleep();
+        }
     }
 
 
