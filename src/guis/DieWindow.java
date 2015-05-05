@@ -106,7 +106,7 @@ public class DieWindow {
 			// The die X number text that's updated on button push
 			final Label dieText = new Label(dieWin, SWT.NONE);
 			dieLabels[i] = dieText; 
-			Font font1 = new Font(display, new FontData("Arial", 24,
+			Font font1 = new Font(display, new FontData(Display.getCurrent().getSystemFont().getFontData()[0].getName(), 24,
 					SWT.NONE));
 			dieText.setFont(font1);
 			//dieText.setLocation(20, (i*40) + 24);
@@ -157,7 +157,7 @@ public class DieWindow {
 
 		// Custom Die text
 		final Label custom = new Label(dieWin, SWT.NONE);
-		Font font2 = new Font(display, new FontData("Arial", 24,
+		Font font2 = new Font(display, new FontData(Display.getCurrent().getSystemFont().getFontData()[0].getName(), 24,
 				SWT.NONE));
 		custom.setFont(font2);
 		custom.setText("Custom \n (#, die)");
@@ -196,7 +196,7 @@ public class DieWindow {
 
 		// Total text
 		final Label totalText = new Label(dieWin, SWT.NONE);
-		Font font4 = new Font(display, new FontData("Arial", 24,
+		Font font4 = new Font(display, new FontData(Display.getCurrent().getSystemFont().getFontData()[0].getName(), 24,
 				SWT.BOLD));
 		totalText.setFont(font4);
 		totalText.setText("Total = ");
@@ -207,7 +207,7 @@ public class DieWindow {
 		// Total's read-only display box
 		total = new Text(dieWin, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
 		total.setText("0");
-		Font font5 = new Font(display, new FontData("Arial", 16,
+		Font font5 = new Font(display, new FontData(Display.getCurrent().getSystemFont().getFontData()[0].getName(), 16,
 				SWT.NONE));
 		total.setFont(font5);
 		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
@@ -215,7 +215,7 @@ public class DieWindow {
 		total.setLayoutData(gridData);
 
 		// ROLL BUTTON
-		Font font3 = new Font(display, new FontData("Arial", 15,
+		Font font3 = new Font(display, new FontData(Display.getCurrent().getSystemFont().getFontData()[0].getName(), 15,
 				SWT.NONE));
 		Button roll = new Button(dieWin, SWT.PUSH);
 		roll.setText("Roll");
@@ -433,7 +433,7 @@ public class DieWindow {
 
 				// this appears when there is an empty save
 				badSaveFinal = new Label(saveName, SWT.NONE);
-				badSaveFinal.setForeground(new Color(dev,255,0,0));
+				badSaveFinal.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
 				badSaveFinal.setLocation(10,110);
 				badSaveFinal.setVisible(false);
 				badSaveFinal.setText("Invalid Save: must be aplhanumeric values only");
