@@ -94,8 +94,8 @@ class LevelUpLogic {
 	// stuff to save when done
 	private int saveHP = 0;
 	private int saveAS = -1; // 0-5, index of ability score to increase
-	private String[] saveSpecialAbilities;
-	private ArrayList<SkillAdjNode> saveSkills;
+	private ArrayList<String> saveSpecialAbilities = new ArrayList<String>();
+	private ArrayList<SkillAdjNode> saveSkills = new ArrayList<SkillAdjNode>();
 	private ArrayList<CharFeat> saveFeats = new ArrayList<CharFeat>();
 	private ArrayList<SpellEntity> saveSpells = new ArrayList<SpellEntity>();
 
@@ -126,7 +126,11 @@ class LevelUpLogic {
 		//		levelUpShell.setLayout(stackLayout);
 
 		int level = character.getLevel();
-		saveSpecialAbilities = character.getCharClass().getSpecial()[level];
+		String[] specials = character.getCharClass().getSpecial()[level];
+		if (specials != null) {
+		for (int i = 0; i < specials.length; i++)
+			saveSpecialAbilities.add(specials[i]);
+		}
 		// TODO when saving, don't save 'bonus feat'
 		
 		////////// PAGE NUMBERS //////////
@@ -657,9 +661,9 @@ class LevelUpLogic {
 			skipFeats = false;
 			numFeats++;
 		}
-		for (int i = 0; i < saveSpecialAbilities.length; i++) {
+		for (int i = 0; i < saveSpecialAbilities.size(); i++) {
 			// check if that character's class gets a bonus feat at that level
-			if (saveSpecialAbilities[i].equalsIgnoreCase("bonus feat")) {
+			if (saveSpecialAbilities.get(i).equalsIgnoreCase("bonus feat")) {
 				String charClass = character.getCharClass().getName();
 				// fighters and monks choose from a selection of bonus feats
 				if (charClass.equalsIgnoreCase("fighter") || charClass.equalsIgnoreCase("monk"))
@@ -1448,7 +1452,8 @@ class LevelUpLogic {
 				character.modifyAbilityScores(asMod);
 				String[] specials = character.getCharClass().getSpecial()[character.getLevel()];
 				for (int i = 0; i < specials.length; i++) {
-					character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(specials[i]));
+					if (!specials[i].equalsIgnoreCase("bonus feat"))
+						character.addSpecialAbility((AbilityEntity)Main.gameState.abilities.get(specials[i]));
 				}
 				ArrayList<CharSkill> newSkills = new ArrayList<CharSkill>();
 				for (int i = 0; i < saveSkills.size(); i++) {
