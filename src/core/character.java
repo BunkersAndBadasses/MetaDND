@@ -591,8 +591,10 @@ public class character {
         s += "Special Abilities: " + "\n";
         if (specialAbilities.size() == 0)
             s += "\t \n";
-        for (int i = 0; i < specialAbilities.size(); i++)
-            s += "\t" + specialAbilities.get(i).getName() + "\n";
+        for (int i = 0; i < specialAbilities.size(); i++) {
+        	if (specialAbilities.get(i) != null)
+        		s += "\t" + specialAbilities.get(i).getName() + "\n";
+        }
         s += "Spells: " + "\n";
         if (spells.size() == 0)
             s += "\t \n";
