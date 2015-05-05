@@ -249,6 +249,7 @@ public class HomeWindow {
 				System.out.println(path);
 				String[] args = {path};			
 				CharacterMain test = new CharacterMain(args, characterPanel, shell);
+				Main.gameState.currentlyLoadedCharacter.setCharMain(test);
 				charLayout.topControl = test.getMainWindow();
 				characterPanel.layout();
 				shell.setBounds((int)(display.getBounds().width * .05), (int)(display.getBounds().height * .05), (int)(display.getBounds().width * .9), (int)(display.getBounds().height * .8));

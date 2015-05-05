@@ -1172,8 +1172,10 @@ class LevelUpLogic {
 //			gd.horizontalSpan = 3;
 //			doneButton.setLayoutData(gd);
 
-
+			int[] origNumSpells;
+			
 			// create content
+			if (!skipSpells) {
 
 			// num spells left label
 			int[][] temp = character.getCharClass().getSpellsKnown();
@@ -1210,7 +1212,7 @@ class LevelUpLogic {
 				skipSpells = true;
 			}
 
-			int[] origNumSpells = new int[numSpells.length];
+			origNumSpells = new int[numSpells.length];
 			for (int i = 0; i < origNumSpells.length; i++)
 				origNumSpells[i] = numSpells[i];
 			updateNumSpellsLeft();
@@ -1237,6 +1239,7 @@ class LevelUpLogic {
 						}
 					}
 				}
+			}
 			}
 			spellsList.addSelectionListener(new SelectionListener(){
 				public void widgetDefaultSelected(SelectionEvent e){
@@ -1441,7 +1444,8 @@ class LevelUpLogic {
 				// save everything
 				character.modHitPoints(saveHP);
 				int[] asMod = {0, 0, 0, 0, 0, 0};
-				asMod[saveAS]++;
+				if (saveAS > -1)
+					asMod[saveAS]++;
 				character.modifyAbilityScores(asMod);
 				String[] specials = character.getCharClass().getSpecial()[character.getLevel()];
 				for (int i = 0; i < specials.length; i++) {
@@ -1456,8 +1460,11 @@ class LevelUpLogic {
 				character.setSkills(newSkills);
 				character.setFeats(saveFeats);
 				character.setSpells(saveSpells);
+				
+				// TODO save to xml?
 
-				// TODO refresh character sheet
+				// refresh character sheet
+				character.getCharMain().refresh();
 				
 				curr.dispose();
 			}

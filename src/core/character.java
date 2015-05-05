@@ -2,6 +2,7 @@ package core;
 import java.util.ArrayList;
 
 import entity.*;
+import guis.CharacterMain;
 
 public class character {	
 
@@ -70,10 +71,14 @@ public class character {
     private String wizardSpecialtySchool = null;
     private String[] wizardProhibitedSchools = null;
     private String filename;
+    private CharacterMain charMain;
 
 
     //////////////// METHODS ///////////////////
     public character() {}
+    
+    public CharacterMain getCharMain() { return charMain; }
+    public void setCharMain(CharacterMain cm) { charMain = cm; }
 
     public String getName() { return name; }
     public void setName(String n) { name = n; }
