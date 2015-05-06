@@ -332,6 +332,7 @@ class LevelUpLogic {
 				String input = hpInput.getText();
 				if (input.length() == 0) {
 					totalLabel.setText(conString + " (CON modifier) = +X");
+					hpPage.layout();
 					return;
 				}
 				try {
@@ -341,12 +342,14 @@ class LevelUpLogic {
 				} catch (Exception e) {
 					hpInput.setBackground(new Color(display, 255, 100, 100));
 					totalLabel.setText(conString + " (CON modifier) = +X");
+					hpPage.layout();
 					return;
 				}
 				int total = conMod + value;
 				if (total < 1)
 					total = 1;
 				totalLabel.setText(conString + " (CON modifier) = +" + total);
+				hpPage.layout();
 			}
 		});
 
