@@ -1,6 +1,8 @@
 package core;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,8 +32,10 @@ public class LoadCharacter {
     private Document doc;
     private Element element;
     private String delims = "[/]+"; 
+    private String spellDelims = "[$]+";
     private String regex = "[;]+";
     private String str;
+    private BufferedReader lrgR;
 
     public LoadCharacter(String xmlLocation, character loadChar){
         try {
@@ -45,6 +49,7 @@ public class LoadCharacter {
             String temp, name, description;
             String[] tempArr;
             String[] tempMiniArr;
+            lrgR = new BufferedReader(new FileReader(stocks));
 
             NodeList nodes = doc.getElementsByTagName("Character");
 
@@ -54,7 +59,7 @@ public class LoadCharacter {
 
 
                 element = (Element) node;
-                
+
                 str = getValue("Armor", element);
                 if (!str.equals(" ")) {
                     c.setCurrArmor((ItemEntity) Main.gameState.armor.get(str));
@@ -130,18 +135,26 @@ public class LoadCharacter {
                         c.addSpecialAbility(ae);
                     }
                 }
+                String line;
+                /*while((line = lrgR.readLine()) != null) {
+                    if (line.startsWith("<Spells>")) {
+                        str = line.substring(8, line.length()-9);
+                        System.out.println(str);
 
+                    }
+                }*/
                 str = getValue("Spells", element);
                 if (!str.equals(" ")) {
-                    tempArr = str.split(delims);
+                    tempArr = str.split(spellDelims);
                     for(int i = 0; i < tempArr.length; i ++) {
-                        c.addSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
+                        c.addSpell((SpellEntity) Main.gameState.spells.get(tempArr[i].trim()));
                     }
                 }
 
+
                 str = getValue("PreparedSpells", element);
                 if (!str.equals(" ")) {
-                    tempArr = str.split(delims);
+                    tempArr = str.split(spellDelims);
                     for(int i = 0; i < tempArr.length; i ++) {
                         c.prepSpell((SpellEntity) Main.gameState.spells.get(tempArr[i]));
                     }
@@ -283,7 +296,7 @@ public class LoadCharacter {
                     c.setSecondaryWeapon((WeaponEntity) Main.gameState.weapons.get(str));
                 }
 
-                
+
 
 
                 c.setNotes(getValue("Notes", element));
