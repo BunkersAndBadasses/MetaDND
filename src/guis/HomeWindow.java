@@ -3,6 +3,8 @@ package guis;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.*;
@@ -21,6 +23,7 @@ import core.character;
 import entity.ClassEntity;
 import entity.DNDEntity;
 import entity.RaceEntity;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -171,14 +174,57 @@ public class HomeWindow {
 		dungeonGenConfig.setLayout(dungeonGenConfigLayout);
 
 		///////////////////HOME SCREEN//////////////////////////
+		
+//		homeScreen.setBackgroundImage(resize(new Image(Display.getCurrent(), "images/dragon.png"), 10, 10));
+		
+		///////////// first row: image and app name ///////////
+		// placeholder labels take up columns 1 and 2 in the grid.
+		//new Label(homeScreen, SWT.NONE);  
+		//new Label(homeScreen, SWT.NONE); 
+			
+		
+	    Image dragonImage = new Image(Display.getCurrent(), "images/dragon_250.png");
+	    Label dragon = new Label(homeScreen,SWT.NONE);
 
+	    dragon.setImage(dragonImage);
+//	    Canvas canvas = new Canvas(homeScreen,SWT.NO_REDRAW_RESIZE);
+//	    canvas.addPaintListener(new PaintListener() {
+//	        public void paintControl(PaintEvent e) {
+//	         e.gc.drawImage(dragonImage,0,0);
+//	        }
+//	    });
+	    
+		GridData gd = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
+		gd.horizontalSpan = 2;
+		dragon.setLayoutData(gd);
+		//canvas.setLayoutData(gd);
+		
+		Label metaDND = new Label(homeScreen, SWT.NONE);
+		metaDND.setText("MetaDND");
+		Font font = new Font(Display.getCurrent(), new FontData(display.getSystemFont().getFontData()[0].getName(), 85,
+				SWT.BOLD));
+		metaDND.setFont(font);
+		gd = new GridData(SWT.LEFT, SWT.END, true, false);
+		gd.horizontalSpan = 4;
+		metaDND.setLayoutData(gd);
+		
+		// col 4: text
+		
+		// placeholder labels take up columns 5 and 6 in the grid. 
+
+		//new Label(homeScreen, SWT.NONE);  
+		//new Label(homeScreen, SWT.NONE);  
+//		gd = new GridData();
+//		gd.horizontalSpan = 6;
+//		new Label(homeScreen, SWT.NONE).setLayoutData(gd);
+		
 		// placeholder labels take up columns 1 and 2 in the grid.
 		new Label(homeScreen, SWT.NONE);  
 		new Label(homeScreen, SWT.NONE);  
 
 		// default size of the buttons is 200 by 100
 		// the buttons occupy columns 3 and 4 in the grid.
-		GridData playersGD = new GridData();
+		GridData playersGD = new GridData(SWT.RIGHT, SWT.BEGINNING);
 		playersGD.grabExcessHorizontalSpace = true;
 		playersGD.grabExcessVerticalSpace = true;
 		playersGD.widthHint = 200;
@@ -191,7 +237,7 @@ public class HomeWindow {
 		playersButton.pack();
 
 		// each element should have its own griddata object.
-		GridData dungeonMastersGD = new GridData();
+		GridData dungeonMastersGD = new GridData(SWT.RIGHT, SWT.BEGINNING);
 		dungeonMastersGD.grabExcessHorizontalSpace = true;
 		dungeonMastersGD.grabExcessVerticalSpace = true;
 		dungeonMastersGD.widthHint = 200;
@@ -832,6 +878,17 @@ public class HomeWindow {
 		
 		
 	}
+	
+	private Image resize(Image image, int width, int height) {
+		Image scaled = new Image(Display.getCurrent(), width, height);
+		GC gc = new GC(scaled);
+		gc.setAntialias(SWT.ON);
+		gc.setInterpolation(SWT.HIGH);
+		gc.drawImage(image, 0, 0, image.getBounds().width, image.getBounds().height, 0, 0, width, height);
+		gc.dispose();
+		image.dispose(); // don't forget about me!
+		return scaled;
+		}
 	
 	//	public static void main(String[] args) {
 	//		Display display = new Display();
