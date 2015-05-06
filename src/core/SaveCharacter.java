@@ -144,7 +144,7 @@ public class SaveCharacter {
                 if (mt != 0) {
                     temp = "";
                     for(int i = 0; i < c.getSpells().size(); i++){
-                        temp += c.getSpells().get(i).getName() + "/";
+                        temp += c.getSpells().get(i).getName() + "$";
                     }
                 }
                 appendValue("Spells", temp);
@@ -169,7 +169,7 @@ public class SaveCharacter {
                 if (mt != 0) {
                     temp = "";
                     for(int i = 0; i < c.getPrepSpells().size(); i++){
-                        temp += c.getPrepSpells().get(i).getName() + "/";
+                        temp += c.getPrepSpells().get(i).getName() + "$";
                     }
                 }
                 appendValue("PreparedSpells", temp);
@@ -580,7 +580,7 @@ public class SaveCharacter {
                         temp = "";
                         for(int i = 0; i < c.getSpells().size(); i++){
                             if(c.getSpells() != null)
-                                temp += c.getSpells().get(i).getName() + "/";
+                                temp += c.getSpells().get(i).getName() + "$";
                         }
                     }
                     writeValue("Spells", temp);
@@ -605,7 +605,7 @@ public class SaveCharacter {
                     if (mt != 0) {
                         temp = "";
                         for(int i = 0; i < c.getPrepSpells().size(); i++){
-                            temp += c.getPrepSpells().get(i).getName() + "/";
+                            temp += c.getPrepSpells().get(i).getName() + "$";
                         }
                     }
                     writeValue("PreparedSpells", temp);
