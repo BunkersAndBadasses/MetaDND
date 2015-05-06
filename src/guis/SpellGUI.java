@@ -304,6 +304,7 @@ public class SpellGUI {
                     SpellEntity se = allSpells.get(str);
                     c.unprepSpell(se);
                     spellsPrepared.remove(str);
+                    prepTot[mostRelevantLevel(se)] = prepTot[mostRelevantLevel(se)] -1;
                     refresh();
                 }
             }
