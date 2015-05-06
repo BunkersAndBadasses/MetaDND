@@ -157,10 +157,21 @@ public class DnDie {
 			}else{
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
-				File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls");
-				CHARDIR.mkdir();
-				result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+				if(charFileName.equals("BiggusDickus")){
+					File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//" + charFileName + 
+							"//favRolls");
+					CHARDIR.mkdir();
+					result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+				}
+				else{
+					File CHARDIR = new File(System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//DND" + charFileName + "//favRolls");
+					CHARDIR.mkdir();
+					result = new StreamResult(CHARDIR.getPath() + "//" + fileName + ".xml");
+				}
+				
+				
 			}
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
@@ -195,9 +206,17 @@ public class DnDie {
 			}else{
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
-				fXmlFile = new File(System.getProperty("user.dir") + "//" + 
-						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls"  +
-						"//" + fileName + ".xml");
+				if(charFileName.equals("BiggusDickus")){
+					fXmlFile = new File(System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//" + charFileName + 
+							"//favRolls" + "//" + fileName + ".xml");
+				}
+				else{
+					fXmlFile = new File(System.getProperty("user.dir") + "//" + 
+							"User Data" + "//Character" + "//DND" + charFileName + "//favRolls"  +
+							"//" + fileName + ".xml");
+				}
+				
 			}
 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -274,7 +293,7 @@ public class DnDie {
 				String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
 				charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
 				String filepath;
-				if(charFileName == "BiggusDickus"){
+				if(charFileName.equals("BiggusDickus")){
 					filepath = System.getProperty("user.dir") + "//" + 
 							"User Data" + "//Character" + "//" + charFileName + "//favRolls";
 				}
@@ -308,9 +327,26 @@ public class DnDie {
 	 * @param fileName
 	 */
 	public static void deleteFavDie(String fileName){
-		File file = new File(System.getProperty("user.dir") + "//" + 
-				"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
-
+		File file = null;
+		if(Main.gameState.currentlyLoadedCharacter == null){
+			file = new File(System.getProperty("user.dir") + "//" + 
+					"User Data" + "//" + "favRolls" + "//" + fileName + ".xml");
+		}
+		else{
+			String charFileName = Main.gameState.currentlyLoadedCharacter.getName();
+			charFileName = charFileName.replaceAll("[^A-Za-z0-9]", "");
+			if(charFileName.equals("BiggusDickus")){
+				file = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//" + charFileName + "//favRolls" 
+						+ "//" + fileName + ".xml");
+			}
+			else{
+				file = new File(System.getProperty("user.dir") + "//" + 
+						"User Data" + "//Character" + "//DND" + charFileName + "//favRolls"
+						+ "//" + fileName + ".xml");
+			}
+			
+		}
 		try{
 
 			if(file.delete()){
